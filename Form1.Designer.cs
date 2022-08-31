@@ -30,10 +30,13 @@ namespace PathfinderKINGPortrait
         private void InitializeComponent()
         {
             this.MainFormTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCreateNew = new System.Windows.Forms.Button();
+            this.CreateNewTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnBackToMainForm = new System.Windows.Forms.Button();
             this.MainFormTableLayout.SuspendLayout();
+            this.CreateNewTableLayout.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainFormTableLayout
@@ -42,10 +45,7 @@ namespace PathfinderKINGPortrait
             this.MainFormTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.MainFormTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.MainFormTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.MainFormTableLayout.Controls.Add(this.button1, 1, 1);
-            this.MainFormTableLayout.Controls.Add(this.button2, 1, 2);
-            this.MainFormTableLayout.Controls.Add(this.button3, 1, 3);
-            this.MainFormTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainFormTableLayout.Controls.Add(this.btnCreateNew, 1, 1);
             this.MainFormTableLayout.Location = new System.Drawing.Point(0, 0);
             this.MainFormTableLayout.Name = "MainFormTableLayout";
             this.MainFormTableLayout.RowCount = 5;
@@ -54,44 +54,67 @@ namespace PathfinderKINGPortrait
             this.MainFormTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.MainFormTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.MainFormTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.MainFormTableLayout.Size = new System.Drawing.Size(709, 433);
+            this.MainFormTableLayout.Size = new System.Drawing.Size(313, 176);
             this.MainFormTableLayout.TabIndex = 0;
             // 
-            // button1
+            // btnCreateNew
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(180, 89);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(348, 80);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCreateNew.Location = new System.Drawing.Point(81, 38);
+            this.btnCreateNew.Name = "btnCreateNew";
+            this.btnCreateNew.Size = new System.Drawing.Size(150, 29);
+            this.btnCreateNew.TabIndex = 0;
+            this.btnCreateNew.Text = "Create new portrait";
+            this.btnCreateNew.UseVisualStyleBackColor = true;
+            this.btnCreateNew.Click += new System.EventHandler(this.BtnCreateNew_Click);
             // 
-            // button2
+            // CreateNewTableLayout
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(180, 175);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(348, 80);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CreateNewTableLayout.ColumnCount = 2;
+            this.CreateNewTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CreateNewTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CreateNewTableLayout.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.CreateNewTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CreateNewTableLayout.Location = new System.Drawing.Point(0, 0);
+            this.CreateNewTableLayout.Name = "CreateNewTableLayout";
+            this.CreateNewTableLayout.RowCount = 1;
+            this.CreateNewTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.CreateNewTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.CreateNewTableLayout.Size = new System.Drawing.Size(686, 443);
+            this.CreateNewTableLayout.TabIndex = 1;
             // 
-            // button3
+            // tableLayoutPanel1
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(180, 261);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(348, 80);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.BtnBackToMainForm, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(346, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.64302F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.35698F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(337, 437);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // BtnBackToMainForm
+            // 
+            this.BtnBackToMainForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnBackToMainForm.Location = new System.Drawing.Point(3, 386);
+            this.BtnBackToMainForm.Name = "BtnBackToMainForm";
+            this.BtnBackToMainForm.Size = new System.Drawing.Size(162, 48);
+            this.BtnBackToMainForm.TabIndex = 0;
+            this.BtnBackToMainForm.Text = "button1";
+            this.BtnBackToMainForm.UseVisualStyleBackColor = true;
+            this.BtnBackToMainForm.Click += new System.EventHandler(this.BtnBackToMainForm_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(709, 433);
+            this.ClientSize = new System.Drawing.Size(686, 443);
+            this.Controls.Add(this.CreateNewTableLayout);
             this.Controls.Add(this.MainFormTableLayout);
             this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -99,6 +122,8 @@ namespace PathfinderKINGPortrait
             this.Text = "Pathfinder: Kingmaker Portrait";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainFormTableLayout.ResumeLayout(false);
+            this.CreateNewTableLayout.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -106,9 +131,10 @@ namespace PathfinderKINGPortrait
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel MainFormTableLayout;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCreateNew;
+        private System.Windows.Forms.TableLayoutPanel CreateNewTableLayout;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button BtnBackToMainForm;
     }
 }
 

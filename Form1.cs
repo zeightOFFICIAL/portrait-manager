@@ -40,17 +40,37 @@ namespace PathfinderKINGPortrait
 
         }
 
+        private void AllNotEnabled()
+        {
+            CreateNewTableLayout.Visible = false;
+            CreateNewTableLayout.Enabled = false;
+            MainFormTableLayout.Visible = false;
+            MainFormTableLayout.Enabled = false;
+            ScalingTableLayout.Visible = false;
+            ScalingTableLayout.Enabled = false;
+        }
+
+        private void AllToDockFill()
+        {
+            CreateNewTableLayout.Dock = DockStyle.Fill;
+            MainFormTableLayout.Dock = DockStyle.Fill;
+            ScalingTableLayout.Dock = DockStyle.Fill;
+        }
+
+        private void ActivateThis(TableLayoutPanel table)
+        {
+            table.Visible = true;
+            table.Enabled = true;
+        }
+
         //--------------------------------------------------------------------------------------------------------------
 
         public MainForm()
         {
             InitializeComponent();
-            CreateNewTableLayout.Visible = false;
-            CreateNewTableLayout.Enabled = false;
-            CreateNewTableLayout.Dock = DockStyle.Fill;
-            MainFormTableLayout.Visible = true;
-            MainFormTableLayout.Enabled = true;
-            MainFormTableLayout.Dock = DockStyle.Fill;
+            AllNotEnabled();
+            AllToDockFill();
+            ActivateThis(MainFormTableLayout);        
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -60,19 +80,15 @@ namespace PathfinderKINGPortrait
 
         private void BtnCreateNew_Click(object sender, EventArgs e)
         {
-            MainFormTableLayout.Visible = false;
-            MainFormTableLayout.Enabled = false;
-            CreateNewTableLayout.Visible = true;
-            CreateNewTableLayout.Enabled = true;
+            AllNotEnabled();
+            ActivateThis(CreateNewTableLayout);
         }
 
         private void BtnBackToMainForm_Click(object sender, EventArgs e)
         {
+            AllNotEnabled();
+            ActivateThis(MainFormTableLayout);
             ClearImage(PicCreateNewTemplate);
-            CreateNewTableLayout.Visible = false;
-            CreateNewTableLayout.Enabled = false;
-            MainFormTableLayout.Visible = true;
-            MainFormTableLayout.Enabled = true;
         }
 
         private void PicCreateNewTemplate_Click(object sender, EventArgs e)
@@ -91,9 +107,16 @@ namespace PathfinderKINGPortrait
 
         private void BtnNextToScaling_Click(object sender, EventArgs e)
         {
-            PicCreateNewTemplate.Image.Save(@"D:\Test1.png", System.Drawing.Imaging.ImageFormat.Png);            
+            PicCreateNewTemplate.Image.Save("../../resources/temp/temp_portrait.png", System.Drawing.Imaging.ImageFormat.Png);
+            AllNotEnabled();
+            ActivateThis(ScalingTableLayout);
+            ClearImage(PicCreateNewTemplate);
         }
 
-
+        private void BtnBackToCreateNew_Click(object sender, EventArgs e)
+        {
+            AllNotEnabled();
+            ActivateThis(CreateNewTableLayout);
+        }
     }
 }

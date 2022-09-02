@@ -13,9 +13,8 @@ namespace PathfinderKINGPortrait
 {
     public partial class MainForm : Form
     { 
-        private string OpenFile()
+        private void OpenFileAndCopy()
         {
-            string fullpath = "-1";
             OpenFileDialog ofd = new OpenFileDialog() {
                 Title = "Choose image",
                 Multiselect = false,
@@ -24,43 +23,74 @@ namespace PathfinderKINGPortrait
                 Filter = "Image files|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
             };
             if (ofd.ShowDialog() == DialogResult.OK) {
-                ClearImage(PicCreateNewTemplate);
-                fullpath = ofd.FileName;
+                ThisImageClear(PicPortraitTemp);
+                Directory.CreateDirectory("temp/");
+                string jointpath = "temp/temp_portrait.png";
+                File.Copy(ofd.FileName, jointpath, true);
             }
-            return fullpath;
         }
 
-        private void ClearImage(PictureBox image)
+        private void ThisImageClear(PictureBox image)
         {
-            image.Image = PicCreateNewTemplate.Image = PathfinderKINGPortrait.Properties.Resources._default;
+            image.Image.Dispose();
+            image.Image = PicPortraitTemp.Image = PathfinderKINGPortrait.Properties.Resources._default;
         }
 
-        private void ClearTemp()
+        private void TempClear()
         {
-
+            if (Directory.Exists("temp/")) Directory.Delete("temp/", true);
         }
 
-        private void AllNotEnabled()
+        private void AllToNotEnabled()
         {
-            CreateNewTableLayout.Visible = false;
-            CreateNewTableLayout.Enabled = false;
-            MainFormTableLayout.Visible = false;
-            MainFormTableLayout.Enabled = false;
-            ScalingTableLayout.Visible = false;
-            ScalingTableLayout.Enabled = false;
+            LayCreateForm.Visible = false;
+            LayCreateForm.Enabled = false;
+            LayMainForm.Visible = false;
+            LayMainForm.Enabled = false;
+            LayScalingForm.Visible = false;
+            LayScalingForm.Enabled = false;
         }
 
         private void AllToDockFill()
         {
-            CreateNewTableLayout.Dock = DockStyle.Fill;
-            MainFormTableLayout.Dock = DockStyle.Fill;
-            ScalingTableLayout.Dock = DockStyle.Fill;
+            LayCreateForm.Dock = DockStyle.Fill;
+            LayMainForm.Dock = DockStyle.Fill;
+            LayScalingForm.Dock = DockStyle.Fill;
         }
 
-        private void ActivateThis(TableLayoutPanel table)
+        private void ThisToEnabled(TableLayoutPanel table)
         {
-            table.Visible = true;
-            table.Enabled = true;
+            if (table.Visible == false && table.Enabled == false)
+            {
+                table.Visible = true;
+                table.Enabled = true;
+            }
+        }
+
+        private void LoadAllImages()
+        {
+            ThisImageClear(PicPortraitTemp);
+            ThisImageClear(PicPortraitLrg);
+            ThisImageClear(PicPortraitMed);
+            ThisImageClear(PicPortraitSml);
+            PicPortraitTemp.Image = new Bitmap("temp/temp_portrait.png");
+            PicPortraitLrg.Image = new Bitmap("temp/temp_portrait.png");
+            PicPortraitMed.Image = new Bitmap("temp/temp_portrait.png");
+            PicPortraitSml.Image = new Bitmap("temp/temp_portrait.png");
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        private void PicOpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileAndCopy();
+            LoadAllImages();
+        }
+
+        private void BtnOpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileAndCopy();
+            LoadAllImages();
         }
 
         //--------------------------------------------------------------------------------------------------------------
@@ -68,55 +98,52 @@ namespace PathfinderKINGPortrait
         public MainForm()
         {
             InitializeComponent();
-            AllNotEnabled();
+            AllToNotEnabled();
             AllToDockFill();
-            ActivateThis(MainFormTableLayout);        
+            ThisToEnabled(LayMainForm);        
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ClearImage(PicCreateNewTemplate);
+            TempClear();
+            ThisImageClear(PicPortraitTemp);
+            ThisImageClear(PicPortraitLrg);
+            ThisImageClear(PicPortraitMed);
+            ThisImageClear(PicPortraitSml);
         }
 
-        private void BtnCreateNew_Click(object sender, EventArgs e)
+        private void BtnToCreateNew_Click(object sender, EventArgs e)
         {
-            AllNotEnabled();
-            ActivateThis(CreateNewTableLayout);
+            AllToNotEnabled();
+            ThisToEnabled(LayCreateForm);
         }
 
-        private void BtnBackToMainForm_Click(object sender, EventArgs e)
+        private void BtnBackMainForm_Click(object sender, EventArgs e)
         {
-            AllNotEnabled();
-            ActivateThis(MainFormTableLayout);
-            ClearImage(PicCreateNewTemplate);
+            ThisImageClear(PicPortraitTemp);
+            ThisImageClear(PicPortraitLrg);
+            ThisImageClear(PicPortraitMed);
+            ThisImageClear(PicPortraitSml);
+            TempClear();
+
+            AllToNotEnabled();
+            ThisToEnabled(LayMainForm);
         }
 
-        private void PicCreateNewTemplate_Click(object sender, EventArgs e)
-        {
-            string fullpath = OpenFile();
-            if (fullpath != "-1")
-                PicCreateNewTemplate.Image = new Bitmap(fullpath);
+        private void BtnToScaling_Click(object sender, EventArgs e)
+        {          
+            AllToNotEnabled();
+            ThisToEnabled(LayScalingForm);
         }
 
-        private void BtnCreateNewTemplate_Click(object sender, EventArgs e)
+        private void BtnBackCreateNew_Click(object sender, EventArgs e)
         {
-            string fullpath = OpenFile();
-            if (fullpath != "-1")
-                PicCreateNewTemplate.Image = new Bitmap(fullpath);
-        }
+            ThisImageClear(PicPortraitLrg);
+            ThisImageClear(PicPortraitMed);
+            ThisImageClear(PicPortraitSml);
 
-        private void BtnNextToScaling_Click(object sender, EventArgs e)
-        {
-            PicCreateNewTemplate.Image.Save("../../resources/temp/temp_portrait.png", System.Drawing.Imaging.ImageFormat.Png);
-            AllNotEnabled();
-            ActivateThis(ScalingTableLayout);
-            ClearImage(PicCreateNewTemplate);
-        }
-
-        private void BtnBackToCreateNew_Click(object sender, EventArgs e)
-        {
-            AllNotEnabled();
-            ActivateThis(CreateNewTableLayout);
+            AllToNotEnabled();
+            ThisToEnabled(LayCreateForm);
         }
     }
 }

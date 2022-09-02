@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Drawing2D;
 
 namespace PathfinderKINGPortrait
 {
@@ -16,6 +18,31 @@ namespace PathfinderKINGPortrait
         private Point mousept = new Point();
         private int dragging = 0;
         private bool isloaded = false;
+
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
 
         private void OpenFileAndCopy()
         {
@@ -134,8 +161,8 @@ namespace PathfinderKINGPortrait
         public MainForm()
         {
             InitializeComponent();
-            //ScalingImagesInvertSizeMode();
             AllToDockFill();
+            this.PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
 
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
@@ -259,6 +286,28 @@ namespace PathfinderKINGPortrait
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
             dragging = 0;
+        }
+        
+        private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
+        {
+            double aspect_ratio = PicPortraitLrg.Height / PicPortraitLrg.Width;
+            Console.WriteLine(PicPortraitLrg.Width);
+            Console.WriteLine(PicPortraitLrg.Height);
+            Console.WriteLine(aspect_ratio);
+            if (e.Delta > 0)
+            {
+                double Width = PicPortraitLrg.Width + 200;
+                double Height = PicPortraitLrg.Height + 200 * aspect_ratio;
+                PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                ThisPanelSetUpScrolling(PnlPortraitLrg, Convert.ToInt32(Width), Convert.ToInt32(Height));
+            }
+            else
+            {
+                double Width = PicPortraitLrg.Width - 200;
+                double Height = PicPortraitLrg.Height - 200 * aspect_ratio;
+                PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                ThisPanelSetUpScrolling(PnlPortraitLrg, Convert.ToInt32(Width), Convert.ToInt32(Height));
+            }
         }
     }
 }

@@ -80,20 +80,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\static\default.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\temp\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\static\Fulllength.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\static\Medium.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\static\Small.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

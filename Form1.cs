@@ -136,9 +136,9 @@ namespace PathfinderKINGPortrait
                 PicPortraitLrg.Image = new Bitmap("temp/temp_portrait.png");
                 PicPortraitMed.Image = new Bitmap("temp/temp_portrait.png");
                 PicPortraitSml.Image = new Bitmap("temp/temp_portrait.png");
-                ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Width, PicPortraitLrg.Width);
-                ThisPanelSetUpScrolling(PnlPortraitMed, PicPortraitLrg.Width, PicPortraitLrg.Width);
-                ThisPanelSetUpScrolling(PnlPortraitSml, PicPortraitLrg.Width, PicPortraitLrg.Width);
+                ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+                ThisPanelSetUpScrolling(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
+                ThisPanelSetUpScrolling(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
             }
         }
 
@@ -163,6 +163,8 @@ namespace PathfinderKINGPortrait
             InitializeComponent();
             AllToDockFill();
             this.PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
+            this.PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
+            this.PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
@@ -218,6 +220,8 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
         {
+            PnlPortraitLrg.VerticalScroll.Visible = false;
+            PnlPortraitLrg.HorizontalScroll.Visible = false;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 mousept = e.Location;
@@ -227,8 +231,8 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
-            if (dragging == 1 && (PicPortraitLrg.Image.Width > this.ClientSize.Width ||
-                                  PicPortraitLrg.Image.Height > this.ClientSize.Height))
+            if (dragging == 1 && (PicPortraitLrg.Image.Width > PnlPortraitLrg.Width ||
+                                  PicPortraitLrg.Image.Height > PnlPortraitLrg.Height))
             {
                 PnlPortraitLrg.AutoScrollPosition = new Point(-PnlPortraitLrg.AutoScrollPosition.X + (mousept.X - e.X),
                                                               -PnlPortraitLrg.AutoScrollPosition.Y + (mousept.Y - e.Y));
@@ -237,11 +241,15 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
+            PnlPortraitLrg.VerticalScroll.Visible = false;
+            PnlPortraitLrg.HorizontalScroll.Visible = false;
             dragging = 0;
         }
 
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
+            PnlPortraitMed.VerticalScroll.Visible = false;
+            PnlPortraitMed.HorizontalScroll.Visible = false;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 mousept = e.Location;
@@ -251,8 +259,8 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
-            if (dragging == 2 && (PicPortraitMed.Image.Width > this.ClientSize.Width ||
-                                  PicPortraitMed.Image.Height > this.ClientSize.Height))
+            if (dragging == 2 && (PicPortraitMed.Image.Width > PnlPortraitMed.Width ||
+                                  PicPortraitMed.Image.Height > PnlPortraitMed.Height))
             {
                 PnlPortraitMed.AutoScrollPosition = new Point(-PnlPortraitMed.AutoScrollPosition.X + (mousept.X - e.X),
                                                               -PnlPortraitMed.AutoScrollPosition.Y + (mousept.Y - e.Y));
@@ -261,11 +269,15 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
+            PnlPortraitMed.VerticalScroll.Visible = false;
+            PnlPortraitMed.HorizontalScroll.Visible = false;
             dragging = 0;
         }
 
         private void PicPortraitSml_MouseDown(object sender, MouseEventArgs e)
         {
+            PnlPortraitSml.VerticalScroll.Visible = false;
+            PnlPortraitSml.HorizontalScroll.Visible = false;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 mousept = e.Location;
@@ -275,8 +287,8 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
-            if (dragging == 3 && (PicPortraitSml.Image.Width > this.ClientSize.Width ||
-                                  PicPortraitSml.Image.Height > this.ClientSize.Height))
+            if (dragging == 3 && (PicPortraitSml.Image.Width > PnlPortraitSml.Width ||
+                                  PicPortraitSml.Image.Height > PnlPortraitSml.Height))
             {
                 PnlPortraitSml.AutoScrollPosition = new Point(-PnlPortraitSml.AutoScrollPosition.X + (mousept.X - e.X),
                                                               -PnlPortraitSml.AutoScrollPosition.Y + (mousept.Y - e.Y));
@@ -285,28 +297,84 @@ namespace PathfinderKINGPortrait
 
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
+            PnlPortraitSml.VerticalScroll.Visible = false;
+            PnlPortraitSml.HorizontalScroll.Visible = false;
             dragging = 0;
         }
         
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
-            double aspect_ratio = PicPortraitLrg.Height / PicPortraitLrg.Width;
-            Console.WriteLine(PicPortraitLrg.Width);
-            Console.WriteLine(PicPortraitLrg.Height);
-            Console.WriteLine(aspect_ratio);
+            float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            
             if (e.Delta > 0)
             {
-                double Width = PicPortraitLrg.Width + 200;
-                double Height = PicPortraitLrg.Height + 200 * aspect_ratio;
-                PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
-                ThisPanelSetUpScrolling(PnlPortraitLrg, Convert.ToInt32(Width), Convert.ToInt32(Height));
+                double Width = PicPortraitLrg.Width + 100 * aspect_ratio;
+                double Height = PicPortraitLrg.Height + 100;
+                if (Width > PnlPortraitLrg.Width && Height > PnlPortraitLrg.Height)
+                {
+                    PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+                }
             }
             else
             {
-                double Width = PicPortraitLrg.Width - 200;
-                double Height = PicPortraitLrg.Height - 200 * aspect_ratio;
-                PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
-                ThisPanelSetUpScrolling(PnlPortraitLrg, Convert.ToInt32(Width), Convert.ToInt32(Height));
+                double Width = PicPortraitLrg.Width - 100 * aspect_ratio;
+                double Height = PicPortraitLrg.Height - 100;
+                if (Width > PnlPortraitLrg.Width && Height > PnlPortraitLrg.Height)
+                {
+                    PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+                }
+            }
+        }
+
+        private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
+        {
+            float aspect_ratio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f);
+            if (e.Delta > 0)
+            {
+                double Width = PicPortraitMed.Width + 100 * aspect_ratio;
+                double Height = PicPortraitMed.Height + 100;
+                if (Width > PnlPortraitMed.Width && Height > PnlPortraitMed.Height)
+                {
+                    PicPortraitMed.Image = new Bitmap(ResizeImage(PicPortraitMed.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    ThisPanelSetUpScrolling(PnlPortraitMed, PicPortraitMed.Height, PicPortraitMed.Width);
+                }
+            }
+            else
+            {
+                double Width = PicPortraitMed.Width - 100 * aspect_ratio;
+                double Height = PicPortraitMed.Height - 100;
+                if (Width > PnlPortraitMed.Width && Height > PnlPortraitMed.Height)
+                {
+                    PicPortraitMed.Image = new Bitmap(ResizeImage(PicPortraitMed.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    ThisPanelSetUpScrolling(PnlPortraitMed, PicPortraitMed.Height, PicPortraitMed.Width);
+                }
+            }
+        }
+
+        private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
+        {
+            float aspect_ratio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f);
+            if (e.Delta > 0)
+            {
+                double Width = PicPortraitSml.Width + 100 * aspect_ratio;
+                double Height = PicPortraitSml.Height + 100;
+                if (Width > PnlPortraitSml.Width && Height > PnlPortraitSml.Height)
+                {
+                    PicPortraitSml.Image = new Bitmap(ResizeImage(PicPortraitSml.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    ThisPanelSetUpScrolling(PnlPortraitSml, PicPortraitSml.Height, PicPortraitSml.Width);
+                }
+            }
+            else
+            {
+                double Width = PicPortraitSml.Width - 100 * aspect_ratio;
+                double Height = PicPortraitSml.Height - 100;
+                if (Width > PnlPortraitSml.Width && Height > PnlPortraitSml.Height)
+                {
+                    PicPortraitSml.Image = new Bitmap(ResizeImage(PicPortraitSml.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    ThisPanelSetUpScrolling(PnlPortraitSml, PicPortraitSml.Height, PicPortraitSml.Width);
+                }
             }
         }
     }

@@ -235,7 +235,7 @@ namespace PathfinderKINGPortrait
             this.PicPortraitLrg.InitialImage = global::PathfinderKINGPortrait.Properties.Resources.Fulllength;
             this.PicPortraitLrg.Location = new System.Drawing.Point(3, 3);
             this.PicPortraitLrg.Name = "PicPortraitLrg";
-            this.PicPortraitLrg.Size = new System.Drawing.Size(692, 1024);
+            this.PicPortraitLrg.Size = new System.Drawing.Size(1000, 2000);
             this.PicPortraitLrg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PicPortraitLrg.TabIndex = 0;
             this.PicPortraitLrg.TabStop = false;

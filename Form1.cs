@@ -127,7 +127,6 @@ namespace PathfinderKINGPortrait
                 Directory.CreateDirectory("temp/");
                 string jointpath = "temp/temp_portrait.png";
                 PicPortraitTemp.Image.Save(jointpath, System.Drawing.Imaging.ImageFormat.Png);
-
             }
             else if (isloaded == true)
             {
@@ -178,6 +177,7 @@ namespace PathfinderKINGPortrait
 
         private void BtnToCreateNew_Click(object sender, EventArgs e)
         {
+            isloaded = false;
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
         }
@@ -185,7 +185,6 @@ namespace PathfinderKINGPortrait
         private void BtnBackMainForm_Click(object sender, EventArgs e)
         {
             AllImageClear();
-            isloaded = false;
             TempClear();
 
             AllToNotEnabled();
@@ -201,6 +200,7 @@ namespace PathfinderKINGPortrait
                 {
                     AllToNotEnabled();
                     ThisToEnabled(LayScalingForm);
+                    isloaded = true;
                 }
             }
             else if (isloaded == true)
@@ -304,26 +304,32 @@ namespace PathfinderKINGPortrait
         
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
+            ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            
+            float factor = PnlPortraitLrg.Width * 1.0f / 100 * 8;
+            Bitmap img = new Bitmap("temp/temp_portrait.png");
+
             if (e.Delta > 0)
             {
-                double Width = PicPortraitLrg.Width + 100 * aspect_ratio;
-                double Height = PicPortraitLrg.Height + 100;
+
+                float Width = PicPortraitLrg.Width + factor * aspect_ratio;
+                float Height = PicPortraitLrg.Height + factor;
                 if (Width > PnlPortraitLrg.Width && Height > PnlPortraitLrg.Height)
                 {
-                    PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    PicPortraitLrg.Image = new Bitmap(ResizeImage(img, Convert.ToInt32(Width), Convert.ToInt32(Height)));
                     ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+                    PnlPortraitLrg.AutoScrollPosition = new Point((int)(e.Location.X + factor), (int)(e.Location.Y + factor * aspect_ratio));
                 }
             }
             else
             {
-                double Width = PicPortraitLrg.Width - 100 * aspect_ratio;
-                double Height = PicPortraitLrg.Height - 100;
+                float Width = PicPortraitLrg.Width - factor * aspect_ratio;
+                float Height = PicPortraitLrg.Height - factor;
                 if (Width > PnlPortraitLrg.Width && Height > PnlPortraitLrg.Height)
                 {
-                    PicPortraitLrg.Image = new Bitmap(ResizeImage(PicPortraitLrg.Image, Convert.ToInt32(Width), Convert.ToInt32(Height)));
+                    PicPortraitLrg.Image = new Bitmap(ResizeImage(img, Convert.ToInt32(Width), Convert.ToInt32(Height)));
                     ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+                    PnlPortraitLrg.AutoScrollPosition = new Point((int)(e.Location.X + factor), (int)(e.Location.Y + factor * aspect_ratio));
                 }
             }
         }

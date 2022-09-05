@@ -17,7 +17,7 @@ namespace SystemControl
     {
         public static string OpenFileImage()
         {
-            string fullpath = "-1";
+            string fullpath;
             OpenFileDialog ofd = new OpenFileDialog()
             {
                 Title = "Choose image",
@@ -43,12 +43,22 @@ namespace SystemControl
             Directory.CreateDirectory("temp/");
             if (fullpath != "-1")
             {
-                Image img = new Bitmap(relativepath_full);
+                Image img = new Bitmap(fullpath);
                 aspect_ratio = img.Width * 1.0f / img.Height * 1.0f;
+                Image img2 = ImageControl.Direct.Resize.HighQiality(img, (int)(750 * aspect_ratio), 750);
+                Image img3 = ImageControl.Direct.Resize.HighQiality(img, (int)(350 * aspect_ratio), 350);
                 img.Save(relativepath_full);
-                ImageControl.Direct.Resize.LowQiality(img, (int)(1000 * aspect_ratio), 1000);
+                img2.Save(relativepath_half);
+                img3.Save(relativepath_poor);
+                img.Dispose();
+                img2.Dispose();
+                img3.Dispose();
+            }
+            else
+            {
+                Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default);               
+                img.Save(relativepath_full);
                 img.Save(relativepath_half);
-                ImageControl.Direct.Resize.LowQiality(img, (int)(500 * aspect_ratio), 500);
                 img.Save(relativepath_poor);
                 img.Dispose();
             }

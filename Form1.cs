@@ -54,21 +54,8 @@ namespace PathfinderKINGPortrait
 
         private void BtnToScaling_Click(object sender, EventArgs e)
         {
-            if (isloaded == false)
-            {
-                DialogResult dr = MessageBox.Show("You did not load any images. Continue?", "", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.Yes)
-                {
-                    AllToNotEnabled();
-                    ThisToEnabled(LayScalingForm);
-                    isloaded = true;
-                }
-            }
-            else if (isloaded == true)
-            {
                 AllToNotEnabled();
                 ThisToEnabled(LayScalingForm);
-            }
         }
 
         private void BtnBackCreateNew_Click(object sender, EventArgs e)
@@ -171,7 +158,6 @@ namespace PathfinderKINGPortrait
         {
             float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
             float factor;
-            Bitmap img = new Bitmap("temp/temp_portrait.png");
 
             if (e.Delta > 0)
             {
@@ -189,7 +175,6 @@ namespace PathfinderKINGPortrait
         {
             float aspect_ratio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f);
             float factor;
-            Bitmap img = new Bitmap("temp/temp_portrait.png");
 
             if (e.Delta > 0)
             {
@@ -207,7 +192,6 @@ namespace PathfinderKINGPortrait
         {
             float aspect_ratio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f);
             float factor;
-            Bitmap img = new Bitmap("temp/temp_portrait.png");
 
             if (e.Delta > 0)
             {
@@ -221,14 +205,14 @@ namespace PathfinderKINGPortrait
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void Btn_ToExit_Click(object sender, EventArgs e)
         {
 
         }
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
-            SystemControl.FileControl.TempClear();
+            
         }
     }
 }

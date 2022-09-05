@@ -58,7 +58,7 @@ namespace ImageControl
         {
             double Width = pic.Width + factor * aspect_ratio;
             double Height = pic.Height + factor;
-            Bitmap img = new Bitmap("temp/temp_portrait.png");
+            Bitmap img = new Bitmap("temp/portrait_half.png");
 
             if (Width > pnl.Width && Height > pnl.Height)
             {

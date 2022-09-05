@@ -54,7 +54,6 @@ namespace PathfinderKINGPortrait
             this.LblUnnamed1 = new System.Windows.Forms.Label();
             this.LblUnnamed2 = new System.Windows.Forms.Label();
             this.LblUnnamed3 = new System.Windows.Forms.Label();
-            this.LayLoadNewForm = new System.Windows.Forms.TableLayoutPanel();
             this.LayMainForm.SuspendLayout();
             this.LayCreateForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTemp)).BeginInit();
@@ -110,7 +109,7 @@ namespace PathfinderKINGPortrait
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.Click += new System.EventHandler(this.Btn_ToExit_Click);
             // 
             // LayCreateForm
             // 
@@ -415,26 +414,12 @@ namespace PathfinderKINGPortrait
             this.LblUnnamed3.Text = "label3";
             this.LblUnnamed3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LayLoadNewForm
-            // 
-            this.LayLoadNewForm.ColumnCount = 2;
-            this.LayLoadNewForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayLoadNewForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayLoadNewForm.Location = new System.Drawing.Point(3, 376);
-            this.LayLoadNewForm.Name = "LayLoadNewForm";
-            this.LayLoadNewForm.RowCount = 2;
-            this.LayLoadNewForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayLoadNewForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayLoadNewForm.Size = new System.Drawing.Size(307, 128);
-            this.LayLoadNewForm.TabIndex = 3;
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 504);
-            this.Controls.Add(this.LayLoadNewForm);
             this.Controls.Add(this.LayScalingForm);
             this.Controls.Add(this.LayCreateForm);
             this.Controls.Add(this.LayMainForm);
@@ -493,7 +478,6 @@ namespace PathfinderKINGPortrait
         private System.Windows.Forms.Panel PnlPortraitMed;
         private System.Windows.Forms.Panel PnlPortraitSml;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.TableLayoutPanel LayLoadNewForm;
     }
 }
 

@@ -20,12 +20,14 @@ namespace PathfinderKINGPortrait
         private void Pic_ToOpenFile_Click(object sender, EventArgs e)
         {
             string fullpath = SystemControl.FileControl.OpenFileImage();
+            AllImageClear();
             SystemControl.FileControl.CreateTemp(fullpath);
             LoadAllImages();
         }
         private void Btn_ToOpenFile_Click(object sender, EventArgs e)
         {
             string fullpath = SystemControl.FileControl.OpenFileImage();
+            AllImageClear();
             SystemControl.FileControl.CreateTemp(fullpath);
             LoadAllImages();
         }

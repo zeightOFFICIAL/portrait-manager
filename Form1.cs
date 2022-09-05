@@ -304,32 +304,31 @@ namespace PathfinderKINGPortrait
         
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
-            ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            float factor = PnlPortraitLrg.Width * 1.0f / 100 * 8;
+            float factor = PicPortraitLrg.Width * 1.0f / 10;
             Bitmap img = new Bitmap("temp/temp_portrait.png");
+            int ypos = -PnlPortraitLrg.AutoScrollPosition.Y;
 
             if (e.Delta > 0)
             {
-
-                float Width = PicPortraitLrg.Width + factor * aspect_ratio;
-                float Height = PicPortraitLrg.Height + factor;
+                double Width = PicPortraitLrg.Width + factor * aspect_ratio;
+                double Height = PicPortraitLrg.Height + factor;
                 if (Width > PnlPortraitLrg.Width && Height > PnlPortraitLrg.Height)
                 {
                     PicPortraitLrg.Image = new Bitmap(ResizeImage(img, Convert.ToInt32(Width), Convert.ToInt32(Height)));
                     ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                    PnlPortraitLrg.AutoScrollPosition = new Point((int)(e.Location.X + factor), (int)(e.Location.Y + factor * aspect_ratio));
+                    PnlPortraitLrg.AutoScrollPosition = new Point((int)(e.X - PnlPortraitLrg.Width / 2), (int)(e.Y - PnlPortraitLrg.Height / 2));
                 }
             }
             else
             {
-                float Width = PicPortraitLrg.Width - factor * aspect_ratio;
-                float Height = PicPortraitLrg.Height - factor;
+                double Width = PicPortraitLrg.Width - factor * aspect_ratio;
+                double Height = PicPortraitLrg.Height - factor;
                 if (Width > PnlPortraitLrg.Width && Height > PnlPortraitLrg.Height)
                 {
                     PicPortraitLrg.Image = new Bitmap(ResizeImage(img, Convert.ToInt32(Width), Convert.ToInt32(Height)));
                     ThisPanelSetUpScrolling(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                    PnlPortraitLrg.AutoScrollPosition = new Point((int)(e.Location.X + factor), (int)(e.Location.Y + factor * aspect_ratio));
+                    PnlPortraitLrg.AutoScrollPosition = new Point((int)(e.X - PnlPortraitLrg.Width / 2), (int)(e.Y - PnlPortraitLrg.Height / 2));
                 }
             }
         }

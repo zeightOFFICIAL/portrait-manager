@@ -24,7 +24,7 @@ namespace SystemControl
                 Multiselect = false,
                 CheckFileExists = true,
                 CheckPathExists = true,
-                SupportMultiDottedExtensions = false, 
+                SupportMultiDottedExtensions = false,
                 Filter = "Image files|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
             };
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -56,14 +56,13 @@ namespace SystemControl
             }
             else
             {
-                Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default);               
+                Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default);
                 img.Save(relativepath_full);
                 img.Save(relativepath_half);
                 img.Save(relativepath_poor);
                 img.Dispose();
             }
         }
-
         public static void TempClear()
         {
             if (Directory.Exists("temp/")) Directory.Delete("temp/", true);

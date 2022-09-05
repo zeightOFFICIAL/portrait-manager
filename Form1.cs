@@ -54,8 +54,8 @@ namespace PathfinderKINGPortrait
 
         private void BtnToScaling_Click(object sender, EventArgs e)
         {
-                AllToNotEnabled();
-                ThisToEnabled(LayScalingForm);
+            AllToNotEnabled();
+            ThisToEnabled(LayScalingForm);
         }
 
         private void BtnBackCreateNew_Click(object sender, EventArgs e)
@@ -149,7 +149,7 @@ namespace PathfinderKINGPortrait
             PnlPortraitSml.HorizontalScroll.Visible = false;
             dragging = 0;
         }
-        
+
 
 
 
@@ -212,7 +212,7 @@ namespace PathfinderKINGPortrait
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
-            
+
         }
     }
 }

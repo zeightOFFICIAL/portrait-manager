@@ -18,77 +18,14 @@ namespace PathfinderKINGPortrait
     {
         private Point mousept = new Point();
         private int dragging = 0;
-        private bool isloaded = false;
-
-        private void AllImageClear()
-        {
-            ImageControl.Utils.Clear(PicPortraitTemp);
-            ImageControl.Utils.Clear(PicPortraitLrg);
-            ImageControl.Utils.Clear(PicPortraitMed);
-            ImageControl.Utils.Clear(PicPortraitSml);
-        }
-
-        private void AllToNotEnabled()
-        {
-            LayCreateForm.Visible = false;
-            LayCreateForm.Enabled = false;
-            LayMainForm.Visible = false;
-            LayMainForm.Enabled = false;
-            LayScalingForm.Visible = false;
-            LayScalingForm.Enabled = false;
-        }
-
-        private void AllToDockFill()
-        {
-            LayCreateForm.Dock = DockStyle.Fill;
-            LayMainForm.Dock = DockStyle.Fill;
-            LayScalingForm.Dock = DockStyle.Fill;
-        }
-
-        private void ThisToEnabled(TableLayoutPanel table)
-        {
-            if (table.Visible == false && table.Enabled == false)
-            {
-                table.Visible = true;
-                table.Enabled = true;
-            }
-        }
-
-        private void LoadAllImages()
-        {
-                AllImageClear();
-                PicPortraitTemp.Image = new Bitmap("temp/temp_portrait.png");
-                PicPortraitLrg.Image = new Bitmap("temp/temp_portrait.png");
-                PicPortraitMed.Image = new Bitmap("temp/temp_portrait.png");
-                PicPortraitSml.Image = new Bitmap("temp/temp_portrait.png");
-                ImageControl.Utils.ArrangePanel(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                ImageControl.Utils.ArrangePanel(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                ImageControl.Utils.ArrangePanel(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-        }
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        private void PicOpenFile_Click(object sender, EventArgs e)
-        {
-            SystemControl.FileControl.OpenFileAndCopy();
-            LoadAllImages();
-        }
-
-        private void BtnOpenFile_Click(object sender, EventArgs e)
-        {
-            SystemControl.FileControl.OpenFileAndCopy();
-            LoadAllImages();
-        }
-
-        //--------------------------------------------------------------------------------------------------------------
 
         public MainForm()
         {
             InitializeComponent();
+            PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
+            PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
+            PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
             AllToDockFill();
-            this.PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
-            this.PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
-            this.PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
@@ -100,9 +37,8 @@ namespace PathfinderKINGPortrait
             AllImageClear();
         }
 
-        private void BtnToCreateNew_Click(object sender, EventArgs e)
+        private void Btn_ToCreateNew_Click(object sender, EventArgs e)
         {
-            isloaded = false;
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
         }
@@ -227,6 +163,10 @@ namespace PathfinderKINGPortrait
             dragging = 0;
         }
         
+
+
+
+
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
             float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
@@ -279,6 +219,16 @@ namespace PathfinderKINGPortrait
                 factor = -PicPortraitSml.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitSml, PnlPortraitSml, e, aspect_ratio, factor);
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            SystemControl.FileControl.TempClear();
         }
     }
 }

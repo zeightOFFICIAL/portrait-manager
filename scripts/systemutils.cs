@@ -15,27 +15,42 @@ namespace SystemControl
 {
     public class FileControl
     {
-        public static void OpenFileAndCopy()
+        public static string OpenFileImage()
         {
+            string fullpath = "-1";
             OpenFileDialog ofd = new OpenFileDialog()
             {
                 Title = "Choose image",
                 Multiselect = false,
                 CheckFileExists = true,
                 CheckPathExists = true,
+                SupportMultiDottedExtensions = false, 
                 Filter = "Image files|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
             };
             if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                Directory.CreateDirectory("temp/");
-                string jointpath = "temp/temp_portrait.png";
-                File.Copy(ofd.FileName, jointpath, true);
-            }
+                fullpath = ofd.FileName;
             else
+                fullpath = "-1";
+            return fullpath;
+        }
+        public static void CreateTemp(string fullpath)
+        {
+            string relativepath_full = "temp/portrait_full.png",
+                   relativepath_poor = "temp/portrait_poor.png",
+                   relativepath_half = "temp/portrait_half.png";
+            float aspect_ratio;
+
+            Directory.CreateDirectory("temp/");
+            if (fullpath != "-1")
             {
-                Directory.CreateDirectory("temp/");
-                string jointpath = "temp/temp_portrait.png";
-                PathfinderKINGPortrait.Properties.Resources._default.Save(jointpath);
+                Image img = new Bitmap(relativepath_full);
+                aspect_ratio = img.Width * 1.0f / img.Height * 1.0f;
+                img.Save(relativepath_full);
+                ImageControl.Direct.Resize.LowQiality(img, (int)(1000 * aspect_ratio), 1000);
+                img.Save(relativepath_half);
+                ImageControl.Direct.Resize.LowQiality(img, (int)(500 * aspect_ratio), 500);
+                img.Save(relativepath_poor);
+                img.Dispose();
             }
         }
 

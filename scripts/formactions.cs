@@ -10,15 +10,15 @@ namespace PathfinderKINGPortrait
     public partial class MainForm : Form
     {
         bool isloaded = false;
-        private void Pic_ToOpenFile_Drop(object sender, DragEventArgs e)
+        private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
 
         }
-        private void Pic_ToOpenFile_DropEnter(object sender, DragEventArgs e)
+        private void PicPortraitTemp_DropEnter(object sender, DragEventArgs e)
         {
 
         }
-        private void Pic_ToOpenFile_Click(object sender, EventArgs e)
+        private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
             string fullpath = SystemControl.FileControl.OpenFileImage();
             if (fullpath == "-1")
@@ -27,9 +27,8 @@ namespace PathfinderKINGPortrait
                 isloaded = true;
             AllImageClear();
             SystemControl.FileControl.CreateTemp(fullpath);
-            LoadAllImages();
         }
-        private void Btn_ToOpenFile_Click(object sender, EventArgs e)
+        private void BtnLoadPortrait_Click(object sender, EventArgs e)
         {
             string fullpath = SystemControl.FileControl.OpenFileImage();
             if (fullpath == "-1")
@@ -38,7 +37,6 @@ namespace PathfinderKINGPortrait
                 isloaded = true;
             AllImageClear();
             SystemControl.FileControl.CreateTemp(fullpath);
-            LoadAllImages();
         }
     }
 }

@@ -30,8 +30,8 @@ namespace PathfinderKINGPortrait
         private void InitializeComponent()
         {
             this.LayMainForm = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCreateNew = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
+            this.BtnNextToCreateNew = new System.Windows.Forms.Button();
+            this.BtnExit = new System.Windows.Forms.Button();
             this.LayCreateForm = new System.Windows.Forms.TableLayoutPanel();
             this.PicPortraitTemp = new System.Windows.Forms.PictureBox();
             this.LayUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
@@ -76,8 +76,8 @@ namespace PathfinderKINGPortrait
             this.LayMainForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.LayMainForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayMainForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayMainForm.Controls.Add(this.btnCreateNew, 1, 1);
-            this.LayMainForm.Controls.Add(this.btnExit, 1, 3);
+            this.LayMainForm.Controls.Add(this.BtnNextToCreateNew, 1, 1);
+            this.LayMainForm.Controls.Add(this.BtnExit, 1, 3);
             this.LayMainForm.Location = new System.Drawing.Point(0, 0);
             this.LayMainForm.Name = "LayMainForm";
             this.LayMainForm.RowCount = 5;
@@ -91,25 +91,25 @@ namespace PathfinderKINGPortrait
             // 
             // btnCreateNew
             // 
-            this.btnCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCreateNew.Location = new System.Drawing.Point(81, 38);
-            this.btnCreateNew.Name = "btnCreateNew";
-            this.btnCreateNew.Size = new System.Drawing.Size(150, 29);
-            this.btnCreateNew.TabIndex = 0;
-            this.btnCreateNew.Text = "Create new portrait";
-            this.btnCreateNew.UseVisualStyleBackColor = true;
-            this.btnCreateNew.Click += new System.EventHandler(this.Btn_ToCreateNew_Click);
+            this.BtnNextToCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnNextToCreateNew.Location = new System.Drawing.Point(81, 38);
+            this.BtnNextToCreateNew.Name = "btnCreateNew";
+            this.BtnNextToCreateNew.Size = new System.Drawing.Size(150, 29);
+            this.BtnNextToCreateNew.TabIndex = 0;
+            this.BtnNextToCreateNew.Text = "Create new portrait";
+            this.BtnNextToCreateNew.UseVisualStyleBackColor = true;
+            this.BtnNextToCreateNew.Click += new System.EventHandler(this.BtnNextToCreateNew_Click);
             // 
             // btnExit
             // 
-            this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExit.Location = new System.Drawing.Point(81, 108);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(150, 29);
-            this.btnExit.TabIndex = 1;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.Btn_ToExit_Click);
+            this.BtnExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnExit.Location = new System.Drawing.Point(81, 108);
+            this.BtnExit.Name = "btnExit";
+            this.BtnExit.Size = new System.Drawing.Size(150, 29);
+            this.BtnExit.TabIndex = 1;
+            this.BtnExit.Text = "Exit";
+            this.BtnExit.UseVisualStyleBackColor = true;
+            this.BtnExit.Click += new System.EventHandler(this.Btn_ToExit_Click);
             // 
             // LayCreateForm
             // 
@@ -139,9 +139,9 @@ namespace PathfinderKINGPortrait
             this.PicPortraitTemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicPortraitTemp.TabIndex = 1;
             this.PicPortraitTemp.TabStop = false;
-            this.PicPortraitTemp.Click += new System.EventHandler(this.Pic_ToOpenFile_Click);
-            this.PicPortraitTemp.DragDrop += new System.Windows.Forms.DragEventHandler(this.Pic_ToOpenFile_Drop);
-            this.PicPortraitTemp.DragEnter += new System.Windows.Forms.DragEventHandler(this.Pic_ToOpenFile_DropEnter);
+            this.PicPortraitTemp.Click += new System.EventHandler(this.PicPortraitTemp_Click);
+            this.PicPortraitTemp.DragDrop += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragDrop);
+            this.PicPortraitTemp.DragEnter += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DropEnter);
             // 
             // LayUnnamed1
             // 
@@ -173,7 +173,7 @@ namespace PathfinderKINGPortrait
             this.BtnBackToMainForm.TabIndex = 0;
             this.BtnBackToMainForm.Text = "Back";
             this.BtnBackToMainForm.UseVisualStyleBackColor = true;
-            this.BtnBackToMainForm.Click += new System.EventHandler(this.BtnBackMainForm_Click);
+            this.BtnBackToMainForm.Click += new System.EventHandler(this.BtnBackToMainForm_Click);
             // 
             // BtnNextToScaling
             // 
@@ -183,7 +183,7 @@ namespace PathfinderKINGPortrait
             this.BtnNextToScaling.TabIndex = 1;
             this.BtnNextToScaling.Text = "Next";
             this.BtnNextToScaling.UseVisualStyleBackColor = true;
-            this.BtnNextToScaling.Click += new System.EventHandler(this.BtnToScaling_Click);
+            this.BtnNextToScaling.Click += new System.EventHandler(this.BtnNextToScaling_Click);
             // 
             // BtnCreateNewTemplate
             // 
@@ -193,7 +193,7 @@ namespace PathfinderKINGPortrait
             this.BtnCreateNewTemplate.TabIndex = 2;
             this.BtnCreateNewTemplate.Text = "Choose image";
             this.BtnCreateNewTemplate.UseVisualStyleBackColor = true;
-            this.BtnCreateNewTemplate.Click += new System.EventHandler(this.Btn_ToOpenFile_Click);
+            this.BtnCreateNewTemplate.Click += new System.EventHandler(this.BtnLoadPortrait_Click);
             // 
             // LayScalingForm
             // 
@@ -336,7 +336,7 @@ namespace PathfinderKINGPortrait
             this.BtnBackToCreateNew.TabIndex = 0;
             this.BtnBackToCreateNew.Text = "Back";
             this.BtnBackToCreateNew.UseVisualStyleBackColor = true;
-            this.BtnBackToCreateNew.Click += new System.EventHandler(this.BtnBackCreateNew_Click);
+            this.BtnBackToCreateNew.Click += new System.EventHandler(this.BtnBackToCreateNew_Click);
             // 
             // BtnView
             // 
@@ -428,7 +428,8 @@ namespace PathfinderKINGPortrait
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pathfinder: Kingmaker Portrait";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_Closed);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.LayMainForm.ResumeLayout(false);
             this.LayCreateForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTemp)).EndInit();
@@ -454,30 +455,30 @@ namespace PathfinderKINGPortrait
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel LayMainForm;
-        private System.Windows.Forms.Button btnCreateNew;
         private System.Windows.Forms.TableLayoutPanel LayCreateForm;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed1;
-        private System.Windows.Forms.Button BtnBackToMainForm;
-        private System.Windows.Forms.Button BtnNextToScaling;
-        private System.Windows.Forms.PictureBox PicPortraitTemp;
-        private System.Windows.Forms.Button BtnCreateNewTemplate;
         private System.Windows.Forms.TableLayoutPanel LayScalingForm;
+        private System.Windows.Forms.TableLayoutPanel LayUnnamed1;
         private System.Windows.Forms.TableLayoutPanel LayUnnamed2;
         private System.Windows.Forms.TableLayoutPanel LayUnnamed3;
+        private System.Windows.Forms.TableLayoutPanel LayUnnamed4;
+        private System.Windows.Forms.Button BtnNextToCreateNew;
+        private System.Windows.Forms.Button BtnBackToMainForm;
+        private System.Windows.Forms.Button BtnNextToScaling;
         private System.Windows.Forms.Button BtnBackToCreateNew;
         private System.Windows.Forms.Button BtnView;
         private System.Windows.Forms.Button BtnLoadPortrait;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed4;
-        private System.Windows.Forms.Label LblUnnamed1;
-        private System.Windows.Forms.Label LblUnnamed2;
-        private System.Windows.Forms.Label LblUnnamed3;
+        private System.Windows.Forms.Button BtnCreateNewTemplate;
+        private System.Windows.Forms.Button BtnExit;
+        private System.Windows.Forms.PictureBox PicPortraitTemp;
         private System.Windows.Forms.PictureBox PicPortraitLrg;
         private System.Windows.Forms.PictureBox PicPortraitMed;
         private System.Windows.Forms.PictureBox PicPortraitSml;
+        private System.Windows.Forms.Label LblUnnamed1;
+        private System.Windows.Forms.Label LblUnnamed2;
+        private System.Windows.Forms.Label LblUnnamed3;
         private System.Windows.Forms.Panel PnlPortraitLrg;
         private System.Windows.Forms.Panel PnlPortraitMed;
         private System.Windows.Forms.Panel PnlPortraitSml;
-        private System.Windows.Forms.Button btnExit;
     }
 }
 

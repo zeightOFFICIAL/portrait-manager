@@ -22,43 +22,57 @@ namespace PathfinderKINGPortrait
         public MainForm()
         {
             InitializeComponent();
+
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-            AllToDockFill();
+        }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            AllToDockFill();
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void BtnNextToCreateNew_Click(object sender, EventArgs e)
         {
-            SystemControl.FileControl.TempClear();
             AllImageClear();
-        }
+            SystemControl.FileControl.TempClear();
 
-        private void Btn_ToCreateNew_Click(object sender, EventArgs e)
-        {
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
         }
 
-        private void BtnBackMainForm_Click(object sender, EventArgs e)
+        private void BtnBackToMainForm_Click(object sender, EventArgs e)
         {
             AllImageClear();
-            SystemControl.FileControl.TempClear();
-
+            
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
         }
 
-        private void BtnToScaling_Click(object sender, EventArgs e)
+        private void BtnNextToScaling_Click(object sender, EventArgs e)
         {
-            AllToNotEnabled();
-            ThisToEnabled(LayScalingForm);
+            if (isloaded == false)
+            {
+                DialogResult dr = MessageBox.Show("You did not load any images. Proceed?", "Image", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    AllToNotEnabled();
+                    ThisToEnabled(LayScalingForm);
+                    LoadAllImages();
+                }
+            }
+            else
+            {
+                AllToNotEnabled();
+                ThisToEnabled(LayScalingForm);
+                LoadAllImages();
+            }
         }
 
-        private void BtnBackCreateNew_Click(object sender, EventArgs e)
+        private void BtnBackToCreateNew_Click(object sender, EventArgs e)
         {
             LoadAllImages();
 
@@ -212,7 +226,13 @@ namespace PathfinderKINGPortrait
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
+            AllImageClear();
+            SystemControl.FileControl.TempClear();
+        }
 
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            Console.WriteLine(MainForm.ActiveForm.Width);
         }
     }
 }

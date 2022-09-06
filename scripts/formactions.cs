@@ -22,11 +22,19 @@ namespace PathfinderKINGPortrait
         {
             string fullpath = SystemControl.FileControl.OpenFileImage();
             if (fullpath == "-1")
+            {
+                if (isloaded == true)
+                {
+                    LoadAllImages();
+                    return;
+                }
                 isloaded = false;
+            }
             else
                 isloaded = true;
             AllImageClear();
             SystemControl.FileControl.CreateTemp(fullpath);
+            LoadAllImages();
         }
         private void BtnLoadPortrait_Click(object sender, EventArgs e)
         {
@@ -37,6 +45,7 @@ namespace PathfinderKINGPortrait
                 isloaded = true;
             AllImageClear();
             SystemControl.FileControl.CreateTemp(fullpath);
+            LoadAllImages();
         }
     }
 }

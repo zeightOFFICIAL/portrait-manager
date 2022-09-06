@@ -52,13 +52,17 @@ namespace ImageControl
                 }
                 return new_imge;
             }
+            public static Bitmap Crop(Image img, int x, int x2, int y, int y2)
+            {
+
+            }
         }
 
         public static void Zoom(PictureBox pic, Panel pnl, MouseEventArgs mse, float aspect_ratio, float factor)
         {
             double Width = pic.Width + factor * aspect_ratio;
             double Height = pic.Height + factor;
-            Bitmap img = new Bitmap("temp/portrait_half.png");
+            Bitmap img = new Bitmap("temp/portrait_poor.png");
 
             if (Width > pnl.Width && Height > pnl.Height)
             {
@@ -66,6 +70,7 @@ namespace ImageControl
                 Utils.ArrangePanel(pnl, pic.Height, pic.Width);
                 pnl.AutoScrollPosition = new Point((int)(mse.X - pnl.Width / 2), (int)(mse.Y - pnl.Height / 2));
             }
+            img.Dispose();
         }
     }
 

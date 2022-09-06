@@ -31,32 +31,35 @@ namespace SystemControl
                 fullpath = ofd.FileName;
             else
                 fullpath = "-1";
+            ofd.Dispose();
             return fullpath;
         }
         public static void CreateTemp(string fullpath)
         {
             string relativepath_full = "temp/portrait_full.png",
                    relativepath_poor = "temp/portrait_poor.png";
-            float aspect_ratio;
+            float aspect_ratio, decrease_power;
 
             if (!Directory.Exists("temp/")) Directory.CreateDirectory("temp/");
-            if (fullpath != "-1")
-            {
-                Image img = new Bitmap(fullpath);
-                aspect_ratio = img.Width * 1.0f / img.Height * 1.0f;
-                Image img_poor = ImageControl.Direct.Resize.HighQiality(img, (int)(760 * aspect_ratio), (int)(760));
-                img.Save(relativepath_full);
-                img_poor.Save(relativepath_poor);
-                img.Dispose();
-                img_poor.Dispose();
-            }
-            else
+            if (fullpath == "-1")
             {
                 Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default);
                 img.Save(relativepath_full);
                 img.Save(relativepath_poor);
                 img.Dispose();
             }
+            else
+            {
+                Image img = new Bitmap(fullpath);
+                aspect_ratio = img.Width * 1.0f / img.Height * 1.0f;
+                decrease_power = img.Width * 1.0f / 100 * 30;
+                Image img_poor = ImageControl.Direct.Resize.LowQiality(img, (int)(decrease_power * aspect_ratio), (int)(decrease_power));
+                img.Save(relativepath_full);
+                img_poor.Save(relativepath_poor);
+                img.Dispose();
+                img_poor.Dispose();
+            }
+            
         }
         public static void TempClear()
         {

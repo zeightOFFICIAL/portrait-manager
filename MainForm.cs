@@ -40,6 +40,10 @@ namespace PathfinderKINGPortrait
             AllImageClear();
             SystemControl.FileControl.TempClear();
 
+            isloaded = false;
+            SystemControl.FileControl.CreateTemp("-1");
+            LoadAllImages();
+
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
         }
@@ -47,7 +51,7 @@ namespace PathfinderKINGPortrait
         private void BtnBackToMainForm_Click(object sender, EventArgs e)
         {
             AllImageClear();
-            
+
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
         }
@@ -164,10 +168,6 @@ namespace PathfinderKINGPortrait
             dragging = 0;
         }
 
-
-
-
-
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
             float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
@@ -219,9 +219,10 @@ namespace PathfinderKINGPortrait
             }
         }
 
-        private void Btn_ToExit_Click(object sender, EventArgs e)
+        private void BtnExit_Click(object sender, EventArgs e)
         {
-
+            AllImageClear();
+            SystemControl.FileControl.TempClear();
         }
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
@@ -233,6 +234,24 @@ namespace PathfinderKINGPortrait
         private void MainForm_Resize(object sender, EventArgs e)
         {
             Console.WriteLine(MainForm.ActiveForm.Width);
+        }
+        private void BtnCreatePortrait_Click(object sender, EventArgs e)
+        {
+            string exoduspath;
+            bool findplace = false;
+            uint localname = 1;
+            exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+            while(findplace == false)
+            {
+                string fullexoduspath = exoduspath + "\\" +Convert.ToString(localname);
+                if (!Directory.Exists(fullexoduspath))
+                {
+                    Directory.CreateDirectory(fullexoduspath);
+                    findplace = true;
+                }
+                localname++;
+            }
         }
     }
 }

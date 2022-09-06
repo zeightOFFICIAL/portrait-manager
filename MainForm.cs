@@ -242,12 +242,36 @@ namespace PathfinderKINGPortrait
             uint localname = 1;
             exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                          "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-            while(findplace == false)
+            while (findplace == false)
             {
-                string fullexoduspath = exoduspath + "\\" +Convert.ToString(localname);
+                string fullexoduspath = exoduspath + "\\" + Convert.ToString(localname);
                 if (!Directory.Exists(fullexoduspath))
                 {
                     Directory.CreateDirectory(fullexoduspath);
+                    Image img = new Bitmap("temp/portrait_full.png"),
+                          img2 = new Bitmap("temp/portrait_full.png"), 
+                          img3 = new Bitmap("temp/portrait_full.png");
+                    img = ImageControl.Direct.Resize.Crop(img,
+                        -PnlPortraitLrg.AutoScrollPosition.X,
+                        -PnlPortraitLrg.AutoScrollPosition.Y,
+                        -PnlPortraitLrg.AutoScrollPosition.X + PnlPortraitLrg.Size.Width,
+                        -PnlPortraitLrg.AutoScrollPosition.Y + PnlPortraitLrg.Size.Height);
+                    img2 = ImageControl.Direct.Resize.Crop(img2,
+                        -PnlPortraitMed.AutoScrollPosition.X,
+                        -PnlPortraitMed.AutoScrollPosition.Y,
+                        -PnlPortraitMed.AutoScrollPosition.X + PnlPortraitMed.Size.Width,
+                        -PnlPortraitMed.AutoScrollPosition.Y + PnlPortraitMed.Size.Height);
+                    img3 = ImageControl.Direct.Resize.Crop(img3,
+                        -PnlPortraitSml.AutoScrollPosition.X,
+                        -PnlPortraitSml.AutoScrollPosition.Y,
+                        -PnlPortraitSml.AutoScrollPosition.X + PnlPortraitSml.Size.Width,
+                        -PnlPortraitSml.AutoScrollPosition.Y + PnlPortraitSml.Size.Height);
+                    img.Save(fullexoduspath + "\\Fulllength.png");
+                    img2.Save(fullexoduspath + "\\Medium.png");
+                    img3.Save(fullexoduspath + "\\Small.png");
+                    img.Dispose();
+                    img2.Dispose();
+                    img3.Dispose();
                     findplace = true;
                 }
                 localname++;

@@ -54,10 +54,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="scripts\formactions.cs">
+    <Compile Include="scripts\actions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="scripts\formfunctions.cs">
+    <Compile Include="scripts\functions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="scripts\imageprocessing.cs" />

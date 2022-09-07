@@ -235,6 +235,7 @@ namespace PathfinderKINGPortrait
         {
             Console.WriteLine(MainForm.ActiveForm.Width);
         }
+        
         private void BtnCreatePortrait_Click(object sender, EventArgs e)
         {
             string exoduspath;
@@ -248,24 +249,17 @@ namespace PathfinderKINGPortrait
                 if (!Directory.Exists(fullexoduspath))
                 {
                     Directory.CreateDirectory(fullexoduspath);
-                    Image img = new Bitmap("temp/portrait_full.png"),
-                          img2 = new Bitmap("temp/portrait_full.png"), 
-                          img3 = new Bitmap("temp/portrait_full.png");
-                    img = ImageControl.Direct.Resize.Crop(img,
-                        -PnlPortraitLrg.AutoScrollPosition.X,
-                        -PnlPortraitLrg.AutoScrollPosition.Y,
-                        -PnlPortraitLrg.AutoScrollPosition.X + PnlPortraitLrg.Size.Width,
-                        -PnlPortraitLrg.AutoScrollPosition.Y + PnlPortraitLrg.Size.Height);
-                    img2 = ImageControl.Direct.Resize.Crop(img2,
-                        -PnlPortraitMed.AutoScrollPosition.X,
-                        -PnlPortraitMed.AutoScrollPosition.Y,
-                        -PnlPortraitMed.AutoScrollPosition.X + PnlPortraitMed.Size.Width,
-                        -PnlPortraitMed.AutoScrollPosition.Y + PnlPortraitMed.Size.Height);
-                    img3 = ImageControl.Direct.Resize.Crop(img3,
-                        -PnlPortraitSml.AutoScrollPosition.X,
-                        -PnlPortraitSml.AutoScrollPosition.Y,
-                        -PnlPortraitSml.AutoScrollPosition.X + PnlPortraitSml.Size.Width,
-                        -PnlPortraitSml.AutoScrollPosition.Y + PnlPortraitSml.Size.Height);
+                    Image img = new Bitmap("temp/portrait_full.png");
+                    int x_offset = Convert.ToInt32(img.Width * 1.0f - PicPortraitLrg.Width * 1.0f),
+                        y_offset = Convert.ToInt32(img.Height * 1.0f - PicPortraitLrg.Height * 1.0f);
+                    int x = -PnlPortraitLrg.AutoScrollPosition.X,
+                        y = -PnlPortraitLrg.AutoScrollPosition.Y;
+                    float aspect_ratio = 692 / 1024;
+                    img = ImageControl.Direct.Resize.Crop(img, x, y, (PnlPortraitLrg.Width + x) + x_offset, (PnlPortraitLrg.Height + y) + y_offset);
+                    img = ImageControl.Direct.Resize.HighQiality(img, 692, 1024);
+
+                    Image img2 = new Bitmap("temp/portrait_full.png"), 
+                          img3 = new Bitmap("temp/portrait_full.png");                    
                     img.Save(fullexoduspath + "\\Fulllength.png");
                     img2.Save(fullexoduspath + "\\Medium.png");
                     img3.Save(fullexoduspath + "\\Small.png");

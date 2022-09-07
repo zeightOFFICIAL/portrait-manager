@@ -55,7 +55,7 @@ namespace ImageControl
             public static Bitmap Crop(Image img, int x, int y, int x2, int y2)
             {
                 var new_rect = new Rectangle(x, y, x2, y2);
-                Bitmap new_image = new Bitmap(500, 500);
+                Bitmap new_image = new Bitmap(x2 - x, y2 - y);
 
                 using (var graphics = Graphics.FromImage(new_image))
                 {
@@ -76,6 +76,11 @@ namespace ImageControl
                 pic.Image = new Bitmap(Resize.HighQiality(img, Convert.ToInt32(Width), Convert.ToInt32(Height)));
                 Utils.ArrangePanel(pnl, pic.Height, pic.Width);
                 pnl.AutoScrollPosition = new Point((int)(mse.X - pnl.Width / 2), (int)(mse.Y - pnl.Height / 2));
+                //Console.WriteLine("------");
+                //Console.WriteLine(pnl.AutoScrollPosition);
+                //Console.WriteLine(pnl.Width);
+                //Console.WriteLine(pnl.Height);
+                //Console.WriteLine(mse.X + " " + mse.Y);
             }
             img.Dispose();
         }

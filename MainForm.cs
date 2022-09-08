@@ -250,14 +250,15 @@ namespace PathfinderKINGPortrait
                 {
                     Directory.CreateDirectory(fullexoduspath);
                     Image img = new Bitmap("temp/portrait_full.png");
-                    float aspect_ratio = 1024 / 692;
-                    int x = -PnlPortraitLrg.AutoScrollPosition.X,
-                        y = -PnlPortraitLrg.AutoScrollPosition.Y;
-                    int x_2 = x + PnlPortraitLrg.Width,
-                        y_2 = (int)((y + PnlPortraitLrg.Height) * aspect_ratio);
-                    Console.WriteLine(x + " " + y + " " + x_2 + " " + y_2);
-                    img = ImageControl.Direct.Resize.Crop(img, x, y, x_2, y_2);
-                    //img = ImageControl.Direct.Resize.Crop(img, x, y, (PnlPortraitLrg.Width + x) + x_offset, (PnlPortraitLrg.Height + y) + y_offset);
+                    float aspect_ratio = 1.479768786f,
+                          factor = img.Width * 1.0f / PicPortraitLrg.Image.Width * 1.0f;
+                    int x = -(int)(PnlPortraitLrg.AutoScrollPosition.X * factor),
+                        y = -(int)(PnlPortraitLrg.AutoScrollPosition.Y * factor);
+                    int x_2 = (int)((x + PnlPortraitLrg.Width * factor)),
+                        y_2 = (int)((x_2 - x) * aspect_ratio);
+                    Console.WriteLine(x + " " + y);
+                    Console.WriteLine(x_2 + " " + y_2);
+                    img = ImageControl.Direct.Resize.Crop(img, (int)(x), (int)(y), (int)(x_2), (int)(y_2));
                     img = ImageControl.Direct.Resize.HighQiality(img, 692, 1024);
 
                     Image img2 = new Bitmap("temp/portrait_full.png"), 

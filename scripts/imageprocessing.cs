@@ -54,13 +54,13 @@ namespace ImageControl
             }
             public static Bitmap Crop(Image img, int x, int y, int x2, int y2)
             {
-                var new_rect = new Rectangle(x, y, x2, y2);
-                Bitmap new_image = new Bitmap(x2 - x, y2 - y);
-
-                using (var graphics = Graphics.FromImage(new_image))
+                Rectangle crop_dim = new Rectangle(x, y, x2-x, y2-y);
+                Bitmap new_img = new Bitmap(crop_dim.Width, crop_dim.Height);
+                new_img.SetResolution(img.HorizontalResolution, img.VerticalResolution);
+                using (Graphics g = Graphics.FromImage(new_img))
                 {
-                    graphics.DrawImage(img, -new_rect.X, -new_rect.Y);
-                    return new_image;
+                    g.DrawImage(img, -crop_dim.X, -crop_dim.Y);
+                    return new_img;
                 }
             }
         }

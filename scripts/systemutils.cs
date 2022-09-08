@@ -52,7 +52,7 @@ namespace SystemControl
             {
                 Image img = new Bitmap(fullpath);
                 aspect_ratio = img.Width * 1.0f / img.Height * 1.0f;
-                decrease_power = img.Width * 1.0f / 100 * 30;
+                decrease_power = img.Width * 1.0f / 100 * 50;
                 Image img_poor = ImageControl.Direct.Resize.LowQiality(img, (int)(decrease_power * aspect_ratio), (int)(decrease_power));
                 img.Save(relativepath_full);
                 img_poor.Save(relativepath_poor);

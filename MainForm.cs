@@ -249,26 +249,14 @@ namespace PathfinderKINGPortrait
                 if (!Directory.Exists(fullexoduspath))
                 {
                     Directory.CreateDirectory(fullexoduspath);
-                    Image img = new Bitmap("temp/portrait_full.png");
-                    float aspect_ratio = 1.479768786f,
-                          factor = img.Width * 1.0f / PicPortraitLrg.Image.Width * 1.0f;
-                    int x = -(int)(PnlPortraitLrg.AutoScrollPosition.X * factor),
-                        y = -(int)(PnlPortraitLrg.AutoScrollPosition.Y * factor);
-                    int x_2 = (int)((x + PnlPortraitLrg.Width * factor)),
-                        y_2 = (int)((x_2 - x) * aspect_ratio);
-                    Console.WriteLine(x + " " + y);
-                    Console.WriteLine(x_2 + " " + y_2);
-                    img = ImageControl.Direct.Resize.Crop(img, (int)(x), (int)(y), (int)(x_2), (int)(y_2));
-                    img = ImageControl.Direct.Resize.HighQiality(img, 692, 1024);
-
-                    Image img2 = new Bitmap("temp/portrait_full.png"), 
-                          img3 = new Bitmap("temp/portrait_full.png");                    
+                    Image img;
+                    img = ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, 1.479768786f, 692, 1024);
                     img.Save(fullexoduspath + "\\Fulllength.png");
-                    img2.Save(fullexoduspath + "\\Medium.png");
-                    img3.Save(fullexoduspath + "\\Small.png");
+                    img = ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, 1.309090909f, 330, 432);
+                    img.Save(fullexoduspath + "\\Medium.png");
+                    img = ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, 1.308108108f, 185, 242);
+                    img.Save(fullexoduspath + "\\Small.png");
                     img.Dispose();
-                    img2.Dispose();
-                    img3.Dispose();
                     findplace = true;
                 }
                 localname++;

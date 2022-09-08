@@ -60,8 +60,8 @@
     <Compile Include="scripts\functions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="scripts\imageprocessing.cs" />
-    <Compile Include="scripts\systemutils.cs" />
+    <Compile Include="scripts\imageworks.cs" />
+    <Compile Include="scripts\systemworks.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

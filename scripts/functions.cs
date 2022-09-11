@@ -45,19 +45,19 @@ namespace PathfinderKINGPortrait
         private void LoadAllImages()
         {
             AllImageClear();
-            string relativepath_full = "temp/portrait_full.png",
-                   relativepath_poor = "temp/portrait_poor.png";
-            Image img_poor = new Bitmap(relativepath_poor),
-                  img_full = new Bitmap(relativepath_full);
-            PicPortraitTemp.Image = new Bitmap(img_full);
-            PicPortraitLrg.Image = new Bitmap(img_poor);
-            PicPortraitMed.Image = new Bitmap(img_poor);
-            PicPortraitSml.Image = new Bitmap(img_poor);
+            string relativepath_full = "temp\\portrait_full.png",
+                   relativepath_poor = "temp\\portrait_poor.png";
+            using (Image img_poor = new Bitmap(relativepath_poor))
+            {
+                PicPortraitLrg.Image = new Bitmap(img_poor);
+                PicPortraitMed.Image = new Bitmap(img_poor);
+                PicPortraitSml.Image = new Bitmap(img_poor);
+            }
+            using (Image img_full = new Bitmap(relativepath_full))
+                PicPortraitTemp.Image = new Bitmap(img_full);
             ImageControl.Utils.ArrangePanel(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ImageControl.Utils.ArrangePanel(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ImageControl.Utils.ArrangePanel(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            img_full.Dispose();
-            img_poor.Dispose();
         }
     }
 }

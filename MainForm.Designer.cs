@@ -141,7 +141,7 @@ namespace PathfinderKINGPortrait
             this.PicPortraitTemp.TabStop = false;
             this.PicPortraitTemp.Click += new System.EventHandler(this.PicPortraitTemp_Click);
             this.PicPortraitTemp.DragDrop += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragDrop);
-            this.PicPortraitTemp.DragEnter += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DropEnter);
+            this.PicPortraitTemp.DragEnter += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragEnter);
             // 
             // LayUnnamed1
             // 
@@ -375,10 +375,10 @@ namespace PathfinderKINGPortrait
             this.LayUnnamed4.Name = "LayUnnamed4";
             this.LayUnnamed4.RowCount = 1;
             this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.LayUnnamed4.Size = new System.Drawing.Size(582, 16);
             this.LayUnnamed4.TabIndex = 2;
             // 
@@ -417,10 +417,9 @@ namespace PathfinderKINGPortrait
             // 
             // MainForm
             // 
-            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 625);
+            this.ClientSize = new System.Drawing.Size(901, 510);
             this.Controls.Add(this.LayScalingForm);
             this.Controls.Add(this.LayCreateForm);
             this.Controls.Add(this.LayMainForm);

@@ -69,7 +69,7 @@ namespace ImageControl
                 if (w > pnl.Width && h > pnl.Height)
                 {
                     pic.Image = new Bitmap(Resize.LowQiality(img, Convert.ToInt32(w), Convert.ToInt32(h)));
-                    Utils.ArrangePanel(pnl, pic.Height, pic.Width);
+                    Utils.ArrangePnlAroundPic(pnl, pic.Height, pic.Width);
                     pnl.AutoScrollPosition = new Point((msvnt.X - pnl.Width / 2), (msvnt.Y - pnl.Height / 2));
                 }
             }
@@ -102,7 +102,7 @@ namespace ImageControl
             img.Image.Dispose();
             img.Image = img_default;
         }
-        public static void ArrangePanel(Panel pnl, int x_max, int y_max)
+        public static void ArrangePnlAroundPic(Panel pnl, int x_max, int y_max)
         {
             pnl.AutoScroll = false;
             pnl.VerticalScroll.Minimum = 0;
@@ -120,7 +120,7 @@ namespace ImageControl
             Image original_image = new Bitmap("temp\\portrait_full.png");
             float factor = original_image.Width * 1.0f / pic.Image.Width * 1.0f;
             int x = -(int)(pnl.AutoScrollPosition.X * factor),
-                y = -(int)(pnl.AutoScrollPosition.Y * factor),
+                y = -(int)(pnl.AutoScrollPosition.Y * factor),                
                 x_w = (int)(pnl.Width * factor),
                 y_w = (int)(x_w * aspect_ratio),
                 x2 = x_w + x,

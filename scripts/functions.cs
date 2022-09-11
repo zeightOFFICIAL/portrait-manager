@@ -21,26 +21,38 @@ namespace PathfinderKINGPortrait
             if (LayScalingForm.Enabled == true)
                 using (Image img = new Bitmap("temp\\portrait_poor.png"))
                 {
-                    float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f),
-                          w, h;
-                    if (aspect_ratio < 1.0f)
-                    {
-                        w = (PnlPortraitLrg.Height + 30) * aspect_ratio;
-                        h = (PnlPortraitLrg.Height + 30);
-                    }
-                    else
-                    {
-                        w = (PnlPortraitLrg.Width + 30);
-                        h = (PnlPortraitLrg.Width + 30) * aspect_ratio;
-                    }
-                    PicPortraitLrg.Image = ImageControl.Direct.Resize.LowQiality(img, (int)w, (int)h);
-                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitLrg, (int)w, (int)(h));
-                    PicPortraitMed.Image = ImageControl.Direct.Resize.LowQiality(img, (int)w, (int)h);
-                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitMed, (int)w, (int)(h));
-                    PicPortraitSml.Image = ImageControl.Direct.Resize.LowQiality(img, (int)w, (int)h);
-                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitSml, (int)w, (int)(h));
+                    float aspect_ratio;
+                    aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+                    Tuple<int, int> tuple = CalculateNewWH(PnlPortraitLrg, img, aspect_ratio);
+                    PicPortraitLrg.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
+                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitLrg, (int)tuple.Item1, (int)tuple.Item2);
+
+                    aspect_ratio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f);
+                    tuple = CalculateNewWH(PnlPortraitMed, img, aspect_ratio);
+                    PicPortraitMed.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
+                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitMed, (int)tuple.Item1, (int)tuple.Item2);
+
+                    aspect_ratio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f);
+                    tuple = CalculateNewWH(PnlPortraitSml, img, aspect_ratio);
+                    PicPortraitSml.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
+                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitSml, (int)tuple.Item1, (int)tuple.Item2);
                 }
         } 
+        private static Tuple<int, int> CalculateNewWH(Panel pnl, Image src_img, float aspect_ratio)
+        {
+            int width = pnl.Width,
+                height = pnl.Height,
+                dst_width,
+                dst_height;
+            dst_width = width;
+            dst_height = (int)(width / aspect_ratio);
+            if (dst_height < pnl.Height || dst_width < pnl.Width)
+            {
+                dst_height = height;
+                dst_width = (int)(height / aspect_ratio);
+            }
+            return Tuple.Create(dst_width, dst_height);
+        }
         private void AllToNotEnabled()
         {
             LayMainForm.Visible = false;

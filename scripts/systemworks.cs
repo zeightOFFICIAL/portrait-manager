@@ -38,28 +38,23 @@ namespace SystemControl
         {
             string relativepath_full = "temp/portrait_full.png",
                    relativepath_poor = "temp/portrait_poor.png";
-            float aspect_ratio, decrease_power;
-
             if (!Directory.Exists("temp/")) Directory.CreateDirectory("temp/");
             if (fullpath == "-1")
             {
-                Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default);
-                img.Save(relativepath_full);
-                img.Save(relativepath_poor);
-                img.Dispose();
+                using (Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default))
+                {
+                    img.Save(relativepath_full);
+                    img.Save(relativepath_poor);
+                }
             }
             else
             {
-                Image img = new Bitmap(fullpath);
-                aspect_ratio = img.Width * 1.0f / img.Height * 1.0f;
-                decrease_power = img.Width * 1.0f / 100 * 50;
-                Image img_poor = ImageControl.Direct.Resize.LowQialityResize(img, (int)(decrease_power * aspect_ratio), (int)(decrease_power));
-                img.Save(relativepath_full);
-                img_poor.Save(relativepath_poor);
-                img.Dispose();
-                img_poor.Dispose();
+                using (Image img = new Bitmap(fullpath))
+                {
+                    img.Save(relativepath_full);
+                    ImageControl.Wraps.CreatePoorImage(img, relativepath_poor);
+                }
             }
-            
         }
         public static void TempClear()
         {

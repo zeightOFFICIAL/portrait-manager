@@ -131,11 +131,18 @@ namespace ImageControl
             Image original_image = new Bitmap("temp\\portrait_full.png");
             float factor = original_image.Width * 1.0f / pic.Image.Width * 1.0f;
             int x = -(int)(pnl.AutoScrollPosition.X * factor),
-                y = -(int)(pnl.AutoScrollPosition.Y * factor),                
+                y = -(int)(pnl.AutoScrollPosition.Y * factor),
                 x_w = (int)(pnl.Width * factor),
                 y_w = (int)(x_w * aspect_ratio),
                 x2 = x_w + x,
                 y2 = y_w + y;
+            if (y2 > original_image.Height)
+            {
+                y_w = (int)(pnl.Height * factor);
+                x_w = (int)(y_w * 1.0f / aspect_ratio * 1.0f);
+                x2 = x_w + x;
+                y2 = y_w + y;
+            }
             original_image = Direct.Resize.Crop(original_image, x, y, x2, y2);
             original_image = Direct.Resize.HighQuality(original_image, to_x, to_y);
             return original_image;

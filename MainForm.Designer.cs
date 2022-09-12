@@ -416,6 +416,7 @@ namespace PathfinderKINGPortrait
             this.Text = "Pathfinder: Kingmaker Portrait";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_Closed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.ResizeEnd += new System.EventHandler(this.MainForm_ResizeEnd);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.LayMainForm.ResumeLayout(false);
             this.LayCreateForm.ResumeLayout(false);

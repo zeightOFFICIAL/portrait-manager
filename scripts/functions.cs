@@ -44,13 +44,16 @@ namespace PathfinderKINGPortrait
                 height = pnl.Height,
                 dst_width,
                 dst_height;
-            dst_width = width;
-            dst_height = (int)(width / aspect_ratio);
-            if (dst_height < pnl.Height || dst_width < pnl.Width)
-            {
-                dst_height = height;
-                dst_width = (int)(height / aspect_ratio);
-            }
+            dst_height = height;
+            dst_width = (int)(height * 1.0f / aspect_ratio * 1.0f);
+
+            //dst_width = width;
+            //dst_height = (int)(width * 1.0f / aspect_ratio * 1.0f);
+            //dst_width = (int)(height * 1.0f / 1.0f / aspect_ratio * 1.0f);
+            //dst_height = (int)(height * 1.0f / aspect_ratio * 1.0f);
+            Console.WriteLine(dst_height);
+            Console.WriteLine(dst_width);
+            Console.WriteLine("--------");
             return Tuple.Create(dst_width, dst_height);
         }
         private void AllToNotEnabled()

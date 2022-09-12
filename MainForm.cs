@@ -97,7 +97,7 @@ namespace PathfinderKINGPortrait
         }
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            AllImageResizeAsWindow();
+            
         }
         private void BtnCreatePortrait_Click(object sender, EventArgs e)
         {
@@ -124,6 +124,11 @@ namespace PathfinderKINGPortrait
                 }
                 localname++;
             }
+        }
+
+        private void MainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            AllImageResizeAsWindow();
         }
     }
 }

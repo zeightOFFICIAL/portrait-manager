@@ -22,17 +22,17 @@ namespace PathfinderKINGPortrait
                 using (Image img = new Bitmap("temp\\portrait_poor.png"))
                 {
                     float aspect_ratio;
-                    aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+                    aspect_ratio = (PicPortraitLrg.Height * 1.0f / PicPortraitLrg.Width * 1.0f);
                     Tuple<int, int> tuple = CalculateNewWH(PnlPortraitLrg, img, aspect_ratio);
                     PicPortraitLrg.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
                     ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitLrg, (int)tuple.Item1, (int)tuple.Item2);
 
-                    aspect_ratio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f);
+                    aspect_ratio = (PicPortraitMed.Height * 1.0f / PicPortraitMed.Width * 1.0f);
                     tuple = CalculateNewWH(PnlPortraitMed, img, aspect_ratio);
                     PicPortraitMed.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
                     ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitMed, (int)tuple.Item1, (int)tuple.Item2);
 
-                    aspect_ratio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f);
+                    aspect_ratio = (PicPortraitSml.Height * 1.0f / PicPortraitSml.Width * 1.0f);
                     tuple = CalculateNewWH(PnlPortraitSml, img, aspect_ratio);
                     PicPortraitSml.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
                     ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitSml, (int)tuple.Item1, (int)tuple.Item2);
@@ -46,11 +46,11 @@ namespace PathfinderKINGPortrait
                 dst_height;
             dst_height = height;
             dst_width = (int)(height * 1.0f / aspect_ratio * 1.0f);
-
-            //dst_width = width;
-            //dst_height = (int)(width * 1.0f / aspect_ratio * 1.0f);
-            //dst_width = (int)(height * 1.0f / 1.0f / aspect_ratio * 1.0f);
-            //dst_height = (int)(height * 1.0f / aspect_ratio * 1.0f);
+            if (dst_width < pnl.Width)
+            {
+                dst_width = width;
+                dst_height = (int)(width * 1.0f / (1.0f / aspect_ratio * 1.0f));
+            }
             Console.WriteLine(dst_height);
             Console.WriteLine(dst_width);
             Console.WriteLine("--------");

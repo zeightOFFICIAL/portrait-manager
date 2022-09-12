@@ -10,90 +10,89 @@ namespace ImageControl
     {
         public class Resize
         {
-            public static Bitmap HighQuality(Image src_img, int width, int height)
+            public static Bitmap HighQuality(Image src_img, int to_width, int to_height)
             {
-                Rectangle dst_rect = new Rectangle(0, 0, width, height);
-                Bitmap dst_img = new Bitmap(width, height);
+                Rectangle dst_rect = new Rectangle(0, 0, to_width, to_height);
+                Bitmap dst_img = new Bitmap(to_width, to_height);
 
                 dst_img.SetResolution(src_img.HorizontalResolution, src_img.VerticalResolution);
-                using (Graphics grphcs = Graphics.FromImage(dst_img))
+                using (Graphics graphics = Graphics.FromImage(dst_img))
                 {
-                    grphcs.CompositingMode = CompositingMode.SourceCopy;
-                    grphcs.CompositingQuality = CompositingQuality.HighQuality;
-                    grphcs.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    grphcs.SmoothingMode = SmoothingMode.HighQuality;
-                    grphcs.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    using (var wrpmd = new ImageAttributes())
+                    graphics.CompositingMode = CompositingMode.SourceCopy;
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+                    graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    using (ImageAttributes wrapmode = new ImageAttributes())
                     {
-                        wrpmd.SetWrapMode(WrapMode.TileFlipXY);
-                        grphcs.DrawImage(src_img, dst_rect, 0, 0, src_img.Width, src_img.Height, GraphicsUnit.Pixel, wrpmd);
+                        wrapmode.SetWrapMode(WrapMode.TileFlipXY);
+                        graphics.DrawImage(src_img, dst_rect, 0, 0, src_img.Width, src_img.Height, GraphicsUnit.Pixel, wrapmode);
                     }
                 }
 
                 return dst_img;
             }
-            public static Bitmap LowQiality(Image src_img, int width, int height)
+            public static Bitmap LowQiality(Image src_img, int to_width, int to_height)
             {
-                Rectangle dst_rect = new Rectangle(0, 0, width, height);
-                Bitmap dst_img = new Bitmap(width, height);
+                Rectangle dst_rect = new Rectangle(0, 0, to_width, to_height);
+                Bitmap dst_img = new Bitmap(to_width, to_height);
 
                 dst_img.SetResolution(src_img.HorizontalResolution, src_img.VerticalResolution);
-                using (Graphics grphcs = Graphics.FromImage(dst_img))
+                using (Graphics graphics = Graphics.FromImage(dst_img))
                 {
-                    grphcs.CompositingMode = CompositingMode.SourceCopy;
-                    grphcs.CompositingQuality = CompositingQuality.HighSpeed;
-                    grphcs.InterpolationMode = InterpolationMode.Default;
-                    grphcs.SmoothingMode = SmoothingMode.None;
-                    grphcs.PixelOffsetMode = PixelOffsetMode.HighSpeed;
-                    using (var wrpmd = new ImageAttributes())
+                    graphics.CompositingMode = CompositingMode.SourceCopy;
+                    graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                    graphics.InterpolationMode = InterpolationMode.Low;
+                    graphics.SmoothingMode = SmoothingMode.None;
+                    graphics.PixelOffsetMode = PixelOffsetMode.HighSpeed;
+                    using (ImageAttributes warpmode = new ImageAttributes())
                     {
-                        wrpmd.SetWrapMode(WrapMode.TileFlipXY);
-                        grphcs.DrawImage(src_img, dst_rect, 0, 0, src_img.Width, src_img.Height, GraphicsUnit.Pixel, wrpmd);
+                        warpmode.SetWrapMode(WrapMode.TileFlipXY);
+                        graphics.DrawImage(src_img, dst_rect, 0, 0, src_img.Width, src_img.Height, GraphicsUnit.Pixel, warpmode);
                     }
                 }
-
-                return dst_img;
-            }
-            public static Bitmap Crop(Image src_img, int x0, int y0, int x1, int y1)
-            {
-                Rectangle dst_rect = new Rectangle(x0, y0, x1 - x0, y1 - y0);
-                Bitmap dst_img = new Bitmap(dst_rect.Width, dst_rect.Height);
-
-                dst_img.SetResolution(src_img.HorizontalResolution, src_img.VerticalResolution);
-                using (Graphics grphcs = Graphics.FromImage(dst_img))
-                    grphcs.DrawImage(src_img, -dst_rect.X, -dst_rect.Y);
 
                 return dst_img;
             }
         }
-        public static void Zoom(PictureBox pic, Panel pnl, MouseEventArgs msvnt, float aspect_ratio, float factor)
+        public static void Zoom(PictureBox picbox, Panel pnl, MouseEventArgs msvnt, string fullpath, float aspect_ratio, float factor)
         {
-            float width = pic.Width + factor * aspect_ratio,
-                  height = pic.Height + factor;
+            float new_width = picbox.Width + factor * aspect_ratio,
+                  new_height = picbox.Height + factor;
 
-            using (Bitmap img = new Bitmap("temp\\portrait_poor.png"))
+            using (Bitmap img = new Bitmap(fullpath))
             {
-                if (width > pnl.Width && height > pnl.Height)
+                if (new_width > pnl.Width && new_height > pnl.Height)
                 {
-                    pic.Image = new Bitmap(Resize.LowQiality(img, Convert.ToInt32(width), Convert.ToInt32(height)));
-                    Utils.ArrangePnlAroundPic(pnl, pic.Height, pic.Width);
+                    picbox.Image = new Bitmap(Resize.LowQiality(img, Convert.ToInt32(new_width), Convert.ToInt32(new_height)));
                     pnl.AutoScrollPosition = new Point((msvnt.X - pnl.Width / 2), (msvnt.Y - pnl.Height / 2));
                 }
             }
         }
-        public static void WorsenQuality(Image src_img, string fullpath) 
+        public static Bitmap Crop(Image src_img, int x_start, int y_start, int x_end, int y_end)
+        {
+            Rectangle dst_rect = new Rectangle(x_start, y_start, x_end - x_start, y_end - y_start);
+            Bitmap dst_img = new Bitmap(dst_rect.Width, dst_rect.Height);
+
+            dst_img.SetResolution(src_img.HorizontalResolution, src_img.VerticalResolution);
+            using (Graphics graphics = Graphics.FromImage(dst_img))
+                graphics.DrawImage(src_img, -dst_rect.X, -dst_rect.Y);
+
+            return dst_img;
+        }
+        public static void SaveWorstVersion(Image src_img, string fullpath) 
         { 
             using (Bitmap img = new Bitmap(src_img))
             {
-                ImageCodecInfo png_encdr = GetEncoder(ImageFormat.Png);
-                System.Drawing.Imaging.Encoder custom_encdr = System.Drawing.Imaging.Encoder.Quality; 
-                EncoderParameters custom_encdr_params = new EncoderParameters(1);
-                EncoderParameter custom_encdr_param = new EncoderParameter(custom_encdr, 20L);
+                ImageCodecInfo png_encoder = GetEncoder(ImageFormat.Png);
+                Encoder custom_encoder = Encoder.Quality; 
+                EncoderParameters custom_encoder_params = new EncoderParameters(1);
+                EncoderParameter custom_encoder_param = new EncoderParameter(custom_encoder, 17L);
 
-                custom_encdr_params.Param[0] = custom_encdr_param;
-                img.Save(fullpath, png_encdr, custom_encdr_params);
-                custom_encdr_param.Dispose();
-                custom_encdr_params.Dispose();
+                custom_encoder_params.Param[0] = custom_encoder_param;
+                img.Save(fullpath, png_encoder, custom_encoder_params);
+                custom_encoder_param.Dispose();
+                custom_encoder_params.Dispose();
             }
         }
         private static ImageCodecInfo GetEncoder(ImageFormat format)
@@ -108,54 +107,52 @@ namespace ImageControl
     }
     public class Utils
     {
-        public static void Clear(PictureBox img, Image img_default)
+        public static void Replace(PictureBox picbox, Image to_image)
         {
-            img.Image.Dispose();
-            img.Image = img_default;
+            picbox.Image.Dispose();
+            picbox.Image = to_image;
         }
-        public static void ArrangePnlAroundPic(Panel pnl, int x_max, int y_max)
+        public static void Dispose(PictureBox picbox)
         {
-            pnl.AutoScroll = false;
-            pnl.VerticalScroll.Minimum = 0;
-            pnl.HorizontalScroll.Minimum = 0;
-            pnl.VerticalScroll.Maximum = x_max;
-            pnl.HorizontalScroll.Maximum = y_max;
-            pnl.VerticalScroll.Visible = true;
-            pnl.HorizontalScroll.Visible = true;
+            picbox.Image.Dispose();
         }
     }
     public class Wraps
     {
-        public static Image CropImage(PictureBox pic, Panel pnl, float aspect_ratio, int to_x, int to_y)
+        public static Image CropImage(PictureBox picbox, Panel pnl, string fullpath, float aspect_ratio, int to_x, int to_y)
         {
-            Image original_image = new Bitmap("temp\\portrait_full.png");
-            float factor = original_image.Width * 1.0f / pic.Image.Width * 1.0f;
-            int x = -(int)(pnl.AutoScrollPosition.X * factor),
-                y = -(int)(pnl.AutoScrollPosition.Y * factor),
-                x_w = (int)(pnl.Width * factor),
-                y_w = (int)(x_w * aspect_ratio),
-                x2 = x_w + x,
-                y2 = y_w + y;
-            if (y2 > original_image.Height)
+            Image original_image = new Bitmap(fullpath);
+
+            float factor = original_image.Width * 1.0f / picbox.Image.Width * 1.0f;
+            int x_start = -(int)(pnl.AutoScrollPosition.X * factor),
+                y_start = -(int)(pnl.AutoScrollPosition.Y * factor);
+            int x_size = (int)(pnl.Width * factor),
+                y_size = (int)(x_size * aspect_ratio);
+            int x_end = x_size + x_start,
+                y_end = y_size + y_start;
+
+            if (y_end > original_image.Height || x_end > original_image.Width)
             {
-                y_w = (int)(pnl.Height * factor);
-                x_w = (int)(y_w * 1.0f / aspect_ratio * 1.0f);
-                x2 = x_w + x;
-                y2 = y_w + y;
+                y_size = (int)(pnl.Height * factor);
+                x_size = (int)(y_size * 1.0f / aspect_ratio * 1.0f);
+
+                x_end = x_size + x_start;
+                y_end = y_size + y_start;
             }
-            original_image = Direct.Resize.Crop(original_image, x, y, x2, y2);
+
+            original_image = Direct.Crop(original_image, x_start, y_start, x_end, y_end);
             original_image = Direct.Resize.HighQuality(original_image, to_x, to_y);
+
             return original_image;
         }
         public static void CreatePoorImage(Image src_img, string fullpath)
         {
-            float aspect_ratio, decrease_power;
-            aspect_ratio = src_img.Width * 1.0f / src_img.Height * 1.0f;
-            decrease_power = src_img.Width * 1.0f / 100 * 50;
+            float aspect_ratio = src_img.Width * 1.0f / src_img.Height * 1.0f,
+                  decrease_power = src_img.Width * 1.0f / 100 * 50;
 
             src_img = Direct.Resize.LowQiality(src_img, (int)(decrease_power * aspect_ratio), (int)(decrease_power));
             using (Image img = new Bitmap(src_img))
-                Direct.WorsenQuality(img, fullpath);
+                Direct.SaveWorstVersion(img, fullpath);
             src_img.Dispose();
         }
     }

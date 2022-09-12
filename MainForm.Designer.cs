@@ -240,6 +240,7 @@ namespace PathfinderKINGPortrait
             this.PnlPortraitLrg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlPortraitLrg.Location = new System.Drawing.Point(221, 3);
             this.PnlPortraitLrg.Name = "PnlPortraitLrg";
+            this.PnlPortraitLrg.Padding = new System.Windows.Forms.Padding(10);
             this.PnlPortraitLrg.Size = new System.Drawing.Size(197, 304);
             this.PnlPortraitLrg.TabIndex = 3;
             // 
@@ -247,7 +248,7 @@ namespace PathfinderKINGPortrait
             // 
             this.PicPortraitLrg.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicPortraitLrg.Image = global::PathfinderKINGPortrait.Properties.Resources._default;
-            this.PicPortraitLrg.Location = new System.Drawing.Point(-10, -10);
+            this.PicPortraitLrg.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitLrg.Name = "PicPortraitLrg";
             this.PicPortraitLrg.Size = new System.Drawing.Size(692, 1024);
             this.PicPortraitLrg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -263,6 +264,7 @@ namespace PathfinderKINGPortrait
             this.PnlPortraitMed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlPortraitMed.Location = new System.Drawing.Point(33, 3);
             this.PnlPortraitMed.Name = "PnlPortraitMed";
+            this.PnlPortraitMed.Padding = new System.Windows.Forms.Padding(10);
             this.PnlPortraitMed.Size = new System.Drawing.Size(182, 304);
             this.PnlPortraitMed.TabIndex = 4;
             // 
@@ -270,7 +272,7 @@ namespace PathfinderKINGPortrait
             // 
             this.PicPortraitMed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicPortraitMed.Image = global::PathfinderKINGPortrait.Properties.Resources._default;
-            this.PicPortraitMed.Location = new System.Drawing.Point(-10, -10);
+            this.PicPortraitMed.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitMed.Name = "PicPortraitMed";
             this.PicPortraitMed.Size = new System.Drawing.Size(692, 1024);
             this.PicPortraitMed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -286,6 +288,7 @@ namespace PathfinderKINGPortrait
             this.PnlPortraitSml.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlPortraitSml.Location = new System.Drawing.Point(424, 3);
             this.PnlPortraitSml.Name = "PnlPortraitSml";
+            this.PnlPortraitSml.Padding = new System.Windows.Forms.Padding(10);
             this.PnlPortraitSml.Size = new System.Drawing.Size(182, 304);
             this.PnlPortraitSml.TabIndex = 5;
             // 
@@ -293,7 +296,7 @@ namespace PathfinderKINGPortrait
             // 
             this.PicPortraitSml.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicPortraitSml.Image = global::PathfinderKINGPortrait.Properties.Resources._default;
-            this.PicPortraitSml.Location = new System.Drawing.Point(-10, -10);
+            this.PicPortraitSml.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitSml.Name = "PicPortraitSml";
             this.PicPortraitSml.Size = new System.Drawing.Size(692, 1024);
             this.PicPortraitSml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

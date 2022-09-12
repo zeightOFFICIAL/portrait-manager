@@ -162,12 +162,13 @@ namespace PathfinderKINGPortrait
             if (e.Delta > 0)
             {
                 factor = PicPortraitLrg.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PnlPortraitLrg, e, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PnlPortraitLrg, e, "temp\\portrait_poor.png", aspect_ratio, factor);
+                Utils.ArrangeAutoScroll(pnl, picbox.Height, picbox.Width);
             }
             else
             {
                 factor = -PicPortraitLrg.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PnlPortraitLrg, e, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PnlPortraitLrg, e, "temp\\portrait_poor.png", aspect_ratio, factor);
             }
         }
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
@@ -178,12 +179,12 @@ namespace PathfinderKINGPortrait
             if (e.Delta > 0)
             {
                 factor = PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PnlPortraitMed, e, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PnlPortraitMed,  e, "temp\\portrait_poor.png", aspect_ratio, factor);
             }
             else
             {
                 factor = -PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PnlPortraitMed, e, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PnlPortraitMed, e, "temp\\portrait_poor.png", aspect_ratio, factor);
             }
         }
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
@@ -194,12 +195,12 @@ namespace PathfinderKINGPortrait
             if (e.Delta > 0)
             {
                 factor = PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PnlPortraitSml, e, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PnlPortraitSml, e, "temp\\portrait_poor.png", aspect_ratio, factor);
             }
             else
             {
                 factor = -PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PnlPortraitSml, e, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PnlPortraitSml, e, "temp\\portrait_poor.png", aspect_ratio, factor);
             }
         }
     }

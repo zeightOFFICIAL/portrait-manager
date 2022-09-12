@@ -11,10 +11,10 @@ namespace PathfinderKINGPortrait
     {
         private void AllImageClear()
         {
-            ImageControl.Utils.Clear(PicPortraitTemp, PathfinderKINGPortrait.Properties.Resources._default);
-            ImageControl.Utils.Clear(PicPortraitLrg, PathfinderKINGPortrait.Properties.Resources._default);
-            ImageControl.Utils.Clear(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources._default);
-            ImageControl.Utils.Clear(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources._default);
+            ImageControl.Utils.Replace(PicPortraitTemp, PathfinderKINGPortrait.Properties.Resources._default);
+            ImageControl.Utils.Replace(PicPortraitLrg, PathfinderKINGPortrait.Properties.Resources._default);
+            ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources._default);
+            ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources._default);
         }
         private void AllImageResizeAsWindow()
         {
@@ -25,17 +25,17 @@ namespace PathfinderKINGPortrait
                     aspect_ratio = (PicPortraitLrg.Height * 1.0f / PicPortraitLrg.Width * 1.0f);
                     Tuple<int, int> tuple = CalculateNewWH(PnlPortraitLrg, img, aspect_ratio);
                     PicPortraitLrg.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
-                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitLrg, (int)tuple.Item1, (int)tuple.Item2);
+                    ImageControl.Utils.ArrangeAutoScroll(PnlPortraitLrg, (int)tuple.Item1, (int)tuple.Item2);
 
                     aspect_ratio = (PicPortraitMed.Height * 1.0f / PicPortraitMed.Width * 1.0f);
                     tuple = CalculateNewWH(PnlPortraitMed, img, aspect_ratio);
                     PicPortraitMed.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
-                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitMed, (int)tuple.Item1, (int)tuple.Item2);
+                    ImageControl.Utils.ArrangeAutoScroll(PnlPortraitMed, (int)tuple.Item1, (int)tuple.Item2);
 
                     aspect_ratio = (PicPortraitSml.Height * 1.0f / PicPortraitSml.Width * 1.0f);
                     tuple = CalculateNewWH(PnlPortraitSml, img, aspect_ratio);
                     PicPortraitSml.Image = ImageControl.Direct.Resize.LowQiality(img, (int)tuple.Item1, (int)tuple.Item2);
-                    ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitSml, (int)tuple.Item1, (int)tuple.Item2);
+                    ImageControl.Utils.ArrangeAutoScroll(PnlPortraitSml, (int)tuple.Item1, (int)tuple.Item2);
                 }
         } 
         private static Tuple<int, int> CalculateNewWH(Panel pnl, Image src_img, float aspect_ratio)
@@ -95,9 +95,9 @@ namespace PathfinderKINGPortrait
             }
             using (Image img_full = new Bitmap(relativepath_full))
                 PicPortraitTemp.Image = new Bitmap(img_full);
-            ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            ImageControl.Utils.ArrangePnlAroundPic(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ImageControl.Utils.ArrangeAutoScroll(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ImageControl.Utils.ArrangeAutoScroll(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ImageControl.Utils.ArrangeAutoScroll(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
         }
     }
 }

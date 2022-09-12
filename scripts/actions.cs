@@ -163,7 +163,6 @@ namespace PathfinderKINGPortrait
             {
                 factor = PicPortraitLrg.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitLrg, PnlPortraitLrg, e, "temp\\portrait_poor.png", aspect_ratio, factor);
-                Utils.ArrangeAutoScroll(pnl, picbox.Height, picbox.Width);
             }
             else
             {
@@ -179,7 +178,7 @@ namespace PathfinderKINGPortrait
             if (e.Delta > 0)
             {
                 factor = PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PnlPortraitMed,  e, "temp\\portrait_poor.png", aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PnlPortraitMed, e, "temp\\portrait_poor.png", aspect_ratio, factor);
             }
             else
             {

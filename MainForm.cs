@@ -16,8 +16,15 @@ namespace PathfinderKINGPortrait
 {
     public partial class MainForm : Form
     {
+        private const string RELATIVEPATH_TO_TEMPFULL = "temp\\portrait_full.png";
+        private const string RELATIVEPATH_TO_TEMPPOOR = "temp\\portrait_poor.png";
+        private const float ASPECT_RATIO_LARGE = 1.479768786f;
+        private const float ASPECT_RATIO_MED = 1.309090909f;
+        private const float ASPECT_RATIO_SMALL = 1.308108108f;
+
         private Point mousept = new Point();
         private int dragging = 0;
+
         public MainForm()
         {
             InitializeComponent();
@@ -113,11 +120,11 @@ namespace PathfinderKINGPortrait
                 {
                     Directory.CreateDirectory(fullexoduspath);
                     Image img;
-                    img = ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, 1.479768786f, 692, 1024);
+                    img = ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, RELATIVEPATH_TO_TEMPFULL, ASPECT_RATIO_LARGE, 692, 1024);
                     img.Save(fullexoduspath + "\\Fulllength.png");
-                    img = ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, 1.309090909f, 330, 432);
+                    img = ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, RELATIVEPATH_TO_TEMPFULL, ASPECT_RATIO_MED, 330, 432);
                     img.Save(fullexoduspath + "\\Medium.png");
-                    img = ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, 1.308108108f, 185, 242);
+                    img = ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, RELATIVEPATH_TO_TEMPFULL, ASPECT_RATIO_SMALL, 185, 242);
                     img.Save(fullexoduspath + "\\Small.png");
                     img.Dispose();
                     findplace = true;
@@ -125,7 +132,6 @@ namespace PathfinderKINGPortrait
                 localname++;
             }
         }
-
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             AllImageResizeAsWindow();

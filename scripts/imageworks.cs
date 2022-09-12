@@ -57,6 +57,17 @@ namespace ImageControl
         }
         public static void Zoom(PictureBox picbox, Panel pnl, MouseEventArgs msvnt, string fullpath, float aspect_ratio, float factor)
         {
+            void ArrangePanel(int x_max, int y_max)
+            {
+                pnl.AutoScroll = false;
+                pnl.VerticalScroll.Minimum = 0;
+                pnl.HorizontalScroll.Minimum = 0;
+                pnl.VerticalScroll.Maximum = x_max;
+                pnl.HorizontalScroll.Maximum = y_max;
+                pnl.VerticalScroll.Visible = true;
+                pnl.HorizontalScroll.Visible = true;
+            }
+
             float new_width = picbox.Width + factor * aspect_ratio,
                   new_height = picbox.Height + factor;
 
@@ -65,6 +76,7 @@ namespace ImageControl
                 if (new_width > pnl.Width && new_height > pnl.Height)
                 {
                     picbox.Image = new Bitmap(Resize.LowQiality(img, Convert.ToInt32(new_width), Convert.ToInt32(new_height)));
+                    ArrangePanel(picbox.Width, picbox.Height);
                     pnl.AutoScrollPosition = new Point((msvnt.X - pnl.Width / 2), (msvnt.Y - pnl.Height / 2));
                 }
             }

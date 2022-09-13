@@ -6,7 +6,7 @@ namespace SystemControl
 {
     public class FileControl
     {
-        public static string OpenFileImage()
+        public static string OpenFile()
         {
             string fullpath;
             OpenFileDialog ofd = new OpenFileDialog()
@@ -25,31 +25,38 @@ namespace SystemControl
             ofd.Dispose();
             return fullpath;
         }
-        public static void CreateTemp(string fullpath)
+        public static void CreateTemp(string fullpath, string new_fullpath_full, string new_fullpath_poor)
         {
-            string relativepath_full = "temp/portrait_full.png",
-                   relativepath_poor = "temp/portrait_poor.png";
-            if (!Directory.Exists("temp/")) Directory.CreateDirectory("temp/");
+            if (!Directory.Exists("temp/")) 
+                Directory.CreateDirectory("temp/");
             if (fullpath == "-1")
             {
                 using (Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default))
                 {
-                    img.Save(relativepath_full);
-                    img.Save(relativepath_poor);
+                    img.Save(new_fullpath_full);
+                    img.Save(new_fullpath_poor);
                 }
             }
             else
             {
                 using (Image img = new Bitmap(fullpath))
                 {
-                    img.Save(relativepath_full);
-                    ImageControl.Wraps.CreatePoorImage(img, relativepath_poor);
+                    img.Save(new_fullpath_full);
+                    ImageControl.Wraps.CreatePoorImage(img, new_fullpath_poor);
                 }
             }
         }
         public static void TempClear()
         {
-            if (Directory.Exists("temp/")) Directory.Delete("temp/", true);
+            try
+            {
+                if (Directory.Exists("temp/")) 
+                    Directory.Delete("temp/", true);
+            }
+            catch (System.IO.IOException)
+            {
+                return;
+            }
         }
     }
 }

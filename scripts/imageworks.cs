@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Threading;
 
 namespace ImageControl
 {
@@ -131,7 +132,7 @@ namespace ImageControl
     }
     public class Wraps
     {
-        public static Image CropImage(PictureBox picbox, Panel pnl, string fullpath, float aspect_ratio, int to_x, int to_y)
+        public static void CropImage(PictureBox picbox, Panel pnl, string fullpath, string savelocation, float aspect_ratio, int to_x, int to_y)
         {
             Image original_image = new Bitmap(fullpath);
 
@@ -154,8 +155,7 @@ namespace ImageControl
 
             original_image = Direct.Crop(original_image, x_start, y_start, x_end, y_end);
             original_image = Direct.Resize.HighQuality(original_image, to_x, to_y);
-
-            return original_image;
+            original_image.Save(savelocation);
         }
         public static void CreatePoorImage(Image src_img, string fullpath)
         {

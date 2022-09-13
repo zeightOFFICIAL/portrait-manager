@@ -22,34 +22,34 @@ namespace PathfinderKINGPortrait
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
 
-        private Point mousept = new Point();
-        private int dragging = 0;
+        private Point mouse_pos = new Point();
+        private int is_dragging = 0;
+        private bool is_loaded = false;
 
         public MainForm()
         {
             InitializeComponent();
+            OverloadDockOnEverything();
 
             PicPortraitTemp.AllowDrop = true;
-            LayCreateForm.AllowDrop = true;
-            PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
 
+            PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            AllToDockFill();
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
         }
         private void BtnNextToCreateNew_Click(object sender, EventArgs e)
         {
-            AllImageClear();
+            ClearImages();
             SystemControl.FileControl.TempClear();
 
-            isloaded = false;
-            SystemControl.FileControl.CreateTemp("-1");
+            is_loaded = false;
+            SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
 
             AllToNotEnabled();
@@ -57,22 +57,22 @@ namespace PathfinderKINGPortrait
         }
         private void BtnBackToMainForm_Click(object sender, EventArgs e)
         {
-            AllImageClear();
+            ClearImages();
 
             AllToNotEnabled();
             ThisToEnabled(LayMainForm);
         }
         private void BtnNextToScaling_Click(object sender, EventArgs e)
         {
-            if (isloaded == false)
+            if (is_loaded == false)
             {
-                DialogResult dr = MessageBox.Show("You did not load any images. Proceed?", "Image", MessageBoxButtons.YesNo);
+                DialogResult dr = MessageBox.Show("You did not load any images. Proceed?", "No image!", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
                     AllToNotEnabled();
                     ThisToEnabled(LayScalingForm);
                     LoadAllImages();
-                    AllImageResizeAsWindow();
+                    ResizeImagesAsWindow();
                 }
             }
             else
@@ -80,7 +80,7 @@ namespace PathfinderKINGPortrait
                 AllToNotEnabled();
                 ThisToEnabled(LayScalingForm);
                 LoadAllImages();
-                AllImageResizeAsWindow();
+                ResizeImagesAsWindow();
             }
         }
         private void BtnBackToCreateNew_Click(object sender, EventArgs e)
@@ -92,49 +92,9 @@ namespace PathfinderKINGPortrait
         }
         private void BtnExit_Click(object sender, EventArgs e)
         {
-            AllImageClear();
+            ClearImages();
             SystemControl.FileControl.TempClear();
-            System.Windows.Forms.Application.Exit();
-        }
-        private void MainForm_Closed(object sender, FormClosedEventArgs e)
-        {
-            AllImageClear();
-            SystemControl.FileControl.TempClear();
-            System.Windows.Forms.Application.Exit();
-        }
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            
-        }
-        private void BtnCreatePortrait_Click(object sender, EventArgs e)
-        {
-            string exoduspath;
-            bool findplace = false;
-            uint localname = 1000;
-            exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-            while (findplace == false)
-            {
-                string fullexoduspath = exoduspath + "\\" + Convert.ToString(localname);
-                if (!Directory.Exists(fullexoduspath))
-                {
-                    Directory.CreateDirectory(fullexoduspath);
-                    Image img;
-                    img = ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, RELATIVEPATH_TO_TEMPFULL, ASPECT_RATIO_LARGE, 692, 1024);
-                    img.Save(fullexoduspath + "\\Fulllength.png");
-                    img = ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, RELATIVEPATH_TO_TEMPFULL, ASPECT_RATIO_MED, 330, 432);
-                    img.Save(fullexoduspath + "\\Medium.png");
-                    img = ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, RELATIVEPATH_TO_TEMPFULL, ASPECT_RATIO_SMALL, 185, 242);
-                    img.Save(fullexoduspath + "\\Small.png");
-                    img.Dispose();
-                    findplace = true;
-                }
-                localname++;
-            }
-        }
-        private void MainForm_ResizeEnd(object sender, EventArgs e)
-        {
-            AllImageResizeAsWindow();
+            Application.Exit();
         }
     }
 }

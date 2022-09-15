@@ -106,5 +106,22 @@ namespace PathfinderKINGPortrait
             pnl.VerticalScroll.Visible = true;
             pnl.HorizontalScroll.Visible = true;
         }
+        public static bool CheckExistence(string path)
+        {
+            if (SystemControl.FileControl.DirExists(path))
+                if (SystemControl.FileControl.FileExist(path, LARGE_EXTENRSION) &&
+                    SystemControl.FileControl.FileExist(path, MEDIUM_EXTENSION) &&
+                    SystemControl.FileControl.FileExist(path, SMALL_EXTENSION))
+                    if (SystemControl.FileControl.GetFileExtension(path, LARGE_EXTENRSION) == ".png" &&
+                        SystemControl.FileControl.GetFileExtension(path, MEDIUM_EXTENSION) == ".png" &&
+                        SystemControl.FileControl.GetFileExtension(path, SMALL_EXTENSION) == ".png")
+                        return true;
+                    else
+                        return false;
+                else
+                    return false;
+            else
+                return false;
+        }
     }
 }

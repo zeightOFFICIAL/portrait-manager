@@ -18,6 +18,9 @@ namespace PathfinderKINGPortrait
     {
         private const string RELATIVEPATH_TO_TEMPFULL = "temp\\portrait_full.png";
         private const string RELATIVEPATH_TO_TEMPPOOR = "temp\\portrait_poor.png";
+        private const string LARGE_EXTENRSION = "\\Fulllength.png";
+        private const string MEDIUM_EXTENSION = "\\Medium.png";
+        private const string SMALL_EXTENSION = "\\Small.png";
         private const float ASPECT_RATIO_LARGE = 1.479768786f;
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;

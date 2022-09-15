@@ -62,11 +62,20 @@
     <Compile Include="scripts\actions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="auxforms\finaldialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="auxforms\finaldialog.Designer.cs">
+      <DependentUpon>finaldialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="scripts\functions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="scripts\imageworks.cs" />
     <Compile Include="scripts\systemworks.cs" />
+    <EmbeddedResource Include="auxforms\finaldialog.resx">
+      <DependentUpon>finaldialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

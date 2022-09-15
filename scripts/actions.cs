@@ -209,24 +209,29 @@ namespace PathfinderKINGPortrait
         private void BtnCreatePortrait_Click(object sender, EventArgs e)
         {
             string exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits",
+                   fullexoduspath = "";
             bool findplace = false;
             uint localname = 1000;
             while (findplace == false)
             {
-                string fullexoduspath = exoduspath + "\\" + Convert.ToString(localname);
+                fullexoduspath = exoduspath + "\\" + Convert.ToString(localname);
                 if (!Directory.Exists(fullexoduspath))
                 {
                     Directory.CreateDirectory(fullexoduspath);
-                    ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + "\\Fulllength.png", 
+                    ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + LARGE_EXTENRSION, 
                                                  ASPECT_RATIO_LARGE, 692, 1024);
-                    ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + "\\Medium.png", 
+                    ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + MEDIUM_EXTENSION, 
                                                  ASPECT_RATIO_MED, 330, 432);
-                    ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + "\\Small.png", 
+                    ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + SMALL_EXTENSION, 
                                                  ASPECT_RATIO_SMALL, 185, 242);
                     findplace = true;
                 }
                 localname++;
+            }
+            if (CheckExistence(fullexoduspath))
+            {
+
             }
         }
     }

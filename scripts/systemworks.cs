@@ -58,5 +58,23 @@ namespace SystemControl
                 return;
             }
         }
+        public static bool DirExists(string path)
+        {
+            if (Directory.Exists(path))
+                return true;
+            else
+                return false;
+        }
+        public static bool FileExist(string path, string filename)
+        {
+            if (File.Exists(path + filename))
+                return true;
+            else
+                return false;
+        }
+        public static string GetFileExtension(string path, string filename)
+        {
+            return Path.GetExtension(path + filename);
+        }
     }
 }

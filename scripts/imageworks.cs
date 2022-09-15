@@ -133,29 +133,31 @@ namespace ImageControl
     public class Wraps
     {
         public static void CropImage(PictureBox picbox, Panel pnl, string fullpath, string savelocation, float aspect_ratio, int to_x, int to_y)
-        {
+        {            
             Image original_image = new Bitmap(fullpath);
-
             float factor = original_image.Width * 1.0f / picbox.Image.Width * 1.0f;
+            Tuple<int, int, int, int> tuple = MapNewRectangle(pnl, factor, aspect_ratio, original_image.Height, original_image.Width);
+            original_image = Direct.Crop(original_image, tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4);
+            original_image = Direct.Resize.HighQuality(original_image, to_x, to_y);
+            original_image.Save(savelocation);
+        }
+        private static Tuple<int, int, int, int> MapNewRectangle(Panel pnl, float factor, float aspect_ratio, int height, int width)
+        {
             int x_start = -(int)(pnl.AutoScrollPosition.X * factor),
-                y_start = -(int)(pnl.AutoScrollPosition.Y * factor);
-            int x_size = (int)(pnl.Width * factor),
+                y_start = -(int)(pnl.AutoScrollPosition.Y * factor),
+                x_size = (int)(pnl.Width * factor),
                 y_size = (int)(x_size * aspect_ratio);
+
             int x_end = x_size + x_start,
                 y_end = y_size + y_start;
-
-            if (y_end > original_image.Height || x_end > original_image.Width)
+            if (y_end > height || x_end > width)
             {
                 y_size = (int)(pnl.Height * factor);
                 x_size = (int)(y_size * 1.0f / aspect_ratio * 1.0f);
-
                 x_end = x_size + x_start;
                 y_end = y_size + y_start;
             }
-
-            original_image = Direct.Crop(original_image, x_start, y_start, x_end, y_end);
-            original_image = Direct.Resize.HighQuality(original_image, to_x, to_y);
-            original_image.Save(savelocation);
+            return Tuple.Create<int, int, int, int>(x_start, y_start, x_end, y_end);
         }
         public static void CreatePoorImage(Image src_img, string fullpath)
         {

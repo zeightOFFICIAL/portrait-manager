@@ -53,16 +53,16 @@ namespace PathfinderKINGPortrait.scripts
             this.LayFinalDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.78761F));
             this.LayFinalDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.76106F));
             this.LayFinalDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.53846F));
-            this.LayFinalDialog.Size = new System.Drawing.Size(533, 227);
+            this.LayFinalDialog.Size = new System.Drawing.Size(531, 212);
             this.LayFinalDialog.TabIndex = 0;
             // 
             // LblFinalDialog
             // 
             this.LblFinalDialog.AutoSize = true;
             this.LblFinalDialog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblFinalDialog.Location = new System.Drawing.Point(3, 26);
+            this.LblFinalDialog.Location = new System.Drawing.Point(3, 24);
             this.LblFinalDialog.Name = "LblFinalDialog";
-            this.LblFinalDialog.Size = new System.Drawing.Size(527, 108);
+            this.LblFinalDialog.Size = new System.Drawing.Size(525, 101);
             this.LblFinalDialog.TabIndex = 0;
             this.LblFinalDialog.Text = "label1";
             this.LblFinalDialog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,11 +79,11 @@ namespace PathfinderKINGPortrait.scripts
             this.LayUnnamed1.Controls.Add(this.BtnBackToCreateNew, 2, 0);
             this.LayUnnamed1.Controls.Add(this.BtnOpenFolderBackToMenu, 3, 0);
             this.LayUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayUnnamed1.Location = new System.Drawing.Point(3, 137);
+            this.LayUnnamed1.Location = new System.Drawing.Point(3, 128);
             this.LayUnnamed1.Name = "LayUnnamed1";
             this.LayUnnamed1.RowCount = 1;
             this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed1.Size = new System.Drawing.Size(527, 59);
+            this.LayUnnamed1.Size = new System.Drawing.Size(525, 55);
             this.LayUnnamed1.TabIndex = 1;
             // 
             // BtnBackToMenu
@@ -91,7 +91,7 @@ namespace PathfinderKINGPortrait.scripts
             this.BtnBackToMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnBackToMenu.Location = new System.Drawing.Point(68, 3);
             this.BtnBackToMenu.Name = "BtnBackToMenu";
-            this.BtnBackToMenu.Size = new System.Drawing.Size(125, 53);
+            this.BtnBackToMenu.Size = new System.Drawing.Size(125, 49);
             this.BtnBackToMenu.TabIndex = 0;
             this.BtnBackToMenu.Text = "button1";
             this.BtnBackToMenu.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@ namespace PathfinderKINGPortrait.scripts
             this.BtnBackToCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnBackToCreateNew.Location = new System.Drawing.Point(199, 3);
             this.BtnBackToCreateNew.Name = "BtnBackToCreateNew";
-            this.BtnBackToCreateNew.Size = new System.Drawing.Size(125, 53);
+            this.BtnBackToCreateNew.Size = new System.Drawing.Size(125, 49);
             this.BtnBackToCreateNew.TabIndex = 1;
             this.BtnBackToCreateNew.Text = "button2";
             this.BtnBackToCreateNew.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@ namespace PathfinderKINGPortrait.scripts
             this.BtnOpenFolderBackToMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnOpenFolderBackToMenu.Location = new System.Drawing.Point(330, 3);
             this.BtnOpenFolderBackToMenu.Name = "BtnOpenFolderBackToMenu";
-            this.BtnOpenFolderBackToMenu.Size = new System.Drawing.Size(125, 53);
+            this.BtnOpenFolderBackToMenu.Size = new System.Drawing.Size(125, 49);
             this.BtnOpenFolderBackToMenu.TabIndex = 2;
             this.BtnOpenFolderBackToMenu.Text = "button3";
             this.BtnOpenFolderBackToMenu.UseVisualStyleBackColor = true;
@@ -123,7 +123,8 @@ namespace PathfinderKINGPortrait.scripts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 227);
+            this.ClientSize = new System.Drawing.Size(531, 212);
+            this.ControlBox = false;
             this.Controls.Add(this.LayFinalDialog);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;

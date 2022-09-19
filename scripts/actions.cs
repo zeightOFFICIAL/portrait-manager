@@ -208,9 +208,16 @@ namespace PathfinderKINGPortrait
         }
         private void BtnCreatePortrait_Click(object sender, EventArgs e)
         {
-            string exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits",
-                   fullexoduspath = "";
+            string exoduspath,
+                   fullexoduspath;
+            exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+            fullexoduspath = "";
+            if(!SystemControl.FileControl.DirExists(exoduspath))
+            {
+                DialogResult dr = MessageBox.Show("Pathfinder: Kingmaker portraits folder was not found.", "Directory not found!", MessageBoxButtons.OK);
+                return;
+            }
             bool findplace = false;
             uint localname = 1000;
             while (findplace == false)
@@ -219,11 +226,14 @@ namespace PathfinderKINGPortrait
                 if (!Directory.Exists(fullexoduspath))
                 {
                     Directory.CreateDirectory(fullexoduspath);
-                    ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + LARGE_EXTENRSION, 
+                    ImageControl.Wraps.CropImage(PicPortraitLrg, PnlPortraitLrg, RELATIVEPATH_TO_TEMPFULL, 
+                                                 fullexoduspath + LARGE_EXTENRSION, 
                                                  ASPECT_RATIO_LARGE, 692, 1024);
-                    ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + MEDIUM_EXTENSION, 
+                    ImageControl.Wraps.CropImage(PicPortraitMed, PnlPortraitMed, RELATIVEPATH_TO_TEMPFULL, 
+                                                 fullexoduspath + MEDIUM_EXTENSION, 
                                                  ASPECT_RATIO_MED, 330, 432);
-                    ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, RELATIVEPATH_TO_TEMPFULL, fullexoduspath + SMALL_EXTENSION, 
+                    ImageControl.Wraps.CropImage(PicPortraitSml, PnlPortraitSml, RELATIVEPATH_TO_TEMPFULL, 
+                                                 fullexoduspath + SMALL_EXTENSION, 
                                                  ASPECT_RATIO_SMALL, 185, 242);
                     findplace = true;
                 }
@@ -231,7 +241,38 @@ namespace PathfinderKINGPortrait
             }
             if (CheckExistence(fullexoduspath))
             {
-
+                using (scripts.finaldialog fd = new scripts.finaldialog())
+                {
+                    fd.ShowDialog();
+                    if (fd.return_state == 1)
+                    {
+                        ClearImages();
+                        is_loaded = false;
+                        AllToNotEnabled();
+                        ThisToEnabled(LayMainForm);
+                    }
+                    else if (fd.return_state == 2)
+                    {
+                        ClearImages();
+                        is_loaded = false;
+                        SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+                        LoadAllImages();
+                        AllToNotEnabled();
+                        ThisToEnabled(LayCreateForm);
+                    }
+                    else if (fd.return_state == 3)
+                    {
+                        ClearImages();
+                        is_loaded = false;
+                        AllToNotEnabled();
+                        ThisToEnabled(LayMainForm);
+                    }
+                }
+            }
+            else 
+            {
+                DialogResult dr = MessageBox.Show("Program was unable to load any images into portraits folder.", "No images load!", MessageBoxButtons.OK);
+                return;
             }
         }
     }

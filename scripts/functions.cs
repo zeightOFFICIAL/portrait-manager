@@ -16,26 +16,23 @@ namespace PathfinderKINGPortrait
             ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources._default);
             ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources._default);
         }
-        private void ResizeImagesAsWindow()
+
+        private void ResizeImageAsWindow(PictureBox pic, Image img, Panel pnl)
+        {
+            float aspect_ratio = (pic.Height * 1.0f / pic.Width * 1.0f);
+            Tuple<int, int> tuple = MapNewWidthHeight(pnl, aspect_ratio);
+            pic.Image = ImageControl.Direct.Resize.LowQiality(img, tuple.Item1, tuple.Item2);
+            ArrangeAutoScroll(pnl, tuple.Item1, tuple.Item2);
+        }
+
+        private void ResizeAllImagesAsWindow()
         {
             if (LayScalingForm.Enabled == true)
                 using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
                 {
-                    float aspect_ratio;
-                    aspect_ratio = (PicPortraitLrg.Height * 1.0f / PicPortraitLrg.Width * 1.0f);
-                    Tuple<int, int> tuple = MapNewWidthHeight(PnlPortraitLrg, aspect_ratio);
-                    PicPortraitLrg.Image = ImageControl.Direct.Resize.LowQiality(img, tuple.Item1, tuple.Item2);
-                    ArrangeAutoScroll(PnlPortraitLrg, tuple.Item1, tuple.Item2);
-
-                    aspect_ratio = (PicPortraitMed.Height * 1.0f / PicPortraitMed.Width * 1.0f);
-                    tuple = MapNewWidthHeight(PnlPortraitMed, aspect_ratio);
-                    PicPortraitMed.Image = ImageControl.Direct.Resize.LowQiality(img, tuple.Item1, tuple.Item2);
-                    ArrangeAutoScroll(PnlPortraitMed, tuple.Item1, tuple.Item2);
-
-                    aspect_ratio = (PicPortraitSml.Height * 1.0f / PicPortraitSml.Width * 1.0f);
-                    tuple = MapNewWidthHeight(PnlPortraitSml, aspect_ratio);
-                    PicPortraitSml.Image = ImageControl.Direct.Resize.LowQiality(img, tuple.Item1, tuple.Item2);
-                    ArrangeAutoScroll(PnlPortraitSml, tuple.Item1, tuple.Item2);
+                    ResizeImageAsWindow(PicPortraitLrg, img, PnlPortraitLrg);
+                    ResizeImageAsWindow(PicPortraitMed, img, PnlPortraitMed);
+                    ResizeImageAsWindow(PicPortraitSml, img, PnlPortraitSml);
                 }
         } 
         private static Tuple<int, int> MapNewWidthHeight(Panel pnl, float aspect_ratio)

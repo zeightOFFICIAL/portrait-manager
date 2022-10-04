@@ -204,7 +204,7 @@ namespace PathfinderKINGPortrait
         }
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            ResizeImagesAsWindow();
+            ResizeAllImagesAsWindow();
         }
         private void BtnCreatePortrait_Click(object sender, EventArgs e)
         {
@@ -274,6 +274,21 @@ namespace PathfinderKINGPortrait
                 DialogResult dr = MessageBox.Show("Program was unable to load any images into portraits folder.", "No images load!", MessageBoxButtons.OK);
                 return;
             }
+        }
+        private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+                ResizeImageAsWindow(PicPortraitMed, img, PnlPortraitMed);
+        }
+        private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
+        {
+            using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+                ResizeImageAsWindow(PicPortraitLrg, img, PnlPortraitLrg);
+        }
+        private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+                ResizeImageAsWindow(PicPortraitSml, img, PnlPortraitSml);
         }
     }
 }

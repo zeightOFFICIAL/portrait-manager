@@ -133,13 +133,17 @@ namespace ImageControl
     public class Wraps
     {
         public static void CropImage(PictureBox picbox, Panel pnl, string fullpath, string savelocation, float aspect_ratio, int to_x, int to_y)
-        {            
-            Image original_image = new Bitmap(fullpath);
-            float factor = original_image.Width * 1.0f / picbox.Image.Width * 1.0f;
-            Tuple<int, int, int, int> tuple = MapNewRectangle(pnl, factor, aspect_ratio, original_image.Height, original_image.Width);
-            original_image = Direct.Crop(original_image, tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4);
-            original_image = Direct.Resize.HighQuality(original_image, to_x, to_y);
-            original_image.Save(savelocation);
+        {
+            using (Image original_image = new Bitmap(fullpath))
+            {
+                Image new_img = new Bitmap(original_image);
+                float factor = original_image.Width * 1.0f / picbox.Image.Width * 1.0f;
+                Tuple<int, int, int, int> tuple = MapNewRectangle(pnl, factor, aspect_ratio, original_image.Height, original_image.Width);
+                new_img = Direct.Crop(new_img, tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4);
+                new_img = Direct.Resize.HighQuality(new_img, to_x, to_y);
+                new_img.Save(savelocation);
+                new_img.Dispose();
+            }       
         }
         private static Tuple<int, int, int, int> MapNewRectangle(Panel pnl, float factor, float aspect_ratio, int height, int width)
         {

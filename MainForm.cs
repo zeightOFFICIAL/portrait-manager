@@ -75,7 +75,7 @@ namespace PathfinderKINGPortrait
                     AllToNotEnabled();
                     ThisToEnabled(LayScalingForm);
                     LoadAllImages();
-                    ResizeImagesAsWindow();
+                    ResizeAllImagesAsWindow();
                 }
             }
             else
@@ -83,7 +83,7 @@ namespace PathfinderKINGPortrait
                 AllToNotEnabled();
                 ThisToEnabled(LayScalingForm);
                 LoadAllImages();
-                ResizeImagesAsWindow();
+                ResizeAllImagesAsWindow();
             }
         }
         private void BtnBackToCreateNew_Click(object sender, EventArgs e)

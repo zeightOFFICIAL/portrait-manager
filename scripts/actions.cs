@@ -2,6 +2,7 @@
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PathfinderKINGPortrait
 {
@@ -265,6 +266,7 @@ namespace PathfinderKINGPortrait
                         ClearImages();
                         is_loaded = false;
                         AllToNotEnabled();
+                        System.Diagnostics.Process.Start(fullexoduspath);
                         ThisToEnabled(LayMainForm);
                     }
                 }

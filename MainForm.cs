@@ -33,13 +33,15 @@ namespace PathfinderKINGPortrait
         {
             InitializeComponent();
             OverloadDockOnEverything();
-
             PicPortraitTemp.AllowDrop = true;
 
             PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
+            toolTip1.Draw += toolTip1_Draw;
+            toolTip2.Draw += toolTip2_Draw;
+            toolTip3.Draw += toolTip3_Draw;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -98,6 +100,36 @@ namespace PathfinderKINGPortrait
             ClearImages();
             SystemControl.FileControl.TempClear();
             Application.Exit();
+        }
+        private void LblUnnamed1_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Stats page portrait. 330px X 432px.", LblUnnamed1);
+        }
+        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+        private void toolTip3_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+        private void LblUnnamed2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.Show("Character page portrait. 692px X 1024px.", LblUnnamed2);
+        }
+        private void LblUnnamed3_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.Show("Gameplay portrait. 185px X 242px.", LblUnnamed3);
         }
     }
 }

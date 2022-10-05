@@ -60,11 +60,15 @@ namespace PathfinderKINGPortrait.scripts
             // 
             this.LblFinalDialog.AutoSize = true;
             this.LblFinalDialog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblFinalDialog.Location = new System.Drawing.Point(3, 24);
+            this.LblFinalDialog.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblFinalDialog.ForeColor = System.Drawing.Color.White;
+            this.LblFinalDialog.Location = new System.Drawing.Point(20, 24);
+            this.LblFinalDialog.Margin = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.LblFinalDialog.Name = "LblFinalDialog";
-            this.LblFinalDialog.Size = new System.Drawing.Size(525, 101);
+            this.LblFinalDialog.Size = new System.Drawing.Size(491, 101);
             this.LblFinalDialog.TabIndex = 0;
-            this.LblFinalDialog.Text = "label1";
+            this.LblFinalDialog.Text = "The new portrait has been successfully created. Now you can check it in the folde" +
+    "r, create another one, or return to the menu.";
             this.LblFinalDialog.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LayUnnamed1
@@ -89,33 +93,42 @@ namespace PathfinderKINGPortrait.scripts
             // BtnBackToMenu
             // 
             this.BtnBackToMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnBackToMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBackToMenu.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBackToMenu.ForeColor = System.Drawing.Color.White;
             this.BtnBackToMenu.Location = new System.Drawing.Point(68, 3);
             this.BtnBackToMenu.Name = "BtnBackToMenu";
             this.BtnBackToMenu.Size = new System.Drawing.Size(125, 49);
             this.BtnBackToMenu.TabIndex = 0;
-            this.BtnBackToMenu.Text = "button1";
+            this.BtnBackToMenu.Text = "Menu";
             this.BtnBackToMenu.UseVisualStyleBackColor = true;
             this.BtnBackToMenu.Click += new System.EventHandler(this.BtnBackToMenu_Click);
             // 
             // BtnBackToCreateNew
             // 
             this.BtnBackToCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnBackToCreateNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBackToCreateNew.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBackToCreateNew.ForeColor = System.Drawing.Color.White;
             this.BtnBackToCreateNew.Location = new System.Drawing.Point(199, 3);
             this.BtnBackToCreateNew.Name = "BtnBackToCreateNew";
             this.BtnBackToCreateNew.Size = new System.Drawing.Size(125, 49);
             this.BtnBackToCreateNew.TabIndex = 1;
-            this.BtnBackToCreateNew.Text = "button2";
+            this.BtnBackToCreateNew.Text = "New";
             this.BtnBackToCreateNew.UseVisualStyleBackColor = true;
             this.BtnBackToCreateNew.Click += new System.EventHandler(this.BtnBackToCreateNew_Click);
             // 
             // BtnOpenFolderBackToMenu
             // 
             this.BtnOpenFolderBackToMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnOpenFolderBackToMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnOpenFolderBackToMenu.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnOpenFolderBackToMenu.ForeColor = System.Drawing.Color.White;
             this.BtnOpenFolderBackToMenu.Location = new System.Drawing.Point(330, 3);
             this.BtnOpenFolderBackToMenu.Name = "BtnOpenFolderBackToMenu";
             this.BtnOpenFolderBackToMenu.Size = new System.Drawing.Size(125, 49);
             this.BtnOpenFolderBackToMenu.TabIndex = 2;
-            this.BtnOpenFolderBackToMenu.Text = "button3";
+            this.BtnOpenFolderBackToMenu.Text = "Open";
             this.BtnOpenFolderBackToMenu.UseVisualStyleBackColor = true;
             this.BtnOpenFolderBackToMenu.Click += new System.EventHandler(this.BtnOpenFolderBackToMenu_Click);
             // 
@@ -123,13 +136,17 @@ namespace PathfinderKINGPortrait.scripts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
             this.ClientSize = new System.Drawing.Size(531, 212);
             this.ControlBox = false;
             this.Controls.Add(this.LayFinalDialog);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Name = "finaldialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "finaldialog";
+            this.TopMost = true;
             this.LayFinalDialog.ResumeLayout(false);
             this.LayFinalDialog.PerformLayout();
             this.LayUnnamed1.ResumeLayout(false);
@@ -142,8 +159,8 @@ namespace PathfinderKINGPortrait.scripts
         private System.Windows.Forms.TableLayoutPanel LayFinalDialog;
         private System.Windows.Forms.Label LblFinalDialog;
         private System.Windows.Forms.TableLayoutPanel LayUnnamed1;
-        private System.Windows.Forms.Button BtnBackToMenu;
         private System.Windows.Forms.Button BtnBackToCreateNew;
         private System.Windows.Forms.Button BtnOpenFolderBackToMenu;
+        private System.Windows.Forms.Button BtnBackToMenu;
     }
 }

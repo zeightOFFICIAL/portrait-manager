@@ -16,7 +16,6 @@ namespace PathfinderKINGPortrait
             ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources._default);
             ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources._default);
         }
-
         private void ResizeImageAsWindow(PictureBox pic, Image img, Panel pnl)
         {
             float aspect_ratio = (pic.Height * 1.0f / pic.Width * 1.0f);
@@ -24,7 +23,6 @@ namespace PathfinderKINGPortrait
             pic.Image = ImageControl.Direct.Resize.LowQiality(img, tuple.Item1, tuple.Item2);
             ArrangeAutoScroll(pnl, tuple.Item1, tuple.Item2);
         }
-
         private void ResizeAllImagesAsWindow()
         {
             if (LayScalingForm.Enabled == true)
@@ -34,6 +32,14 @@ namespace PathfinderKINGPortrait
                     ResizeImageAsWindow(PicPortraitMed, img, PnlPortraitMed);
                     ResizeImageAsWindow(PicPortraitSml, img, PnlPortraitSml);
                 }
+            if (LayCreateForm.Enabled == true)
+            {
+                using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
+                {
+                    ResizeImageAsWindow(PicPortraitTemp, img, PnlTemplate);
+                    ArrangeAutoScroll(PnlTemplate, 0, 0);
+                }
+            }
         } 
         private static Tuple<int, int> MapNewWidthHeight(Panel pnl, float aspect_ratio)
         {
@@ -92,6 +98,7 @@ namespace PathfinderKINGPortrait
             ArrangeAutoScroll(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ResizeAllImagesAsWindow();
         }
         public static void ArrangeAutoScroll(Panel pnl, int x_max, int y_max)
         {

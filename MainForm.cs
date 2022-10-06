@@ -59,6 +59,7 @@ namespace PathfinderKINGPortrait
 
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
+            ResizeAllImagesAsWindow();
         }
         private void BtnBackToMainForm_Click(object sender, EventArgs e)
         {
@@ -94,6 +95,7 @@ namespace PathfinderKINGPortrait
 
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
+            ResizeAllImagesAsWindow();
         }
         private void BtnExit_Click(object sender, EventArgs e)
         {
@@ -130,6 +132,11 @@ namespace PathfinderKINGPortrait
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
             toolTip2.Show("Gameplay portrait. 185px X 242px.", LblUnnamed3);
+        }
+
+        private void BtnURLLoad_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

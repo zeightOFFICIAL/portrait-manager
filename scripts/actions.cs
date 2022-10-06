@@ -260,6 +260,7 @@ namespace PathfinderKINGPortrait
                         LoadAllImages();
                         AllToNotEnabled();
                         ThisToEnabled(LayCreateForm);
+                        ResizeAllImagesAsWindow();
                     }
                     else if (fd.return_state == 3)
                     {

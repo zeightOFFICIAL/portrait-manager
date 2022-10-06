@@ -31,7 +31,7 @@ namespace SystemControl
                 Directory.CreateDirectory("temp/");
             if (fullpath == "-1")
             {
-                using (Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources._default))
+                using (Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources.Fulllength))
                 {
                     img.Save(new_fullpath_full);
                     img.Save(new_fullpath_poor);

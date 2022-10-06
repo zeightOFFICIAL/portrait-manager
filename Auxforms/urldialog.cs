@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace PathfinderKINGPortrait.auxforms
 {
-    public partial class urlldialog : Form
+    public partial class urldialog : Form
     {
-        public urlldialog()
+        public string url { get; set; }
+        public urldialog()
         {
             InitializeComponent();
+        }
+
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -187,9 +187,9 @@ namespace PathfinderKINGPortrait
             // PicPortraitTemp
             // 
             this.PicPortraitTemp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicPortraitTemp.ErrorImage = global::PathfinderKINGPortrait.Properties.Resources._default;
-            this.PicPortraitTemp.Image = global::PathfinderKINGPortrait.Properties.Resources._default;
-            this.PicPortraitTemp.InitialImage = global::PathfinderKINGPortrait.Properties.Resources._default;
+            this.PicPortraitTemp.ErrorImage = global::PathfinderKINGPortrait.Properties.Resources.fulldefault;
+            this.PicPortraitTemp.Image = global::PathfinderKINGPortrait.Properties.Resources.fulldefault;
+            this.PicPortraitTemp.InitialImage = global::PathfinderKINGPortrait.Properties.Resources.fulldefault;
             this.PicPortraitTemp.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
             this.PicPortraitTemp.Name = "PicPortraitTemp";

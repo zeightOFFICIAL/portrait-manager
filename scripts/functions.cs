@@ -11,10 +11,10 @@ namespace PathfinderKINGPortrait
     {
         private void ClearImages()
         {
-            ImageControl.Utils.Replace(PicPortraitTemp, PathfinderKINGPortrait.Properties.Resources._default);
-            ImageControl.Utils.Replace(PicPortraitLrg, PathfinderKINGPortrait.Properties.Resources._default);
-            ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources._default);
-            ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources._default);
+            ImageControl.Utils.Replace(PicPortraitTemp, PathfinderKINGPortrait.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitLrg, PathfinderKINGPortrait.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources.fulldefault);
         }
         private void ResizeImageAsWindow(PictureBox pic, Image img, Panel pnl)
         {

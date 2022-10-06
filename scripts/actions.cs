@@ -293,5 +293,46 @@ namespace PathfinderKINGPortrait
             using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitSml, img, PnlPortraitSml);
         }
+        private void LblUnnamed1_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show("Stats page portrait. 330px X 432px.", LblUnnamed1);
+        }
+        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+        private void toolTip3_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
+            e.DrawText();
+        }
+        private void LblUnnamed2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.Show("Character page portrait. 692px X 1024px.", LblUnnamed2);
+        }
+        private void LblUnnamed3_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.Show("Gameplay portrait. 185px X 242px.", LblUnnamed3);
+        }
+        private void BtnURLLoad_Click(object sender, EventArgs e)
+        {
+            using (auxforms.urldialog ud = new auxforms.urldialog())
+            {
+                ud.ShowDialog();
+                if (ud.url != null)
+                {
+                    Console.WriteLine("-1");
+                }
+            }
+        }
     }
 }

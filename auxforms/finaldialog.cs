@@ -12,24 +12,24 @@ namespace PathfinderKINGPortrait.scripts
 {
     public partial class finaldialog : Form
     {
-        public int return_state { get; set; }
+        public int State { get; set; }
         public finaldialog()
         {
             InitializeComponent();
         }
         private void BtnBackToMenu_Click(object sender, EventArgs e)
         {
-            return_state = 1;
+            State = 1;
             Close();
         }
         private void BtnBackToCreateNew_Click(object sender, EventArgs e)
         {
-            return_state = 2;
+            State = 2;
             Close();
         }
         private void BtnOpenFolderBackToMenu_Click(object sender, EventArgs e)
         {
-            return_state = 3;
+            State = 3;
             Close();
         }
     }

@@ -216,7 +216,7 @@ namespace PathfinderKINGPortrait
             fullexoduspath = "";
             if(!SystemControl.FileControl.DirExists(exoduspath))
             {
-                DialogResult dr = MessageBox.Show("Pathfinder: Kingmaker portraits folder was not found.", "Directory not found!", MessageBoxButtons.OK);
+                MessageBox.Show("Pathfinder: Kingmaker portraits folder was not found.", "Directory not found!", MessageBoxButtons.OK);
                 return;
             }
             bool findplace = false;
@@ -245,14 +245,14 @@ namespace PathfinderKINGPortrait
                 using (scripts.finaldialog fd = new scripts.finaldialog())
                 {
                     fd.ShowDialog();
-                    if (fd.return_state == 1)
+                    if (fd.State == 1)
                     {
                         ClearImages();
                         is_loaded = false;
                         AllToNotEnabled();
                         ThisToEnabled(LayMainForm);
                     }
-                    else if (fd.return_state == 2)
+                    else if (fd.State == 2)
                     {
                         ClearImages();
                         is_loaded = false;
@@ -262,7 +262,7 @@ namespace PathfinderKINGPortrait
                         ThisToEnabled(LayCreateForm);
                         ResizeAllImagesAsWindow();
                     }
-                    else if (fd.return_state == 3)
+                    else if (fd.State == 3)
                     {
                         ClearImages();
                         is_loaded = false;
@@ -274,7 +274,7 @@ namespace PathfinderKINGPortrait
             }
             else 
             {
-                DialogResult dr = MessageBox.Show("Program was unable to load any images into portraits folder.", "No images load!", MessageBoxButtons.OK);
+                MessageBox.Show("Program was unable to load any images into portraits folder.", "No images load!", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -297,19 +297,19 @@ namespace PathfinderKINGPortrait
         {
             toolTip1.Show("Stats page portrait. 330px X 432px.", LblUnnamed1);
         }
-        private void toolTip1_Draw(object sender, DrawToolTipEventArgs e)
+        private void ToolTip1_Draw(object sender, DrawToolTipEventArgs e)
         {
             e.DrawBackground();
             e.DrawBorder();
             e.DrawText();
         }
-        private void toolTip2_Draw(object sender, DrawToolTipEventArgs e)
+        private void ToolTip2_Draw(object sender, DrawToolTipEventArgs e)
         {
             e.DrawBackground();
             e.DrawBorder();
             e.DrawText();
         }
-        private void toolTip3_Draw(object sender, DrawToolTipEventArgs e)
+        private void ToolTip3_Draw(object sender, DrawToolTipEventArgs e)
         {
             e.DrawBackground();
             e.DrawBorder();
@@ -325,12 +325,32 @@ namespace PathfinderKINGPortrait
         }
         private void BtnURLLoad_Click(object sender, EventArgs e)
         {
-            using (auxforms.urldialog ud = new auxforms.urldialog())
-            {
+            using (auxforms.Urldialog ud = new auxforms.Urldialog())
+            { 
                 ud.ShowDialog();
-                if (ud.url != null)
-                {
-                    Console.WriteLine("-1");
+                if (ud.URL != "-1")
+                {   try
+                    {
+                        var request = System.Net.WebRequest.Create(ud.URL);
+                        using (var response = request.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        {
+                            using (Image web_img = Bitmap.FromStream(stream))
+                            {
+                                if (!Directory.Exists("temp/"))
+                                    Directory.CreateDirectory("temp/");
+                                web_img.Save(RELATIVEPATH_TO_TEMPFULL);
+                                ImageControl.Wraps.CreatePoorImage(web_img, RELATIVEPATH_TO_TEMPPOOR);
+                                is_loaded = true;
+                                ClearImages();
+                                LoadAllImages();
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        ud.URL = "-1";
+                    }
                 }
             }
         }

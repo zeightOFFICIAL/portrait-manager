@@ -39,9 +39,9 @@ namespace PathfinderKINGPortrait
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-            toolTip1.Draw += toolTip1_Draw;
-            toolTip2.Draw += toolTip2_Draw;
-            toolTip3.Draw += toolTip3_Draw;
+            toolTip1.Draw += ToolTip1_Draw;
+            toolTip2.Draw += ToolTip2_Draw;
+            toolTip3.Draw += ToolTip3_Draw;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

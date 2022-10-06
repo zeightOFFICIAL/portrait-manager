@@ -1,7 +1,7 @@
 ﻿
 namespace PathfinderKINGPortrait.auxforms
 {
-    partial class urldialog
+    partial class Urldialog
     {
         /// <summary>
         /// Required designer variable.
@@ -147,7 +147,7 @@ namespace PathfinderKINGPortrait.auxforms
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // urldialog
+            // Urldialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -160,7 +160,7 @@ namespace PathfinderKINGPortrait.auxforms
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.MaximumSize = new System.Drawing.Size(531, 212);
             this.MinimumSize = new System.Drawing.Size(531, 212);
-            this.Name = "urldialog";
+            this.Name = "Urldialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "urlloaddialog";
             this.TopMost = true;

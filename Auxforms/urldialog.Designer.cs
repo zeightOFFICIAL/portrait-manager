@@ -43,6 +43,7 @@ namespace PathfinderKINGPortrait.auxforms
             // 
             // LayURL
             // 
+            this.LayURL.AllowDrop = true;
             this.LayURL.ColumnCount = 1;
             this.LayURL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayURL.Controls.Add(this.tableLayoutPanel1, 0, 3);
@@ -123,28 +124,32 @@ namespace PathfinderKINGPortrait.auxforms
             // 
             // TxtEdit
             // 
+            this.TxtEdit.AllowDrop = true;
             this.TxtEdit.BackColor = System.Drawing.Color.Black;
             this.TxtEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TxtEdit.ForeColor = System.Drawing.Color.White;
+            this.TxtEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TxtEdit.ForeColor = System.Drawing.Color.Gray;
             this.TxtEdit.Location = new System.Drawing.Point(82, 3);
             this.TxtEdit.Name = "TxtEdit";
-            this.TxtEdit.Size = new System.Drawing.Size(357, 31);
+            this.TxtEdit.Size = new System.Drawing.Size(357, 24);
             this.TxtEdit.TabIndex = 0;
             this.TxtEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TxtEdit.WordWrap = false;
+            this.TxtEdit.DragDrop += new System.Windows.Forms.DragEventHandler(this.TxtEdit_DragDrop);
+            this.TxtEdit.DragEnter += new System.Windows.Forms.DragEventHandler(this.TxtEdit_DragEnter);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(3, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(525, 61);
             this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.label1.Text = "Drag, copy or write the image URL. The program will try to load it. Click \"Back\" " +
+    "to close the URL form. Click \"Load\" to try to get the image from the web.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Urldialog
@@ -163,7 +168,6 @@ namespace PathfinderKINGPortrait.auxforms
             this.Name = "Urldialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "urlloaddialog";
-            this.TopMost = true;
             this.LayURL.ResumeLayout(false);
             this.LayURL.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

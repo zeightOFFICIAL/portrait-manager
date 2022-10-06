@@ -18,7 +18,6 @@ namespace PathfinderKINGPortrait.auxforms
         {
             InitializeComponent();
         }
-
         private void BtnLoad_Click(object sender, EventArgs e)
         {
             string url = TxtEdit.Text;
@@ -35,10 +34,21 @@ namespace PathfinderKINGPortrait.auxforms
                 URL = "-1";             
             }
         }
-
         private void BtnBack_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void TxtEdit_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+        private void TxtEdit_DragDrop(object sender, DragEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = (string)e.Data.GetData(DataFormats.Text);
         }
     }
 }

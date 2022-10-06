@@ -146,7 +146,6 @@ namespace PathfinderKINGPortrait.scripts
             this.Name = "finaldialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "finaldialog";
-            this.TopMost = true;
             this.LayFinalDialog.ResumeLayout(false);
             this.LayFinalDialog.PerformLayout();
             this.LayUnnamed1.ResumeLayout(false);

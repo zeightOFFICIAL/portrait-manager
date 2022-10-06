@@ -100,7 +100,7 @@ namespace ImageControl
                 ImageCodecInfo png_encoder = GetEncoder(ImageFormat.Png);
                 Encoder custom_encoder = Encoder.Quality; 
                 EncoderParameters custom_encoder_params = new EncoderParameters(1);
-                EncoderParameter custom_encoder_param = new EncoderParameter(custom_encoder, 17L);
+                EncoderParameter custom_encoder_param = new EncoderParameter(custom_encoder, 80L);
 
                 custom_encoder_params.Param[0] = custom_encoder_param;
                 img.Save(fullpath, png_encoder, custom_encoder_params);

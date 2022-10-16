@@ -44,20 +44,22 @@ namespace PathfinderKINGPortrait.auxforms
             // LayURL
             // 
             this.LayURL.AllowDrop = true;
+            this.LayURL.BackColor = System.Drawing.Color.Black;
             this.LayURL.ColumnCount = 1;
             this.LayURL.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayURL.Controls.Add(this.tableLayoutPanel1, 0, 3);
             this.LayURL.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.LayURL.Controls.Add(this.label1, 0, 1);
             this.LayURL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayURL.ForeColor = System.Drawing.Color.White;
             this.LayURL.Location = new System.Drawing.Point(0, 0);
             this.LayURL.Name = "LayURL";
             this.LayURL.RowCount = 5;
-            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.33418F));
-            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.77358F));
-            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.39623F));
-            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.2283F));
-            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.33418F));
+            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.14629F));
+            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.4662F));
+            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.1528F));
+            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.08843F));
+            this.LayURL.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.14629F));
             this.LayURL.Size = new System.Drawing.Size(531, 212);
             this.LayURL.TabIndex = 0;
             // 
@@ -83,7 +85,7 @@ namespace PathfinderKINGPortrait.auxforms
             // 
             this.BtnBack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBack.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBack.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBack.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnBack.Location = new System.Drawing.Point(83, 3);
             this.BtnBack.Name = "BtnBack";
@@ -97,7 +99,7 @@ namespace PathfinderKINGPortrait.auxforms
             // 
             this.BtnLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLoad.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLoad.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLoad.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnLoad.Location = new System.Drawing.Point(277, 3);
             this.BtnLoad.Name = "BtnLoad";
@@ -142,30 +144,34 @@ namespace PathfinderKINGPortrait.auxforms
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(3, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 0);
             this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.label1.Size = new System.Drawing.Size(525, 61);
             this.label1.TabIndex = 2;
             this.label1.Text = "Drag, copy or write the image URL. The program will try to load it. Click \"Back\" " +
-    "to close the URL form. Click \"Load\" to try to get the image from the web.";
+    "to close the URL form. Click \"Load\" to get web image";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Urldialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(531, 212);
             this.ControlBox = false;
             this.Controls.Add(this.LayURL);
-            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.MaximumSize = new System.Drawing.Size(531, 212);
             this.MinimumSize = new System.Drawing.Size(531, 212);
             this.Name = "Urldialog";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "urlloaddialog";
             this.LayURL.ResumeLayout(false);

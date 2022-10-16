@@ -354,5 +354,15 @@ namespace PathfinderKINGPortrait
                 }
             }
         }
+        private void BtnShowHints_Click(object sender, EventArgs e)
+        {
+            using (scalinghint sh = new scalinghint())
+                sh.ShowDialog();
+        }
+        private void BtnFileHint_Click(object sender, EventArgs e)
+        {
+            using (filehint fh = new filehint())
+                fh.ShowDialog();
+        }
     }
 }

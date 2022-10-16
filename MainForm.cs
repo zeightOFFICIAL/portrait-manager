@@ -60,6 +60,11 @@ namespace PathfinderKINGPortrait
             AllToNotEnabled();
             ThisToEnabled(LayCreateForm);
             ResizeAllImagesAsWindow();
+            if (Properties.Settings.Default.firstlaunch == true)
+            {
+                using (filehint fh = new filehint())
+                    fh.ShowDialog();
+            }
         }
         private void BtnBackToMainForm_Click(object sender, EventArgs e)
         {
@@ -79,6 +84,13 @@ namespace PathfinderKINGPortrait
                     ThisToEnabled(LayScalingForm);
                     LoadAllImages();
                     ResizeAllImagesAsWindow();
+                    if (Properties.Settings.Default.firstlaunch == true)
+                    {
+                        using (scalinghint sh = new scalinghint())
+                            sh.ShowDialog();
+                        Properties.Settings.Default.firstlaunch = false;
+                        Properties.Settings.Default.Save();
+                    }
                 }
             }
             else
@@ -87,7 +99,15 @@ namespace PathfinderKINGPortrait
                 ThisToEnabled(LayScalingForm);
                 LoadAllImages();
                 ResizeAllImagesAsWindow();
+                if (Properties.Settings.Default.firstlaunch == true)
+                {
+                    using (scalinghint sh = new scalinghint())
+                        sh.ShowDialog();
+                    Properties.Settings.Default.firstlaunch = false;
+                    Properties.Settings.Default.Save();
+                }
             }
+                
         }
         private void BtnBackToCreateNew_Click(object sender, EventArgs e)
         {

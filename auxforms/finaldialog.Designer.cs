@@ -41,12 +41,15 @@ namespace PathfinderKINGPortrait.scripts
             // 
             // LayFinalDialog
             // 
+            this.LayFinalDialog.BackColor = System.Drawing.Color.Black;
             this.LayFinalDialog.ColumnCount = 1;
             this.LayFinalDialog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayFinalDialog.Controls.Add(this.LblFinalDialog, 0, 1);
             this.LayFinalDialog.Controls.Add(this.LayUnnamed1, 0, 2);
             this.LayFinalDialog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayFinalDialog.Location = new System.Drawing.Point(0, 0);
+            this.LayFinalDialog.MaximumSize = new System.Drawing.Size(531, 212);
+            this.LayFinalDialog.MinimumSize = new System.Drawing.Size(531, 212);
             this.LayFinalDialog.Name = "LayFinalDialog";
             this.LayFinalDialog.RowCount = 4;
             this.LayFinalDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.53846F));
@@ -136,14 +139,19 @@ namespace PathfinderKINGPortrait.scripts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(531, 212);
             this.ControlBox = false;
             this.Controls.Add(this.LayFinalDialog);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.MaximumSize = new System.Drawing.Size(531, 212);
+            this.MinimumSize = new System.Drawing.Size(531, 212);
             this.Name = "finaldialog";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "finaldialog";
             this.LayFinalDialog.ResumeLayout(false);

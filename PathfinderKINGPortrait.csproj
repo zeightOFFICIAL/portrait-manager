@@ -74,6 +74,12 @@
     <Compile Include="Auxforms\urldialog.Designer.cs">
       <DependentUpon>urldialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Auxforms\filehint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auxforms\filehint.Designer.cs">
+      <DependentUpon>filehint.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,7 +93,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="scripts\actions.cs">
+    <Compile Include="Auxforms\scalinghint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auxforms\scalinghint.Designer.cs">
+      <DependentUpon>scalinghint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="scripts\eventshandler.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Auxforms\finaldialog.cs">
@@ -101,8 +113,14 @@
     </Compile>
     <Compile Include="scripts\imageworks.cs" />
     <Compile Include="scripts\systemworks.cs" />
+    <EmbeddedResource Include="Auxforms\filehint.resx">
+      <DependentUpon>filehint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Auxforms\finaldialog.resx">
       <DependentUpon>finaldialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Auxforms\scalinghint.resx">
+      <DependentUpon>scalinghint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Auxforms\urldialog.resx">
       <DependentUpon>urldialog.cs</DependentUpon>

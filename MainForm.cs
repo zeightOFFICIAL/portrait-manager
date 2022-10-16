@@ -25,6 +25,9 @@ namespace PathfinderKINGPortrait
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
 
+        private Font smlfont = new Font("Bebas Neue", 12);
+        private Font lrgfont = new Font("Bebas Neue", 20);
+
         private Point mouse_pos = new Point();
         private int is_dragging = 0;
         private bool is_loaded = false;
@@ -39,9 +42,6 @@ namespace PathfinderKINGPortrait
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-            toolTip1.Draw += ToolTip1_Draw;
-            toolTip2.Draw += ToolTip2_Draw;
-            toolTip3.Draw += ToolTip3_Draw;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

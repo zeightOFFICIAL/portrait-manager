@@ -295,33 +295,35 @@ namespace PathfinderKINGPortrait
         }
         private void LblUnnamed1_MouseHover(object sender, EventArgs e)
         {
-            toolTip1.Show("Stats page portrait. 330px X 432px.", LblUnnamed1);
-        }
-        private void ToolTip1_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            e.DrawBackground();
-            e.DrawBorder();
-            e.DrawText();
-        }
-        private void ToolTip2_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            e.DrawBackground();
-            e.DrawBorder();
-            e.DrawText();
-        }
-        private void ToolTip3_Draw(object sender, DrawToolTipEventArgs e)
-        {
-            e.DrawBackground();
-            e.DrawBorder();
-            e.DrawText();
+            LblUnnamed1.Text = "Stats portrait";
+            LblUnnamed1.Font = smlfont;
         }
         private void LblUnnamed2_MouseHover(object sender, EventArgs e)
         {
-            toolTip2.Show("Character page portrait. 692px X 1024px.", LblUnnamed2);
+            LblUnnamed2.Text = "Character portrait";
+            LblUnnamed2.Font = smlfont;
         }
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
-            toolTip2.Show("Gameplay portrait. 185px X 242px.", LblUnnamed3);
+            LblUnnamed3.Text = "Gameplay portrait";
+            LblUnnamed3.Font = smlfont;
+        }
+        private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
+        {
+            LblUnnamed1.Text = "Medium";
+            LblUnnamed1.Font = lrgfont;
+        }
+
+        private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
+        {
+            LblUnnamed2.Text = "Large";
+            LblUnnamed2.Font = lrgfont;
+        }
+
+        private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
+        {
+            LblUnnamed3.Text = "Small";
+            LblUnnamed3.Font = lrgfont;
         }
         private void BtnURLLoad_Click(object sender, EventArgs e)
         {

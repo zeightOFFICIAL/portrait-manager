@@ -63,6 +63,26 @@ namespace PathfinderKINGPortrait.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap choose2 {
+            get {
+                object obj = ResourceManager.GetObject("choose2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap choose3 {
+            get {
+                object obj = ResourceManager.GetObject("choose3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fulldefault {
             get {
                 object obj = ResourceManager.GetObject("fulldefault", resourceCulture);

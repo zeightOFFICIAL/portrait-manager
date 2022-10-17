@@ -30,207 +30,208 @@ namespace PathfinderKINGPortrait
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.LayCreateForm = new System.Windows.Forms.TableLayoutPanel();
-            this.LayUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnCreateNewTemplate = new System.Windows.Forms.Button();
-            this.BtnNextToScaling = new System.Windows.Forms.Button();
-            this.BtnURLLoad = new System.Windows.Forms.Button();
-            this.BtnBackToMainForm = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.BtnFileHint = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.PnlTemplate = new System.Windows.Forms.Panel();
+            this.LayoutFilePage = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonLocalPortraitLoad = new System.Windows.Forms.Button();
+            this.ButtonToScalePage = new System.Windows.Forms.Button();
+            this.ButtonWebPortraitLoad = new System.Windows.Forms.Button();
+            this.ButtonToMainPage = new System.Windows.Forms.Button();
+            this.PictureUnnamed2 = new System.Windows.Forms.PictureBox();
+            this.ButtonHintOnFilePage = new System.Windows.Forms.Button();
+            this.LayoutUnnamed5 = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelPortraitTemp = new System.Windows.Forms.Panel();
             this.PicPortraitTemp = new System.Windows.Forms.PictureBox();
-            this.LayScalingForm = new System.Windows.Forms.TableLayoutPanel();
-            this.LayUnnamed2 = new System.Windows.Forms.TableLayoutPanel();
-            this.PnlPortraitLrg = new System.Windows.Forms.Panel();
+            this.LayoutScalePage = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutUnnamed2 = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelPortraitLrg = new System.Windows.Forms.Panel();
             this.PicPortraitLrg = new System.Windows.Forms.PictureBox();
-            this.PnlPortraitMed = new System.Windows.Forms.Panel();
+            this.PanelPortraitMed = new System.Windows.Forms.Panel();
             this.PicPortraitMed = new System.Windows.Forms.PictureBox();
-            this.PnlPortraitSml = new System.Windows.Forms.Panel();
+            this.PanelPortraitSml = new System.Windows.Forms.Panel();
             this.PicPortraitSml = new System.Windows.Forms.PictureBox();
-            this.LayUnnamed3 = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnShowHints = new System.Windows.Forms.Button();
-            this.BtnBackToCreateNew = new System.Windows.Forms.Button();
-            this.BtnLoadPortrait = new System.Windows.Forms.Button();
-            this.LayUnnamed4 = new System.Windows.Forms.TableLayoutPanel();
-            this.LblUnnamed1 = new System.Windows.Forms.Label();
-            this.LblUnnamed2 = new System.Windows.Forms.Label();
-            this.LblUnnamed3 = new System.Windows.Forms.Label();
-            this.LayUnnamed5 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LayMainForm = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnNextToCreateNew = new System.Windows.Forms.Button();
-            this.BtnExit = new System.Windows.Forms.Button();
-            this.LayCreateForm.SuspendLayout();
-            this.LayUnnamed1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.PnlTemplate.SuspendLayout();
+            this.LayoutUnnamed3 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonHintOnScalePage = new System.Windows.Forms.Button();
+            this.ButtonBackToFilePage = new System.Windows.Forms.Button();
+            this.ButtonCreatePortrait = new System.Windows.Forms.Button();
+            this.LayoutUnnamed4 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelUnnamed1 = new System.Windows.Forms.Label();
+            this.LabelUnnamed2 = new System.Windows.Forms.Label();
+            this.LabelUnnamed3 = new System.Windows.Forms.Label();
+            this.LayoutUnnamed6 = new System.Windows.Forms.TableLayoutPanel();
+            this.PictureUnnamed1 = new System.Windows.Forms.PictureBox();
+            this.LayoutMainPage = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonToFilePage = new System.Windows.Forms.Button();
+            this.ButtonExit = new System.Windows.Forms.Button();
+            this.ButtonToGalleryPage = new System.Windows.Forms.Button();
+            this.LayoutFilePage.SuspendLayout();
+            this.LayoutUnnamed1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed2)).BeginInit();
+            this.LayoutUnnamed5.SuspendLayout();
+            this.PanelPortraitTemp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTemp)).BeginInit();
-            this.LayScalingForm.SuspendLayout();
-            this.LayUnnamed2.SuspendLayout();
-            this.PnlPortraitLrg.SuspendLayout();
+            this.LayoutScalePage.SuspendLayout();
+            this.LayoutUnnamed2.SuspendLayout();
+            this.PanelPortraitLrg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitLrg)).BeginInit();
-            this.PnlPortraitMed.SuspendLayout();
+            this.PanelPortraitMed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitMed)).BeginInit();
-            this.PnlPortraitSml.SuspendLayout();
+            this.PanelPortraitSml.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitSml)).BeginInit();
-            this.LayUnnamed3.SuspendLayout();
-            this.LayUnnamed4.SuspendLayout();
-            this.LayUnnamed5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.LayMainForm.SuspendLayout();
+            this.LayoutUnnamed3.SuspendLayout();
+            this.LayoutUnnamed4.SuspendLayout();
+            this.LayoutUnnamed6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed1)).BeginInit();
+            this.LayoutMainPage.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LayCreateForm
+            // LayoutFilePage
             // 
-            this.LayCreateForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayCreateForm.ColumnCount = 3;
-            this.LayCreateForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.LayCreateForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
-            this.LayCreateForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
-            this.LayCreateForm.Controls.Add(this.LayUnnamed1, 2, 0);
-            this.LayCreateForm.Controls.Add(this.tableLayoutPanel1, 1, 0);
-            this.LayCreateForm.ForeColor = System.Drawing.Color.White;
-            this.LayCreateForm.Location = new System.Drawing.Point(12, 202);
-            this.LayCreateForm.Name = "LayCreateForm";
-            this.LayCreateForm.RowCount = 1;
-            this.LayCreateForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayCreateForm.Size = new System.Drawing.Size(584, 411);
-            this.LayCreateForm.TabIndex = 1;
+            this.LayoutFilePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
+            this.LayoutFilePage.ColumnCount = 3;
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
+            this.LayoutFilePage.Controls.Add(this.LayoutUnnamed1, 2, 0);
+            this.LayoutFilePage.Controls.Add(this.LayoutUnnamed5, 1, 0);
+            this.LayoutFilePage.ForeColor = System.Drawing.Color.White;
+            this.LayoutFilePage.Location = new System.Drawing.Point(319, 12);
+            this.LayoutFilePage.Name = "LayoutFilePage";
+            this.LayoutFilePage.RowCount = 1;
+            this.LayoutFilePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutFilePage.Size = new System.Drawing.Size(584, 411);
+            this.LayoutFilePage.TabIndex = 1;
             // 
-            // LayUnnamed1
+            // LayoutUnnamed1
             // 
-            this.LayUnnamed1.ColumnCount = 3;
-            this.LayUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.90909F));
-            this.LayUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.18182F));
-            this.LayUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.90909F));
-            this.LayUnnamed1.Controls.Add(this.BtnCreateNewTemplate, 1, 3);
-            this.LayUnnamed1.Controls.Add(this.BtnNextToScaling, 1, 6);
-            this.LayUnnamed1.Controls.Add(this.BtnURLLoad, 1, 4);
-            this.LayUnnamed1.Controls.Add(this.BtnBackToMainForm, 1, 7);
-            this.LayUnnamed1.Controls.Add(this.pictureBox2, 1, 1);
-            this.LayUnnamed1.Controls.Add(this.BtnFileHint, 1, 8);
-            this.LayUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayUnnamed1.Location = new System.Drawing.Point(321, 3);
-            this.LayUnnamed1.Name = "LayUnnamed1";
-            this.LayUnnamed1.RowCount = 10;
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.38422F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.954059F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.971287F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06942F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.971287F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
-            this.LayUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.38746F));
-            this.LayUnnamed1.Size = new System.Drawing.Size(260, 405);
-            this.LayUnnamed1.TabIndex = 0;
+            this.LayoutUnnamed1.ColumnCount = 3;
+            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.90909F));
+            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.18182F));
+            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.90909F));
+            this.LayoutUnnamed1.Controls.Add(this.ButtonLocalPortraitLoad, 1, 3);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToScalePage, 1, 6);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonWebPortraitLoad, 1, 4);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 1, 7);
+            this.LayoutUnnamed1.Controls.Add(this.PictureUnnamed2, 1, 1);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonHintOnFilePage, 1, 8);
+            this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed1.Location = new System.Drawing.Point(321, 3);
+            this.LayoutUnnamed1.Name = "LayoutUnnamed1";
+            this.LayoutUnnamed1.RowCount = 10;
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.38422F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.954059F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.971287F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06942F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.971287F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.06557F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.38746F));
+            this.LayoutUnnamed1.Size = new System.Drawing.Size(260, 405);
+            this.LayoutUnnamed1.TabIndex = 0;
             // 
-            // BtnCreateNewTemplate
+            // ButtonLocalPortraitLoad
             // 
-            this.BtnCreateNewTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnCreateNewTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCreateNewTemplate.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCreateNewTemplate.Location = new System.Drawing.Point(57, 109);
-            this.BtnCreateNewTemplate.Name = "BtnCreateNewTemplate";
-            this.BtnCreateNewTemplate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BtnCreateNewTemplate.Size = new System.Drawing.Size(145, 38);
-            this.BtnCreateNewTemplate.TabIndex = 2;
-            this.BtnCreateNewTemplate.Text = "Choose local image";
-            this.BtnCreateNewTemplate.UseVisualStyleBackColor = true;
-            this.BtnCreateNewTemplate.Click += new System.EventHandler(this.BtnLoadPortrait_Click);
+            this.ButtonLocalPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonLocalPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonLocalPortraitLoad.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonLocalPortraitLoad.Location = new System.Drawing.Point(57, 109);
+            this.ButtonLocalPortraitLoad.Name = "ButtonLocalPortraitLoad";
+            this.ButtonLocalPortraitLoad.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ButtonLocalPortraitLoad.Size = new System.Drawing.Size(145, 38);
+            this.ButtonLocalPortraitLoad.TabIndex = 2;
+            this.ButtonLocalPortraitLoad.Text = "Choose local image";
+            this.ButtonLocalPortraitLoad.UseVisualStyleBackColor = true;
+            this.ButtonLocalPortraitLoad.Click += new System.EventHandler(this.BtnLoadPortrait_Click);
             // 
-            // BtnNextToScaling
+            // ButtonToScalePage
             // 
-            this.BtnNextToScaling.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnNextToScaling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNextToScaling.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNextToScaling.Location = new System.Drawing.Point(57, 217);
-            this.BtnNextToScaling.Name = "BtnNextToScaling";
-            this.BtnNextToScaling.Size = new System.Drawing.Size(145, 38);
-            this.BtnNextToScaling.TabIndex = 1;
-            this.BtnNextToScaling.Text = "Next";
-            this.BtnNextToScaling.UseVisualStyleBackColor = true;
-            this.BtnNextToScaling.Click += new System.EventHandler(this.BtnNextToScaling_Click);
+            this.ButtonToScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToScalePage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonToScalePage.Location = new System.Drawing.Point(57, 217);
+            this.ButtonToScalePage.Name = "ButtonToScalePage";
+            this.ButtonToScalePage.Size = new System.Drawing.Size(145, 38);
+            this.ButtonToScalePage.TabIndex = 1;
+            this.ButtonToScalePage.Text = "Next";
+            this.ButtonToScalePage.UseVisualStyleBackColor = true;
+            this.ButtonToScalePage.Click += new System.EventHandler(this.BtnNextToScaling_Click);
             // 
-            // BtnURLLoad
+            // ButtonWebPortraitLoad
             // 
-            this.BtnURLLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnURLLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnURLLoad.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnURLLoad.Location = new System.Drawing.Point(57, 153);
-            this.BtnURLLoad.Name = "BtnURLLoad";
-            this.BtnURLLoad.Size = new System.Drawing.Size(145, 38);
-            this.BtnURLLoad.TabIndex = 3;
-            this.BtnURLLoad.Text = "Choose web image";
-            this.BtnURLLoad.UseVisualStyleBackColor = true;
-            this.BtnURLLoad.Click += new System.EventHandler(this.BtnURLLoad_Click);
+            this.ButtonWebPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonWebPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonWebPortraitLoad.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonWebPortraitLoad.Location = new System.Drawing.Point(57, 153);
+            this.ButtonWebPortraitLoad.Name = "ButtonWebPortraitLoad";
+            this.ButtonWebPortraitLoad.Size = new System.Drawing.Size(145, 38);
+            this.ButtonWebPortraitLoad.TabIndex = 3;
+            this.ButtonWebPortraitLoad.Text = "Choose web image";
+            this.ButtonWebPortraitLoad.UseVisualStyleBackColor = true;
+            this.ButtonWebPortraitLoad.Click += new System.EventHandler(this.BtnURLLoad_Click);
             // 
-            // BtnBackToMainForm
+            // ButtonToMainPage
             // 
-            this.BtnBackToMainForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnBackToMainForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBackToMainForm.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBackToMainForm.Location = new System.Drawing.Point(57, 261);
-            this.BtnBackToMainForm.Name = "BtnBackToMainForm";
-            this.BtnBackToMainForm.Size = new System.Drawing.Size(145, 38);
-            this.BtnBackToMainForm.TabIndex = 0;
-            this.BtnBackToMainForm.Text = "Back";
-            this.BtnBackToMainForm.UseVisualStyleBackColor = true;
-            this.BtnBackToMainForm.Click += new System.EventHandler(this.BtnBackToMainForm_Click);
+            this.ButtonToMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToMainPage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonToMainPage.Location = new System.Drawing.Point(57, 261);
+            this.ButtonToMainPage.Name = "ButtonToMainPage";
+            this.ButtonToMainPage.Size = new System.Drawing.Size(145, 38);
+            this.ButtonToMainPage.TabIndex = 0;
+            this.ButtonToMainPage.Text = "Back";
+            this.ButtonToMainPage.UseVisualStyleBackColor = true;
+            this.ButtonToMainPage.Click += new System.EventHandler(this.BtnBackToMainForm_Click);
             // 
-            // pictureBox2
+            // PictureUnnamed2
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::PathfinderKINGPortrait.Properties.Resources.choose2;
-            this.pictureBox2.Location = new System.Drawing.Point(57, 57);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(145, 26);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
+            this.PictureUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureUnnamed2.Image = global::PathfinderKINGPortrait.Properties.Resources.choose2;
+            this.PictureUnnamed2.Location = new System.Drawing.Point(57, 57);
+            this.PictureUnnamed2.Name = "PictureUnnamed2";
+            this.PictureUnnamed2.Size = new System.Drawing.Size(145, 26);
+            this.PictureUnnamed2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureUnnamed2.TabIndex = 5;
+            this.PictureUnnamed2.TabStop = false;
             // 
-            // BtnFileHint
+            // ButtonHintOnFilePage
             // 
-            this.BtnFileHint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnFileHint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFileHint.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFileHint.Location = new System.Drawing.Point(57, 305);
-            this.BtnFileHint.Name = "BtnFileHint";
-            this.BtnFileHint.Size = new System.Drawing.Size(145, 38);
-            this.BtnFileHint.TabIndex = 6;
-            this.BtnFileHint.Text = "?";
-            this.BtnFileHint.UseVisualStyleBackColor = true;
-            this.BtnFileHint.Click += new System.EventHandler(this.BtnFileHint_Click);
+            this.ButtonHintOnFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonHintOnFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHintOnFilePage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHintOnFilePage.Location = new System.Drawing.Point(57, 305);
+            this.ButtonHintOnFilePage.Name = "ButtonHintOnFilePage";
+            this.ButtonHintOnFilePage.Size = new System.Drawing.Size(145, 38);
+            this.ButtonHintOnFilePage.TabIndex = 6;
+            this.ButtonHintOnFilePage.Text = "?";
+            this.ButtonHintOnFilePage.UseVisualStyleBackColor = true;
+            this.ButtonHintOnFilePage.Click += new System.EventHandler(this.BtnFileHint_Click);
             // 
-            // tableLayoutPanel1
+            // LayoutUnnamed5
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.PnlTemplate, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(56, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.33334F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 405);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.LayoutUnnamed5.ColumnCount = 1;
+            this.LayoutUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed5.Controls.Add(this.PanelPortraitTemp, 0, 1);
+            this.LayoutUnnamed5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed5.Location = new System.Drawing.Point(56, 3);
+            this.LayoutUnnamed5.Name = "LayoutUnnamed5";
+            this.LayoutUnnamed5.RowCount = 3;
+            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.33334F));
+            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.LayoutUnnamed5.Size = new System.Drawing.Size(259, 405);
+            this.LayoutUnnamed5.TabIndex = 1;
             // 
-            // PnlTemplate
+            // PanelPortraitTemp
             // 
-            this.PnlTemplate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PnlTemplate.Controls.Add(this.PicPortraitTemp);
-            this.PnlTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlTemplate.Location = new System.Drawing.Point(0, 33);
-            this.PnlTemplate.Margin = new System.Windows.Forms.Padding(0);
-            this.PnlTemplate.Name = "PnlTemplate";
-            this.PnlTemplate.Size = new System.Drawing.Size(259, 337);
-            this.PnlTemplate.TabIndex = 1;
+            this.PanelPortraitTemp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelPortraitTemp.Controls.Add(this.PicPortraitTemp);
+            this.PanelPortraitTemp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelPortraitTemp.Location = new System.Drawing.Point(0, 33);
+            this.PanelPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelPortraitTemp.Name = "PanelPortraitTemp";
+            this.PanelPortraitTemp.Size = new System.Drawing.Size(259, 337);
+            this.PanelPortraitTemp.TabIndex = 1;
             // 
             // PicPortraitTemp
             // 
@@ -249,57 +250,57 @@ namespace PathfinderKINGPortrait
             this.PicPortraitTemp.DragDrop += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragDrop);
             this.PicPortraitTemp.DragEnter += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragEnter);
             // 
-            // LayScalingForm
+            // LayoutScalePage
             // 
-            this.LayScalingForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayScalingForm.ColumnCount = 1;
-            this.LayScalingForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayScalingForm.Controls.Add(this.LayUnnamed2, 0, 1);
-            this.LayScalingForm.Controls.Add(this.LayUnnamed3, 0, 3);
-            this.LayScalingForm.Controls.Add(this.LayUnnamed4, 0, 2);
-            this.LayScalingForm.Controls.Add(this.LayUnnamed5, 0, 0);
-            this.LayScalingForm.ForeColor = System.Drawing.Color.White;
-            this.LayScalingForm.Location = new System.Drawing.Point(612, 0);
-            this.LayScalingForm.Name = "LayScalingForm";
-            this.LayScalingForm.RowCount = 5;
-            this.LayScalingForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.7168F));
-            this.LayScalingForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.79539F));
-            this.LayScalingForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.557144F));
-            this.LayScalingForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.6765F));
-            this.LayScalingForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.254159F));
-            this.LayScalingForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayScalingForm.Size = new System.Drawing.Size(609, 409);
-            this.LayScalingForm.TabIndex = 2;
+            this.LayoutScalePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
+            this.LayoutScalePage.ColumnCount = 1;
+            this.LayoutScalePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed2, 0, 1);
+            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed3, 0, 3);
+            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed4, 0, 2);
+            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed6, 0, 0);
+            this.LayoutScalePage.ForeColor = System.Drawing.Color.White;
+            this.LayoutScalePage.Location = new System.Drawing.Point(926, 12);
+            this.LayoutScalePage.Name = "LayoutScalePage";
+            this.LayoutScalePage.RowCount = 5;
+            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.7168F));
+            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.79539F));
+            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.557144F));
+            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.6765F));
+            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.254159F));
+            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutScalePage.Size = new System.Drawing.Size(609, 409);
+            this.LayoutScalePage.TabIndex = 2;
             // 
-            // LayUnnamed2
+            // LayoutUnnamed2
             // 
-            this.LayUnnamed2.ColumnCount = 5;
-            this.LayUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.731966F));
-            this.LayUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.36763F));
-            this.LayUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.79687F));
-            this.LayUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.37157F));
-            this.LayUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.731966F));
-            this.LayUnnamed2.Controls.Add(this.PnlPortraitLrg, 2, 0);
-            this.LayUnnamed2.Controls.Add(this.PnlPortraitMed, 1, 0);
-            this.LayUnnamed2.Controls.Add(this.PnlPortraitSml, 3, 0);
-            this.LayUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayUnnamed2.Location = new System.Drawing.Point(3, 38);
-            this.LayUnnamed2.Name = "LayUnnamed2";
-            this.LayUnnamed2.RowCount = 1;
-            this.LayUnnamed2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed2.Size = new System.Drawing.Size(603, 267);
-            this.LayUnnamed2.TabIndex = 0;
+            this.LayoutUnnamed2.ColumnCount = 5;
+            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.731966F));
+            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.36763F));
+            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.79687F));
+            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.37157F));
+            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.731966F));
+            this.LayoutUnnamed2.Controls.Add(this.PanelPortraitLrg, 2, 0);
+            this.LayoutUnnamed2.Controls.Add(this.PanelPortraitMed, 1, 0);
+            this.LayoutUnnamed2.Controls.Add(this.PanelPortraitSml, 3, 0);
+            this.LayoutUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed2.Location = new System.Drawing.Point(3, 38);
+            this.LayoutUnnamed2.Name = "LayoutUnnamed2";
+            this.LayoutUnnamed2.RowCount = 1;
+            this.LayoutUnnamed2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed2.Size = new System.Drawing.Size(603, 267);
+            this.LayoutUnnamed2.TabIndex = 0;
             // 
-            // PnlPortraitLrg
+            // PanelPortraitLrg
             // 
-            this.PnlPortraitLrg.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PnlPortraitLrg.Controls.Add(this.PicPortraitLrg);
-            this.PnlPortraitLrg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlPortraitLrg.Location = new System.Drawing.Point(208, 3);
-            this.PnlPortraitLrg.Name = "PnlPortraitLrg";
-            this.PnlPortraitLrg.Padding = new System.Windows.Forms.Padding(10);
-            this.PnlPortraitLrg.Size = new System.Drawing.Size(185, 261);
-            this.PnlPortraitLrg.TabIndex = 3;
+            this.PanelPortraitLrg.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelPortraitLrg.Controls.Add(this.PicPortraitLrg);
+            this.PanelPortraitLrg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelPortraitLrg.Location = new System.Drawing.Point(208, 3);
+            this.PanelPortraitLrg.Name = "PanelPortraitLrg";
+            this.PanelPortraitLrg.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelPortraitLrg.Size = new System.Drawing.Size(185, 261);
+            this.PanelPortraitLrg.TabIndex = 3;
             // 
             // PicPortraitLrg
             // 
@@ -316,16 +317,16 @@ namespace PathfinderKINGPortrait
             this.PicPortraitLrg.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseMove);
             this.PicPortraitLrg.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseUp);
             // 
-            // PnlPortraitMed
+            // PanelPortraitMed
             // 
-            this.PnlPortraitMed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PnlPortraitMed.Controls.Add(this.PicPortraitMed);
-            this.PnlPortraitMed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlPortraitMed.Location = new System.Drawing.Point(31, 3);
-            this.PnlPortraitMed.Name = "PnlPortraitMed";
-            this.PnlPortraitMed.Padding = new System.Windows.Forms.Padding(10);
-            this.PnlPortraitMed.Size = new System.Drawing.Size(171, 261);
-            this.PnlPortraitMed.TabIndex = 4;
+            this.PanelPortraitMed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelPortraitMed.Controls.Add(this.PicPortraitMed);
+            this.PanelPortraitMed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelPortraitMed.Location = new System.Drawing.Point(31, 3);
+            this.PanelPortraitMed.Name = "PanelPortraitMed";
+            this.PanelPortraitMed.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelPortraitMed.Size = new System.Drawing.Size(171, 261);
+            this.PanelPortraitMed.TabIndex = 4;
             // 
             // PicPortraitMed
             // 
@@ -342,16 +343,16 @@ namespace PathfinderKINGPortrait
             this.PicPortraitMed.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseMove);
             this.PicPortraitMed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseUp);
             // 
-            // PnlPortraitSml
+            // PanelPortraitSml
             // 
-            this.PnlPortraitSml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PnlPortraitSml.Controls.Add(this.PicPortraitSml);
-            this.PnlPortraitSml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlPortraitSml.Location = new System.Drawing.Point(399, 3);
-            this.PnlPortraitSml.Name = "PnlPortraitSml";
-            this.PnlPortraitSml.Padding = new System.Windows.Forms.Padding(10);
-            this.PnlPortraitSml.Size = new System.Drawing.Size(171, 261);
-            this.PnlPortraitSml.TabIndex = 5;
+            this.PanelPortraitSml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelPortraitSml.Controls.Add(this.PicPortraitSml);
+            this.PanelPortraitSml.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelPortraitSml.Location = new System.Drawing.Point(399, 3);
+            this.PanelPortraitSml.Name = "PanelPortraitSml";
+            this.PanelPortraitSml.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelPortraitSml.Size = new System.Drawing.Size(171, 261);
+            this.PanelPortraitSml.TabIndex = 5;
             // 
             // PicPortraitSml
             // 
@@ -368,209 +369,219 @@ namespace PathfinderKINGPortrait
             this.PicPortraitSml.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseMove);
             this.PicPortraitSml.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseUp);
             // 
-            // LayUnnamed3
+            // LayoutUnnamed3
             // 
-            this.LayUnnamed3.ColumnCount = 7;
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.24605F));
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.60867F));
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.402167F));
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.60867F));
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.085552F));
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0346F));
-            this.LayUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.363322F));
-            this.LayUnnamed3.Controls.Add(this.BtnShowHints, 5, 0);
-            this.LayUnnamed3.Controls.Add(this.BtnBackToCreateNew, 1, 0);
-            this.LayUnnamed3.Controls.Add(this.BtnLoadPortrait, 3, 0);
-            this.LayUnnamed3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayUnnamed3.Location = new System.Drawing.Point(3, 341);
-            this.LayUnnamed3.Name = "LayUnnamed3";
-            this.LayUnnamed3.RowCount = 1;
-            this.LayUnnamed3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed3.Size = new System.Drawing.Size(603, 45);
-            this.LayUnnamed3.TabIndex = 1;
+            this.LayoutUnnamed3.ColumnCount = 7;
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.24605F));
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.60867F));
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.402167F));
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.60867F));
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.085552F));
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0346F));
+            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.363322F));
+            this.LayoutUnnamed3.Controls.Add(this.ButtonHintOnScalePage, 5, 0);
+            this.LayoutUnnamed3.Controls.Add(this.ButtonBackToFilePage, 1, 0);
+            this.LayoutUnnamed3.Controls.Add(this.ButtonCreatePortrait, 3, 0);
+            this.LayoutUnnamed3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed3.Location = new System.Drawing.Point(3, 341);
+            this.LayoutUnnamed3.Name = "LayoutUnnamed3";
+            this.LayoutUnnamed3.RowCount = 1;
+            this.LayoutUnnamed3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed3.Size = new System.Drawing.Size(603, 45);
+            this.LayoutUnnamed3.TabIndex = 1;
             // 
-            // BtnShowHints
+            // ButtonHintOnScalePage
             // 
-            this.BtnShowHints.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BtnShowHints.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnShowHints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnShowHints.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnShowHints.Location = new System.Drawing.Point(513, 3);
-            this.BtnShowHints.Name = "BtnShowHints";
-            this.BtnShowHints.Size = new System.Drawing.Size(53, 39);
-            this.BtnShowHints.TabIndex = 0;
-            this.BtnShowHints.Text = "?";
-            this.BtnShowHints.UseVisualStyleBackColor = true;
-            this.BtnShowHints.Click += new System.EventHandler(this.BtnShowHints_Click);
+            this.ButtonHintOnScalePage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonHintOnScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonHintOnScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHintOnScalePage.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHintOnScalePage.Location = new System.Drawing.Point(513, 3);
+            this.ButtonHintOnScalePage.Name = "ButtonHintOnScalePage";
+            this.ButtonHintOnScalePage.Size = new System.Drawing.Size(53, 39);
+            this.ButtonHintOnScalePage.TabIndex = 0;
+            this.ButtonHintOnScalePage.Text = "?";
+            this.ButtonHintOnScalePage.UseVisualStyleBackColor = true;
+            this.ButtonHintOnScalePage.Click += new System.EventHandler(this.BtnShowHints_Click);
             // 
-            // BtnBackToCreateNew
+            // ButtonBackToFilePage
             // 
-            this.BtnBackToCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnBackToCreateNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBackToCreateNew.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBackToCreateNew.Location = new System.Drawing.Point(129, 3);
-            this.BtnBackToCreateNew.Name = "BtnBackToCreateNew";
-            this.BtnBackToCreateNew.Size = new System.Drawing.Size(146, 39);
-            this.BtnBackToCreateNew.TabIndex = 0;
-            this.BtnBackToCreateNew.Text = "Back";
-            this.BtnBackToCreateNew.UseVisualStyleBackColor = true;
-            this.BtnBackToCreateNew.Click += new System.EventHandler(this.BtnBackToCreateNew_Click);
+            this.ButtonBackToFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonBackToFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonBackToFilePage.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonBackToFilePage.Location = new System.Drawing.Point(129, 3);
+            this.ButtonBackToFilePage.Name = "ButtonBackToFilePage";
+            this.ButtonBackToFilePage.Size = new System.Drawing.Size(146, 39);
+            this.ButtonBackToFilePage.TabIndex = 0;
+            this.ButtonBackToFilePage.Text = "Back";
+            this.ButtonBackToFilePage.UseVisualStyleBackColor = true;
+            this.ButtonBackToFilePage.Click += new System.EventHandler(this.BtnBackToCreateNew_Click);
             // 
-            // BtnLoadPortrait
+            // ButtonCreatePortrait
             // 
-            this.BtnLoadPortrait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnLoadPortrait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLoadPortrait.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLoadPortrait.Location = new System.Drawing.Point(319, 3);
-            this.BtnLoadPortrait.Name = "BtnLoadPortrait";
-            this.BtnLoadPortrait.Size = new System.Drawing.Size(146, 39);
-            this.BtnLoadPortrait.TabIndex = 2;
-            this.BtnLoadPortrait.Text = "Create";
-            this.BtnLoadPortrait.UseVisualStyleBackColor = true;
-            this.BtnLoadPortrait.Click += new System.EventHandler(this.BtnCreatePortrait_Click);
+            this.ButtonCreatePortrait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonCreatePortrait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCreatePortrait.Font = new System.Drawing.Font("Bebas Neue", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonCreatePortrait.Location = new System.Drawing.Point(319, 3);
+            this.ButtonCreatePortrait.Name = "ButtonCreatePortrait";
+            this.ButtonCreatePortrait.Size = new System.Drawing.Size(146, 39);
+            this.ButtonCreatePortrait.TabIndex = 2;
+            this.ButtonCreatePortrait.Text = "Create";
+            this.ButtonCreatePortrait.UseVisualStyleBackColor = true;
+            this.ButtonCreatePortrait.Click += new System.EventHandler(this.BtnCreatePortrait_Click);
             // 
-            // LayUnnamed4
+            // LayoutUnnamed4
             // 
-            this.LayUnnamed4.ColumnCount = 5;
-            this.LayUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.627249F));
-            this.LayUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.38005F));
-            this.LayUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.67116F));
-            this.LayUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.11051F));
-            this.LayUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.9922F));
-            this.LayUnnamed4.Controls.Add(this.LblUnnamed1, 1, 0);
-            this.LayUnnamed4.Controls.Add(this.LblUnnamed2, 2, 0);
-            this.LayUnnamed4.Controls.Add(this.LblUnnamed3, 3, 0);
-            this.LayUnnamed4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayUnnamed4.Location = new System.Drawing.Point(3, 311);
-            this.LayUnnamed4.Name = "LayUnnamed4";
-            this.LayUnnamed4.RowCount = 1;
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayUnnamed4.Size = new System.Drawing.Size(603, 24);
-            this.LayUnnamed4.TabIndex = 2;
+            this.LayoutUnnamed4.ColumnCount = 5;
+            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.627249F));
+            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.38005F));
+            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.67116F));
+            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.11051F));
+            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.9922F));
+            this.LayoutUnnamed4.Controls.Add(this.LabelUnnamed1, 1, 0);
+            this.LayoutUnnamed4.Controls.Add(this.LabelUnnamed2, 2, 0);
+            this.LayoutUnnamed4.Controls.Add(this.LabelUnnamed3, 3, 0);
+            this.LayoutUnnamed4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed4.Location = new System.Drawing.Point(3, 311);
+            this.LayoutUnnamed4.Name = "LayoutUnnamed4";
+            this.LayoutUnnamed4.RowCount = 1;
+            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.LayoutUnnamed4.Size = new System.Drawing.Size(603, 24);
+            this.LayoutUnnamed4.TabIndex = 2;
             // 
-            // LblUnnamed1
+            // LabelUnnamed1
             // 
-            this.LblUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblUnnamed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblUnnamed1.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUnnamed1.Location = new System.Drawing.Point(30, 0);
-            this.LblUnnamed1.Name = "LblUnnamed1";
-            this.LblUnnamed1.Size = new System.Drawing.Size(171, 24);
-            this.LblUnnamed1.TabIndex = 0;
-            this.LblUnnamed1.Text = "Medium";
-            this.LblUnnamed1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LblUnnamed1.MouseLeave += new System.EventHandler(this.LblUnnamed1_MouseLeave);
-            this.LblUnnamed1.MouseHover += new System.EventHandler(this.LblUnnamed1_MouseHover);
+            this.LabelUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelUnnamed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LabelUnnamed1.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUnnamed1.Location = new System.Drawing.Point(30, 0);
+            this.LabelUnnamed1.Name = "LabelUnnamed1";
+            this.LabelUnnamed1.Size = new System.Drawing.Size(171, 24);
+            this.LabelUnnamed1.TabIndex = 0;
+            this.LabelUnnamed1.Text = "Medium";
+            this.LabelUnnamed1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelUnnamed1.MouseLeave += new System.EventHandler(this.LblUnnamed1_MouseLeave);
+            this.LabelUnnamed1.MouseHover += new System.EventHandler(this.LblUnnamed1_MouseHover);
             // 
-            // LblUnnamed2
+            // LabelUnnamed2
             // 
-            this.LblUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblUnnamed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblUnnamed2.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUnnamed2.Location = new System.Drawing.Point(207, 0);
-            this.LblUnnamed2.Name = "LblUnnamed2";
-            this.LblUnnamed2.Size = new System.Drawing.Size(185, 24);
-            this.LblUnnamed2.TabIndex = 1;
-            this.LblUnnamed2.Text = "Large";
-            this.LblUnnamed2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LblUnnamed2.MouseLeave += new System.EventHandler(this.LblUnnamed2_MouseLeave);
-            this.LblUnnamed2.MouseHover += new System.EventHandler(this.LblUnnamed2_MouseHover);
+            this.LabelUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelUnnamed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LabelUnnamed2.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUnnamed2.Location = new System.Drawing.Point(207, 0);
+            this.LabelUnnamed2.Name = "LabelUnnamed2";
+            this.LabelUnnamed2.Size = new System.Drawing.Size(185, 24);
+            this.LabelUnnamed2.TabIndex = 1;
+            this.LabelUnnamed2.Text = "Large";
+            this.LabelUnnamed2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelUnnamed2.MouseLeave += new System.EventHandler(this.LblUnnamed2_MouseLeave);
+            this.LabelUnnamed2.MouseHover += new System.EventHandler(this.LblUnnamed2_MouseHover);
             // 
-            // LblUnnamed3
+            // LabelUnnamed3
             // 
-            this.LblUnnamed3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblUnnamed3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblUnnamed3.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUnnamed3.Location = new System.Drawing.Point(398, 0);
-            this.LblUnnamed3.Name = "LblUnnamed3";
-            this.LblUnnamed3.Size = new System.Drawing.Size(169, 24);
-            this.LblUnnamed3.TabIndex = 2;
-            this.LblUnnamed3.Text = "Small";
-            this.LblUnnamed3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LblUnnamed3.MouseLeave += new System.EventHandler(this.LblUnnamed3_MouseLeave);
-            this.LblUnnamed3.MouseHover += new System.EventHandler(this.LblUnnamed3_MouseHover);
+            this.LabelUnnamed3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelUnnamed3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LabelUnnamed3.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUnnamed3.Location = new System.Drawing.Point(398, 0);
+            this.LabelUnnamed3.Name = "LabelUnnamed3";
+            this.LabelUnnamed3.Size = new System.Drawing.Size(169, 24);
+            this.LabelUnnamed3.TabIndex = 2;
+            this.LabelUnnamed3.Text = "Small";
+            this.LabelUnnamed3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelUnnamed3.MouseLeave += new System.EventHandler(this.LblUnnamed3_MouseLeave);
+            this.LabelUnnamed3.MouseHover += new System.EventHandler(this.LblUnnamed3_MouseHover);
             // 
-            // LayUnnamed5
+            // LayoutUnnamed6
             // 
-            this.LayUnnamed5.ColumnCount = 3;
-            this.LayUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
-            this.LayUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
-            this.LayUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayUnnamed5.Controls.Add(this.pictureBox1, 1, 0);
-            this.LayUnnamed5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayUnnamed5.Location = new System.Drawing.Point(3, 3);
-            this.LayUnnamed5.Name = "LayUnnamed5";
-            this.LayUnnamed5.RowCount = 1;
-            this.LayUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayUnnamed5.Size = new System.Drawing.Size(603, 29);
-            this.LayUnnamed5.TabIndex = 3;
+            this.LayoutUnnamed6.ColumnCount = 3;
+            this.LayoutUnnamed6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.99669F));
+            this.LayoutUnnamed6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.00663F));
+            this.LayoutUnnamed6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.16252F));
+            this.LayoutUnnamed6.Controls.Add(this.PictureUnnamed1, 1, 0);
+            this.LayoutUnnamed6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed6.Location = new System.Drawing.Point(3, 3);
+            this.LayoutUnnamed6.Name = "LayoutUnnamed6";
+            this.LayoutUnnamed6.RowCount = 1;
+            this.LayoutUnnamed6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed6.Size = new System.Drawing.Size(603, 29);
+            this.LayoutUnnamed6.TabIndex = 3;
             // 
-            // pictureBox1
+            // PictureUnnamed1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::PathfinderKINGPortrait.Properties.Resources.choose3;
-            this.pictureBox1.Location = new System.Drawing.Point(224, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(177, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.PictureUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureUnnamed1.Image = global::PathfinderKINGPortrait.Properties.Resources.choose3;
+            this.PictureUnnamed1.Location = new System.Drawing.Point(207, 3);
+            this.PictureUnnamed1.Name = "PictureUnnamed1";
+            this.PictureUnnamed1.Size = new System.Drawing.Size(186, 23);
+            this.PictureUnnamed1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureUnnamed1.TabIndex = 0;
+            this.PictureUnnamed1.TabStop = false;
             // 
-            // LayMainForm
+            // LayoutMainPage
             // 
-            this.LayMainForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.LayMainForm.ColumnCount = 3;
-            this.LayMainForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayMainForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayMainForm.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayMainForm.Controls.Add(this.BtnNextToCreateNew, 1, 1);
-            this.LayMainForm.Controls.Add(this.BtnExit, 1, 3);
-            this.LayMainForm.Location = new System.Drawing.Point(0, 0);
-            this.LayMainForm.Name = "LayMainForm";
-            this.LayMainForm.RowCount = 5;
-            this.LayMainForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.LayMainForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.LayMainForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.LayMainForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.LayMainForm.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.LayMainForm.Size = new System.Drawing.Size(313, 176);
-            this.LayMainForm.TabIndex = 0;
+            this.LayoutMainPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.LayoutMainPage.ColumnCount = 3;
+            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutMainPage.Controls.Add(this.ButtonToFilePage, 1, 1);
+            this.LayoutMainPage.Controls.Add(this.ButtonExit, 1, 3);
+            this.LayoutMainPage.Controls.Add(this.ButtonToGalleryPage, 1, 2);
+            this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutMainPage.Name = "LayoutMainPage";
+            this.LayoutMainPage.RowCount = 5;
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutMainPage.Size = new System.Drawing.Size(313, 176);
+            this.LayoutMainPage.TabIndex = 0;
             // 
-            // BtnNextToCreateNew
+            // ButtonToFilePage
             // 
-            this.BtnNextToCreateNew.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnNextToCreateNew.Location = new System.Drawing.Point(81, 38);
-            this.BtnNextToCreateNew.Name = "BtnNextToCreateNew";
-            this.BtnNextToCreateNew.Size = new System.Drawing.Size(150, 29);
-            this.BtnNextToCreateNew.TabIndex = 0;
-            this.BtnNextToCreateNew.Text = "Create new portrait";
-            this.BtnNextToCreateNew.UseVisualStyleBackColor = true;
-            this.BtnNextToCreateNew.Click += new System.EventHandler(this.BtnNextToCreateNew_Click);
+            this.ButtonToFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToFilePage.Location = new System.Drawing.Point(81, 38);
+            this.ButtonToFilePage.Name = "ButtonToFilePage";
+            this.ButtonToFilePage.Size = new System.Drawing.Size(150, 29);
+            this.ButtonToFilePage.TabIndex = 0;
+            this.ButtonToFilePage.Text = "Create new portrait";
+            this.ButtonToFilePage.UseVisualStyleBackColor = true;
+            this.ButtonToFilePage.Click += new System.EventHandler(this.BtnNextToCreateNew_Click);
             // 
-            // BtnExit
+            // ButtonExit
             // 
-            this.BtnExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnExit.Location = new System.Drawing.Point(81, 108);
-            this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(150, 29);
-            this.BtnExit.TabIndex = 1;
-            this.BtnExit.Text = "Exit";
-            this.BtnExit.UseVisualStyleBackColor = true;
-            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            this.ButtonExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExit.Location = new System.Drawing.Point(81, 108);
+            this.ButtonExit.Name = "ButtonExit";
+            this.ButtonExit.Size = new System.Drawing.Size(150, 29);
+            this.ButtonExit.TabIndex = 1;
+            this.ButtonExit.Text = "Exit";
+            this.ButtonExit.UseVisualStyleBackColor = true;
+            this.ButtonExit.Click += new System.EventHandler(this.BtnExit_Click);
+            // 
+            // ButtonToGalleryPage
+            // 
+            this.ButtonToGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToGalleryPage.Location = new System.Drawing.Point(81, 73);
+            this.ButtonToGalleryPage.Name = "ButtonToGalleryPage";
+            this.ButtonToGalleryPage.Size = new System.Drawing.Size(150, 29);
+            this.ButtonToGalleryPage.TabIndex = 2;
+            this.ButtonToGalleryPage.Text = "button1";
+            this.ButtonToGalleryPage.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1227, 411);
-            this.Controls.Add(this.LayCreateForm);
-            this.Controls.Add(this.LayMainForm);
-            this.Controls.Add(this.LayScalingForm);
+            this.ClientSize = new System.Drawing.Size(1537, 411);
+            this.Controls.Add(this.LayoutFilePage);
+            this.Controls.Add(this.LayoutMainPage);
+            this.Controls.Add(this.LayoutScalePage);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(6000, 4500);
             this.MinimizeBox = false;
@@ -583,67 +594,68 @@ namespace PathfinderKINGPortrait
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_Closed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.LayCreateForm.ResumeLayout(false);
-            this.LayUnnamed1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.PnlTemplate.ResumeLayout(false);
-            this.PnlTemplate.PerformLayout();
+            this.LayoutFilePage.ResumeLayout(false);
+            this.LayoutUnnamed1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed2)).EndInit();
+            this.LayoutUnnamed5.ResumeLayout(false);
+            this.PanelPortraitTemp.ResumeLayout(false);
+            this.PanelPortraitTemp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTemp)).EndInit();
-            this.LayScalingForm.ResumeLayout(false);
-            this.LayUnnamed2.ResumeLayout(false);
-            this.PnlPortraitLrg.ResumeLayout(false);
-            this.PnlPortraitLrg.PerformLayout();
+            this.LayoutScalePage.ResumeLayout(false);
+            this.LayoutUnnamed2.ResumeLayout(false);
+            this.PanelPortraitLrg.ResumeLayout(false);
+            this.PanelPortraitLrg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitLrg)).EndInit();
-            this.PnlPortraitMed.ResumeLayout(false);
-            this.PnlPortraitMed.PerformLayout();
+            this.PanelPortraitMed.ResumeLayout(false);
+            this.PanelPortraitMed.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitMed)).EndInit();
-            this.PnlPortraitSml.ResumeLayout(false);
-            this.PnlPortraitSml.PerformLayout();
+            this.PanelPortraitSml.ResumeLayout(false);
+            this.PanelPortraitSml.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitSml)).EndInit();
-            this.LayUnnamed3.ResumeLayout(false);
-            this.LayUnnamed4.ResumeLayout(false);
-            this.LayUnnamed5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.LayMainForm.ResumeLayout(false);
+            this.LayoutUnnamed3.ResumeLayout(false);
+            this.LayoutUnnamed4.ResumeLayout(false);
+            this.LayoutUnnamed6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed1)).EndInit();
+            this.LayoutMainPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel LayMainForm;
-        private System.Windows.Forms.TableLayoutPanel LayCreateForm;
-        private System.Windows.Forms.TableLayoutPanel LayScalingForm;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed1;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed2;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed3;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed4;
-        private System.Windows.Forms.Button BtnNextToCreateNew;
-        private System.Windows.Forms.Button BtnBackToMainForm;
-        private System.Windows.Forms.Button BtnNextToScaling;
-        private System.Windows.Forms.Button BtnBackToCreateNew;
-        private System.Windows.Forms.Button BtnLoadPortrait;
-        private System.Windows.Forms.Button BtnCreateNewTemplate;
-        private System.Windows.Forms.Button BtnExit;
+        private System.Windows.Forms.TableLayoutPanel LayoutMainPage;
+        private System.Windows.Forms.TableLayoutPanel LayoutFilePage;
+        private System.Windows.Forms.TableLayoutPanel LayoutScalePage;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed2;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed3;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed4;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed5;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed6;
+        private System.Windows.Forms.Button ButtonToFilePage;
+        private System.Windows.Forms.Button ButtonToMainPage;
+        private System.Windows.Forms.Button ButtonToScalePage;
+        private System.Windows.Forms.Button ButtonBackToFilePage;
+        private System.Windows.Forms.Button ButtonCreatePortrait;
+        private System.Windows.Forms.Button ButtonLocalPortraitLoad;
+        private System.Windows.Forms.Button ButtonExit;
+        private System.Windows.Forms.Button ButtonHintOnFilePage;
+        private System.Windows.Forms.Button ButtonToGalleryPage;
+        private System.Windows.Forms.Button ButtonHintOnScalePage;
+        private System.Windows.Forms.Button ButtonWebPortraitLoad;
         private System.Windows.Forms.PictureBox PicPortraitTemp;
         private System.Windows.Forms.PictureBox PicPortraitLrg;
         private System.Windows.Forms.PictureBox PicPortraitMed;
-        private System.Windows.Forms.Label LblUnnamed1;
-        private System.Windows.Forms.Label LblUnnamed2;
-        private System.Windows.Forms.Label LblUnnamed3;
-        private System.Windows.Forms.Panel PnlPortraitLrg;
-        private System.Windows.Forms.Panel PnlPortraitMed;
-        private System.Windows.Forms.Panel PnlPortraitSml;
         private System.Windows.Forms.PictureBox PicPortraitSml;
-        private System.Windows.Forms.Button BtnURLLoad;
-        private System.Windows.Forms.Panel PnlTemplate;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel LayUnnamed5;
-        private System.Windows.Forms.Button BtnShowHints;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button BtnFileHint;
+        private System.Windows.Forms.PictureBox PictureUnnamed1;
+        private System.Windows.Forms.PictureBox PictureUnnamed2;
+        private System.Windows.Forms.Label LabelUnnamed1;
+        private System.Windows.Forms.Label LabelUnnamed2;
+        private System.Windows.Forms.Label LabelUnnamed3;
+        private System.Windows.Forms.Panel PanelPortraitLrg;
+        private System.Windows.Forms.Panel PanelPortraitMed;
+        private System.Windows.Forms.Panel PanelPortraitSml;
+        private System.Windows.Forms.Panel PanelPortraitTemp;
     }
 }
 

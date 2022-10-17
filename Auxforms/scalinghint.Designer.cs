@@ -1,7 +1,7 @@
 ﻿
-namespace PathfinderKINGPortrait
+namespace PathfinderKINGPortrait.AuxForms
 {
-    partial class scalinghint
+    partial class ScalingHint
     {
         /// <summary>
         /// Required designer variable.
@@ -29,84 +29,87 @@ namespace PathfinderKINGPortrait
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(scalinghint));
-            this.LayScaleHint = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnBackToScale = new System.Windows.Forms.Button();
-            this.LblScaleHint = new System.Windows.Forms.Label();
-            this.LayScaleHint.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScalingHint));
+            this.LayoutUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonOK = new System.Windows.Forms.Button();
+            this.LabelUnnamed1 = new System.Windows.Forms.Label();
+            this.LayoutUnnamed1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LayScaleHint
+            // LayoutUnnamed1
             // 
-            this.LayScaleHint.ColumnCount = 1;
-            this.LayScaleHint.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayScaleHint.Controls.Add(this.BtnBackToScale, 0, 2);
-            this.LayScaleHint.Controls.Add(this.LblScaleHint, 0, 1);
-            this.LayScaleHint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayScaleHint.Location = new System.Drawing.Point(0, 0);
-            this.LayScaleHint.Name = "LayScaleHint";
-            this.LayScaleHint.RowCount = 4;
-            this.LayScaleHint.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.75251F));
-            this.LayScaleHint.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.07547F));
-            this.LayScaleHint.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.86792F));
-            this.LayScaleHint.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.75251F));
-            this.LayScaleHint.Size = new System.Drawing.Size(531, 212);
-            this.LayScaleHint.TabIndex = 0;
+            this.LayoutUnnamed1.ColumnCount = 1;
+            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed1.Controls.Add(this.ButtonOK, 0, 2);
+            this.LayoutUnnamed1.Controls.Add(this.LabelUnnamed1, 0, 1);
+            this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutUnnamed1.Location = new System.Drawing.Point(0, 0);
+            this.LayoutUnnamed1.Name = "LayoutUnnamed1";
+            this.LayoutUnnamed1.RowCount = 4;
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.75251F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.07547F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.86792F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.75251F));
+            this.LayoutUnnamed1.Size = new System.Drawing.Size(531, 212);
+            this.LayoutUnnamed1.TabIndex = 0;
             // 
-            // BtnBackToScale
+            // ButtonOK
             // 
-            this.BtnBackToScale.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnBackToScale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBackToScale.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnBackToScale.Location = new System.Drawing.Point(170, 149);
-            this.BtnBackToScale.Margin = new System.Windows.Forms.Padding(170, 3, 170, 3);
-            this.BtnBackToScale.Name = "BtnBackToScale";
-            this.BtnBackToScale.Size = new System.Drawing.Size(191, 34);
-            this.BtnBackToScale.TabIndex = 0;
-            this.BtnBackToScale.Text = "OK";
-            this.BtnBackToScale.UseVisualStyleBackColor = true;
-            this.BtnBackToScale.Click += new System.EventHandler(this.BtnBackToScale_Click);
+            this.ButtonOK.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonOK.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonOK.Location = new System.Drawing.Point(170, 149);
+            this.ButtonOK.Margin = new System.Windows.Forms.Padding(170, 3, 170, 3);
+            this.ButtonOK.Name = "ButtonOK";
+            this.ButtonOK.Size = new System.Drawing.Size(191, 34);
+            this.ButtonOK.TabIndex = 0;
+            this.ButtonOK.Text = "OK";
+            this.ButtonOK.UseVisualStyleBackColor = true;
+            this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
-            // LblScaleHint
+            // LabelUnnamed1
             // 
-            this.LblScaleHint.AutoSize = true;
-            this.LblScaleHint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LblScaleHint.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblScaleHint.Location = new System.Drawing.Point(35, 35);
-            this.LblScaleHint.Margin = new System.Windows.Forms.Padding(35, 10, 35, 10);
-            this.LblScaleHint.Name = "LblScaleHint";
-            this.LblScaleHint.Size = new System.Drawing.Size(461, 101);
-            this.LblScaleHint.TabIndex = 1;
-            this.LblScaleHint.Text = resources.GetString("LblScaleHint.Text");
-            this.LblScaleHint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelUnnamed1.AutoSize = true;
+            this.LabelUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelUnnamed1.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelUnnamed1.Location = new System.Drawing.Point(0, 25);
+            this.LabelUnnamed1.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelUnnamed1.Name = "LabelUnnamed1";
+            this.LabelUnnamed1.Size = new System.Drawing.Size(531, 121);
+            this.LabelUnnamed1.TabIndex = 1;
+            this.LabelUnnamed1.Text = resources.GetString("LabelUnnamed1.Text");
+            this.LabelUnnamed1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // scalinghint
+            // ScalingHint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(531, 212);
             this.ControlBox = false;
-            this.Controls.Add(this.LayScaleHint);
+            this.Controls.Add(this.LayoutUnnamed1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(531, 212);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(531, 212);
-            this.Name = "scalinghint";
+            this.Name = "ScalingHint";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "scalinghint";
-            this.LayScaleHint.ResumeLayout(false);
-            this.LayScaleHint.PerformLayout();
+            this.Text = "ScalingHint";
+            this.LayoutUnnamed1.ResumeLayout(false);
+            this.LayoutUnnamed1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel LayScaleHint;
-        private System.Windows.Forms.Button BtnBackToScale;
-        private System.Windows.Forms.Label LblScaleHint;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
+        private System.Windows.Forms.Button ButtonOK;
+        private System.Windows.Forms.Label LabelUnnamed1;
     }
 }

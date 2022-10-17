@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait
+namespace PathfinderKINGPortrait.AuxForms
 {
-    public partial class scalinghint : Form
+    public partial class ScalingHint : Form
     {
-        public scalinghint()
+        public ScalingHint()
         {
             InitializeComponent();
         }
-
-        private void BtnBackToScale_Click(object sender, EventArgs e)
+        private void ButtonOK_Click(object sender, EventArgs e)
         {
             Close();
         }

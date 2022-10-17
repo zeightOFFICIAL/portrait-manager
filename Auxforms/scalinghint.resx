@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LblScaleHint.Text" xml:space="preserve">
-    <value>This is a scaling page. Here you can adjust the portrait as you see fit. Click and drag to move cropping rectangle. Double-click on portrait to restore. Use "Create" button to load image. And "Back" to return to previous screen. </value>
+  <data name="LabelUnnamed1.Text" xml:space="preserve">
+    <value>This is a scaling page. Here you can adjust the portrait as you see fit. Click and drag to move cropping rectangle. Use mouse wheel to zoom in and out. Double-click on portrait to restore it to original state. Use "Create" button to generate portrait and "Back" to return to image page.</value>
   </data>
 </root>

@@ -22,19 +22,19 @@ namespace PathfinderKINGPortrait
         }
         private void ResizeAllImagesAsWindow()
         {
-            if (LayScalingForm.Enabled == true)
+            if (LayoutScalePage.Enabled == true)
                 using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
                 {
-                    ResizeImageAsWindow(PicPortraitLrg, img, PnlPortraitLrg);
-                    ResizeImageAsWindow(PicPortraitMed, img, PnlPortraitMed);
-                    ResizeImageAsWindow(PicPortraitSml, img, PnlPortraitSml);
+                    ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
+                    ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
+                    ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
                 }
-            if (LayCreateForm.Enabled == true)
+            if (LayoutFilePage.Enabled == true)
             {
                 using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
                 {
-                    ResizeImageAsWindow(PicPortraitTemp, img, PnlTemplate);
-                    ArrangeAutoScroll(PnlTemplate, 0, 0);
+                    ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
+                    ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
                 }
             }
         } 
@@ -57,21 +57,21 @@ namespace PathfinderKINGPortrait
         }
         private void AllToNotEnabled()
         {
-            LayMainForm.Visible = false;
-            LayMainForm.Enabled = false;
+            LayoutMainPage.Visible = false;
+            LayoutMainPage.Enabled = false;
 
-            LayCreateForm.Visible = false;
-            LayCreateForm.Enabled = false;
-            LayMainForm.Visible = false;
-            LayMainForm.Enabled = false;
-            LayScalingForm.Visible = false;
-            LayScalingForm.Enabled = false;
+            LayoutFilePage.Visible = false;
+            LayoutFilePage.Enabled = false;
+            LayoutMainPage.Visible = false;
+            LayoutMainPage.Enabled = false;
+            LayoutScalePage.Visible = false;
+            LayoutScalePage.Enabled = false;
         }
         private void OverloadDockOnEverything()
         {
-            LayCreateForm.Dock = DockStyle.Fill;
-            LayMainForm.Dock = DockStyle.Fill;
-            LayScalingForm.Dock = DockStyle.Fill;
+            LayoutFilePage.Dock = DockStyle.Fill;
+            LayoutMainPage.Dock = DockStyle.Fill;
+            LayoutScalePage.Dock = DockStyle.Fill;
         }
         private void ThisToEnabled(TableLayoutPanel table)
         {
@@ -92,9 +92,9 @@ namespace PathfinderKINGPortrait
             }
             using (Image img_full = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
                 PicPortraitTemp.Image = new Bitmap(img_full);
-            ArrangeAutoScroll(PnlPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            ArrangeAutoScroll(PnlPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            ArrangeAutoScroll(PnlPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ResizeAllImagesAsWindow();
         }
         public static void ArrangeAutoScroll(Panel pnl, int x_max, int y_max)

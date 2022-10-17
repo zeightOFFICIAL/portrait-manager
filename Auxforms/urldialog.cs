@@ -1,54 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait.auxforms
+namespace PathfinderKINGPortrait.AuxForms
 {
-    public partial class Urldialog : Form
+    public partial class UrlDialog : Form
     {
         public string URL { get; set; }
-        public Urldialog()
+        public UrlDialog()
         {
             InitializeComponent();
         }
-        private void BtnLoad_Click(object sender, EventArgs e)
+        private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            string url = TxtEdit.Text;
+            string urlString = TexteditURL.Text;
             try {
-                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                request.Method = "HEAD";
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                response.Close();
-                URL = url;
+                HttpWebRequest Request = WebRequest.Create(urlString) as HttpWebRequest;
+                Request.Method = "HEAD";
+                HttpWebResponse Response = Request.GetResponse() as HttpWebResponse;
+                Response.Close();
+                URL = urlString;
                 Close();
             }
             catch {
-                TxtEdit.Clear();
-                URL = "-1";             
+                TexteditURL.Text = "This URL leads to a currently unavailable site or it is incorrect";
+                URL = "-1";
             }
         }
-        private void BtnBack_Click(object sender, EventArgs e)
+        private void ButtonDeny_Click(object sender, EventArgs e)
         {
             Close();
         }
-        private void TxtEdit_DragEnter(object sender, DragEventArgs e)
+        private void TexteditUrl_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
                 e.Effect = DragDropEffects.Copy;
             else
                 e.Effect = DragDropEffects.None;
         }
-        private void TxtEdit_DragDrop(object sender, DragEventArgs e)
+        private void TexteditUrl_DragDrop(object sender, DragEventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            tb.Text = (string)e.Data.GetData(DataFormats.Text);
+            TextBox senderTextBox = (TextBox)sender;
+            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
         }
     }
 }

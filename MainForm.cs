@@ -25,8 +25,8 @@ namespace PathfinderKINGPortrait
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
 
-        private Font smlfont = new Font("Bebas Neue", 12);
-        private Font lrgfont = new Font("Bebas Neue", 20);
+        private static readonly Font smlfont = new Font("Bebas Neue", 12);
+        private static readonly Font lrgfont = new Font("Bebas Neue", 20);
 
         private Point mouse_pos = new Point();
         private int is_dragging = 0;
@@ -46,7 +46,7 @@ namespace PathfinderKINGPortrait
         private void MainForm_Load(object sender, EventArgs e)
         {
             AllToNotEnabled();
-            ThisToEnabled(LayMainForm);
+            ThisToEnabled(LayoutMainPage);
         }
         private void BtnNextToCreateNew_Click(object sender, EventArgs e)
         {
@@ -58,11 +58,11 @@ namespace PathfinderKINGPortrait
             LoadAllImages();
 
             AllToNotEnabled();
-            ThisToEnabled(LayCreateForm);
+            ThisToEnabled(LayoutFilePage);
             ResizeAllImagesAsWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (filehint fh = new filehint())
+                using (AuxForms.FileHint fh = new AuxForms.FileHint())
                     fh.ShowDialog();
             }
         }
@@ -71,7 +71,7 @@ namespace PathfinderKINGPortrait
             ClearImages();
 
             AllToNotEnabled();
-            ThisToEnabled(LayMainForm);
+            ThisToEnabled(LayoutMainPage);
         }
         private void BtnNextToScaling_Click(object sender, EventArgs e)
         {
@@ -81,12 +81,12 @@ namespace PathfinderKINGPortrait
                 if (dr == DialogResult.Yes)
                 {
                     AllToNotEnabled();
-                    ThisToEnabled(LayScalingForm);
+                    ThisToEnabled(LayoutScalePage);
                     LoadAllImages();
                     ResizeAllImagesAsWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
-                        using (scalinghint sh = new scalinghint())
+                        using (AuxForms.ScalingHint sh = new AuxForms.ScalingHint())
                             sh.ShowDialog();
                         Properties.Settings.Default.firstlaunch = false;
                         Properties.Settings.Default.Save();
@@ -96,12 +96,12 @@ namespace PathfinderKINGPortrait
             else
             {
                 AllToNotEnabled();
-                ThisToEnabled(LayScalingForm);
+                ThisToEnabled(LayoutScalePage);
                 LoadAllImages();
                 ResizeAllImagesAsWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
-                    using (scalinghint sh = new scalinghint())
+                    using (AuxForms.ScalingHint sh = new AuxForms.ScalingHint())
                         sh.ShowDialog();
                     Properties.Settings.Default.firstlaunch = false;
                     Properties.Settings.Default.Save();
@@ -114,7 +114,7 @@ namespace PathfinderKINGPortrait
             LoadAllImages();
 
             AllToNotEnabled();
-            ThisToEnabled(LayCreateForm);
+            ThisToEnabled(LayoutFilePage);
             ResizeAllImagesAsWindow();
         }
         private void BtnExit_Click(object sender, EventArgs e)

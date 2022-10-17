@@ -63,17 +63,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Auxforms\urldialog.cs">
+    <Compile Include="AuxForms\UrlDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auxforms\urldialog.Designer.cs">
-      <DependentUpon>urldialog.cs</DependentUpon>
+    <Compile Include="AuxForms\UrlDialog.Designer.cs">
+      <DependentUpon>UrlDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Auxforms\filehint.cs">
+    <Compile Include="AuxForms\FileHint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auxforms\filehint.Designer.cs">
-      <DependentUpon>filehint.cs</DependentUpon>
+    <Compile Include="AuxForms\FileHint.Designer.cs">
+      <DependentUpon>FileHint.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -88,37 +88,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Auxforms\scalinghint.cs">
+    <Compile Include="AuxForms\ScalingHint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auxforms\scalinghint.Designer.cs">
-      <DependentUpon>scalinghint.cs</DependentUpon>
+    <Compile Include="AuxForms\ScalingHint.Designer.cs">
+      <DependentUpon>ScalingHint.cs</DependentUpon>
     </Compile>
-    <Compile Include="scripts\eventshandler.cs">
+    <Compile Include="Scripts\eventshandler.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auxforms\finaldialog.cs">
+    <Compile Include="AuxForms\FinalDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Auxforms\finaldialog.Designer.cs">
-      <DependentUpon>finaldialog.cs</DependentUpon>
+    <Compile Include="AuxForms\FinalDialog.Designer.cs">
+      <DependentUpon>FinalDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="scripts\functions.cs">
+    <Compile Include="Scripts\functions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="scripts\imageworks.cs" />
-    <Compile Include="scripts\systemworks.cs" />
-    <EmbeddedResource Include="Auxforms\filehint.resx">
-      <DependentUpon>filehint.cs</DependentUpon>
+    <Compile Include="Scripts\imageworks.cs" />
+    <Compile Include="Scripts\systemworks.cs" />
+    <EmbeddedResource Include="AuxForms\FileHint.resx">
+      <DependentUpon>FileHint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Auxforms\finaldialog.resx">
-      <DependentUpon>finaldialog.cs</DependentUpon>
+    <EmbeddedResource Include="AuxForms\FinalDialog.resx">
+      <DependentUpon>FinalDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Auxforms\scalinghint.resx">
-      <DependentUpon>scalinghint.cs</DependentUpon>
+    <EmbeddedResource Include="AuxForms\ScalingHint.resx">
+      <DependentUpon>ScalingHint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Auxforms\urldialog.resx">
-      <DependentUpon>urldialog.cs</DependentUpon>
+    <EmbeddedResource Include="AuxForms\UrlDialog.resx">
+      <DependentUpon>UrlDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

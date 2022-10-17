@@ -1,33 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait.scripts
+namespace PathfinderKINGPortrait.AuxForms
 {
-    public partial class finaldialog : Form
+    public partial class FinalDialog : Form
     {
         public int State { get; set; }
-        public finaldialog()
+        public FinalDialog()
         {
             InitializeComponent();
         }
-        private void BtnBackToMenu_Click(object sender, EventArgs e)
+        private void ButtonMenu_Click(object sender, EventArgs e)
         {
             State = 1;
             Close();
         }
-        private void BtnBackToCreateNew_Click(object sender, EventArgs e)
+        private void ButtonNew_Click(object sender, EventArgs e)
         {
             State = 2;
             Close();
         }
-        private void BtnOpenFolderBackToMenu_Click(object sender, EventArgs e)
+        private void ButtonOpen_Click(object sender, EventArgs e)
         {
             State = 3;
             Close();

@@ -142,7 +142,7 @@ namespace PathfinderKINGPortrait
             this.ButtonLocalPortraitLoad.TabIndex = 2;
             this.ButtonLocalPortraitLoad.Text = "Choose local image";
             this.ButtonLocalPortraitLoad.UseVisualStyleBackColor = true;
-            this.ButtonLocalPortraitLoad.Click += new System.EventHandler(this.BtnLoadPortrait_Click);
+            this.ButtonLocalPortraitLoad.Click += new System.EventHandler(this.ButtonLocalPortraitLoad_Click);
             // 
             // ButtonToScalePage
             // 
@@ -155,7 +155,7 @@ namespace PathfinderKINGPortrait
             this.ButtonToScalePage.TabIndex = 1;
             this.ButtonToScalePage.Text = "Next";
             this.ButtonToScalePage.UseVisualStyleBackColor = true;
-            this.ButtonToScalePage.Click += new System.EventHandler(this.BtnNextToScaling_Click);
+            this.ButtonToScalePage.Click += new System.EventHandler(this.ButtonToScalePage_Click);
             // 
             // ButtonWebPortraitLoad
             // 
@@ -168,7 +168,7 @@ namespace PathfinderKINGPortrait
             this.ButtonWebPortraitLoad.TabIndex = 3;
             this.ButtonWebPortraitLoad.Text = "Choose web image";
             this.ButtonWebPortraitLoad.UseVisualStyleBackColor = true;
-            this.ButtonWebPortraitLoad.Click += new System.EventHandler(this.BtnURLLoad_Click);
+            this.ButtonWebPortraitLoad.Click += new System.EventHandler(this.ButtonWebPortraitLoad_Click);
             // 
             // ButtonToMainPage
             // 
@@ -181,7 +181,7 @@ namespace PathfinderKINGPortrait
             this.ButtonToMainPage.TabIndex = 0;
             this.ButtonToMainPage.Text = "Back";
             this.ButtonToMainPage.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage.Click += new System.EventHandler(this.BtnBackToMainForm_Click);
+            this.ButtonToMainPage.Click += new System.EventHandler(this.ButtonToMainPage_Click);
             // 
             // PictureUnnamed2
             // 
@@ -205,7 +205,7 @@ namespace PathfinderKINGPortrait
             this.ButtonHintOnFilePage.TabIndex = 6;
             this.ButtonHintOnFilePage.Text = "?";
             this.ButtonHintOnFilePage.UseVisualStyleBackColor = true;
-            this.ButtonHintOnFilePage.Click += new System.EventHandler(this.BtnFileHint_Click);
+            this.ButtonHintOnFilePage.Click += new System.EventHandler(this.ButtonHintOnFilePage_Click);
             // 
             // LayoutUnnamed5
             // 
@@ -402,7 +402,7 @@ namespace PathfinderKINGPortrait
             this.ButtonHintOnScalePage.TabIndex = 0;
             this.ButtonHintOnScalePage.Text = "?";
             this.ButtonHintOnScalePage.UseVisualStyleBackColor = true;
-            this.ButtonHintOnScalePage.Click += new System.EventHandler(this.BtnShowHints_Click);
+            this.ButtonHintOnScalePage.Click += new System.EventHandler(this.ButtonHintOnScalePage_Click);
             // 
             // ButtonBackToFilePage
             // 
@@ -415,7 +415,7 @@ namespace PathfinderKINGPortrait
             this.ButtonBackToFilePage.TabIndex = 0;
             this.ButtonBackToFilePage.Text = "Back";
             this.ButtonBackToFilePage.UseVisualStyleBackColor = true;
-            this.ButtonBackToFilePage.Click += new System.EventHandler(this.BtnBackToCreateNew_Click);
+            this.ButtonBackToFilePage.Click += new System.EventHandler(this.ButtonBackToFilePage_Click);
             // 
             // ButtonCreatePortrait
             // 
@@ -428,7 +428,7 @@ namespace PathfinderKINGPortrait
             this.ButtonCreatePortrait.TabIndex = 2;
             this.ButtonCreatePortrait.Text = "Create";
             this.ButtonCreatePortrait.UseVisualStyleBackColor = true;
-            this.ButtonCreatePortrait.Click += new System.EventHandler(this.BtnCreatePortrait_Click);
+            this.ButtonCreatePortrait.Click += new System.EventHandler(this.ButtonCreatePortrait_Click);
             // 
             // LayoutUnnamed4
             // 
@@ -551,7 +551,7 @@ namespace PathfinderKINGPortrait
             this.ButtonToFilePage.TabIndex = 0;
             this.ButtonToFilePage.Text = "Create new portrait";
             this.ButtonToFilePage.UseVisualStyleBackColor = true;
-            this.ButtonToFilePage.Click += new System.EventHandler(this.BtnNextToCreateNew_Click);
+            this.ButtonToFilePage.Click += new System.EventHandler(this.ButtonToFilePage_Click);
             // 
             // ButtonExit
             // 
@@ -562,7 +562,7 @@ namespace PathfinderKINGPortrait
             this.ButtonExit.TabIndex = 1;
             this.ButtonExit.Text = "Exit";
             this.ButtonExit.UseVisualStyleBackColor = true;
-            this.ButtonExit.Click += new System.EventHandler(this.BtnExit_Click);
+            this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
             // ButtonToGalleryPage
             // 

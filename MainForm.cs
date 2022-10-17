@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Drawing.Drawing2D;
-
 
 namespace PathfinderKINGPortrait
 {
@@ -25,16 +15,19 @@ namespace PathfinderKINGPortrait
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
 
-        private static readonly Font smlfont = new Font("Bebas Neue", 12);
-        private static readonly Font lrgfont = new Font("Bebas Neue", 20);
+        private static readonly Font _smlFont = new Font("Bebas Neue", 12);
+        private static readonly Font _lrgFont = new Font("Bebas Neue", 20);
 
-        private Point mouse_pos = new Point();
-        private int is_dragging = 0;
-        private bool is_loaded = false;
+        private Point _mousePos = new Point();
+        private int _isDragging = 0;
+        private bool _isLoaded = false;
 
         public MainForm()
         {
             InitializeComponent();
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             OverloadDockOnEverything();
             PicPortraitTemp.AllowDrop = true;
 
@@ -42,18 +35,16 @@ namespace PathfinderKINGPortrait
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-        }
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+
             AllToNotEnabled();
             ThisToEnabled(LayoutMainPage);
         }
-        private void BtnNextToCreateNew_Click(object sender, EventArgs e)
+        private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
             ClearImages();
             SystemControl.FileControl.TempClear();
 
-            is_loaded = false;
+            _isLoaded = false;
             SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
 
@@ -62,23 +53,33 @@ namespace PathfinderKINGPortrait
             ResizeAllImagesAsWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (AuxForms.FileHint fh = new AuxForms.FileHint())
-                    fh.ShowDialog();
+                using (AuxForms.MyHintBox FileHint = new AuxForms.MyHintBox("This is an image page. Here you can choose " +
+                    "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
+                    "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
+                    "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
+                    "to return to main page."))
+                {
+                    FileHint.ShowDialog();
+                }
             }
         }
-        private void BtnBackToMainForm_Click(object sender, EventArgs e)
+        private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
             ClearImages();
 
             AllToNotEnabled();
             ThisToEnabled(LayoutMainPage);
         }
-        private void BtnNextToScaling_Click(object sender, EventArgs e)
+        private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
-            if (is_loaded == false)
+            if (_isLoaded == false)
             {
-                DialogResult dr = MessageBox.Show("You did not load any images. Proceed?", "No image!", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.Yes)
+                DialogResult DialogResult;
+                using (AuxForms.MyMessageBox NoImageMessage = new AuxForms.MyMessageBox("You did not load any images. Proceed?"))
+                {
+                    DialogResult = NoImageMessage.ShowDialog();
+                }
+                if (DialogResult == DialogResult.OK)
                 {
                     AllToNotEnabled();
                     ThisToEnabled(LayoutScalePage);
@@ -86,8 +87,14 @@ namespace PathfinderKINGPortrait
                     ResizeAllImagesAsWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
-                        using (AuxForms.ScalingHint sh = new AuxForms.ScalingHint())
-                            sh.ShowDialog();
+                        using (AuxForms.MyHintBox ScalingHint = new AuxForms.MyHintBox("This is a scaling page. Here you can adjust the " +
+                            "portrait as you see fit. Click and drag to move cropping rectangle. " +
+                            "Use mouse wheel to zoom in and out. Double-click on portrait to " +
+                            "restore it to original state. Use \"Create\" button to generate " +
+                            "portrait and \"Back\" to return to image page."))
+                        {
+                            ScalingHint.ShowDialog();
+                        }
                         Properties.Settings.Default.firstlaunch = false;
                         Properties.Settings.Default.Save();
                     }
@@ -101,15 +108,20 @@ namespace PathfinderKINGPortrait
                 ResizeAllImagesAsWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
-                    using (AuxForms.ScalingHint sh = new AuxForms.ScalingHint())
-                        sh.ShowDialog();
+                    using (AuxForms.MyHintBox ScalingHint = new AuxForms.MyHintBox("This is a scaling page. Here you can adjust the " +
+                        "portrait as you see fit. Click and drag to move cropping rectangle. " +
+                        "Use mouse wheel to zoom in and out. Double-click on portrait to " +
+                        "restore it to original state. Use \"Create\" button to generate " +
+                        "portrait and \"Back\" to return to image page."))
+                    {
+                        ScalingHint.ShowDialog();
+                    }
                     Properties.Settings.Default.firstlaunch = false;
                     Properties.Settings.Default.Save();
                 }
             }
-                
         }
-        private void BtnBackToCreateNew_Click(object sender, EventArgs e)
+        private void ButtonBackToFilePage_Click(object sender, EventArgs e)
         {
             LoadAllImages();
 
@@ -117,7 +129,7 @@ namespace PathfinderKINGPortrait
             ThisToEnabled(LayoutFilePage);
             ResizeAllImagesAsWindow();
         }
-        private void BtnExit_Click(object sender, EventArgs e)
+        private void ButtonExit_Click(object sender, EventArgs e)
         {
             ClearImages();
             SystemControl.FileControl.TempClear();

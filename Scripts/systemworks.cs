@@ -8,8 +8,8 @@ namespace SystemControl
     {
         public static string OpenFile()
         {
-            string fullpath;
-            OpenFileDialog ofd = new OpenFileDialog()
+            string fullPath;
+            OpenFileDialog OpenFileDialog = new OpenFileDialog()
             {
                 Title = "Choose image",
                 Multiselect = false,
@@ -18,31 +18,31 @@ namespace SystemControl
                 SupportMultiDottedExtensions = false,
                 Filter = "Image files|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
             };
-            if (ofd.ShowDialog() == DialogResult.OK)
-                fullpath = ofd.FileName;
+            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+                fullPath = OpenFileDialog.FileName;
             else
-                fullpath = "-1";
-            ofd.Dispose();
-            return fullpath;
+                fullPath = "-1";
+            OpenFileDialog.Dispose();
+            return fullPath;
         }
-        public static void CreateTemp(string fullpath, string new_fullpath_full, string new_fullpath_poor)
+        public static void CreateTemp(string fullPath, string newFullpathFull, string newFullpathPoor)
         {
             if (!Directory.Exists("temp/")) 
                 Directory.CreateDirectory("temp/");
-            if (fullpath == "-1")
+            if (fullPath == "-1")
             {
                 using (Image img = new Bitmap(PathfinderKINGPortrait.Properties.Resources.fulldefault))
                 {
-                    img.Save(new_fullpath_full);
-                    img.Save(new_fullpath_poor);
+                    img.Save(newFullpathFull);
+                    img.Save(newFullpathPoor);
                 }
             }
             else
             {
-                using (Image img = new Bitmap(fullpath))
+                using (Image img = new Bitmap(fullPath))
                 {
-                    img.Save(new_fullpath_full);
-                    ImageControl.Wraps.CreatePoorImage(img, new_fullpath_poor);
+                    img.Save(newFullpathFull);
+                    ImageControl.Wraps.CreatePoorImage(img, newFullpathPoor);
                 }
             }
         }

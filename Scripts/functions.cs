@@ -13,12 +13,18 @@ namespace PathfinderKINGPortrait
             ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources.fulldefault);
             ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources.fulldefault);
         }
-        private void ResizeImageAsWindow(PictureBox pic, Image img, Panel pnl)
+        private void ResizeImageAsWindow(PictureBox pictureBox, Image image, Panel panel)
         {
-            float aspect_ratio = (pic.Height * 1.0f / pic.Width * 1.0f);
-            Tuple<int, int> tuple = MapNewWidthHeight(pnl, aspect_ratio);
-            pic.Image = ImageControl.Direct.Resize.LowQiality(img, tuple.Item1, tuple.Item2);
-            ArrangeAutoScroll(pnl, tuple.Item1, tuple.Item2);
+            PanelPortraitLrg.VerticalScroll.Visible = false;
+            PanelPortraitLrg.HorizontalScroll.Visible = false;
+            PanelPortraitMed.VerticalScroll.Visible = false;
+            PanelPortraitMed.HorizontalScroll.Visible = false;
+            PanelPortraitSml.VerticalScroll.Visible = false;
+            PanelPortraitSml.HorizontalScroll.Visible = false;
+            float aspectRatio = (pictureBox.Height * 1.0f / pictureBox.Width * 1.0f);
+            Tuple<int, int> newSizeTuple = MapNewWidthHeight(panel, aspectRatio);
+            pictureBox.Image = ImageControl.Direct.Resize.LowQiality(image, newSizeTuple.Item1, newSizeTuple.Item2);
+            ArrangeAutoScroll(panel, newSizeTuple.Item1, newSizeTuple.Item2);
         }
         private void ResizeAllImagesAsWindow()
         {
@@ -37,23 +43,21 @@ namespace PathfinderKINGPortrait
                     ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
                 }
             }
-        } 
-        private static Tuple<int, int> MapNewWidthHeight(Panel pnl, float aspect_ratio)
+        }
+        private static Tuple<int, int> MapNewWidthHeight(Panel panel, float aspectRatio)
         {
-            int width = pnl.Width,
-                height = pnl.Height,
-                dst_width,
-                dst_height;
-
-            dst_height = height;
-            dst_width = (int)(height * 1.0f / aspect_ratio * 1.0f);
-            if (dst_width < pnl.Width)
+            int srcWidth = panel.Width,
+                srcHeight = panel.Height,
+                dstWidth,
+                dstHeight;
+            dstHeight = srcHeight;
+            dstWidth = (int)(srcHeight * 1.0f / aspectRatio * 1.0f);
+            if (dstWidth < panel.Width)
             {
-                dst_width = width;
-                dst_height = (int)(width * 1.0f / (1.0f / aspect_ratio * 1.0f));
+                dstWidth = srcWidth;
+                dstHeight = (int)(srcWidth * 1.0f / (1.0f / aspectRatio * 1.0f));
             }
-
-            return Tuple.Create(dst_width, dst_height);
+            return Tuple.Create(dstWidth, dstHeight);
         }
         private void AllToNotEnabled()
         {
@@ -84,28 +88,28 @@ namespace PathfinderKINGPortrait
         private void LoadAllImages()
         {
             ClearImages();
-            using (Image img_poor = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+            using (Image imgPoor = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
             {
-                PicPortraitLrg.Image = new Bitmap(img_poor);
-                PicPortraitMed.Image = new Bitmap(img_poor);
-                PicPortraitSml.Image = new Bitmap(img_poor);
+                PicPortraitLrg.Image = new Bitmap(imgPoor);
+                PicPortraitMed.Image = new Bitmap(imgPoor);
+                PicPortraitSml.Image = new Bitmap(imgPoor);
             }
-            using (Image img_full = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
-                PicPortraitTemp.Image = new Bitmap(img_full);
+            using (Image imgFull = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
+                PicPortraitTemp.Image = new Bitmap(imgFull);
             ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ResizeAllImagesAsWindow();
         }
-        public static void ArrangeAutoScroll(Panel pnl, int x_max, int y_max)
+        public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
         {
-            pnl.AutoScroll = false;
-            pnl.VerticalScroll.Minimum = 0;
-            pnl.HorizontalScroll.Minimum = 0;
-            pnl.VerticalScroll.Maximum = x_max;
-            pnl.HorizontalScroll.Maximum = y_max;
-            pnl.VerticalScroll.Visible = true;
-            pnl.HorizontalScroll.Visible = true;
+            panel.AutoScroll = false;
+            panel.VerticalScroll.Minimum = 0;
+            panel.HorizontalScroll.Minimum = 0;
+            panel.VerticalScroll.Maximum = xMax;
+            panel.HorizontalScroll.Maximum = yMax;
+            panel.VerticalScroll.Visible = true;
+            panel.HorizontalScroll.Visible = true;
         }
         public static bool CheckExistence(string path)
         {

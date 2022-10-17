@@ -2,7 +2,6 @@
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace PathfinderKINGPortrait
 {
@@ -10,71 +9,83 @@ namespace PathfinderKINGPortrait
     {
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
-            string[] filelist = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            string fullpath = "-1";
-            if (filelist[0] != null && File.Exists(filelist[0]) &&
-                (Path.GetExtension(filelist[0]) == ".png") ||
-                (Path.GetExtension(filelist[0]) == ".jpg") ||
-                (Path.GetExtension(filelist[0]) == ".jpeg")||
-                (Path.GetExtension(filelist[0]) == ".bmp") ||
-                (Path.GetExtension(filelist[0]) == ".gif"))
-                fullpath = filelist[0];
-            if (fullpath == "-1")
+            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string fullPath = "-1";
+            if (fileList[0] != null && File.Exists(fileList[0]) &&
+                (Path.GetExtension(fileList[0]) == ".png") ||
+                (Path.GetExtension(fileList[0]) == ".jpg") ||
+                (Path.GetExtension(fileList[0]) == ".jpeg") ||
+                (Path.GetExtension(fileList[0]) == ".bmp") ||
+                (Path.GetExtension(fileList[0]) == ".gif"))
             {
-                if (is_loaded == true)
+                fullPath = fileList[0];
+            }
+            if (fullPath == "-1")
+            {
+                if (_isLoaded == true)
                 {
                     LoadAllImages();
                     return;
                 }
-                is_loaded = false;
+                _isLoaded = false;
             }
             else
-                is_loaded = true;
+            {
+                _isLoaded = true;
+            }
             ClearImages();
-            SystemControl.FileControl.CreateTemp(fullpath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+            SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
                 e.Effect = DragDropEffects.Copy;
+            }
             else
+            {
                 e.Effect = DragDropEffects.None;
+            }
         }
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
-            string fullpath = SystemControl.FileControl.OpenFile();
-            if (fullpath == "-1")
+            string fullPath = SystemControl.FileControl.OpenFile();
+            if (fullPath == "-1")
             {
-                if (is_loaded == true)
+                if (_isLoaded == true)
                 {
                     LoadAllImages();
                     return;
                 }
-                is_loaded = false;
+                _isLoaded = false;
             }
             else
-                is_loaded = true;
+            {
+                _isLoaded = true;
+            }
             ClearImages();
-            SystemControl.FileControl.CreateTemp(fullpath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+            SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
         }
-        private void BtnLoadPortrait_Click(object sender, EventArgs e)
+        private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
         {
-            string fullpath = SystemControl.FileControl.OpenFile();
-            if (fullpath == "-1")
+            string fullPath = SystemControl.FileControl.OpenFile();
+            if (fullPath == "-1")
             {
-                if (is_loaded == true)
+                if (_isLoaded == true)
                 {
                     LoadAllImages();
                     return;
                 }
-                is_loaded = false;
+                _isLoaded = false;
             }
             else
-                is_loaded = true;
+            {
+                _isLoaded = true;
+            }
             ClearImages();
-            SystemControl.FileControl.CreateTemp(fullpath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+            SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
         }
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
@@ -83,24 +94,24 @@ namespace PathfinderKINGPortrait
             PanelPortraitLrg.HorizontalScroll.Visible = false;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                mouse_pos = e.Location;
-                is_dragging = 1;
+                _mousePos = e.Location;
+                _isDragging = 1;
             }
         }
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
-            if (is_dragging == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
+            if (_isDragging == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
                                   PicPortraitLrg.Image.Height > PanelPortraitLrg.Height))
             {
-                PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (mouse_pos.X - e.X),
-                                                              -PanelPortraitLrg.AutoScrollPosition.Y + (mouse_pos.Y - e.Y));
+                PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePos.X - e.X),
+                                                              -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePos.Y - e.Y));
             }
         }
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
             PanelPortraitLrg.VerticalScroll.Visible = false;
             PanelPortraitLrg.HorizontalScroll.Visible = false;
-            is_dragging = 0;
+            _isDragging = 0;
         }
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
@@ -108,24 +119,24 @@ namespace PathfinderKINGPortrait
             PanelPortraitMed.HorizontalScroll.Visible = false;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                mouse_pos = e.Location;
-                is_dragging = 2;
+                _mousePos = e.Location;
+                _isDragging = 2;
             }
         }
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
-            if (is_dragging == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
+            if (_isDragging == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
                                   PicPortraitMed.Image.Height > PanelPortraitMed.Height))
             {
-                PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (mouse_pos.X - e.X),
-                                                              -PanelPortraitMed.AutoScrollPosition.Y + (mouse_pos.Y - e.Y));
+                PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePos.X - e.X),
+                                                              -PanelPortraitMed.AutoScrollPosition.Y + (_mousePos.Y - e.Y));
             }
         }
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
             PanelPortraitMed.VerticalScroll.Visible = false;
             PanelPortraitMed.HorizontalScroll.Visible = false;
-            is_dragging = 0;
+            _isDragging = 0;
         }
         private void PicPortraitSml_MouseDown(object sender, MouseEventArgs e)
         {
@@ -133,68 +144,68 @@ namespace PathfinderKINGPortrait
             PanelPortraitSml.HorizontalScroll.Visible = false;
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                mouse_pos = e.Location;
-                is_dragging = 3;
+                _mousePos = e.Location;
+                _isDragging = 3;
             }
         }
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
-            if (is_dragging == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
+            if (_isDragging == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
                                   PicPortraitSml.Image.Height > PanelPortraitSml.Height))
             {
-                PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (mouse_pos.X - e.X),
-                                                              -PanelPortraitSml.AutoScrollPosition.Y + (mouse_pos.Y - e.Y));
+                PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePos.X - e.X),
+                                                              -PanelPortraitSml.AutoScrollPosition.Y + (_mousePos.Y - e.Y));
             }
         }
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
             PanelPortraitSml.VerticalScroll.Visible = false;
             PanelPortraitSml.HorizontalScroll.Visible = false;
-            is_dragging = 0;
+            _isDragging = 0;
         }
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
-            float aspect_ratio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f),
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f),
                   factor;
             if (e.Delta > 0)
             {
                 factor = PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TO_TEMPPOOR, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TO_TEMPPOOR, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
             }
         }
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
         {
-            float aspect_ratio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f),
+            float aspectRatio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f),
                   factor;
             if (e.Delta > 0)
             {
                 factor = PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TO_TEMPPOOR, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TO_TEMPPOOR, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
             }
         }
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
         {
-            float aspect_ratio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f),
+            float aspectRatio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f),
                   factor;
             if (e.Delta > 0)
             {
                 factor = PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TO_TEMPPOOR, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TO_TEMPPOOR, aspect_ratio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
             }
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
@@ -207,74 +218,79 @@ namespace PathfinderKINGPortrait
         {
             ResizeAllImagesAsWindow();
         }
-        private void BtnCreatePortrait_Click(object sender, EventArgs e)
+        private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
-            string exoduspath,
-                   fullexoduspath;
-            exoduspath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+            string exodusPath, fullExodusPath;
+            exodusPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                          "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-            fullexoduspath = "";
-            if(!SystemControl.FileControl.DirExists(exoduspath))
+            fullExodusPath = "";
+            if (!SystemControl.FileControl.DirExists(exodusPath))
             {
-                MessageBox.Show("Pathfinder: Kingmaker portraits folder was not found.", "Directory not found!", MessageBoxButtons.OK);
+                using (AuxForms.MyHintBox MyHintBox = new AuxForms.MyHintBox("Pathfinder: Kingmaker portraits folder was not found!"))
+                {
+                    MyHintBox.ShowDialog();
+                }
                 return;
             }
-            bool findplace = false;
-            uint localname = 1000;
-            while (findplace == false)
+            bool findPlace = false;
+            uint localName = 1000;
+            while (findPlace == false)
             {
-                fullexoduspath = exoduspath + "\\" + Convert.ToString(localname);
-                if (!Directory.Exists(fullexoduspath))
+                fullExodusPath = exodusPath + "\\" + Convert.ToString(localName);
+                if (!Directory.Exists(fullExodusPath))
                 {
-                    Directory.CreateDirectory(fullexoduspath);
-                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, RELATIVEPATH_TO_TEMPFULL, 
-                                                 fullexoduspath + LARGE_EXTENRSION, 
+                    Directory.CreateDirectory(fullExodusPath);
+                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, RELATIVEPATH_TO_TEMPFULL,
+                                                 fullExodusPath + LARGE_EXTENRSION,
                                                  ASPECT_RATIO_LARGE, 692, 1024);
-                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, RELATIVEPATH_TO_TEMPFULL, 
-                                                 fullexoduspath + MEDIUM_EXTENSION, 
+                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, RELATIVEPATH_TO_TEMPFULL,
+                                                 fullExodusPath + MEDIUM_EXTENSION,
                                                  ASPECT_RATIO_MED, 330, 432);
-                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TO_TEMPFULL, 
-                                                 fullexoduspath + SMALL_EXTENSION, 
+                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TO_TEMPFULL,
+                                                 fullExodusPath + SMALL_EXTENSION,
                                                  ASPECT_RATIO_SMALL, 185, 242);
-                    findplace = true;
+                    findPlace = true;
                 }
-                localname++;
+                localName++;
             }
-            if (CheckExistence(fullexoduspath))
+            if (CheckExistence(fullExodusPath))
             {
-                using (AuxForms.FinalDialog fd = new AuxForms.FinalDialog())
+                using (AuxForms.FinalDialog FinalDialog = new AuxForms.FinalDialog())
                 {
-                    fd.ShowDialog();
-                    if (fd.State == 1)
+                    FinalDialog.ShowDialog();
+                    if (FinalDialog.State == 1)
                     {
                         ClearImages();
-                        is_loaded = false;
+                        _isLoaded = false;
                         AllToNotEnabled();
                         ThisToEnabled(LayoutMainPage);
                     }
-                    else if (fd.State == 2)
+                    else if (FinalDialog.State == 2)
                     {
                         ClearImages();
-                        is_loaded = false;
+                        _isLoaded = false;
                         SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
                         LoadAllImages();
                         AllToNotEnabled();
                         ThisToEnabled(LayoutFilePage);
                         ResizeAllImagesAsWindow();
                     }
-                    else if (fd.State == 3)
+                    else if (FinalDialog.State == 3)
                     {
                         ClearImages();
-                        is_loaded = false;
+                        _isLoaded = false;
                         AllToNotEnabled();
-                        System.Diagnostics.Process.Start(fullexoduspath);
+                        System.Diagnostics.Process.Start(fullExodusPath);
                         ThisToEnabled(LayoutMainPage);
                     }
                 }
             }
-            else 
+            else
             {
-                MessageBox.Show("Program was unable to load any images into portraits folder.", "No images load!", MessageBoxButtons.OK);
+                using (AuxForms.MyHintBox MyHintBox = new AuxForms.MyHintBox("Program was unable to load any images into portraits folder!"))
+                {
+                    MyHintBox.ShowDialog();
+                }
                 return;
             }
         }
@@ -296,42 +312,41 @@ namespace PathfinderKINGPortrait
         private void LblUnnamed1_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed1.Text = "Stats portrait";
-            LabelUnnamed1.Font = smlfont;
+            LabelUnnamed1.Font = _smlFont;
         }
         private void LblUnnamed2_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed2.Text = "Character portrait";
-            LabelUnnamed2.Font = smlfont;
+            LabelUnnamed2.Font = _smlFont;
         }
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed3.Text = "Gameplay portrait";
-            LabelUnnamed3.Font = smlfont;
+            LabelUnnamed3.Font = _smlFont;
         }
         private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed1.Text = "Medium";
-            LabelUnnamed1.Font = lrgfont;
+            LabelUnnamed1.Font = _lrgFont;
         }
-
         private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed2.Text = "Large";
-            LabelUnnamed2.Font = lrgfont;
+            LabelUnnamed2.Font = _lrgFont;
         }
-
         private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed3.Text = "Small";
-            LabelUnnamed3.Font = lrgfont;
+            LabelUnnamed3.Font = _lrgFont;
         }
-        private void BtnURLLoad_Click(object sender, EventArgs e)
+        private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
             using (AuxForms.UrlDialog ud = new AuxForms.UrlDialog())
-            { 
+            {
                 ud.ShowDialog();
                 if (ud.URL != "-1")
-                {   try
+                {
+                    try
                     {
                         var request = System.Net.WebRequest.Create(ud.URL);
                         using (var response = request.GetResponse())
@@ -343,7 +358,7 @@ namespace PathfinderKINGPortrait
                                     Directory.CreateDirectory("temp/");
                                 web_img.Save(RELATIVEPATH_TO_TEMPFULL);
                                 ImageControl.Wraps.CreatePoorImage(web_img, RELATIVEPATH_TO_TEMPPOOR);
-                                is_loaded = true;
+                                _isLoaded = true;
                                 ClearImages();
                                 LoadAllImages();
                             }
@@ -356,15 +371,27 @@ namespace PathfinderKINGPortrait
                 }
             }
         }
-        private void BtnShowHints_Click(object sender, EventArgs e)
+        private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (AuxForms.ScalingHint sh = new AuxForms.ScalingHint())
-                sh.ShowDialog();
+            using (AuxForms.MyHintBox ScalingHint = new AuxForms.MyHintBox("This is a scaling page. Here you can adjust the " +
+                         "portrait as you see fit. Click and drag to move cropping rectangle. " +
+                         "Use mouse wheel to zoom in and out. Double-click on portrait to " +
+                         "restore it to original state. Use \"Create\" button to generate " +
+                         "portrait and \"Back\" to return to image page."))
+            {
+                ScalingHint.ShowDialog();
+            }
         }
-        private void BtnFileHint_Click(object sender, EventArgs e)
+        private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (AuxForms.FileHint fh = new AuxForms.FileHint())
-                fh.ShowDialog();
+            using (AuxForms.MyHintBox FileHint = new AuxForms.MyHintBox("This is an image page. Here you can choose " +
+                    "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
+                    "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
+                    "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
+                    "to return to main page."))
+            {
+                FileHint.ShowDialog();
+            }
         }
     }
 }

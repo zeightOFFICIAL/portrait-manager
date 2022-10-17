@@ -14,15 +14,17 @@ namespace PathfinderKINGPortrait.AuxForms
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
             string urlString = TexteditURL.Text;
-            try {
-                HttpWebRequest Request = WebRequest.Create(urlString) as HttpWebRequest;
-                Request.Method = "HEAD";
-                HttpWebResponse Response = Request.GetResponse() as HttpWebResponse;
-                Response.Close();
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(urlString) as HttpWebRequest;
+                request.Method = "HEAD";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.Close();
                 URL = urlString;
                 Close();
             }
-            catch {
+            catch
+            {
                 TexteditURL.Text = "This URL leads to a currently unavailable site or it is incorrect";
                 URL = "-1";
             }
@@ -34,9 +36,13 @@ namespace PathfinderKINGPortrait.AuxForms
         private void TexteditUrl_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
+            {
                 e.Effect = DragDropEffects.Copy;
+            }
             else
+            {
                 e.Effect = DragDropEffects.None;
+            }
         }
         private void TexteditUrl_DragDrop(object sender, DragEventArgs e)
         {

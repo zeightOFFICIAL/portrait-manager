@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait
+namespace PathfinderKingmakerPortraitManager
 {
     public partial class MainForm : Form
     {
@@ -53,7 +53,7 @@ namespace PathfinderKINGPortrait
             ResizeAllImagesAsWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (AuxForms.MyHintBox FileHint = new AuxForms.MyHintBox("This is an image page. Here you can choose " +
+                using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
                     "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
                     "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
                     "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
@@ -75,7 +75,7 @@ namespace PathfinderKINGPortrait
             if (_isLoaded == false)
             {
                 DialogResult DialogResult;
-                using (AuxForms.MyMessageBox NoImageMessage = new AuxForms.MyMessageBox("You did not load any images. Proceed?"))
+                using (AuxForms.MyChoiceDialog NoImageMessage = new AuxForms.MyChoiceDialog("You did not load any images. Proceed?"))
                 {
                     DialogResult = NoImageMessage.ShowDialog();
                 }
@@ -87,7 +87,7 @@ namespace PathfinderKINGPortrait
                     ResizeAllImagesAsWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
-                        using (AuxForms.MyHintBox ScalingHint = new AuxForms.MyHintBox("This is a scaling page. Here you can adjust the " +
+                        using (AuxForms.MyHintDialog ScalingHint = new AuxForms.MyHintDialog("This is a scaling page. Here you can adjust the " +
                             "portrait as you see fit. Click and drag to move cropping rectangle. " +
                             "Use mouse wheel to zoom in and out. Double-click on portrait to " +
                             "restore it to original state. Use \"Create\" button to generate " +
@@ -108,7 +108,7 @@ namespace PathfinderKINGPortrait
                 ResizeAllImagesAsWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
-                    using (AuxForms.MyHintBox ScalingHint = new AuxForms.MyHintBox("This is a scaling page. Here you can adjust the " +
+                    using (AuxForms.MyHintDialog ScalingHint = new AuxForms.MyHintDialog("This is a scaling page. Here you can adjust the " +
                         "portrait as you see fit. Click and drag to move cropping rectangle. " +
                         "Use mouse wheel to zoom in and out. Double-click on portrait to " +
                         "restore it to original state. Use \"Create\" button to generate " +

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait.AuxForms
+namespace PathfinderKingmakerPortraitManager.AuxForms
 {
     public partial class FinalDialog : Form
     {

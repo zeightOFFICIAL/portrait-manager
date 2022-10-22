@@ -3,7 +3,7 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait
+namespace PathfinderKingmakerPortraitManager
 {
     public partial class MainForm : Form
     {
@@ -226,15 +226,15 @@ namespace PathfinderKINGPortrait
             fullExodusPath = "";
             if (!SystemControl.FileControl.DirExists(exodusPath))
             {
-                using (AuxForms.MyHintBox MyHintBox = new AuxForms.MyHintBox("Pathfinder: Kingmaker portraits folder was not found!"))
+                using (AuxForms.MyMessageDialog MyMessageDialog = new AuxForms.MyMessageDialog("Pathfinder: Kingmaker portraits folder was not found!"))
                 {
-                    MyHintBox.ShowDialog();
+                    MyMessageDialog.ShowDialog();
                 }
                 return;
             }
-            bool findPlace = false;
+            bool placeFound = false;
             uint localName = 1000;
-            while (findPlace == false)
+            while (placeFound == false)
             {
                 fullExodusPath = exodusPath + "\\" + Convert.ToString(localName);
                 if (!Directory.Exists(fullExodusPath))
@@ -249,7 +249,7 @@ namespace PathfinderKINGPortrait
                     ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TO_TEMPFULL,
                                                  fullExodusPath + SMALL_EXTENSION,
                                                  ASPECT_RATIO_SMALL, 185, 242);
-                    findPlace = true;
+                    placeFound = true;
                 }
                 localName++;
             }
@@ -287,9 +287,9 @@ namespace PathfinderKINGPortrait
             }
             else
             {
-                using (AuxForms.MyHintBox MyHintBox = new AuxForms.MyHintBox("Program was unable to load any images into portraits folder!"))
+                using (AuxForms.MyMessageDialog MyMessageDialog = new AuxForms.MyMessageDialog("Program was unable to load any images into portraits folder!"))
                 {
-                    MyHintBox.ShowDialog();
+                    MyMessageDialog.ShowDialog();
                 }
                 return;
             }
@@ -341,23 +341,23 @@ namespace PathfinderKINGPortrait
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            using (AuxForms.UrlDialog ud = new AuxForms.UrlDialog())
+            using (AuxForms.UrlDialog UrlDialog = new AuxForms.UrlDialog())
             {
-                ud.ShowDialog();
-                if (ud.URL != "-1")
+                UrlDialog.ShowDialog();
+                if (UrlDialog.URL != "-1")
                 {
                     try
                     {
-                        var request = System.Net.WebRequest.Create(ud.URL);
+                        var request = System.Net.WebRequest.Create(UrlDialog.URL);
                         using (var response = request.GetResponse())
                         using (var stream = response.GetResponseStream())
                         {
-                            using (Image web_img = Bitmap.FromStream(stream))
+                            using (Image webImage = Bitmap.FromStream(stream))
                             {
                                 if (!Directory.Exists("temp/"))
                                     Directory.CreateDirectory("temp/");
-                                web_img.Save(RELATIVEPATH_TO_TEMPFULL);
-                                ImageControl.Wraps.CreatePoorImage(web_img, RELATIVEPATH_TO_TEMPPOOR);
+                                webImage.Save(RELATIVEPATH_TO_TEMPFULL);
+                                ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TO_TEMPPOOR);
                                 _isLoaded = true;
                                 ClearImages();
                                 LoadAllImages();
@@ -366,14 +366,18 @@ namespace PathfinderKINGPortrait
                     }
                     catch
                     {
-                        ud.URL = "-1";
+                        using (AuxForms.MyMessageDialog MyMessageDialog = new AuxForms.MyMessageDialog("Error during fetching image!"))
+                        {
+                            MyMessageDialog.ShowDialog();
+                        }
+                        UrlDialog.URL = "-1";
                     }
                 }
             }
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (AuxForms.MyHintBox ScalingHint = new AuxForms.MyHintBox("This is a scaling page. Here you can adjust the " +
+            using (AuxForms.MyHintDialog ScalingHint = new AuxForms.MyHintDialog("This is a scaling page. Here you can adjust the " +
                          "portrait as you see fit. Click and drag to move cropping rectangle. " +
                          "Use mouse wheel to zoom in and out. Double-click on portrait to " +
                          "restore it to original state. Use \"Create\" button to generate " +
@@ -384,7 +388,7 @@ namespace PathfinderKINGPortrait
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (AuxForms.MyHintBox FileHint = new AuxForms.MyHintBox("This is an image page. Here you can choose " +
+            using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
                     "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
                     "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
                     "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +

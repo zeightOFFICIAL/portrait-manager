@@ -1,7 +1,7 @@
 ﻿
-namespace PathfinderKINGPortrait.AuxForms
+namespace PathfinderKingmakerPortraitManager.AuxForms
 {
-    partial class MyMessageBox
+    partial class MyChoiceDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,46 +29,46 @@ namespace PathfinderKINGPortrait.AuxForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.LayoutUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
-            this.LayoutUnnamed2 = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutButtons = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonCancel = new System.Windows.Forms.Button();
             this.ButtonOK = new System.Windows.Forms.Button();
-            this.LabelUnnamed1 = new System.Windows.Forms.Label();
-            this.LayoutUnnamed1.SuspendLayout();
-            this.LayoutUnnamed2.SuspendLayout();
+            this.LabelMain = new System.Windows.Forms.Label();
+            this.LayoutMain.SuspendLayout();
+            this.LayoutButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayoutUnnamed1
             // 
-            this.LayoutUnnamed1.ColumnCount = 1;
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed1.Controls.Add(this.LayoutUnnamed2, 0, 2);
-            this.LayoutUnnamed1.Controls.Add(this.LabelUnnamed1, 0, 1);
-            this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed1.Location = new System.Drawing.Point(0, 0);
-            this.LayoutUnnamed1.Name = "LayoutUnnamed1";
-            this.LayoutUnnamed1.RowCount = 4;
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.42857F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.42857F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.LayoutUnnamed1.Size = new System.Drawing.Size(400, 140);
-            this.LayoutUnnamed1.TabIndex = 0;
+            this.LayoutMain.ColumnCount = 1;
+            this.LayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutMain.Controls.Add(this.LayoutButtons, 0, 2);
+            this.LayoutMain.Controls.Add(this.LabelMain, 0, 1);
+            this.LayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutMain.Location = new System.Drawing.Point(0, 0);
+            this.LayoutMain.Name = "LayoutUnnamed1";
+            this.LayoutMain.RowCount = 4;
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.42857F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.42857F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.LayoutMain.Size = new System.Drawing.Size(400, 140);
+            this.LayoutMain.TabIndex = 0;
             // 
             // LayoutUnnamed2
             // 
-            this.LayoutUnnamed2.ColumnCount = 2;
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed2.Controls.Add(this.ButtonCancel, 0, 0);
-            this.LayoutUnnamed2.Controls.Add(this.ButtonOK, 1, 0);
-            this.LayoutUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed2.Location = new System.Drawing.Point(3, 86);
-            this.LayoutUnnamed2.Name = "LayoutUnnamed2";
-            this.LayoutUnnamed2.RowCount = 1;
-            this.LayoutUnnamed2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed2.Size = new System.Drawing.Size(394, 38);
-            this.LayoutUnnamed2.TabIndex = 0;
+            this.LayoutButtons.ColumnCount = 2;
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutButtons.Controls.Add(this.ButtonCancel, 0, 0);
+            this.LayoutButtons.Controls.Add(this.ButtonOK, 1, 0);
+            this.LayoutButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutButtons.Location = new System.Drawing.Point(3, 86);
+            this.LayoutButtons.Name = "LayoutUnnamed2";
+            this.LayoutButtons.RowCount = 1;
+            this.LayoutButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutButtons.Size = new System.Drawing.Size(394, 38);
+            this.LayoutButtons.TabIndex = 0;
             // 
             // ButtonCancel
             // 
@@ -102,15 +102,15 @@ namespace PathfinderKINGPortrait.AuxForms
             // 
             // LabelUnnamed1
             // 
-            this.LabelUnnamed1.AutoSize = true;
-            this.LabelUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelUnnamed1.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelUnnamed1.Location = new System.Drawing.Point(3, 11);
-            this.LabelUnnamed1.Name = "LabelUnnamed1";
-            this.LabelUnnamed1.Size = new System.Drawing.Size(394, 72);
-            this.LabelUnnamed1.TabIndex = 1;
-            this.LabelUnnamed1.Text = "some text";
-            this.LabelUnnamed1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelMain.AutoSize = true;
+            this.LabelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelMain.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMain.Location = new System.Drawing.Point(3, 11);
+            this.LabelMain.Name = "LabelUnnamed1";
+            this.LabelMain.Size = new System.Drawing.Size(394, 72);
+            this.LabelMain.TabIndex = 1;
+            this.LabelMain.Text = "some text";
+            this.LabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MyMessageBox
             // 
@@ -119,7 +119,7 @@ namespace PathfinderKINGPortrait.AuxForms
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(400, 140);
             this.ControlBox = false;
-            this.Controls.Add(this.LayoutUnnamed1);
+            this.Controls.Add(this.LayoutMain);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -132,19 +132,19 @@ namespace PathfinderKINGPortrait.AuxForms
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NoImageMessage";
-            this.LayoutUnnamed1.ResumeLayout(false);
-            this.LayoutUnnamed1.PerformLayout();
-            this.LayoutUnnamed2.ResumeLayout(false);
+            this.LayoutMain.ResumeLayout(false);
+            this.LayoutMain.PerformLayout();
+            this.LayoutButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed2;
+        private System.Windows.Forms.TableLayoutPanel LayoutMain;
+        private System.Windows.Forms.TableLayoutPanel LayoutButtons;
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Button ButtonOK;
-        private System.Windows.Forms.Label LabelUnnamed1;
+        private System.Windows.Forms.Label LabelMain;
     }
 }

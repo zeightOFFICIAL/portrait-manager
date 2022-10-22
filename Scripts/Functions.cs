@@ -2,16 +2,16 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait
+namespace PathfinderKingmakerPortraitManager
 {
     public partial class MainForm : Form
     {
         private void ClearImages()
         {
-            ImageControl.Utils.Replace(PicPortraitTemp, PathfinderKINGPortrait.Properties.Resources.fulldefault);
-            ImageControl.Utils.Replace(PicPortraitLrg, PathfinderKINGPortrait.Properties.Resources.fulldefault);
-            ImageControl.Utils.Replace(PicPortraitMed, PathfinderKINGPortrait.Properties.Resources.fulldefault);
-            ImageControl.Utils.Replace(PicPortraitSml, PathfinderKINGPortrait.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitTemp, PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitLrg, PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitMed, PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault);
+            ImageControl.Utils.Replace(PicPortraitSml, PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault);
         }
         private void ResizeImageAsWindow(PictureBox pictureBox, Image image, Panel panel)
         {

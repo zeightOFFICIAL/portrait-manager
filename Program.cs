@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait
+namespace PathfinderKingmakerPortraitManager
 {
     static class Program
     {

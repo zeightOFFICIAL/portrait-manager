@@ -2,7 +2,7 @@
 using System.Net;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait.AuxForms
+namespace PathfinderKingmakerPortraitManager.AuxForms
 {
     public partial class UrlDialog : Form
     {
@@ -13,7 +13,7 @@ namespace PathfinderKINGPortrait.AuxForms
         }
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            string urlString = TexteditURL.Text;
+            string urlString = TextBoxMain.Text;
             try
             {
                 HttpWebRequest request = WebRequest.Create(urlString) as HttpWebRequest;
@@ -25,7 +25,7 @@ namespace PathfinderKINGPortrait.AuxForms
             }
             catch
             {
-                TexteditURL.Text = "This URL leads to a currently unavailable site or it is incorrect";
+                TextBoxMain.Text = "Incorrect URL";
                 URL = "-1";
             }
         }

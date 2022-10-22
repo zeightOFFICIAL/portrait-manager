@@ -1,5 +1,5 @@
 ﻿
-namespace PathfinderKINGPortrait
+namespace PathfinderKingmakerPortraitManager
 {
     partial class MainForm
     {
@@ -186,7 +186,7 @@ namespace PathfinderKINGPortrait
             // PictureUnnamed2
             // 
             this.PictureUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureUnnamed2.Image = global::PathfinderKINGPortrait.Properties.Resources.choose2;
+            this.PictureUnnamed2.Image = global::PathfinderKingmakerPortraitManager.Properties.Resources.choose2;
             this.PictureUnnamed2.Location = new System.Drawing.Point(57, 57);
             this.PictureUnnamed2.Name = "PictureUnnamed2";
             this.PictureUnnamed2.Size = new System.Drawing.Size(145, 26);
@@ -236,9 +236,9 @@ namespace PathfinderKINGPortrait
             // PicPortraitTemp
             // 
             this.PicPortraitTemp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicPortraitTemp.ErrorImage = global::PathfinderKINGPortrait.Properties.Resources.fulldefault;
-            this.PicPortraitTemp.Image = global::PathfinderKINGPortrait.Properties.Resources.fulldefault;
-            this.PicPortraitTemp.InitialImage = global::PathfinderKINGPortrait.Properties.Resources.fulldefault;
+            this.PicPortraitTemp.ErrorImage = global::PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault;
+            this.PicPortraitTemp.Image = global::PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault;
+            this.PicPortraitTemp.InitialImage = global::PathfinderKingmakerPortraitManager.Properties.Resources.fulldefault;
             this.PicPortraitTemp.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
             this.PicPortraitTemp.Name = "PicPortraitTemp";
@@ -513,7 +513,7 @@ namespace PathfinderKINGPortrait
             // PictureUnnamed1
             // 
             this.PictureUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureUnnamed1.Image = global::PathfinderKINGPortrait.Properties.Resources.choose3;
+            this.PictureUnnamed1.Image = global::PathfinderKingmakerPortraitManager.Properties.Resources.choose3;
             this.PictureUnnamed1.Location = new System.Drawing.Point(207, 3);
             this.PictureUnnamed1.Name = "PictureUnnamed1";
             this.PictureUnnamed1.Size = new System.Drawing.Size(186, 23);

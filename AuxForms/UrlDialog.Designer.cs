@@ -1,5 +1,5 @@
 ﻿
-namespace PathfinderKINGPortrait.AuxForms
+namespace PathfinderKingmakerPortraitManager.AuxForms
 {
     partial class UrlDialog
     {
@@ -29,57 +29,57 @@ namespace PathfinderKINGPortrait.AuxForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.LayoutURLPage = new System.Windows.Forms.TableLayoutPanel();
-            this.LayoutUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutMain = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutButtons = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonDeny = new System.Windows.Forms.Button();
             this.ButtonLoad = new System.Windows.Forms.Button();
-            this.LayoutUnnamed2 = new System.Windows.Forms.TableLayoutPanel();
-            this.TexteditURL = new System.Windows.Forms.TextBox();
-            this.LabelUnnamed1 = new System.Windows.Forms.Label();
-            this.LayoutURLPage.SuspendLayout();
-            this.LayoutUnnamed1.SuspendLayout();
-            this.LayoutUnnamed2.SuspendLayout();
+            this.LayoutTextEdit = new System.Windows.Forms.TableLayoutPanel();
+            this.TextBoxMain = new System.Windows.Forms.TextBox();
+            this.LabelMain = new System.Windows.Forms.Label();
+            this.LayoutMain.SuspendLayout();
+            this.LayoutButtons.SuspendLayout();
+            this.LayoutTextEdit.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LayoutURLPage
+            // LayoutMain
             // 
-            this.LayoutURLPage.AllowDrop = true;
-            this.LayoutURLPage.BackColor = System.Drawing.Color.Black;
-            this.LayoutURLPage.ColumnCount = 1;
-            this.LayoutURLPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutURLPage.Controls.Add(this.LayoutUnnamed1, 0, 3);
-            this.LayoutURLPage.Controls.Add(this.LayoutUnnamed2, 0, 2);
-            this.LayoutURLPage.Controls.Add(this.LabelUnnamed1, 0, 1);
-            this.LayoutURLPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutURLPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutURLPage.Location = new System.Drawing.Point(0, 0);
-            this.LayoutURLPage.Name = "LayoutURLPage";
-            this.LayoutURLPage.RowCount = 5;
-            this.LayoutURLPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.14629F));
-            this.LayoutURLPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.62264F));
-            this.LayoutURLPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.03773F));
-            this.LayoutURLPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.22642F));
-            this.LayoutURLPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.14629F));
-            this.LayoutURLPage.Size = new System.Drawing.Size(531, 212);
-            this.LayoutURLPage.TabIndex = 0;
+            this.LayoutMain.AllowDrop = true;
+            this.LayoutMain.BackColor = System.Drawing.Color.Black;
+            this.LayoutMain.ColumnCount = 1;
+            this.LayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutMain.Controls.Add(this.LayoutButtons, 0, 3);
+            this.LayoutMain.Controls.Add(this.LayoutTextEdit, 0, 2);
+            this.LayoutMain.Controls.Add(this.LabelMain, 0, 1);
+            this.LayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutMain.ForeColor = System.Drawing.Color.White;
+            this.LayoutMain.Location = new System.Drawing.Point(0, 0);
+            this.LayoutMain.Name = "LayoutMain";
+            this.LayoutMain.RowCount = 5;
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.14629F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.62264F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.03773F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.22642F));
+            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.14629F));
+            this.LayoutMain.Size = new System.Drawing.Size(531, 212);
+            this.LayoutMain.TabIndex = 0;
             // 
-            // LayoutUnnamed1
+            // LayoutButtons
             // 
-            this.LayoutUnnamed1.ColumnCount = 5;
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.2381F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.38095F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.38095F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.2381F));
-            this.LayoutUnnamed1.Controls.Add(this.ButtonDeny, 1, 0);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonLoad, 3, 0);
-            this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed1.Location = new System.Drawing.Point(3, 144);
-            this.LayoutUnnamed1.Name = "LayoutUnnamed1";
-            this.LayoutUnnamed1.RowCount = 1;
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed1.Size = new System.Drawing.Size(525, 39);
-            this.LayoutUnnamed1.TabIndex = 0;
+            this.LayoutButtons.ColumnCount = 5;
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.2381F));
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.38095F));
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.38095F));
+            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.2381F));
+            this.LayoutButtons.Controls.Add(this.ButtonDeny, 1, 0);
+            this.LayoutButtons.Controls.Add(this.ButtonLoad, 3, 0);
+            this.LayoutButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutButtons.Location = new System.Drawing.Point(3, 144);
+            this.LayoutButtons.Name = "LayoutButtons";
+            this.LayoutButtons.RowCount = 1;
+            this.LayoutButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutButtons.Size = new System.Drawing.Size(525, 39);
+            this.LayoutButtons.TabIndex = 0;
             // 
             // ButtonDeny
             // 
@@ -109,51 +109,51 @@ namespace PathfinderKINGPortrait.AuxForms
             this.ButtonLoad.UseVisualStyleBackColor = true;
             this.ButtonLoad.Click += new System.EventHandler(this.ButtonLoad_Click);
             // 
-            // LayoutUnnamed2
+            // LayoutTextEdit
             // 
-            this.LayoutUnnamed2.ColumnCount = 3;
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.3453F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.31396F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.34074F));
-            this.LayoutUnnamed2.Controls.Add(this.TexteditURL, 1, 0);
-            this.LayoutUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed2.Location = new System.Drawing.Point(3, 110);
-            this.LayoutUnnamed2.Name = "LayoutUnnamed2";
-            this.LayoutUnnamed2.RowCount = 1;
-            this.LayoutUnnamed2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed2.Size = new System.Drawing.Size(525, 28);
-            this.LayoutUnnamed2.TabIndex = 1;
+            this.LayoutTextEdit.ColumnCount = 3;
+            this.LayoutTextEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.3453F));
+            this.LayoutTextEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.31396F));
+            this.LayoutTextEdit.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.34074F));
+            this.LayoutTextEdit.Controls.Add(this.TextBoxMain, 1, 0);
+            this.LayoutTextEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutTextEdit.Location = new System.Drawing.Point(3, 110);
+            this.LayoutTextEdit.Name = "LayoutTextEdit";
+            this.LayoutTextEdit.RowCount = 1;
+            this.LayoutTextEdit.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutTextEdit.Size = new System.Drawing.Size(525, 28);
+            this.LayoutTextEdit.TabIndex = 1;
             // 
-            // TexteditURL
+            // TextBoxMain
             // 
-            this.TexteditURL.AllowDrop = true;
-            this.TexteditURL.BackColor = System.Drawing.Color.Black;
-            this.TexteditURL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TexteditURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TexteditURL.ForeColor = System.Drawing.Color.Gray;
-            this.TexteditURL.Location = new System.Drawing.Point(57, 3);
-            this.TexteditURL.Name = "TexteditURL";
-            this.TexteditURL.Size = new System.Drawing.Size(410, 24);
-            this.TexteditURL.TabIndex = 0;
-            this.TexteditURL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TexteditURL.WordWrap = false;
-            this.TexteditURL.DragDrop += new System.Windows.Forms.DragEventHandler(this.TexteditUrl_DragDrop);
-            this.TexteditURL.DragEnter += new System.Windows.Forms.DragEventHandler(this.TexteditUrl_DragEnter);
+            this.TextBoxMain.AllowDrop = true;
+            this.TextBoxMain.BackColor = System.Drawing.Color.Black;
+            this.TextBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextBoxMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TextBoxMain.ForeColor = System.Drawing.Color.Gray;
+            this.TextBoxMain.Location = new System.Drawing.Point(57, 3);
+            this.TextBoxMain.Name = "TextBoxMain";
+            this.TextBoxMain.Size = new System.Drawing.Size(410, 24);
+            this.TextBoxMain.TabIndex = 0;
+            this.TextBoxMain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBoxMain.WordWrap = false;
+            this.TextBoxMain.DragDrop += new System.Windows.Forms.DragEventHandler(this.TexteditUrl_DragDrop);
+            this.TextBoxMain.DragEnter += new System.Windows.Forms.DragEventHandler(this.TexteditUrl_DragEnter);
             // 
-            // LabelUnnamed1
+            // LabelMain
             // 
-            this.LabelUnnamed1.AutoSize = true;
-            this.LabelUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelUnnamed1.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelUnnamed1.ForeColor = System.Drawing.SystemColors.Control;
-            this.LabelUnnamed1.Location = new System.Drawing.Point(10, 26);
-            this.LabelUnnamed1.Margin = new System.Windows.Forms.Padding(10, 3, 10, 0);
-            this.LabelUnnamed1.Name = "LabelUnnamed1";
-            this.LabelUnnamed1.Size = new System.Drawing.Size(511, 81);
-            this.LabelUnnamed1.TabIndex = 2;
-            this.LabelUnnamed1.Text = "Drag and drop, input, or copy the URL of an existing image. The URL-address must " +
+            this.LabelMain.AutoSize = true;
+            this.LabelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelMain.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMain.ForeColor = System.Drawing.SystemColors.Control;
+            this.LabelMain.Location = new System.Drawing.Point(10, 26);
+            this.LabelMain.Margin = new System.Windows.Forms.Padding(10, 3, 10, 0);
+            this.LabelMain.Name = "LabelMain";
+            this.LabelMain.Size = new System.Drawing.Size(511, 81);
+            this.LabelMain.TabIndex = 2;
+            this.LabelMain.Text = "Drag and drop, input, or copy the URL of an existing image. The URL-address must " +
     "lead to an accessible web-source. ";
-            this.LabelUnnamed1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UrlDialog
             // 
@@ -162,7 +162,7 @@ namespace PathfinderKINGPortrait.AuxForms
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(531, 212);
             this.ControlBox = false;
-            this.Controls.Add(this.LayoutURLPage);
+            this.Controls.Add(this.LayoutMain);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -175,23 +175,23 @@ namespace PathfinderKINGPortrait.AuxForms
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UrlDialog";
-            this.LayoutURLPage.ResumeLayout(false);
-            this.LayoutURLPage.PerformLayout();
-            this.LayoutUnnamed1.ResumeLayout(false);
-            this.LayoutUnnamed2.ResumeLayout(false);
-            this.LayoutUnnamed2.PerformLayout();
+            this.LayoutMain.ResumeLayout(false);
+            this.LayoutMain.PerformLayout();
+            this.LayoutButtons.ResumeLayout(false);
+            this.LayoutTextEdit.ResumeLayout(false);
+            this.LayoutTextEdit.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel LayoutURLPage;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed2;
+        private System.Windows.Forms.TableLayoutPanel LayoutMain;
+        private System.Windows.Forms.TableLayoutPanel LayoutButtons;
+        private System.Windows.Forms.TableLayoutPanel LayoutTextEdit;
         private System.Windows.Forms.Button ButtonDeny;
         private System.Windows.Forms.Button ButtonLoad;
-        private System.Windows.Forms.TextBox TexteditURL;
-        private System.Windows.Forms.Label LabelUnnamed1;
+        private System.Windows.Forms.TextBox TextBoxMain;
+        private System.Windows.Forms.Label LabelMain;
     }
 }

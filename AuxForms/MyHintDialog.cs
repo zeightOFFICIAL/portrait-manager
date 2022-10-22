@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait.AuxForms
+namespace PathfinderKingmakerPortraitManager.AuxForms
 {
-    public partial class MyHintBox : Form
+    public partial class MyHintDialog : Form
     {
-        public MyHintBox(String text)
+        public MyHintDialog(string labelText)
         {
             InitializeComponent();
-            LabelUnnamed1.Text = text;
+            LabelMain.Text = labelText;
         }
         private void ButtonOK_Click(object sender, EventArgs e)
         {

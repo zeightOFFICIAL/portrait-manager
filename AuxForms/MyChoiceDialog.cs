@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PathfinderKINGPortrait.AuxForms
+namespace PathfinderKingmakerPortraitManager.AuxForms
 {
-    public partial class MyMessageBox : Form
+    public partial class MyChoiceDialog : Form
     {
-        public MyMessageBox(String text)
+        public MyChoiceDialog(string labelText)
         {
             InitializeComponent();
-            LabelUnnamed1.Text = text;
+            LabelMain.Text = labelText;
         }
 
         private void ButtonOK_Click(object sender, EventArgs e)

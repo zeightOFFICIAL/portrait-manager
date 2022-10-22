@@ -344,7 +344,7 @@ namespace PathfinderKingmakerPortraitManager
             using (AuxForms.UrlDialog UrlDialog = new AuxForms.UrlDialog())
             {
                 UrlDialog.ShowDialog();
-                if (UrlDialog.URL != "-1")
+                if (UrlDialog.URL != "-1" && UrlDialog.URL != "-2")
                 {
                     try
                     {

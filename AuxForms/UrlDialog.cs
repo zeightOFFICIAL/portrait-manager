@@ -31,6 +31,7 @@ namespace PathfinderKingmakerPortraitManager.AuxForms
         }
         private void ButtonDeny_Click(object sender, EventArgs e)
         {
+            URL = "-2";
             Close();
         }
         private void TexteditUrl_DragEnter(object sender, DragEventArgs e)

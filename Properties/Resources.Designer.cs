@@ -83,6 +83,16 @@ namespace PathfinderKingmakerPortraitManager.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap choose4 {
+            get {
+                object obj = ResourceManager.GetObject("choose4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fulldefault {
             get {
                 object obj = ResourceManager.GetObject("fulldefault", resourceCulture);

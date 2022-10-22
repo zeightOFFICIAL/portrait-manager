@@ -70,12 +70,15 @@ namespace PathfinderKingmakerPortraitManager
             LayoutMainPage.Enabled = false;
             LayoutScalePage.Visible = false;
             LayoutScalePage.Enabled = false;
+            LayoutFolderLoad.Enabled = false;
+            LayoutFolderLoad.Visible = false;
         }
         private void OverloadDockOnEverything()
         {
             LayoutFilePage.Dock = DockStyle.Fill;
             LayoutMainPage.Dock = DockStyle.Fill;
             LayoutScalePage.Dock = DockStyle.Fill;
+            LayoutFolderLoad.Dock = DockStyle.Fill;
         }
         private void ThisToEnabled(TableLayoutPanel table)
         {

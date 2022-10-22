@@ -34,5 +34,29 @@ namespace PathfinderKingmakerPortraitManager.Properties {
                 this["firstlaunch"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool folderfirstlaunch {
+            get {
+                return ((bool)(this["folderfirstlaunch"]));
+            }
+            set {
+                this["folderfirstlaunch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool galleryfirstlaunch {
+            get {
+                return ((bool)(this["galleryfirstlaunch"]));
+            }
+            set {
+                this["galleryfirstlaunch"] = value;
+            }
+        }
     }
 }

@@ -64,15 +64,15 @@ namespace PathfinderKingmakerPortraitManager
             this.ButtonExit = new System.Windows.Forms.Button();
             this.ButtonExtract = new System.Windows.Forms.Button();
             this.ButtonToGalleryPage = new System.Windows.Forms.Button();
-            this.LayoutFolderLoad = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutUnnamed7 = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutUnnamed8 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonBackToMainPage2 = new System.Windows.Forms.Button();
+            this.ButtonToMainPage2 = new System.Windows.Forms.Button();
             this.ButtonFolderExtract = new System.Windows.Forms.Button();
             this.ButtonFolderChoose = new System.Windows.Forms.Button();
             this.TextEditFolderPath = new System.Windows.Forms.TextBox();
-            this.ButtonFolderHint = new System.Windows.Forms.Button();
             this.PictureUnnamed3 = new System.Windows.Forms.PictureBox();
+            this.ButtonHintOnExtractPage = new System.Windows.Forms.Button();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed2)).BeginInit();
@@ -92,7 +92,7 @@ namespace PathfinderKingmakerPortraitManager
             this.LayoutUnnamed6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed1)).BeginInit();
             this.LayoutMainPage.SuspendLayout();
-            this.LayoutFolderLoad.SuspendLayout();
+            this.LayoutExtractPage.SuspendLayout();
             this.LayoutUnnamed7.SuspendLayout();
             this.LayoutUnnamed8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed3)).BeginInit();
@@ -589,7 +589,7 @@ namespace PathfinderKingmakerPortraitManager
             this.ButtonExtract.TabIndex = 3;
             this.ButtonExtract.Text = "Extract";
             this.ButtonExtract.UseVisualStyleBackColor = true;
-            this.ButtonExtract.Click += new System.EventHandler(this.ButtonExtract_Click);
+            this.ButtonExtract.Click += new System.EventHandler(this.ButtonToExtract_Click);
             // 
             // ButtonToGalleryPage
             // 
@@ -601,21 +601,21 @@ namespace PathfinderKingmakerPortraitManager
             this.ButtonToGalleryPage.Text = "Gallery";
             this.ButtonToGalleryPage.UseVisualStyleBackColor = true;
             // 
-            // LayoutFolderLoad
+            // LayoutExtractPage
             // 
-            this.LayoutFolderLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayoutFolderLoad.ColumnCount = 1;
-            this.LayoutFolderLoad.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFolderLoad.Controls.Add(this.LayoutUnnamed7, 0, 0);
-            this.LayoutFolderLoad.Enabled = false;
-            this.LayoutFolderLoad.ForeColor = System.Drawing.Color.White;
-            this.LayoutFolderLoad.Location = new System.Drawing.Point(319, 11);
-            this.LayoutFolderLoad.Name = "LayoutFolderLoad";
-            this.LayoutFolderLoad.RowCount = 1;
-            this.LayoutFolderLoad.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFolderLoad.Size = new System.Drawing.Size(745, 489);
-            this.LayoutFolderLoad.TabIndex = 3;
-            this.LayoutFolderLoad.Visible = false;
+            this.LayoutExtractPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
+            this.LayoutExtractPage.ColumnCount = 1;
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutExtractPage.Controls.Add(this.LayoutUnnamed7, 0, 0);
+            this.LayoutExtractPage.Enabled = false;
+            this.LayoutExtractPage.ForeColor = System.Drawing.Color.White;
+            this.LayoutExtractPage.Location = new System.Drawing.Point(319, 11);
+            this.LayoutExtractPage.Name = "LayoutExtractPage";
+            this.LayoutExtractPage.RowCount = 1;
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutExtractPage.Size = new System.Drawing.Size(745, 489);
+            this.LayoutExtractPage.TabIndex = 3;
+            this.LayoutExtractPage.Visible = false;
             // 
             // LayoutUnnamed7
             // 
@@ -640,12 +640,12 @@ namespace PathfinderKingmakerPortraitManager
             this.LayoutUnnamed8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.57022F));
             this.LayoutUnnamed8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.01043F));
             this.LayoutUnnamed8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.41935F));
-            this.LayoutUnnamed8.Controls.Add(this.ButtonBackToMainPage2, 1, 6);
+            this.LayoutUnnamed8.Controls.Add(this.ButtonToMainPage2, 1, 6);
             this.LayoutUnnamed8.Controls.Add(this.ButtonFolderExtract, 1, 4);
             this.LayoutUnnamed8.Controls.Add(this.ButtonFolderChoose, 1, 3);
             this.LayoutUnnamed8.Controls.Add(this.TextEditFolderPath, 1, 2);
-            this.LayoutUnnamed8.Controls.Add(this.ButtonFolderHint, 1, 7);
             this.LayoutUnnamed8.Controls.Add(this.PictureUnnamed3, 1, 1);
+            this.LayoutUnnamed8.Controls.Add(this.ButtonHintOnExtractPage, 1, 7);
             this.LayoutUnnamed8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutUnnamed8.Location = new System.Drawing.Point(405, 43);
             this.LayoutUnnamed8.Name = "LayoutUnnamed8";
@@ -662,18 +662,18 @@ namespace PathfinderKingmakerPortraitManager
             this.LayoutUnnamed8.Size = new System.Drawing.Size(331, 396);
             this.LayoutUnnamed8.TabIndex = 0;
             // 
-            // ButtonBackToMainPage2
+            // ButtonToMainPage2
             // 
-            this.ButtonBackToMainPage2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonBackToMainPage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonBackToMainPage2.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonBackToMainPage2.Location = new System.Drawing.Point(61, 262);
-            this.ButtonBackToMainPage2.Name = "ButtonBackToMainPage2";
-            this.ButtonBackToMainPage2.Size = new System.Drawing.Size(202, 47);
-            this.ButtonBackToMainPage2.TabIndex = 2;
-            this.ButtonBackToMainPage2.Text = "Back";
-            this.ButtonBackToMainPage2.UseVisualStyleBackColor = true;
-            this.ButtonBackToMainPage2.Click += new System.EventHandler(this.ButtonBackToMainPage2_Click);
+            this.ButtonToMainPage2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToMainPage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToMainPage2.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonToMainPage2.Location = new System.Drawing.Point(61, 262);
+            this.ButtonToMainPage2.Name = "ButtonToMainPage2";
+            this.ButtonToMainPage2.Size = new System.Drawing.Size(202, 47);
+            this.ButtonToMainPage2.TabIndex = 2;
+            this.ButtonToMainPage2.Text = "Back";
+            this.ButtonToMainPage2.UseVisualStyleBackColor = true;
+            this.ButtonToMainPage2.Click += new System.EventHandler(this.ButtonToMainPage2_Click);
             // 
             // ButtonFolderExtract
             // 
@@ -686,6 +686,7 @@ namespace PathfinderKingmakerPortraitManager
             this.ButtonFolderExtract.TabIndex = 1;
             this.ButtonFolderExtract.Text = "Extract";
             this.ButtonFolderExtract.UseVisualStyleBackColor = true;
+            this.ButtonFolderExtract.Click += new System.EventHandler(this.ButtonFolderExtract_Click);
             // 
             // ButtonFolderChoose
             // 
@@ -710,19 +711,6 @@ namespace PathfinderKingmakerPortraitManager
             this.TextEditFolderPath.Size = new System.Drawing.Size(202, 27);
             this.TextEditFolderPath.TabIndex = 3;
             // 
-            // ButtonFolderHint
-            // 
-            this.ButtonFolderHint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonFolderHint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonFolderHint.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonFolderHint.Location = new System.Drawing.Point(61, 315);
-            this.ButtonFolderHint.Name = "ButtonFolderHint";
-            this.ButtonFolderHint.Size = new System.Drawing.Size(202, 47);
-            this.ButtonFolderHint.TabIndex = 4;
-            this.ButtonFolderHint.Text = "?";
-            this.ButtonFolderHint.UseVisualStyleBackColor = true;
-            this.ButtonFolderHint.Click += new System.EventHandler(this.ButtonFolderHint_Click);
-            // 
             // PictureUnnamed3
             // 
             this.PictureUnnamed3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -735,12 +723,25 @@ namespace PathfinderKingmakerPortraitManager
             this.PictureUnnamed3.TabIndex = 5;
             this.PictureUnnamed3.TabStop = false;
             // 
+            // ButtonHintOnExtractPage
+            // 
+            this.ButtonHintOnExtractPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonHintOnExtractPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHintOnExtractPage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHintOnExtractPage.Location = new System.Drawing.Point(61, 315);
+            this.ButtonHintOnExtractPage.Name = "ButtonHintOnExtractPage";
+            this.ButtonHintOnExtractPage.Size = new System.Drawing.Size(202, 47);
+            this.ButtonHintOnExtractPage.TabIndex = 6;
+            this.ButtonHintOnExtractPage.Text = "?";
+            this.ButtonHintOnExtractPage.UseVisualStyleBackColor = true;
+            this.ButtonHintOnExtractPage.Click += new System.EventHandler(this.ButtonHintOnExtractPage_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1537, 534);
-            this.Controls.Add(this.LayoutFolderLoad);
+            this.Controls.Add(this.LayoutExtractPage);
             this.Controls.Add(this.LayoutFilePage);
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutScalePage);
@@ -779,7 +780,7 @@ namespace PathfinderKingmakerPortraitManager
             this.LayoutUnnamed6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed1)).EndInit();
             this.LayoutMainPage.ResumeLayout(false);
-            this.LayoutFolderLoad.ResumeLayout(false);
+            this.LayoutExtractPage.ResumeLayout(false);
             this.LayoutUnnamed7.ResumeLayout(false);
             this.LayoutUnnamed8.ResumeLayout(false);
             this.LayoutUnnamed8.PerformLayout();
@@ -790,49 +791,64 @@ namespace PathfinderKingmakerPortraitManager
 
         #endregion
 
+        // prime layouts
         private System.Windows.Forms.TableLayoutPanel LayoutMainPage;
         private System.Windows.Forms.TableLayoutPanel LayoutFilePage;
         private System.Windows.Forms.TableLayoutPanel LayoutScalePage;
+        private System.Windows.Forms.TableLayoutPanel LayoutExtractPage;
+
+        // aux layouts
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed2;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed3;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed4;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed5;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed6;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed7;
+        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed8;
+
+        // buttons controlling layouts
         private System.Windows.Forms.Button ButtonToFilePage;
         private System.Windows.Forms.Button ButtonToMainPage;
+        private System.Windows.Forms.Button ButtonToMainPage2;
         private System.Windows.Forms.Button ButtonToScalePage;
+        private System.Windows.Forms.Button ButtonToGalleryPage;
         private System.Windows.Forms.Button ButtonBackToFilePage;
+
+        // function buttons for Create new portrait
         private System.Windows.Forms.Button ButtonCreatePortrait;
         private System.Windows.Forms.Button ButtonLocalPortraitLoad;
-        private System.Windows.Forms.Button ButtonExit;
-        private System.Windows.Forms.Button ButtonHintOnFilePage;
-        private System.Windows.Forms.Button ButtonToGalleryPage;
-        private System.Windows.Forms.Button ButtonHintOnScalePage;
         private System.Windows.Forms.Button ButtonWebPortraitLoad;
+        private System.Windows.Forms.Button ButtonExit;
+
+        // function buttons for Extract folder
+        private System.Windows.Forms.Button ButtonFolderChoose;
+        private System.Windows.Forms.Button ButtonFolderExtract;
+        private System.Windows.Forms.Button ButtonExtract;
+
+        // hint buttons
+        private System.Windows.Forms.Button ButtonHintOnFilePage;
+        private System.Windows.Forms.Button ButtonHintOnScalePage;
+        private System.Windows.Forms.Button ButtonHintOnExtractPage;
+
+        // image control for Create new portrait
         private System.Windows.Forms.PictureBox PicPortraitTemp;
         private System.Windows.Forms.PictureBox PicPortraitLrg;
         private System.Windows.Forms.PictureBox PicPortraitMed;
         private System.Windows.Forms.PictureBox PicPortraitSml;
-        private System.Windows.Forms.PictureBox PictureUnnamed1;
-        private System.Windows.Forms.PictureBox PictureUnnamed2;
-        private System.Windows.Forms.Label LabelUnnamed1;
-        private System.Windows.Forms.Label LabelUnnamed2;
-        private System.Windows.Forms.Label LabelUnnamed3;
         private System.Windows.Forms.Panel PanelPortraitLrg;
         private System.Windows.Forms.Panel PanelPortraitMed;
         private System.Windows.Forms.Panel PanelPortraitSml;
         private System.Windows.Forms.Panel PanelPortraitTemp;
-        private System.Windows.Forms.Button ButtonExtract;
-        private System.Windows.Forms.TableLayoutPanel LayoutFolderLoad;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed7;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed8;
-        private System.Windows.Forms.Button ButtonBackToMainPage2;
-        private System.Windows.Forms.Button ButtonFolderExtract;
-        private System.Windows.Forms.Button ButtonFolderChoose;
-        private System.Windows.Forms.TextBox TextEditFolderPath;
-        private System.Windows.Forms.Button ButtonFolderHint;
+
+        // aux
+        private System.Windows.Forms.PictureBox PictureUnnamed1;
+        private System.Windows.Forms.PictureBox PictureUnnamed2;
         private System.Windows.Forms.PictureBox PictureUnnamed3;
+        private System.Windows.Forms.Label LabelUnnamed1;
+        private System.Windows.Forms.Label LabelUnnamed2;
+        private System.Windows.Forms.Label LabelUnnamed3;
+        private System.Windows.Forms.TextBox TextEditFolderPath;
     }
 }
 

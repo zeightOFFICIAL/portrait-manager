@@ -70,15 +70,15 @@ namespace PathfinderKingmakerPortraitManager
             LayoutMainPage.Enabled = false;
             LayoutScalePage.Visible = false;
             LayoutScalePage.Enabled = false;
-            LayoutFolderLoad.Enabled = false;
-            LayoutFolderLoad.Visible = false;
+            LayoutExtractPage.Enabled = false;
+            LayoutExtractPage.Visible = false;
         }
         private void OverloadDockOnEverything()
         {
             LayoutFilePage.Dock = DockStyle.Fill;
             LayoutMainPage.Dock = DockStyle.Fill;
             LayoutScalePage.Dock = DockStyle.Fill;
-            LayoutFolderLoad.Dock = DockStyle.Fill;
+            LayoutExtractPage.Dock = DockStyle.Fill;
         }
         private void ThisToEnabled(TableLayoutPanel table)
         {
@@ -130,6 +130,17 @@ namespace PathfinderKingmakerPortraitManager
                     return false;
             else
                 return false;
+        }
+        public static bool ExploreDirectory(string path)
+        {
+            if (SystemControl.FileControl.DirExists(path))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -136,10 +136,10 @@ namespace PathfinderKingmakerPortraitManager
             Application.Exit();
         }
 
-        private void ButtonExtract_Click(object sender, EventArgs e)
+        private void ButtonToExtract_Click(object sender, EventArgs e)
         {
             AllToNotEnabled();
-            ThisToEnabled(LayoutFolderLoad);
+            ThisToEnabled(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
                 using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
@@ -153,29 +153,6 @@ namespace PathfinderKingmakerPortraitManager
                     Properties.Settings.Default.Save();
                 }
             }
-        }
-
-        private void ButtonBackToMainPage2_Click(object sender, EventArgs e)
-        {
-            AllToNotEnabled();
-            ThisToEnabled(LayoutMainPage);
-        }
-
-        private void ButtonFolderHint_Click(object sender, EventArgs e)
-        {
-            using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
-                    "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
-                    "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
-                    "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
-                    "to return to main page."))
-            {
-                FileHint.ShowDialog();
-            }
-        }
-
-        private void ButtonFolderChoose_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.Win32;
 
 namespace PathfinderKingmakerPortraitManager
 {
@@ -387,6 +389,36 @@ namespace PathfinderKingmakerPortraitManager
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
+        {
+            using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
+                    "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
+                    "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
+                    "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
+                    "to return to main page."))
+            {
+                FileHint.ShowDialog();
+            }
+        }
+        private void ButtonFolderChoose_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog();
+            CommonOpenFileDialog.InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString();
+            CommonOpenFileDialog.IsFolderPicker = true;
+            if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                MessageBox.Show("You selected " + ExploreDirectory(CommonOpenFileDialog.FileName));
+            }
+        }
+        private void ButtonFolderExtract_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonToMainPage2_Click(object sender, EventArgs e)
+        {
+            AllToNotEnabled();
+            ThisToEnabled(LayoutMainPage);
+        }
+        private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
         {
             using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
                     "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +

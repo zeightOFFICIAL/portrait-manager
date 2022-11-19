@@ -146,6 +146,7 @@ namespace PathfinderKingmakerPortraitManager
             // 
             // ButtonLocalPortraitLoad
             // 
+            this.ButtonLocalPortraitLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonLocalPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLocalPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLocalPortraitLoad.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -160,6 +161,7 @@ namespace PathfinderKingmakerPortraitManager
             // 
             // ButtonToScalePage
             // 
+            this.ButtonToScalePage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonToScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToScalePage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -173,6 +175,7 @@ namespace PathfinderKingmakerPortraitManager
             // 
             // ButtonWebPortraitLoad
             // 
+            this.ButtonWebPortraitLoad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonWebPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonWebPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonWebPortraitLoad.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,6 +189,7 @@ namespace PathfinderKingmakerPortraitManager
             // 
             // ButtonToMainPage
             // 
+            this.ButtonToMainPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonToMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToMainPage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -210,6 +214,7 @@ namespace PathfinderKingmakerPortraitManager
             // 
             // ButtonHintOnFilePage
             // 
+            this.ButtonHintOnFilePage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonHintOnFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonHintOnFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHintOnFilePage.Font = new System.Drawing.Font("Bebas Neue", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

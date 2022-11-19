@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PathfinderKingmakerPortraitManager
@@ -133,14 +134,7 @@ namespace PathfinderKingmakerPortraitManager
         }
         public static bool ExploreDirectory(string path)
         {
-            if (SystemControl.FileControl.DirExists(path))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

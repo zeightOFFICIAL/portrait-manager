@@ -21,6 +21,7 @@ namespace PathfinderPortraitManager
         private Point _mousePos = new Point();
         private int _isDragging = 0;
         private bool _isLoaded = false;
+        private bool _gameSelected = true;
 
         public MainForm()
         {

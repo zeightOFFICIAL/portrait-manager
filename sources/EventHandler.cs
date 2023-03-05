@@ -429,5 +429,21 @@ namespace PathfinderPortraitManager
                 FileHint.ShowDialog();
             }
         }
+
+        private void PicTitle_Click(object sender, EventArgs e)
+        {
+            if (_gameSelected == true)
+            {
+                _gameSelected = false;
+                PicTitle.BackgroundImage.Dispose();
+                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
+            }
+            else
+            {
+                _gameSelected = true;
+                PicTitle.BackgroundImage.Dispose();
+                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
+            }
+        }
     }
 }

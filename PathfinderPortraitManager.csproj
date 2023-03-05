@@ -173,10 +173,10 @@
     <None Include="resources\icon_wotr.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\bg_path.jpg" />
+    <None Include="resources\title_path.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\bg_wotr.jpg" />
+    <None Include="resources\title_wotr.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

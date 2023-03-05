@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PathfinderKingmakerPortraitManager
+namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
@@ -29,7 +29,8 @@ namespace PathfinderKingmakerPortraitManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             OverloadDockOnEverything();
-            PicPortraitTemp.AllowDrop = true;
+            DoubleBuffered = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
             PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
@@ -53,7 +54,7 @@ namespace PathfinderKingmakerPortraitManager
             ResizeAllImagesAsWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
+                using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +
                     "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
                     "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
                     "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
@@ -75,7 +76,7 @@ namespace PathfinderKingmakerPortraitManager
             if (_isLoaded == false)
             {
                 DialogResult DialogResult;
-                using (AuxForms.MyChoiceDialog NoImageMessage = new AuxForms.MyChoiceDialog("You did not load any images. Proceed?"))
+                using (Forms.MyChoiceDialog NoImageMessage = new Forms.MyChoiceDialog("You did not load any images. Proceed?"))
                 {
                     DialogResult = NoImageMessage.ShowDialog();
                 }
@@ -87,7 +88,7 @@ namespace PathfinderKingmakerPortraitManager
                     ResizeAllImagesAsWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
-                        using (AuxForms.MyHintDialog ScalingHint = new AuxForms.MyHintDialog("This is a scaling page. Here you can adjust the " +
+                        using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog("This is a scaling page. Here you can adjust the " +
                             "portrait as you see fit. Click and drag to move cropping rectangle. " +
                             "Use mouse wheel to zoom in and out. Double-click on portrait to " +
                             "restore it to original state. Use \"Create\" button to generate " +
@@ -108,7 +109,7 @@ namespace PathfinderKingmakerPortraitManager
                 ResizeAllImagesAsWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
-                    using (AuxForms.MyHintDialog ScalingHint = new AuxForms.MyHintDialog("This is a scaling page. Here you can adjust the " +
+                    using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog("This is a scaling page. Here you can adjust the " +
                         "portrait as you see fit. Click and drag to move cropping rectangle. " +
                         "Use mouse wheel to zoom in and out. Double-click on portrait to " +
                         "restore it to original state. Use \"Create\" button to generate " +
@@ -142,7 +143,7 @@ namespace PathfinderKingmakerPortraitManager
             ThisToEnabled(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                using (AuxForms.MyHintDialog FileHint = new AuxForms.MyHintDialog("This is an image page. Here you can choose " +
+                using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +
                     "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
                     "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
                     "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +

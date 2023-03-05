@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Pathfinder: Kingmaker Portrait Manager")]
+[assembly: AssemblyTitle("Pathfinder: Portrait Manager")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Pathfinder Kingmaker Portrait Manager")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("Artemii Saganenko")]
+[assembly: AssemblyProduct("Pathfinder Portrait Manager")]
+[assembly: AssemblyCopyright("Copyright Artemii Saganenko© 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

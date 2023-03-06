@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -132,6 +134,15 @@ namespace PathfinderPortraitManager
         public static bool ExploreDirectory(string path)
         {
             return false;
+        }
+        public void ArrangeFonts(PrivateFontCollection fonts)
+        {
+            Font _bebas_neue16 = new Font(fonts.Families[0], 16);
+
+            ButtonToFilePage.Font = _bebas_neue16;
+            ButtonExtract.Font = _bebas_neue16;
+            ButtonToGalleryPage.Font = _bebas_neue16;
+            ButtonExit.Font = _bebas_neue16;
         }
     }
 }

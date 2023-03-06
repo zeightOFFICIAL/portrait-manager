@@ -164,6 +164,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="resources\BebasNeue-Regular.ttf" />
     <None Include="resources\placeholder.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -15,8 +16,7 @@ namespace PathfinderPortraitManager
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
 
-        private static readonly Font _smlFont = new Font("Bebas Neue", 12);
-        private static readonly Font _lrgFont = new Font("Bebas Neue", 20);
+        private static Font _smlFont, _lrgFont;
 
         private Point _mousePos = new Point();
         private int _isDragging = 0;
@@ -40,6 +40,9 @@ namespace PathfinderPortraitManager
 
             AllToNotEnabled();
             ThisToEnabled(LayoutMainPage);
+
+            PrivateFontCollection pfc = SystemControl.FileControl.InitCustomLabelFont(PathfinderPortraitManager.Properties.Resources.BebasNeue_Regular);
+            ArrangeFonts(pfc);
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing.Text;
+
 namespace PathfinderPortraitManager
 {
     partial class MainForm
@@ -571,6 +573,8 @@ namespace PathfinderPortraitManager
             // ButtonToFilePage
             // 
             this.ButtonToFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToFilePage.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonToFilePage.Location = new System.Drawing.Point(181, 211);
             this.ButtonToFilePage.Name = "ButtonToFilePage";
             this.ButtonToFilePage.Size = new System.Drawing.Size(350, 49);
@@ -582,6 +586,8 @@ namespace PathfinderPortraitManager
             // ButtonExtract
             // 
             this.ButtonExtract.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtract.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtract.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonExtract.Location = new System.Drawing.Point(181, 266);
             this.ButtonExtract.Name = "ButtonExtract";
             this.ButtonExtract.Size = new System.Drawing.Size(350, 49);
@@ -593,6 +599,8 @@ namespace PathfinderPortraitManager
             // ButtonToGalleryPage
             // 
             this.ButtonToGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToGalleryPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToGalleryPage.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonToGalleryPage.Location = new System.Drawing.Point(181, 321);
             this.ButtonToGalleryPage.Name = "ButtonToGalleryPage";
             this.ButtonToGalleryPage.Size = new System.Drawing.Size(350, 49);
@@ -603,6 +611,8 @@ namespace PathfinderPortraitManager
             // ButtonExit
             // 
             this.ButtonExit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExit.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonExit.Location = new System.Drawing.Point(181, 376);
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.Size = new System.Drawing.Size(350, 49);

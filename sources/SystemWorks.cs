@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
 
 namespace SystemControl
 {
@@ -27,7 +29,7 @@ namespace SystemControl
         }
         public static void CreateTemp(string fullPath, string newFullpathFull, string newFullpathPoor)
         {
-            if (!Directory.Exists("temp/")) 
+            if (!Directory.Exists("temp/"))
                 Directory.CreateDirectory("temp/");
             if (fullPath == "-1")
             {
@@ -50,7 +52,7 @@ namespace SystemControl
         {
             try
             {
-                if (Directory.Exists("temp/")) 
+                if (Directory.Exists("temp/"))
                     Directory.Delete("temp/", true);
             }
             catch (System.IO.IOException)
@@ -75,6 +77,17 @@ namespace SystemControl
         public static string GetFileExtension(string path, string filename)
         {
             return Path.GetExtension(path + filename);
+        }
+
+        public static PrivateFontCollection InitCustomLabelFont(byte[] font)
+        {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            int fontLength = font.Length;
+            byte[] fontdata = font;
+            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
+            Marshal.Copy(fontdata, 0, data, fontLength);
+            pfc.AddMemoryFont(data, fontLength);
+            return pfc;
         }
     }
 }

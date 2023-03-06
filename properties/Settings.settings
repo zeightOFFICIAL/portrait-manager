@@ -8,5 +8,8 @@
     <Setting Name="folderfirstlaunch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="defaultgametype" Type="System.Char" Scope="User">
+      <Value Profile="(Default)">w</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

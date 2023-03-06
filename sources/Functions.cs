@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.IO;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -16,7 +14,7 @@ namespace PathfinderPortraitManager
             ImageControl.Utils.Replace(PicPortraitMed, replaceTo);
             ImageControl.Utils.Replace(PicPortraitSml, replaceTo);
         }
-        private void DisposeImages()
+        private void DisposeAllImages()
         {
             ImageControl.Utils.Dispose(PicPortraitTemp);
             ImageControl.Utils.Dispose(PicPortraitLrg);
@@ -69,7 +67,7 @@ namespace PathfinderPortraitManager
             }
             return Tuple.Create(dstWidth, dstHeight);
         }
-        private void DisableAllLayouts()
+        private void LayoutsDisable()
         {
             LayoutFilePage.Visible = false;
             LayoutFilePage.Enabled = false;
@@ -80,14 +78,14 @@ namespace PathfinderPortraitManager
             LayoutExtractPage.Enabled = false;
             LayoutExtractPage.Visible = false;
         }
-        private void DockFillLayouts()
+        private void LayoutsSetDockFill()
         {
             LayoutFilePage.Dock = DockStyle.Fill;
             LayoutMainPage.Dock = DockStyle.Fill;
             LayoutScalePage.Dock = DockStyle.Fill;
             LayoutExtractPage.Dock = DockStyle.Fill;
         }
-        private void EnableLayout(TableLayoutPanel table)
+        private void LayoutEnable(TableLayoutPanel table)
         {
             if (table.Visible == false && table.Enabled == false)
             {
@@ -95,9 +93,9 @@ namespace PathfinderPortraitManager
                 table.Enabled = true;
             }
         }
-        private void LoadAllImages()
+        private void LoadAllTempImages()
         {
-            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+            ClearToAccordingDefault(_gameSelected);
             using (Image imgPoor = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
             {
                 PicPortraitLrg.Image = new Bitmap(imgPoor);
@@ -124,10 +122,10 @@ namespace PathfinderPortraitManager
         public static bool CheckExistence(string path)
         {
             if (SystemControl.FileControl.DirExists(path))
-                if (SystemControl.FileControl.FileExist(path, LARGE_EXTENRSION) &&
+                if (SystemControl.FileControl.FileExist(path, LARGE_EXTENSION) &&
                     SystemControl.FileControl.FileExist(path, MEDIUM_EXTENSION) &&
                     SystemControl.FileControl.FileExist(path, SMALL_EXTENSION))
-                    if (SystemControl.FileControl.GetFileExtension(path, LARGE_EXTENRSION) == ".png" &&
+                    if (SystemControl.FileControl.GetFileExtension(path, LARGE_EXTENSION) == ".png" &&
                         SystemControl.FileControl.GetFileExtension(path, MEDIUM_EXTENSION) == ".png" &&
                         SystemControl.FileControl.GetFileExtension(path, SMALL_EXTENSION) == ".png")
                         return true;
@@ -142,7 +140,7 @@ namespace PathfinderPortraitManager
         {
             return false;
         }
-        public void ArrangeFonts(PrivateFontCollection fonts)
+        public void FontsLoad(PrivateFontCollection fonts)
         {
             Font _bebas_neue16 = new Font(fonts.Families[0], 16);
 
@@ -150,6 +148,12 @@ namespace PathfinderPortraitManager
             ButtonExtract.Font = _bebas_neue16;
             ButtonToGalleryPage.Font = _bebas_neue16;
             ButtonExit.Font = _bebas_neue16;
+
+            ButtonLocalPortraitLoad.Font = _bebas_neue16;
+            ButtonWebPortraitLoad.Font = _bebas_neue16;
+            ButtonToMainPage.Font = _bebas_neue16;
+            ButtonToScalePage.Font = _bebas_neue16;
+            ButtonHintOnFilePage.Font = _bebas_neue16;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
@@ -158,6 +162,59 @@ namespace PathfinderPortraitManager
             foreach (Control subCtrl in ctrl.Controls)
             {
                 UpdateColorSchemeOnForm(subCtrl, a, b);
+            }
+        }
+        public void ClearToAccordingDefault(char whichGame = 'p')
+        {
+            if (whichGame == 'p')
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                    ClearImages(placeholder);
+            else
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                    ClearImages(placeholder);
+        }
+        public void ClearAndLoadToAccordingDefault(string fullPath, char whichGame = 'p')
+        {
+            if (_gameSelected == 'p')
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                {
+                    ClearImages(placeholder);
+                    SystemControl.FileControl.TempImagesClear();
+                    SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
+                }
+            else
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                {
+                    ClearImages(placeholder);
+                    SystemControl.FileControl.TempImagesClear();
+                    SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
+                }
+        }
+        public void InitColorScheme(char gameType = 'p')
+        {
+            if (gameType == 'w')
+            {
+                Color fcolor = Color.DeepPink;
+                Color bcolor = Color.FromArgb(20, 6, 30);
+                PicTitle.BackgroundImage.Dispose();
+                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
+                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_wotr;
+                foreach (Control ctrl in this.Controls)
+                {
+                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+                }
+            }
+            else
+            {
+                Color fcolor = Color.Goldenrod;
+                Color bcolor = Color.FromArgb(9, 28, 11);
+                PicTitle.BackgroundImage.Dispose();
+                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
+                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_path;
+                foreach (Control ctrl in this.Controls)
+                {
+                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+                }
             }
         }
     }

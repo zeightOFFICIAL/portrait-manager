@@ -46,5 +46,17 @@ namespace PathfinderPortraitManager.Properties {
                 this["folderfirstlaunch"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("w")]
+        public char defaultgametype {
+            get {
+                return ((char)(this["defaultgametype"]));
+            }
+            set {
+                this["defaultgametype"] = value;
+            }
+        }
     }
 }

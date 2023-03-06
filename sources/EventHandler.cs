@@ -38,7 +38,7 @@ namespace PathfinderPortraitManager
                 _isLoaded = true;
             }
             ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
-            SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+            SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             LoadAllImages();
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
@@ -69,7 +69,7 @@ namespace PathfinderPortraitManager
                 _isLoaded = true;
             }
             ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
-            SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+            SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             LoadAllImages();
         }
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace PathfinderPortraitManager
                 _isLoaded = true;
             }
             ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
-            SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+            SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             LoadAllImages();
         }
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
@@ -215,22 +215,27 @@ namespace PathfinderPortraitManager
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposeImages();
-            SystemControl.FileControl.TempClear();
+            SystemControl.FileControl.TempImagesClear();
             Application.Exit();
         }
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            ResizeAllImagesAsWindow();
+            ResizeAllImagesToWindow();
         }
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
             string exodusPath, fullExodusPath;
             exodusPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                          "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+
+            if (_gameSelected == 'w')
+                exodusPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
+
             fullExodusPath = "";
             if (!SystemControl.FileControl.DirExists(exodusPath))
             {
-                using (Forms.MyMessageDialog MyMessageDialog = new Forms.MyMessageDialog("Pathfinder: Kingmaker portraits folder was not found!"))
+                using (Forms.MyMessageDialog MyMessageDialog = new Forms.MyMessageDialog("Pathfinder portraits folder was not found!"))
                 {
                     MyMessageDialog.ShowDialog();
                 }
@@ -264,28 +269,43 @@ namespace PathfinderPortraitManager
                     FinalDialog.ShowDialog();
                     if (FinalDialog.State == 1)
                     {
-                        ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+                        if (_gameSelected == 'p')
+                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                                ClearImages(placeholder);
+                        else
+                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                                ClearImages(placeholder);
                         _isLoaded = false;
-                        AllToNotEnabled();
-                        ThisToEnabled(LayoutMainPage);
+                        DisableAllLayouts();
+                        EnableLayout(LayoutMainPage);
                     }
                     else if (FinalDialog.State == 2)
                     {
-                        ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+                        if (_gameSelected == 'p')
+                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                                ClearImages(placeholder);
+                        else
+                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                                ClearImages(placeholder);
                         _isLoaded = false;
-                        SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
+                        SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
                         LoadAllImages();
-                        AllToNotEnabled();
-                        ThisToEnabled(LayoutFilePage);
-                        ResizeAllImagesAsWindow();
+                        DisableAllLayouts();
+                        EnableLayout(LayoutFilePage);
+                        ResizeAllImagesToWindow();
                     }
                     else if (FinalDialog.State == 3)
                     {
-                        ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+                        if (_gameSelected == 'p')
+                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                                ClearImages(placeholder);
+                        else
+                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                                ClearImages(placeholder);
                         _isLoaded = false;
-                        AllToNotEnabled();
+                        DisableAllLayouts();
                         System.Diagnostics.Process.Start(fullExodusPath);
-                        ThisToEnabled(LayoutMainPage);
+                        EnableLayout(LayoutMainPage);
                     }
                 }
             }
@@ -363,7 +383,12 @@ namespace PathfinderPortraitManager
                                 webImage.Save(RELATIVEPATH_TO_TEMPFULL);
                                 ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TO_TEMPPOOR);
                                 _isLoaded = true;
-                                ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+                                if (_gameSelected == 'p')
+                                    using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                                        ClearImages(placeholder);
+                                else
+                                    using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                                        ClearImages(placeholder);
                                 LoadAllImages();
                             }
                         }
@@ -417,8 +442,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
-            AllToNotEnabled();
-            ThisToEnabled(LayoutMainPage);
+            DisableAllLayouts();
+            EnableLayout(LayoutMainPage);
         }
         private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
         {
@@ -434,42 +459,31 @@ namespace PathfinderPortraitManager
 
         private void PicTitle_Click(object sender, EventArgs e)
         {
-            if (_gameSelected == true)
+            if (_gameSelected == 'p')
             {
-                _gameSelected = false;
+                _gameSelected = 'w';
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);
                 PicTitle.BackgroundImage.Dispose();
                 PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
                 this.Icon = PathfinderPortraitManager.Properties.Resources.icon_wotr;
-
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
-                }
-
-                using (Bitmap placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
-                {
-                    ImageControl.Utils.Replace(PicPortraitTemp, placeholder);
-                }
+                }                
             }
             else
             {
-                _gameSelected = true;
+                _gameSelected = 'p';
                 Color fcolor = Color.Goldenrod;
                 Color bcolor = Color.FromArgb(9, 28, 11);
                 PicTitle.BackgroundImage.Dispose();
                 PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
                 this.Icon = PathfinderPortraitManager.Properties.Resources.icon_path;
-
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
-                }
-                using (Bitmap placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
-                {
-                    ImageControl.Utils.Replace(PicPortraitTemp, placeholder);
-                }
+                }                
             }
         }
     }

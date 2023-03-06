@@ -67,6 +67,7 @@ namespace PathfinderPortraitManager
             this.ButtonToGalleryPage = new System.Windows.Forms.Button();
             this.ButtonExit = new System.Windows.Forms.Button();
             this.PicTitle = new System.Windows.Forms.PictureBox();
+            this.LabelCopyright = new System.Windows.Forms.Label();
             this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutUnnamed7 = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutUnnamed8 = new System.Windows.Forms.TableLayoutPanel();
@@ -258,13 +259,13 @@ namespace PathfinderPortraitManager
             // PicPortraitTemp
             // 
             this.PicPortraitTemp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicPortraitTemp.ErrorImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTemp.Image = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTemp.InitialImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
+            this.PicPortraitTemp.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PicPortraitTemp.ErrorImage")));
+            this.PicPortraitTemp.Image = ((System.Drawing.Image)(resources.GetObject("PicPortraitTemp.Image")));
+            this.PicPortraitTemp.InitialImage = ((System.Drawing.Image)(resources.GetObject("PicPortraitTemp.InitialImage")));
             this.PicPortraitTemp.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
             this.PicPortraitTemp.Name = "PicPortraitTemp";
-            this.PicPortraitTemp.Size = new System.Drawing.Size(443, 671);
+            this.PicPortraitTemp.Size = new System.Drawing.Size(664, 1007);
             this.PicPortraitTemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PicPortraitTemp.TabIndex = 1;
             this.PicPortraitTemp.TabStop = false;
@@ -555,7 +556,9 @@ namespace PathfinderPortraitManager
             this.LayoutMainPage.Controls.Add(this.ButtonToGalleryPage, 1, 5);
             this.LayoutMainPage.Controls.Add(this.ButtonExit, 1, 6);
             this.LayoutMainPage.Controls.Add(this.PicTitle, 1, 1);
-            this.LayoutMainPage.Location = new System.Drawing.Point(43, 345);
+            this.LayoutMainPage.Controls.Add(this.LabelCopyright, 1, 7);
+            this.LayoutMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutMainPage.Name = "LayoutMainPage";
             this.LayoutMainPage.RowCount = 8;
             this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.80838F));
@@ -633,6 +636,19 @@ namespace PathfinderPortraitManager
             this.PicTitle.TabIndex = 4;
             this.PicTitle.TabStop = false;
             this.PicTitle.Click += new System.EventHandler(this.PicTitle_Click);
+            // 
+            // LabelCopyright
+            // 
+            this.LabelCopyright.AutoSize = true;
+            this.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LabelCopyright.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelCopyright.ForeColor = System.Drawing.Color.Goldenrod;
+            this.LabelCopyright.Location = new System.Drawing.Point(121, 318);
+            this.LabelCopyright.Name = "LabelCopyright";
+            this.LabelCopyright.Size = new System.Drawing.Size(233, 9);
+            this.LabelCopyright.TabIndex = 5;
+            this.LabelCopyright.Text = "Artemii \"Zeight\" Saganenko© 2023";
+            this.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LayoutExtractPage
             // 
@@ -813,6 +829,7 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureUnnamed1)).EndInit();
             this.LayoutMainPage.ResumeLayout(false);
+            this.LayoutMainPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicTitle)).EndInit();
             this.LayoutExtractPage.ResumeLayout(false);
             this.LayoutUnnamed7.ResumeLayout(false);
@@ -884,6 +901,7 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.Label LabelUnnamed3;
         private System.Windows.Forms.TextBox TextEditFolderPath;
         private System.Windows.Forms.PictureBox PicTitle;
+        private System.Windows.Forms.Label LabelCopyright;
     }
 }
 

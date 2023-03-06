@@ -36,7 +36,7 @@ namespace PathfinderPortraitManager
             pictureBox.Image = ImageControl.Direct.Resize.LowQiality(image, newSizeTuple.Item1, newSizeTuple.Item2);
             ArrangeAutoScroll(panel, newSizeTuple.Item1, newSizeTuple.Item2);
         }
-        private void ResizeAllImagesAsWindow()
+        private void ResizeAllImagesToWindow()
         {
             if (LayoutScalePage.Enabled == true)
                 using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
@@ -69,7 +69,7 @@ namespace PathfinderPortraitManager
             }
             return Tuple.Create(dstWidth, dstHeight);
         }
-        private void AllToNotEnabled()
+        private void DisableAllLayouts()
         {
             LayoutFilePage.Visible = false;
             LayoutFilePage.Enabled = false;
@@ -80,14 +80,14 @@ namespace PathfinderPortraitManager
             LayoutExtractPage.Enabled = false;
             LayoutExtractPage.Visible = false;
         }
-        private void OverloadDockOnEverything()
+        private void DockFillLayouts()
         {
             LayoutFilePage.Dock = DockStyle.Fill;
             LayoutMainPage.Dock = DockStyle.Fill;
             LayoutScalePage.Dock = DockStyle.Fill;
             LayoutExtractPage.Dock = DockStyle.Fill;
         }
-        private void ThisToEnabled(TableLayoutPanel table)
+        private void EnableLayout(TableLayoutPanel table)
         {
             if (table.Visible == false && table.Enabled == false)
             {
@@ -109,7 +109,7 @@ namespace PathfinderPortraitManager
             ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            ResizeAllImagesAsWindow();
+            ResizeAllImagesToWindow();
         }
         public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
         {

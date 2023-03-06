@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Design;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
@@ -15,11 +16,11 @@ namespace PathfinderPortraitManager
         private const float ASPECT_RATIO_LARGE = 1.479768786f;
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
-
+        
         private Point _mousePos = new Point();
         private int _isDragging = 0;
         private bool _isLoaded = false;
-        private bool _gameSelected = true;
+        private char _gameSelected = 'p';
 
         public MainForm()
         {
@@ -27,7 +28,7 @@ namespace PathfinderPortraitManager
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            OverloadDockOnEverything();
+            DockFillLayouts();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
             PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
@@ -35,25 +36,34 @@ namespace PathfinderPortraitManager
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
-            AllToNotEnabled();
-            ThisToEnabled(LayoutMainPage);
+            DisableAllLayouts();
+            EnableLayout(LayoutMainPage);
 
             PrivateFontCollection pfc = SystemControl.FileControl.InitCustomLabelFont(PathfinderPortraitManager.Properties.Resources.BebasNeue_Regular);
             ArrangeFonts(pfc);
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
-            PicPortraitTemp.Image = PathfinderPortraitManager.Properties.Resources.placeholder_wotr;
-            SystemControl.FileControl.TempClear();
+            if (_gameSelected == 'p')
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                {
+                    ClearImages(placeholder);
+                    SystemControl.FileControl.TempImagesClear();
+                    SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
+                }
+            else
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                {
+                    ClearImages(placeholder);
+                    SystemControl.FileControl.TempImagesClear();
+                    SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
+                }
 
-            _isLoaded = false;
-            SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
-
-            AllToNotEnabled();
-            ThisToEnabled(LayoutFilePage);
-            ResizeAllImagesAsWindow();
+            _isLoaded = false;
+            DisableAllLayouts();
+            EnableLayout(LayoutFilePage);
+            ResizeAllImagesToWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
                 using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +
@@ -68,10 +78,15 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
-            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+            if (_gameSelected == 'p')
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                    ClearImages(placeholder);
+            else
+                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                    ClearImages(placeholder);
 
-            AllToNotEnabled();
-            ThisToEnabled(LayoutMainPage);
+            DisableAllLayouts();
+            EnableLayout(LayoutMainPage);
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
@@ -84,10 +99,10 @@ namespace PathfinderPortraitManager
                 }
                 if (DialogResult == DialogResult.OK)
                 {
-                    AllToNotEnabled();
-                    ThisToEnabled(LayoutScalePage);
+                    DisableAllLayouts();
+                    EnableLayout(LayoutScalePage);
                     LoadAllImages();
-                    ResizeAllImagesAsWindow();
+                    ResizeAllImagesToWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
                         using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog("This is a scaling page. Here you can adjust the " +
@@ -105,10 +120,10 @@ namespace PathfinderPortraitManager
             }
             else
             {
-                AllToNotEnabled();
-                ThisToEnabled(LayoutScalePage);
+                DisableAllLayouts();
+                EnableLayout(LayoutScalePage);
                 LoadAllImages();
-                ResizeAllImagesAsWindow();
+                ResizeAllImagesToWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
                     using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog("This is a scaling page. Here you can adjust the " +
@@ -128,21 +143,21 @@ namespace PathfinderPortraitManager
         {
             LoadAllImages();
 
-            AllToNotEnabled();
-            ThisToEnabled(LayoutFilePage);
-            ResizeAllImagesAsWindow();
+            DisableAllLayouts();
+            EnableLayout(LayoutFilePage);
+            ResizeAllImagesToWindow();
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             DisposeImages();
-            SystemControl.FileControl.TempClear();
+            SystemControl.FileControl.TempImagesClear();
             Application.Exit();
         }
 
         private void ButtonToExtract_Click(object sender, EventArgs e)
         {
-            AllToNotEnabled();
-            ThisToEnabled(LayoutExtractPage);
+            DisableAllLayouts();
+            EnableLayout(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
                 using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +

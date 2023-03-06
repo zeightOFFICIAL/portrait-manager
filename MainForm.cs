@@ -16,8 +16,6 @@ namespace PathfinderPortraitManager
         private const float ASPECT_RATIO_MED = 1.309090909f;
         private const float ASPECT_RATIO_SMALL = 1.308108108f;
 
-        private static Font _smlFont, _lrgFont;
-
         private Point _mousePos = new Point();
         private int _isDragging = 0;
         private bool _isLoaded = false;
@@ -30,7 +28,6 @@ namespace PathfinderPortraitManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             OverloadDockOnEverything();
-            DoubleBuffered = true;
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
             PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
@@ -46,7 +43,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            ClearImages();
+            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+            PicPortraitTemp.Image = PathfinderPortraitManager.Properties.Resources.placeholder_wotr;
             SystemControl.FileControl.TempClear();
 
             _isLoaded = false;
@@ -70,7 +68,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
-            ClearImages();
+            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
 
             AllToNotEnabled();
             ThisToEnabled(LayoutMainPage);
@@ -136,7 +134,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {
-            ClearImages();
+            DisposeImages();
             SystemControl.FileControl.TempClear();
             Application.Exit();
         }

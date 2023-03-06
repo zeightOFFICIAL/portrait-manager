@@ -258,13 +258,13 @@ namespace PathfinderPortraitManager
             // PicPortraitTemp
             // 
             this.PicPortraitTemp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicPortraitTemp.ErrorImage = global::PathfinderPortraitManager.Properties.Resources.placeholder;
-            this.PicPortraitTemp.Image = global::PathfinderPortraitManager.Properties.Resources.placeholder;
-            this.PicPortraitTemp.InitialImage = global::PathfinderPortraitManager.Properties.Resources.placeholder;
+            this.PicPortraitTemp.ErrorImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
+            this.PicPortraitTemp.Image = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
+            this.PicPortraitTemp.InitialImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
             this.PicPortraitTemp.Location = new System.Drawing.Point(0, 0);
             this.PicPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
             this.PicPortraitTemp.Name = "PicPortraitTemp";
-            this.PicPortraitTemp.Size = new System.Drawing.Size(664, 1007);
+            this.PicPortraitTemp.Size = new System.Drawing.Size(443, 671);
             this.PicPortraitTemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PicPortraitTemp.TabIndex = 1;
             this.PicPortraitTemp.TabStop = false;
@@ -555,8 +555,7 @@ namespace PathfinderPortraitManager
             this.LayoutMainPage.Controls.Add(this.ButtonToGalleryPage, 1, 5);
             this.LayoutMainPage.Controls.Add(this.ButtonExit, 1, 6);
             this.LayoutMainPage.Controls.Add(this.PicTitle, 1, 1);
-            this.LayoutMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutMainPage.Location = new System.Drawing.Point(43, 345);
             this.LayoutMainPage.Name = "LayoutMainPage";
             this.LayoutMainPage.RowCount = 8;
             this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.80838F));

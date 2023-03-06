@@ -27,13 +27,13 @@ namespace SystemControl
             OpenFileDialog.Dispose();
             return fullPath;
         }
-        public static void CreateTemp(string fullPath, string newFullpathFull, string newFullpathPoor)
+        public static void CreateTemp(string fullPath, string newFullpathFull, string newFullpathPoor, bool gameSelected = true)
         {
             if (!Directory.Exists("temp/"))
                 Directory.CreateDirectory("temp/");
             if (fullPath == "-1")
             {
-                using (Image img = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder))
+                using (Image img = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
                 {
                     img.Save(newFullpathFull);
                     img.Save(newFullpathPoor);

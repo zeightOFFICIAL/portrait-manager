@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Win32;
+using System.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace PathfinderPortraitManager
 {
@@ -35,7 +37,7 @@ namespace PathfinderPortraitManager
             {
                 _isLoaded = true;
             }
-            ClearImages();
+            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
         }
@@ -66,7 +68,7 @@ namespace PathfinderPortraitManager
             {
                 _isLoaded = true;
             }
-            ClearImages();
+            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
         }
@@ -86,7 +88,7 @@ namespace PathfinderPortraitManager
             {
                 _isLoaded = true;
             }
-            ClearImages();
+            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             SystemControl.FileControl.CreateTemp(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
             LoadAllImages();
         }
@@ -212,7 +214,7 @@ namespace PathfinderPortraitManager
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
-            ClearImages();
+            DisposeImages();
             SystemControl.FileControl.TempClear();
             Application.Exit();
         }
@@ -262,14 +264,14 @@ namespace PathfinderPortraitManager
                     FinalDialog.ShowDialog();
                     if (FinalDialog.State == 1)
                     {
-                        ClearImages();
+                        ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
                         _isLoaded = false;
                         AllToNotEnabled();
                         ThisToEnabled(LayoutMainPage);
                     }
                     else if (FinalDialog.State == 2)
                     {
-                        ClearImages();
+                        ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
                         _isLoaded = false;
                         SystemControl.FileControl.CreateTemp("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR);
                         LoadAllImages();
@@ -279,7 +281,7 @@ namespace PathfinderPortraitManager
                     }
                     else if (FinalDialog.State == 3)
                     {
-                        ClearImages();
+                        ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
                         _isLoaded = false;
                         AllToNotEnabled();
                         System.Diagnostics.Process.Start(fullExodusPath);
@@ -314,32 +316,32 @@ namespace PathfinderPortraitManager
         private void LblUnnamed1_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed1.Text = "Stats portrait";
-            LabelUnnamed1.Font = _smlFont;
+            //LabelUnnamed1.Font = _smlFont;
         }
         private void LblUnnamed2_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed2.Text = "Character portrait";
-            LabelUnnamed2.Font = _smlFont;
+            //LabelUnnamed2.Font = _smlFont;
         }
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed3.Text = "Gameplay portrait";
-            LabelUnnamed3.Font = _smlFont;
+            //LabelUnnamed3.Font = _smlFont;
         }
         private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed1.Text = "Medium";
-            LabelUnnamed1.Font = _lrgFont;
+            //LabelUnnamed1.Font = _lrgFont;
         }
         private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed2.Text = "Large";
-            LabelUnnamed2.Font = _lrgFont;
+            //LabelUnnamed2.Font = _lrgFont;
         }
         private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed3.Text = "Small";
-            LabelUnnamed3.Font = _lrgFont;
+            //LabelUnnamed3.Font = _lrgFont;
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
@@ -361,7 +363,7 @@ namespace PathfinderPortraitManager
                                 webImage.Save(RELATIVEPATH_TO_TEMPFULL);
                                 ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TO_TEMPPOOR);
                                 _isLoaded = true;
-                                ClearImages();
+                                ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
                                 LoadAllImages();
                             }
                         }
@@ -435,14 +437,39 @@ namespace PathfinderPortraitManager
             if (_gameSelected == true)
             {
                 _gameSelected = false;
+                Color fcolor = Color.DeepPink;
+                Color bcolor = Color.FromArgb(20, 6, 30);
                 PicTitle.BackgroundImage.Dispose();
                 PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
+                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_wotr;
+
+                foreach (Control ctrl in this.Controls)
+                {
+                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+                }
+
+                using (Bitmap placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                {
+                    ImageControl.Utils.Replace(PicPortraitTemp, placeholder);
+                }
             }
             else
             {
                 _gameSelected = true;
+                Color fcolor = Color.Goldenrod;
+                Color bcolor = Color.FromArgb(9, 28, 11);
                 PicTitle.BackgroundImage.Dispose();
                 PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
+                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_path;
+
+                foreach (Control ctrl in this.Controls)
+                {
+                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+                }
+                using (Bitmap placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                {
+                    ImageControl.Utils.Replace(PicPortraitTemp, placeholder);
+                }
             }
         }
     }

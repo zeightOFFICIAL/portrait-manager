@@ -9,12 +9,19 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private void ClearImages()
+        private void ClearImages(Image replaceTo)
         {
-            ImageControl.Utils.Replace(PicPortraitTemp, PathfinderPortraitManager.Properties.Resources.placeholder);
-            ImageControl.Utils.Replace(PicPortraitLrg, PathfinderPortraitManager.Properties.Resources.placeholder);
-            ImageControl.Utils.Replace(PicPortraitMed, PathfinderPortraitManager.Properties.Resources.placeholder);
-            ImageControl.Utils.Replace(PicPortraitSml, PathfinderPortraitManager.Properties.Resources.placeholder);
+            ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitLrg, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitMed, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitSml, replaceTo);
+        }
+        private void DisposeImages()
+        {
+            ImageControl.Utils.Dispose(PicPortraitTemp);
+            ImageControl.Utils.Dispose(PicPortraitLrg);
+            ImageControl.Utils.Dispose(PicPortraitMed);
+            ImageControl.Utils.Dispose(PicPortraitSml);
         }
         private void ResizeImageAsWindow(PictureBox pictureBox, Image image, Panel panel)
         {
@@ -90,7 +97,7 @@ namespace PathfinderPortraitManager
         }
         private void LoadAllImages()
         {
-            ClearImages();
+            ClearImages(PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
             using (Image imgPoor = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
             {
                 PicPortraitLrg.Image = new Bitmap(imgPoor);
@@ -143,6 +150,15 @@ namespace PathfinderPortraitManager
             ButtonExtract.Font = _bebas_neue16;
             ButtonToGalleryPage.Font = _bebas_neue16;
             ButtonExit.Font = _bebas_neue16;
+        }
+        public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
+        {
+            ctrl.ForeColor = a;
+            ctrl.BackColor = b;
+            foreach (Control subCtrl in ctrl.Controls)
+            {
+                UpdateColorSchemeOnForm(subCtrl, a, b);
+            }
         }
     }
 }

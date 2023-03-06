@@ -165,7 +165,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="resources\BebasNeue-Regular.ttf" />
-    <None Include="resources\placeholder.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\icon_path.ico" />
@@ -178,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\title_wotr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\placeholder_path.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\placeholder_wotr.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -93,9 +93,19 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap placeholder {
+        internal static System.Drawing.Bitmap placeholder_path {
             get {
-                object obj = ResourceManager.GetObject("placeholder", resourceCulture);
+                object obj = ResourceManager.GetObject("placeholder_path", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap placeholder_wotr {
+            get {
+                object obj = ResourceManager.GetObject("placeholder_wotr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

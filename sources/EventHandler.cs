@@ -461,6 +461,7 @@ namespace PathfinderPortraitManager
                 PicTitle.BackgroundImage.Dispose();
                 PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
                 this.Icon = PathfinderPortraitManager.Properties.Resources.icon_wotr;
+                this.LayoutMainPage.BackgroundImage = PathfinderPortraitManager.Properties.Resources.bg_wotr;
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
@@ -474,6 +475,7 @@ namespace PathfinderPortraitManager
                 PicTitle.BackgroundImage.Dispose();
                 PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
                 this.Icon = PathfinderPortraitManager.Properties.Resources.icon_path;
+                this.LayoutMainPage.BackgroundImage = PathfinderPortraitManager.Properties.Resources.bg_path;
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);

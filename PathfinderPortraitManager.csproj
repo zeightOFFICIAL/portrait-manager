@@ -184,5 +184,11 @@
   <ItemGroup>
     <None Include="resources\placeholder_wotr.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\bg_path.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\bg_wotr.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

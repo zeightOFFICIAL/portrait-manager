@@ -154,6 +154,13 @@ namespace PathfinderPortraitManager
             ButtonToMainPage.Font = _bebas_neue16;
             ButtonToScalePage.Font = _bebas_neue16;
             ButtonHintOnFilePage.Font = _bebas_neue16;
+
+            ButtonBackToFilePage.Font = _bebas_neue16;
+            ButtonCreatePortrait.Font = _bebas_neue16;
+            LabelUnnamed1.Font = _bebas_neue16;
+            LabelUnnamed2.Font = _bebas_neue16;
+            LabelUnnamed3.Font = _bebas_neue16;
+            ButtonHintOnScalePage.Font = _bebas_neue16;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {

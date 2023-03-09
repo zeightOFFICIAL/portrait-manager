@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Management.Instrumentation;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -53,15 +52,15 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        private static Tuple<int, int> MapNewWidthHeight(Panel panel, float aspectRatio)
+        private static Tuple<int, int> MapNewWidthHeight(Control parent, float aspectRatio)
         {
-            int srcWidth = panel.Width,
-                srcHeight = panel.Height,
+            int srcWidth = parent.Width,
+                srcHeight = parent.Height,
                 dstWidth,
                 dstHeight;
             dstHeight = srcHeight;
             dstWidth = (int)(srcHeight * 1.0f / aspectRatio * 1.0f);
-            if (dstWidth < panel.Width)
+            if (dstWidth < parent.Width)
             {
                 dstWidth = srcWidth;
                 dstHeight = (int)(srcWidth * 1.0f / (1.0f / aspectRatio * 1.0f));
@@ -185,7 +184,7 @@ namespace PathfinderPortraitManager
         }
         public void ClearAndLoadToAccordingDefault(string fullPath, char whichGame = 'p')
         {
-            if (_gameSelected == 'p')
+            if (whichGame == 'p')
                 using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
                 {
                     ClearImages(placeholder);
@@ -200,9 +199,9 @@ namespace PathfinderPortraitManager
                     SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
                 }
         }
-        public void InitColorScheme(char gameType = 'p')
+        public void InitColorScheme(char whichGame = 'p')
         {
-            if (gameType == 'w')
+            if (whichGame == 'w')
             {
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);

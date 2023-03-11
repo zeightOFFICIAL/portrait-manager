@@ -151,5 +151,26 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+        private void ButtonToGalleryPage_Click(object sender, EventArgs e)
+        {
+            string folderPath;
+            LayoutsDisable();
+            LayoutEnable(LayoutGallery);
+            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+            if (_gameSelected == 'w')
+                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
+            if (!LoadGallery(folderPath))
+            {
+                this.ButtonToMainPage3_Click(sender, e);
+            }
+        }
+        private void ButtonToMainPage3_Click(object sender, EventArgs e)
+        {
+            LayoutsDisable();
+            LayoutEnable(LayoutMainPage);
+            ClearGallery();
+        }
     }
 }

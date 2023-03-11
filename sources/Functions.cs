@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -77,6 +79,8 @@ namespace PathfinderPortraitManager
             LayoutScalePage.Enabled = false;
             LayoutExtractPage.Enabled = false;
             LayoutExtractPage.Visible = false;
+            LayoutGallery.Visible = false;
+            LayoutGallery.Enabled = false;
         }
         private void LayoutsSetDockFill()
         {
@@ -161,6 +165,10 @@ namespace PathfinderPortraitManager
             LabelUnnamed2.Font = _bebas_neue16;
             LabelUnnamed3.Font = _bebas_neue16;
             ButtonHintOnScalePage.Font = _bebas_neue16;
+
+            ButtonDeletePortait.Font = _bebas_neue16;
+            ButtonToMainPage3.Font = _bebas_neue16;
+            ButtonOpenFolder.Font = _bebas_neue16;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
@@ -234,6 +242,33 @@ namespace PathfinderPortraitManager
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
                 }
             }
+        }
+        public bool LoadGallery(string fromPath)
+        {
+            if(!SystemControl.FileControl.DirExists(fromPath))
+            {
+                return false;
+            }
+            ListGallery.View = View.LargeIcon;
+            ListGallery.LargeImageList = ImgListGallery;
+            List<string> nameList = new List<string>();
+            foreach (string directory in Directory.GetDirectories(fromPath)) {
+                this.ImgListGallery.Images.Add(Image.FromFile(directory + "\\Fulllength.png"));
+                int nameLen = directory.Split('\\').Length;
+                nameList.Add(directory.Split('\\')[nameLen-1]);
+            }
+            for (int count = 0; count < ImgListGallery.Images.Count; count++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = nameList[count];
+                item.ImageIndex = count;
+                ListGallery.Items.Add(item);
+            }
+            return true;
+        }
+        public void ClearGallery()
+        {
+
         }
     }
 }

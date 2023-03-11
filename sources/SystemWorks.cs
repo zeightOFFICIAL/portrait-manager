@@ -78,7 +78,6 @@ namespace SystemControl
         {
             return Path.GetExtension(path + filename);
         }
-
         public static PrivateFontCollection InitCustomLabelFont(byte[] font)
         {
             PrivateFontCollection pfc = new PrivateFontCollection();

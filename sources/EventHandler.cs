@@ -331,32 +331,26 @@ namespace PathfinderPortraitManager
         private void LblUnnamed1_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed1.Text = "Stats portrait";
-            //LabelUnnamed1.Font = _smlFont;
         }
         private void LblUnnamed2_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed2.Text = "Character portrait";
-            //LabelUnnamed2.Font = _smlFont;
         }
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
             LabelUnnamed3.Text = "Gameplay portrait";
-            //LabelUnnamed3.Font = _smlFont;
         }
         private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed1.Text = "Medium";
-            //LabelUnnamed1.Font = _lrgFont;
         }
         private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed2.Text = "Large";
-            //LabelUnnamed2.Font = _lrgFont;
         }
         private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
         {
             LabelUnnamed3.Text = "Small";
-            //LabelUnnamed3.Font = _lrgFont;
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
@@ -491,6 +485,34 @@ namespace PathfinderPortraitManager
                 folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                          "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
             System.Diagnostics.Process.Start(folderPath);
+        }
+        private void ButtonChange_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonDeletePortait_Click(object sender, EventArgs e)
+        {
+            string folderPath;
+            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+            if (_gameSelected == 'w')
+                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
+            foreach (ListViewItem item in ListGallery.SelectedItems)
+            {
+                string path = folderPath + "\\" + item.Text;
+                using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog(path + " " + item.Text))
+                {
+                    ScalingHint.ShowDialog();
+                }
+                ImgListGallery.Images.RemoveByKey(item.Text);
+                ListGallery.Items.RemoveByKey(item.Text);
+                SystemControl.FileControl.DeleteDirRecursive(path);
+            }
+        }
+        private void ButtonHintFolder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

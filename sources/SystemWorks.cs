@@ -50,10 +50,14 @@ namespace SystemControl
         }
         public static void TempImagesClear()
         {
+            DeleteDirRecursive("temp/");
+        }
+        public static void DeleteDirRecursive(string path)
+        {
             try
             {
-                if (Directory.Exists("temp/"))
-                    Directory.Delete("temp/", true);
+                if (Directory.Exists(path))
+                    Directory.Delete(path, true);
             }
             catch (System.IO.IOException)
             {

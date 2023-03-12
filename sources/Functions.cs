@@ -88,6 +88,7 @@ namespace PathfinderPortraitManager
             LayoutMainPage.Dock = DockStyle.Fill;
             LayoutScalePage.Dock = DockStyle.Fill;
             LayoutExtractPage.Dock = DockStyle.Fill;
+            LayoutGallery.Dock = DockStyle.Fill;
         }
         private void LayoutEnable(TableLayoutPanel table)
         {
@@ -169,6 +170,8 @@ namespace PathfinderPortraitManager
             ButtonDeletePortait.Font = _bebas_neue16;
             ButtonToMainPage3.Font = _bebas_neue16;
             ButtonOpenFolder.Font = _bebas_neue16;
+            ButtonChange.Font = _bebas_neue16;
+            ButtonHintFolder.Font = _bebas_neue16;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
@@ -249,13 +252,11 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
-            ListGallery.View = View.LargeIcon;
-            ListGallery.LargeImageList = ImgListGallery;
             List<string> nameList = new List<string>();
             foreach (string directory in Directory.GetDirectories(fromPath)) {
-                this.ImgListGallery.Images.Add(Image.FromFile(directory + "\\Fulllength.png"));
                 int nameLen = directory.Split('\\').Length;
-                nameList.Add(directory.Split('\\')[nameLen-1]);
+                nameList.Add(directory.Split('\\')[nameLen - 1]);
+                this.ImgListGallery.Images.Add(directory.Split('\\')[nameLen - 1], Image.FromFile(directory + "\\Fulllength.png"));
             }
             for (int count = 0; count < ImgListGallery.Images.Count; count++)
             {
@@ -268,7 +269,8 @@ namespace PathfinderPortraitManager
         }
         public void ClearGallery()
         {
-
+            ListGallery.Clear();
+            ImgListGallery.Images.Clear();
         }
     }
 }

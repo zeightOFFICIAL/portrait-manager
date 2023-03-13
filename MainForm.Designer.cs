@@ -812,7 +812,7 @@ namespace PathfinderPortraitManager
             // 
             // ImgListGallery
             // 
-            this.ImgListGallery.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.ImgListGallery.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit;
             this.ImgListGallery.ImageSize = new System.Drawing.Size(100, 148);
             this.ImgListGallery.TransparentColor = System.Drawing.Color.Empty;
             // 
@@ -917,8 +917,7 @@ namespace PathfinderPortraitManager
             this.LayoutGallery.ColumnCount = 1;
             this.LayoutGallery.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutGallery.Controls.Add(this.LayoutUnnamed10, 0, 1);
-            this.LayoutGallery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutGallery.Location = new System.Drawing.Point(0, 0);
+            this.LayoutGallery.Location = new System.Drawing.Point(116, 537);
             this.LayoutGallery.Name = "LayoutGallery";
             this.LayoutGallery.RowCount = 3;
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.640895F));

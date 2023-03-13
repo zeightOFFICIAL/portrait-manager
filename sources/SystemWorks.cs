@@ -21,9 +21,13 @@ namespace SystemControl
                 Filter = "Image files|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
             };
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
                 fullPath = OpenFileDialog.FileName;
+            }
             else
+            {
                 fullPath = "-1";
+            }
             OpenFileDialog.Dispose();
             return fullPath;
         }
@@ -82,7 +86,7 @@ namespace SystemControl
         {
             return Path.GetExtension(path + filename);
         }
-        public static PrivateFontCollection InitCustomLabelFont(byte[] font)
+        public static PrivateFontCollection InitCustomFont(byte[] font)
         {
             PrivateFontCollection pfc = new PrivateFontCollection();
             int fontLength = font.Length;

@@ -58,5 +58,17 @@ namespace PathfinderPortraitManager.Properties {
                 this["defaultgametype"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EN")]
+        public string activelocal {
+            get {
+                return ((string)(this["activelocal"]));
+            }
+            set {
+                this["activelocal"] = value;
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace PathfinderPortraitManager
             {
                 _isAnyNewLoaded = true;
             }
-            ClearAndLoadToAccordingDefault(fullPath, _gameSelected);
+            SafeCopyAllImages(fullPath, _gameSelected);
             LoadAllTempImages();
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
@@ -65,7 +65,7 @@ namespace PathfinderPortraitManager
             {
                 _isAnyNewLoaded = true;
             }
-            ClearAndLoadToAccordingDefault(fullPath, _gameSelected);
+            SafeCopyAllImages(fullPath, _gameSelected);
             LoadAllTempImages();
         }
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
@@ -84,14 +84,14 @@ namespace PathfinderPortraitManager
             {
                 _isAnyNewLoaded = true;
             }
-            ClearAndLoadToAccordingDefault(fullPath, _gameSelected);
+            SafeCopyAllImages(fullPath, _gameSelected);
             LoadAllTempImages();
         }
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
         {
             PanelPortraitLrg.VerticalScroll.Visible = false;
             PanelPortraitLrg.HorizontalScroll.Visible = false;
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 _mousePos = e.Location;
                 _isDragging = 1;
@@ -116,7 +116,7 @@ namespace PathfinderPortraitManager
         {
             PanelPortraitMed.VerticalScroll.Visible = false;
             PanelPortraitMed.HorizontalScroll.Visible = false;
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 _mousePos = e.Location;
                 _isDragging = 2;
@@ -141,7 +141,7 @@ namespace PathfinderPortraitManager
         {
             PanelPortraitSml.VerticalScroll.Visible = false;
             PanelPortraitSml.HorizontalScroll.Visible = false;
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 _mousePos = e.Location;
                 _isDragging = 3;
@@ -210,105 +210,83 @@ namespace PathfinderPortraitManager
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposeAllImages();
+            ClearGallery();
             SystemControl.FileControl.TempImagesClear();
             Application.Exit();
         }
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
-            ResizeAllImagesToWindow();
+            ResizeVisibleImagesToWindow();
         }
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
-            string exodusPath, fullExodusPath;
-            exodusPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-
-            if (_gameSelected == 'w')
-                exodusPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
-
-            fullExodusPath = "";
-            if (!SystemControl.FileControl.DirExists(exodusPath))
+            string fullPath = "";
+            bool placeFound = false;
+            uint localName = 1000;
+            if (!SystemControl.FileControl.DirExists(ENV_DICT[_gameSelected]))
             {
-                using (Forms.MyMessageDialog MyMessageDialog = new Forms.MyMessageDialog("Pathfinder portraits folder was not found!"))
+                using (Forms.MyMessageDialog mesgNotFound = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotFound))
                 {
-                    MyMessageDialog.ShowDialog();
+                    mesgNotFound.ShowDialog();
                 }
                 return;
             }
-            bool placeFound = false;
-            uint localName = 1000;
-            while (placeFound == false)
+            while (!placeFound)
             {
-                fullExodusPath = exodusPath + "\\" + Convert.ToString(localName);
-                if (!Directory.Exists(fullExodusPath))
+                fullPath = ENV_DICT[_gameSelected] + "\\" + Convert.ToString(localName);
+                if (!Directory.Exists(fullPath))
                 {
-                    Directory.CreateDirectory(fullExodusPath);
+                    Directory.CreateDirectory(fullPath);
                     ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, RELATIVEPATH_TO_TEMPFULL,
-                                                 fullExodusPath + LARGE_EXTENSION,
+                                                 fullPath + LARGE_EXTENSION,
                                                  ASPECT_RATIO_LARGE, 692, 1024);
                     ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, RELATIVEPATH_TO_TEMPFULL,
-                                                 fullExodusPath + MEDIUM_EXTENSION,
+                                                 fullPath + MEDIUM_EXTENSION,
                                                  ASPECT_RATIO_MED, 330, 432);
                     ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TO_TEMPFULL,
-                                                 fullExodusPath + SMALL_EXTENSION,
+                                                 fullPath + SMALL_EXTENSION,
                                                  ASPECT_RATIO_SMALL, 185, 242);
                     placeFound = true;
                 }
                 localName++;
             }
-            if (CheckExistence(fullExodusPath))
+            if (CheckExistence(fullPath))
             {
-                using (Forms.FinalDialog FinalDialog = new Forms.FinalDialog())
+                using (Forms.FinalDialog finalDialog = new Forms.FinalDialog())
                 {
-                    FinalDialog.ShowDialog();
-                    if (FinalDialog.State == 1)
+                    finalDialog.ShowDialog();
+                    if (finalDialog.State == 1)
                     {
-                        if (_gameSelected == 'p')
-                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
-                                ClearImages(placeholder);
-                        else
-                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
-                                ClearImages(placeholder);
+                        ClearTempImages();
                         _isAnyNewLoaded = false;
-                        LayoutsDisable();
-                        LayoutEnable(LayoutMainPage);
+                        ParentLayoutsHide();
+                        LayoutReveal(LayoutMainPage);
                     }
-                    else if (FinalDialog.State == 2)
+                    else if (finalDialog.State == 2)
                     {
-                        if (_gameSelected == 'p')
-                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
-                                ClearImages(placeholder);
-                        else
-                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
-                                ClearImages(placeholder);
+                        ClearTempImages();
                         _isAnyNewLoaded = false;
-                        SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, PathfinderPortraitManager.Properties.Resources.placeholder_wotr);
+                        SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, Properties.Resources.placeholder_wotr);
                         LoadAllTempImages();
-                        LayoutsDisable();
-                        LayoutEnable(LayoutFilePage);
-                        ResizeAllImagesToWindow();
+                        ParentLayoutsHide();
+                        LayoutReveal(LayoutFilePage);
+                        ResizeVisibleImagesToWindow();
                     }
-                    else if (FinalDialog.State == 3)
+                    else if (finalDialog.State == 3)
                     {
-                        if (_gameSelected == 'p')
-                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
-                                ClearImages(placeholder);
-                        else
-                            using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
-                                ClearImages(placeholder);
+                        ClearTempImages();
                         _isAnyNewLoaded = false;
-                        LayoutsDisable();
-                        System.Diagnostics.Process.Start(fullExodusPath);
-                        LayoutEnable(LayoutMainPage);
+                        ParentLayoutsHide();
+                        System.Diagnostics.Process.Start(fullPath);
+                        LayoutReveal(LayoutMainPage);
                     }
                 }
             }
             else
             {
-                using (Forms.MyMessageDialog MyMessageDialog = new Forms.MyMessageDialog("Program was unable to load any images into portraits folder!"))
+                using (Forms.MyMessageDialog mesgNotLoaded = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotLoaded))
                 {
-                    MyMessageDialog.ShowDialog();
+                    mesgNotLoaded.ShowDialog();
                 }
                 return;
             }
@@ -354,63 +332,50 @@ namespace PathfinderPortraitManager
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            using (Forms.UrlDialog UrlDialog = new Forms.UrlDialog())
+            using (Forms.UrlDialog dialUrl = new Forms.UrlDialog())
             {
-                UrlDialog.ShowDialog();
-                if (UrlDialog.URL != "-1" && UrlDialog.URL != "-2")
+                dialUrl.ShowDialog();
+                if (dialUrl.URL != "-1" && dialUrl.URL != "-2")
                 {
                     try
                     {
-                        var request = System.Net.WebRequest.Create(UrlDialog.URL);
+                        var request = System.Net.WebRequest.Create(dialUrl.URL);
                         using (var response = request.GetResponse())
                         using (var stream = response.GetResponseStream())
                         {
-                            using (Image webImage = Bitmap.FromStream(stream))
+                            using (Image webImage = Image.FromStream(stream))
                             {
                                 if (!Directory.Exists("temp/"))
                                     Directory.CreateDirectory("temp/");
                                 webImage.Save(RELATIVEPATH_TO_TEMPFULL);
                                 ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TO_TEMPPOOR);
                                 _isAnyNewLoaded = true;
-                                if (_gameSelected == 'p')
-                                    using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
-                                        ClearImages(placeholder);
-                                else
-                                    using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
-                                        ClearImages(placeholder);
+                                ClearTempImages();
                                 LoadAllTempImages();
                             }
                         }
                     }
                     catch
                     {
-                        using (Forms.MyMessageDialog MyMessageDialog = new Forms.MyMessageDialog("Error during fetching image!"))
+                        using (Forms.MyMessageDialog mesgCannotLoad = new Forms.MyMessageDialog(Properties.TextVariables.mesgCannotLoad))
                         {
-                            MyMessageDialog.ShowDialog();
+                            mesgCannotLoad.ShowDialog();
                         }
-                        UrlDialog.URL = "-1";
+                        dialUrl.URL = "-1";
                     }
                 }
             }
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog("This is a scaling page. Here you can adjust the " +
-                         "portrait as you see fit. Click and drag to move cropping rectangle. " +
-                         "Use mouse wheel to zoom in and out. Double-click on portrait to " +
-                         "restore it to original state. Use \"Create\" button to generate " +
-                         "portrait and \"Back\" to return to image page."))
+            using (Forms.MyHintDialog hintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
             {
-                ScalingHint.ShowDialog();
+                hintScalingPage.ShowDialog();
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +
-                    "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
-                    "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
-                    "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
-                    "to return to main page."))
+            using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog(Properties.TextVariables.hintFilePage))
             {
                 FileHint.ShowDialog();
             }
@@ -431,8 +396,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
-            LayoutsDisable();
-            LayoutEnable(LayoutMainPage);
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
         }
         private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
         {
@@ -488,7 +453,23 @@ namespace PathfinderPortraitManager
         }
         private void ButtonChange_Click(object sender, EventArgs e)
         {
-
+            ListViewItem item = ListGallery.SelectedItems[0];
+            string folderPath;
+            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
+            if (_gameSelected == 'w')
+                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
+                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
+            folderPath = folderPath + "\\" + item.Text + "\\Fulllength.png";
+            using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog(folderPath))
+            {
+                FileHint.ShowDialog();
+            }
+            ButtonToMainPage3_Click(sender, e);
+            ButtonToFilePage_Click(sender, e);
+            _isAnyNewLoaded = true;
+            SafeCopyAllImages(folderPath, _gameSelected);
+            LoadAllTempImages();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
@@ -500,13 +481,13 @@ namespace PathfinderPortraitManager
                          "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
-                string path = folderPath + "\\" + item.Text;
+                string path = folderPath + "\\" + item.Text + "\\";
                 using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog(path + " " + item.Text))
                 {
                     ScalingHint.ShowDialog();
                 }
-                ImgListGallery.Images.RemoveByKey(item.Text);
-                ListGallery.Items.RemoveByKey(item.Text);
+                ImgListGallery.Images.RemoveAt(item.Index);
+                ListGallery.Items.Remove(item);
                 SystemControl.FileControl.DeleteDirRecursive(path);
             }
         }

@@ -36,7 +36,7 @@ namespace PathfinderPortraitManager
             pictureBox.Image = ImageControl.Direct.Resize.LowQiality(image, newSizeTuple.Item1, newSizeTuple.Item2);
             ArrangeAutoScroll(panel, newSizeTuple.Item1, newSizeTuple.Item2);
         }
-        private void ResizeAllImagesToWindow()
+        private void ResizeVisibleImagesToWindow()
         {
             if (LayoutScalePage.Enabled == true)
                 using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
@@ -69,7 +69,7 @@ namespace PathfinderPortraitManager
             }
             return Tuple.Create(dstWidth, dstHeight);
         }
-        private void LayoutsDisable()
+        private void ParentLayoutsHide()
         {
             LayoutFilePage.Visible = false;
             LayoutFilePage.Enabled = false;
@@ -82,7 +82,7 @@ namespace PathfinderPortraitManager
             LayoutGallery.Visible = false;
             LayoutGallery.Enabled = false;
         }
-        private void LayoutsSetDockFill()
+        private void ParentLayoutsSetDockFill()
         {
             LayoutFilePage.Dock = DockStyle.Fill;
             LayoutMainPage.Dock = DockStyle.Fill;
@@ -90,7 +90,7 @@ namespace PathfinderPortraitManager
             LayoutExtractPage.Dock = DockStyle.Fill;
             LayoutGallery.Dock = DockStyle.Fill;
         }
-        private void LayoutEnable(TableLayoutPanel table)
+        private void LayoutReveal(TableLayoutPanel table)
         {
             if (table.Visible == false && table.Enabled == false)
             {
@@ -100,7 +100,7 @@ namespace PathfinderPortraitManager
         }
         private void LoadAllTempImages()
         {
-            ClearToAccordingDefault(_gameSelected);
+            ClearTempImages();
             using (Image imgPoor = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
             {
                 PicPortraitLrg.Image = new Bitmap(imgPoor);
@@ -112,7 +112,7 @@ namespace PathfinderPortraitManager
             ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            ResizeAllImagesToWindow();
+            ResizeVisibleImagesToWindow();
         }
         public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
         {
@@ -191,26 +191,24 @@ namespace PathfinderPortraitManager
                 UpdateColorSchemeOnForm(subCtrl, a, b);
             }
         }
-        public void ClearToAccordingDefault(char whichGame = 'p')
+        public void ClearTempImages()
         {
-            if (whichGame == 'p')
-                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
-                    ClearImages(placeholder);
-            else
-                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
-                    ClearImages(placeholder);
+            using (Image placeholder = new Bitmap(DEF_DICT[_gameSelected]))
+            {
+                ClearImages(placeholder);
+            }
         }
-        public void ClearAndLoadToAccordingDefault(string fullPath, char whichGame = 'p')
+        public void SafeCopyAllImages(string fullPath, char whichGame = 'p')
         {
             if (whichGame == 'p')
-                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_path))
+                using (Image placeholder = new Bitmap(Properties.Resources.placeholder_path))
                 {
                     ClearImages(placeholder);
                     SystemControl.FileControl.TempImagesClear();
                     SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
                 }
             else
-                using (Image placeholder = new Bitmap(PathfinderPortraitManager.Properties.Resources.placeholder_wotr))
+                using (Image placeholder = new Bitmap(Properties.Resources.placeholder_wotr))
                 {
                     ClearImages(placeholder);
                     SystemControl.FileControl.TempImagesClear();
@@ -263,6 +261,7 @@ namespace PathfinderPortraitManager
                 ListViewItem item = new ListViewItem();
                 item.Text = nameList[count];
                 item.ImageIndex = count;
+                item.Remove();
                 ListGallery.Items.Add(item);
             }
             return true;

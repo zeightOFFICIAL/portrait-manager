@@ -11,5 +11,8 @@
     <Setting Name="defaultgametype" Type="System.Char" Scope="User">
       <Value Profile="(Default)">w</Value>
     </Setting>
+    <Setting Name="activelocal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">EN</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

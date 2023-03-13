@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Win32;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PathfinderPortraitManager
 {
@@ -12,31 +11,21 @@ namespace PathfinderPortraitManager
     {
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
-            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            string fullPath = "-1";
-            if (fileList[0] != null && File.Exists(fileList[0]) &&
-                (Path.GetExtension(fileList[0]) == ".png") ||
-                (Path.GetExtension(fileList[0]) == ".jpg") ||
-                (Path.GetExtension(fileList[0]) == ".jpeg") ||
-                (Path.GetExtension(fileList[0]) == ".bmp") ||
-                (Path.GetExtension(fileList[0]) == ".gif"))
-            {
-                fullPath = fileList[0];
-            }
+            string fullPath = CheckDragDropFile(e);
             if (fullPath == "-1")
             {
-                if (_isAnyNewLoaded == true)
+                if (_isNewLoaded == true)
                 {
                     LoadAllTempImages();
                     return;
                 }
-                _isAnyNewLoaded = false;
+                _isNewLoaded = false;
             }
             else
             {
-                _isAnyNewLoaded = true;
+                _isNewLoaded = true;
             }
-            SafeCopyAllImages(fullPath, _gameSelected);
+            SafeCopyAllImages(fullPath);
             LoadAllTempImages();
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
@@ -52,40 +41,40 @@ namespace PathfinderPortraitManager
         }
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
-            string fullPath = SystemControl.FileControl.OpenFile();
+            string fullPath = SystemControl.FileControl.OpenFileLocation();
             if (fullPath == "-1")
             {
-                if (_isAnyNewLoaded == true)
+                if (_isNewLoaded == true)
                 {
                     LoadAllTempImages();
                     return;
                 }
-                _isAnyNewLoaded = false;
+                _isNewLoaded = false;
             }
             else
             {
-                _isAnyNewLoaded = true;
+                _isNewLoaded = true;
             }
-            SafeCopyAllImages(fullPath, _gameSelected);
+            SafeCopyAllImages(fullPath);
             LoadAllTempImages();
         }
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
         {
-            string fullPath = SystemControl.FileControl.OpenFile();
+            string fullPath = SystemControl.FileControl.OpenFileLocation();
             if (fullPath == "-1")
             {
-                if (_isAnyNewLoaded == true)
+                if (_isNewLoaded == true)
                 {
                     LoadAllTempImages();
                     return;
                 }
-                _isAnyNewLoaded = false;
+                _isNewLoaded = false;
             }
             else
             {
-                _isAnyNewLoaded = true;
+                _isNewLoaded = true;
             }
-            SafeCopyAllImages(fullPath, _gameSelected);
+            SafeCopyAllImages(fullPath);
             LoadAllTempImages();
         }
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
@@ -170,12 +159,12 @@ namespace PathfinderPortraitManager
             if (e.Delta > 0)
             {
                 factor = PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
             }
         }
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
@@ -185,12 +174,12 @@ namespace PathfinderPortraitManager
             if (e.Delta > 0)
             {
                 factor = PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
             }
         }
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
@@ -200,12 +189,12 @@ namespace PathfinderPortraitManager
             if (e.Delta > 0)
             {
                 factor = PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TO_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
             }
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
@@ -224,29 +213,26 @@ namespace PathfinderPortraitManager
             string fullPath = "";
             bool placeFound = false;
             uint localName = 1000;
-            if (!SystemControl.FileControl.DirExists(ENV_DICT[_gameSelected]))
+            if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
             {
-                using (Forms.MyMessageDialog mesgNotFound = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotFound))
+                using (Forms.MyMessageDialog MesgNotFound = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotFound))
                 {
-                    mesgNotFound.ShowDialog();
+                    MesgNotFound.ShowDialog();
                 }
                 return;
             }
             while (!placeFound)
             {
-                fullPath = ENV_DICT[_gameSelected] + "\\" + Convert.ToString(localName);
+                fullPath = DIR_DICT[_gameSelected] + "\\" + Convert.ToString(localName);
                 if (!Directory.Exists(fullPath))
                 {
                     Directory.CreateDirectory(fullPath);
-                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, RELATIVEPATH_TO_TEMPFULL,
-                                                 fullPath + LARGE_EXTENSION,
-                                                 ASPECT_RATIO_LARGE, 692, 1024);
-                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, RELATIVEPATH_TO_TEMPFULL,
-                                                 fullPath + MEDIUM_EXTENSION,
-                                                 ASPECT_RATIO_MED, 330, 432);
-                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TO_TEMPFULL,
-                                                 fullPath + SMALL_EXTENSION,
-                                                 ASPECT_RATIO_SMALL, 185, 242);
+                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, RELATIVEPATH_TEMPFULL,
+                                                 fullPath + LRG_APPEND, LRG_ASPECT, 692, 1024);
+                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, RELATIVEPATH_TEMPFULL,
+                                                 fullPath + MED_APPEND, MED_ASPECT, 330, 432);
+                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TEMPFULL,
+                                                 fullPath + SML_APPEND, SML_ASPECT, 185, 242);
                     placeFound = true;
                 }
                 localName++;
@@ -259,15 +245,15 @@ namespace PathfinderPortraitManager
                     if (finalDialog.State == 1)
                     {
                         ClearTempImages();
-                        _isAnyNewLoaded = false;
+                        _isNewLoaded = false;
                         ParentLayoutsHide();
                         LayoutReveal(LayoutMainPage);
                     }
                     else if (finalDialog.State == 2)
                     {
                         ClearTempImages();
-                        _isAnyNewLoaded = false;
-                        SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, Properties.Resources.placeholder_wotr);
+                        _isNewLoaded = false;
+                        SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULT_DICT[_gameSelected]);
                         LoadAllTempImages();
                         ParentLayoutsHide();
                         LayoutReveal(LayoutFilePage);
@@ -276,7 +262,7 @@ namespace PathfinderPortraitManager
                     else if (finalDialog.State == 3)
                     {
                         ClearTempImages();
-                        _isAnyNewLoaded = false;
+                        _isNewLoaded = false;
                         ParentLayoutsHide();
                         System.Diagnostics.Process.Start(fullPath);
                         LayoutReveal(LayoutMainPage);
@@ -285,72 +271,72 @@ namespace PathfinderPortraitManager
             }
             else
             {
-                using (Forms.MyMessageDialog mesgNotLoaded = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotLoaded))
+                using (Forms.MyMessageDialog MesgNotLoaded = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotLoaded))
                 {
-                    mesgNotLoaded.ShowDialog();
+                    MesgNotLoaded.ShowDialog();
                 }
                 return;
             }
         }
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+            using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
         }
         private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+            using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
         }
         private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+            using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
         }
         private void LblUnnamed1_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed1.Text = "Stats portrait";
+            LabelUnnamed1.Text = Properties.TextVariables.statsPortrait;
         }
         private void LblUnnamed2_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed2.Text = "Character portrait";
+            LabelUnnamed2.Text = Properties.TextVariables.charPortrait;
         }
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed3.Text = "Gameplay portrait";
+            LabelUnnamed3.Text = Properties.TextVariables.gamePortrait;
         }
         private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed1.Text = "Medium";
+            LabelUnnamed1.Text = Properties.TextVariables.medPortrait;
         }
         private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed2.Text = "Large";
+            LabelUnnamed2.Text = Properties.TextVariables.lrgPortrait;
         }
         private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed3.Text = "Small";
+            LabelUnnamed3.Text = Properties.TextVariables.smlPortrait;
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            using (Forms.UrlDialog dialUrl = new Forms.UrlDialog())
+            using (Forms.UrlDialog DialUrl = new Forms.UrlDialog())
             {
-                dialUrl.ShowDialog();
-                if (dialUrl.URL != "-1" && dialUrl.URL != "-2")
+                DialUrl.ShowDialog();
+                if (DialUrl.URL != "-1" && DialUrl.URL != "-2")
                 {
                     try
                     {
-                        var request = System.Net.WebRequest.Create(dialUrl.URL);
+                        var request = System.Net.WebRequest.Create(DialUrl.URL);
                         using (var response = request.GetResponse())
                         using (var stream = response.GetResponseStream())
                         {
                             using (Image webImage = Image.FromStream(stream))
                             {
-                                if (!Directory.Exists("temp/"))
-                                    Directory.CreateDirectory("temp/");
-                                webImage.Save(RELATIVEPATH_TO_TEMPFULL);
-                                ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TO_TEMPPOOR);
-                                _isAnyNewLoaded = true;
+                                if (!SystemControl.FileControl.DirectoryExists("temp/"))
+                                    SystemControl.FileControl.DirectoryCreate("temp/");
+                                webImage.Save(RELATIVEPATH_TEMPFULL);
+                                ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TEMPPOOR);
+                                _isNewLoaded = true;
                                 ClearTempImages();
                                 LoadAllTempImages();
                             }
@@ -358,27 +344,27 @@ namespace PathfinderPortraitManager
                     }
                     catch
                     {
-                        using (Forms.MyMessageDialog mesgCannotLoad = new Forms.MyMessageDialog(Properties.TextVariables.mesgCannotLoad))
+                        using (Forms.MyMessageDialog MesgCannotLoad = new Forms.MyMessageDialog(Properties.TextVariables.mesgCannotLoad))
                         {
-                            mesgCannotLoad.ShowDialog();
+                            MesgCannotLoad.ShowDialog();
                         }
-                        dialUrl.URL = "-1";
+                        DialUrl.URL = "-1";
                     }
                 }
             }
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog hintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
+            using (Forms.MyHintDialog HintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
             {
-                hintScalingPage.ShowDialog();
+                HintScalingPage.ShowDialog();
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog(Properties.TextVariables.hintFilePage))
+            using (Forms.MyHintDialog HintFilePage = new Forms.MyHintDialog(Properties.TextVariables.hintFilePage))
             {
-                FileHint.ShowDialog();
+                HintFilePage.ShowDialog();
             }
         }
         private void ButtonFolderChoose_Click(object sender, EventArgs e)
@@ -388,7 +374,7 @@ namespace PathfinderPortraitManager
             CommonOpenFileDialog.IsFolderPicker = true;
             if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                MessageBox.Show("You selected " + ExploreDirectory(CommonOpenFileDialog.FileName));
+                MessageBox.Show("DEBUG " + ExploreDirectory(CommonOpenFileDialog.FileName));
             }
         }
         private void ButtonFolderExtract_Click(object sender, EventArgs e)
@@ -397,13 +383,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +
-                    "whatever picture you want for your portrait. Local and web-stored images can be loaded. Press " +
-                    "\"local image\", click on portrait, or simply drag and drop to load local image. Press " +
-                    "\"web image\" to fetch image from web. Then press \"next\" to begin scaling or \"back\" " +
-                    "to return to main page."))
+            using (Forms.MyHintDialog HintExtractPage = new Forms.MyHintDialog(Properties.TextVariables.hintExtractPage))
             {
-                FileHint.ShowDialog();
+                HintExtractPage.ShowDialog();
             }
         }
         private void PicTitle_Click(object sender, EventArgs e)
@@ -414,9 +396,9 @@ namespace PathfinderPortraitManager
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);
                 PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
-                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_wotr;
-                this.LayoutMainPage.BackgroundImage = PathfinderPortraitManager.Properties.Resources.bg_wotr;
+                PicTitle.BackgroundImage = Properties.Resources.title_wotr;
+                Icon = Properties.Resources.icon_wotr;
+                LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
@@ -428,9 +410,9 @@ namespace PathfinderPortraitManager
                 Color fcolor = Color.Goldenrod;
                 Color bcolor = Color.FromArgb(9, 28, 11);
                 PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
-                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_path;
-                this.LayoutMainPage.BackgroundImage = PathfinderPortraitManager.Properties.Resources.bg_path;
+                PicTitle.BackgroundImage = Properties.Resources.title_path;
+                Icon = Properties.Resources.icon_path;
+                LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
@@ -439,32 +421,28 @@ namespace PathfinderPortraitManager
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
-            string folderPath;
-            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-            if (_gameSelected == 'w')
-                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
-            System.Diagnostics.Process.Start(folderPath);
+            System.Diagnostics.Process.Start(DIR_DICT[_gameSelected]);
         }
         private void ButtonChange_Click(object sender, EventArgs e)
         {
+            if (ListGallery.Items.Count < 1)
+            {
+                return;
+            }
             ListViewItem item = ListGallery.SelectedItems[0];
-            string folderPath;
-            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-            if (_gameSelected == 'w')
-                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
-            folderPath = folderPath + "\\" + item.Text + "\\Fulllength.png";
+            string folderPath = DIR_DICT[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
             using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog(folderPath))
             {
                 FileHint.ShowDialog();
             }
+            ListGallery.Items.RemoveByKey(item.Text);
+            ImgListGallery.Images.RemoveByKey(item.Text);
+            item.Remove();
+            SystemControl.FileControl.DirectoryDeleteRecursive(folderPath);
             ButtonToMainPage3_Click(sender, e);
             ButtonToFilePage_Click(sender, e);
-            _isAnyNewLoaded = true;
-            SafeCopyAllImages(folderPath, _gameSelected);
+            _isNewLoaded = true;
+            SafeCopyAllImages(folderPath);
             LoadAllTempImages();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
@@ -486,7 +464,7 @@ namespace PathfinderPortraitManager
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 item.Remove();
-                SystemControl.FileControl.DeleteDirRecursive(path);
+                SystemControl.FileControl.DirectoryDeleteRecursive(path);
             }
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)

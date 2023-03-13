@@ -63,6 +63,24 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string charPortrait {
+            get {
+                return ResourceManager.GetString("charPortrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string gamePortrait {
+            get {
+                return ResourceManager.GetString("gamePortrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string hintExtractPage {
             get {
                 return ResourceManager.GetString("hintExtractPage", resourceCulture);
@@ -90,9 +108,36 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string imageFilter {
+            get {
+                return ResourceManager.GetString("imageFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string inquiryNoImages {
             get {
                 return ResourceManager.GetString("inquiryNoImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string lrgPortrait {
+            get {
+                return ResourceManager.GetString("lrgPortrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string medPortrait {
+            get {
+                return ResourceManager.GetString("medPortrait", resourceCulture);
             }
         }
         
@@ -120,6 +165,33 @@ namespace PathfinderPortraitManager.Properties {
         internal static string mesgNotLoaded {
             get {
                 return ResourceManager.GetString("mesgNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string openFileTitle {
+            get {
+                return ResourceManager.GetString("openFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string smlPortrait {
+            get {
+                return ResourceManager.GetString("smlPortrait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string statsPortrait {
+            get {
+                return ResourceManager.GetString("statsPortrait", resourceCulture);
             }
         }
     }

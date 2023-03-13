@@ -39,7 +39,7 @@ namespace PathfinderPortraitManager
         private void ResizeVisibleImagesToWindow()
         {
             if (LayoutScalePage.Enabled == true)
-                using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+                using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 {
                     ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
                     ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
@@ -47,7 +47,7 @@ namespace PathfinderPortraitManager
                 }
             if (LayoutFilePage.Enabled == true)
             {
-                using (Image img = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
+                using (Image img = new Bitmap(RELATIVEPATH_TEMPFULL))
                 {
                     ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
                     ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
@@ -101,13 +101,13 @@ namespace PathfinderPortraitManager
         private void LoadAllTempImages()
         {
             ClearTempImages();
-            using (Image imgPoor = new Bitmap(RELATIVEPATH_TO_TEMPPOOR))
+            using (Image imgPoor = new Bitmap(RELATIVEPATH_TEMPPOOR))
             {
                 PicPortraitLrg.Image = new Bitmap(imgPoor);
                 PicPortraitMed.Image = new Bitmap(imgPoor);
                 PicPortraitSml.Image = new Bitmap(imgPoor);
             }
-            using (Image imgFull = new Bitmap(RELATIVEPATH_TO_TEMPFULL))
+            using (Image imgFull = new Bitmap(RELATIVEPATH_TEMPFULL))
                 PicPortraitTemp.Image = new Bitmap(imgFull);
             ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
@@ -126,13 +126,13 @@ namespace PathfinderPortraitManager
         }
         public static bool CheckExistence(string path)
         {
-            if (SystemControl.FileControl.DirExists(path))
-                if (SystemControl.FileControl.FileExist(path, LARGE_EXTENSION) &&
-                    SystemControl.FileControl.FileExist(path, MEDIUM_EXTENSION) &&
-                    SystemControl.FileControl.FileExist(path, SMALL_EXTENSION))
-                    if (SystemControl.FileControl.GetFileExtension(path, LARGE_EXTENSION) == ".png" &&
-                        SystemControl.FileControl.GetFileExtension(path, MEDIUM_EXTENSION) == ".png" &&
-                        SystemControl.FileControl.GetFileExtension(path, SMALL_EXTENSION) == ".png")
+            if (SystemControl.FileControl.DirectoryExists(path))
+                if (SystemControl.FileControl.FileExist(path, LRG_APPEND) &&
+                    SystemControl.FileControl.FileExist(path, MED_APPEND) &&
+                    SystemControl.FileControl.FileExist(path, SML_APPEND))
+                    if (SystemControl.FileControl.GetFileExtension(path, LRG_APPEND) == ".png" &&
+                        SystemControl.FileControl.GetFileExtension(path, MED_APPEND) == ".png" &&
+                        SystemControl.FileControl.GetFileExtension(path, SML_APPEND) == ".png")
                         return true;
                     else
                         return false;
@@ -198,22 +198,14 @@ namespace PathfinderPortraitManager
                 ClearPrimeImages(placeholder);
             }
         }
-        public void SafeCopyAllImages(string fullPath, char whichGame = 'p')
+        public void SafeCopyAllImages(string fullPath)
         {
-            if (whichGame == 'p')
-                using (Image placeholder = new Bitmap(Properties.Resources.placeholder_path))
-                {
-                    ClearPrimeImages(placeholder);
-                    SystemControl.FileControl.TempImagesClear();
-                    SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
-                }
-            else
-                using (Image placeholder = new Bitmap(Properties.Resources.placeholder_wotr))
-                {
-                    ClearPrimeImages(placeholder);
-                    SystemControl.FileControl.TempImagesClear();
-                    SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
-                }
+            using (Image placeholder = new Bitmap(DEFAULT_DICT[_gameSelected]))
+            {
+                ClearPrimeImages(placeholder);
+                SystemControl.FileControl.TempImagesClear();
+                SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, placeholder);
+            }
         }
         public void InitColorScheme(char whichGame = 'p')
         {
@@ -222,9 +214,9 @@ namespace PathfinderPortraitManager
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);
                 PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_wotr;
-                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_wotr;
-                this.LayoutMainPage.BackgroundImage = PathfinderPortraitManager.Properties.Resources.bg_wotr;
+                PicTitle.BackgroundImage = Properties.Resources.title_wotr;
+                Icon = Properties.Resources.icon_wotr;
+                LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
@@ -235,9 +227,9 @@ namespace PathfinderPortraitManager
                 Color fcolor = Color.Goldenrod;
                 Color bcolor = Color.FromArgb(9, 28, 11);
                 PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = PathfinderPortraitManager.Properties.Resources.title_path;
-                this.Icon = PathfinderPortraitManager.Properties.Resources.icon_path;
-                this.LayoutMainPage.BackgroundImage = PathfinderPortraitManager.Properties.Resources.bg_path;
+                PicTitle.BackgroundImage = Properties.Resources.title_path;
+                Icon = Properties.Resources.icon_path;
+                LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
                 foreach (Control ctrl in this.Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
@@ -246,7 +238,7 @@ namespace PathfinderPortraitManager
         }
         public bool LoadGallery(string fromPath)
         {
-            if(!SystemControl.FileControl.DirExists(fromPath))
+            if(!SystemControl.FileControl.DirectoryExists(fromPath))
             {
                 return false;
             }
@@ -256,7 +248,7 @@ namespace PathfinderPortraitManager
                 nameList.Add(directory.Split('\\')[nameLen - 1]);
                 using (Image img = new Bitmap(directory + "\\Fulllength.png"))
                 {
-                    this.ImgListGallery.Images.Add(directory.Split('\\')[nameLen - 1], img);
+                    ImgListGallery.Images.Add(directory.Split('\\')[nameLen - 1], img);
                 }
             }
             for (int count = 0; count < ImgListGallery.Images.Count; count++)
@@ -272,6 +264,21 @@ namespace PathfinderPortraitManager
         {
             ListGallery.Clear();
             ImgListGallery.Images.Clear();
+        }
+        private static string CheckDragDropFile(DragEventArgs e)
+        {
+            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string fullPath = "-1";
+            if (fileList[0] != null && File.Exists(fileList[0]) &&
+                (Path.GetExtension(fileList[0]) == ".png") ||
+                (Path.GetExtension(fileList[0]) == ".jpg") ||
+                (Path.GetExtension(fileList[0]) == ".jpeg") ||
+                (Path.GetExtension(fileList[0]) == ".bmp") ||
+                (Path.GetExtension(fileList[0]) == ".gif"))
+            {
+                fullPath = fileList[0];
+            }
+            return fullPath;
         }
     }
 }

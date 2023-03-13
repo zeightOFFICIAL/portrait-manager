@@ -8,17 +8,17 @@ namespace SystemControl
 {
     public class FileControl
     {
-        public static string OpenFile()
+        public static string OpenFileLocation()
         {
             string fullPath;
             OpenFileDialog OpenFileDialog = new OpenFileDialog()
             {
-                Title = "Choose image",
+                Title = PathfinderPortraitManager.Properties.TextVariables.openFileTitle,
                 Multiselect = false,
                 CheckFileExists = true,
                 CheckPathExists = true,
                 SupportMultiDottedExtensions = false,
-                Filter = "Image files|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
+                Filter = PathfinderPortraitManager.Properties.TextVariables.imageFilter+"|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
             };
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -31,49 +31,60 @@ namespace SystemControl
             OpenFileDialog.Dispose();
             return fullPath;
         }
-        public static void TempImagesCreate(string fullPath, string newFullpathFull, string newFullpathPoor, Image defaultImg)
+        public static void TempImagesCreate(string newImagePath, string tempPathFull, string tempPathPoor, Image defaultImg)
         {
-            if (!Directory.Exists("temp/"))
-                Directory.CreateDirectory("temp/");
-            if (fullPath == "-1")
+            if (!DirectoryExists("temp/"))
+                DirectoryCreate("temp/");
+            if (newImagePath == "-1")
             {
                 using (Image img = new Bitmap(defaultImg))
                 {
-                    img.Save(newFullpathFull);
-                    img.Save(newFullpathPoor);
+                    img.Save(tempPathFull);
+                    img.Save(tempPathPoor);
                 }
             }
             else
             {
-                using (Image img = new Bitmap(fullPath))
+                using (Image img = new Bitmap(newImagePath))
                 {
-                    img.Save(newFullpathFull);
-                    ImageControl.Wraps.CreatePoorImage(img, newFullpathPoor);
+                    img.Save(tempPathFull);
+                    ImageControl.Wraps.CreatePoorImage(img, tempPathPoor);
                 }
             }
         }
         public static void TempImagesClear()
         {
-            DeleteDirRecursive("temp/");
+            DirectoryDeleteRecursive("temp/");
         }
-        public static void DeleteDirRecursive(string path)
+        public static void DirectoryDeleteRecursive(string path)
         {
             try
             {
-                if (Directory.Exists(path))
+                if (DirectoryExists(path))
                     Directory.Delete(path, true);
             }
-            catch (System.IO.IOException)
+            catch (IOException)
             {
                 return;
             }
         }
-        public static bool DirExists(string path)
+        public static bool DirectoryExists(string path)
         {
             if (Directory.Exists(path))
                 return true;
             else
                 return false;
+        }
+        public static void DirectoryCreate(string path)
+        {
+            try
+            {
+                Directory.CreateDirectory(path);
+            }
+            catch (IOException)
+            {
+                return;
+            }
         }
         public static bool FileExist(string path, string filename)
         {
@@ -90,9 +101,9 @@ namespace SystemControl
         {
             PrivateFontCollection pfc = new PrivateFontCollection();
             int fontLength = font.Length;
-            byte[] fontdata = font;
+            byte[] fontData = font;
             System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
-            Marshal.Copy(fontdata, 0, data, fontLength);
+            Marshal.Copy(fontData, 0, data, fontLength);
             pfc.AddMemoryFont(data, fontLength);
             return pfc;
         }

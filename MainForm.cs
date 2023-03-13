@@ -10,7 +10,7 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private static readonly Dictionary<char, string> ENV_DICT = new Dictionary<char, string>
+        private static readonly Dictionary<char, string> DIR_DICT = new Dictionary<char, string>
         {
             { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                    "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits"},
@@ -22,18 +22,18 @@ namespace PathfinderPortraitManager
             { 'p', Properties.Resources.placeholder_path},
             { 'w', Properties.Resources.placeholder_wotr}
         };
-        private const string RELATIVEPATH_TO_TEMPFULL = "temp\\portrait_full.png";
-        private const string RELATIVEPATH_TO_TEMPPOOR = "temp\\portrait_poor.png";
-        private const string LARGE_EXTENSION = "\\Fulllength.png";
-        private const string MEDIUM_EXTENSION = "\\Medium.png";
-        private const string SMALL_EXTENSION = "\\Small.png";
-        private const float ASPECT_RATIO_LARGE = 1.479768786f;
-        private const float ASPECT_RATIO_MED = 1.309090909f;
-        private const float ASPECT_RATIO_SMALL = 1.308108108f;
+        private const string RELATIVEPATH_TEMPFULL = "temp\\portrait_full.png";
+        private const string RELATIVEPATH_TEMPPOOR = "temp\\portrait_poor.png";
+        private const string LRG_APPEND = "\\Fulllength.png";
+        private const string MED_APPEND = "\\Medium.png";
+        private const string SML_APPEND = "\\Small.png";
+        private const float LRG_ASPECT = 1.479768786f;
+        private const float MED_ASPECT = 1.309090909f;
+        private const float SML_ASPECT = 1.308108108f;
 
         private Point _mousePos = new Point();
         private int _isDragging = 0;
-        private bool _isAnyNewLoaded = false;
+        private bool _isNewLoaded = false;
         private char _gameSelected = Properties.Settings.Default.defaultgametype;
 
         public MainForm()
@@ -61,34 +61,28 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            SafeCopyAllImages("-1", _gameSelected);
+            SafeCopyAllImages("-1");
             LoadAllTempImages();
-            _isAnyNewLoaded = false;
+            _isNewLoaded = false;
             ParentLayoutsHide();
             LayoutReveal(LayoutFilePage);
             ResizeVisibleImagesToWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (Forms.MyHintDialog hintFilePage = new Forms.MyHintDialog(Properties.TextVariables.hintFilePage))
+                using (Forms.MyHintDialog HintFilePage = new Forms.MyHintDialog(Properties.TextVariables.hintFilePage))
                 {
-                    hintFilePage.ShowDialog();
+                    HintFilePage.ShowDialog();
                 }
             }
         }
-        private void ButtonToMainPage_Click(object sender, EventArgs e)
-        {
-            ClearTempImages();
-            ParentLayoutsHide();
-            LayoutReveal(LayoutMainPage);
-        }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
-            if (!_isAnyNewLoaded)
+            if (!_isNewLoaded)
             {
                 DialogResult dialogResult;
-                using (Forms.MyChoiceDialog inquiryNoImage = new Forms.MyChoiceDialog(Properties.TextVariables.inquiryNoImages))
+                using (Forms.MyChoiceDialog InquiryNoImage = new Forms.MyChoiceDialog(Properties.TextVariables.inquiryNoImages))
                 {
-                    dialogResult = inquiryNoImage.ShowDialog();
+                    dialogResult = InquiryNoImage.ShowDialog();
                 }
                 if (dialogResult == DialogResult.OK)
                 {
@@ -98,9 +92,9 @@ namespace PathfinderPortraitManager
                     ResizeVisibleImagesToWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
-                        using (Forms.MyHintDialog hintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
+                        using (Forms.MyHintDialog HintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
                         {
-                            hintScalingPage.ShowDialog();
+                            HintScalingPage.ShowDialog();
                         }
                         Properties.Settings.Default.firstlaunch = false;
                         Properties.Settings.Default.Save();
@@ -115,9 +109,9 @@ namespace PathfinderPortraitManager
                 ResizeVisibleImagesToWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
-                    using (Forms.MyHintDialog hintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
+                    using (Forms.MyHintDialog HintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
                     {
-                        hintScalingPage.ShowDialog();
+                        HintScalingPage.ShowDialog();
                     }
                     Properties.Settings.Default.firstlaunch = false;
                     Properties.Settings.Default.Save();
@@ -144,9 +138,9 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                using (Forms.MyHintDialog hintExtractPage = new Forms.MyHintDialog(Properties.TextVariables.hintExtractPage))
+                using (Forms.MyHintDialog HintExtractPage = new Forms.MyHintDialog(Properties.TextVariables.hintExtractPage))
                 {
-                    hintExtractPage.ShowDialog();
+                    HintExtractPage.ShowDialog();
                     Properties.Settings.Default.folderfirstlaunch = false;
                     Properties.Settings.Default.Save();
                 }
@@ -154,14 +148,18 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
         {
-            string folderPath;
             ParentLayoutsHide();
             LayoutReveal(LayoutGallery);
-            folderPath = ENV_DICT[_gameSelected];
-            if (!LoadGallery(folderPath))
+            if (!LoadGallery(DIR_DICT[_gameSelected]))
             {
                 ButtonToMainPage3_Click(sender, e);
             }
+        }
+        private void ButtonToMainPage_Click(object sender, EventArgs e)
+        {
+            ClearTempImages();
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
         }
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
@@ -170,9 +168,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
+            ClearGallery();
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
-            ClearGallery();
         }
     }
 }

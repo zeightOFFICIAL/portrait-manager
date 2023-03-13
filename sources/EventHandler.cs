@@ -319,8 +319,11 @@ namespace PathfinderPortraitManager
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            using (Forms.UrlDialog DialUrl = new Forms.UrlDialog())
+            using (Forms.URLDialog DialUrl = new Forms.URLDialog())
             {
+                ParentLayoutsHide();
+                Color prevColor = ActiveForm.BackColor;
+                BackColor = Color.Black;
                 DialUrl.ShowDialog();
                 if (DialUrl.URL != "-1" && DialUrl.URL != "-2")
                 {
@@ -351,6 +354,9 @@ namespace PathfinderPortraitManager
                         DialUrl.URL = "-1";
                     }
                 }
+                BackColor = prevColor;
+                LayoutReveal(LayoutFilePage);
+                ResizeVisibleImagesToWindow();
             }
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
@@ -437,39 +443,35 @@ namespace PathfinderPortraitManager
             }
             ListGallery.Items.RemoveByKey(item.Text);
             ImgListGallery.Images.RemoveByKey(item.Text);
-            item.Remove();
-            SystemControl.FileControl.DirectoryDeleteRecursive(folderPath);
             ButtonToMainPage3_Click(sender, e);
             ButtonToFilePage_Click(sender, e);
             _isNewLoaded = true;
             SafeCopyAllImages(folderPath);
             LoadAllTempImages();
+            SystemControl.FileControl.DirectoryDeleteRecursive(DIR_DICT[_gameSelected] + "\\" + item.Text);
+            item.Remove();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
-            string folderPath;
-            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits";
-            if (_gameSelected == 'w')
-                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                         "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
-            string path = folderPath;
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
-                path = folderPath + "\\" + item.Text + "\\";
-                using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog(path + " " + item.Text))
+                string folderPath = DIR_DICT[_gameSelected] + "\\" + item.Text + "\\";
+                using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog(folderPath + " " + item.Text))
                 {
                     ScalingHint.ShowDialog();
                 }
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 item.Remove();
-                SystemControl.FileControl.DirectoryDeleteRecursive(path);
+                SystemControl.FileControl.DirectoryDeleteRecursive(folderPath);
             }
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
-
+            using (Forms.MyHintDialog HintFolderPage = new Forms.MyHintDialog(Properties.TextVariables.hintFolderPage))
+            {
+                HintFolderPage.ShowDialog();
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Общие сведения об этой сборке предоставляются следующим набором
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artemii Saganenko")]
 [assembly: AssemblyProduct("Pathfinder Portrait Manager")]
-[assembly: AssemblyCopyright("Copyright Artemii Saganenko© 2023")]
+[assembly: AssemblyCopyright("Copyright Artemii Saganenko ©2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -117,8 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnBackToFilePage" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnChange" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnCreatePortrait" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="btnDeletePortrait" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="btnExtract" xml:space="preserve">
+    <value>Extract folder</value>
+  </data>
+  <data name="btnHintOnFilePage" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnHintOnFolder" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnHintOnScalePage" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnLabelUnnamed1" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="btnLabelUnnamed2" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="btnLabelUnnamed3" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="btnLoad" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="btnLocalPortraitLoad" xml:space="preserve">
+    <value>Choose local</value>
+  </data>
+  <data name="btnToFilePage" xml:space="preserve">
+    <value>Create portrait</value>
+  </data>
+  <data name="btnToGalleryPage" xml:space="preserve">
+    <value>Browse gallery</value>
+  </data>
+  <data name="btnToMainPage" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="btnToScalePage" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="btnWebPortraitLoad" xml:space="preserve">
+    <value>Choose web</value>
+  </data>
   <data name="charPortrait" xml:space="preserve">
     <value />
+  </data>
+  <data name="dialURL" xml:space="preserve">
+    <value>Drag and drop, input, or copy the URL of an existing image. The URL address must lead to an accessible web-source.</value>
   </data>
   <data name="gamePortrait" xml:space="preserve">
     <value />
@@ -127,16 +190,22 @@
     <value />
   </data>
   <data name="hintFilePage" xml:space="preserve">
-    <value>HINT FILE PAGE</value>
+    <value />
+  </data>
+  <data name="hintFolderPage" xml:space="preserve">
+    <value />
   </data>
   <data name="hintScalingPage" xml:space="preserve">
-    <value>HINT SCALING PAGE</value>
+    <value />
   </data>
   <data name="imageFilter" xml:space="preserve">
-    <value />
+    <value>All images</value>
   </data>
   <data name="inquiryNoImages" xml:space="preserve">
     <value />
+  </data>
+  <data name="labelCopyright" xml:space="preserve">
+    <value>Artemii "Zeight" Saganenko ©2023</value>
   </data>
   <data name="lrgPortrait" xml:space="preserve">
     <value />
@@ -154,12 +223,18 @@
     <value />
   </data>
   <data name="openFileTitle" xml:space="preserve">
-    <value />
+    <value>Open local file</value>
   </data>
   <data name="smlPortrait" xml:space="preserve">
     <value />
   </data>
   <data name="statsPortrait" xml:space="preserve">
     <value />
+  </data>
+  <data name="txtbxCopy" xml:space="preserve">
+    <value>Input URL here</value>
+  </data>
+  <data name="txtbxIncorrect" xml:space="preserve">
+    <value>Incorrect URL</value>
   </data>
 </root>

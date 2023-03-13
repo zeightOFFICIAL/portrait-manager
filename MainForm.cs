@@ -53,7 +53,7 @@ namespace PathfinderPortraitManager
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
             PrivateFontCollection pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            FontsLoad(pfc);
+            FontsTextLoad(pfc);
             InitColorScheme(_gameSelected);
 
             ParentLayoutsHide();

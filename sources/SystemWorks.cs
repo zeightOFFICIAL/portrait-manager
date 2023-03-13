@@ -3,11 +3,13 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 namespace SystemControl
 {
     public class FileControl
     {
+        private static readonly string[] extenstionsAllowed = { ".jpg", ".jpeg", ".gif", ".bmp", ".png" };
         public static string OpenFileLocation()
         {
             string fullPath;
@@ -18,11 +20,17 @@ namespace SystemControl
                 CheckFileExists = true,
                 CheckPathExists = true,
                 SupportMultiDottedExtensions = false,
-                Filter = PathfinderPortraitManager.Properties.TextVariables.imageFilter+"|*.jpg; *.jpeg; *.gif; *.bmp; *.png",
+                Filter = PathfinderPortraitManager.Properties.TextVariables.imageFilter+"|*.jpg; *.jpeg; *.gif; *.bmp; *.png| |*.*",
             };
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                fullPath = OpenFileDialog.FileName;
+                if (extenstionsAllowed.Contains(Path.GetExtension(OpenFileDialog.FileName))) {
+                    fullPath = OpenFileDialog.FileName;
+                }
+                else
+                {
+                    fullPath = "-1";
+                }
             }
             else
             {

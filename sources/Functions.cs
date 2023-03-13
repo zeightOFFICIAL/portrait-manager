@@ -145,33 +145,55 @@ namespace PathfinderPortraitManager
         {
             return false;
         }
-        public void FontsLoad(PrivateFontCollection fonts)
+        public void FontsTextLoad(PrivateFontCollection fonts)
         {
             Font _bebas_neue16 = new Font(fonts.Families[0], 16);
 
             ButtonToFilePage.Font = _bebas_neue16;
-            ButtonExtract.Font = _bebas_neue16;
+            ButtonToFilePage.Text = Properties.TextVariables.btnToFilePage;
+            ButtonToExtractPage.Font = _bebas_neue16;
+            ButtonToExtractPage.Text = Properties.TextVariables.btnExtract;
             ButtonToGalleryPage.Font = _bebas_neue16;
+            ButtonToGalleryPage.Text = Properties.TextVariables.btnToGalleryPage;
             ButtonExit.Font = _bebas_neue16;
+            ButtonExit.Text = Properties.TextVariables.btnExit;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue16;
+            ButtonLocalPortraitLoad.Text = Properties.TextVariables.btnLocalPortraitLoad;
             ButtonWebPortraitLoad.Font = _bebas_neue16;
+            ButtonWebPortraitLoad.Text = Properties.TextVariables.btnWebPortraitLoad;
             ButtonToMainPage.Font = _bebas_neue16;
+            ButtonToMainPage.Text = Properties.TextVariables.btnToMainPage;
             ButtonToScalePage.Font = _bebas_neue16;
+            ButtonToScalePage.Text = Properties.TextVariables.btnToScalePage;
             ButtonHintOnFilePage.Font = _bebas_neue16;
+            ButtonHintOnFilePage.Text = Properties.TextVariables.btnHintOnFilePage;
 
             ButtonBackToFilePage.Font = _bebas_neue16;
+            ButtonBackToFilePage.Text = Properties.TextVariables.btnBackToFilePage;
             ButtonCreatePortrait.Font = _bebas_neue16;
+            ButtonCreatePortrait.Text = Properties.TextVariables.btnCreatePortrait;
             LabelUnnamed1.Font = _bebas_neue16;
+            LabelUnnamed1.Text = Properties.TextVariables.btnLabelUnnamed1;
             LabelUnnamed2.Font = _bebas_neue16;
+            LabelUnnamed2.Text = Properties.TextVariables.btnLabelUnnamed2;
             LabelUnnamed3.Font = _bebas_neue16;
+            LabelUnnamed3.Text = Properties.TextVariables.btnLabelUnnamed3;
             ButtonHintOnScalePage.Font = _bebas_neue16;
+            ButtonHintOnScalePage.Text = Properties.TextVariables.btnHintOnScalePage;
 
             ButtonDeletePortait.Font = _bebas_neue16;
+            ButtonDeletePortait.Text = Properties.TextVariables.btnDeletePortrait;
             ButtonToMainPage3.Font = _bebas_neue16;
+            ButtonToMainPage3.Text = Properties.TextVariables.btnToMainPage;
             ButtonOpenFolder.Font = _bebas_neue16;
+            ButtonOpenFolder.Text = Properties.TextVariables.btnToFilePage;
             ButtonChange.Font = _bebas_neue16;
+            ButtonChange.Text = Properties.TextVariables.btnChange;
             ButtonHintFolder.Font = _bebas_neue16;
+            ButtonHintFolder.Text = Properties.TextVariables.btnHintOnFolder;
+
+            LabelCopyright.Text = Properties.TextVariables.labelCopyright;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {

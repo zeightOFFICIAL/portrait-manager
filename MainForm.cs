@@ -17,7 +17,7 @@ namespace PathfinderPortraitManager
             { 'w', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                    "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits"}
         };
-        private static readonly Dictionary<char, Image> DEF_DICT = new Dictionary<char, Image>
+        private static readonly Dictionary<char, Image> DEFAULT_DICT = new Dictionary<char, Image>
         {
             { 'p', Properties.Resources.placeholder_path},
             { 'w', Properties.Resources.placeholder_wotr}
@@ -133,7 +133,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {
-            DisposeAllImages();
+            DisposePrimeImages();
             ClearGallery();
             SystemControl.FileControl.TempImagesClear();
             Application.Exit();
@@ -162,6 +162,11 @@ namespace PathfinderPortraitManager
             {
                 ButtonToMainPage3_Click(sender, e);
             }
+        }
+        private void ButtonToMainPage2_Click(object sender, EventArgs e)
+        {
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
         }
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {

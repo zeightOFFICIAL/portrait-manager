@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Win32;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PathfinderPortraitManager
 {
@@ -209,7 +210,7 @@ namespace PathfinderPortraitManager
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
-            DisposeAllImages();
+            DisposePrimeImages();
             ClearGallery();
             SystemControl.FileControl.TempImagesClear();
             Application.Exit();
@@ -394,11 +395,6 @@ namespace PathfinderPortraitManager
         {
 
         }
-        private void ButtonToMainPage2_Click(object sender, EventArgs e)
-        {
-            ParentLayoutsHide();
-            LayoutReveal(LayoutMainPage);
-        }
         private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
         {
             using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog("This is an image page. Here you can choose " +
@@ -479,15 +475,17 @@ namespace PathfinderPortraitManager
             if (_gameSelected == 'w')
                 folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                          "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits";
+            string path = folderPath;
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
-                string path = folderPath + "\\" + item.Text + "\\";
+                path = folderPath + "\\" + item.Text + "\\";
                 using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog(path + " " + item.Text))
                 {
                     ScalingHint.ShowDialog();
                 }
-                ImgListGallery.Images.RemoveAt(item.Index);
-                ListGallery.Items.Remove(item);
+                ListGallery.Items.RemoveByKey(item.Text);
+                ImgListGallery.Images.RemoveByKey(item.Text);
+                item.Remove();
                 SystemControl.FileControl.DeleteDirRecursive(path);
             }
         }

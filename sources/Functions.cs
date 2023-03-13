@@ -9,14 +9,14 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private void ClearImages(Image replaceTo)
+        private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
             ImageControl.Utils.Replace(PicPortraitLrg, replaceTo);
             ImageControl.Utils.Replace(PicPortraitMed, replaceTo);
             ImageControl.Utils.Replace(PicPortraitSml, replaceTo);
         }
-        private void DisposeAllImages()
+        private void DisposePrimeImages()
         {
             ImageControl.Utils.Dispose(PicPortraitTemp);
             ImageControl.Utils.Dispose(PicPortraitLrg);
@@ -193,9 +193,9 @@ namespace PathfinderPortraitManager
         }
         public void ClearTempImages()
         {
-            using (Image placeholder = new Bitmap(DEF_DICT[_gameSelected]))
+            using (Image placeholder = new Bitmap(DEFAULT_DICT[_gameSelected]))
             {
-                ClearImages(placeholder);
+                ClearPrimeImages(placeholder);
             }
         }
         public void SafeCopyAllImages(string fullPath, char whichGame = 'p')
@@ -203,14 +203,14 @@ namespace PathfinderPortraitManager
             if (whichGame == 'p')
                 using (Image placeholder = new Bitmap(Properties.Resources.placeholder_path))
                 {
-                    ClearImages(placeholder);
+                    ClearPrimeImages(placeholder);
                     SystemControl.FileControl.TempImagesClear();
                     SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
                 }
             else
                 using (Image placeholder = new Bitmap(Properties.Resources.placeholder_wotr))
                 {
-                    ClearImages(placeholder);
+                    ClearPrimeImages(placeholder);
                     SystemControl.FileControl.TempImagesClear();
                     SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TO_TEMPFULL, RELATIVEPATH_TO_TEMPPOOR, placeholder);
                 }
@@ -254,14 +254,16 @@ namespace PathfinderPortraitManager
             foreach (string directory in Directory.GetDirectories(fromPath)) {
                 int nameLen = directory.Split('\\').Length;
                 nameList.Add(directory.Split('\\')[nameLen - 1]);
-                this.ImgListGallery.Images.Add(directory.Split('\\')[nameLen - 1], Image.FromFile(directory + "\\Fulllength.png"));
+                using (Image img = new Bitmap(directory + "\\Fulllength.png"))
+                {
+                    this.ImgListGallery.Images.Add(directory.Split('\\')[nameLen - 1], img);
+                }
             }
             for (int count = 0; count < ImgListGallery.Images.Count; count++)
             {
                 ListViewItem item = new ListViewItem();
                 item.Text = nameList[count];
                 item.ImageIndex = count;
-                item.Remove();
                 ListGallery.Items.Add(item);
             }
             return true;

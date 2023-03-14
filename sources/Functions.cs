@@ -84,11 +84,10 @@ namespace PathfinderPortraitManager
         }
         private void ParentLayoutsSetDockFill()
         {
-            LayoutFilePage.Dock = DockStyle.Fill;
-            LayoutMainPage.Dock = DockStyle.Fill;
-            LayoutScalePage.Dock = DockStyle.Fill;
-            LayoutExtractPage.Dock = DockStyle.Fill;
-            LayoutGallery.Dock = DockStyle.Fill;
+            foreach (Control ctrl in Controls)
+            {
+                LayoutsSetDockFill(ctrl);
+            }
         }
         private void LayoutReveal(TableLayoutPanel table)
         {
@@ -96,6 +95,14 @@ namespace PathfinderPortraitManager
             {
                 table.Visible = true;
                 table.Enabled = true;
+            }
+        }
+        private void LayoutHide(TableLayoutPanel table)
+        {
+            if (table.Visible == true && table.Enabled == true)
+            {
+                table.Visible = false;
+                table.Enabled = false;
             }
         }
         private void LoadAllTempImages()
@@ -150,54 +157,63 @@ namespace PathfinderPortraitManager
             Font _bebas_neue16 = new Font(fonts.Families[0], 16);
 
             ButtonToFilePage.Font = _bebas_neue16;
-            ButtonToFilePage.Text = Properties.TextVariables.btnToFilePage;
+            ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
             ButtonToExtractPage.Font = _bebas_neue16;
-            ButtonToExtractPage.Text = Properties.TextVariables.btnExtract;
+            ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACT;
             ButtonToGalleryPage.Font = _bebas_neue16;
-            ButtonToGalleryPage.Text = Properties.TextVariables.btnToGalleryPage;
+            ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERY;
             ButtonExit.Font = _bebas_neue16;
-            ButtonExit.Text = Properties.TextVariables.btnExit;
+            ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue16;
-            ButtonLocalPortraitLoad.Text = Properties.TextVariables.btnLocalPortraitLoad;
+            ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOCALPORTRAIT;
             ButtonWebPortraitLoad.Font = _bebas_neue16;
-            ButtonWebPortraitLoad.Text = Properties.TextVariables.btnWebPortraitLoad;
+            ButtonWebPortraitLoad.Text = Properties.TextVariables.BUTTON_WEBPORTRAIT;
             ButtonToMainPage.Font = _bebas_neue16;
-            ButtonToMainPage.Text = Properties.TextVariables.btnToMainPage;
+            ButtonToMainPage.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
             ButtonToScalePage.Font = _bebas_neue16;
-            ButtonToScalePage.Text = Properties.TextVariables.btnToScalePage;
+            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
             ButtonHintOnFilePage.Font = _bebas_neue16;
-            ButtonHintOnFilePage.Text = Properties.TextVariables.btnHintOnFilePage;
+            ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
             ButtonBackToFilePage.Font = _bebas_neue16;
-            ButtonBackToFilePage.Text = Properties.TextVariables.btnBackToFilePage;
+            ButtonBackToFilePage.Text = Properties.TextVariables.BUTTON_BACKTOFILE;
             ButtonCreatePortrait.Font = _bebas_neue16;
-            ButtonCreatePortrait.Text = Properties.TextVariables.btnCreatePortrait;
+            ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_CREATEPORTRAIT;
             LabelUnnamed1.Font = _bebas_neue16;
-            LabelUnnamed1.Text = Properties.TextVariables.btnLabelUnnamed1;
+            LabelUnnamed1.Text = Properties.TextVariables.LABEL_UNNAMED1;
             LabelUnnamed2.Font = _bebas_neue16;
-            LabelUnnamed2.Text = Properties.TextVariables.btnLabelUnnamed2;
+            LabelUnnamed2.Text = Properties.TextVariables.LABEL_UNNAMED2;
             LabelUnnamed3.Font = _bebas_neue16;
-            LabelUnnamed3.Text = Properties.TextVariables.btnLabelUnnamed3;
+            LabelUnnamed3.Text = Properties.TextVariables.LABEL_UNNAMED3;
             ButtonHintOnScalePage.Font = _bebas_neue16;
-            ButtonHintOnScalePage.Text = Properties.TextVariables.btnHintOnScalePage;
+            ButtonHintOnScalePage.Text = Properties.TextVariables.BUTTON_HINT;
 
             ButtonDeletePortait.Font = _bebas_neue16;
-            ButtonDeletePortait.Text = Properties.TextVariables.btnDeletePortrait;
+            ButtonDeletePortait.Text = Properties.TextVariables.BUTTON_DELETESELECTED;
             ButtonToMainPage3.Font = _bebas_neue16;
-            ButtonToMainPage3.Text = Properties.TextVariables.btnToMainPage;
+            ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
             ButtonOpenFolder.Font = _bebas_neue16;
-            ButtonOpenFolder.Text = Properties.TextVariables.btnToFilePage;
+            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
             ButtonChange.Font = _bebas_neue16;
-            ButtonChange.Text = Properties.TextVariables.btnChange;
+            ButtonChange.Text = Properties.TextVariables.BUTTON_CHANGESELECTED;
             ButtonHintFolder.Font = _bebas_neue16;
-            ButtonHintFolder.Text = Properties.TextVariables.btnHintOnFolder;
+            ButtonHintFolder.Text = Properties.TextVariables.BUTTON_HINT;
 
-            LabelCopyright.Text = Properties.TextVariables.labelCopyright;
+            LabelURLInfo.Font = _bebas_neue16;
+            LabelURLInfo.Text = Properties.TextVariables.LABEL_URLDIALOG;
+            ButtonDenyWeb.Font = _bebas_neue16;
+            ButtonDenyWeb.Text = Properties.TextVariables.BUTTON_CANCEL;
+            ButtonLoadWeb.Font = _bebas_neue16;
+            ButtonLoadWeb.Text = Properties.TextVariables.BUTTON_LOAD;
+            TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
+
+            LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
-            if (ctrl is PictureBox)
+            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
+                || ctrl.Equals(LayoutAnyHint))
             {
                 return;
             }
@@ -211,6 +227,17 @@ namespace PathfinderPortraitManager
             foreach (Control subCtrl in ctrl.Controls)
             {
                 UpdateColorSchemeOnForm(subCtrl, a, b);
+            }
+        }
+        public void LayoutsSetDockFill(Control ctrl)
+        {
+            if (ctrl is TableLayoutPanel)
+            {
+                ctrl.Dock = DockStyle.Fill;
+            }
+            foreach (Control subCtrl in ctrl.Controls)
+            {
+                LayoutsSetDockFill(subCtrl);
             }
         }
         public void ClearTempImages()
@@ -301,6 +328,34 @@ namespace PathfinderPortraitManager
                 fullPath = fileList[0];
             }
             return fullPath;
+        }
+        private void CheckWebResourceAndLoad(string URL)
+        {
+            try
+            {
+                var request = System.Net.WebRequest.Create(URL);
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream())
+                {
+                    using (Image webImage = Image.FromStream(stream))
+                    {
+                        if (!SystemControl.FileControl.DirectoryExists("temp/"))
+                            SystemControl.FileControl.DirectoryCreate("temp/");
+                        webImage.Save(RELATIVEPATH_TEMPFULL);
+                        ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TEMPPOOR);
+                        _isNewLoaded = true;
+                        ClearTempImages();
+                        LoadAllTempImages();
+                    }
+                }
+            }
+            catch
+            {
+                using (Forms.MyMessageDialog MesgCannotLoad = new Forms.MyMessageDialog(Properties.TextVariables.MESG_WEBNOTLOADED))
+                {
+                    MesgCannotLoad.ShowDialog();
+                }
+            }
         }
     }
 }

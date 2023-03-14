@@ -215,7 +215,7 @@ namespace PathfinderPortraitManager
             uint localName = 1000;
             if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
             {
-                using (Forms.MyMessageDialog MesgNotFound = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotFound))
+                using (Forms.MyMessageDialog MesgNotFound = new Forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
                 {
                     MesgNotFound.ShowDialog();
                 }
@@ -271,7 +271,7 @@ namespace PathfinderPortraitManager
             }
             else
             {
-                using (Forms.MyMessageDialog MesgNotLoaded = new Forms.MyMessageDialog(Properties.TextVariables.mesgNotLoaded))
+                using (Forms.MyMessageDialog MesgNotLoaded = new Forms.MyMessageDialog(Properties.TextVariables.MESG_ERRORNOTCREATED))
                 {
                     MesgNotLoaded.ShowDialog();
                 }
@@ -295,83 +295,42 @@ namespace PathfinderPortraitManager
         }
         private void LblUnnamed1_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed1.Text = Properties.TextVariables.statsPortrait;
+            LabelUnnamed1.Text = Properties.TextVariables.TEXT_STATSPORTRAIT;
         }
         private void LblUnnamed2_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed2.Text = Properties.TextVariables.charPortrait;
+            LabelUnnamed2.Text = Properties.TextVariables.TEXT_CHARPORTRAIT;
         }
         private void LblUnnamed3_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed3.Text = Properties.TextVariables.gamePortrait;
+            LabelUnnamed3.Text = Properties.TextVariables.TEXT_GAMEPORTRAIT;
         }
         private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed1.Text = Properties.TextVariables.medPortrait;
+            LabelUnnamed1.Text = Properties.TextVariables.TEXT_MEDPORTRAIT;
         }
         private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed2.Text = Properties.TextVariables.lrgPortrait;
+            LabelUnnamed2.Text = Properties.TextVariables.TEXT_LRGPORTRAIT;
         }
         private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed3.Text = Properties.TextVariables.smlPortrait;
+            LabelUnnamed3.Text = Properties.TextVariables.TEXT_SMLPORTRAIT;
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            using (Forms.URLDialog DialUrl = new Forms.URLDialog())
-            {
-                ParentLayoutsHide();
-                Color prevColor = ActiveForm.BackColor;
-                BackColor = Color.Black;
-                DialUrl.ShowDialog();
-                if (DialUrl.URL != "-1" && DialUrl.URL != "-2")
-                {
-                    try
-                    {
-                        var request = System.Net.WebRequest.Create(DialUrl.URL);
-                        using (var response = request.GetResponse())
-                        using (var stream = response.GetResponseStream())
-                        {
-                            using (Image webImage = Image.FromStream(stream))
-                            {
-                                if (!SystemControl.FileControl.DirectoryExists("temp/"))
-                                    SystemControl.FileControl.DirectoryCreate("temp/");
-                                webImage.Save(RELATIVEPATH_TEMPFULL);
-                                ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TEMPPOOR);
-                                _isNewLoaded = true;
-                                ClearTempImages();
-                                LoadAllTempImages();
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        using (Forms.MyMessageDialog MesgCannotLoad = new Forms.MyMessageDialog(Properties.TextVariables.mesgCannotLoad))
-                        {
-                            MesgCannotLoad.ShowDialog();
-                        }
-                        DialUrl.URL = "-1";
-                    }
-                }
-                BackColor = prevColor;
-                LayoutReveal(LayoutFilePage);
-                ResizeVisibleImagesToWindow();
-            }
+            LayoutHide(LayoutFilePage);
+            LayoutReveal(LayoutURLDialog);
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog HintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.hintScalingPage))
-            {
-                HintScalingPage.ShowDialog();
-            }
+            
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog HintFilePage = new Forms.MyHintDialog(Properties.TextVariables.hintFilePage))
-            {
-                HintFilePage.ShowDialog();
-            }
+            LabelHintText.Text = Properties.TextVariables.HINT_FILEPAGE;
+            LayoutAnyHint.BackColor = Color.FromArgb(255,0,0,0);
+            LayoutReveal(LayoutAnyHint);
         }
         private void ButtonFolderChoose_Click(object sender, EventArgs e)
         {
@@ -385,14 +344,11 @@ namespace PathfinderPortraitManager
         }
         private void ButtonFolderExtract_Click(object sender, EventArgs e)
         {
-
+            return;
         }
         private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog HintExtractPage = new Forms.MyHintDialog(Properties.TextVariables.hintExtractPage))
-            {
-                HintExtractPage.ShowDialog();
-            }
+            return;
         }
         private void PicTitle_Click(object sender, EventArgs e)
         {
@@ -437,10 +393,7 @@ namespace PathfinderPortraitManager
             }
             ListViewItem item = ListGallery.SelectedItems[0];
             string folderPath = DIR_DICT[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
-            using (Forms.MyHintDialog FileHint = new Forms.MyHintDialog(folderPath))
-            {
-                FileHint.ShowDialog();
-            }
+            
             ListGallery.Items.RemoveByKey(item.Text);
             ImgListGallery.Images.RemoveByKey(item.Text);
             ButtonToMainPage3_Click(sender, e);
@@ -456,10 +409,7 @@ namespace PathfinderPortraitManager
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
                 string folderPath = DIR_DICT[_gameSelected] + "\\" + item.Text + "\\";
-                using (Forms.MyHintDialog ScalingHint = new Forms.MyHintDialog(folderPath + " " + item.Text))
-                {
-                    ScalingHint.ShowDialog();
-                }
+                
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 item.Remove();
@@ -468,10 +418,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
-            using (Forms.MyHintDialog HintFolderPage = new Forms.MyHintDialog(Properties.TextVariables.hintFolderPage))
-            {
-                HintFolderPage.ShowDialog();
-            }
+            return;
         }
     }
 }

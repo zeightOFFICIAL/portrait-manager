@@ -15,12 +15,12 @@ namespace SystemControl
             string fullPath;
             OpenFileDialog OpenFileDialog = new OpenFileDialog()
             {
-                Title = PathfinderPortraitManager.Properties.TextVariables.openFileTitle,
+                Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_OPENFILE,
                 Multiselect = false,
                 CheckFileExists = true,
                 CheckPathExists = true,
                 SupportMultiDottedExtensions = false,
-                Filter = PathfinderPortraitManager.Properties.TextVariables.imageFilter+"|*.jpg; *.jpeg; *.gif; *.bmp; *.png| |*.*",
+                Filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + "|*.jpg; *.jpeg; *.gif; *.bmp; *.png| |*.*",
             };
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {

@@ -61,362 +61,335 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string btnBackToFilePage {
+        internal static string BUTTON_BACKTOFILE {
             get {
-                return ResourceManager.GetString("btnBackToFilePage", resourceCulture);
+                return ResourceManager.GetString("BUTTON_BACKTOFILE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string btnCancel {
+        internal static string BUTTON_CANCEL {
             get {
-                return ResourceManager.GetString("btnCancel", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CANCEL", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
-        internal static string btnChange {
+        internal static string BUTTON_CHANGESELECTED {
             get {
-                return ResourceManager.GetString("btnChange", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CHANGESELECTED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string btnCreatePortrait {
+        internal static string BUTTON_CREATEPORTRAIT {
             get {
-                return ResourceManager.GetString("btnCreatePortrait", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CREATEPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static string btnDeletePortrait {
+        internal static string BUTTON_DELETESELECTED {
             get {
-                return ResourceManager.GetString("btnDeletePortrait", resourceCulture);
+                return ResourceManager.GetString("BUTTON_DELETESELECTED", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
-        internal static string btnExit {
+        internal static string BUTTON_EXIT {
             get {
-                return ResourceManager.GetString("btnExit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extract folder.
-        /// </summary>
-        internal static string btnExtract {
-            get {
-                return ResourceManager.GetString("btnExtract", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ?.
         /// </summary>
-        internal static string btnHintOnFilePage {
+        internal static string BUTTON_HINT {
             get {
-                return ResourceManager.GetString("btnHintOnFilePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ?.
-        /// </summary>
-        internal static string btnHintOnFolder {
-            get {
-                return ResourceManager.GetString("btnHintOnFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ?.
-        /// </summary>
-        internal static string btnHintOnScalePage {
-            get {
-                return ResourceManager.GetString("btnHintOnScalePage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Medium.
-        /// </summary>
-        internal static string btnLabelUnnamed1 {
-            get {
-                return ResourceManager.GetString("btnLabelUnnamed1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Large.
-        /// </summary>
-        internal static string btnLabelUnnamed2 {
-            get {
-                return ResourceManager.GetString("btnLabelUnnamed2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Medium.
-        /// </summary>
-        internal static string btnLabelUnnamed3 {
-            get {
-                return ResourceManager.GetString("btnLabelUnnamed3", resourceCulture);
+                return ResourceManager.GetString("BUTTON_HINT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Load.
         /// </summary>
-        internal static string btnLoad {
+        internal static string BUTTON_LOAD {
             get {
-                return ResourceManager.GetString("btnLoad", resourceCulture);
+                return ResourceManager.GetString("BUTTON_LOAD", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Choose local.
         /// </summary>
-        internal static string btnLocalPortraitLoad {
+        internal static string BUTTON_LOCALPORTRAIT {
             get {
-                return ResourceManager.GetString("btnLocalPortraitLoad", resourceCulture);
+                return ResourceManager.GetString("BUTTON_LOCALPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create portrait.
+        ///   Looks up a localized string similar to Extract Folder.
         /// </summary>
-        internal static string btnToFilePage {
+        internal static string BUTTON_TOEXRACT {
             get {
-                return ResourceManager.GetString("btnToFilePage", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOEXRACT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Browse gallery.
+        ///   Looks up a localized string similar to Create Portrait.
         /// </summary>
-        internal static string btnToGalleryPage {
+        internal static string BUTTON_TOFILEPAGE {
             get {
-                return ResourceManager.GetString("btnToGalleryPage", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOFILEPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse Gallery.
+        /// </summary>
+        internal static string BUTTON_TOGALLERY {
+            get {
+                return ResourceManager.GetString("BUTTON_TOGALLERY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
-        internal static string btnToMainPage {
+        internal static string BUTTON_TOMAINPAGE {
             get {
-                return ResourceManager.GetString("btnToMainPage", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOMAINPAGE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
-        internal static string btnToScalePage {
+        internal static string BUTTON_TOSCALEPAGE {
             get {
-                return ResourceManager.GetString("btnToScalePage", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOSCALEPAGE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Choose web.
         /// </summary>
-        internal static string btnWebPortraitLoad {
+        internal static string BUTTON_WEBPORTRAIT {
             get {
-                return ResourceManager.GetString("btnWebPortraitLoad", resourceCulture);
+                return ResourceManager.GetString("BUTTON_WEBPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string charPortrait {
+        internal static string HINT_EXTRACTPAGE {
             get {
-                return ResourceManager.GetString("charPortrait", resourceCulture);
+                return ResourceManager.GetString("HINT_EXTRACTPAGE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag and drop, input, or copy the URL of an existing image. The URL address must lead to an accessible web-source..
+        ///   Looks up a localized string similar to This is File page.
         /// </summary>
-        internal static string dialURL {
+        internal static string HINT_FILEPAGE {
             get {
-                return ResourceManager.GetString("dialURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string gamePortrait {
-            get {
-                return ResourceManager.GetString("gamePortrait", resourceCulture);
+                return ResourceManager.GetString("HINT_FILEPAGE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string hintExtractPage {
+        internal static string HINT_SCALEPAGE {
             get {
-                return ResourceManager.GetString("hintExtractPage", resourceCulture);
+                return ResourceManager.GetString("HINT_SCALEPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2023.
+        /// </summary>
+        internal static string LABEL_COPY {
+            get {
+                return ResourceManager.GetString("LABEL_COPY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string hintFilePage {
+        internal static string LABEL_UNNAMED1 {
             get {
-                return ResourceManager.GetString("hintFilePage", resourceCulture);
+                return ResourceManager.GetString("LABEL_UNNAMED1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string hintFolderPage {
+        internal static string LABEL_UNNAMED2 {
             get {
-                return ResourceManager.GetString("hintFolderPage", resourceCulture);
+                return ResourceManager.GetString("LABEL_UNNAMED2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string hintScalingPage {
+        internal static string LABEL_UNNAMED3 {
             get {
-                return ResourceManager.GetString("hintScalingPage", resourceCulture);
+                return ResourceManager.GetString("LABEL_UNNAMED3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source..
+        /// </summary>
+        internal static string LABEL_URLDIALOG {
+            get {
+                return ResourceManager.GetString("LABEL_URLDIALOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MESG_ERRORNOTCREATED {
+            get {
+                return ResourceManager.GetString("MESG_ERRORNOTCREATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MESG_FOLDERNOTFOUND {
+            get {
+                return ResourceManager.GetString("MESG_FOLDERNOTFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MESG_WEBNOTLOADED {
+            get {
+                return ResourceManager.GetString("MESG_WEBNOTLOADED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MSG_NOIMAGES {
+            get {
+                return ResourceManager.GetString("MSG_NOIMAGES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_CHARPORTRAIT {
+            get {
+                return ResourceManager.GetString("TEXT_CHARPORTRAIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_GAMEPORTRAIT {
+            get {
+                return ResourceManager.GetString("TEXT_GAMEPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to All images.
         /// </summary>
-        internal static string imageFilter {
+        internal static string TEXT_IMAGEFILTER {
             get {
-                return ResourceManager.GetString("imageFilter", resourceCulture);
+                return ResourceManager.GetString("TEXT_IMAGEFILTER", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string inquiryNoImages {
+        internal static string TEXT_LRGPORTRAIT {
             get {
-                return ResourceManager.GetString("inquiryNoImages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko ©2023.
-        /// </summary>
-        internal static string labelCopyright {
-            get {
-                return ResourceManager.GetString("labelCopyright", resourceCulture);
+                return ResourceManager.GetString("TEXT_LRGPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string lrgPortrait {
+        internal static string TEXT_MEDPORTRAIT {
             get {
-                return ResourceManager.GetString("lrgPortrait", resourceCulture);
+                return ResourceManager.GetString("TEXT_MEDPORTRAIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose image.
+        /// </summary>
+        internal static string TEXT_OPENFILE {
+            get {
+                return ResourceManager.GetString("TEXT_OPENFILE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string medPortrait {
+        internal static string TEXT_SMLPORTRAIT {
             get {
-                return ResourceManager.GetString("medPortrait", resourceCulture);
+                return ResourceManager.GetString("TEXT_SMLPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string mesgCannotLoad {
+        internal static string TEXT_STATSPORTRAIT {
             get {
-                return ResourceManager.GetString("mesgCannotLoad", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string mesgNotFound {
-            get {
-                return ResourceManager.GetString("mesgNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string mesgNotLoaded {
-            get {
-                return ResourceManager.GetString("mesgNotLoaded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open local file.
-        /// </summary>
-        internal static string openFileTitle {
-            get {
-                return ResourceManager.GetString("openFileTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string smlPortrait {
-            get {
-                return ResourceManager.GetString("smlPortrait", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string statsPortrait {
-            get {
-                return ResourceManager.GetString("statsPortrait", resourceCulture);
+                return ResourceManager.GetString("TEXT_STATSPORTRAIT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Input URL here.
         /// </summary>
-        internal static string txtbxCopy {
+        internal static string TEXTBOX_URL_INPUT {
             get {
-                return ResourceManager.GetString("txtbxCopy", resourceCulture);
+                return ResourceManager.GetString("TEXTBOX_URL_INPUT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Incorrect URL.
         /// </summary>
-        internal static string txtbxIncorrect {
+        internal static string TEXTBOX_URL_WRONG {
             get {
-                return ResourceManager.GetString("txtbxIncorrect", resourceCulture);
+                return ResourceManager.GetString("TEXTBOX_URL_WRONG", resourceCulture);
             }
         }
     }

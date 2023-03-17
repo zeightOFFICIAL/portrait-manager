@@ -79,11 +79,11 @@
             this.tableLayoutPanel3.Controls.Add(this.ButtonOK, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.ButtonCancel, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 114);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 113);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(463, 41);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(463, 42);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // ButtonOK
@@ -95,7 +95,7 @@
             this.ButtonOK.Location = new System.Drawing.Point(251, 3);
             this.ButtonOK.Margin = new System.Windows.Forms.Padding(20, 3, 110, 3);
             this.ButtonOK.Name = "ButtonOK";
-            this.ButtonOK.Size = new System.Drawing.Size(102, 35);
+            this.ButtonOK.Size = new System.Drawing.Size(102, 36);
             this.ButtonOK.TabIndex = 0;
             this.ButtonOK.Text = "ButtonYes";
             this.ButtonOK.UseVisualStyleBackColor = true;
@@ -109,7 +109,7 @@
             this.ButtonCancel.Location = new System.Drawing.Point(110, 3);
             this.ButtonCancel.Margin = new System.Windows.Forms.Padding(110, 3, 20, 3);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(101, 35);
+            this.ButtonCancel.Size = new System.Drawing.Size(101, 36);
             this.ButtonCancel.TabIndex = 1;
             this.ButtonCancel.Text = "ButtonCancel";
             this.ButtonCancel.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@
             this.LabelInquiryMesg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelInquiryMesg.Location = new System.Drawing.Point(3, 0);
             this.LabelInquiryMesg.Name = "LabelInquiryMesg";
-            this.LabelInquiryMesg.Size = new System.Drawing.Size(463, 111);
+            this.LabelInquiryMesg.Size = new System.Drawing.Size(463, 110);
             this.LabelInquiryMesg.TabIndex = 1;
             this.LabelInquiryMesg.Text = "MyInquiryMesg";
             this.LabelInquiryMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,6 +130,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(585, 200);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
@@ -141,7 +142,8 @@
             this.Name = "MyInquiryDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

@@ -17,10 +17,5 @@ namespace PathfinderPortraitManager.forms
             ButtonClose.Font = _bebas_neue16;
             ButtonClose.Text = Properties.TextVariables.BUTTON_OK;
         }
-
-        private void ButtonClose_Click(object sender, System.EventArgs e)
-        {
-            Close();
-        }
     }
 }

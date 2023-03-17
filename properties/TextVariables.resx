@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_BACKTOFILE" xml:space="preserve">
-    <value />
+    <value>Back</value>
   </data>
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>Cancel</value>
@@ -127,7 +127,7 @@
     <value>Change</value>
   </data>
   <data name="BUTTON_CREATEPORTRAIT" xml:space="preserve">
-    <value />
+    <value>Create</value>
   </data>
   <data name="BUTTON_DELETESELECTED" xml:space="preserve">
     <value>Delete</value>
@@ -172,19 +172,28 @@
     <value>This is the file page. Here you can choose which image to use as portrait. You can load a local image by clicking the button or the image, or simply drag and drop into the picture. As well, you can load a web picture by clicking the button.</value>
   </data>
   <data name="HINT_SCALEPAGE" xml:space="preserve">
-    <value>This is Scale page</value>
+    <value>This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click "Create" to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press "Back" to return to previous page.</value>
   </data>
   <data name="LABEL_COPY" xml:space="preserve">
     <value>Artemii "Zeight" Saganenko© 2023</value>
   </data>
-  <data name="LABEL_UNNAMED1" xml:space="preserve">
-    <value />
+  <data name="LABEL_LARGEIMG" xml:space="preserve">
+    <value>Large</value>
   </data>
-  <data name="LABEL_UNNAMED2" xml:space="preserve">
-    <value />
+  <data name="LABEL_LARGEIMG2" xml:space="preserve">
+    <value>Character portrait</value>
   </data>
-  <data name="LABEL_UNNAMED3" xml:space="preserve">
-    <value />
+  <data name="LABEL_MEDIUMIMG" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="LABEL_MEDIUMIMG2" xml:space="preserve">
+    <value>Skills portrait</value>
+  </data>
+  <data name="LABEL_SMALLIMG" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="LABEL_SMALLIMG2" xml:space="preserve">
+    <value>Gameplay portrait</value>
   </data>
   <data name="LABEL_URLDIALOG" xml:space="preserve">
     <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
@@ -207,28 +216,10 @@
   <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
     <value>Incorrect URL</value>
   </data>
-  <data name="TEXT_CHARPORTRAIT" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TEXT_GAMEPORTRAIT" xml:space="preserve">
-    <value />
-  </data>
   <data name="TEXT_IMAGEFILTER" xml:space="preserve">
     <value>All images</value>
   </data>
-  <data name="TEXT_LRGPORTRAIT" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TEXT_MEDPORTRAIT" xml:space="preserve">
-    <value />
-  </data>
   <data name="TEXT_OPENFILE" xml:space="preserve">
     <value>Choose image</value>
-  </data>
-  <data name="TEXT_SMLPORTRAIT" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TEXT_STATSPORTRAIT" xml:space="preserve">
-    <value />
   </data>
 </root>

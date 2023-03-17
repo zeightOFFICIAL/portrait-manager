@@ -9,6 +9,7 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        private static uint _zoomCountLrg = 0, _zoomCountMed = 0, _zoomCountSml = 0;
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string fullPath = CheckDragDropFile(e);
@@ -158,13 +159,22 @@ namespace PathfinderPortraitManager
                   factor;
             if (e.Delta > 0)
             {
+                if (_zoomCountLrg > 35)
+                {
+                    return;
+                }
                 factor = PicPortraitLrg.Width * 1.0f / 8;
                 ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                _zoomCountLrg++;
             }
             else
             {
                 factor = -PicPortraitLrg.Width * 1.0f / 8;
                 ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                if (_zoomCountLrg != 0)
+                {
+                    _zoomCountLrg--;
+                }
             }
         }
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
@@ -173,13 +183,22 @@ namespace PathfinderPortraitManager
                   factor;
             if (e.Delta > 0)
             {
+                if (_zoomCountMed > 35)
+                {
+                    return;
+                }
                 factor = PicPortraitMed.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                _zoomCountMed++;
             }
             else
             {
                 factor = -PicPortraitMed.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                if (_zoomCountMed != 0)
+                {
+                    _zoomCountMed--;
+                }
             }
         }
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
@@ -188,13 +207,22 @@ namespace PathfinderPortraitManager
                   factor;
             if (e.Delta > 0)
             {
+                if (_zoomCountSml > 35)
+                {
+                    return;
+                }
                 factor = PicPortraitSml.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                _zoomCountSml++;
             }
             else
             {
                 factor = -PicPortraitSml.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                if (_zoomCountSml != 0)
+                {
+                    _zoomCountSml--;
+                }
             }
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
@@ -238,7 +266,7 @@ namespace PathfinderPortraitManager
                 localName++;
             }
             if (CheckExistence(fullPath))
-            {
+            {/*
                 using (Forms.FinalDialog finalDialog = new Forms.FinalDialog())
                 {
                     finalDialog.ShowDialog();
@@ -267,7 +295,7 @@ namespace PathfinderPortraitManager
                         System.Diagnostics.Process.Start(fullPath);
                         LayoutReveal(LayoutMainPage);
                     }
-                }
+                }*/
             }
             else
             {
@@ -282,40 +310,43 @@ namespace PathfinderPortraitManager
         {
             using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
+            _zoomCountMed = 0;
         }
         private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
         {
             using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
+            _zoomCountLrg = 0;
         }
         private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
                 ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
+            _zoomCountSml = 0;
         }
-        private void LblUnnamed1_MouseHover(object sender, EventArgs e)
+        private void LabelMedImg_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed1.Text = Properties.TextVariables.TEXT_STATSPORTRAIT;
+            LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG2;
         }
-        private void LblUnnamed2_MouseHover(object sender, EventArgs e)
+        private void LabelLrgImg_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed2.Text = Properties.TextVariables.TEXT_CHARPORTRAIT;
+            LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG2;
         }
-        private void LblUnnamed3_MouseHover(object sender, EventArgs e)
+        private void LabelSmlImg_MouseHover(object sender, EventArgs e)
         {
-            LabelUnnamed3.Text = Properties.TextVariables.TEXT_GAMEPORTRAIT;
+            LabelSmlImg.Text = Properties.TextVariables.LABEL_SMALLIMG2;
         }
-        private void LblUnnamed1_MouseLeave(object sender, EventArgs e)
+        private void LabelMedImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed1.Text = Properties.TextVariables.TEXT_MEDPORTRAIT;
+            LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
         }
-        private void LblUnnamed2_MouseLeave(object sender, EventArgs e)
+        private void LabelLrgImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed2.Text = Properties.TextVariables.TEXT_LRGPORTRAIT;
+            LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG;
         }
-        private void LblUnnamed3_MouseLeave(object sender, EventArgs e)
+        private void LabelSmlImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelUnnamed3.Text = Properties.TextVariables.TEXT_SMLPORTRAIT;
+            LabelSmlImg.Text = Properties.TextVariables.LABEL_SMALLIMG;
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
@@ -326,7 +357,7 @@ namespace PathfinderPortraitManager
         {
             using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
             {
-
+                HintMessage.ShowDialog();
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
@@ -425,6 +456,20 @@ namespace PathfinderPortraitManager
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
             return;
+        }
+        private void ButtonToMainPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonNewPortrait_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonOpenFileFolder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

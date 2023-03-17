@@ -61,7 +61,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string BUTTON_BACKTOFILE {
             get {
@@ -88,7 +88,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string BUTTON_CREATEPORTRAIT {
             get {
@@ -223,7 +223,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is Scale page.
+        ///   Looks up a localized string similar to This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click &quot;Create&quot; to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press &quot;Back&quot; to return to previous page..
         /// </summary>
         internal static string HINT_SCALEPAGE {
             get {
@@ -241,29 +241,56 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Large.
         /// </summary>
-        internal static string LABEL_UNNAMED1 {
+        internal static string LABEL_LARGEIMG {
             get {
-                return ResourceManager.GetString("LABEL_UNNAMED1", resourceCulture);
+                return ResourceManager.GetString("LABEL_LARGEIMG", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Character portrait.
         /// </summary>
-        internal static string LABEL_UNNAMED2 {
+        internal static string LABEL_LARGEIMG2 {
             get {
-                return ResourceManager.GetString("LABEL_UNNAMED2", resourceCulture);
+                return ResourceManager.GetString("LABEL_LARGEIMG2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Medium.
         /// </summary>
-        internal static string LABEL_UNNAMED3 {
+        internal static string LABEL_MEDIUMIMG {
             get {
-                return ResourceManager.GetString("LABEL_UNNAMED3", resourceCulture);
+                return ResourceManager.GetString("LABEL_MEDIUMIMG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skills portrait.
+        /// </summary>
+        internal static string LABEL_MEDIUMIMG2 {
+            get {
+                return ResourceManager.GetString("LABEL_MEDIUMIMG2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small.
+        /// </summary>
+        internal static string LABEL_SMALLIMG {
+            get {
+                return ResourceManager.GetString("LABEL_SMALLIMG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gameplay portrait.
+        /// </summary>
+        internal static string LABEL_SMALLIMG2 {
+            get {
+                return ResourceManager.GetString("LABEL_SMALLIMG2", resourceCulture);
             }
         }
         
@@ -313,24 +340,6 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_CHARPORTRAIT {
-            get {
-                return ResourceManager.GetString("TEXT_CHARPORTRAIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_GAMEPORTRAIT {
-            get {
-                return ResourceManager.GetString("TEXT_GAMEPORTRAIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to All images.
         /// </summary>
         internal static string TEXT_IMAGEFILTER {
@@ -340,47 +349,11 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_LRGPORTRAIT {
-            get {
-                return ResourceManager.GetString("TEXT_LRGPORTRAIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_MEDPORTRAIT {
-            get {
-                return ResourceManager.GetString("TEXT_MEDPORTRAIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Choose image.
         /// </summary>
         internal static string TEXT_OPENFILE {
             get {
                 return ResourceManager.GetString("TEXT_OPENFILE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_SMLPORTRAIT {
-            get {
-                return ResourceManager.GetString("TEXT_SMLPORTRAIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_STATSPORTRAIT {
-            get {
-                return ResourceManager.GetString("TEXT_STATSPORTRAIT", resourceCulture);
             }
         }
         

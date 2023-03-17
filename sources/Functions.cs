@@ -9,7 +9,6 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        Font _bebas_neue14;
         private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
@@ -156,7 +155,6 @@ namespace PathfinderPortraitManager
         public void FontsTextLoad(PrivateFontCollection fonts)
         {
             Font _bebas_neue16 = new Font(fonts.Families[0], 16);
-            _bebas_neue14 = new Font(fonts.Families[0], 14);
 
             ButtonToFilePage.Font = _bebas_neue16;
             ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
@@ -182,12 +180,12 @@ namespace PathfinderPortraitManager
             ButtonBackToFilePage.Text = Properties.TextVariables.BUTTON_BACKTOFILE;
             ButtonCreatePortrait.Font = _bebas_neue16;
             ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_CREATEPORTRAIT;
-            LabelUnnamed1.Font = _bebas_neue16;
-            LabelUnnamed1.Text = Properties.TextVariables.LABEL_UNNAMED1;
-            LabelUnnamed2.Font = _bebas_neue16;
-            LabelUnnamed2.Text = Properties.TextVariables.LABEL_UNNAMED2;
-            LabelUnnamed3.Font = _bebas_neue16;
-            LabelUnnamed3.Text = Properties.TextVariables.LABEL_UNNAMED3;
+            LabelMediumImage.Font = _bebas_neue16;
+            LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
+            LabelLrgImg.Font = _bebas_neue16;
+            LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG;
+            LabelSmlImg.Font = _bebas_neue16;
+            LabelSmlImg.Text = Properties.TextVariables.LABEL_SMALLIMG;
             ButtonHintOnScalePage.Font = _bebas_neue16;
             ButtonHintOnScalePage.Text = Properties.TextVariables.BUTTON_HINT;
 
@@ -210,11 +208,21 @@ namespace PathfinderPortraitManager
             ButtonLoadWeb.Text = Properties.TextVariables.BUTTON_LOAD;
             TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
 
+            LabelFinalMesg.Font = _bebas_neue16;
+            LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
+            ButtonNewPortrait.Font = _bebas_neue16;
+            ButtonNewPortrait.Text = Properties.TextVariables.BUTTON_CREATENEW;
+            ButtonToMainPage4.Font = _bebas_neue16;
+            ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
+            ButtonOpenFileFolder.Font = _bebas_neue16;
+            ButtonOpenFileFolder.Text = Properties.TextVariables.BUTTON_OPEN;
+
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
-            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog))
+            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog) 
+                || ctrl.Equals(LayoutFinalPage))
             {
                 return;
             }

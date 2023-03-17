@@ -86,10 +86,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="forms\FinalDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\FinalDialog.Designer.cs" />
     <Compile Include="forms\MyInquiryDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +127,6 @@
     </Compile>
     <Compile Include="sources\ImageWorks.cs" />
     <Compile Include="sources\SystemWorks.cs" />
-    <EmbeddedResource Include="forms\FinalDialog.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\MyInquiryDialog.resx">
       <DependentUpon>MyInquiryDialog.cs</DependentUpon>
     </EmbeddedResource>

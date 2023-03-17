@@ -88,6 +88,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string BUTTON_CREATENEW {
+            get {
+                return ResourceManager.GetString("BUTTON_CREATENEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string BUTTON_CREATEPORTRAIT {
@@ -142,11 +151,29 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        internal static string BUTTON_MENU {
+            get {
+                return ResourceManager.GetString("BUTTON_MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string BUTTON_OK {
             get {
                 return ResourceManager.GetString("BUTTON_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string BUTTON_OPEN {
+            get {
+                return ResourceManager.GetString("BUTTON_OPEN", resourceCulture);
             }
         }
         
@@ -237,6 +264,24 @@ namespace PathfinderPortraitManager.Properties {
         internal static string LABEL_COPY {
             get {
                 return ResourceManager.GetString("LABEL_COPY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong. Considering you reached this stage. It is rather a problem with game directory. Check directory existence shown above. Create it if needed. .
+        /// </summary>
+        internal static string LABEL_CREATEDERROR {
+            get {
+                return ResourceManager.GetString("LABEL_CREATEDERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game. Click &quot;New&quot; to create another one, &quot;open&quot; to show the directory, and &quot;menu&quot; to return..
+        /// </summary>
+        internal static string LABEL_CREATEDOK {
+            get {
+                return ResourceManager.GetString("LABEL_CREATEDOK", resourceCulture);
             }
         }
         

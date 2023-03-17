@@ -243,10 +243,10 @@ namespace PathfinderPortraitManager
             uint localName = 1000;
             if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
             {
-                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
-                {
-                    MesgNotFound.ShowDialog();
-                }
+                LayoutReveal(LayoutFinalPage);
+                LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
+                LabelDirLoc.Text = "Game folder: " + DIR_DICT[_gameSelected];
+                ButtonOpenFileFolder.Enabled = false;
                 return;
             }
             while (!placeFound)
@@ -266,44 +266,17 @@ namespace PathfinderPortraitManager
                 localName++;
             }
             if (CheckExistence(fullPath))
-            {/*
-                using (Forms.FinalDialog finalDialog = new Forms.FinalDialog())
-                {
-                    finalDialog.ShowDialog();
-                    if (finalDialog.State == 1)
-                    {
-                        ClearTempImages();
-                        _isNewLoaded = false;
-                        ParentLayoutsHide();
-                        LayoutReveal(LayoutMainPage);
-                    }
-                    else if (finalDialog.State == 2)
-                    {
-                        ClearTempImages();
-                        _isNewLoaded = false;
-                        SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULT_DICT[_gameSelected]);
-                        LoadAllTempImages();
-                        ParentLayoutsHide();
-                        LayoutReveal(LayoutFilePage);
-                        ResizeVisibleImagesToWindow();
-                    }
-                    else if (finalDialog.State == 3)
-                    {
-                        ClearTempImages();
-                        _isNewLoaded = false;
-                        ParentLayoutsHide();
-                        System.Diagnostics.Process.Start(fullPath);
-                        LayoutReveal(LayoutMainPage);
-                    }
-                }*/
+            {
+                LayoutReveal(LayoutFinalPage);
+                LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
+                LabelDirLoc.Text = fullPath;
             }
             else
             {
-                using (forms.MyMessageDialog MesgNotLoaded = new forms.MyMessageDialog(Properties.TextVariables.MESG_ERRORNOTCREATED))
-                {
-                    MesgNotLoaded.ShowDialog();
-                }
-                return;
+                LayoutReveal(LayoutFinalPage);
+                LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
+                LabelDirLoc.Text = "Image loc: " + fullPath;
+                ButtonOpenFileFolder.Enabled = false;
             }
         }
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -459,17 +432,44 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
-
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
+            ButtonOpenFileFolder.Enabled = true;
         }
-
         private void ButtonNewPortrait_Click(object sender, EventArgs e)
         {
-
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULT_DICT[_gameSelected]);
+            LoadAllTempImages();
+            ParentLayoutsHide();
+            LayoutReveal(LayoutFilePage);
+            ResizeVisibleImagesToWindow();
+            ButtonOpenFileFolder.Enabled = true;
         }
-
         private void ButtonOpenFileFolder_Click(object sender, EventArgs e)
         {
-
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            ParentLayoutsHide();
+            try
+            {
+                System.Diagnostics.Process.Start(LabelDirLoc.Text);
+            }
+            catch (IOException)
+            {
+                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
+                {
+                    MesgNotFound.ShowDialog();
+                }
+            }
+            LayoutReveal(LayoutMainPage);
+            ButtonOpenFileFolder.Enabled = true;
         }
     }
 }

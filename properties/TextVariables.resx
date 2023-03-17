@@ -126,6 +126,9 @@
   <data name="BUTTON_CHANGESELECTED" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="BUTTON_CREATENEW" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="BUTTON_CREATEPORTRAIT" xml:space="preserve">
     <value>Create</value>
   </data>
@@ -144,8 +147,14 @@
   <data name="BUTTON_LOCALPORTRAIT" xml:space="preserve">
     <value>Choose local</value>
   </data>
+  <data name="BUTTON_MENU" xml:space="preserve">
+    <value>Menu</value>
+  </data>
   <data name="BUTTON_OK" xml:space="preserve">
     <value>Ok</value>
+  </data>
+  <data name="BUTTON_OPEN" xml:space="preserve">
+    <value>Open</value>
   </data>
   <data name="BUTTON_TOEXRACT" xml:space="preserve">
     <value>Extract Folder</value>
@@ -176,6 +185,12 @@
   </data>
   <data name="LABEL_COPY" xml:space="preserve">
     <value>Artemii "Zeight" Saganenko© 2023</value>
+  </data>
+  <data name="LABEL_CREATEDERROR" xml:space="preserve">
+    <value>Something went wrong. Considering you reached this stage. It is rather a problem with game directory. Check directory existence shown above. Create it if needed. </value>
+  </data>
+  <data name="LABEL_CREATEDOK" xml:space="preserve">
+    <value>The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game. Click "New" to create another one, "open" to show the directory, and "menu" to return.</value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>

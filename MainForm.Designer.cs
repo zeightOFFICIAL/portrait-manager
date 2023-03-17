@@ -99,8 +99,8 @@ namespace PathfinderPortraitManager
             this.ButtonToMainPage4 = new System.Windows.Forms.Button();
             this.ButtonNewPortrait = new System.Windows.Forms.Button();
             this.ButtonOpenFileFolder = new System.Windows.Forms.Button();
-            this.LabelDirLoc = new System.Windows.Forms.Label();
             this.LabelFinalMesg = new System.Windows.Forms.Label();
+            this.LabelDirLoc = new System.Windows.Forms.TextBox();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -1065,15 +1065,14 @@ namespace PathfinderPortraitManager
             this.LayoutFinalPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
             this.LayoutFinalPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutFinalPage.Controls.Add(this.tableLayoutPanel3, 1, 1);
-            this.LayoutFinalPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutFinalPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutFinalPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutFinalPage.Location = new System.Drawing.Point(292, 4);
             this.LayoutFinalPage.Name = "LayoutFinalPage";
             this.LayoutFinalPage.RowCount = 3;
             this.LayoutFinalPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutFinalPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.LayoutFinalPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFinalPage.Size = new System.Drawing.Size(584, 411);
+            this.LayoutFinalPage.Size = new System.Drawing.Size(55, 404);
             this.LayoutFinalPage.TabIndex = 6;
             // 
             // tableLayoutPanel3
@@ -1081,10 +1080,10 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.LabelDirLoc, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.LabelFinalMesg, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.LabelDirLoc, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(45, 108);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(-219, 105);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.61856F));
@@ -1115,6 +1114,7 @@ namespace PathfinderPortraitManager
             // 
             // ButtonToMainPage4
             // 
+            this.ButtonToMainPage4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonToMainPage4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToMainPage4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToMainPage4.Location = new System.Drawing.Point(3, 3);
@@ -1127,6 +1127,7 @@ namespace PathfinderPortraitManager
             // 
             // ButtonNewPortrait
             // 
+            this.ButtonNewPortrait.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonNewPortrait.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonNewPortrait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonNewPortrait.Location = new System.Drawing.Point(165, 3);
@@ -1139,6 +1140,7 @@ namespace PathfinderPortraitManager
             // 
             // ButtonOpenFileFolder
             // 
+            this.ButtonOpenFileFolder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonOpenFileFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonOpenFileFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonOpenFileFolder.Location = new System.Drawing.Point(327, 3);
@@ -1148,18 +1150,6 @@ namespace PathfinderPortraitManager
             this.ButtonOpenFileFolder.Text = "BtnOpenFolder";
             this.ButtonOpenFileFolder.UseVisualStyleBackColor = true;
             this.ButtonOpenFileFolder.Click += new System.EventHandler(this.ButtonOpenFileFolder_Click);
-            // 
-            // LabelDirLoc
-            // 
-            this.LabelDirLoc.AutoSize = true;
-            this.LabelDirLoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelDirLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelDirLoc.Location = new System.Drawing.Point(3, 0);
-            this.LabelDirLoc.Name = "LabelDirLoc";
-            this.LabelDirLoc.Size = new System.Drawing.Size(488, 40);
-            this.LabelDirLoc.TabIndex = 1;
-            this.LabelDirLoc.Text = "DirLoc";
-            this.LabelDirLoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LabelFinalMesg
             // 
@@ -1171,6 +1161,21 @@ namespace PathfinderPortraitManager
             this.LabelFinalMesg.TabIndex = 2;
             this.LabelFinalMesg.Text = "FinalPageText";
             this.LabelFinalMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LabelDirLoc
+            // 
+            this.LabelDirLoc.BackColor = System.Drawing.Color.Black;
+            this.LabelDirLoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LabelDirLoc.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.LabelDirLoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelDirLoc.ForeColor = System.Drawing.Color.White;
+            this.LabelDirLoc.Location = new System.Drawing.Point(3, 3);
+            this.LabelDirLoc.Multiline = true;
+            this.LabelDirLoc.Name = "LabelDirLoc";
+            this.LabelDirLoc.ReadOnly = true;
+            this.LabelDirLoc.Size = new System.Drawing.Size(488, 34);
+            this.LabelDirLoc.TabIndex = 3;
+            this.LabelDirLoc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
@@ -1320,8 +1325,8 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.Button ButtonToMainPage4;
         private System.Windows.Forms.Button ButtonNewPortrait;
         private System.Windows.Forms.Button ButtonOpenFileFolder;
-        private System.Windows.Forms.Label LabelDirLoc;
         private System.Windows.Forms.Label LabelFinalMesg;
+        private System.Windows.Forms.TextBox LabelDirLoc;
     }
 }
 

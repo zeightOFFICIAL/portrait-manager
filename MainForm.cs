@@ -71,10 +71,10 @@ namespace PathfinderPortraitManager
             ResizeVisibleImagesToWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                //using (Forms.MyHintDialog HintFilePage = new Forms.MyHintDialog(Properties.TextVariables.HINT_FILEPAGE))
-                //{
-                //    HintFilePage.ShowDialog();
-                //}
+                using (forms.MyMessageDialog HintFilePage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
+                {
+                    HintFilePage.ShowDialog();
+                }
             }
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
@@ -95,12 +95,10 @@ namespace PathfinderPortraitManager
                     ResizeVisibleImagesToWindow();
                     if (Properties.Settings.Default.firstlaunch == true)
                     {
-                        //using (Forms.MyHintDialog HintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.HINT_SCALEPAGE))
-                        //{
-                        //    HintScalingPage.ShowDialog();
-                        //}
-                        Properties.Settings.Default.firstlaunch = false;
-                        Properties.Settings.Default.Save();
+                        using (forms.MyMessageDialog HintFilePage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+                        {
+                            HintFilePage.ShowDialog();
+                        }
                     }
                 }
             }
@@ -112,10 +110,10 @@ namespace PathfinderPortraitManager
                 ResizeVisibleImagesToWindow();
                 if (Properties.Settings.Default.firstlaunch == true)
                 {
-                    //using (Forms.MyHintDialog HintScalingPage = new Forms.MyHintDialog(Properties.TextVariables.HINT_SCALEPAGE))
-                    //{
-                    //    HintScalingPage.ShowDialog();
-                    //}
+                    using (forms.MyMessageDialog HintFilePage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+                    {
+                        HintFilePage.ShowDialog();
+                    }
                     Properties.Settings.Default.firstlaunch = false;
                     Properties.Settings.Default.Save();
                 }
@@ -141,12 +139,12 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                //using (Forms.MyHintDialog HintExtractPage = new Forms.MyHintDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
-                //{
-                 //   HintExtractPage.ShowDialog();
-                //    Properties.Settings.Default.folderfirstlaunch = false;
-                //    Properties.Settings.Default.Save();
-               // }
+                using (forms.MyMessageDialog HintFilePage = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+                {
+                    HintFilePage.ShowDialog();
+                }
+                Properties.Settings.Default.folderfirstlaunch = false;
+                Properties.Settings.Default.Save();
             }
         }
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)

@@ -295,20 +295,20 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to You did not load any images. However, you still can use the default image. Proceed with default?.
         /// </summary>
-        internal static string MESG_WEBNOTLOADED {
+        internal static string MESG_NOIMAGE {
             get {
-                return ResourceManager.GetString("MESG_WEBNOTLOADED", resourceCulture);
+                return ResourceManager.GetString("MESG_NOIMAGE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string MSG_NOIMAGES {
+        internal static string MESG_WEBNOTLOADED {
             get {
-                return ResourceManager.GetString("MSG_NOIMAGES", resourceCulture);
+                return ResourceManager.GetString("MESG_WEBNOTLOADED", resourceCulture);
             }
         }
         

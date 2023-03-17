@@ -303,9 +303,11 @@ namespace PathfinderPortraitManager
             }
             for (int count = 0; count < ImgListGallery.Images.Count; count++)
             {
-                ListViewItem item = new ListViewItem();
-                item.Text = nameList[count];
-                item.ImageIndex = count;
+                ListViewItem item = new ListViewItem
+                {
+                    Text = nameList[count],
+                    ImageIndex = count
+                };
                 ListGallery.Items.Add(item);
             }
             return true;
@@ -352,7 +354,7 @@ namespace PathfinderPortraitManager
             }
             catch
             {
-                using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(Properties.TextVariables.MESG_WEBNOTLOADED, ButtonToFilePage.Font, _bebas_neue14))
+                using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(Properties.TextVariables.MESG_WEBNOTLOADED))
                 {
                     MesgCannotLoad.ShowDialog();
                 }

@@ -81,9 +81,10 @@ namespace PathfinderPortraitManager
             if (!_isNewLoaded)
             {
                 DialogResult dialogResult;
-                using (Forms.MyChoiceDialog InquiryNoImage = new Forms.MyChoiceDialog(Properties.TextVariables.MSG_NOIMAGES))
+                using (forms.MyInquiryDialog InquiryNoImage = new forms.MyInquiryDialog(Properties.TextVariables.MESG_NOIMAGE))
                 {
-                    dialogResult = InquiryNoImage.ShowDialog();
+                    InquiryNoImage.ShowDialog();
+                    dialogResult = InquiryNoImage.DialogResult;
                 }
                 if (dialogResult == DialogResult.OK)
                 {

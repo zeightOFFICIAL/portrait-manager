@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager.forms
 {
     public partial class MyInquiryDialog : Form
     {
-        public MyInquiryDialog()
+        public MyInquiryDialog(string mesg)
         {
             InitializeComponent();
+            PrivateFontCollection pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+            Font _bebas_neue16 = new Font(pfc.Families[0], 16);
+            LabelInquiryMesg.Text = mesg;
+            LabelInquiryMesg.Font = _bebas_neue16;
+            ButtonOK.Font = _bebas_neue16;
+            ButtonOK.Text = Properties.TextVariables.BUTTON_OK;
+            ButtonCancel.Font = _bebas_neue16;
+            ButtonCancel.Text = Properties.TextVariables.BUTTON_CANCEL;
         }
     }
 }

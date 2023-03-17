@@ -195,10 +195,10 @@
   <data name="MESG_FOLDERNOTFOUND" xml:space="preserve">
     <value />
   </data>
-  <data name="MESG_WEBNOTLOADED" xml:space="preserve">
-    <value />
+  <data name="MESG_NOIMAGE" xml:space="preserve">
+    <value>You did not load any images. However, you still can use the default image. Proceed with default?</value>
   </data>
-  <data name="MSG_NOIMAGES" xml:space="preserve">
+  <data name="MESG_WEBNOTLOADED" xml:space="preserve">
     <value />
   </data>
   <data name="TEXTBOX_URL_INPUT" xml:space="preserve">

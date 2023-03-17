@@ -215,7 +215,7 @@ namespace PathfinderPortraitManager
             uint localName = 1000;
             if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
             {
-                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND, ButtonToFilePage.Font, _bebas_neue14))
+                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
                 {
                     MesgNotFound.ShowDialog();
                 }
@@ -271,7 +271,7 @@ namespace PathfinderPortraitManager
             }
             else
             {
-                using (forms.MyMessageDialog MesgNotLoaded = new forms.MyMessageDialog(Properties.TextVariables.MESG_ERRORNOTCREATED, ButtonToFilePage.Font, _bebas_neue14))
+                using (forms.MyMessageDialog MesgNotLoaded = new forms.MyMessageDialog(Properties.TextVariables.MESG_ERRORNOTCREATED))
                 {
                     MesgNotLoaded.ShowDialog();
                 }
@@ -324,14 +324,14 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE, ButtonToFilePage.Font, _bebas_neue14))
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
             {
 
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE, ButtonToFilePage.Font, _bebas_neue14))
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
             {
                 HintMessage.ShowDialog();
             }

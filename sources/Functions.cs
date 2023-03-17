@@ -9,6 +9,7 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        Font _bebas_neue14;
         private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
@@ -155,6 +156,7 @@ namespace PathfinderPortraitManager
         public void FontsTextLoad(PrivateFontCollection fonts)
         {
             Font _bebas_neue16 = new Font(fonts.Families[0], 16);
+            _bebas_neue14 = new Font(fonts.Families[0], 14);
 
             ButtonToFilePage.Font = _bebas_neue16;
             ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
@@ -212,8 +214,7 @@ namespace PathfinderPortraitManager
         }
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
-            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
-                || ctrl.Equals(LayoutAnyHint))
+            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog))
             {
                 return;
             }
@@ -351,7 +352,7 @@ namespace PathfinderPortraitManager
             }
             catch
             {
-                using (Forms.MyMessageDialog MesgCannotLoad = new Forms.MyMessageDialog(Properties.TextVariables.MESG_WEBNOTLOADED))
+                using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(Properties.TextVariables.MESG_WEBNOTLOADED, ButtonToFilePage.Font, _bebas_neue14))
                 {
                     MesgCannotLoad.ShowDialog();
                 }

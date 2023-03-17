@@ -35,6 +35,7 @@ namespace PathfinderPortraitManager
         }
         private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
         {
+            TextBoxURL.Clear();
             if (e.Data.GetDataPresent(DataFormats.Text))
             {
                 e.Effect = DragDropEffects.Copy;
@@ -48,10 +49,18 @@ namespace PathfinderPortraitManager
         {
             TextBox senderTextBox = (TextBox)sender;
             senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
+            if (!senderTextBox.Text.Contains("http"))
+            {
+                senderTextBox.Text = "http://" + senderTextBox.Text;
+            }
         }
         private void TextBoxURL_Enter(object sender, EventArgs e)
         {
             TextBoxURL.Clear();
+        }
+        private void ButtonOK_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

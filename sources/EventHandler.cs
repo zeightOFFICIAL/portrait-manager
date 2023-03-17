@@ -215,7 +215,7 @@ namespace PathfinderPortraitManager
             uint localName = 1000;
             if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
             {
-                using (Forms.MyMessageDialog MesgNotFound = new Forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
+                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND, ButtonToFilePage.Font, _bebas_neue14))
                 {
                     MesgNotFound.ShowDialog();
                 }
@@ -271,7 +271,7 @@ namespace PathfinderPortraitManager
             }
             else
             {
-                using (Forms.MyMessageDialog MesgNotLoaded = new Forms.MyMessageDialog(Properties.TextVariables.MESG_ERRORNOTCREATED))
+                using (forms.MyMessageDialog MesgNotLoaded = new forms.MyMessageDialog(Properties.TextVariables.MESG_ERRORNOTCREATED, ButtonToFilePage.Font, _bebas_neue14))
                 {
                     MesgNotLoaded.ShowDialog();
                 }
@@ -324,19 +324,25 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE, ButtonToFilePage.Font, _bebas_neue14))
+            {
+
+            }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            LabelHintText.Text = Properties.TextVariables.HINT_FILEPAGE;
-            LayoutAnyHint.BackColor = Color.FromArgb(255,0,0,0);
-            LayoutReveal(LayoutAnyHint);
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE, ButtonToFilePage.Font, _bebas_neue14))
+            {
+                HintMessage.ShowDialog();
+            }
         }
         private void ButtonFolderChoose_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog();
-            CommonOpenFileDialog.InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString();
-            CommonOpenFileDialog.IsFolderPicker = true;
+            CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
+                IsFolderPicker = true
+            };
             if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 MessageBox.Show("DEBUG " + ExploreDirectory(CommonOpenFileDialog.FileName));

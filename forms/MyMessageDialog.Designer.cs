@@ -1,5 +1,4 @@
-﻿
-namespace PathfinderPortraitManager.Forms
+﻿namespace PathfinderPortraitManager.forms
 {
     partial class MyMessageDialog
     {
@@ -29,105 +28,99 @@ namespace PathfinderPortraitManager.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.LayoutMain = new System.Windows.Forms.TableLayoutPanel();
-            this.LayoutButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonOK = new System.Windows.Forms.Button();
-            this.LabelMain = new System.Windows.Forms.Label();
-            this.LayoutMain.SuspendLayout();
-            this.LayoutButtons.SuspendLayout();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonClose = new System.Windows.Forms.Button();
+            this.LabelMesg = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LayoutMain
+            // tableLayoutPanel1
             // 
-            this.LayoutMain.ColumnCount = 1;
-            this.LayoutMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutMain.Controls.Add(this.LayoutButtons, 0, 2);
-            this.LayoutMain.Controls.Add(this.LabelMain, 0, 1);
-            this.LayoutMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutMain.Location = new System.Drawing.Point(0, 0);
-            this.LayoutMain.Name = "LayoutMain";
-            this.LayoutMain.RowCount = 4;
-            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.42857F));
-            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.42857F));
-            this.LayoutMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.LayoutMain.Size = new System.Drawing.Size(400, 140);
-            this.LayoutMain.TabIndex = 0;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 475F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 164F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(585, 200);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // LayoutButtons
+            // tableLayoutPanel2
             // 
-            this.LayoutButtons.ColumnCount = 3;
-            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.LayoutButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.LayoutButtons.Controls.Add(this.ButtonOK, 1, 0);
-            this.LayoutButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutButtons.Location = new System.Drawing.Point(3, 86);
-            this.LayoutButtons.Name = "LayoutButtons";
-            this.LayoutButtons.RowCount = 1;
-            this.LayoutButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutButtons.Size = new System.Drawing.Size(394, 38);
-            this.LayoutButtons.TabIndex = 0;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.ButtonClose, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.LabelMesg, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(58, 21);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.39024F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.60976F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(469, 158);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // ButtonOK
+            // ButtonClose
             // 
-            this.ButtonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ButtonOK.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonOK.Font = new System.Drawing.Font("Bebas Neue", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonOK.Location = new System.Drawing.Point(134, 3);
-            this.ButtonOK.Name = "ButtonOK";
-            this.ButtonOK.Size = new System.Drawing.Size(125, 32);
-            this.ButtonOK.TabIndex = 1;
-            this.ButtonOK.Text = "OK";
-            this.ButtonOK.UseVisualStyleBackColor = true;
-            this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
+            this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClose.Location = new System.Drawing.Point(165, 120);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(165, 3, 165, 3);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(139, 35);
+            this.ButtonClose.TabIndex = 0;
+            this.ButtonClose.Text = "ButtonClose";
+            this.ButtonClose.UseVisualStyleBackColor = true;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
-            // LabelMain
+            // LabelMesg
             // 
-            this.LabelMain.AutoSize = true;
-            this.LabelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelMain.Font = new System.Drawing.Font("Bebas Neue", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelMain.Location = new System.Drawing.Point(3, 11);
-            this.LabelMain.Name = "LabelMain";
-            this.LabelMain.Size = new System.Drawing.Size(394, 72);
-            this.LabelMain.TabIndex = 1;
-            this.LabelMain.Text = "some text";
-            this.LabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelMesg.AutoSize = true;
+            this.LabelMesg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelMesg.Location = new System.Drawing.Point(3, 0);
+            this.LabelMesg.Name = "LabelMesg";
+            this.LabelMesg.Size = new System.Drawing.Size(463, 117);
+            this.LabelMesg.TabIndex = 1;
+            this.LabelMesg.Text = "MyMessageMesg";
+            this.LabelMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MyMessageDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(400, 140);
+            this.ClientSize = new System.Drawing.Size(585, 200);
             this.ControlBox = false;
-            this.Controls.Add(this.LayoutMain);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(400, 140);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(400, 140);
+            this.MinimumSize = new System.Drawing.Size(585, 200);
             this.Name = "MyMessageDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "NoImageMessage";
-            this.LayoutMain.ResumeLayout(false);
-            this.LayoutMain.PerformLayout();
-            this.LayoutButtons.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel LayoutMain;
-        private System.Windows.Forms.TableLayoutPanel LayoutButtons;
-        private System.Windows.Forms.Button ButtonOK;
-        private System.Windows.Forms.Label LabelMain;
-
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button ButtonClose;
+        private System.Windows.Forms.Label LabelMesg;
     }
 }

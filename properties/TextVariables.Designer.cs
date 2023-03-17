@@ -142,6 +142,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string BUTTON_OK {
+            get {
+                return ResourceManager.GetString("BUTTON_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extract Folder.
         /// </summary>
         internal static string BUTTON_TOEXRACT {
@@ -196,7 +205,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to This is Extract page.
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
             get {
@@ -205,7 +214,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is File page.
+        ///   Looks up a localized string similar to This is the file page. Here you can choose which image to use as portrait. You can load a local image by clicking the button or the image, or simply drag and drop into the picture. As well, you can load a web picture by clicking the button..
         /// </summary>
         internal static string HINT_FILEPAGE {
             get {
@@ -214,7 +223,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to This is Scale page.
         /// </summary>
         internal static string HINT_SCALEPAGE {
             get {

@@ -90,14 +90,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\FinalDialog.Designer.cs" />
-    <Compile Include="forms\MyChoiceDialog.cs">
+    <Compile Include="forms\MyInquiryDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\MyChoiceDialog.Designer.cs" />
+    <Compile Include="forms\MyInquiryDialog.Designer.cs">
+      <DependentUpon>MyInquiryDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\MyMessageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\MyMessageDialog.Designer.cs" />
+    <Compile Include="forms\MyMessageDialog.Designer.cs">
+      <DependentUpon>MyMessageDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,9 +131,15 @@
     </Compile>
     <Compile Include="sources\ImageWorks.cs" />
     <Compile Include="sources\SystemWorks.cs" />
-    <EmbeddedResource Include="forms\FinalDialog.resx" />
-    <EmbeddedResource Include="forms\MyChoiceDialog.resx" />
-    <EmbeddedResource Include="forms\MyMessageDialog.resx" />
+    <EmbeddedResource Include="forms\FinalDialog.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyInquiryDialog.resx">
+      <DependentUpon>MyInquiryDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyMessageDialog.resx">
+      <DependentUpon>MyMessageDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -58,7 +58,6 @@ namespace PathfinderPortraitManager
 
             ParentLayoutsHide();
             LayoutHide(LayoutURLDialog);
-            LayoutHide(LayoutAnyHint);
             LayoutReveal(LayoutMainPage);
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)

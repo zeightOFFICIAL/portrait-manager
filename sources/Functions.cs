@@ -194,9 +194,9 @@ namespace PathfinderPortraitManager
             ButtonToMainPage3.Font = _bebas_neue16;
             ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
             ButtonOpenFolder.Font = _bebas_neue16;
-            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
-            ButtonChange.Font = _bebas_neue16;
-            ButtonChange.Text = Properties.TextVariables.BUTTON_CHANGESELECTED;
+            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_OPENFOLDER;
+            ButtonChangePortrait.Font = _bebas_neue16;
+            ButtonChangePortrait.Text = Properties.TextVariables.BUTTON_CHANGESELECTED;
             ButtonHintFolder.Font = _bebas_neue16;
             ButtonHintFolder.Text = Properties.TextVariables.BUTTON_HINT;
 

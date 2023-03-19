@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
@@ -58,9 +59,46 @@ namespace PathfinderPortraitManager
         {
             TextBoxURL.Clear();
         }
-        private void ButtonOK_Click(object sender, EventArgs e)
+        private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
-
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
+            ButtonOpenFileFolder.Enabled = true;
+        }
+        private void ButtonNewPortrait_Click(object sender, EventArgs e)
+        {
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            SystemControl.FileControl.TempImagesCreate("-1", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULT_DICT[_gameSelected]);
+            LoadAllTempImages();
+            ParentLayoutsHide();
+            LayoutReveal(LayoutFilePage);
+            ResizeVisibleImagesToWindow();
+            ButtonOpenFileFolder.Enabled = true;
+        }
+        private void ButtonOpenFileFolder_Click(object sender, EventArgs e)
+        {
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            ParentLayoutsHide();
+            try
+            {
+                System.Diagnostics.Process.Start(LabelDirLoc.Text);
+            }
+            catch (IOException)
+            {
+                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
+                {
+                    MesgNotFound.ShowDialog();
+                }
+            }
+            LayoutReveal(LayoutMainPage);
+            ButtonOpenFileFolder.Enabled = true;
         }
     }
 }

@@ -70,5 +70,17 @@ namespace PathfinderPortraitManager.Properties {
                 this["activelocal"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool galleryfirstlaunch {
+            get {
+                return ((bool)(this["galleryfirstlaunch"]));
+            }
+            set {
+                this["galleryfirstlaunch"] = value;
+            }
+        }
     }
 }

@@ -178,6 +178,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open folder.
+        /// </summary>
+        internal static string BUTTON_OPENFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_OPENFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extract Folder.
         /// </summary>
         internal static string BUTTON_TOEXRACT {
@@ -232,6 +241,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait?.
+        /// </summary>
+        internal static string HINT_DELETEOLD {
+            get {
+                return ResourceManager.GetString("HINT_DELETEOLD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to delete several or one image. Number of image: $VALUE. Do you want to delete these images?.
+        /// </summary>
+        internal static string HINT_DELETESELECT {
+            get {
+                return ResourceManager.GetString("HINT_DELETESELECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is Extract page.
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
@@ -250,11 +277,47 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string HINT_GALLERYPAGE {
+            get {
+                return ResourceManager.GetString("HINT_GALLERYPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No image selected. Select exactly one image to change..
+        /// </summary>
+        internal static string HINT_NONSELECTED {
+            get {
+                return ResourceManager.GetString("HINT_NONSELECTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No image selected. Select one or more images to delete..
+        /// </summary>
+        internal static string HINT_NONSELECTEDDELETE {
+            get {
+                return ResourceManager.GetString("HINT_NONSELECTEDDELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click &quot;Create&quot; to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press &quot;Back&quot; to return to previous page..
         /// </summary>
         internal static string HINT_SCALEPAGE {
             get {
                 return ResourceManager.GetString("HINT_SCALEPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than one image selected. Only the first of the selected will be changed..
+        /// </summary>
+        internal static string HINT_SELECTEDMORE {
+            get {
+                return ResourceManager.GetString("HINT_SELECTEDMORE", resourceCulture);
             }
         }
         

@@ -67,12 +67,15 @@ namespace ImageControl
                 panel.VerticalScroll.Visible = true;
                 panel.HorizontalScroll.Visible = true;
             }
-
             float newWidth = pictureBox.Width + factor * aspectRatio,
                   newHeight = pictureBox.Height + factor;
 
             using (Bitmap newImg = new Bitmap(fullPath))
             {
+                if (newWidth > 3000 || newHeight > 5000)
+                {
+                    return;
+                }
                 if (newWidth > panel.Width && newHeight > panel.Height)
                 {
                     pictureBox.Image = new Bitmap(Resize.LowQiality(newImg, Convert.ToInt32(newWidth), Convert.ToInt32(newHeight)));

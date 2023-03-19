@@ -154,6 +154,16 @@ namespace PathfinderPortraitManager
             if (!LoadGallery(DIR_DICT[_gameSelected]))
             {
                 ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+            if (Properties.Settings.Default.folderfirstlaunch == true)
+            {
+                using (forms.MyMessageDialog HintFilePage = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
+                {
+                    HintFilePage.ShowDialog();
+                }
+                Properties.Settings.Default.folderfirstlaunch = false;
+                Properties.Settings.Default.Save();
             }
         }
         private void ButtonToMainPage_Click(object sender, EventArgs e)

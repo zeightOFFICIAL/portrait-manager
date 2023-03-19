@@ -322,6 +322,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You did not load any images. However, you still can use the default image. Proceed with default?.
+        /// </summary>
+        internal static string INQR_NOIMAGE {
+            get {
+                return ResourceManager.GetString("INQR_NOIMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2023.
         /// </summary>
         internal static string LABEL_COPY {
@@ -430,20 +439,20 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You did not load any images. However, you still can use the default image. Proceed with default?.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string MESG_NOIMAGE {
+        internal static string MESG_WEBNOTLOADED {
             get {
-                return ResourceManager.GetString("MESG_NOIMAGE", resourceCulture);
+                return ResourceManager.GetString("MESG_WEBNOTLOADED", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string MESG_WEBNOTLOADED {
+        internal static string MESG_WRONGFORMAT {
             get {
-                return ResourceManager.GetString("MESG_WEBNOTLOADED", resourceCulture);
+                return ResourceManager.GetString("MESG_WRONGFORMAT", resourceCulture);
             }
         }
         

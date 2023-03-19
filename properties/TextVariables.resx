@@ -204,6 +204,9 @@
   <data name="HINT_SELECTEDMORE" xml:space="preserve">
     <value>More than one image selected. Only the first of the selected will be changed.</value>
   </data>
+  <data name="INQR_NOIMAGE" xml:space="preserve">
+    <value>You did not load any images. However, you still can use the default image. Proceed with default?</value>
+  </data>
   <data name="LABEL_COPY" xml:space="preserve">
     <value>Artemii "Zeight" Saganenko© 2023</value>
   </data>
@@ -240,10 +243,10 @@
   <data name="MESG_FOLDERNOTFOUND" xml:space="preserve">
     <value />
   </data>
-  <data name="MESG_NOIMAGE" xml:space="preserve">
-    <value>You did not load any images. However, you still can use the default image. Proceed with default?</value>
-  </data>
   <data name="MESG_WEBNOTLOADED" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MESG_WRONGFORMAT" xml:space="preserve">
     <value />
   </data>
   <data name="TEXTBOX_URL_INPUT" xml:space="preserve">

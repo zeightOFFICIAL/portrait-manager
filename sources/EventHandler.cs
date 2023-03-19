@@ -11,7 +11,7 @@ namespace PathfinderPortraitManager
     {
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
-            string fullPath = CheckDragDropFile(e);
+            string fullPath = ParseDragDropFile(e);
             if (fullPath == "-1")
             {
                 if (_isNewLoaded == true)

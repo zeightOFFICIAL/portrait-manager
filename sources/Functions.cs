@@ -152,7 +152,7 @@ namespace PathfinderPortraitManager
         {
             return false;
         }
-        public void FontsTextLoad(PrivateFontCollection fonts)
+        public void FontsAndTextLoad(PrivateFontCollection fonts)
         {
             Font _bebas_neue16 = new Font(fonts.Families[0], 16);
 
@@ -222,7 +222,7 @@ namespace PathfinderPortraitManager
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog) 
-                || ctrl.Equals(LayoutFinalPage))
+                                   || ctrl.Equals(LayoutFinalPage))
             {
                 return;
             }
@@ -265,9 +265,9 @@ namespace PathfinderPortraitManager
                 SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, placeholder);
             }
         }
-        public void InitColorScheme(char whichGame = 'p')
+        public void InitColorScheme()
         {
-            if (whichGame == 'w')
+            if (_gameSelected == 'w')
             {
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);
@@ -325,7 +325,7 @@ namespace PathfinderPortraitManager
             ListGallery.Clear();
             ImgListGallery.Images.Clear();
         }
-        private static string CheckDragDropFile(DragEventArgs e)
+        private static string ParseDragDropFile(DragEventArgs e)
         {
             string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string fullPath = "-1";
@@ -337,6 +337,13 @@ namespace PathfinderPortraitManager
                 (Path.GetExtension(fileList[0]) == ".gif"))
             {
                 fullPath = fileList[0];
+            }
+            else
+            {
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
+                {
+                    Mesg.ShowDialog();
+                }
             }
             return fullPath;
         }

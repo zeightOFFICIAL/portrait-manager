@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Schema;
 
 namespace PathfinderPortraitManager
 {
@@ -148,9 +150,34 @@ namespace PathfinderPortraitManager
             else
                 return false;
         }
-        public static bool ExploreDirectory(string path)
+        public void ExploreDirectory(string path)
         {
-            return false;
+            string nameList = "";
+            if (CheckExistence(path))
+            {
+                if (SystemControl.FileControl.CheckImagePixeling(path + LRG_APPEND, 692, 1024) &&
+                    SystemControl.FileControl.CheckImagePixeling(path + MED_APPEND, 330, 432) &&
+                    SystemControl.FileControl.CheckImagePixeling(path + SML_APPEND, 185, 242))
+                {
+                    int nameLen = path.Split('\\').Length;
+                    nameList = path.Split('\\')[nameLen - 1];
+                    using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                    {
+                        ImgListExtract.Images.Add(path, img);
+                    }
+                    ListViewItem item = new ListViewItem
+                    {
+                        Text = nameList,
+                        ImageIndex = ListExtract.Items.Count+1
+                    };
+                    ListExtract.Items.Add(item);
+                }
+            }
+            string[] subDirs = Directory.GetDirectories(path);
+            foreach(string subDir in subDirs)
+            {
+                ExploreDirectory(subDir);
+            }
         }
         public void FontsAndTextLoad(PrivateFontCollection fonts)
         {
@@ -216,6 +243,19 @@ namespace PathfinderPortraitManager
             ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_MENU;
             ButtonOpenFileFolder.Font = _bebas_neue16;
             ButtonOpenFileFolder.Text = Properties.TextVariables.BUTTON_OPEN;
+
+            ButtonChooseFolder.Font = _bebas_neue16;
+            ButtonChooseFolder.Text = Properties.TextVariables.BUTTON_CHOOSEFOLDER;
+            ButtonExtractAll.Font = _bebas_neue16;
+            ButtonExtractAll.Text = Properties.TextVariables.BUTTON_EXTRACTALL;
+            ButtonExtractSelected.Font = _bebas_neue16;
+            ButtonExtractSelected.Text = Properties.TextVariables.BUTTON_EXTRACTSELECT;
+            ButtonOpenFolders.Font = _bebas_neue16;
+            ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_OPEN2FOLDER;
+            ButtonHintExtract.Font = _bebas_neue16;
+            ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
+            ButtonBackToMain5.Font = _bebas_neue16;
+            ButtonBackToMain5.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
 
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Win32;
+using System.Collections.Generic;
 
 namespace PathfinderPortraitManager
 {
@@ -309,26 +310,6 @@ namespace PathfinderPortraitManager
                 HintMessage.ShowDialog();
             }
         }
-        private void ButtonFolderChoose_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
-            {
-                InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
-                IsFolderPicker = true
-            };
-            if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                MessageBox.Show("DEBUG " + ExploreDirectory(CommonOpenFileDialog.FileName));
-            }
-        }
-        private void ButtonFolderExtract_Click(object sender, EventArgs e)
-        {
-            return;
-        }
-        private void ButtonHintOnExtractPage_Click(object sender, EventArgs e)
-        {
-            return;
-        }
         private void PicTitle_Click(object sender, EventArgs e)
         {
             if (_gameSelected == 'p')
@@ -437,6 +418,44 @@ namespace PathfinderPortraitManager
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
             return;
+        }
+        private void ButtonChooseFolder_Click(object sender, EventArgs e)
+        {
+            string fullpath;
+            CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
+            {
+                Title = Properties.TextVariables.TEXT_COMMONOPENFILE,
+                Multiselect = false,
+                InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
+                IsFolderPicker = true
+            };
+            CommonOpenFileDialog.ShowDialog();
+            fullpath = CommonOpenFileDialog.FileName;
+            if (!SystemControl.FileControl.DirectoryExists(fullpath))
+            {
+                return;
+            }
+            ExploreDirectory(fullpath);
+        }
+        private void ButtonExtractAll_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonExtractSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonOpenFolders_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonBackToMain5_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonHintExtract_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

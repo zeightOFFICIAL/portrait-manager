@@ -115,5 +115,16 @@ namespace SystemControl
             pfc.AddMemoryFont(data, fontLength);
             return pfc;
         }
+        public static bool CheckImagePixeling(string path, int width, int height)
+        {
+            using (Bitmap img = new Bitmap(path))
+            {
+                if (img.Width == width && img.Height == height)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

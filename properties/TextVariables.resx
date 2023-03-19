@@ -126,6 +126,9 @@
   <data name="BUTTON_CHANGESELECTED" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="BUTTON_CHOOSEFOLDER" xml:space="preserve">
+    <value>Choose folder</value>
+  </data>
   <data name="BUTTON_CREATENEW" xml:space="preserve">
     <value>New</value>
   </data>
@@ -137,6 +140,12 @@
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="BUTTON_EXTRACTALL" xml:space="preserve">
+    <value>Extract all</value>
+  </data>
+  <data name="BUTTON_EXTRACTSELECT" xml:space="preserve">
+    <value>Extract selected</value>
   </data>
   <data name="BUTTON_HINT" xml:space="preserve">
     <value>?</value>
@@ -150,11 +159,17 @@
   <data name="BUTTON_MENU" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="BUTTON_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="BUTTON_OK" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="BUTTON_OPEN" xml:space="preserve">
     <value>Open</value>
+  </data>
+  <data name="BUTTON_OPEN2FOLDER" xml:space="preserve">
+    <value>Open folders</value>
   </data>
   <data name="BUTTON_OPENFOLDER" xml:space="preserve">
     <value>Open folder</value>
@@ -176,6 +191,9 @@
   </data>
   <data name="BUTTON_WEBPORTRAIT" xml:space="preserve">
     <value>Choose web</value>
+  </data>
+  <data name="BUTTON_YES" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="HINT_DELETEOLD" xml:space="preserve">
     <value>Do you want to delete the old version of the portrait?</value>
@@ -254,6 +272,9 @@
   </data>
   <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
     <value>Incorrect URL</value>
+  </data>
+  <data name="TEXT_COMMONOPENFILE" xml:space="preserve">
+    <value>Choose folder</value>
   </data>
   <data name="TEXT_IMAGEFILTER" xml:space="preserve">
     <value>All images</value>

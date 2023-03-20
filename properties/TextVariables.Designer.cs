@@ -493,6 +493,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section..
+        /// </summary>
+        internal static string MESG_GAMEFOLDER {
+            get {
+                return ResourceManager.GetString("MESG_GAMEFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string MESG_WEBNOTLOADED {
@@ -531,9 +540,9 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Choose image.
         /// </summary>
-        internal static string TEXT_OPENFILE {
+        internal static string TEXT_TITLEOPENFILE {
             get {
-                return ResourceManager.GetString("TEXT_OPENFILE", resourceCulture);
+                return ResourceManager.GetString("TEXT_TITLEOPENFILE", resourceCulture);
             }
         }
         

@@ -22,7 +22,6 @@ namespace ImageControl
             {
                 Rectangle dstRect = new Rectangle(0, 0, toWidth, toHeight);
                 Bitmap dstImg = new Bitmap(toWidth, toHeight);
-
                 dstImg.SetResolution(srcImg.HorizontalResolution, srcImg.VerticalResolution);
                 using (Graphics newRenderer = Graphics.FromImage(dstImg))
                 {
@@ -37,14 +36,12 @@ namespace ImageControl
                         newRenderer.DrawImage(srcImg, dstRect, 0, 0, srcImg.Width, srcImg.Height, GraphicsUnit.Pixel, wrapMode);
                     }
                 }
-
                 return dstImg;
             }
             public static Bitmap LowQiality(Image srcImg, int toWidth, int toHeight)
             {
                 Rectangle dstRect = new Rectangle(0, 0, toWidth, toHeight);
                 Bitmap dstImg = new Bitmap(toWidth, toHeight);
-
                 dstImg.SetResolution(srcImg.HorizontalResolution, srcImg.VerticalResolution);
                 using (Graphics newRenderer = Graphics.FromImage(dstImg))
                 {
@@ -59,7 +56,6 @@ namespace ImageControl
                         newRenderer.DrawImage(srcImg, dstRect, 0, 0, srcImg.Width, srcImg.Height, GraphicsUnit.Pixel, warpmode);
                     }
                 }
-
                 return dstImg;
             }
         }
@@ -77,7 +73,6 @@ namespace ImageControl
             }
             float newWidth = pictureBox.Width + factor * aspectRatio,
                   newHeight = pictureBox.Height + factor;
-
             using (Bitmap newImg = new Bitmap(fullPath))
             {
                 if (newWidth > 3000 || newHeight > 5000)
@@ -96,11 +91,9 @@ namespace ImageControl
         {
             Rectangle dstRect = new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
             Bitmap dstImg = new Bitmap(dstRect.Width, dstRect.Height);
-
             dstImg.SetResolution(srcImg.HorizontalResolution, srcImg.VerticalResolution);
             using (Graphics newRenderer = Graphics.FromImage(dstImg))
                 newRenderer.DrawImage(srcImg, -dstRect.X, -dstRect.Y);
-
             return dstImg;
         }
         public static void SaveWorstVersion(Image srcImg, string fullPath)
@@ -111,7 +104,6 @@ namespace ImageControl
                 Encoder customEncoder = Encoder.Quality;
                 EncoderParameters customEncoderParams = new EncoderParameters(1);
                 EncoderParameter customEncoderParam = new EncoderParameter(customEncoder, 80L);
-
                 customEncoderParams.Param[0] = customEncoderParam;
                 newImg.Save(fullPath, pngEncoder, customEncoderParams);
                 customEncoderParam.Dispose();
@@ -121,7 +113,6 @@ namespace ImageControl
         private static ImageCodecInfo GetEncoder(ImageFormat format)
         {
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
-
             foreach (ImageCodecInfo codec in codecs)
                 if (codec.FormatID == format.Guid)
                     return codec;
@@ -135,9 +126,10 @@ namespace ImageControl
             pictureBox.Image.Dispose();
             pictureBox.Image = toImage;
         }
-        public static void Dispose(PictureBox pictureBox)
+        public static bool Dispose(PictureBox pictureBox)
         {
             pictureBox.Image.Dispose();
+            return true;
         }
     }
     public class Wraps
@@ -177,7 +169,6 @@ namespace ImageControl
         {
             float aspectRatio = srcImg.Width * 1.0f / srcImg.Height * 1.0f,
                   decreasePower = srcImg.Width * 1.0f / 100 * 50;
-
             srcImg = Direct.Resize.LowQiality(srcImg, (int)(decreasePower * aspectRatio), (int)(decreasePower));
             using (Image img = new Bitmap(srcImg))
                 Direct.SaveWorstVersion(img, fullPath);

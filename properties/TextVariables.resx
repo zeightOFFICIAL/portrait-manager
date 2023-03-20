@@ -261,6 +261,9 @@
   <data name="MESG_FOLDERNOTFOUND" xml:space="preserve">
     <value />
   </data>
+  <data name="MESG_GAMEFOLDER" xml:space="preserve">
+    <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section.</value>
+  </data>
   <data name="MESG_WEBNOTLOADED" xml:space="preserve">
     <value />
   </data>
@@ -279,7 +282,7 @@
   <data name="TEXT_IMAGEFILTER" xml:space="preserve">
     <value>All images</value>
   </data>
-  <data name="TEXT_OPENFILE" xml:space="preserve">
+  <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
     <value>Choose image</value>
   </data>
 </root>

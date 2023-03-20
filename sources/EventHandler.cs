@@ -473,5 +473,9 @@ namespace PathfinderPortraitManager
                 HintMessage.ShowDialog();
             }
         }
+        private void LabelCopyright_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-pathfinder");
+        }
     }
 }

@@ -68,6 +68,15 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutURLDialog);
             LayoutHide(LayoutFinalPage);
             LayoutReveal(LayoutMainPage);
+            if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
+            {
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDER))
+                {
+                    Mesg.StartPosition = FormStartPosition.CenterScreen;
+                    Mesg.ShowDialog();
+                }
+                ButtonExit_Click(sender, e);
+            }
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {

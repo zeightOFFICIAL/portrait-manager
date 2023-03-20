@@ -17,32 +17,32 @@ namespace SystemControl
 {
     public class FileControl
     {
-        private static readonly string[] extenstionsAllowed = { ".jpg", ".jpeg", ".gif", ".bmp", ".png" };
+        private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png"};
         public static string OpenFileLocation()
         {
             string fullPath;
             OpenFileDialog OpenFileDialog = new OpenFileDialog()
             {
-                Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_OPENFILE,
+                Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
                 Multiselect = false,
                 CheckFileExists = true,
                 CheckPathExists = true,
                 SupportMultiDottedExtensions = false,
-                Filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + "|*.jpg; *.jpeg; *.gif; *.bmp; *.png| |*.*",
+                Filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*",
             };
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (extenstionsAllowed.Contains(Path.GetExtension(OpenFileDialog.FileName))) {
+                if (EXTENSIONS_ALLOWED.Contains(Path.GetExtension(OpenFileDialog.FileName))) {
                     fullPath = OpenFileDialog.FileName;
                 }
                 else
                 {
-                    fullPath = "-1";
+                    fullPath = "!NONESELECTED!";
                 }
             }
             else
             {
-                fullPath = "-1";
+                fullPath = "!NONESELECTED!";
             }
             OpenFileDialog.Dispose();
             return fullPath;
@@ -51,7 +51,7 @@ namespace SystemControl
         {
             if (!DirectoryExists("temp/"))
                 DirectoryCreate("temp/");
-            if (newImagePath == "!DEFAULT!")
+            if (newImagePath == "!DEFAULT!" || newImagePath == "!NONESELECTED!")
             {
                 using (Image img = new Bitmap(defaultImg))
                 {
@@ -91,7 +91,7 @@ namespace SystemControl
             else
                 return false;
         }
-        public static void DirectoryCreate(string path)
+        public static bool DirectoryCreate(string path)
         {
             try
             {
@@ -99,8 +99,9 @@ namespace SystemControl
             }
             catch (IOException)
             {
-                return;
+                return false;
             }
+            return true;
         }
         public static bool FileExist(string path, string filename)
         {

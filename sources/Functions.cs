@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*    
+    Pathfinder Portrait Manager. Desktop application for managing in game
+    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
+    Copyright (C) 2023 Artemii "Zeight" Saganenko
+    LICENSE terms are written in LICENSE file
+    Primal license header is written in Program.cs
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
@@ -152,7 +160,7 @@ namespace PathfinderPortraitManager
         }
         public void ExploreDirectory(string path)
         {
-            string nameList = "";
+            string nameList;
             if (CheckExistence(path))
             {
                 if (SystemControl.FileControl.CheckImagePixeling(path + LRG_APPEND, 692, 1024) &&
@@ -168,7 +176,7 @@ namespace PathfinderPortraitManager
                     ListViewItem item = new ListViewItem
                     {
                         Text = nameList,
-                        ImageIndex = ListExtract.Items.Count+1
+                        ImageIndex = ListExtract.Items.Count
                     };
                     ListExtract.Items.Add(item);
                 }
@@ -181,80 +189,80 @@ namespace PathfinderPortraitManager
         }
         public void FontsAndTextLoad(PrivateFontCollection fonts)
         {
-            Font _bebas_neue16 = new Font(fonts.Families[0], 16);
+            Font _bebas_neue20 = new Font(fonts.Families[0], 20);
 
-            ButtonToFilePage.Font = _bebas_neue16;
+            ButtonToFilePage.Font = _bebas_neue20;
             ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
-            ButtonToExtractPage.Font = _bebas_neue16;
+            ButtonToExtractPage.Font = _bebas_neue20;
             ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACT;
-            ButtonToGalleryPage.Font = _bebas_neue16;
+            ButtonToGalleryPage.Font = _bebas_neue20;
             ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERY;
-            ButtonExit.Font = _bebas_neue16;
+            ButtonExit.Font = _bebas_neue20;
             ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
 
-            ButtonLocalPortraitLoad.Font = _bebas_neue16;
+            ButtonLocalPortraitLoad.Font = _bebas_neue20;
             ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOCALPORTRAIT;
-            ButtonWebPortraitLoad.Font = _bebas_neue16;
+            ButtonWebPortraitLoad.Font = _bebas_neue20;
             ButtonWebPortraitLoad.Text = Properties.TextVariables.BUTTON_WEBPORTRAIT;
-            ButtonToMainPage.Font = _bebas_neue16;
+            ButtonToMainPage.Font = _bebas_neue20;
             ButtonToMainPage.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
-            ButtonToScalePage.Font = _bebas_neue16;
+            ButtonToScalePage.Font = _bebas_neue20;
             ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
-            ButtonHintOnFilePage.Font = _bebas_neue16;
+            ButtonHintOnFilePage.Font = _bebas_neue20;
             ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
-            ButtonBackToFilePage.Font = _bebas_neue16;
+            ButtonBackToFilePage.Font = _bebas_neue20;
             ButtonBackToFilePage.Text = Properties.TextVariables.BUTTON_BACKTOFILE;
-            ButtonCreatePortrait.Font = _bebas_neue16;
+            ButtonCreatePortrait.Font = _bebas_neue20;
             ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_CREATEPORTRAIT;
-            LabelMediumImage.Font = _bebas_neue16;
+            LabelMediumImage.Font = _bebas_neue20;
             LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
-            LabelLrgImg.Font = _bebas_neue16;
+            LabelLrgImg.Font = _bebas_neue20;
             LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG;
-            LabelSmlImg.Font = _bebas_neue16;
+            LabelSmlImg.Font = _bebas_neue20;
             LabelSmlImg.Text = Properties.TextVariables.LABEL_SMALLIMG;
-            ButtonHintOnScalePage.Font = _bebas_neue16;
+            ButtonHintOnScalePage.Font = _bebas_neue20;
             ButtonHintOnScalePage.Text = Properties.TextVariables.BUTTON_HINT;
 
-            ButtonDeletePortait.Font = _bebas_neue16;
+            ButtonDeletePortait.Font = _bebas_neue20;
             ButtonDeletePortait.Text = Properties.TextVariables.BUTTON_DELETESELECTED;
-            ButtonToMainPage3.Font = _bebas_neue16;
+            ButtonToMainPage3.Font = _bebas_neue20;
             ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
-            ButtonOpenFolder.Font = _bebas_neue16;
+            ButtonOpenFolder.Font = _bebas_neue20;
             ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_OPENFOLDER;
-            ButtonChangePortrait.Font = _bebas_neue16;
+            ButtonChangePortrait.Font = _bebas_neue20;
             ButtonChangePortrait.Text = Properties.TextVariables.BUTTON_CHANGESELECTED;
-            ButtonHintFolder.Font = _bebas_neue16;
+            ButtonHintFolder.Font = _bebas_neue20;
             ButtonHintFolder.Text = Properties.TextVariables.BUTTON_HINT;
 
-            LabelURLInfo.Font = _bebas_neue16;
+            LabelURLInfo.Font = _bebas_neue20;
             LabelURLInfo.Text = Properties.TextVariables.LABEL_URLDIALOG;
-            ButtonDenyWeb.Font = _bebas_neue16;
+            ButtonDenyWeb.Font = _bebas_neue20;
             ButtonDenyWeb.Text = Properties.TextVariables.BUTTON_CANCEL;
-            ButtonLoadWeb.Font = _bebas_neue16;
+            ButtonLoadWeb.Font = _bebas_neue20;
             ButtonLoadWeb.Text = Properties.TextVariables.BUTTON_LOAD;
             TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
 
-            LabelFinalMesg.Font = _bebas_neue16;
+            LabelFinalMesg.Font = _bebas_neue20;
             LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
-            ButtonNewPortrait.Font = _bebas_neue16;
+            ButtonNewPortrait.Font = _bebas_neue20;
             ButtonNewPortrait.Text = Properties.TextVariables.BUTTON_CREATENEW;
-            ButtonToMainPage4.Font = _bebas_neue16;
+            ButtonToMainPage4.Font = _bebas_neue20;
             ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_MENU;
-            ButtonOpenFileFolder.Font = _bebas_neue16;
+            ButtonOpenFileFolder.Font = _bebas_neue20;
             ButtonOpenFileFolder.Text = Properties.TextVariables.BUTTON_OPEN;
 
-            ButtonChooseFolder.Font = _bebas_neue16;
+            ButtonChooseFolder.Font = _bebas_neue20;
             ButtonChooseFolder.Text = Properties.TextVariables.BUTTON_CHOOSEFOLDER;
-            ButtonExtractAll.Font = _bebas_neue16;
+            ButtonExtractAll.Font = _bebas_neue20;
             ButtonExtractAll.Text = Properties.TextVariables.BUTTON_EXTRACTALL;
-            ButtonExtractSelected.Font = _bebas_neue16;
+            ButtonExtractSelected.Font = _bebas_neue20;
             ButtonExtractSelected.Text = Properties.TextVariables.BUTTON_EXTRACTSELECT;
-            ButtonOpenFolders.Font = _bebas_neue16;
+            ButtonOpenFolders.Font = _bebas_neue20;
             ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_OPEN2FOLDER;
-            ButtonHintExtract.Font = _bebas_neue16;
+            ButtonHintExtract.Font = _bebas_neue20;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
-            ButtonBackToMain5.Font = _bebas_neue16;
+            ButtonBackToMain5.Font = _bebas_neue20;
             ButtonBackToMain5.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
 
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
@@ -360,10 +368,10 @@ namespace PathfinderPortraitManager
             }
             return true;
         }
-        public void ClearGallery()
+        public void ClearImageLists(ListView lv, ImageList il)
         {
-            ListGallery.Clear();
-            ImgListGallery.Images.Clear();
+            lv.Clear();
+            il.Images.Clear();
         }
         private static string ParseDragDropFile(DragEventArgs e)
         {

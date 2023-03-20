@@ -1,15 +1,23 @@
-﻿using System;
+﻿/*    
+    Pathfinder Portrait Manager. Desktop application for managing in game
+    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
+    Copyright (C) 2023 Artemii "Zeight" Saganenko
+    LICENSE terms are written in LICENSE file
+    Primal license header is written in Program.cs
+*/
+
+using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Win32;
-using System.Collections.Generic;
 
 namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        private string _extractFolderPath = "!NOTSET!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string fullPath = ParseDragDropFile(e);
@@ -201,7 +209,8 @@ namespace PathfinderPortraitManager
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();
-            ClearGallery();
+            ClearImageLists(ListGallery, ImgListGallery);
+            ClearImageLists(ListExtract, ImgListExtract);
             SystemControl.FileControl.TempImagesClear();
             Application.Exit();
         }
@@ -421,7 +430,10 @@ namespace PathfinderPortraitManager
         }
         private void ButtonChooseFolder_Click(object sender, EventArgs e)
         {
-            string fullpath;
+            if (_extractFolderPath != "!NOTSET!")
+            {
+                ClearImageLists(ListExtract, ImgListExtract);
+            }
             CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
             {
                 Title = Properties.TextVariables.TEXT_COMMONOPENFILE,
@@ -430,12 +442,12 @@ namespace PathfinderPortraitManager
                 IsFolderPicker = true
             };
             CommonOpenFileDialog.ShowDialog();
-            fullpath = CommonOpenFileDialog.FileName;
-            if (!SystemControl.FileControl.DirectoryExists(fullpath))
+            _extractFolderPath = CommonOpenFileDialog.FileName;
+            if (!SystemControl.FileControl.DirectoryExists(_extractFolderPath))
             {
                 return;
             }
-            ExploreDirectory(fullpath);
+            ExploreDirectory(_extractFolderPath);
         }
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
@@ -447,15 +459,19 @@ namespace PathfinderPortraitManager
         }
         private void ButtonOpenFolders_Click(object sender, EventArgs e)
         {
-
-        }
-        private void ButtonBackToMain5_Click(object sender, EventArgs e)
-        {
-
+            if (_extractFolderPath == "!NOTSET!")
+            {
+                return;
+            }
+            System.Diagnostics.Process.Start(DIR_DICT[_gameSelected]);
+            System.Diagnostics.Process.Start(_extractFolderPath);
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
-
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+            {
+                HintMessage.ShowDialog();
+            }
         }
     }
 }

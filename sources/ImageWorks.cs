@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*    
+    Pathfinder Portrait Manager. Desktop application for managing in game
+    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
+    Copyright (C) 2023 Artemii "Zeight" Saganenko
+    LICENSE terms are written in LICENSE file
+    Primal license header is written in Program.cs
+*/
+
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;

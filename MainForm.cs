@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*    
+    Pathfinder Portrait Manager. Desktop application for managing in game
+    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
+    Copyright (C) 2023 Artemii "Zeight" Saganenko
+    LICENSE terms are written in LICENSE file
+    Primal license header is written in Program.cs
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
@@ -63,7 +71,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            SafeCopyAllImages("-1");
+            SafeCopyAllImages("!DEFAULT!");
             LoadAllTempImages();
             _isNewLoaded = false;
             ParentLayoutsHide();
@@ -126,7 +134,8 @@ namespace PathfinderPortraitManager
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             DisposePrimeImages();
-            ClearGallery();
+            ClearImageLists(ListGallery, ImgListGallery);
+            ClearImageLists(ListExtract, ImgListExtract);
             SystemControl.FileControl.TempImagesClear();
             Application.Exit();
         }
@@ -169,14 +178,14 @@ namespace PathfinderPortraitManager
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
         }
-        private void ButtonToMainPage2_Click(object sender, EventArgs e)
+        private void ButtonBackToMain2_Click(object sender, EventArgs e)
         {
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
         }
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
-            ClearGallery();
+            ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
         }

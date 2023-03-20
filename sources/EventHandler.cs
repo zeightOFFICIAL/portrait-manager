@@ -451,11 +451,36 @@ namespace PathfinderPortraitManager
         }
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
+            //if (ListExtract.Items.Count < 1)
+            //{
+            //    return;
+            //}
+            //foreach (ListViewItem item in ListExtract.Items)
+            //{
+            //    if(SystemControl.FileControl.DirectoryCreate(item.ImageKey))
+            //    {
 
+            //    }
+            //}
         }
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
         {
-
+            if (ListExtract.Items.Count < 1)
+            {
+                return;
+            }
+            if (ListExtract.SelectedItems.Count < 1)
+            {
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.HINT_NONSELECTEDEXTRACE))
+                {
+                    Message.ShowDialog();
+                }
+                return;
+            }
+            foreach (ListViewItem item in ListGallery.SelectedItems)
+            {
+                
+            }
         }
         private void ButtonOpenFolders_Click(object sender, EventArgs e)
         {

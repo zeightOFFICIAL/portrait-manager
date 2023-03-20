@@ -11,9 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Schema;
 
 namespace PathfinderPortraitManager
 {
@@ -373,7 +371,7 @@ namespace PathfinderPortraitManager
             lv.Clear();
             il.Images.Clear();
         }
-        private static string ParseDragDropFile(DragEventArgs e)
+        private string ParseDragDropFile(DragEventArgs e)
         {
             string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string fullPath = "-1";

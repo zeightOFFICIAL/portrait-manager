@@ -819,7 +819,7 @@ namespace PathfinderPortraitManager
             this.ButtonBackToMain5.TabIndex = 3;
             this.ButtonBackToMain5.Text = "BtnBack";
             this.ButtonBackToMain5.UseVisualStyleBackColor = true;
-            this.ButtonBackToMain5.Click += new System.EventHandler(this.ButtonBackToMain2_Click);
+            this.ButtonBackToMain5.Click += new System.EventHandler(this.ButtonBackToMain5_Click);
             // 
             // ButtonHintExtract
             // 
@@ -1227,7 +1227,7 @@ namespace PathfinderPortraitManager
             this.Controls.Add(this.LayoutMainPage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(6700, 520);
+            this.MaximumSize = new System.Drawing.Size(6700, 5200);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(670, 520);
             this.Name = "MainForm";

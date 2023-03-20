@@ -216,6 +216,9 @@
   <data name="HINT_NONSELECTEDDELETE" xml:space="preserve">
     <value>No image selected. Select one or more images to delete.</value>
   </data>
+  <data name="HINT_NONSELECTEDEXTRACE" xml:space="preserve">
+    <value />
+  </data>
   <data name="HINT_SCALEPAGE" xml:space="preserve">
     <value>This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click "Create" to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press "Back" to return to previous page.</value>
   </data>

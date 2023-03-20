@@ -41,6 +41,7 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutURLDialog);
             LayoutReveal(LayoutFilePage);
             TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
+            ResizeVisibleImagesToWindow();
         }
         private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
         {

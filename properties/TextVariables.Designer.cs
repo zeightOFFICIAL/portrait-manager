@@ -358,6 +358,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string HINT_NONSELECTEDEXTRACE {
+            get {
+                return ResourceManager.GetString("HINT_NONSELECTEDEXTRACE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click &quot;Create&quot; to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press &quot;Back&quot; to return to previous page..
         /// </summary>
         internal static string HINT_SCALEPAGE {

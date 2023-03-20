@@ -198,5 +198,11 @@ namespace PathfinderPortraitManager
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
         }
+        private void ButtonBackToMain5_Click(object sender, EventArgs e)
+        {
+            ClearImageLists(ListExtract, ImgListExtract);
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
+        }
     }
 }

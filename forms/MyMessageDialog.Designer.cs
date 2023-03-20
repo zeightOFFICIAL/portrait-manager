@@ -79,6 +79,7 @@
             this.LabelMesg.TabIndex = 1;
             this.LabelMesg.Text = "MyMessageMesg";
             this.LabelMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelMesg.UseCompatibleTextRendering = true;
             // 
             // ButtonClose
             // 

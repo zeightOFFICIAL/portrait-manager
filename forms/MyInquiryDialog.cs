@@ -16,11 +16,11 @@ namespace PathfinderPortraitManager.forms
     {
         public MyInquiryDialog(string mesg)
         {
-            InitializeComponent();
             PrivateFontCollection pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
             Font _bebas_neue16 = new Font(pfc.Families[0], 16);
-            LabelInquiryMesg.Text = mesg;
+            InitializeComponent();
             LabelInquiryMesg.Font = _bebas_neue16;
+            LabelInquiryMesg.Text = mesg;
             ButtonOK.Font = _bebas_neue16;
             ButtonOK.Text = Properties.TextVariables.BUTTON_YES;
             ButtonCancel.Font = _bebas_neue16;

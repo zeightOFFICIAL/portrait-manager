@@ -12,6 +12,7 @@ using System.IO;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace SystemControl
 {
@@ -134,6 +135,17 @@ namespace SystemControl
                 }
             }
             return false;
+        }
+        public static void CopyFile(string formPath, string toPath)
+        {
+            try
+            {
+                File.Copy(formPath, toPath, true);
+            }
+            catch (IOException)
+            {
+                return;
+            }
         }
     }
 }

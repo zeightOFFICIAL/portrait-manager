@@ -18,14 +18,14 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private static readonly Dictionary<char, string> DIR_DICT = new Dictionary<char, string>
+        private static readonly Dictionary<char, string> DIRECTORIES_DICT = new Dictionary<char, string>
         {
             { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                    "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits"},
             { 'w', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
                    "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits"}
         };
-        private static readonly Dictionary<char, Image> DEFAULT_DICT = new Dictionary<char, Image>
+        private static readonly Dictionary<char, Image> DEFAULTIMAGE_DICT = new Dictionary<char, Image>
         {
             { 'p', Properties.Resources.placeholder_path},
             { 'w', Properties.Resources.placeholder_wotr}
@@ -68,9 +68,9 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutURLDialog);
             LayoutHide(LayoutFinalPage);
             LayoutReveal(LayoutMainPage);
-            if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
+            if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected]))
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDER))
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
                     Mesg.StartPosition = FormStartPosition.CenterScreen;
                     Mesg.ShowDialog();
@@ -99,7 +99,7 @@ namespace PathfinderPortraitManager
             if (!_isNewLoaded)
             {
                 DialogResult dr;
-                using (forms.MyInquiryDialog InquiryDialog = new forms.MyInquiryDialog(Properties.TextVariables.INQR_NOIMAGE))
+                using (forms.MyInquiryDialog InquiryDialog = new forms.MyInquiryDialog(Properties.TextVariables.INQR_NOIMAGECHOSEN))
                 {
                     InquiryDialog.ShowDialog();
                     dr = InquiryDialog.DialogResult;
@@ -161,12 +161,15 @@ namespace PathfinderPortraitManager
                 Properties.Settings.Default.folderfirstlaunch = false;
                 Properties.Settings.Default.Save();
             }
+            ButtonExtractAll.Enabled = false;
+            ButtonExtractSelected.Enabled = false;
+            ButtonOpenFolders.Enabled = false;
         }
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
         {
             ParentLayoutsHide();
             LayoutReveal(LayoutGallery);
-            if (!LoadGallery(DIR_DICT[_gameSelected]))
+            if (!LoadGallery(DIRECTORIES_DICT[_gameSelected]))
             {
                 ButtonToMainPage3_Click(sender, e);
                 return;

@@ -990,15 +990,14 @@ namespace PathfinderPortraitManager
             this.LayoutURLDialog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
             this.LayoutURLDialog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutURLDialog.Controls.Add(this.tableLayoutPanel1, 1, 1);
-            this.LayoutURLDialog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutURLDialog.ForeColor = System.Drawing.Color.White;
-            this.LayoutURLDialog.Location = new System.Drawing.Point(0, 0);
+            this.LayoutURLDialog.Location = new System.Drawing.Point(306, 3);
             this.LayoutURLDialog.Name = "LayoutURLDialog";
             this.LayoutURLDialog.RowCount = 3;
             this.LayoutURLDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutURLDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.LayoutURLDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutURLDialog.Size = new System.Drawing.Size(788, 481);
+            this.LayoutURLDialog.Size = new System.Drawing.Size(82, 278);
             this.LayoutURLDialog.TabIndex = 5;
             // 
             // tableLayoutPanel1
@@ -1011,7 +1010,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel1.Controls.Add(this.TextBoxURL, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(147, 143);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(-206, 42);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1218,7 +1217,7 @@ namespace PathfinderPortraitManager
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(788, 481);
+            this.ClientSize = new System.Drawing.Size(654, 481);
             this.Controls.Add(this.LayoutURLDialog);
             this.Controls.Add(this.LayoutFinalPage);
             this.Controls.Add(this.LayoutScalePage);

@@ -117,26 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_BACKTOFILE" xml:space="preserve">
+  <data name="BUTTON_BACK" xml:space="preserve">
     <value>Back</value>
   </data>
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>Cancel</value>
-  </data>
-  <data name="BUTTON_CHANGESELECTED" xml:space="preserve">
-    <value>Change</value>
-  </data>
-  <data name="BUTTON_CHOOSEFOLDER" xml:space="preserve">
-    <value>Choose folder</value>
-  </data>
-  <data name="BUTTON_CREATENEW" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="BUTTON_CREATEPORTRAIT" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="BUTTON_DELETESELECTED" xml:space="preserve">
-    <value>Delete</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Exit</value>
@@ -144,8 +129,20 @@
   <data name="BUTTON_EXTRACTALL" xml:space="preserve">
     <value>Extract all</value>
   </data>
-  <data name="BUTTON_EXTRACTSELECT" xml:space="preserve">
+  <data name="BUTTON_EXTRACTCHOOSEFOLDER" xml:space="preserve">
+    <value>Choose folder</value>
+  </data>
+  <data name="BUTTON_EXTRACTOPENFOLDER" xml:space="preserve">
+    <value>Open folders</value>
+  </data>
+  <data name="BUTTON_EXTRACTSELECTED" xml:space="preserve">
     <value>Extract selected</value>
+  </data>
+  <data name="BUTTON_FINALOPENFOLDER" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="BUTTON_GALLERYOPENFOLDER" xml:space="preserve">
+    <value>Open folder</value>
   </data>
   <data name="BUTTON_HINT" xml:space="preserve">
     <value>?</value>
@@ -153,11 +150,20 @@
   <data name="BUTTON_LOAD" xml:space="preserve">
     <value>Load</value>
   </data>
-  <data name="BUTTON_LOCALPORTRAIT" xml:space="preserve">
+  <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
     <value>Choose local</value>
+  </data>
+  <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
+    <value>Choose web</value>
   </data>
   <data name="BUTTON_MENU" xml:space="preserve">
     <value>Menu</value>
+  </data>
+  <data name="BUTTON_NEW" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="BUTTON_NEXT" xml:space="preserve">
+    <value>Next</value>
   </data>
   <data name="BUTTON_NO" xml:space="preserve">
     <value>No</value>
@@ -165,32 +171,23 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>Ok</value>
   </data>
-  <data name="BUTTON_OPEN" xml:space="preserve">
-    <value>Open</value>
+  <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
+    <value>Change selected</value>
   </data>
-  <data name="BUTTON_OPEN2FOLDER" xml:space="preserve">
-    <value>Open folders</value>
+  <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
+    <value>Delete selected</value>
   </data>
-  <data name="BUTTON_OPENFOLDER" xml:space="preserve">
-    <value>Open folder</value>
+  <data name="BUTTON_TOCREATE" xml:space="preserve">
+    <value>Create</value>
   </data>
-  <data name="BUTTON_TOEXRACT" xml:space="preserve">
-    <value>Extract Folder</value>
+  <data name="BUTTON_TOEXRACTPAGE" xml:space="preserve">
+    <value>Extract folder</value>
   </data>
   <data name="BUTTON_TOFILEPAGE" xml:space="preserve">
-    <value>Create Portrait</value>
+    <value>Create portrait</value>
   </data>
-  <data name="BUTTON_TOGALLERY" xml:space="preserve">
-    <value>Browse Gallery</value>
-  </data>
-  <data name="BUTTON_TOMAINPAGE" xml:space="preserve">
-    <value>Back</value>
-  </data>
-  <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="BUTTON_WEBPORTRAIT" xml:space="preserve">
-    <value>Choose web</value>
+  <data name="BUTTON_TOGALLERYPAGE" xml:space="preserve">
+    <value>Browse gallery</value>
   </data>
   <data name="BUTTON_YES" xml:space="preserve">
     <value>Yes</value>
@@ -225,8 +222,8 @@
   <data name="HINT_SELECTEDMORE" xml:space="preserve">
     <value>More than one image selected. Only the first of the selected will be changed.</value>
   </data>
-  <data name="INQR_NOIMAGE" xml:space="preserve">
-    <value>You did not load any images. However, you still can use the default image. Proceed with default?</value>
+  <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
+    <value>You did not load any images. However, you still can use the default image. Proceed with a default image, or choose your own?</value>
   </data>
   <data name="LABEL_COPY" xml:space="preserve">
     <value>Artemii "Zeight" Saganenko© 2023</value>
@@ -264,7 +261,7 @@
   <data name="MESG_FOLDERNOTFOUND" xml:space="preserve">
     <value />
   </data>
-  <data name="MESG_GAMEFOLDER" xml:space="preserve">
+  <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
     <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section.</value>
   </data>
   <data name="MESG_WEBNOTLOADED" xml:space="preserve">

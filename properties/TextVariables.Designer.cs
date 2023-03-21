@@ -63,9 +63,9 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
-        internal static string BUTTON_BACKTOFILE {
+        internal static string BUTTON_BACK {
             get {
-                return ResourceManager.GetString("BUTTON_BACKTOFILE", resourceCulture);
+                return ResourceManager.GetString("BUTTON_BACK", resourceCulture);
             }
         }
         
@@ -75,51 +75,6 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_CANCEL {
             get {
                 return ResourceManager.GetString("BUTTON_CANCEL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change.
-        /// </summary>
-        internal static string BUTTON_CHANGESELECTED {
-            get {
-                return ResourceManager.GetString("BUTTON_CHANGESELECTED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose folder.
-        /// </summary>
-        internal static string BUTTON_CHOOSEFOLDER {
-            get {
-                return ResourceManager.GetString("BUTTON_CHOOSEFOLDER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New.
-        /// </summary>
-        internal static string BUTTON_CREATENEW {
-            get {
-                return ResourceManager.GetString("BUTTON_CREATENEW", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create.
-        /// </summary>
-        internal static string BUTTON_CREATEPORTRAIT {
-            get {
-                return ResourceManager.GetString("BUTTON_CREATEPORTRAIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        internal static string BUTTON_DELETESELECTED {
-            get {
-                return ResourceManager.GetString("BUTTON_DELETESELECTED", resourceCulture);
             }
         }
         
@@ -142,11 +97,47 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose folder.
+        /// </summary>
+        internal static string BUTTON_EXTRACTCHOOSEFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACTCHOOSEFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open folders.
+        /// </summary>
+        internal static string BUTTON_EXTRACTOPENFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACTOPENFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extract selected.
         /// </summary>
-        internal static string BUTTON_EXTRACTSELECT {
+        internal static string BUTTON_EXTRACTSELECTED {
             get {
-                return ResourceManager.GetString("BUTTON_EXTRACTSELECT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACTSELECTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string BUTTON_FINALOPENFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_FINALOPENFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open folder.
+        /// </summary>
+        internal static string BUTTON_GALLERYOPENFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERYOPENFOLDER", resourceCulture);
             }
         }
         
@@ -171,9 +162,18 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Choose local.
         /// </summary>
-        internal static string BUTTON_LOCALPORTRAIT {
+        internal static string BUTTON_LOADLOCALPORTRAIT {
             get {
-                return ResourceManager.GetString("BUTTON_LOCALPORTRAIT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_LOADLOCALPORTRAIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose web.
+        /// </summary>
+        internal static string BUTTON_LOADWEBPORTRAIT {
+            get {
+                return ResourceManager.GetString("BUTTON_LOADWEBPORTRAIT", resourceCulture);
             }
         }
         
@@ -183,6 +183,24 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_MENU {
             get {
                 return ResourceManager.GetString("BUTTON_MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string BUTTON_NEW {
+            get {
+                return ResourceManager.GetString("BUTTON_NEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        internal static string BUTTON_NEXT {
+            get {
+                return ResourceManager.GetString("BUTTON_NEXT", resourceCulture);
             }
         }
         
@@ -205,43 +223,43 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open.
+        ///   Looks up a localized string similar to Change selected.
         /// </summary>
-        internal static string BUTTON_OPEN {
+        internal static string BUTTON_SELECTEDCHANGE {
             get {
-                return ResourceManager.GetString("BUTTON_OPEN", resourceCulture);
+                return ResourceManager.GetString("BUTTON_SELECTEDCHANGE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open folders.
+        ///   Looks up a localized string similar to Delete selected.
         /// </summary>
-        internal static string BUTTON_OPEN2FOLDER {
+        internal static string BUTTON_SELECTEDDELETE {
             get {
-                return ResourceManager.GetString("BUTTON_OPEN2FOLDER", resourceCulture);
+                return ResourceManager.GetString("BUTTON_SELECTEDDELETE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open folder.
+        ///   Looks up a localized string similar to Create.
         /// </summary>
-        internal static string BUTTON_OPENFOLDER {
+        internal static string BUTTON_TOCREATE {
             get {
-                return ResourceManager.GetString("BUTTON_OPENFOLDER", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOCREATE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extract Folder.
+        ///   Looks up a localized string similar to Extract folder.
         /// </summary>
-        internal static string BUTTON_TOEXRACT {
+        internal static string BUTTON_TOEXRACTPAGE {
             get {
-                return ResourceManager.GetString("BUTTON_TOEXRACT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOEXRACTPAGE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Portrait.
+        ///   Looks up a localized string similar to Create portrait.
         /// </summary>
         internal static string BUTTON_TOFILEPAGE {
             get {
@@ -250,38 +268,11 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Browse Gallery.
+        ///   Looks up a localized string similar to Browse gallery.
         /// </summary>
-        internal static string BUTTON_TOGALLERY {
+        internal static string BUTTON_TOGALLERYPAGE {
             get {
-                return ResourceManager.GetString("BUTTON_TOGALLERY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Back.
-        /// </summary>
-        internal static string BUTTON_TOMAINPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOMAINPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Next.
-        /// </summary>
-        internal static string BUTTON_TOSCALEPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOSCALEPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose web.
-        /// </summary>
-        internal static string BUTTON_WEBPORTRAIT {
-            get {
-                return ResourceManager.GetString("BUTTON_WEBPORTRAIT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_TOGALLERYPAGE", resourceCulture);
             }
         }
         
@@ -385,11 +376,11 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You did not load any images. However, you still can use the default image. Proceed with default?.
+        ///   Looks up a localized string similar to You did not load any images. However, you still can use the default image. Proceed with a default image, or choose your own?.
         /// </summary>
-        internal static string INQR_NOIMAGE {
+        internal static string INQR_NOIMAGECHOSEN {
             get {
-                return ResourceManager.GetString("INQR_NOIMAGE", resourceCulture);
+                return ResourceManager.GetString("INQR_NOIMAGECHOSEN", resourceCulture);
             }
         }
         
@@ -504,9 +495,9 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section..
         /// </summary>
-        internal static string MESG_GAMEFOLDER {
+        internal static string MESG_GAMEFOLDERNOTFOUND {
             get {
-                return ResourceManager.GetString("MESG_GAMEFOLDER", resourceCulture);
+                return ResourceManager.GetString("MESG_GAMEFOLDERNOTFOUND", resourceCulture);
             }
         }
         

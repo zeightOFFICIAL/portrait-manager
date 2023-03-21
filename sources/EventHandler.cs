@@ -223,17 +223,17 @@ namespace PathfinderPortraitManager
             string fullPath = "";
             bool placeFound = false;
             uint localName = 1000;
-            if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected]))
+            if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected]))
             {
                 LayoutReveal(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
-                LabelDirLoc.Text = "Game folder: " + DIR_DICT[_gameSelected];
+                LabelDirLoc.Text = "Game folder: " + DIRECTORIES_DICT[_gameSelected];
                 ButtonOpenFileFolder.Enabled = false;
                 return;
             }
             while (!placeFound)
             {
-                fullPath = DIR_DICT[_gameSelected] + "\\" + Convert.ToString(localName);
+                fullPath = DIRECTORIES_DICT[_gameSelected] + "\\" + Convert.ToString(localName);
                 if (!Directory.Exists(fullPath))
                 {
                     Directory.CreateDirectory(fullPath);
@@ -356,7 +356,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(DIR_DICT[_gameSelected]);
+            System.Diagnostics.Process.Start(DIRECTORIES_DICT[_gameSelected]);
         }
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
         {
@@ -380,7 +380,7 @@ namespace PathfinderPortraitManager
                 }
             }
             ListViewItem item = ListGallery.SelectedItems[0];
-            string folderPath = DIR_DICT[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
+            string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
             DialogResult dialogResult;
             using (forms.MyInquiryDialog Inquiry = new forms.MyInquiryDialog(Properties.TextVariables.HINT_DELETEOLD))
             {
@@ -396,7 +396,7 @@ namespace PathfinderPortraitManager
             {
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
-                SystemControl.FileControl.DirectoryDeleteRecursive(DIR_DICT[_gameSelected] + "\\" + item.Text);
+                SystemControl.FileControl.DirectoryDeleteRecursive(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text);
                 item.Remove();
             }
         }
@@ -416,7 +416,7 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
-                string folderPath = DIR_DICT[_gameSelected] + "\\" + item.Text + "\\";
+                string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\";
                 
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
@@ -460,28 +460,28 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.Items)
             {
-                if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected] + "\\" + item.Text))
+                if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                 {
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIR_DICT[_gameSelected] + "\\" + item.Text))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                     {
                         HintMessage.ShowDialog();
                     }
-                    SystemControl.FileControl.DirectoryCreate(DIR_DICT[_gameSelected] + "\\" + item.Text);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + SML_APPEND);
+                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + SML_APPEND);
                 }
                 else
                 {
                     string newPath = DateTime.Now.Millisecond.ToString();
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIR_DICT[_gameSelected] + "\\" + item.Text + newPath))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath))
                     {
                         HintMessage.ShowDialog();
                     }
-                    SystemControl.FileControl.DirectoryCreate(DIR_DICT[_gameSelected] + "\\" + item.Text + newPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + newPath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + newPath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + newPath + SML_APPEND);
+                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + SML_APPEND);
                 }
             }
         }
@@ -501,28 +501,28 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                if (!SystemControl.FileControl.DirectoryExists(DIR_DICT[_gameSelected] + "\\" + item.Text))
+                if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                 {
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIR_DICT[_gameSelected] + "\\" + item.Text))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                     {
                         HintMessage.ShowDialog();
                     }
-                    SystemControl.FileControl.DirectoryCreate(DIR_DICT[_gameSelected] + "\\" + item.Text);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + SML_APPEND);
+                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + SML_APPEND);
                 }
                 else
                 {
                     string newPath = DateTime.Now.Millisecond.ToString();
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIR_DICT[_gameSelected] + "\\" + item.Text + newPath))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath))
                     {
                         HintMessage.ShowDialog();
                     }
-                    SystemControl.FileControl.DirectoryCreate(DIR_DICT[_gameSelected] + "\\" + item.Text + newPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + newPath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + newPath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIR_DICT[_gameSelected] + "\\" + item.Text + newPath + SML_APPEND);
+                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + SML_APPEND);
                 }
             }
         }
@@ -532,7 +532,7 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
-            System.Diagnostics.Process.Start(DIR_DICT[_gameSelected]);
+            System.Diagnostics.Process.Start(DIRECTORIES_DICT[_gameSelected]);
             System.Diagnostics.Process.Start(_extractFolderPath);
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)

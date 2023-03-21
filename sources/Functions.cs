@@ -192,27 +192,27 @@ namespace PathfinderPortraitManager
             ButtonToFilePage.Font = _bebas_neue20;
             ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
             ButtonToExtractPage.Font = _bebas_neue20;
-            ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACT;
+            ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACTPAGE;
             ButtonToGalleryPage.Font = _bebas_neue20;
-            ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERY;
+            ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERYPAGE;
             ButtonExit.Font = _bebas_neue20;
             ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
-            ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOCALPORTRAIT;
+            ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
             ButtonWebPortraitLoad.Font = _bebas_neue20;
-            ButtonWebPortraitLoad.Text = Properties.TextVariables.BUTTON_WEBPORTRAIT;
+            ButtonWebPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADWEBPORTRAIT;
             ButtonToMainPage.Font = _bebas_neue20;
-            ButtonToMainPage.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
+            ButtonToMainPage.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonToScalePage.Font = _bebas_neue20;
-            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
+            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_NEXT;
             ButtonHintOnFilePage.Font = _bebas_neue20;
             ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
             ButtonToFilePage2.Font = _bebas_neue20;
-            ButtonToFilePage2.Text = Properties.TextVariables.BUTTON_BACKTOFILE;
+            ButtonToFilePage2.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonCreatePortrait.Font = _bebas_neue20;
-            ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_CREATEPORTRAIT;
+            ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_TOCREATE;
             LabelMedImage.Font = _bebas_neue20;
             LabelMedImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
             LabelLrgImg.Font = _bebas_neue20;
@@ -223,13 +223,13 @@ namespace PathfinderPortraitManager
             ButtonHintOnScalePage.Text = Properties.TextVariables.BUTTON_HINT;
 
             ButtonDeletePortait.Font = _bebas_neue20;
-            ButtonDeletePortait.Text = Properties.TextVariables.BUTTON_DELETESELECTED;
+            ButtonDeletePortait.Text = Properties.TextVariables.BUTTON_SELECTEDDELETE;
             ButtonToMainPage3.Font = _bebas_neue20;
-            ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
+            ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonOpenFolder.Font = _bebas_neue20;
-            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_OPENFOLDER;
+            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_GALLERYOPENFOLDER;
             ButtonChangePortrait.Font = _bebas_neue20;
-            ButtonChangePortrait.Text = Properties.TextVariables.BUTTON_CHANGESELECTED;
+            ButtonChangePortrait.Text = Properties.TextVariables.BUTTON_SELECTEDCHANGE;
             ButtonHintFolder.Font = _bebas_neue20;
             ButtonHintFolder.Text = Properties.TextVariables.BUTTON_HINT;
 
@@ -244,24 +244,24 @@ namespace PathfinderPortraitManager
             LabelFinalMesg.Font = _bebas_neue20;
             LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
             ButtonToFilePage3.Font = _bebas_neue20;
-            ButtonToFilePage3.Text = Properties.TextVariables.BUTTON_CREATENEW;
+            ButtonToFilePage3.Text = Properties.TextVariables.BUTTON_NEW;
             ButtonToMainPage4.Font = _bebas_neue20;
             ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_MENU;
             ButtonOpenFileFolder.Font = _bebas_neue20;
-            ButtonOpenFileFolder.Text = Properties.TextVariables.BUTTON_OPEN;
+            ButtonOpenFileFolder.Text = Properties.TextVariables.BUTTON_FINALOPENFOLDER;
 
             ButtonChooseFolder.Font = _bebas_neue20;
-            ButtonChooseFolder.Text = Properties.TextVariables.BUTTON_CHOOSEFOLDER;
+            ButtonChooseFolder.Text = Properties.TextVariables.BUTTON_EXTRACTCHOOSEFOLDER;
             ButtonExtractAll.Font = _bebas_neue20;
             ButtonExtractAll.Text = Properties.TextVariables.BUTTON_EXTRACTALL;
             ButtonExtractSelected.Font = _bebas_neue20;
-            ButtonExtractSelected.Text = Properties.TextVariables.BUTTON_EXTRACTSELECT;
+            ButtonExtractSelected.Text = Properties.TextVariables.BUTTON_EXTRACTSELECTED;
             ButtonOpenFolders.Font = _bebas_neue20;
-            ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_OPEN2FOLDER;
+            ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_EXTRACTOPENFOLDER;
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
             ButtonBackToMain5.Font = _bebas_neue20;
-            ButtonBackToMain5.Text = Properties.TextVariables.BUTTON_TOMAINPAGE;
+            ButtonBackToMain5.Text = Properties.TextVariables.BUTTON_BACK;
 
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
@@ -297,14 +297,14 @@ namespace PathfinderPortraitManager
         }
         public void ClearTempImages()
         {
-            using (Image placeholder = new Bitmap(DEFAULT_DICT[_gameSelected]))
+            using (Image placeholder = new Bitmap(DEFAULTIMAGE_DICT[_gameSelected]))
             {
                 ClearPrimeImages(placeholder);
             }
         }
         public void SafeCopyAllImages(string fullPath)
         {
-            using (Image placeholder = new Bitmap(DEFAULT_DICT[_gameSelected]))
+            using (Image placeholder = new Bitmap(DEFAULTIMAGE_DICT[_gameSelected]))
             {
                 ClearPrimeImages(placeholder);
                 SystemControl.FileControl.TempImagesClear();

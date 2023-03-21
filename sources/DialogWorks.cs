@@ -73,7 +73,7 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutFinalPage);
             ClearTempImages();
             _isNewLoaded = false;
-            SystemControl.FileControl.TempImagesCreate("!DEFAULT!", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULT_DICT[_gameSelected]);
+            SystemControl.FileControl.TempImagesCreate("!DEFAULT!", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULTIMAGE_DICT[_gameSelected]);
             LoadAllTempImages();
             ParentLayoutsHide();
             LayoutReveal(LayoutFilePage);

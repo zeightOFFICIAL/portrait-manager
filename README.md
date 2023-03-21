@@ -59,6 +59,9 @@ Compatible with latest Windows OSs
 * Most likely working with Windows XP/Vista
 * Very unlikely with anything older
 
+### Translation addendum
+The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{LANGUAGE SHORT CALLING}.resx. Then fill value fields to the according translations.
+
 ### Copyrights
 1. Program license: GPL-2.0 license, conditions listed in LICENSE
 2. All rights for Visual Studio 2022 belongs to Microsoft https://www.microsoft.com/

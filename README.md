@@ -6,7 +6,7 @@
 
 ### Description 
 
-Desktop application, portrait management tool for the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying and deleting old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous.
+Desktop application, portrait management tool for the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying and deleting old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous.
 
 Create new portrait | Browse gallery | Extract folder | Scaling page |
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|

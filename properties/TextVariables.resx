@@ -129,9 +129,6 @@
   <data name="BUTTON_EXTRACTALL" xml:space="preserve">
     <value>Extract all</value>
   </data>
-  <data name="BUTTON_EXTRACTCHOOSEFOLDER" xml:space="preserve">
-    <value>Choose folder</value>
-  </data>
   <data name="BUTTON_EXTRACTOPENFOLDER" xml:space="preserve">
     <value>Open folders</value>
   </data>
@@ -193,7 +190,7 @@
     <value>Yes</value>
   </data>
   <data name="HINT_EXTRACTPAGE" xml:space="preserve">
-    <value>This is Extract page</value>
+    <value>This is the extract page. Here you can copy all images from one folder to the game folder. Click "Select Folder" to select a folder to move. Select the images and click "extract selected" to move only specific images, or click "extract all" to move all available. To perform the process manually, click "open folders".</value>
   </data>
   <data name="HINT_FILEPAGE" xml:space="preserve">
     <value>This is the file page. Here you can choose which image to use as portrait. You can load a local image by clicking the button or the image, or simply drag and drop into the picture. As well, you can load a web picture by clicking the button.</value>
@@ -246,8 +243,17 @@
   <data name="MESG_NONESELECTED" xml:space="preserve">
     <value>You have not selected any portrait. To edit or delete, select at least one image from the list.</value>
   </data>
+  <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
+    <value>You have not selected any portrait. To extract select at least one image from the list.</value>
+  </data>
+  <data name="MESG_REPEATFOLDER" xml:space="preserve">
+    <value>One or more folders already exist in the in-game portraits folder. The names are repeated. The program will rename the output folders so that the images are not overridden.</value>
+  </data>
   <data name="MESG_SELECTEDMORE" xml:space="preserve">
     <value>More than one image selected. Only the first one of the all selected will be processed.</value>
+  </data>
+  <data name="MESG_SUCCESS" xml:space="preserve">
+    <value>Done! Images are loaded successfully:</value>
   </data>
   <data name="MESG_WRONGFORMAT" xml:space="preserve">
     <value>The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well.</value>
@@ -266,5 +272,8 @@
   </data>
   <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
     <value>Choose image</value>
+  </data>
+  <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
+    <value>Choose folder</value>
   </data>
 </root>

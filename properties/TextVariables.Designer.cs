@@ -97,15 +97,6 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose folder.
-        /// </summary>
-        internal static string BUTTON_EXTRACTCHOOSEFOLDER {
-            get {
-                return ResourceManager.GetString("BUTTON_EXTRACTCHOOSEFOLDER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Open folders.
         /// </summary>
         internal static string BUTTON_EXTRACTOPENFOLDER {
@@ -286,7 +277,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is Extract page.
+        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;Select Folder&quot; to select a folder to move. Select the images and click &quot;extract selected&quot; to move only specific images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
             get {
@@ -448,11 +439,38 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have not selected any portrait. To extract select at least one image from the list..
+        /// </summary>
+        internal static string MESG_NONESELECTEDEXTRACT {
+            get {
+                return ResourceManager.GetString("MESG_NONESELECTEDEXTRACT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One or more folders already exist in the in-game portraits folder. The names are repeated. The program will rename the output folders so that the images are not overridden..
+        /// </summary>
+        internal static string MESG_REPEATFOLDER {
+            get {
+                return ResourceManager.GetString("MESG_REPEATFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More than one image selected. Only the first one of the all selected will be processed..
         /// </summary>
         internal static string MESG_SELECTEDMORE {
             get {
                 return ResourceManager.GetString("MESG_SELECTEDMORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done! Images are loaded successfully:.
+        /// </summary>
+        internal static string MESG_SUCCESS {
+            get {
+                return ResourceManager.GetString("MESG_SUCCESS", resourceCulture);
             }
         }
         
@@ -489,6 +507,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string TEXT_TITLEOPENFILE {
             get {
                 return ResourceManager.GetString("TEXT_TITLEOPENFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose folder.
+        /// </summary>
+        internal static string TEXT_TITLEOPENFOLDER {
+            get {
+                return ResourceManager.GetString("TEXT_TITLEOPENFOLDER", resourceCulture);
             }
         }
         

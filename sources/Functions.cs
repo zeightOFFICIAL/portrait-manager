@@ -127,7 +127,9 @@ namespace PathfinderPortraitManager
                 PicPortraitSml.Image = new Bitmap(imgPoor);
             }
             using (Image imgFull = new Bitmap(RELATIVEPATH_TEMPFULL))
+            {
                 PicPortraitTemp.Image = new Bitmap(imgFull);
+            }
             ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
             ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
@@ -255,7 +257,7 @@ namespace PathfinderPortraitManager
             ButtonToMainPageAndFolder.Text = Properties.TextVariables.BUTTON_FINALOPENFOLDER;
 
             ButtonChooseFolder.Font = _bebas_neue20;
-            ButtonChooseFolder.Text = Properties.TextVariables.BUTTON_EXTRACTCHOOSEFOLDER;
+            ButtonChooseFolder.Text = Properties.TextVariables.TEXT_TITLEOPENFOLDER;
             ButtonExtractAll.Font = _bebas_neue20;
             ButtonExtractAll.Text = Properties.TextVariables.BUTTON_EXTRACTALL;
             ButtonExtractSelected.Font = _bebas_neue20;

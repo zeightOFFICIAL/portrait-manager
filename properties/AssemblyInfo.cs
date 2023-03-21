@@ -1,11 +1,12 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Pathfinder: Portrait Manager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Pathfinder Portrait Manager")]
+[assembly: AssemblyDescription("Desktop application for managing in game portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artemii Saganenko")]
 [assembly: AssemblyProduct("Pathfinder Portrait Manager")]
@@ -33,3 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]

@@ -54,9 +54,9 @@ namespace PathfinderPortraitManager
             string fullPath = SystemControl.FileControl.OpenFileLocation();
             if (fullPath == "!NONE!")
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
                 {
-                    Mesg.ShowDialog();
+                    Message.ShowDialog();
                 }
                 if (_isAnyLoaded == true)
                 {
@@ -301,16 +301,16 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
             {
-                HintMessage.ShowDialog();
+                Hint.ShowDialog();
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
+            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
             {
-                HintMessage.ShowDialog();
+                Hint.ShowDialog();
             }
         }
         private void PictureBoxTitle_Click(object sender, EventArgs e)
@@ -430,9 +430,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
+            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
             {
-                HintMessage.ShowDialog();
+                Hint.ShowDialog();
             }
         }
         private void ButtonChooseFolder_Click(object sender, EventArgs e)
@@ -443,61 +443,94 @@ namespace PathfinderPortraitManager
             }
             CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
             {
-                Title = Properties.TextVariables.TEXT_COMMONOPENFILE,
+                Title = Properties.TextVariables.TEXT_TITLEOPENFOLDER,
                 Multiselect = false,
                 InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
                 IsFolderPicker = true
             };
-            CommonOpenFileDialog.ShowDialog();
-            _extractFolderPath = CommonOpenFileDialog.FileName;
+            if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                _extractFolderPath = CommonOpenFileDialog.FileName;
+            }
+            else
+            {
+                return;
+            }
             if (!SystemControl.FileControl.DirectoryExists(_extractFolderPath))
             {
                 return;
             }
             ExploreDirectory(_extractFolderPath);
+            if (ListExtract.Items.Count > 0)
+            {
+                ButtonExtractAll.Enabled = true;
+                ButtonExtractSelected.Enabled = true;
+                ButtonOpenFolders.Enabled = true;
+            }
+            else
+            {
+                _extractFolderPath = "!NONE!";
+                ButtonExtractAll.Enabled = false;
+                ButtonExtractSelected.Enabled = false;
+                ButtonOpenFolders.Enabled = false;
+            }
         }
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
+            bool _isRepeat = false;
+            uint imgCount = 0;
             if (ListExtract.Items.Count < 1)
             {
                 return;
             }
             foreach (ListViewItem item in ListExtract.Items)
             {
-                if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
+                string normalPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text;
+                string safePath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                if (!SystemControl.FileControl.DirectoryExists(normalPath))
                 {
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
-                    {
-                        HintMessage.ShowDialog();
-                    }
-                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + SML_APPEND);
+                    SystemControl.FileControl.DirectoryCreate(normalPath);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, normalPath + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, normalPath + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, normalPath + SML_APPEND);
+                    imgCount++;
                 }
                 else
                 {
-                    string newPath = DateTime.Now.Millisecond.ToString();
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath))
-                    {
-                        HintMessage.ShowDialog();
-                    }
-                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + SML_APPEND);
+                    _isRepeat = true;
+                    SystemControl.FileControl.DirectoryCreate(safePath);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, safePath + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, safePath + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, safePath + SML_APPEND);
+                    imgCount++;
+                }
+            }
+            if (_isRepeat)
+            {
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_REPEATFOLDER))
+                {
+                    Message.ShowDialog();
+                }
+            }
+            if (imgCount > 0)
+            {
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_SUCCESS + imgCount))
+                {
+                    Message.ShowDialog();
                 }
             }
         }
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
         {
+            bool _isRepeat = false;
+            uint imgCount = 0;
             if (ListExtract.Items.Count < 1)
             {
                 return;
             }
             if (ListExtract.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(" "))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_NONESELECTEDEXTRACT))
                 {
                     Message.ShowDialog();
                 }
@@ -505,34 +538,44 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
+                string normalPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text;
+                string safePath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                if (!SystemControl.FileControl.DirectoryExists(normalPath))
                 {
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
-                    {
-                        HintMessage.ShowDialog();
-                    }
-                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + SML_APPEND);
+                    SystemControl.FileControl.DirectoryCreate(normalPath);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, normalPath + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, normalPath + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, normalPath + SML_APPEND);
+                    imgCount++;
                 }
                 else
                 {
-                    string newPath = DateTime.Now.Millisecond.ToString();
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath))
-                    {
-                        HintMessage.ShowDialog();
-                    }
-                    SystemControl.FileControl.DirectoryCreate(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath + SML_APPEND);
+                    _isRepeat = true;
+                    SystemControl.FileControl.DirectoryCreate(safePath);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, safePath + LRG_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, safePath + MED_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, safePath + SML_APPEND);
+                    imgCount++;
+                }
+            }
+            if (_isRepeat)
+            {
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_REPEATFOLDER))
+                {
+                    Message.ShowDialog();
+                }
+            }
+            if (imgCount > 0)
+            {
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_SUCCESS + imgCount))
+                {
+                    Message.ShowDialog();
                 }
             }
         }
         private void ButtonOpenFolders_Click(object sender, EventArgs e)
         {
-            if (_extractFolderPath == "!NOTSET!")
+            if (_extractFolderPath == "!NONE!")
             {
                 return;
             }
@@ -541,9 +584,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
             {
-                HintMessage.ShowDialog();
+                Hint.ShowDialog();
             }
         }
         private void LabelCopyright_Click(object sender, EventArgs e)

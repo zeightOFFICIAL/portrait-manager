@@ -92,9 +92,9 @@ namespace PathfinderPortraitManager
             }
             catch (IOException)
             {
-                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(" "))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(" "))
                 {
-                    MesgNotFound.ShowDialog();
+                    Message.ShowDialog();
                 }
             }
             LayoutReveal(LayoutMainPage);

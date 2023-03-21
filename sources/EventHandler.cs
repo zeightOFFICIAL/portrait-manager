@@ -410,6 +410,10 @@ namespace PathfinderPortraitManager
                 }
                 return;
             }
+            using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_DELETE+ListGallery.SelectedItems.Count))
+            {
+                Message.ShowDialog();
+            }
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
                 string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\";

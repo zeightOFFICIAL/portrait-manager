@@ -421,6 +421,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chosen web-image cannot be accessed. Try another time, or simply save it on local drive and load local image..
+        /// </summary>
+        internal static string MESG_CANNOTLOAD {
+            get {
+                return ResourceManager.GetString("MESG_CANNOTLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to delete images. Do you want to proceed? Total images: .
+        /// </summary>
+        internal static string MESG_DELETE {
+            get {
+                return ResourceManager.GetString("MESG_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section. If you are to manage another game, whether it is Kingmaker or WoTR. Change managing game in the main page..
         /// </summary>
         internal static string MESG_GAMEFOLDERNOTFOUND {

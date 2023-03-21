@@ -237,6 +237,12 @@
   <data name="LABEL_URLDIALOG" xml:space="preserve">
     <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
   </data>
+  <data name="MESG_CANNOTLOAD" xml:space="preserve">
+    <value>Chosen web-image cannot be accessed. Try another time, or simply save it on local drive and load local image.</value>
+  </data>
+  <data name="MESG_DELETE" xml:space="preserve">
+    <value>You are about to delete images. Do you want to proceed? Total images: </value>
+  </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
     <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section. If you are to manage another game, whether it is Kingmaker or WoTR. Change managing game in the main page.</value>
   </data>

@@ -423,7 +423,7 @@ namespace PathfinderPortraitManager
             }
             catch
             {
-                using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(" "))
+                using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(Properties.TextVariables.MESG_CANNOTLOAD))
                 {
                     MesgCannotLoad.ShowDialog();
                 }

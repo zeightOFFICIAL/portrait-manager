@@ -209,12 +209,12 @@ namespace PathfinderPortraitManager
             ButtonHintOnFilePage.Font = _bebas_neue20;
             ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
-            ButtonBackToFilePage.Font = _bebas_neue20;
-            ButtonBackToFilePage.Text = Properties.TextVariables.BUTTON_BACKTOFILE;
+            ButtonToFilePage2.Font = _bebas_neue20;
+            ButtonToFilePage2.Text = Properties.TextVariables.BUTTON_BACKTOFILE;
             ButtonCreatePortrait.Font = _bebas_neue20;
             ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_CREATEPORTRAIT;
-            LabelMediumImage.Font = _bebas_neue20;
-            LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
+            LabelMedImage.Font = _bebas_neue20;
+            LabelMedImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
             LabelLrgImg.Font = _bebas_neue20;
             LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG;
             LabelSmlImg.Font = _bebas_neue20;
@@ -243,8 +243,8 @@ namespace PathfinderPortraitManager
 
             LabelFinalMesg.Font = _bebas_neue20;
             LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
-            ButtonNewPortrait.Font = _bebas_neue20;
-            ButtonNewPortrait.Text = Properties.TextVariables.BUTTON_CREATENEW;
+            ButtonToFilePage3.Font = _bebas_neue20;
+            ButtonToFilePage3.Text = Properties.TextVariables.BUTTON_CREATENEW;
             ButtonToMainPage4.Font = _bebas_neue20;
             ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_MENU;
             ButtonOpenFileFolder.Font = _bebas_neue20;
@@ -317,8 +317,8 @@ namespace PathfinderPortraitManager
             {
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);
-                PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = Properties.Resources.title_wotr;
+                PictureBoxTitle.BackgroundImage.Dispose();
+                PictureBoxTitle.BackgroundImage = Properties.Resources.title_wotr;
                 Icon = Properties.Resources.icon_wotr;
                 LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
                 foreach (Control ctrl in this.Controls)
@@ -330,8 +330,8 @@ namespace PathfinderPortraitManager
             {
                 Color fcolor = Color.Goldenrod;
                 Color bcolor = Color.FromArgb(9, 28, 11);
-                PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = Properties.Resources.title_path;
+                PictureBoxTitle.BackgroundImage.Dispose();
+                PictureBoxTitle.BackgroundImage = Properties.Resources.title_path;
                 Icon = Properties.Resources.icon_path;
                 LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
                 foreach (Control ctrl in this.Controls)

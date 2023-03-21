@@ -133,7 +133,7 @@ namespace PathfinderPortraitManager
                 Properties.Settings.Default.Save();
             }
         }
-        private void ButtonBackToFilePage_Click(object sender, EventArgs e)
+        private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
             LoadAllTempImages();
             ParentLayoutsHide();
@@ -197,6 +197,15 @@ namespace PathfinderPortraitManager
             ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
+        }
+        private void ButtonToMainPage4_Click(object sender, EventArgs e)
+        {
+            LayoutHide(LayoutFinalPage);
+            ClearTempImages();
+            _isNewLoaded = false;
+            ParentLayoutsHide();
+            LayoutReveal(LayoutMainPage);
+            ButtonOpenFileFolder.Enabled = true;
         }
         private void ButtonBackToMain5_Click(object sender, EventArgs e)
         {

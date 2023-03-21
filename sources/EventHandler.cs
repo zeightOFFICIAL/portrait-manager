@@ -278,7 +278,7 @@ namespace PathfinderPortraitManager
         }
         private void LabelMedImg_MouseHover(object sender, EventArgs e)
         {
-            LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG2;
+            LabelMedImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG2;
         }
         private void LabelLrgImg_MouseHover(object sender, EventArgs e)
         {
@@ -290,7 +290,7 @@ namespace PathfinderPortraitManager
         }
         private void LabelMedImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelMediumImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
+            LabelMedImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
         }
         private void LabelLrgImg_MouseLeave(object sender, EventArgs e)
         {
@@ -319,15 +319,15 @@ namespace PathfinderPortraitManager
                 HintMessage.ShowDialog();
             }
         }
-        private void PicTitle_Click(object sender, EventArgs e)
+        private void PictureBoxTitle_Click(object sender, EventArgs e)
         {
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
                 Color fcolor = Color.DeepPink;
                 Color bcolor = Color.FromArgb(20, 6, 30);
-                PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = Properties.Resources.title_wotr;
+                PictureBoxTitle.BackgroundImage.Dispose();
+                PictureBoxTitle.BackgroundImage = Properties.Resources.title_wotr;
                 Icon = Properties.Resources.icon_wotr;
                 LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
                 foreach (Control ctrl in this.Controls)
@@ -342,8 +342,8 @@ namespace PathfinderPortraitManager
                 _gameSelected = 'p';
                 Color fcolor = Color.Goldenrod;
                 Color bcolor = Color.FromArgb(9, 28, 11);
-                PicTitle.BackgroundImage.Dispose();
-                PicTitle.BackgroundImage = Properties.Resources.title_path;
+                PictureBoxTitle.BackgroundImage.Dispose();
+                PictureBoxTitle.BackgroundImage = Properties.Resources.title_path;
                 Icon = Properties.Resources.icon_path;
                 LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
                 foreach (Control ctrl in this.Controls)

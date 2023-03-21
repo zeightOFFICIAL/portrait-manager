@@ -68,16 +68,7 @@ namespace PathfinderPortraitManager
         {
             TextBoxURL.Clear();
         }
-        private void ButtonToMainPage4_Click(object sender, EventArgs e)
-        {
-            LayoutHide(LayoutFinalPage);
-            ClearTempImages();
-            _isNewLoaded = false;
-            ParentLayoutsHide();
-            LayoutReveal(LayoutMainPage);
-            ButtonOpenFileFolder.Enabled = true;
-        }
-        private void ButtonNewPortrait_Click(object sender, EventArgs e)
+        private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
             LayoutHide(LayoutFinalPage);
             ClearTempImages();

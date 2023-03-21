@@ -95,6 +95,7 @@
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Location = new System.Drawing.Point(165, 96);
             this.ButtonClose.Margin = new System.Windows.Forms.Padding(165, 3, 165, 3);
+            this.ButtonClose.MaximumSize = new System.Drawing.Size(400, 40);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(215, 25);
             this.ButtonClose.TabIndex = 0;

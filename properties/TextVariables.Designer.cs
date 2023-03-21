@@ -223,7 +223,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change selected.
+        ///   Looks up a localized string similar to Edit selected.
         /// </summary>
         internal static string BUTTON_SELECTEDCHANGE {
             get {
@@ -286,24 +286,6 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait?.
-        /// </summary>
-        internal static string HINT_DELETEOLD {
-            get {
-                return ResourceManager.GetString("HINT_DELETEOLD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are about to delete several or one image. Number of image: $VALUE. Do you want to delete these images?.
-        /// </summary>
-        internal static string HINT_DELETESELECT {
-            get {
-                return ResourceManager.GetString("HINT_DELETESELECT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This is Extract page.
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
@@ -322,38 +304,11 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to This is a gallery page that displays all the currently available portraits in the game. Select an image and click &quot;edit selected&quot; to copy/replace any portrait and create another one. You can also select multiple or single images and click &quot;delete&quot; to remove them/it from the game folder..
         /// </summary>
         internal static string HINT_GALLERYPAGE {
             get {
                 return ResourceManager.GetString("HINT_GALLERYPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No image selected. Select exactly one image to change..
-        /// </summary>
-        internal static string HINT_NONSELECTED {
-            get {
-                return ResourceManager.GetString("HINT_NONSELECTED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No image selected. Select one or more images to delete..
-        /// </summary>
-        internal static string HINT_NONSELECTEDDELETE {
-            get {
-                return ResourceManager.GetString("HINT_NONSELECTEDDELETE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string HINT_NONSELECTEDEXTRACE {
-            get {
-                return ResourceManager.GetString("HINT_NONSELECTEDEXTRACE", resourceCulture);
             }
         }
         
@@ -367,11 +322,11 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More than one image selected. Only the first of the selected will be changed..
+        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait? Click &quot;no&quot; to create a copy. Or &quot;yes&quot; to replace it..
         /// </summary>
-        internal static string HINT_SELECTEDMORE {
+        internal static string INQR_DELETEOLD {
             get {
-                return ResourceManager.GetString("HINT_SELECTEDMORE", resourceCulture);
+                return ResourceManager.GetString("INQR_DELETEOLD", resourceCulture);
             }
         }
         
@@ -475,24 +430,6 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string MESG_ERRORNOTCREATED {
-            get {
-                return ResourceManager.GetString("MESG_ERRORNOTCREATED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string MESG_FOLDERNOTFOUND {
-            get {
-                return ResourceManager.GetString("MESG_FOLDERNOTFOUND", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section..
         /// </summary>
         internal static string MESG_GAMEFOLDERNOTFOUND {
@@ -502,11 +439,20 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to You have not selected any portrait. To edit or delete, select at least one image from the list..
         /// </summary>
-        internal static string MESG_WEBNOTLOADED {
+        internal static string MESG_NONESELECTED {
             get {
-                return ResourceManager.GetString("MESG_WEBNOTLOADED", resourceCulture);
+                return ResourceManager.GetString("MESG_NONESELECTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than one image selected. Only the first one of the all selected will be processed..
+        /// </summary>
+        internal static string MESG_SELECTEDMORE {
+            get {
+                return ResourceManager.GetString("MESG_SELECTEDMORE", resourceCulture);
             }
         }
         

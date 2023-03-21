@@ -12,11 +12,14 @@ using System.IO;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Linq;
+using System;
 
 namespace SystemControl
 {
     public class FileControl
     {
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
         private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png"};
         public static string OpenFileLocation()
         {
@@ -118,11 +121,13 @@ namespace SystemControl
         public static PrivateFontCollection InitCustomFont(byte[] font)
         {
             PrivateFontCollection pfc = new PrivateFontCollection();
-            int fontLength = font.Length;
             byte[] fontData = font;
-            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
-            Marshal.Copy(fontData, 0, data, fontLength);
-            pfc.AddMemoryFont(data, fontLength);
+            IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
+            Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            uint dummy = 0;
+            pfc.AddMemoryFont(fontPtr, font.Length);
+            AddFontMemResourceEx(fontPtr, (uint)font.Length, IntPtr.Zero, ref dummy);
+            Marshal.FreeCoTaskMem(fontPtr);
             return pfc;
         }
         public static bool CheckImagePixeling(string path, int width, int height)

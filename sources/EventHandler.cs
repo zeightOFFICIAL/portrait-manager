@@ -17,7 +17,7 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private string _extractFolderPath = "!NOTSET!";
+        private string _extractFolderPath = "!NONE!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string fullPath = ParseDragDropFile(e);
@@ -54,7 +54,7 @@ namespace PathfinderPortraitManager
             string fullPath = SystemControl.FileControl.OpenFileLocation();
             if (fullPath == "!NONE!")
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
                 {
                     Mesg.ShowDialog();
                 }
@@ -301,14 +301,14 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE, ButtonToFilePage.Font))
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
             {
                 HintMessage.ShowDialog();
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE, ButtonToFilePage.Font))
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
             {
                 HintMessage.ShowDialog();
             }
@@ -324,12 +324,13 @@ namespace PathfinderPortraitManager
                 PictureBoxTitle.BackgroundImage = Properties.Resources.title_wotr;
                 Icon = Properties.Resources.icon_wotr;
                 LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
-                foreach (Control ctrl in this.Controls)
+                foreach (Control ctrl in Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
                 }
                 Properties.Settings.Default.defaultgametype = 'w';
                 Properties.Settings.Default.Save();
+                Text = "Pathfinder Portrait Manager (WoTR)";
             }
             else
             {
@@ -340,12 +341,13 @@ namespace PathfinderPortraitManager
                 PictureBoxTitle.BackgroundImage = Properties.Resources.title_path;
                 Icon = Properties.Resources.icon_path;
                 LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
-                foreach (Control ctrl in this.Controls)
+                foreach (Control ctrl in Controls)
                 {
                     UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
                 }
                 Properties.Settings.Default.defaultgametype = 'p';
                 Properties.Settings.Default.Save();
+                Text = "Pathfinder Portrait Manager (Kingmaker)";
             }
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
@@ -360,7 +362,7 @@ namespace PathfinderPortraitManager
             }
             if (ListGallery.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.HINT_NONSELECTED, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
                 {
                     Message.ShowDialog();
                 }
@@ -368,25 +370,25 @@ namespace PathfinderPortraitManager
             }
             else if (ListGallery.SelectedItems.Count > 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.HINT_SELECTEDMORE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_SELECTEDMORE))
                 {
                     Message.ShowDialog();
                 }
             }
             ListViewItem item = ListGallery.SelectedItems[0];
             string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
-            DialogResult dialogResult;
-            using (forms.MyInquiryDialog Inquiry = new forms.MyInquiryDialog(Properties.TextVariables.HINT_DELETEOLD))
+            DialogResult dr;
+            using (forms.MyInquiryDialog Inquiry = new forms.MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
                 Inquiry.ShowDialog();
-                dialogResult = Inquiry.DialogResult;
+                dr = Inquiry.DialogResult;
             }
             ButtonToMainPage3_Click(sender, e);
             ButtonToFilePage_Click(sender, e);
             _isAnyLoaded = true;
             SafeCopyAllImages(folderPath);
             LoadAllTempImages();
-            if (dialogResult == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
@@ -402,7 +404,7 @@ namespace PathfinderPortraitManager
             }
             if (ListGallery.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.HINT_NONSELECTEDDELETE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
                 {
                     Message.ShowDialog();
                 }
@@ -411,23 +413,31 @@ namespace PathfinderPortraitManager
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
                 string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\";
-                
-                ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 item.Remove();
                 SystemControl.FileControl.DirectoryDeleteRecursive(folderPath);
             }
+            ListGallery.Clear();
+            for (int count = 0; count < ImgListGallery.Images.Count; count++)
+            {
+                ListViewItem item = new ListViewItem
+                {
+                    Text = ImgListGallery.Images.Keys[count],
+                    ImageIndex = count
+                };
+                ListGallery.Items.Add(item);
+            }
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE, ButtonToFilePage.Font))
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
             {
                 HintMessage.ShowDialog();
             }
         }
         private void ButtonChooseFolder_Click(object sender, EventArgs e)
         {
-            if (_extractFolderPath != "!NOTSET!")
+            if (_extractFolderPath != "!NONE!")
             {
                 ClearImageLists(ListExtract, ImgListExtract);
             }
@@ -456,7 +466,7 @@ namespace PathfinderPortraitManager
             {
                 if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                 {
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text, ButtonToFilePage.Font))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                     {
                         HintMessage.ShowDialog();
                     }
@@ -468,7 +478,7 @@ namespace PathfinderPortraitManager
                 else
                 {
                     string newPath = DateTime.Now.Millisecond.ToString();
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath, ButtonToFilePage.Font))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath))
                     {
                         HintMessage.ShowDialog();
                     }
@@ -487,7 +497,7 @@ namespace PathfinderPortraitManager
             }
             if (ListExtract.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.HINT_NONSELECTEDEXTRACE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(" "))
                 {
                     Message.ShowDialog();
                 }
@@ -497,7 +507,7 @@ namespace PathfinderPortraitManager
             {
                 if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                 {
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text, ButtonToFilePage.Font))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text))
                     {
                         HintMessage.ShowDialog();
                     }
@@ -509,7 +519,7 @@ namespace PathfinderPortraitManager
                 else
                 {
                     string newPath = DateTime.Now.Millisecond.ToString();
-                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath, ButtonToFilePage.Font))
+                    using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + newPath))
                     {
                         HintMessage.ShowDialog();
                     }
@@ -531,7 +541,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE, ButtonToFilePage.Font))
+            using (forms.MyMessageDialog HintMessage = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
             {
                 HintMessage.ShowDialog();
             }

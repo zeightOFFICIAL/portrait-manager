@@ -18,12 +18,6 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
-        private PrivateFontCollection fonts = new PrivateFontCollection();
-        Font font;
-
         private static readonly Dictionary<char, string> DIRECTORIES_DICT = new Dictionary<char, string>
         {
             { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
@@ -49,6 +43,7 @@ namespace PathfinderPortraitManager
         private int _isDragging = 0;
         private bool _isAnyLoaded = false;
         private char _gameSelected = Properties.Settings.Default.defaultgametype;
+        private PrivateFontCollection pfc;
 
         public MainForm()
         {
@@ -65,7 +60,7 @@ namespace PathfinderPortraitManager
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
-            PrivateFontCollection pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+            pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
             FontsAndTextLoad(pfc);
             InitColorScheme();
 
@@ -75,7 +70,7 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutMainPage);
             if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected]))
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
                     Mesg.StartPosition = FormStartPosition.CenterScreen;
                     Mesg.ShowDialog();
@@ -93,7 +88,7 @@ namespace PathfinderPortraitManager
             ResizeVisibleImagesToWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
                 {
                     HintDialog.ShowDialog();
                 }
@@ -130,7 +125,7 @@ namespace PathfinderPortraitManager
             }
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
                 {
                     HintDialog.ShowDialog();
                 }
@@ -159,7 +154,7 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
                 {
                     HintDialog.ShowDialog();
                 }
@@ -181,7 +176,7 @@ namespace PathfinderPortraitManager
             }
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE, ButtonToFilePage.Font))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
                 {
                     HintDialog.ShowDialog();
                 }

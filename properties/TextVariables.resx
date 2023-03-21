@@ -172,7 +172,7 @@
     <value>Ok</value>
   </data>
   <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
-    <value>Change selected</value>
+    <value>Edit selected</value>
   </data>
   <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
     <value>Delete selected</value>
@@ -192,12 +192,6 @@
   <data name="BUTTON_YES" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="HINT_DELETEOLD" xml:space="preserve">
-    <value>Do you want to delete the old version of the portrait?</value>
-  </data>
-  <data name="HINT_DELETESELECT" xml:space="preserve">
-    <value>You are about to delete several or one image. Number of image: $VALUE. Do you want to delete these images?</value>
-  </data>
   <data name="HINT_EXTRACTPAGE" xml:space="preserve">
     <value>This is Extract page</value>
   </data>
@@ -205,22 +199,13 @@
     <value>This is the file page. Here you can choose which image to use as portrait. You can load a local image by clicking the button or the image, or simply drag and drop into the picture. As well, you can load a web picture by clicking the button.</value>
   </data>
   <data name="HINT_GALLERYPAGE" xml:space="preserve">
-    <value />
-  </data>
-  <data name="HINT_NONSELECTED" xml:space="preserve">
-    <value>No image selected. Select exactly one image to change.</value>
-  </data>
-  <data name="HINT_NONSELECTEDDELETE" xml:space="preserve">
-    <value>No image selected. Select one or more images to delete.</value>
-  </data>
-  <data name="HINT_NONSELECTEDEXTRACE" xml:space="preserve">
-    <value />
+    <value>This is a gallery page that displays all the currently available portraits in the game. Select an image and click "edit selected" to copy/replace any portrait and create another one. You can also select multiple or single images and click "delete" to remove them/it from the game folder.</value>
   </data>
   <data name="HINT_SCALEPAGE" xml:space="preserve">
     <value>This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click "Create" to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press "Back" to return to previous page.</value>
   </data>
-  <data name="HINT_SELECTEDMORE" xml:space="preserve">
-    <value>More than one image selected. Only the first of the selected will be changed.</value>
+  <data name="INQR_DELETEOLD" xml:space="preserve">
+    <value>Do you want to delete the old version of the portrait? Click "no" to create a copy. Or "yes" to replace it.</value>
   </data>
   <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
     <value>You did not load any images. However, you still can use the default image. Proceed with a default image, or choose your own?</value>
@@ -255,17 +240,14 @@
   <data name="LABEL_URLDIALOG" xml:space="preserve">
     <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
   </data>
-  <data name="MESG_ERRORNOTCREATED" xml:space="preserve">
-    <value />
-  </data>
-  <data name="MESG_FOLDERNOTFOUND" xml:space="preserve">
-    <value />
-  </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
     <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section.</value>
   </data>
-  <data name="MESG_WEBNOTLOADED" xml:space="preserve">
-    <value />
+  <data name="MESG_NONESELECTED" xml:space="preserve">
+    <value>You have not selected any portrait. To edit or delete, select at least one image from the list.</value>
+  </data>
+  <data name="MESG_SELECTEDMORE" xml:space="preserve">
+    <value>More than one image selected. Only the first one of the all selected will be processed.</value>
   </data>
   <data name="MESG_WRONGFORMAT" xml:space="preserve">
     <value>The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well.</value>

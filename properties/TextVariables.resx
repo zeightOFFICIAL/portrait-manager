@@ -232,7 +232,7 @@
     <value>Something went wrong. Considering you reached this stage. It is rather a problem with game directory. Check directory existence shown above. Create it if needed. </value>
   </data>
   <data name="LABEL_CREATEDOK" xml:space="preserve">
-    <value>The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game. Click "New" to create another one, "open" to show the directory, and "menu" to return.</value>
+    <value>The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game.</value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>

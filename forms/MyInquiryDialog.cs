@@ -14,10 +14,11 @@ namespace PathfinderPortraitManager.forms
 {
     public partial class MyInquiryDialog : Form
     {
+        Font _bebas_neue18;
         public MyInquiryDialog(string mesg)
         {
             PrivateFontCollection pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            Font _bebas_neue18 = new Font(pfc.Families[0], 18);
+            _bebas_neue18 = new Font(pfc.Families[0], 18);
             InitializeComponent();
             LabelInquiryMesg.Font = _bebas_neue18;
             LabelInquiryMesg.Text = mesg;
@@ -25,6 +26,12 @@ namespace PathfinderPortraitManager.forms
             ButtonOK.Text = Properties.TextVariables.BUTTON_YES;
             ButtonCancel.Font = _bebas_neue18;
             ButtonCancel.Text = Properties.TextVariables.BUTTON_NO;
+        }
+
+        private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _bebas_neue18.Dispose();
+            Dispose();
         }
     }
 }

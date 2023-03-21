@@ -18,6 +18,12 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+            IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+        private PrivateFontCollection fonts = new PrivateFontCollection();
+        Font font;
+
         private static readonly Dictionary<char, string> DIRECTORIES_DICT = new Dictionary<char, string>
         {
             { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
@@ -69,7 +75,7 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutMainPage);
             if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected]))
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND, ButtonToFilePage.Font))
                 {
                     Mesg.StartPosition = FormStartPosition.CenterScreen;
                     Mesg.ShowDialog();
@@ -87,7 +93,7 @@ namespace PathfinderPortraitManager
             ResizeVisibleImagesToWindow();
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE, ButtonToFilePage.Font))
                 {
                     HintDialog.ShowDialog();
                 }
@@ -124,7 +130,7 @@ namespace PathfinderPortraitManager
             }
             if (Properties.Settings.Default.firstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE, ButtonToFilePage.Font))
                 {
                     HintDialog.ShowDialog();
                 }
@@ -153,7 +159,7 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutExtractPage);
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE, ButtonToFilePage.Font))
                 {
                     HintDialog.ShowDialog();
                 }
@@ -175,7 +181,7 @@ namespace PathfinderPortraitManager
             }
             if (Properties.Settings.Default.folderfirstlaunch == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
+                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE, ButtonToFilePage.Font))
                 {
                     HintDialog.ShowDialog();
                 }

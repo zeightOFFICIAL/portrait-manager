@@ -1218,11 +1218,11 @@ namespace PathfinderPortraitManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(654, 481);
+            this.Controls.Add(this.LayoutScalePage);
             this.Controls.Add(this.LayoutExtractPage);
             this.Controls.Add(this.LayoutGallery);
             this.Controls.Add(this.LayoutURLDialog);
             this.Controls.Add(this.LayoutFinalPage);
-            this.Controls.Add(this.LayoutScalePage);
             this.Controls.Add(this.LayoutFilePage);
             this.Controls.Add(this.LayoutMainPage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

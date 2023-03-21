@@ -92,7 +92,7 @@ namespace PathfinderPortraitManager
             }
             catch (IOException)
             {
-                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND))
+                using (forms.MyMessageDialog MesgNotFound = new forms.MyMessageDialog(Properties.TextVariables.MESG_FOLDERNOTFOUND, ButtonToFilePage.Font))
                 {
                     MesgNotFound.ShowDialog();
                 }

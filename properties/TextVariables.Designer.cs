@@ -403,7 +403,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game. Click &quot;New&quot; to create another one, &quot;open&quot; to show the directory, and &quot;menu&quot; to return..
+        ///   Looks up a localized string similar to The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game..
         /// </summary>
         internal static string LABEL_CREATEDOK {
             get {

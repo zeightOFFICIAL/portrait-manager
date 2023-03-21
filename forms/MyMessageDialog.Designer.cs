@@ -40,18 +40,18 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.064516F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.87096F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.064516F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(658, 265);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(658, 278);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -63,14 +63,14 @@
             this.tableLayoutPanel2.Controls.Add(this.LabelMesg, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.ButtonClose, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(82, 30);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(56, 77);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(494, 204);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(545, 124);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // LabelMesg
@@ -79,7 +79,7 @@
             this.LabelMesg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelMesg.Location = new System.Drawing.Point(3, 0);
             this.LabelMesg.Name = "LabelMesg";
-            this.LabelMesg.Size = new System.Drawing.Size(488, 164);
+            this.LabelMesg.Size = new System.Drawing.Size(539, 93);
             this.LabelMesg.TabIndex = 1;
             this.LabelMesg.Text = "MyMessageMesg";
             this.LabelMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,12 +93,10 @@
             this.ButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ButtonClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClose.Location = new System.Drawing.Point(165, 167);
+            this.ButtonClose.Location = new System.Drawing.Point(165, 96);
             this.ButtonClose.Margin = new System.Windows.Forms.Padding(165, 3, 165, 3);
-            this.ButtonClose.MaximumSize = new System.Drawing.Size(164, 40);
-            this.ButtonClose.MinimumSize = new System.Drawing.Size(165, 40);
             this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(165, 40);
+            this.ButtonClose.Size = new System.Drawing.Size(215, 25);
             this.ButtonClose.TabIndex = 0;
             this.ButtonClose.Text = "ButtonClose";
             this.ButtonClose.UseVisualStyleBackColor = true;
@@ -110,20 +108,21 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(658, 265);
+            this.ClientSize = new System.Drawing.Size(658, 278);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(658, 265);
+            this.MinimumSize = new System.Drawing.Size(658, 0);
             this.Name = "MyMessageDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "_";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyMessageDialog_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

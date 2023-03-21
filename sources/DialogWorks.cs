@@ -72,19 +72,19 @@ namespace PathfinderPortraitManager
         {
             LayoutHide(LayoutFinalPage);
             ClearTempImages();
-            _isNewLoaded = false;
+            _isAnyLoaded = false;
             SystemControl.FileControl.TempImagesCreate("!DEFAULT!", RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, DEFAULTIMAGE_DICT[_gameSelected]);
             LoadAllTempImages();
             ParentLayoutsHide();
             LayoutReveal(LayoutFilePage);
             ResizeVisibleImagesToWindow();
-            ButtonOpenFileFolder.Enabled = true;
+            ButtonToMainPageAndFolder.Enabled = true;
         }
-        private void ButtonOpenFileFolder_Click(object sender, EventArgs e)
+        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
         {
             LayoutHide(LayoutFinalPage);
             ClearTempImages();
-            _isNewLoaded = false;
+            _isAnyLoaded = false;
             ParentLayoutsHide();
             try
             {
@@ -98,7 +98,7 @@ namespace PathfinderPortraitManager
                 }
             }
             LayoutReveal(LayoutMainPage);
-            ButtonOpenFileFolder.Enabled = true;
+            ButtonToMainPageAndFolder.Enabled = true;
         }
     }
 }

@@ -52,6 +52,9 @@ namespace PathfinderPortraitManager
                     ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
                     ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
                     ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
+                    HideScrollBar(PanelPortraitLrg);
+                    HideScrollBar(PanelPortraitMed);
+                    HideScrollBar(PanelPortraitSml);
                 }
             if (LayoutFilePage.Enabled == true)
             {
@@ -59,6 +62,7 @@ namespace PathfinderPortraitManager
                 {
                     ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
                     ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
+                    HideScrollBar(PanelPortraitTemp);
                 }
             }
         }
@@ -247,8 +251,8 @@ namespace PathfinderPortraitManager
             ButtonToFilePage3.Text = Properties.TextVariables.BUTTON_NEW;
             ButtonToMainPage4.Font = _bebas_neue20;
             ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_MENU;
-            ButtonOpenFileFolder.Font = _bebas_neue20;
-            ButtonOpenFileFolder.Text = Properties.TextVariables.BUTTON_FINALOPENFOLDER;
+            ButtonToMainPageAndFolder.Font = _bebas_neue20;
+            ButtonToMainPageAndFolder.Text = Properties.TextVariables.BUTTON_FINALOPENFOLDER;
 
             ButtonChooseFolder.Font = _bebas_neue20;
             ButtonChooseFolder.Text = Properties.TextVariables.BUTTON_EXTRACTCHOOSEFOLDER;
@@ -260,8 +264,8 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_EXTRACTOPENFOLDER;
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
-            ButtonBackToMain5.Font = _bebas_neue20;
-            ButtonBackToMain5.Text = Properties.TextVariables.BUTTON_BACK;
+            ButtonToMain2.Font = _bebas_neue20;
+            ButtonToMain2.Text = Properties.TextVariables.BUTTON_BACK;
 
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
@@ -373,16 +377,16 @@ namespace PathfinderPortraitManager
         }
         private string ParseDragDropFile(DragEventArgs e)
         {
-            string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            string fullPath = "-1";
-            if (fileList[0] != null && File.Exists(fileList[0]) &&
-                (Path.GetExtension(fileList[0]) == ".png") ||
-                (Path.GetExtension(fileList[0]) == ".jpg") ||
-                (Path.GetExtension(fileList[0]) == ".jpeg") ||
-                (Path.GetExtension(fileList[0]) == ".bmp") ||
-                (Path.GetExtension(fileList[0]) == ".gif"))
+            string[] filesList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string filePath = "!NONE!";
+            if (filesList[0] != null && File.Exists(filesList[0]) &&
+                (Path.GetExtension(filesList[0]) == ".png") ||
+                (Path.GetExtension(filesList[0]) == ".jpg") ||
+                (Path.GetExtension(filesList[0]) == ".jpeg") ||
+                (Path.GetExtension(filesList[0]) == ".bmp") ||
+                (Path.GetExtension(filesList[0]) == ".gif"))
             {
-                fullPath = fileList[0];
+                filePath = filesList[0];
             }
             else
             {
@@ -391,7 +395,7 @@ namespace PathfinderPortraitManager
                     Mesg.ShowDialog();
                 }
             }
-            return fullPath;
+            return filePath;
         }
         private void CheckWebResourceAndLoad(string URL)
         {
@@ -407,7 +411,7 @@ namespace PathfinderPortraitManager
                             SystemControl.FileControl.DirectoryCreate("temp/");
                         webImage.Save(RELATIVEPATH_TEMPFULL);
                         ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TEMPPOOR);
-                        _isNewLoaded = true;
+                        _isAnyLoaded = true;
                         ClearTempImages();
                         LoadAllTempImages();
                     }
@@ -420,6 +424,11 @@ namespace PathfinderPortraitManager
                     MesgCannotLoad.ShowDialog();
                 }
             }
+        }
+        private void HideScrollBar(Panel panel)
+        {
+            panel.VerticalScroll.Visible = false;
+            panel.HorizontalScroll.Visible = false;
         }
     }
 }

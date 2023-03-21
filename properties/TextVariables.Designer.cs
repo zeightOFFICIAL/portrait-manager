@@ -421,7 +421,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Character portrait.
+        ///   Looks up a localized string similar to Character.
         /// </summary>
         internal static string LABEL_LARGEIMG2 {
             get {
@@ -439,7 +439,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skills portrait.
+        ///   Looks up a localized string similar to Skills.
         /// </summary>
         internal static string LABEL_MEDIUMIMG2 {
             get {
@@ -457,7 +457,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gameplay portrait.
+        ///   Looks up a localized string similar to Gameplay.
         /// </summary>
         internal static string LABEL_SMALLIMG2 {
             get {
@@ -511,7 +511,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well..
         /// </summary>
         internal static string MESG_WRONGFORMAT {
             get {

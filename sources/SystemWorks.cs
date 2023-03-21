@@ -12,7 +12,6 @@ using System.IO;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace SystemControl
 {
@@ -22,7 +21,7 @@ namespace SystemControl
         public static string OpenFileLocation()
         {
             string fullPath;
-            OpenFileDialog OpenFileDialog = new OpenFileDialog()
+            OpenFileDialog openFileDialog = new OpenFileDialog()
             {
                 Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
                 Multiselect = false,
@@ -31,28 +30,29 @@ namespace SystemControl
                 SupportMultiDottedExtensions = false,
                 Filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*",
             };
-            if (OpenFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (EXTENSIONS_ALLOWED.Contains(Path.GetExtension(OpenFileDialog.FileName))) {
-                    fullPath = OpenFileDialog.FileName;
+                if (EXTENSIONS_ALLOWED.Contains(Path.GetExtension(openFileDialog.FileName))) 
+                {
+                    fullPath = openFileDialog.FileName;
                 }
                 else
                 {
-                    fullPath = "!NONESELECTED!";
+                    fullPath = "!NONE!";
                 }
             }
             else
             {
-                fullPath = "!NONESELECTED!";
+                fullPath = "!NONE!";
             }
-            OpenFileDialog.Dispose();
+            openFileDialog.Dispose();
             return fullPath;
         }
         public static void TempImagesCreate(string newImagePath, string tempPathFull, string tempPathPoor, Image defaultImg)
         {
             if (!DirectoryExists("temp/"))
                 DirectoryCreate("temp/");
-            if (newImagePath == "!DEFAULT!" || newImagePath == "!NONESELECTED!")
+            if (newImagePath == "!DEFAULT!" || newImagePath == "!NONESELECTED!" || newImagePath == "!NONE!")
             {
                 using (Image img = new Bitmap(defaultImg))
                 {

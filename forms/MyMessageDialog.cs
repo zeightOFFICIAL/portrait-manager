@@ -18,12 +18,11 @@ namespace PathfinderPortraitManager.forms
         {
             PrivateFontCollection pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
             Font _bebas_neue16 = new Font(pfc.Families[0], 16);
-            Font _bebas_neue13 = new Font(pfc.Families[0], 12);
             InitializeComponent();
             ButtonClose.Text = Properties.TextVariables.BUTTON_OK;
             ButtonClose.Font = _bebas_neue16;
             LabelMesg.Text = mesg;
-            LabelMesg.Font = _bebas_neue13;
+            LabelMesg.Font = _bebas_neue16;
         }
     }
 }

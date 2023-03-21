@@ -41,7 +41,7 @@ namespace PathfinderPortraitManager
 
         private Point _mousePos = new Point();
         private int _isDragging = 0;
-        private bool _isNewLoaded = false;
+        private bool _isAnyLoaded = false;
         private char _gameSelected = Properties.Settings.Default.defaultgametype;
 
         public MainForm()
@@ -55,7 +55,6 @@ namespace PathfinderPortraitManager
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
             PicPortraitTemp.AllowDrop = true;
-            PicPortraitTemp.DragDrop += PicPortraitTemp_DragDrop;
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
@@ -82,7 +81,7 @@ namespace PathfinderPortraitManager
         {
             SafeCopyAllImages("!DEFAULT!");
             LoadAllTempImages();
-            _isNewLoaded = false;
+            _isAnyLoaded = false;
             ParentLayoutsHide();
             LayoutReveal(LayoutFilePage);
             ResizeVisibleImagesToWindow();
@@ -96,7 +95,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
-            if (!_isNewLoaded)
+            if (!_isAnyLoaded)
             {
                 DialogResult dr;
                 using (forms.MyInquiryDialog InquiryDialog = new forms.MyInquiryDialog(Properties.TextVariables.INQR_NOIMAGECHOSEN))
@@ -190,8 +189,9 @@ namespace PathfinderPortraitManager
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
         }
-        private void ButtonBackToMain2_Click(object sender, EventArgs e)
+        private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
+            ClearImageLists(ListExtract, ImgListExtract);
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
         }
@@ -205,16 +205,10 @@ namespace PathfinderPortraitManager
         {
             LayoutHide(LayoutFinalPage);
             ClearTempImages();
-            _isNewLoaded = false;
+            _isAnyLoaded = false;
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
-            ButtonOpenFileFolder.Enabled = true;
-        }
-        private void ButtonBackToMain5_Click(object sender, EventArgs e)
-        {
-            ClearImageLists(ListExtract, ImgListExtract);
-            ParentLayoutsHide();
-            LayoutReveal(LayoutMainPage);
+            ButtonToMainPageAndFolder.Enabled = true;
         }
     }
 }

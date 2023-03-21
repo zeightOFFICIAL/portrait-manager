@@ -238,7 +238,7 @@
     <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
   </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
-    <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section.</value>
+    <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section. If you are to manage another game, whether it is Kingmaker or WoTR. Change managing game in the main page.</value>
   </data>
   <data name="MESG_NONESELECTED" xml:space="preserve">
     <value>You have not selected any portrait. To edit or delete, select at least one image from the list.</value>

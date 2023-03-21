@@ -75,7 +75,6 @@ namespace PathfinderPortraitManager
                     Mesg.StartPosition = FormStartPosition.CenterScreen;
                     Mesg.ShowDialog();
                 }
-                ButtonExit_Click(sender, e);
             }
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
@@ -174,13 +173,13 @@ namespace PathfinderPortraitManager
                 ButtonToMainPage3_Click(sender, e);
                 return;
             }
-            if (Properties.Settings.Default.folderfirstlaunch == true)
+            if (Properties.Settings.Default.galleryfirstlaunch == true)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
                 {
                     HintDialog.ShowDialog();
                 }
-                Properties.Settings.Default.folderfirstlaunch = false;
+                Properties.Settings.Default.galleryfirstlaunch = false;
                 Properties.Settings.Default.Save();
             }
         }

@@ -7,7 +7,6 @@
 */
 
 using System;
-using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
@@ -86,17 +85,7 @@ namespace PathfinderPortraitManager
             ClearTempImages();
             _isAnyLoaded = false;
             ParentLayoutsHide();
-            try
-            {
-                System.Diagnostics.Process.Start(LabelDirLoc.Text);
-            }
-            catch (IOException)
-            {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(" "))
-                {
-                    Message.ShowDialog();
-                }
-            }
+            System.Diagnostics.Process.Start(LabelDirLoc.Text);
             LayoutReveal(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
         }

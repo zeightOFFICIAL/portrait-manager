@@ -42,7 +42,7 @@ Allows user to browse the already existing/loaded and in-work portraits of the g
 5. Close app, launch the game, enjoy!
 
 ### Installation info
-Download release, unpack anywhere, launch exe. Don't delete or move away from exe configuration file.
+Download release, unpack anywhere, launch exe. Don't delete or move configuration file away from exe.
 
 ### Production info and bugs section
 All the errors and bugs should be reported to in the according section of nexusmods

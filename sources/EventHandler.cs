@@ -410,9 +410,15 @@ namespace PathfinderPortraitManager
                 }
                 return;
             }
-            using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_DELETE+ListGallery.SelectedItems.Count))
+            DialogResult dr;
+            using (forms.MyInquiryDialog Message = new forms.MyInquiryDialog(Properties.TextVariables.MESG_DELETE+ListGallery.SelectedItems.Count))
             {
                 Message.ShowDialog();
+                dr = Message.DialogResult;
+            }
+            if (dr != DialogResult.OK)
+            {
+                return;
             }
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {

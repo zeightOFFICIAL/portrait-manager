@@ -1,10 +1,10 @@
-![title](https://user-images.githubusercontent.com/50341618/226736464-e10dfaa6-a576-4155-ba45-c5ca6033ab19.png)
+![list1](https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png)
 
 ## Desktop application for managing in-game portraits for Pathfinder: Kingmaker and Wrath of the Righteous
 
 ### Author: Artemii "Zeight" Saganenko
 
-### Description 
+### Description
 
 Desktop application, portrait management tool for the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying and deleting old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous.
 

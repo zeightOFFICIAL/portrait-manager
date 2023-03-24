@@ -76,6 +76,6 @@ The program was optimized to use several languages and fonts. In order to create
 3. All rights for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
 4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
 5. Images and icons used in program belongs to Owlcat Games
-6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br>
+6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br><br>
 Inform if your owner rights are violated
 ##### Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.

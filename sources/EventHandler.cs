@@ -318,7 +318,7 @@ namespace PathfinderPortraitManager
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
-                Color fcolor = Color.DeepPink;
+                Color fcolor = Color.FromArgb(255, 20, 147);
                 Color bcolor = Color.FromArgb(20, 6, 30);
                 PictureBoxTitle.BackgroundImage.Dispose();
                 PictureBoxTitle.BackgroundImage = Properties.Resources.title_wotr;
@@ -335,7 +335,7 @@ namespace PathfinderPortraitManager
             else
             {
                 _gameSelected = 'p';
-                Color fcolor = Color.Goldenrod;
+                Color fcolor = Color.FromArgb(218, 165, 32);
                 Color bcolor = Color.FromArgb(9, 28, 11);
                 PictureBoxTitle.BackgroundImage.Dispose();
                 PictureBoxTitle.BackgroundImage = Properties.Resources.title_path;
@@ -603,5 +603,33 @@ namespace PathfinderPortraitManager
         {
             System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-pathfinder");
         }
+        
+        
+        private void AnyButton_Enter(object sender, EventArgs e)
+        {
+            if (sender is Button)
+            {
+                Button button = sender as Button;
+                if (button != null)
+                {
+                    button.BackColor = GAMETYPES[_gameSelected].foreColor;
+                    button.ForeColor = GAMETYPES[_gameSelected].backColor;
+                }
+            }
+        }
+        private void AnyButton_Leave(object sender, EventArgs e)
+        {
+            if (sender is Button)
+            {
+                Button button = sender as Button;
+                if (button != null)
+                {
+                    button.BackColor = GAMETYPES[_gameSelected].backColor;
+                    button.ForeColor = GAMETYPES[_gameSelected].foreColor;
+                }
+            }
+        }
+
+
     }
 }

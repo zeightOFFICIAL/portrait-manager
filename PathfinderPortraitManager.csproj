@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -133,6 +133,7 @@
     <Compile Include="sources\Functions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="sources\GameTypeClass.cs" />
     <Compile Include="sources\ImageWorks.cs" />
     <Compile Include="sources\SystemWorks.cs" />
     <EmbeddedResource Include="forms\MyInquiryDialog.resx">
@@ -205,6 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_path.ico" />
+    <None Include="resources\cog_select.png" />
+    <None Include="resources\cog_wotr.png" />
+    <None Include="resources\cog_king.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

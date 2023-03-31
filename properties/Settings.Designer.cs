@@ -49,7 +49,7 @@ namespace PathfinderPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("w")]
+        [global::System.Configuration.DefaultSettingValueAttribute("p")]
         public char defaultgametype {
             get {
                 return ((char)(this["defaultgametype"]));
@@ -80,6 +80,30 @@ namespace PathfinderPortraitManager.Properties {
             }
             set {
                 this["galleryfirstlaunch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string wotrpath {
+            get {
+                return ((string)(this["wotrpath"]));
+            }
+            set {
+                this["wotrpath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string kingpath {
+            get {
+                return ((string)(this["kingpath"]));
+            }
+            set {
+                this["kingpath"] = value;
             }
         }
     }

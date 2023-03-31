@@ -9,13 +9,19 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="defaultgametype" Type="System.Char" Scope="User">
-      <Value Profile="(Default)">w</Value>
+      <Value Profile="(Default)">p</Value>
     </Setting>
     <Setting Name="activelocal" Type="System.String" Scope="User">
       <Value Profile="(Default)">EN</Value>
     </Setting>
     <Setting Name="galleryfirstlaunch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="wotrpath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="kingpath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -6,6 +6,7 @@
     Primal license header is written in Program.cs
 */
 
+using PathfinderPortraitManager.sources;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,6 +19,24 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        static GameTypeClass wotrType = new GameTypeClass("WOTR",
+            Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
+            Properties.Resources.icon_wotr, Properties.Resources.title_wotr,
+            Properties.Resources.bg_wotr, Properties.Resources.placeholder_wotr,
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
+            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits");
+        static GameTypeClass kingType = new GameTypeClass("KING",
+            Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
+            Properties.Resources.icon_path, Properties.Resources.title_path,
+            Properties.Resources.bg_path, Properties.Resources.placeholder_path,
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
+            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits");
+        private static readonly Dictionary<char, GameTypeClass> GAMETYPES = new Dictionary<char, GameTypeClass>
+        {
+            { 'p', kingType},
+            { 'w', wotrType}
+        };
+
         private static readonly Dictionary<char, string> DIRECTORIES_DICT = new Dictionary<char, string>
         {
             { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
@@ -68,7 +87,7 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutURLDialog);
             LayoutHide(LayoutFinalPage);
             LayoutReveal(LayoutMainPage);
-            if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected]))
+            if (!SystemControl.FileControl.DirectoryExists(GAMETYPES[_gameSelected].defaultDirectory))
             {
                 using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {

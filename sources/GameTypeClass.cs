@@ -14,7 +14,7 @@ namespace PathfinderPortraitManager.sources
     public class GameTypeClass
     {
         public String gameName;
-
+        public String titleName;
         public Image titleImage { get; set; }
         public Image backImage { get; set; }
         public Image placeholderImage { get; set; }
@@ -22,10 +22,9 @@ namespace PathfinderPortraitManager.sources
         public Color backColor { get; set; }
         public Icon icon { get; set; }
         public string defaultDirectory { get; set; }
-
         public GameTypeClass(string newGameName, Color newForeColor, Color newBackColor, Icon newIcon,
                              Image newTitleImage, Image newBackImage, Image newPlaceImage,
-                             string newDefDirectory) {
+                             string newDefDirectory, String newTitleName) {
             gameName = newGameName; 
             foreColor = newForeColor;
             backColor = newBackColor;
@@ -34,6 +33,7 @@ namespace PathfinderPortraitManager.sources
             backImage = newBackImage;
             placeholderImage = newPlaceImage;
             defaultDirectory = newDefDirectory;
+            titleName = newTitleName;
         }
     }
 }

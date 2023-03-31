@@ -268,6 +268,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string BUTTON_TOSETTINGSPAGE {
+            get {
+                return ResourceManager.GetString("BUTTON_TOSETTINGSPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string BUTTON_YES {
@@ -331,6 +340,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kingmaker.
+        /// </summary>
+        internal static string KING {
+            get {
+                return ResourceManager.GetString("KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2023.
         /// </summary>
         internal static string LABEL_COPY {
@@ -354,6 +372,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string LABEL_CREATEDOK {
             get {
                 return ResourceManager.GetString("LABEL_CREATEDOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected game.
+        /// </summary>
+        internal static string LABEL_GAMESELECTED {
+            get {
+                return ResourceManager.GetString("LABEL_GAMESELECTED", resourceCulture);
             }
         }
         
@@ -552,6 +579,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string TEXTBOX_URL_WRONG {
             get {
                 return ResourceManager.GetString("TEXTBOX_URL_WRONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WotR.
+        /// </summary>
+        internal static string WOTR {
+            get {
+                return ResourceManager.GetString("WOTR", resourceCulture);
             }
         }
     }

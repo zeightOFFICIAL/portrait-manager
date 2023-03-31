@@ -612,8 +612,8 @@ namespace PathfinderPortraitManager
                 Button button = sender as Button;
                 if (button != null)
                 {
-                    button.BackColor = GAMETYPES[_gameSelected].foreColor;
-                    button.ForeColor = GAMETYPES[_gameSelected].backColor;
+                    button.BackColor = GAME_TYPES[_gameSelected].foreColor;
+                    button.ForeColor = GAME_TYPES[_gameSelected].backColor;
                 }
             }
         }
@@ -624,8 +624,8 @@ namespace PathfinderPortraitManager
                 Button button = sender as Button;
                 if (button != null)
                 {
-                    button.BackColor = GAMETYPES[_gameSelected].backColor;
-                    button.ForeColor = GAMETYPES[_gameSelected].foreColor;
+                    button.BackColor = GAME_TYPES[_gameSelected].backColor;
+                    button.ForeColor = GAME_TYPES[_gameSelected].foreColor;
                 }
             }
         }

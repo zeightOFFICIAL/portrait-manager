@@ -93,6 +93,8 @@ namespace PathfinderPortraitManager
             LayoutExtractPage.Visible = false;
             LayoutGallery.Visible = false;
             LayoutGallery.Enabled = false;
+            LayoutSettingsPage.Visible = false;
+            LayoutSettingsPage.Enabled = false;
         }
         private void ParentLayoutsSetDockFill()
         {
@@ -201,8 +203,17 @@ namespace PathfinderPortraitManager
             ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACTPAGE;
             ButtonToGalleryPage.Font = _bebas_neue20;
             ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERYPAGE;
+            ButtonToSettingsPage.Font = _bebas_neue20;
+            ButtonToSettingsPage.Text = Properties.TextVariables.BUTTON_TOSETTINGSPAGE;
             ButtonExit.Font = _bebas_neue20;
             ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
+
+            LabelGameSelected.Font = _bebas_neue20;
+            LabelGameSelected.Text = Properties.TextVariables.LABEL_GAMESELECTED;
+            ButtonKingmaker.Font = _bebas_neue20;
+            ButtonKingmaker.Text = Properties.TextVariables.KING;
+            ButtonWotR.Font = _bebas_neue20;
+            ButtonWotR.Text = Properties.TextVariables.WOTR;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
             ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
@@ -274,11 +285,12 @@ namespace PathfinderPortraitManager
         public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog) 
-                                   || ctrl.Equals(LayoutFinalPage))
+                                   || ctrl.Equals(LayoutFinalPage)
+                                   || ctrl.Equals(LayoutSettingsPage))
             {
                 return;
             }
-            if (ctrl.Equals(LabelCopyright))
+            if (ctrl.Equals(LabelCopyright) || ctrl.Equals(LabelVersion))
             {
                 ctrl.ForeColor = a;
                 return;
@@ -319,33 +331,29 @@ namespace PathfinderPortraitManager
         }
         public void InitColorScheme()
         {
+            Color fcolor = GAME_TYPES[_gameSelected].foreColor;
+            Color bcolor = GAME_TYPES[_gameSelected].backColor;
+            Icon = GAME_TYPES[_gameSelected].icon;
+            LayoutMainPage.BackgroundImage.Dispose();
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].backImage;
+            PictureBoxTitle.BackgroundImage.Dispose();
+            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].titleImage;
+            foreach (Control ctrl in Controls)
+            {
+                UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+            }
+            Text = GAME_TYPES[_gameSelected].titleName;
             if (_gameSelected == 'w')
             {
-                Color fcolor = Color.DeepPink;
-                Color bcolor = Color.FromArgb(20, 6, 30);
-                PictureBoxTitle.BackgroundImage.Dispose();
-                PictureBoxTitle.BackgroundImage = Properties.Resources.title_wotr;
-                Icon = Properties.Resources.icon_wotr;
-                LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
-                foreach (Control ctrl in this.Controls)
-                {
-                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
-                }
-                Text = "Pathfinder Portrait Manager (WoTR)";
+                ButtonWotR.BackColor = GAME_TYPES[_gameSelected].foreColor;
+                ButtonWotR.ForeColor = GAME_TYPES[_gameSelected].backColor;
+                ButtonWotR.Enabled = false;
             }
             else
             {
-                Color fcolor = Color.Goldenrod;
-                Color bcolor = Color.FromArgb(9, 28, 11);
-                PictureBoxTitle.BackgroundImage.Dispose();
-                PictureBoxTitle.BackgroundImage = Properties.Resources.title_path;
-                Icon = Properties.Resources.icon_path;
-                LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
-                foreach (Control ctrl in this.Controls)
-                {
-                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
-                }
-                Text = "Pathfinder Portrait Manager (Kingmaker)";
+                ButtonKingmaker.BackColor = GAME_TYPES[_gameSelected].foreColor;
+                ButtonKingmaker.ForeColor = GAME_TYPES[_gameSelected].backColor;
+                ButtonKingmaker.Enabled = false;
             }
         }
         public bool LoadGallery(string fromPath)

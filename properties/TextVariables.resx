@@ -186,6 +186,9 @@
   <data name="BUTTON_TOGALLERYPAGE" xml:space="preserve">
     <value>Browse gallery</value>
   </data>
+  <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="BUTTON_YES" xml:space="preserve">
     <value>Yes</value>
   </data>
@@ -207,6 +210,9 @@
   <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
     <value>You did not load any images. However, you still can use the default image. Proceed with a default image, or choose your own?</value>
   </data>
+  <data name="KING" xml:space="preserve">
+    <value>Kingmaker</value>
+  </data>
   <data name="LABEL_COPY" xml:space="preserve">
     <value>Artemii "Zeight" Saganenko© 2023</value>
   </data>
@@ -215,6 +221,9 @@
   </data>
   <data name="LABEL_CREATEDOK" xml:space="preserve">
     <value>The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game.</value>
+  </data>
+  <data name="LABEL_GAMESELECTED" xml:space="preserve">
+    <value>Selected game</value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>
@@ -281,5 +290,8 @@
   </data>
   <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
     <value>Choose folder</value>
+  </data>
+  <data name="WOTR" xml:space="preserve">
+    <value>WotR</value>
   </data>
 </root>

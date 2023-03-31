@@ -24,19 +24,19 @@ namespace PathfinderPortraitManager
             Properties.Resources.icon_wotr, Properties.Resources.title_wotr,
             Properties.Resources.bg_wotr, Properties.Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits");
+            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
         static GameTypeClass kingType = new GameTypeClass("KING",
             Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Properties.Resources.icon_path, Properties.Resources.title_path,
             Properties.Resources.bg_path, Properties.Resources.placeholder_path,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits");
-        private static readonly Dictionary<char, GameTypeClass> GAMETYPES = new Dictionary<char, GameTypeClass>
+            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
+        private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
             { 'p', kingType},
             { 'w', wotrType}
         };
-
+        
         private static readonly Dictionary<char, string> DIRECTORIES_DICT = new Dictionary<char, string>
         {
             { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
@@ -67,6 +67,7 @@ namespace PathfinderPortraitManager
         public MainForm()
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.activelocal);
+            Properties.Settings.Default.Save();
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -87,14 +88,14 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutURLDialog);
             LayoutHide(LayoutFinalPage);
             LayoutReveal(LayoutMainPage);
-            if (!SystemControl.FileControl.DirectoryExists(GAMETYPES[_gameSelected].defaultDirectory))
-            {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
-                {
-                    Mesg.StartPosition = FormStartPosition.CenterScreen;
-                    Mesg.ShowDialog();
-                }
-            }
+            //if (!SystemControl.FileControl.DirectoryExists())
+            //{
+            //    using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
+            //    {
+            //        Mesg.StartPosition = FormStartPosition.CenterScreen;
+            //        Mesg.ShowDialog();
+            //    }
+            //}
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
@@ -229,6 +230,52 @@ namespace PathfinderPortraitManager
             ParentLayoutsHide();
             LayoutReveal(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
+        }
+
+        private void ButtonToSettingsPage_Click(object sender, EventArgs e)
+        {
+            LayoutHide(LayoutMainPage);
+            LayoutReveal(LayoutSettingsPage);
+        }
+
+        private void SwapEnable(Button enableBtn, Button disableBtn)
+        {
+            enableBtn.BackColor = GAME_TYPES[_gameSelected].foreColor;
+            enableBtn.ForeColor = GAME_TYPES[_gameSelected].backColor;
+            enableBtn.Enabled = false;
+
+            disableBtn.BackColor = Color.Black;
+            disableBtn.ForeColor = Color.White;
+            disableBtn.Enabled = true;
+        }
+        private void ButtonGameType_Click(object sender, EventArgs e)
+        {
+            Color fcolor, bcolor;
+            if (_gameSelected == 'p')
+            {
+                _gameSelected = 'w';
+                fcolor = GAME_TYPES[_gameSelected].foreColor;
+                bcolor = GAME_TYPES[_gameSelected].backColor;
+                SwapEnable(ButtonWotR, ButtonKingmaker);                
+            }
+            else
+            {
+                _gameSelected = 'p';
+                fcolor = GAME_TYPES[_gameSelected].foreColor;
+                bcolor = GAME_TYPES[_gameSelected].backColor;
+                SwapEnable(ButtonKingmaker, ButtonWotR);
+            }
+
+            Icon = GAME_TYPES[_gameSelected].icon;
+            LayoutMainPage.BackgroundImage.Dispose();
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].backImage;
+            PictureBoxTitle.BackgroundImage.Dispose();
+            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].titleImage;
+            foreach (Control ctrl in Controls)
+            {
+                UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+            }
+            Text = GAME_TYPES[_gameSelected].titleName;
         }
     }
 }

@@ -1,73 +1,81 @@
-![title](https://user-images.githubusercontent.com/50341618/226736464-e10dfaa6-a576-4155-ba45-c5ca6033ab19.png)
+![list1](https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png)
 
-## Desktop application for managing in-game portraits for Pathfinder: Kingmaker and Wrath of the Righteous
+## <p align="center">Desktop application for managing in-game portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous</p>
 
-### Author: Artemii "Zeight" Saganenko
+### Created by Artemii "Zeight" Saganenko
 
-### Description 
+### Description
 
-Desktop application, portrait management tool for the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying and deleting old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous.
+Desktop application, management tool for portraits in the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous. Requires nothing, no dependencies at all, apart from .NET Framework, which is 99% likely to be already installed. 
 
-Create new portrait | Browse gallery | Extract folder | Scaling page |
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-![image](https://user-images.githubusercontent.com/50341618/226739430-c9141706-017f-4fd7-a512-7f3afe9226a1.png)  |  ![image](https://user-images.githubusercontent.com/50341618/226739512-737b856a-f588-4bdf-a225-1986efb47a92.png)  | ![image](https://user-images.githubusercontent.com/50341618/226743585-7fc2b068-5f05-4bb9-aab9-a42c77b98c64.png) | ![image](https://user-images.githubusercontent.com/50341618/226740609-fbd0d89a-c4b9-4c70-8493-eef0def0f7b5.png) |
+
+| Kingmaker | Wrath of the Righteous |
+| :-------: | :--------------------: |
+|![image](https://user-images.githubusercontent.com/50341618/227395883-6e96df36-069f-4b47-8f40-6fe7b38a1ec0.png)|![image](https://user-images.githubusercontent.com/50341618/227396112-714300c1-10d6-42fe-b76b-b2b0670e0e7f.png)|
+
+| Load any image | Scale image to portrait |
+| :------------: | :---------------------: |
+|![image](https://user-images.githubusercontent.com/50341618/227396290-3f63cf1a-4139-479b-9877-230e772bf13b.png)|![image](https://user-images.githubusercontent.com/50341618/227396316-67fc3ada-200f-4f36-adf4-586c4d5196b8.png)|
+
+| Extract from folder | Browse existing |
+| :-----------------: | :-------------: |
+|![image](https://user-images.githubusercontent.com/50341618/227396815-0a2a97e1-169d-4861-b667-9c41cc6b5cf6.png)|![image](https://user-images.githubusercontent.com/50341618/227396755-de05f69f-01c9-47af-a005-577693399463.png)|
 
 ### Features
 
 #### Create new portraits
-Allows user to load any local or web image, to scale it as he sees fit and finally create the portrait in the proper game directory. Supports all prime image formats, which are png, jpg, jpeg, bmp, gif. The created portraits will be almost exact copies of the images set up in frames during scaling.
+Allows user to load any local or web image, to scale it as he sees fit and finally create the portrait in the proper game directory. Supports all prime image formats, which are png, jpg, jpeg, bmp, gif. The created portraits will be almost exact copies of the images set up in frames during scaling. The program automatically crops, resize the image to needed state, creates directory and image file.
 
 #### Extract from external folders
-Allows user to extract images from local directory right to their proper place in game directory. Choose which folder to process in order to fetch the images, which should be a proper representation of portrait pack. Select which portraits to create in game directory. Press extract selected. In case you want to extract all, press the according button.
+Allows user to extract images from local directory right to their proper place in game directory. Choose which folder to process in order to fetch the images, which should be a proper representation of portrait pack*. Select which portraits to move to the game directory. Press extract selected to move the chosen. In case you want to extract all, press the according button. The program automatically copies the folders to the game portraits' directory.
 
 #### Browse gallery and change/delete old images
-Allows user to browse the already existing/loaded and in-work portraits of the game. Makes possible for user to delete or change specific portraits. Upon deleting, asks whether to proceed. Upon editing, asks whether to make a standalone/copy version or delete the old one and replace. 
+Allows user to browse the already existing/loaded and in-work portraits of the game. Makes possible for user to delete or change specific portraits. Select image(s) from the list and press the button which corresponds to needed functionality. Upon deleting, asks whether to proceed. Upon editing, asks whether to make a standalone/copy version or delete the old one and replace. Manages all folder and file processing. 
 
-### Using pipeline
+### Basic use cases
 1. Download any portrait pack from any source (for example https://www.nexusmods.com/pathfinderkingmaker/mods/92)
-2. Unpack it in any directory
+2. Unpack it in any directory, it is recommended to be a non-protected by system or user folder, downloads folder would work just fine
 3. Launch the program, press extract, press choose folder, find the folder you just unpacked
-4. Select which images to create, press extract selected
-  4b. Press extract all to create all the available portraits
-5. Open browse gallery, find which one you want to change/fix, press change
-6. Change it in scaling mod
-7. Launch the game, enjoy!
+4. Select which images to copy, press extract selected or press extract all to copy all the available portraits
+5. Launch the game, enjoy!
 ---
 1. Press create new portrait
 2. Press choose local and select the image you want to use
   2b. Press choose web
-  2b next. Input URL and press load if the source is available, proceed, otherwise try another, or simply download it and find locally
-3. Press next and proceed to scaling page. Use mouse wheel in increase/decrease image. Move image while holding left mouse button to adjust it
+  2b next. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally
+3. Press next and proceed to scaling page. Use mouse wheel in increase/decrease image. Move the image while holding the left mouse button to adjust it. Double-click restores images
 4. Press create to add the portrait to the game portraits folder
+5. In case, you messed up scaling, or simply want to change or delete the portrait. Open browse gallery, find your image. Select it. Press according button. Change the portrait (the name will be new whatsoever), or approve deletion 
 5. Close app, launch the game, enjoy!
 
-### Installation info
-Download release, unpack anywhere, launch exe. Don't delete or move away from exe configuration file.
+### Installation
+Download release, unpack anywhere (verbatim). Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe.
 
 ### Production info and bugs section
-All the errors and bugs should be reported to in the according section of nexusmods
+All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP.
 
 ### Build info
-* Visual Studio 2022 (17.4.4)
-* .NET Framework 4.7.2
+* Visual Studio 2022 17.4.4
+* .NET Framework 4.7.2 (no libraries involved, I'm not sure about System.Numerics.Vectors.dll, because I did not use Vectors, however VS adds it to the build so, it might be working without it)
 * C#
 ---
-Compatible with latest Windows OSs
+Compatible with latest Windows OSs 
 * Untested but it should be working on Windows 11
-* Tested with Windows 10
+* ✔ Tested with Windows 10
 * Untested but it should be working on Windows 7 as well
 * Most likely working with Windows XP/Vista
 * Very unlikely with anything older
+* NOT WORKING WITH UNIX (Linux/MAC)
 
-### Translation addendum
-The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{LANGUAGE SHORT CALLING}.resx. Then fill value fields to the according translations.
+#### Translation addendum
+The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.resx, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. 
 
 ### Copyrights
-1. Program license: GPL-2.0 license, conditions listed in LICENSE
-2. All rights for Visual Studio 2022 belongs to Microsoft https://www.microsoft.com/
-3. All rights for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous belongs to Owlcat Games https://owlcat.games/
-4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods and Citrus457
+1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/blob/master/LICENSE)
+2. All rights for Visual Studio 2022 belongs to Microsoft (https://www.microsoft.com/)
+3. All rights for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
+4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
 5. Images and icons used in program belongs to Owlcat Games
-6. Used font Bebas Neue belongs to its creator https://fonts.google.com/specimen/Bebas+Neue
-##### Disclaimer: this is not a product of Owlcat Games, it is developed by a third-party.
-##### Inform: if your owner rights are violated
+6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br><br>
+Inform if your owner rights are violated
+##### Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.

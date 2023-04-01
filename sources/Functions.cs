@@ -223,6 +223,10 @@ namespace PathfinderPortraitManager
             ButtonRestorePath.Text = Properties.TextVariables.BUTTON_RESTORE;
             ButtonSelectPath.Font = _bebas_neue16;
             ButtonSelectPath.Text = Properties.TextVariables.BUTTON_SELECTPATH;
+            ButtonEnableResize.Font = _bebas_neue20;
+            ButtonEnableResize.Text = Properties.TextVariables.BUTTON_RESIZE;
+            ButtonToMainPage5.Font = _bebas_neue20;
+            ButtonToMainPage5.Text = Properties.TextVariables.BUTTON_OK;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
             ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
@@ -286,8 +290,8 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_EXTRACTOPENFOLDER;
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
-            ButtonToMain2.Font = _bebas_neue20;
-            ButtonToMain2.Text = Properties.TextVariables.BUTTON_BACK;
+            ButtonToMainPage2.Font = _bebas_neue20;
+            ButtonToMainPage2.Text = Properties.TextVariables.BUTTON_BACK;
 
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }

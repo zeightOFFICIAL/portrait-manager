@@ -223,6 +223,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resize.
+        /// </summary>
+        internal static string BUTTON_RESIZE {
+            get {
+                return ResourceManager.GetString("BUTTON_RESIZE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore.
         /// </summary>
         internal static string BUTTON_RESTORE {

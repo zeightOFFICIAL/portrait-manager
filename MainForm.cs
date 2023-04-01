@@ -77,7 +77,9 @@ namespace PathfinderPortraitManager
                 ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
                 ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
             }
-            
+            Width = Properties.CoreSettings.Default.MaxWindowWidth;
+            Height = Properties.CoreSettings.Default.MaxWindowHeight;
+
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
@@ -237,22 +239,10 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
         }
-
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
             LayoutHide(LayoutMainPage);
             LayoutReveal(LayoutSettingsPage);
-        }
-
-        private void SwapEnable(Button enableBtn, Button disableBtn)
-        {
-            enableBtn.BackColor = GAME_TYPES[_gameSelected].ForeColor;
-            enableBtn.ForeColor = GAME_TYPES[_gameSelected].BackColor;
-            enableBtn.Enabled = false;
-
-            disableBtn.BackColor = Color.Black;
-            disableBtn.ForeColor = Color.White;
-            disableBtn.Enabled = true;
         }
         private void ButtonGameType_Click(object sender, EventArgs e)
         {
@@ -267,7 +257,6 @@ namespace PathfinderPortraitManager
                 UpdateColorScheme();
             }
         }
-
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
             LayoutHide(LayoutSettingsPage);
@@ -278,8 +267,12 @@ namespace PathfinderPortraitManager
                     Properties.CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
                 else
                     Properties.CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
-                Properties.CoreSettings.Default.Save();
             }
+            Properties.CoreSettings.Default.MaxWindowHeight = Height;
+            Properties.CoreSettings.Default.MaxWindowWidth = Width;
+            Properties.CoreSettings.Default.Save();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            ButtonEnableResize.Text = Properties.TextVariables.BUTTON_RESIZE;
             ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
             ButtonValidatePath.BackColor = Color.Black;
             ButtonValidatePath.ForeColor = Color.White;
@@ -289,13 +282,12 @@ namespace PathfinderPortraitManager
             ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
             ButtonOpenPath.Enabled = true;
         }
-
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
             if (SystemControl.FileControl.DirectoryExists(TextBoxFullPath.Text))
             {
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
-                ButtonValidatePath.BackColor = Color.GreenYellow;
+                ButtonValidatePath.BackColor = Color.LimeGreen;
                 ButtonValidatePath.Enabled = false;
             }
             else
@@ -305,14 +297,23 @@ namespace PathfinderPortraitManager
                 ButtonValidatePath.Enabled = false;
             }
         }
-
         private void ButtonSelectPath_Click(object sender, EventArgs e)
         {
-            
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            if (SystemControl.FileControl.DirectoryExists(defDir))
+            {
+                dialog.SelectedPath = defDir;
+            }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFolder = dialog.SelectedPath;
+                TextBoxFullPath.Text = selectedFolder;
+            }            
         }
-
         private void ButtonOpenPath_Click(object sender, EventArgs e)
         {
+            ButtonValidatePath_Click(sender, e);
             try
             {
                 System.Diagnostics.Process.Start(TextBoxFullPath.Text);
@@ -325,12 +326,10 @@ namespace PathfinderPortraitManager
                 return;
             }
         }
-
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
             TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
         }
-
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
         {
             ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
@@ -341,6 +340,20 @@ namespace PathfinderPortraitManager
             ButtonOpenPath.ForeColor = Color.White;
             ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
             ButtonOpenPath.Enabled = true;
+        }
+
+        private void ButtonEnableResize_Click(object sender, EventArgs e)
+        {
+            if (FormBorderStyle == FormBorderStyle.FixedSingle)
+            {
+                FormBorderStyle = FormBorderStyle.Sizable;
+                ButtonEnableResize.Text = Properties.TextVariables.BUTTON_OK;
+            }
+            else
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle;
+                ButtonEnableResize.Text = Properties.TextVariables.BUTTON_RESIZE;
+            }
         }
     }
 }

@@ -171,6 +171,9 @@
   <data name="BUTTON_OPENPATH" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="BUTTON_RESIZE" xml:space="preserve">
+    <value>Resize</value>
+  </data>
   <data name="BUTTON_RESTORE" xml:space="preserve">
     <value>Restore</value>
   </data>

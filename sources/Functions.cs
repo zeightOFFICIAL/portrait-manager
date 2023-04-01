@@ -285,7 +285,7 @@ namespace PathfinderPortraitManager
 
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
-        public void UpdateColorSchemeOnForm(Control ctrl, Color a, Color b)
+        public void UpdateObjectColoring(Control ctrl, Color a, Color b)
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog) 
                                    || ctrl.Equals(LayoutFinalPage)
@@ -302,7 +302,7 @@ namespace PathfinderPortraitManager
             ctrl.BackColor = b;
             foreach (Control subCtrl in ctrl.Controls)
             {
-                UpdateColorSchemeOnForm(subCtrl, a, b);
+                UpdateObjectColoring(subCtrl, a, b);
             }
         }
         public void LayoutsSetDockFill(Control ctrl)
@@ -332,31 +332,35 @@ namespace PathfinderPortraitManager
                 SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, placeholder);
             }
         }
-        public void InitColorScheme()
+        public void UpdateColorScheme()
         {
-            Color fcolor = GAME_TYPES[_gameSelected].ForeColor;
-            Color bcolor = GAME_TYPES[_gameSelected].BackColor;
+            Color foreColor = GAME_TYPES[_gameSelected].ForeColor;
+            Color backColor = GAME_TYPES[_gameSelected].BackColor;
             Icon = GAME_TYPES[_gameSelected].GameIcon;
-            LayoutMainPage.BackgroundImage.Dispose();
-            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackImage;
-            PictureBoxTitle.BackgroundImage.Dispose();
             PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].TitleImage;
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackImage;
             foreach (Control ctrl in Controls)
             {
-                UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
+                UpdateObjectColoring(ctrl, foreColor, backColor);
             }
-            Text = GAME_TYPES[_gameSelected].titleName;
-            if (_gameSelected == 'w')
+            Text = GAME_TYPES[_gameSelected].TitleName;
+            if (_gameSelected == 'p')
             {
-                ButtonWotR.BackColor = GAME_TYPES[_gameSelected].ForeColor;
-                ButtonWotR.ForeColor = GAME_TYPES[_gameSelected].BackColor;
-                ButtonWotR.Enabled = false;
+                ButtonKingmaker.Enabled = false;
+                ButtonKingmaker.ForeColor = backColor;
+                ButtonKingmaker.BackColor = foreColor;
+                ButtonWotR.Enabled = true;
+                ButtonWotR.ForeColor = Color.White;
+                ButtonWotR.BackColor = Color.Black;
             }
             else
             {
-                ButtonKingmaker.BackColor = GAME_TYPES[_gameSelected].ForeColor;
-                ButtonKingmaker.ForeColor = GAME_TYPES[_gameSelected].BackColor;
-                ButtonKingmaker.Enabled = false;
+                ButtonKingmaker.Enabled = true;
+                ButtonKingmaker.ForeColor = Color.White;
+                ButtonKingmaker.BackColor = Color.Black;
+                ButtonWotR.Enabled = false;
+                ButtonWotR.ForeColor = backColor;
+                ButtonWotR.BackColor = foreColor;
             }
         }
         public bool LoadGallery(string fromPath)

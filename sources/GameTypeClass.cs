@@ -14,7 +14,7 @@ namespace PathfinderPortraitManager.sources
     public class GameTypeClass
     {
         public string gameName;
-        public string titleName;
+        public string TitleName;
         public Image TitleImage { get; set; }
         public Image BackImage { get; set; }
         public Image PlaceholderImage { get; set; }
@@ -33,7 +33,7 @@ namespace PathfinderPortraitManager.sources
             BackImage = newBackImage;
             PlaceholderImage = newPlaceImage;
             DefaultDirectory = newDefDirectory;
-            titleName = newTitleName;
+            TitleName = newTitleName;
         }
     }
 }

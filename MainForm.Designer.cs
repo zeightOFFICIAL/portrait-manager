@@ -613,8 +613,8 @@ namespace PathfinderPortraitManager
             this.ButtonToFilePage.Text = "ToFilePage";
             this.ButtonToFilePage.UseVisualStyleBackColor = true;
             this.ButtonToFilePage.Click += new System.EventHandler(this.ButtonToFilePage_Click);
-            this.ButtonToFilePage.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToFilePage.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
+            this.ButtonToFilePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToFilePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonToExtractPage
             // 
@@ -629,8 +629,8 @@ namespace PathfinderPortraitManager
             this.ButtonToExtractPage.Text = "ToExtractPage";
             this.ButtonToExtractPage.UseVisualStyleBackColor = true;
             this.ButtonToExtractPage.Click += new System.EventHandler(this.ButtonToExtract_Click);
-            this.ButtonToExtractPage.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToExtractPage.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
+            this.ButtonToExtractPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToExtractPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonToGalleryPage
             // 
@@ -645,8 +645,8 @@ namespace PathfinderPortraitManager
             this.ButtonToGalleryPage.Text = "ToGalleryPage";
             this.ButtonToGalleryPage.UseVisualStyleBackColor = true;
             this.ButtonToGalleryPage.Click += new System.EventHandler(this.ButtonToGalleryPage_Click);
-            this.ButtonToGalleryPage.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToGalleryPage.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
+            this.ButtonToGalleryPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToGalleryPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonExit
             // 
@@ -661,8 +661,8 @@ namespace PathfinderPortraitManager
             this.ButtonExit.Text = "ToExit";
             this.ButtonExit.UseVisualStyleBackColor = true;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
-            this.ButtonExit.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonExit.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
+            this.ButtonExit.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonExit.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // PictureBoxTitle
             // 
@@ -707,8 +707,8 @@ namespace PathfinderPortraitManager
             this.ButtonToSettingsPage.Text = "ToSettingsPage";
             this.ButtonToSettingsPage.UseVisualStyleBackColor = true;
             this.ButtonToSettingsPage.Click += new System.EventHandler(this.ButtonToSettingsPage_Click);
-            this.ButtonToSettingsPage.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToSettingsPage.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
+            this.ButtonToSettingsPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToSettingsPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LabelVersion
             // 
@@ -1404,9 +1404,11 @@ namespace PathfinderPortraitManager
             // 
             // ButtonToMainPage5
             // 
+            this.ButtonToMainPage5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToMainPage5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToMainPage5.Location = new System.Drawing.Point(3, 308);
             this.ButtonToMainPage5.Name = "ButtonToMainPage5";
-            this.ButtonToMainPage5.Size = new System.Drawing.Size(75, 23);
+            this.ButtonToMainPage5.Size = new System.Drawing.Size(538, 83);
             this.ButtonToMainPage5.TabIndex = 5;
             this.ButtonToMainPage5.Text = "button1";
             this.ButtonToMainPage5.UseVisualStyleBackColor = true;

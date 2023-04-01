@@ -318,36 +318,16 @@ namespace PathfinderPortraitManager
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
-                Color fcolor = Color.FromArgb(255, 20, 147);
-                Color bcolor = Color.FromArgb(20, 6, 30);
-                PictureBoxTitle.BackgroundImage.Dispose();
-                PictureBoxTitle.BackgroundImage = Properties.Resources.title_wotr;
-                Icon = Properties.Resources.icon_wotr;
-                LayoutMainPage.BackgroundImage = Properties.Resources.bg_wotr;
-                foreach (Control ctrl in Controls)
-                {
-                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
-                }
-                Properties.Settings.Default.defaultgametype = 'w';
-                Properties.Settings.Default.Save();
-                Text = "Pathfinder Portrait Manager (WoTR)";
+                UpdateColorScheme();
+                Properties.CoreSettings.Default.GameType = _gameSelected;
+                Properties.CoreSettings.Default.Save();
             }
             else
             {
                 _gameSelected = 'p';
-                Color fcolor = Color.FromArgb(218, 165, 32);
-                Color bcolor = Color.FromArgb(9, 28, 11);
-                PictureBoxTitle.BackgroundImage.Dispose();
-                PictureBoxTitle.BackgroundImage = Properties.Resources.title_path;
-                Icon = Properties.Resources.icon_path;
-                LayoutMainPage.BackgroundImage = Properties.Resources.bg_path;
-                foreach (Control ctrl in Controls)
-                {
-                    UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
-                }
-                Properties.Settings.Default.defaultgametype = 'p';
-                Properties.Settings.Default.Save();
-                Text = "Pathfinder Portrait Manager (Kingmaker)";
+                UpdateColorScheme();
+                Properties.CoreSettings.Default.GameType = _gameSelected;
+                Properties.CoreSettings.Default.Save();
             }
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
@@ -605,7 +585,7 @@ namespace PathfinderPortraitManager
         }
         
         
-        private void AnyButton_Enter(object sender, EventArgs e)
+        private void AnyPrimeButton_Enter(object sender, EventArgs e)
         {
             if (sender is Button button)
             {
@@ -616,7 +596,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        private void AnyButton_Leave(object sender, EventArgs e)
+        private void AnyPrimeButton_Leave(object sender, EventArgs e)
         {
             if (sender is Button button)
             {
@@ -624,6 +604,28 @@ namespace PathfinderPortraitManager
                 {
                     button.BackColor = GAME_TYPES[_gameSelected].BackColor;
                     button.ForeColor = GAME_TYPES[_gameSelected].ForeColor;
+                }
+            }
+        }
+        private void AnyButton_Enter(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button != null)
+                {
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.Black;
+                }
+            }
+        }
+        private void AnyButton_Leave(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button != null)
+                {
+                    button.BackColor = Color.Black;
+                    button.ForeColor = Color.White;
                 }
             }
         }

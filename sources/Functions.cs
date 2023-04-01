@@ -209,14 +209,20 @@ namespace PathfinderPortraitManager
             ButtonExit.Font = _bebas_neue20;
             ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
 
-            LabelGameSelected.Font = _bebas_neue20;
-            LabelGameSelected.Text = Properties.TextVariables.LABEL_GAMESELECTED;
             ButtonKingmaker.Font = _bebas_neue20;
             ButtonKingmaker.Text = Properties.TextVariables.KING;
             ButtonWotR.Font = _bebas_neue20;
             ButtonWotR.Text = Properties.TextVariables.WOTR;
             LabelSelectedPath.Font = _bebas_neue16;
             LabelSelectedPath.Text = Properties.TextVariables.LABEL_PATH;
+            ButtonValidatePath.Font = _bebas_neue16;
+            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+            ButtonOpenPath.Font = _bebas_neue16;
+            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
+            ButtonRestorePath.Font = _bebas_neue16;
+            ButtonRestorePath.Text = Properties.TextVariables.BUTTON_RESTORE;
+            ButtonSelectPath.Font = _bebas_neue16;
+            ButtonSelectPath.Text = Properties.TextVariables.BUTTON_SELECTPATH;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
             ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
@@ -344,6 +350,7 @@ namespace PathfinderPortraitManager
                 UpdateObjectColoring(ctrl, foreColor, backColor);
             }
             Text = GAME_TYPES[_gameSelected].TitleName;
+            TextBoxFullPath.Clear();
             if (_gameSelected == 'p')
             {
                 ButtonKingmaker.Enabled = false;
@@ -352,6 +359,7 @@ namespace PathfinderPortraitManager
                 ButtonWotR.Enabled = true;
                 ButtonWotR.ForeColor = Color.White;
                 ButtonWotR.BackColor = Color.Black;
+                TextBoxFullPath.Text = Properties.CoreSettings.Default.KINGPath;
             }
             else
             {
@@ -361,6 +369,7 @@ namespace PathfinderPortraitManager
                 ButtonWotR.Enabled = false;
                 ButtonWotR.ForeColor = backColor;
                 ButtonWotR.BackColor = foreColor;
+                TextBoxFullPath.Text = Properties.CoreSettings.Default.WOTRPath;
             }
         }
         public bool LoadGallery(string fromPath)

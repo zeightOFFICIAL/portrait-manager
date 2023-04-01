@@ -36,7 +36,7 @@ namespace PathfinderPortraitManager
             { 'p', kingType},
             { 'w', wotrType}
         };
-        private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
+        private static Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
             { 'p', Properties.CoreSettings.Default.KINGPath },
             { 'w', Properties.CoreSettings.Default.WOTRPath }
@@ -68,12 +68,14 @@ namespace PathfinderPortraitManager
             if (Properties.UseStamps.Default.isFirstAny)
             {
                 Properties.CoreSettings.Default.KINGPath = kingType.DefaultDirectory;
-                Properties.CoreSettings.Default.WOTRPath = kingType.DefaultDirectory;
+                Properties.CoreSettings.Default.WOTRPath = wotrType.DefaultDirectory;
                 Properties.CoreSettings.Default.MaxWindowHeight = Size.Height;
                 Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;
                 Properties.UseStamps.Default.isFirstAny = false;
                 Properties.UseStamps.Default.Save();
                 Properties.CoreSettings.Default.Save();
+                ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
+                ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
             }
             
             ParentLayoutsSetDockFill();
@@ -254,16 +256,91 @@ namespace PathfinderPortraitManager
         }
         private void ButtonGameType_Click(object sender, EventArgs e)
         {
-            //if (_gameSelected == 'w')
-            //    SetGameType('w');
-            //else
-            //    SetGameType('p');
+            if (_gameSelected == 'w')
+            {
+                _gameSelected = 'p';
+                UpdateColorScheme();
+            }
+            else
+            {
+                _gameSelected = 'w';
+                UpdateColorScheme();
+            }
         }
 
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
             LayoutHide(LayoutSettingsPage);
             LayoutReveal(LayoutMainPage);
+            if (ButtonValidatePath.Text == Properties.TextVariables.BUTTON_OK)
+            {
+                if (_gameSelected == 'p')
+                    Properties.CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
+                else
+                    Properties.CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
+                Properties.CoreSettings.Default.Save();
+            }
+            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+            ButtonValidatePath.BackColor = Color.Black;
+            ButtonValidatePath.ForeColor = Color.White;
+            ButtonValidatePath.Enabled = true;
+            ButtonOpenPath.BackColor = Color.Black;
+            ButtonOpenPath.ForeColor = Color.White;
+            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
+            ButtonOpenPath.Enabled = true;
+        }
+
+        private void ButtonValidatePath_Click(object sender, EventArgs e)
+        {
+            if (SystemControl.FileControl.DirectoryExists(TextBoxFullPath.Text))
+            {
+                ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
+                ButtonValidatePath.BackColor = Color.GreenYellow;
+                ButtonValidatePath.Enabled = false;
+            }
+            else
+            {
+                ButtonValidatePath.Text = Properties.TextVariables.BUTTON_NO;
+                ButtonValidatePath.BackColor = Color.Red;
+                ButtonValidatePath.Enabled = false;
+            }
+        }
+
+        private void ButtonSelectPath_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ButtonOpenPath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(TextBoxFullPath.Text);
+            }
+            catch
+            {
+                ButtonOpenPath.BackColor = Color.Red;
+                ButtonOpenPath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+                ButtonOpenPath.Enabled = false;
+                return;
+            }
+        }
+
+        private void ButtonRestorePath_Click(object sender, EventArgs e)
+        {
+            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
+        }
+
+        private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
+        {
+            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+            ButtonValidatePath.BackColor = Color.Black;
+            ButtonValidatePath.ForeColor = Color.White;
+            ButtonValidatePath.Enabled = true;
+            ButtonOpenPath.BackColor = Color.Black;
+            ButtonOpenPath.ForeColor = Color.White;
+            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
+            ButtonOpenPath.Enabled = true;
         }
     }
 }

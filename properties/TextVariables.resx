@@ -168,11 +168,20 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="BUTTON_OPENPATH" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="BUTTON_RESTORE" xml:space="preserve">
+    <value>Restore</value>
+  </data>
   <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
     <value>Edit selected</value>
   </data>
   <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
     <value>Delete selected</value>
+  </data>
+  <data name="BUTTON_SELECTPATH" xml:space="preserve">
+    <value>Select</value>
   </data>
   <data name="BUTTON_TOCREATE" xml:space="preserve">
     <value>Create</value>
@@ -188,6 +197,9 @@
   </data>
   <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="BUTTON_VALIDATE" xml:space="preserve">
+    <value>Validate</value>
   </data>
   <data name="BUTTON_YES" xml:space="preserve">
     <value>Yes</value>
@@ -221,9 +233,6 @@
   </data>
   <data name="LABEL_CREATEDOK" xml:space="preserve">
     <value>The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game.</value>
-  </data>
-  <data name="LABEL_GAMESELECTED" xml:space="preserve">
-    <value>Selected game</value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>

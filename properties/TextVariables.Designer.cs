@@ -214,6 +214,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string BUTTON_OPENPATH {
+            get {
+                return ResourceManager.GetString("BUTTON_OPENPATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        internal static string BUTTON_RESTORE {
+            get {
+                return ResourceManager.GetString("BUTTON_RESTORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit selected.
         /// </summary>
         internal static string BUTTON_SELECTEDCHANGE {
@@ -228,6 +246,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_SELECTEDDELETE {
             get {
                 return ResourceManager.GetString("BUTTON_SELECTEDDELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string BUTTON_SELECTPATH {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECTPATH", resourceCulture);
             }
         }
         
@@ -273,6 +300,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_TOSETTINGSPAGE {
             get {
                 return ResourceManager.GetString("BUTTON_TOSETTINGSPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validate.
+        /// </summary>
+        internal static string BUTTON_VALIDATE {
+            get {
+                return ResourceManager.GetString("BUTTON_VALIDATE", resourceCulture);
             }
         }
         
@@ -372,15 +408,6 @@ namespace PathfinderPortraitManager.Properties {
         internal static string LABEL_CREATEDOK {
             get {
                 return ResourceManager.GetString("LABEL_CREATEDOK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Selected game.
-        /// </summary>
-        internal static string LABEL_GAMESELECTED {
-            get {
-                return ResourceManager.GetString("LABEL_GAMESELECTED", resourceCulture);
             }
         }
         

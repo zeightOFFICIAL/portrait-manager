@@ -622,7 +622,7 @@ namespace PathfinderPortraitManager
         {
             if (sender is Button button)
             {
-                if (button != null)
+                if (button != null && button.Enabled == true)
                 {
                     button.BackColor = Color.Black;
                     button.ForeColor = Color.White;

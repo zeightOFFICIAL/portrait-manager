@@ -239,24 +239,6 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
         }
-        private void ButtonToSettingsPage_Click(object sender, EventArgs e)
-        {
-            LayoutHide(LayoutMainPage);
-            LayoutReveal(LayoutSettingsPage);
-        }
-        private void ButtonGameType_Click(object sender, EventArgs e)
-        {
-            if (_gameSelected == 'w')
-            {
-                _gameSelected = 'p';
-                UpdateColorScheme();
-            }
-            else
-            {
-                _gameSelected = 'w';
-                UpdateColorScheme();
-            }
-        }
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
             LayoutHide(LayoutSettingsPage);
@@ -282,78 +264,13 @@ namespace PathfinderPortraitManager
             ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
             ButtonOpenPath.Enabled = true;
         }
-        private void ButtonValidatePath_Click(object sender, EventArgs e)
+        private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
-            if (SystemControl.FileControl.DirectoryExists(TextBoxFullPath.Text))
-            {
-                ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
-                ButtonValidatePath.BackColor = Color.LimeGreen;
-                ButtonValidatePath.Enabled = false;
-            }
-            else
-            {
-                ButtonValidatePath.Text = Properties.TextVariables.BUTTON_NO;
-                ButtonValidatePath.BackColor = Color.Red;
-                ButtonValidatePath.Enabled = false;
-            }
-        }
-        private void ButtonSelectPath_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
-            if (SystemControl.FileControl.DirectoryExists(defDir))
-            {
-                dialog.SelectedPath = defDir;
-            }
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFolder = dialog.SelectedPath;
-                TextBoxFullPath.Text = selectedFolder;
-            }            
-        }
-        private void ButtonOpenPath_Click(object sender, EventArgs e)
-        {
-            ButtonValidatePath_Click(sender, e);
-            try
-            {
-                System.Diagnostics.Process.Start(TextBoxFullPath.Text);
-            }
-            catch
-            {
-                ButtonOpenPath.BackColor = Color.Red;
-                ButtonOpenPath.Text = Properties.TextVariables.BUTTON_VALIDATE;
-                ButtonOpenPath.Enabled = false;
-                return;
-            }
-        }
-        private void ButtonRestorePath_Click(object sender, EventArgs e)
-        {
-            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
-        }
-        private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
-        {
-            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
-            ButtonValidatePath.BackColor = Color.Black;
-            ButtonValidatePath.ForeColor = Color.White;
-            ButtonValidatePath.Enabled = true;
-            ButtonOpenPath.BackColor = Color.Black;
-            ButtonOpenPath.ForeColor = Color.White;
-            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
-            ButtonOpenPath.Enabled = true;
-        }
-
-        private void ButtonEnableResize_Click(object sender, EventArgs e)
-        {
-            if (FormBorderStyle == FormBorderStyle.FixedSingle)
-            {
-                FormBorderStyle = FormBorderStyle.Sizable;
-                ButtonEnableResize.Text = Properties.TextVariables.BUTTON_OK;
-            }
-            else
-            {
-                FormBorderStyle = FormBorderStyle.FixedSingle;
-                ButtonEnableResize.Text = Properties.TextVariables.BUTTON_RESIZE;
-            }
-        }
+            LayoutHide(LayoutMainPage);
+            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
+            LayoutReveal(LayoutSettingsPage);
+            ButtonToMainPage5.ForeColor = Color.White;
+            ButtonToMainPage5.BackColor = Color.Black;
+        }        
     }
 }

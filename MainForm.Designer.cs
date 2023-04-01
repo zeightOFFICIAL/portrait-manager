@@ -1307,12 +1307,12 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel7.Location = new System.Drawing.Point(95, 43);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 6;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.76471F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.60785F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.60785F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.60785F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.40785F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.08459F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.08459F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.14099F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.14099F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.14099F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(544, 394);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
@@ -1328,7 +1328,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(538, 63);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(538, 54);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // ButtonKingmaker
@@ -1339,7 +1339,7 @@ namespace PathfinderPortraitManager
             this.ButtonKingmaker.Location = new System.Drawing.Point(65, 3);
             this.ButtonKingmaker.Margin = new System.Windows.Forms.Padding(65, 3, 20, 3);
             this.ButtonKingmaker.Name = "ButtonKingmaker";
-            this.ButtonKingmaker.Size = new System.Drawing.Size(184, 57);
+            this.ButtonKingmaker.Size = new System.Drawing.Size(184, 48);
             this.ButtonKingmaker.TabIndex = 0;
             this.ButtonKingmaker.Text = "ButtonKingmaker";
             this.ButtonKingmaker.UseVisualStyleBackColor = true;
@@ -1355,7 +1355,7 @@ namespace PathfinderPortraitManager
             this.ButtonWotR.Location = new System.Drawing.Point(289, 3);
             this.ButtonWotR.Margin = new System.Windows.Forms.Padding(20, 3, 65, 3);
             this.ButtonWotR.Name = "ButtonWotR";
-            this.ButtonWotR.Size = new System.Drawing.Size(184, 57);
+            this.ButtonWotR.Size = new System.Drawing.Size(184, 48);
             this.ButtonWotR.TabIndex = 1;
             this.ButtonWotR.Text = "ButtonWotR";
             this.ButtonWotR.UseVisualStyleBackColor = true;
@@ -1368,10 +1368,10 @@ namespace PathfinderPortraitManager
             this.ButtonToMainPage5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonToMainPage5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToMainPage5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage5.Location = new System.Drawing.Point(150, 330);
+            this.ButtonToMainPage5.Location = new System.Drawing.Point(150, 327);
             this.ButtonToMainPage5.Margin = new System.Windows.Forms.Padding(150, 15, 150, 15);
             this.ButtonToMainPage5.Name = "ButtonToMainPage5";
-            this.ButtonToMainPage5.Size = new System.Drawing.Size(244, 49);
+            this.ButtonToMainPage5.Size = new System.Drawing.Size(244, 52);
             this.ButtonToMainPage5.TabIndex = 5;
             this.ButtonToMainPage5.Text = "ButtonToMainPage";
             this.ButtonToMainPage5.UseVisualStyleBackColor = true;
@@ -1383,9 +1383,9 @@ namespace PathfinderPortraitManager
             // 
             this.LabelSelectedPath.AutoSize = true;
             this.LabelSelectedPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelSelectedPath.Location = new System.Drawing.Point(3, 69);
+            this.LabelSelectedPath.Location = new System.Drawing.Point(3, 60);
             this.LabelSelectedPath.Name = "LabelSelectedPath";
-            this.LabelSelectedPath.Size = new System.Drawing.Size(538, 46);
+            this.LabelSelectedPath.Size = new System.Drawing.Size(538, 47);
             this.LabelSelectedPath.TabIndex = 2;
             this.LabelSelectedPath.Text = "SelectedPath";
             this.LabelSelectedPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1397,11 +1397,10 @@ namespace PathfinderPortraitManager
             this.TextBoxFullPath.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextBoxFullPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxFullPath.ForeColor = System.Drawing.Color.White;
-            this.TextBoxFullPath.Location = new System.Drawing.Point(3, 118);
+            this.TextBoxFullPath.Location = new System.Drawing.Point(3, 110);
             this.TextBoxFullPath.Multiline = true;
             this.TextBoxFullPath.Name = "TextBoxFullPath";
-            this.TextBoxFullPath.ReadOnly = true;
-            this.TextBoxFullPath.Size = new System.Drawing.Size(538, 40);
+            this.TextBoxFullPath.Size = new System.Drawing.Size(538, 41);
             this.TextBoxFullPath.TabIndex = 3;
             this.TextBoxFullPath.TabStop = false;
             this.TextBoxFullPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1419,11 +1418,11 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel9.Controls.Add(this.ButtonRestorePath, 3, 0);
             this.tableLayoutPanel9.Controls.Add(this.ButtonSelectPath, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 164);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 157);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(538, 71);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(538, 73);
             this.tableLayoutPanel9.TabIndex = 4;
             // 
             // ButtonValidatePath
@@ -1434,7 +1433,7 @@ namespace PathfinderPortraitManager
             this.ButtonValidatePath.Location = new System.Drawing.Point(15, 15);
             this.ButtonValidatePath.Margin = new System.Windows.Forms.Padding(15);
             this.ButtonValidatePath.Name = "ButtonValidatePath";
-            this.ButtonValidatePath.Size = new System.Drawing.Size(104, 41);
+            this.ButtonValidatePath.Size = new System.Drawing.Size(104, 43);
             this.ButtonValidatePath.TabIndex = 0;
             this.ButtonValidatePath.Text = "ButtonValidate";
             this.ButtonValidatePath.UseVisualStyleBackColor = true;
@@ -1450,7 +1449,7 @@ namespace PathfinderPortraitManager
             this.ButtonOpenPath.Location = new System.Drawing.Point(283, 15);
             this.ButtonOpenPath.Margin = new System.Windows.Forms.Padding(15);
             this.ButtonOpenPath.Name = "ButtonOpenPath";
-            this.ButtonOpenPath.Size = new System.Drawing.Size(104, 41);
+            this.ButtonOpenPath.Size = new System.Drawing.Size(104, 43);
             this.ButtonOpenPath.TabIndex = 1;
             this.ButtonOpenPath.Text = "ButtonOpen";
             this.ButtonOpenPath.UseVisualStyleBackColor = true;
@@ -1466,7 +1465,7 @@ namespace PathfinderPortraitManager
             this.ButtonRestorePath.Location = new System.Drawing.Point(417, 15);
             this.ButtonRestorePath.Margin = new System.Windows.Forms.Padding(15);
             this.ButtonRestorePath.Name = "ButtonRestorePath";
-            this.ButtonRestorePath.Size = new System.Drawing.Size(106, 41);
+            this.ButtonRestorePath.Size = new System.Drawing.Size(106, 43);
             this.ButtonRestorePath.TabIndex = 3;
             this.ButtonRestorePath.Text = "ButtonRestore";
             this.ButtonRestorePath.UseVisualStyleBackColor = true;
@@ -1482,7 +1481,7 @@ namespace PathfinderPortraitManager
             this.ButtonSelectPath.Location = new System.Drawing.Point(149, 15);
             this.ButtonSelectPath.Margin = new System.Windows.Forms.Padding(15);
             this.ButtonSelectPath.Name = "ButtonSelectPath";
-            this.ButtonSelectPath.Size = new System.Drawing.Size(104, 41);
+            this.ButtonSelectPath.Size = new System.Drawing.Size(104, 43);
             this.ButtonSelectPath.TabIndex = 4;
             this.ButtonSelectPath.Text = "ButtonChange";
             this.ButtonSelectPath.UseVisualStyleBackColor = true;
@@ -1493,12 +1492,11 @@ namespace PathfinderPortraitManager
             // ButtonEnableResize
             // 
             this.ButtonEnableResize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonEnableResize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonEnableResize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonEnableResize.Location = new System.Drawing.Point(200, 253);
+            this.ButtonEnableResize.Location = new System.Drawing.Point(200, 248);
             this.ButtonEnableResize.Margin = new System.Windows.Forms.Padding(200, 15, 200, 15);
             this.ButtonEnableResize.Name = "ButtonEnableResize";
-            this.ButtonEnableResize.Size = new System.Drawing.Size(144, 47);
+            this.ButtonEnableResize.Size = new System.Drawing.Size(144, 49);
             this.ButtonEnableResize.TabIndex = 6;
             this.ButtonEnableResize.Text = "ButtonResize";
             this.ButtonEnableResize.UseVisualStyleBackColor = true;

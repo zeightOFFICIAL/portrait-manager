@@ -211,9 +211,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_path.ico" />
-    <None Include="resources\cog_select.png" />
-    <None Include="resources\cog_wotr.png" />
-    <None Include="resources\cog_king.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

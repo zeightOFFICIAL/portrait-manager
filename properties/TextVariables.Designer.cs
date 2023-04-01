@@ -61,6 +61,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string BUTTON_APPLY {
+            get {
+                return ResourceManager.GetString("BUTTON_APPLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         internal static string BUTTON_BACK {

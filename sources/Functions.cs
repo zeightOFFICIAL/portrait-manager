@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -461,6 +462,14 @@ namespace PathfinderPortraitManager
         {
             panel.VerticalScroll.Visible = false;
             panel.HorizontalScroll.Visible = false;
+        }
+        private bool ValidatePotraitPath(string portraitPath)
+        {
+            if (SystemControl.FileControl.DirectoryExists(portraitPath) &&
+                portraitPath.Split('\\').Last() == "Portraits" &&
+                SystemControl.FileControl.DirectoryExists(portraitPath.Replace("Portraits", "Saved Games"))) 
+                return true;
+            return false;
         }
     }
 }

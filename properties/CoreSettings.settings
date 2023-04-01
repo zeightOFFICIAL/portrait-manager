@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PathfinderPortraitManager.Properties" GeneratedClassName="CoreSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ActiveLocal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">EN</Value>
+    </Setting>
+    <Setting Name="WOTRPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">!NOTSET!</Value>
+    </Setting>
+    <Setting Name="KINGPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">!NOTSET!</Value>
+    </Setting>
+    <Setting Name="MaxWindowWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="MaxWindowHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="GameType" Type="System.Char" Scope="User">
+      <Value Profile="(Default)">p</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

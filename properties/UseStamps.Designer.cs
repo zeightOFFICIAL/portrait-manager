@@ -13,11 +13,11 @@ namespace PathfinderPortraitManager.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class UseStamps : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static UseStamps defaultInstance = ((UseStamps)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new UseStamps())));
         
-        public static Settings Default {
+        public static UseStamps Default {
             get {
                 return defaultInstance;
             }
@@ -26,84 +26,60 @@ namespace PathfinderPortraitManager.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool firstlaunch {
+        public bool isFirstPortrait {
             get {
-                return ((bool)(this["firstlaunch"]));
+                return ((bool)(this["isFirstPortrait"]));
             }
             set {
-                this["firstlaunch"] = value;
+                this["isFirstPortrait"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool folderfirstlaunch {
+        public bool isFirstScaling {
             get {
-                return ((bool)(this["folderfirstlaunch"]));
+                return ((bool)(this["isFirstScaling"]));
             }
             set {
-                this["folderfirstlaunch"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("p")]
-        public char defaultgametype {
-            get {
-                return ((char)(this["defaultgametype"]));
-            }
-            set {
-                this["defaultgametype"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("EN")]
-        public string activelocal {
-            get {
-                return ((string)(this["activelocal"]));
-            }
-            set {
-                this["activelocal"] = value;
+                this["isFirstScaling"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool galleryfirstlaunch {
+        public bool isFirstExtract {
             get {
-                return ((bool)(this["galleryfirstlaunch"]));
+                return ((bool)(this["isFirstExtract"]));
             }
             set {
-                this["galleryfirstlaunch"] = value;
+                this["isFirstExtract"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string wotrpath {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool isFirstGallery {
             get {
-                return ((string)(this["wotrpath"]));
+                return ((bool)(this["isFirstGallery"]));
             }
             set {
-                this["wotrpath"] = value;
+                this["isFirstGallery"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string kingpath {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool isFirstAny {
             get {
-                return ((string)(this["kingpath"]));
+                return ((bool)(this["isFirstAny"]));
             }
             set {
-                this["kingpath"] = value;
+                this["isFirstAny"] = value;
             }
         }
     }

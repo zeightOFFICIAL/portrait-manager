@@ -195,7 +195,8 @@ namespace PathfinderPortraitManager
         }
         public void FontsAndTextLoad(PrivateFontCollection fonts)
         {
-            Font _bebas_neue20 = new Font(fonts.Families[0], 20);
+            Font _bebas_neue20 = new Font(fonts.Families[0], 20),
+                 _bebas_neue16 = new Font(fonts.Families[0], 16);
 
             ButtonToFilePage.Font = _bebas_neue20;
             ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
@@ -214,6 +215,8 @@ namespace PathfinderPortraitManager
             ButtonKingmaker.Text = Properties.TextVariables.KING;
             ButtonWotR.Font = _bebas_neue20;
             ButtonWotR.Text = Properties.TextVariables.WOTR;
+            LabelSelectedPath.Font = _bebas_neue16;
+            LabelSelectedPath.Text = Properties.TextVariables.LABEL_PATH;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
             ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
@@ -315,14 +318,14 @@ namespace PathfinderPortraitManager
         }
         public void ClearTempImages()
         {
-            using (Image placeholder = new Bitmap(DEFAULTIMAGE_DICT[_gameSelected]))
+            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {
                 ClearPrimeImages(placeholder);
             }
         }
         public void SafeCopyAllImages(string fullPath)
         {
-            using (Image placeholder = new Bitmap(DEFAULTIMAGE_DICT[_gameSelected]))
+            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {
                 ClearPrimeImages(placeholder);
                 SystemControl.FileControl.TempImagesClear();
@@ -331,13 +334,13 @@ namespace PathfinderPortraitManager
         }
         public void InitColorScheme()
         {
-            Color fcolor = GAME_TYPES[_gameSelected].foreColor;
-            Color bcolor = GAME_TYPES[_gameSelected].backColor;
-            Icon = GAME_TYPES[_gameSelected].icon;
+            Color fcolor = GAME_TYPES[_gameSelected].ForeColor;
+            Color bcolor = GAME_TYPES[_gameSelected].BackColor;
+            Icon = GAME_TYPES[_gameSelected].GameIcon;
             LayoutMainPage.BackgroundImage.Dispose();
-            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].backImage;
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackImage;
             PictureBoxTitle.BackgroundImage.Dispose();
-            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].titleImage;
+            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].TitleImage;
             foreach (Control ctrl in Controls)
             {
                 UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
@@ -345,14 +348,14 @@ namespace PathfinderPortraitManager
             Text = GAME_TYPES[_gameSelected].titleName;
             if (_gameSelected == 'w')
             {
-                ButtonWotR.BackColor = GAME_TYPES[_gameSelected].foreColor;
-                ButtonWotR.ForeColor = GAME_TYPES[_gameSelected].backColor;
+                ButtonWotR.BackColor = GAME_TYPES[_gameSelected].ForeColor;
+                ButtonWotR.ForeColor = GAME_TYPES[_gameSelected].BackColor;
                 ButtonWotR.Enabled = false;
             }
             else
             {
-                ButtonKingmaker.BackColor = GAME_TYPES[_gameSelected].foreColor;
-                ButtonKingmaker.ForeColor = GAME_TYPES[_gameSelected].backColor;
+                ButtonKingmaker.BackColor = GAME_TYPES[_gameSelected].ForeColor;
+                ButtonKingmaker.ForeColor = GAME_TYPES[_gameSelected].BackColor;
                 ButtonKingmaker.Enabled = false;
             }
         }

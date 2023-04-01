@@ -421,6 +421,51 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path to the game portraits folder.
+        /// </summary>
+        internal static string LABEL_PATH {
+            get {
+                return ResourceManager.GetString("LABEL_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error..
+        /// </summary>
+        internal static string LABEL_PATH_ERROR {
+            get {
+                return ResourceManager.GetString("LABEL_PATH_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEBUG.
+        /// </summary>
+        internal static string LABEL_PATH_EXTRA {
+            get {
+                return ResourceManager.GetString("LABEL_PATH_EXTRA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All is green!.
+        /// </summary>
+        internal static string LABEL_PATH_FINE {
+            get {
+                return ResourceManager.GetString("LABEL_PATH_FINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning. Cannot prove directory.
+        /// </summary>
+        internal static string LABEL_PATH_WARN {
+            get {
+                return ResourceManager.GetString("LABEL_PATH_WARN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Small.
         /// </summary>
         internal static string LABEL_SMALLIMG {

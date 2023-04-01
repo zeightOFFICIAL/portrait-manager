@@ -19,13 +19,13 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        static GameTypeClass wotrType = new GameTypeClass("WOTR",
+        static readonly GameTypeClass wotrType = new GameTypeClass("WOTR",
             Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Properties.Resources.icon_wotr, Properties.Resources.title_wotr,
             Properties.Resources.bg_wotr, Properties.Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
-        static GameTypeClass kingType = new GameTypeClass("KING",
+        static readonly GameTypeClass kingType = new GameTypeClass("KING",
             Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Properties.Resources.icon_path, Properties.Resources.title_path,
             Properties.Resources.bg_path, Properties.Resources.placeholder_path,
@@ -36,19 +36,7 @@ namespace PathfinderPortraitManager
             { 'p', kingType},
             { 'w', wotrType}
         };
-        
-        private static readonly Dictionary<char, string> DIRECTORIES_DICT = new Dictionary<char, string>
-        {
-            { 'p', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                   "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits"},
-            { 'w', Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow") +
-                   "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits"}
-        };
-        private static readonly Dictionary<char, Image> DEFAULTIMAGE_DICT = new Dictionary<char, Image>
-        {
-            { 'p', Properties.Resources.placeholder_path},
-            { 'w', Properties.Resources.placeholder_wotr}
-        };
+       
         private const string RELATIVEPATH_TEMPFULL = "temp\\portrait_full.png";
         private const string RELATIVEPATH_TEMPPOOR = "temp\\portrait_poor.png";
         private const string LRG_APPEND = "\\Fulllength.png";
@@ -61,17 +49,27 @@ namespace PathfinderPortraitManager
         private Point _mousePos = new Point();
         private int _isDragging = 0;
         private bool _isAnyLoaded = false;
-        private char _gameSelected = Properties.Settings.Default.defaultgametype;
+        private char _gameSelected = Properties.CoreSettings.Default.GameType;
         private PrivateFontCollection pfc;
 
         public MainForm()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.activelocal);
-            Properties.Settings.Default.Save();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (Properties.UseStamps.Default.isFirstAny)
+            {
+                Properties.CoreSettings.Default.KINGPath = kingType.DefaultDirectory;
+                Properties.CoreSettings.Default.WOTRPath = kingType.DefaultDirectory;
+                Properties.CoreSettings.Default.MaxWindowHeight = Size.Height;
+                Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;
+                Properties.UseStamps.Default.isFirstAny = false;
+                Properties.UseStamps.Default.Save();
+                Properties.CoreSettings.Default.Save();
+            }
+            
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
@@ -105,7 +103,7 @@ namespace PathfinderPortraitManager
             ParentLayoutsHide();
             LayoutReveal(LayoutFilePage);
             ResizeVisibleImagesToWindow();
-            if (Properties.Settings.Default.firstlaunch == true)
+            if (Properties.UseStamps.Default.isFirstPortrait == true)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
                 {
@@ -188,7 +186,7 @@ namespace PathfinderPortraitManager
         {
             ParentLayoutsHide();
             LayoutReveal(LayoutGallery);
-            if (!LoadGallery(DIRECTORIES_DICT[_gameSelected]))
+            if (!LoadGallery(GAME_TYPES[_gameSelected].DefaultDirectory))
             {
                 ButtonToMainPage3_Click(sender, e);
                 return;
@@ -240,8 +238,8 @@ namespace PathfinderPortraitManager
 
         private void SwapEnable(Button enableBtn, Button disableBtn)
         {
-            enableBtn.BackColor = GAME_TYPES[_gameSelected].foreColor;
-            enableBtn.ForeColor = GAME_TYPES[_gameSelected].backColor;
+            enableBtn.BackColor = GAME_TYPES[_gameSelected].ForeColor;
+            enableBtn.ForeColor = GAME_TYPES[_gameSelected].BackColor;
             enableBtn.Enabled = false;
 
             disableBtn.BackColor = Color.Black;
@@ -254,28 +252,34 @@ namespace PathfinderPortraitManager
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
-                fcolor = GAME_TYPES[_gameSelected].foreColor;
-                bcolor = GAME_TYPES[_gameSelected].backColor;
+                fcolor = GAME_TYPES[_gameSelected].ForeColor;
+                bcolor = GAME_TYPES[_gameSelected].BackColor;
                 SwapEnable(ButtonWotR, ButtonKingmaker);                
             }
             else
             {
                 _gameSelected = 'p';
-                fcolor = GAME_TYPES[_gameSelected].foreColor;
-                bcolor = GAME_TYPES[_gameSelected].backColor;
+                fcolor = GAME_TYPES[_gameSelected].ForeColor;
+                bcolor = GAME_TYPES[_gameSelected].BackColor;
                 SwapEnable(ButtonKingmaker, ButtonWotR);
             }
 
-            Icon = GAME_TYPES[_gameSelected].icon;
+            Icon = GAME_TYPES[_gameSelected].GameIcon;
             LayoutMainPage.BackgroundImage.Dispose();
-            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].backImage;
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackImage;
             PictureBoxTitle.BackgroundImage.Dispose();
-            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].titleImage;
+            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].TitleImage;
             foreach (Control ctrl in Controls)
             {
                 UpdateColorSchemeOnForm(ctrl, fcolor, bcolor);
             }
             Text = GAME_TYPES[_gameSelected].titleName;
+        }
+
+        private void ButtonToMainPage5_Click(object sender, EventArgs e)
+        {
+            LayoutHide(LayoutSettingsPage);
+            LayoutReveal(LayoutMainPage);
         }
     }
 }

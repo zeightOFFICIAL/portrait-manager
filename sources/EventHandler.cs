@@ -217,17 +217,17 @@ namespace PathfinderPortraitManager
             string fullPath = "";
             bool placeFound = false;
             uint localName = 1000;
-            if (!SystemControl.FileControl.DirectoryExists(DIRECTORIES_DICT[_gameSelected]))
+            if (!SystemControl.FileControl.DirectoryExists(GAME_TYPES[_gameSelected].DefaultDirectory))
             {
                 LayoutReveal(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
-                LabelDirLoc.Text = DIRECTORIES_DICT[_gameSelected];
+                LabelDirLoc.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
                 ButtonToMainPageAndFolder.Enabled = false;
                 return;
             }
             while (!placeFound)
             {
-                fullPath = DIRECTORIES_DICT[_gameSelected] + "\\" + Convert.ToString(localName);
+                fullPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + Convert.ToString(localName);
                 if (!Directory.Exists(fullPath))
                 {
                     Directory.CreateDirectory(fullPath);
@@ -352,7 +352,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(DIRECTORIES_DICT[_gameSelected]);
+            System.Diagnostics.Process.Start(GAME_TYPES[_gameSelected].DefaultDirectory);
         }
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
         {
@@ -376,7 +376,7 @@ namespace PathfinderPortraitManager
                 }
             }
             ListViewItem item = ListGallery.SelectedItems[0];
-            string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
+            string folderPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + "\\Fulllength.png";
             DialogResult dr;
             using (forms.MyInquiryDialog Inquiry = new forms.MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
@@ -392,7 +392,7 @@ namespace PathfinderPortraitManager
             {
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
-                SystemControl.FileControl.DirectoryDeleteRecursive(DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text);
+                SystemControl.FileControl.DirectoryDeleteRecursive(GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text);
                 item.Remove();
             }
         }
@@ -422,7 +422,7 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
-                string folderPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + "\\";
+                string folderPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + "\\";
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 item.Remove();
                 SystemControl.FileControl.DirectoryDeleteRecursive(folderPath);
@@ -495,8 +495,8 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.Items)
             {
-                string normalPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text;
-                string safePath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text;
+                string safePath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 if (!SystemControl.FileControl.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.DirectoryCreate(normalPath);
@@ -548,8 +548,8 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                string normalPath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text;
-                string safePath = DIRECTORIES_DICT[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text;
+                string safePath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 if (!SystemControl.FileControl.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.DirectoryCreate(normalPath);
@@ -589,7 +589,7 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
-            System.Diagnostics.Process.Start(DIRECTORIES_DICT[_gameSelected]);
+            System.Diagnostics.Process.Start(GAME_TYPES[_gameSelected].DefaultDirectory);
             System.Diagnostics.Process.Start(_extractFolderPath);
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
@@ -607,25 +607,23 @@ namespace PathfinderPortraitManager
         
         private void AnyButton_Enter(object sender, EventArgs e)
         {
-            if (sender is Button)
+            if (sender is Button button)
             {
-                Button button = sender as Button;
                 if (button != null)
                 {
-                    button.BackColor = GAME_TYPES[_gameSelected].foreColor;
-                    button.ForeColor = GAME_TYPES[_gameSelected].backColor;
+                    button.BackColor = GAME_TYPES[_gameSelected].ForeColor;
+                    button.ForeColor = GAME_TYPES[_gameSelected].BackColor;
                 }
             }
         }
         private void AnyButton_Leave(object sender, EventArgs e)
         {
-            if (sender is Button)
+            if (sender is Button button)
             {
-                Button button = sender as Button;
                 if (button != null)
                 {
-                    button.BackColor = GAME_TYPES[_gameSelected].backColor;
-                    button.ForeColor = GAME_TYPES[_gameSelected].foreColor;
+                    button.BackColor = GAME_TYPES[_gameSelected].BackColor;
+                    button.ForeColor = GAME_TYPES[_gameSelected].ForeColor;
                 }
             }
         }

@@ -111,7 +111,10 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonKingmaker = new System.Windows.Forms.Button();
             this.ButtonWotR = new System.Windows.Forms.Button();
+            this.LabelSelectedPath = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonToMainPage5 = new System.Windows.Forms.Button();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -1291,17 +1294,23 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Controls.Add(this.LabelGameSelected, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.textBox1, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.LabelSelectedPath, 0, 2);
+            this.tableLayoutPanel7.Controls.Add(this.textBox1, 0, 3);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 5);
+            this.tableLayoutPanel7.Controls.Add(this.ButtonToMainPage5, 0, 6);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(95, 43);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 6;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.45178F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.95939F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.28934F));
+            this.tableLayoutPanel7.RowCount = 7;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.84573F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.04959F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.7438F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.868021F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.73604F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.03553F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.00198F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.00198F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.08122F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(544, 394);
             this.tableLayoutPanel7.TabIndex = 0;
             // 
@@ -1311,7 +1320,7 @@ namespace PathfinderPortraitManager
             this.LabelGameSelected.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelGameSelected.Location = new System.Drawing.Point(3, 0);
             this.LabelGameSelected.Name = "LabelGameSelected";
-            this.LabelGameSelected.Size = new System.Drawing.Size(538, 53);
+            this.LabelGameSelected.Size = new System.Drawing.Size(538, 46);
             this.LabelGameSelected.TabIndex = 0;
             this.LabelGameSelected.Text = "LabelGameSelected";
             this.LabelGameSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1324,11 +1333,11 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel8.Controls.Add(this.ButtonKingmaker, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.ButtonWotR, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 56);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 49);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(538, 49);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(538, 48);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // ButtonKingmaker
@@ -1339,7 +1348,7 @@ namespace PathfinderPortraitManager
             this.ButtonKingmaker.Location = new System.Drawing.Point(65, 3);
             this.ButtonKingmaker.Margin = new System.Windows.Forms.Padding(65, 3, 20, 3);
             this.ButtonKingmaker.Name = "ButtonKingmaker";
-            this.ButtonKingmaker.Size = new System.Drawing.Size(184, 43);
+            this.ButtonKingmaker.Size = new System.Drawing.Size(184, 42);
             this.ButtonKingmaker.TabIndex = 0;
             this.ButtonKingmaker.Text = "ButtonKingmaker";
             this.ButtonKingmaker.UseVisualStyleBackColor = true;
@@ -1353,19 +1362,55 @@ namespace PathfinderPortraitManager
             this.ButtonWotR.Location = new System.Drawing.Point(289, 3);
             this.ButtonWotR.Margin = new System.Windows.Forms.Padding(20, 3, 65, 3);
             this.ButtonWotR.Name = "ButtonWotR";
-            this.ButtonWotR.Size = new System.Drawing.Size(184, 43);
+            this.ButtonWotR.Size = new System.Drawing.Size(184, 42);
             this.ButtonWotR.TabIndex = 1;
             this.ButtonWotR.Text = "ButtonWotR";
             this.ButtonWotR.UseVisualStyleBackColor = true;
             this.ButtonWotR.Click += new System.EventHandler(this.ButtonGameType_Click);
             // 
+            // LabelSelectedPath
+            // 
+            this.LabelSelectedPath.AutoSize = true;
+            this.LabelSelectedPath.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LabelSelectedPath.Location = new System.Drawing.Point(3, 128);
+            this.LabelSelectedPath.Name = "LabelSelectedPath";
+            this.LabelSelectedPath.Size = new System.Drawing.Size(538, 13);
+            this.LabelSelectedPath.TabIndex = 2;
+            this.LabelSelectedPath.Text = "SelectedPath";
+            this.LabelSelectedPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // textBox1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 111);
+            this.textBox1.BackColor = System.Drawing.Color.Black;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(3, 144);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(538, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox1.TabIndex = 3;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 235);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(538, 67);
+            this.tableLayoutPanel9.TabIndex = 4;
+            // 
+            // ButtonToMainPage5
+            // 
+            this.ButtonToMainPage5.Location = new System.Drawing.Point(3, 308);
+            this.ButtonToMainPage5.Name = "ButtonToMainPage5";
+            this.ButtonToMainPage5.Size = new System.Drawing.Size(75, 23);
+            this.ButtonToMainPage5.TabIndex = 5;
+            this.ButtonToMainPage5.Text = "button1";
+            this.ButtonToMainPage5.UseVisualStyleBackColor = true;
+            this.ButtonToMainPage5.Click += new System.EventHandler(this.ButtonToMainPage5_Click);
             // 
             // MainForm
             // 
@@ -1529,7 +1574,10 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Button ButtonKingmaker;
         private System.Windows.Forms.Button ButtonWotR;
+        private System.Windows.Forms.Label LabelSelectedPath;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.Button ButtonToMainPage5;
     }
 }
 

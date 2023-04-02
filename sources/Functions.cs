@@ -33,6 +33,9 @@ namespace PathfinderPortraitManager
         private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitTempLrg, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitTempMed, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitTempSml, replaceTo);
             ImageControl.Utils.Replace(PicPortraitLrg, replaceTo);
             ImageControl.Utils.Replace(PicPortraitMed, replaceTo);
             ImageControl.Utils.Replace(PicPortraitSml, replaceTo);
@@ -289,7 +292,9 @@ namespace PathfinderPortraitManager
             ButtonToMainPage.Font = _bebas_neue20;
             ButtonToMainPage.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonToScalePage.Font = _bebas_neue20;
-            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_NEXT;
+            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
+            ButtonToAdvancedPage.Font = _bebas_neue20;
+            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
             ButtonHintOnFilePage.Font = _bebas_neue20;
             ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
@@ -376,7 +381,7 @@ namespace PathfinderPortraitManager
                 ClearPrimeImages(placeholder);
             }
         }
-        public void SafeCopyAllImages(string fullPath)
+        public void SafeCopyAllImages(string[] paths)
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {

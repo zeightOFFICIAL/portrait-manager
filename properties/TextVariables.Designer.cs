@@ -61,6 +61,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        internal static string BUTTON_ADVANCED {
+            get {
+                return ResourceManager.GetString("BUTTON_ADVANCED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         internal static string BUTTON_APPLY {
@@ -309,6 +318,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_TOGALLERYPAGE {
             get {
                 return ResourceManager.GetString("BUTTON_TOGALLERYPAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale image.
+        /// </summary>
+        internal static string BUTTON_TOSCALEPAGE {
+            get {
+                return ResourceManager.GetString("BUTTON_TOSCALEPAGE", resourceCulture);
             }
         }
         

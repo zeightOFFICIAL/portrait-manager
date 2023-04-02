@@ -328,7 +328,8 @@ namespace PathfinderPortraitManager
             {
                 using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
-                    Mesg.StartPosition = FormStartPosition.CenterScreen;
+                    Mesg.StartPosition = FormStartPosition.CenterParent;
+                    Mesg.Width = Width - 15;
                     Mesg.ShowDialog();
                 }
                 RemoveClickEventsFromMainButtons();

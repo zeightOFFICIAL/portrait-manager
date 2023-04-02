@@ -42,11 +42,11 @@ namespace PathfinderPortraitManager
             { 'w', Properties.CoreSettings.Default.KINGPath }
         };
 
-        private const string TEMPFULL_APPEND = "temp\\portrait_full.png";
-        private const string TEMPPOOR_APPEND = "temp\\portrait_poor.png";
-        private const string TEMP_LARGE_APPEND = "temp\\FULL_DONOTDELETE.png";
-        private const string TEMP_MEDIUM_APPEND = "temp\\MEDIUM_DONOTDELETE.png";
-        private const string TEMP_SMALL_APPEND = "temp\\SMALL_DONOTDELETE.png";
+        private const string TEMPFULL_APPEND = "temp\\FULLRESOLUTIONDONOTDELETE.png";
+        private const string TEMPPOOR_APPEND = "temp\\POORRESOLUTIONDONOTDELETE.png";
+        private const string TEMP_LARGE_APPEND = "temp\\FULLDONOTDELETE.png";
+        private const string TEMP_MEDIUM_APPEND = "temp\\MEDIUMDONOTDELETE.png";
+        private const string TEMP_SMALL_APPEND = "temp\\SMALLDONOTDELETE.png";
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
@@ -98,7 +98,9 @@ namespace PathfinderPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
+            RootFunctions.LayoutDisable(LayoutAdvancedMode);
             RootFunctions.LayoutEnable(LayoutMainPage);
+           
             if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))

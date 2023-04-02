@@ -40,6 +40,7 @@ namespace PathfinderPortraitManager
             this.ButtonWebPortraitLoad = new System.Windows.Forms.Button();
             this.ButtonToMainPage = new System.Windows.Forms.Button();
             this.ButtonHintOnFilePage = new System.Windows.Forms.Button();
+            this.ButtonToAdvancedPage = new System.Windows.Forms.Button();
             this.LayoutUnnamed5 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelPortraitTemp = new System.Windows.Forms.Panel();
             this.PicPortraitTemp = new System.Windows.Forms.PictureBox();
@@ -119,11 +120,20 @@ namespace PathfinderPortraitManager
             this.ButtonRestorePath = new System.Windows.Forms.Button();
             this.ButtonOpenPath = new System.Windows.Forms.Button();
             this.LabelSettings = new System.Windows.Forms.Label();
+            this.LayoutAdvancedMode = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.PicPortraitTempMed = new System.Windows.Forms.PictureBox();
+            this.PicPortraitTempLrg = new System.Windows.Forms.PictureBox();
             this.PicPortraitTempSml = new System.Windows.Forms.PictureBox();
-            this.PanelPortraitTempMed = new System.Windows.Forms.Panel();
-            this.PanelPortraitTempSml = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -157,55 +167,58 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            this.LayoutAdvancedMode.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTempMed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTempLrg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTempSml)).BeginInit();
-            this.PanelPortraitTempMed.SuspendLayout();
-            this.PanelPortraitTempSml.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayoutFilePage
             // 
             this.LayoutFilePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayoutFilePage.ColumnCount = 3;
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.LayoutFilePage.Controls.Add(this.LayoutUnnamed1, 2, 0);
+            this.LayoutFilePage.ColumnCount = 5;
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.910449F));
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41689F));
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.89373F));
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.65668F));
+            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.910449F));
+            this.LayoutFilePage.Controls.Add(this.LayoutUnnamed1, 3, 0);
             this.LayoutFilePage.Controls.Add(this.LayoutUnnamed5, 1, 0);
-            this.LayoutFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutFilePage.ForeColor = System.Drawing.Color.White;
-            this.LayoutFilePage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutFilePage.Location = new System.Drawing.Point(70, 0);
             this.LayoutFilePage.Name = "LayoutFilePage";
             this.LayoutFilePage.RowCount = 1;
             this.LayoutFilePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutFilePage.Size = new System.Drawing.Size(859, 533);
+            this.LayoutFilePage.Size = new System.Drawing.Size(85, 481);
             this.LayoutFilePage.TabIndex = 1;
             // 
             // LayoutUnnamed1
             // 
-            this.LayoutUnnamed1.ColumnCount = 3;
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed1.Controls.Add(this.ButtonLocalPortraitLoad, 1, 1);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToScalePage, 1, 4);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonWebPortraitLoad, 1, 2);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 1, 5);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonHintOnFilePage, 1, 6);
+            this.LayoutUnnamed1.ColumnCount = 1;
+            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed1.Controls.Add(this.ButtonLocalPortraitLoad, 0, 1);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToScalePage, 0, 4);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonWebPortraitLoad, 0, 2);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 0, 5);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonHintOnFilePage, 0, 8);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToAdvancedPage, 0, 7);
             this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed1.Location = new System.Drawing.Point(560, 3);
+            this.LayoutUnnamed1.Location = new System.Drawing.Point(57, 3);
             this.LayoutUnnamed1.Name = "LayoutUnnamed1";
-            this.LayoutUnnamed1.RowCount = 8;
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.16436F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.66107F));
+            this.LayoutUnnamed1.RowCount = 10;
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.17457F));
-            this.LayoutUnnamed1.Size = new System.Drawing.Size(296, 527);
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutUnnamed1.Size = new System.Drawing.Size(17, 475);
             this.LayoutUnnamed1.TabIndex = 0;
             // 
             // ButtonLocalPortraitLoad
@@ -215,10 +228,10 @@ namespace PathfinderPortraitManager
             this.ButtonLocalPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLocalPortraitLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonLocalPortraitLoad.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLocalPortraitLoad.Location = new System.Drawing.Point(76, 130);
+            this.ButtonLocalPortraitLoad.Location = new System.Drawing.Point(3, 60);
             this.ButtonLocalPortraitLoad.Name = "ButtonLocalPortraitLoad";
             this.ButtonLocalPortraitLoad.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ButtonLocalPortraitLoad.Size = new System.Drawing.Size(144, 39);
+            this.ButtonLocalPortraitLoad.Size = new System.Drawing.Size(11, 39);
             this.ButtonLocalPortraitLoad.TabIndex = 2;
             this.ButtonLocalPortraitLoad.Text = "LoadLocal";
             this.ButtonLocalPortraitLoad.UseVisualStyleBackColor = true;
@@ -232,9 +245,9 @@ namespace PathfinderPortraitManager
             this.ButtonToScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToScalePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToScalePage.Location = new System.Drawing.Point(76, 267);
+            this.ButtonToScalePage.Location = new System.Drawing.Point(3, 195);
             this.ButtonToScalePage.Name = "ButtonToScalePage";
-            this.ButtonToScalePage.Size = new System.Drawing.Size(144, 39);
+            this.ButtonToScalePage.Size = new System.Drawing.Size(11, 39);
             this.ButtonToScalePage.TabIndex = 1;
             this.ButtonToScalePage.Text = "ToScalePage";
             this.ButtonToScalePage.UseVisualStyleBackColor = true;
@@ -248,9 +261,9 @@ namespace PathfinderPortraitManager
             this.ButtonWebPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonWebPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonWebPortraitLoad.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonWebPortraitLoad.Location = new System.Drawing.Point(76, 175);
+            this.ButtonWebPortraitLoad.Location = new System.Drawing.Point(3, 105);
             this.ButtonWebPortraitLoad.Name = "ButtonWebPortraitLoad";
-            this.ButtonWebPortraitLoad.Size = new System.Drawing.Size(144, 39);
+            this.ButtonWebPortraitLoad.Size = new System.Drawing.Size(11, 39);
             this.ButtonWebPortraitLoad.TabIndex = 3;
             this.ButtonWebPortraitLoad.Text = "LoadWeb";
             this.ButtonWebPortraitLoad.UseVisualStyleBackColor = true;
@@ -264,9 +277,9 @@ namespace PathfinderPortraitManager
             this.ButtonToMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToMainPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToMainPage.Location = new System.Drawing.Point(76, 312);
+            this.ButtonToMainPage.Location = new System.Drawing.Point(3, 240);
             this.ButtonToMainPage.Name = "ButtonToMainPage";
-            this.ButtonToMainPage.Size = new System.Drawing.Size(144, 39);
+            this.ButtonToMainPage.Size = new System.Drawing.Size(11, 39);
             this.ButtonToMainPage.TabIndex = 0;
             this.ButtonToMainPage.Text = "ToMainPage";
             this.ButtonToMainPage.UseVisualStyleBackColor = true;
@@ -281,9 +294,9 @@ namespace PathfinderPortraitManager
             this.ButtonHintOnFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHintOnFilePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonHintOnFilePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonHintOnFilePage.Location = new System.Drawing.Point(76, 357);
+            this.ButtonHintOnFilePage.Location = new System.Drawing.Point(3, 375);
             this.ButtonHintOnFilePage.Name = "ButtonHintOnFilePage";
-            this.ButtonHintOnFilePage.Size = new System.Drawing.Size(144, 39);
+            this.ButtonHintOnFilePage.Size = new System.Drawing.Size(11, 39);
             this.ButtonHintOnFilePage.TabIndex = 6;
             this.ButtonHintOnFilePage.Text = "Hint";
             this.ButtonHintOnFilePage.UseVisualStyleBackColor = true;
@@ -291,21 +304,35 @@ namespace PathfinderPortraitManager
             this.ButtonHintOnFilePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonHintOnFilePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
+            // ButtonToAdvancedPage
+            // 
+            this.ButtonToAdvancedPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonToAdvancedPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToAdvancedPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToAdvancedPage.ForeColor = System.Drawing.Color.Goldenrod;
+            this.ButtonToAdvancedPage.Location = new System.Drawing.Point(3, 330);
+            this.ButtonToAdvancedPage.Name = "ButtonToAdvancedPage";
+            this.ButtonToAdvancedPage.Size = new System.Drawing.Size(11, 39);
+            this.ButtonToAdvancedPage.TabIndex = 7;
+            this.ButtonToAdvancedPage.Text = "ToAdvancedPage";
+            this.ButtonToAdvancedPage.UseVisualStyleBackColor = true;
+            this.ButtonToAdvancedPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToAdvancedPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            // 
             // LayoutUnnamed5
             // 
-            this.LayoutUnnamed5.ColumnCount = 2;
-            this.LayoutUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.70727F));
-            this.LayoutUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.29273F));
+            this.LayoutUnnamed5.ColumnCount = 1;
+            this.LayoutUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutUnnamed5.Controls.Add(this.PanelPortraitTemp, 0, 1);
-            this.LayoutUnnamed5.Controls.Add(this.tableLayoutPanel10, 1, 1);
             this.LayoutUnnamed5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed5.Location = new System.Drawing.Point(45, 3);
+            this.LayoutUnnamed5.Location = new System.Drawing.Point(8, 3);
             this.LayoutUnnamed5.Name = "LayoutUnnamed5";
             this.LayoutUnnamed5.RowCount = 3;
-            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.414012F));
-            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.17198F));
-            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.414013F));
-            this.LayoutUnnamed5.Size = new System.Drawing.Size(509, 527);
+            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.397717F));
+            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.20457F));
+            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.397717F));
+            this.LayoutUnnamed5.Size = new System.Drawing.Size(29, 475);
             this.LayoutUnnamed5.TabIndex = 1;
             // 
             // PanelPortraitTemp
@@ -313,10 +340,10 @@ namespace PathfinderPortraitManager
             this.PanelPortraitTemp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PanelPortraitTemp.Controls.Add(this.PicPortraitTemp);
             this.PanelPortraitTemp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitTemp.Location = new System.Drawing.Point(0, 28);
+            this.PanelPortraitTemp.Location = new System.Drawing.Point(0, 39);
             this.PanelPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
             this.PanelPortraitTemp.Name = "PanelPortraitTemp";
-            this.PanelPortraitTemp.Size = new System.Drawing.Size(309, 469);
+            this.PanelPortraitTemp.Size = new System.Drawing.Size(29, 395);
             this.PanelPortraitTemp.TabIndex = 1;
             // 
             // PicPortraitTemp
@@ -1548,77 +1575,182 @@ namespace PathfinderPortraitManager
             this.LabelSettings.Text = "SettingsLabel";
             this.LabelSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // LayoutAdvancedMode
+            // 
+            this.LayoutAdvancedMode.BackColor = System.Drawing.Color.Black;
+            this.LayoutAdvancedMode.ColumnCount = 3;
+            this.LayoutAdvancedMode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutAdvancedMode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.LayoutAdvancedMode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutAdvancedMode.Controls.Add(this.tableLayoutPanel10, 1, 1);
+            this.LayoutAdvancedMode.Controls.Add(this.tableLayoutPanel11, 1, 2);
+            this.LayoutAdvancedMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutAdvancedMode.ForeColor = System.Drawing.Color.White;
+            this.LayoutAdvancedMode.Location = new System.Drawing.Point(0, 0);
+            this.LayoutAdvancedMode.Name = "LayoutAdvancedMode";
+            this.LayoutAdvancedMode.RowCount = 4;
+            this.LayoutAdvancedMode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutAdvancedMode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.LayoutAdvancedMode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutAdvancedMode.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.LayoutAdvancedMode.Size = new System.Drawing.Size(734, 481);
+            this.LayoutAdvancedMode.TabIndex = 8;
+            // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.ColumnCount = 1;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Controls.Add(this.PanelPortraitTempMed, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.PanelPortraitTempSml, 0, 1);
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel10.Controls.Add(this.PicPortraitTempMed, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.PicPortraitTempLrg, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.PicPortraitTempSml, 2, 0);
+            this.tableLayoutPanel10.Controls.Add(this.button1, 0, 1);
+            this.tableLayoutPanel10.Controls.Add(this.button2, 1, 1);
+            this.tableLayoutPanel10.Controls.Add(this.button3, 2, 1);
+            this.tableLayoutPanel10.Controls.Add(this.button4, 1, 2);
+            this.tableLayoutPanel10.Controls.Add(this.button5, 2, 2);
+            this.tableLayoutPanel10.Controls.Add(this.button6, 0, 2);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(309, 28);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(76, 51);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 2;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.47516F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.52484F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(200, 469);
-            this.tableLayoutPanel10.TabIndex = 2;
+            this.tableLayoutPanel10.RowCount = 3;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(581, 330);
+            this.tableLayoutPanel10.TabIndex = 0;
             // 
             // PicPortraitTempMed
             // 
-            this.PicPortraitTempMed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PicPortraitTempMed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PicPortraitTempMed.ErrorImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
             this.PicPortraitTempMed.Image = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTempMed.InitialImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTempMed.Location = new System.Drawing.Point(-2, -2);
-            this.PicPortraitTempMed.Margin = new System.Windows.Forms.Padding(0);
+            this.PicPortraitTempMed.Location = new System.Drawing.Point(3, 3);
             this.PicPortraitTempMed.Name = "PicPortraitTempMed";
-            this.PicPortraitTempMed.Size = new System.Drawing.Size(664, 1007);
-            this.PicPortraitTempMed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PicPortraitTempMed.Size = new System.Drawing.Size(187, 231);
             this.PicPortraitTempMed.TabIndex = 0;
             this.PicPortraitTempMed.TabStop = false;
             // 
+            // PicPortraitTempLrg
+            // 
+            this.PicPortraitTempLrg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicPortraitTempLrg.Location = new System.Drawing.Point(196, 3);
+            this.PicPortraitTempLrg.Name = "PicPortraitTempLrg";
+            this.PicPortraitTempLrg.Size = new System.Drawing.Size(187, 231);
+            this.PicPortraitTempLrg.TabIndex = 1;
+            this.PicPortraitTempLrg.TabStop = false;
+            // 
             // PicPortraitTempSml
             // 
-            this.PicPortraitTempSml.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicPortraitTempSml.ErrorImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTempSml.Image = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTempSml.InitialImage = global::PathfinderPortraitManager.Properties.Resources.placeholder_path;
-            this.PicPortraitTempSml.Location = new System.Drawing.Point(-2, -1);
-            this.PicPortraitTempSml.Margin = new System.Windows.Forms.Padding(0);
+            this.PicPortraitTempSml.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicPortraitTempSml.Location = new System.Drawing.Point(389, 3);
             this.PicPortraitTempSml.Name = "PicPortraitTempSml";
-            this.PicPortraitTempSml.Size = new System.Drawing.Size(664, 1007);
-            this.PicPortraitTempSml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PicPortraitTempSml.TabIndex = 1;
+            this.PicPortraitTempSml.Size = new System.Drawing.Size(189, 231);
+            this.PicPortraitTempSml.TabIndex = 2;
             this.PicPortraitTempSml.TabStop = false;
             // 
-            // PanelPortraitTempMed
+            // button1
             // 
-            this.PanelPortraitTempMed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PanelPortraitTempMed.Controls.Add(this.PicPortraitTempMed);
-            this.PanelPortraitTempMed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitTempMed.Location = new System.Drawing.Point(10, 0);
-            this.PanelPortraitTempMed.Margin = new System.Windows.Forms.Padding(10, 0, 0, 10);
-            this.PanelPortraitTempMed.Name = "PanelPortraitTempMed";
-            this.PanelPortraitTempMed.Size = new System.Drawing.Size(190, 273);
-            this.PanelPortraitTempMed.TabIndex = 0;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Location = new System.Drawing.Point(3, 240);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(187, 40);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // PanelPortraitTempSml
+            // button2
             // 
-            this.PanelPortraitTempSml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PanelPortraitTempSml.Controls.Add(this.PicPortraitTempSml);
-            this.PanelPortraitTempSml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitTempSml.Location = new System.Drawing.Point(10, 283);
-            this.PanelPortraitTempSml.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.PanelPortraitTempSml.Name = "PanelPortraitTempSml";
-            this.PanelPortraitTempSml.Size = new System.Drawing.Size(190, 186);
-            this.PanelPortraitTempSml.TabIndex = 1;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(196, 240);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(187, 40);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Location = new System.Drawing.Point(389, 240);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(189, 40);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Location = new System.Drawing.Point(196, 286);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(187, 41);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button5.Location = new System.Drawing.Point(389, 286);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(189, 41);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button6.Location = new System.Drawing.Point(3, 286);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(187, 41);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 2;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Controls.Add(this.button7, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.button8, 0, 0);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(76, 387);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 1;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(581, 42);
+            this.tableLayoutPanel11.TabIndex = 1;
+            // 
+            // button7
+            // 
+            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.Location = new System.Drawing.Point(293, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(285, 36);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button8.Location = new System.Drawing.Point(3, 3);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(284, 36);
+            this.button8.TabIndex = 1;
+            this.button8.Text = "button8";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(859, 533);
+            this.ClientSize = new System.Drawing.Size(734, 481);
+            this.Controls.Add(this.LayoutAdvancedMode);
             this.Controls.Add(this.LayoutFilePage);
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutSettingsPage);
@@ -1682,13 +1814,12 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
+            this.LayoutAdvancedMode.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTempMed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTempLrg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTempSml)).EndInit();
-            this.PanelPortraitTempMed.ResumeLayout(false);
-            this.PanelPortraitTempMed.PerformLayout();
-            this.PanelPortraitTempSml.ResumeLayout(false);
-            this.PanelPortraitTempSml.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1792,11 +1923,21 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.Button ButtonRestorePath;
         private System.Windows.Forms.Button ButtonSelectPath;
         private System.Windows.Forms.Label LabelSettings;
+        private System.Windows.Forms.Button ButtonToAdvancedPage;
+        private System.Windows.Forms.TableLayoutPanel LayoutAdvancedMode;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.PictureBox PicPortraitTempMed;
+        private System.Windows.Forms.PictureBox PicPortraitTempLrg;
         private System.Windows.Forms.PictureBox PicPortraitTempSml;
-        private System.Windows.Forms.Panel PanelPortraitTempMed;
-        private System.Windows.Forms.Panel PanelPortraitTempSml;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
 

@@ -274,7 +274,7 @@
     <value>You are about to delete images. Do you want to proceed? Total images: </value>
   </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
-    <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section. If you are to manage another game, whether it is Kingmaker or WoTR. Change managing game in the main page. Visit settings page for more information.</value>
+    <value>Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section. If you are to manage another game, whether it is Kingmaker or WoTR. Change managing game in the settings or main page. Visit settings page for more information.</value>
   </data>
   <data name="MESG_NONESELECTED" xml:space="preserve">
     <value>You have not selected any portrait. To edit or delete, select at least one image from the list.</value>

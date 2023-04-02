@@ -211,13 +211,13 @@ namespace PathfinderPortraitManager
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
             ButtonToMainPageAndFolder.Enabled = true;
-            LayoutHide(LayoutScalePage);
+            LayoutDisable(LayoutScalePage);
             string fullPath = "";
             bool placeFound = false;
             uint localName = 1000;
             if (!SystemControl.FileControl.DirectoryExists(GAME_TYPES[_gameSelected].DefaultDirectory))
             {
-                LayoutReveal(LayoutFinalPage);
+                LayoutEnable(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -241,13 +241,13 @@ namespace PathfinderPortraitManager
             }
             if (CheckExistence(fullPath))
             {
-                LayoutReveal(LayoutFinalPage);
+                LayoutEnable(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
                 LabelDirLoc.Text = fullPath;
             }
             else
             {
-                LayoutReveal(LayoutFinalPage);
+                LayoutEnable(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = fullPath;
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -294,8 +294,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            LayoutHide(LayoutFilePage);
-            LayoutReveal(LayoutURLDialog);
+            LayoutDisable(LayoutFilePage);
+            LayoutEnable(LayoutURLDialog);
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
@@ -316,16 +316,26 @@ namespace PathfinderPortraitManager
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
-                UpdateColorScheme();
-                Properties.CoreSettings.Default.GameType = _gameSelected;
-                Properties.CoreSettings.Default.Save();
             }
             else
             {
                 _gameSelected = 'p';
-                UpdateColorScheme();
-                Properties.CoreSettings.Default.GameType = _gameSelected;
-                Properties.CoreSettings.Default.Save();
+            }
+            UpdateColorScheme();
+            Properties.CoreSettings.Default.GameType = _gameSelected;
+            Properties.CoreSettings.Default.Save();
+            if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
+            {
+                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
+                {
+                    Mesg.StartPosition = FormStartPosition.CenterScreen;
+                    Mesg.ShowDialog();
+                }
+                RemoveClickEventsFromMainButtons();
+            }
+            else
+            {
+                AddClickEventsFromMainButtons();
             }
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
@@ -647,7 +657,6 @@ namespace PathfinderPortraitManager
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
                 ButtonValidatePath.BackColor = Color.LimeGreen;
                 ButtonValidatePath.Enabled = false;
-
             }
             else
             {
@@ -696,6 +705,14 @@ namespace PathfinderPortraitManager
             {
                 _gameSelected = 'w';
                 UpdateColorScheme();
+            }
+            if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
+            {
+                RemoveClickEventsFromMainButtons();
+            }
+            else
+            {
+                AddClickEventsFromMainButtons();
             }
             Properties.CoreSettings.Default.GameType = _gameSelected;
             Properties.CoreSettings.Default.Save();

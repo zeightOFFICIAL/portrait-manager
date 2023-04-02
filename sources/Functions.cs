@@ -18,6 +18,43 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        public void AddClickEventsFromMainButtons()
+        {
+            RootFuncitons.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
+            RootFuncitons.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
+            RootFuncitons.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+        }
+        public void RemoveClickEventsFromMainButtons()
+        {
+            RootFuncitons.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
+            RootFuncitons.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
+            RootFuncitons.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+        }
+        
+        class RootFuncitons
+        {
+            static public void AddClickEvent(object sender, EventHandler handler)
+            {
+                if (sender is Button button)
+                {
+                    if (button != null)
+                    {
+                        button.Click += handler;
+                    }
+                }
+            }
+            static public void RemoveClickEvent(object sender, EventHandler handler)
+            {
+                if (sender is Button button)
+                {
+                    if (button != null)
+                    {
+                        button.Click -= handler;
+                    }
+                }
+            }
+        }
+
         private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
@@ -82,7 +119,7 @@ namespace PathfinderPortraitManager
             }
             return Tuple.Create(dstWidth, dstHeight);
         }
-        private void ParentLayoutsHide()
+        private void ParentLayoutsDisable()
         {
             LayoutFilePage.Visible = false;
             LayoutFilePage.Enabled = false;
@@ -104,7 +141,7 @@ namespace PathfinderPortraitManager
                 LayoutsSetDockFill(ctrl);
             }
         }
-        private void LayoutReveal(TableLayoutPanel table)
+        private void LayoutEnable(TableLayoutPanel table)
         {
             if (table.Visible == false && table.Enabled == false)
             {
@@ -112,7 +149,7 @@ namespace PathfinderPortraitManager
                 table.Enabled = true;
             }
         }
-        private void LayoutHide(TableLayoutPanel table)
+        private void LayoutDisable(TableLayoutPanel table)
         {
             if (table.Visible == true && table.Enabled == true)
             {
@@ -194,7 +231,7 @@ namespace PathfinderPortraitManager
                 ExploreDirectory(subDir);
             }
         }
-        public void FontsAndTextLoad(PrivateFontCollection fonts)
+        public void FontsAndTextsLoad(PrivateFontCollection fonts)
         {
             Font _bebas_neue20 = new Font(fonts.Families[0], 20),
                  _bebas_neue16 = new Font(fonts.Families[0], 16);
@@ -471,5 +508,25 @@ namespace PathfinderPortraitManager
                 return true;
             return false;
         }
+        //private void RemoveClickEvent(object sender, EventHandler handler)
+        //{
+        //    if (sender is Button button)
+        //    {
+        //        if (button != null)
+        //        {
+        //            button.Click -= handler;
+        //        }
+        //    }
+        //}
+        //private void AddClickEvent(object sender, EventHandler handler)
+        //{
+        //    if (sender is Button button)
+        //    {
+        //        if (button != null)
+        //        {
+        //            button.Click += handler;
+        //        }
+        //    }
+        //}
     }
 }

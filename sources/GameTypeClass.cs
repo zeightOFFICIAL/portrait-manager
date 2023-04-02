@@ -13,27 +13,27 @@ namespace PathfinderPortraitManager.sources
 {
     public class GameTypeClass
     {
-        public string gameName;
-        public string TitleName;
+        public string GameName;
+        public string TitleText;
         public Image TitleImage { get; set; }
-        public Image BackImage { get; set; }
+        public Image BackgroundImage { get; set; }
         public Image PlaceholderImage { get; set; }
         public Color ForeColor { get; set; }
         public Color BackColor { get; set; }
         public Icon GameIcon { get; set; }
         public string DefaultDirectory { get; set; }
         public GameTypeClass(string newGameName, Color newForeColor, Color newBackColor, Icon newIcon,
-                             Image newTitleImage, Image newBackImage, Image newPlaceImage,
-                             string newDefDirectory, string newTitleName) {
-            gameName = newGameName; 
+                             Image newTitleImage, Image newBackgroundImage, Image newPlaceImage,
+                             string newDefDirectory, string newTitleText) {
+            GameName = newGameName; 
             ForeColor = newForeColor;
             BackColor = newBackColor;
             GameIcon = newIcon;
             TitleImage = newTitleImage;
-            BackImage = newBackImage;
+            BackgroundImage = newBackgroundImage;
             PlaceholderImage = newPlaceImage;
             DefaultDirectory = newDefDirectory;
-            TitleName = newTitleName;
+            TitleText = newTitleText;
         }
     }
 }

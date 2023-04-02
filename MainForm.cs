@@ -19,13 +19,13 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        static readonly GameTypeClass wotrType = new GameTypeClass("WOTR",
+        private static readonly GameTypeClass WrathType = new GameTypeClass("Wrath of the Righteous",
             Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Properties.Resources.icon_wotr, Properties.Resources.title_wotr,
             Properties.Resources.bg_wotr, Properties.Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
-        static readonly GameTypeClass kingType = new GameTypeClass("KING",
+        private static readonly GameTypeClass KingmakerType = new GameTypeClass("Kingmaker",
             Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Properties.Resources.icon_path, Properties.Resources.title_path,
             Properties.Resources.bg_path, Properties.Resources.placeholder_path,
@@ -33,29 +33,29 @@ namespace PathfinderPortraitManager
             + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
-            { 'p', kingType},
-            { 'w', wotrType}
+            { 'p', KingmakerType},
+            { 'w', WrathType}
         };
-        private static Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
+        private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
             { 'p', Properties.CoreSettings.Default.KINGPath },
             { 'w', Properties.CoreSettings.Default.WOTRPath }
         };
 
-        private const string RELATIVEPATH_TEMPFULL = "temp\\portrait_full.png";
-        private const string RELATIVEPATH_TEMPPOOR = "temp\\portrait_poor.png";
-        private const string LRG_APPEND = "\\Fulllength.png";
-        private const string MED_APPEND = "\\Medium.png";
-        private const string SML_APPEND = "\\Small.png";
-        private const float LRG_ASPECT = 1.479768786f;
-        private const float MED_ASPECT = 1.309090909f;
-        private const float SML_ASPECT = 1.308108108f;
+        private const string TEMPFULL_APPEND = "temp\\portrait_full.png";
+        private const string TEMPPOOR_APPEND = "temp\\portrait_poor.png";
+        private const string LARGE_APPEND = "\\Fulllength.png";
+        private const string MEDIUM_APPEND = "\\Medium.png";
+        private const string SMALL_APPEND = "\\Small.png";
+        private const float LARGE_ASPECT = 1.479768786f;
+        private const float MEDIUM_ASPECT = 1.309090909f;
+        private const float SMALL_ASPECT = 1.308108108f;
 
-        private Point _mousePos = new Point();
+        private Point _mousePosition = new Point();
         private int _isDragging = 0;
         private bool _isAnyLoaded = false;
         private char _gameSelected = Properties.CoreSettings.Default.GameType;
-        private PrivateFontCollection pfc;
+        private PrivateFontCollection _fontCollection;
 
         public MainForm()
         {
@@ -66,13 +66,13 @@ namespace PathfinderPortraitManager
         {
             if (Properties.UseStamps.Default.isFirstAny)
             {
-                Properties.CoreSettings.Default.KINGPath = kingType.DefaultDirectory;
-                Properties.CoreSettings.Default.WOTRPath = wotrType.DefaultDirectory;
+                Properties.CoreSettings.Default.KINGPath = KingmakerType.DefaultDirectory;
+                Properties.CoreSettings.Default.WOTRPath = WrathType.DefaultDirectory;
                 Properties.CoreSettings.Default.MaxWindowHeight = Size.Height;
-                Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;
+                Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;                
+                Properties.CoreSettings.Default.Save();
                 Properties.UseStamps.Default.isFirstAny = false;
                 Properties.UseStamps.Default.Save();
-                Properties.CoreSettings.Default.Save();
                 ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
                 ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
             }
@@ -88,8 +88,8 @@ namespace PathfinderPortraitManager
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
-            pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            FontsAndTextLoad(pfc);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+            FontsAndTextLoad(_fontCollection);
             UpdateColorScheme();
 
             ParentLayoutsHide();

@@ -115,8 +115,8 @@ namespace PathfinderPortraitManager
             this.TextBoxFullPath = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonValidatePath = new System.Windows.Forms.Button();
-            this.ButtonRestorePath = new System.Windows.Forms.Button();
             this.ButtonSelectPath = new System.Windows.Forms.Button();
+            this.ButtonRestorePath = new System.Windows.Forms.Button();
             this.ButtonOpenPath = new System.Windows.Forms.Button();
             this.LabelSettings = new System.Windows.Forms.Label();
             this.LayoutFilePage.SuspendLayout();
@@ -504,6 +504,8 @@ namespace PathfinderPortraitManager
             this.ButtonToFilePage2.Text = "ToFilePage";
             this.ButtonToFilePage2.UseVisualStyleBackColor = true;
             this.ButtonToFilePage2.Click += new System.EventHandler(this.ButtonToFilePage2_Click);
+            this.ButtonToFilePage2.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToFilePage2.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonCreatePortrait
             // 
@@ -518,6 +520,8 @@ namespace PathfinderPortraitManager
             this.ButtonCreatePortrait.Text = "ToCreatePortrait";
             this.ButtonCreatePortrait.UseVisualStyleBackColor = true;
             this.ButtonCreatePortrait.Click += new System.EventHandler(this.ButtonCreatePortrait_Click);
+            this.ButtonCreatePortrait.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonCreatePortrait.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LayoutUnnamed4
             // 
@@ -834,6 +838,8 @@ namespace PathfinderPortraitManager
             this.ButtonChooseFolder.Text = "ChooseFolder";
             this.ButtonChooseFolder.UseVisualStyleBackColor = true;
             this.ButtonChooseFolder.Click += new System.EventHandler(this.ButtonChooseFolder_Click);
+            this.ButtonChooseFolder.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonChooseFolder.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonExtractAll
             // 
@@ -848,6 +854,8 @@ namespace PathfinderPortraitManager
             this.ButtonExtractAll.Text = "ExtrcAll";
             this.ButtonExtractAll.UseVisualStyleBackColor = true;
             this.ButtonExtractAll.Click += new System.EventHandler(this.ButtonExtractAll_Click);
+            this.ButtonExtractAll.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonExtractAll.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonExtractSelected
             // 
@@ -862,6 +870,8 @@ namespace PathfinderPortraitManager
             this.ButtonExtractSelected.Text = "ExtrcSelected";
             this.ButtonExtractSelected.UseVisualStyleBackColor = true;
             this.ButtonExtractSelected.Click += new System.EventHandler(this.ButtonExtractSelected_Click);
+            this.ButtonExtractSelected.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonExtractSelected.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonOpenFolders
             // 
@@ -876,6 +886,8 @@ namespace PathfinderPortraitManager
             this.ButtonOpenFolders.Text = "Open2F";
             this.ButtonOpenFolders.UseVisualStyleBackColor = true;
             this.ButtonOpenFolders.Click += new System.EventHandler(this.ButtonOpenFolders_Click);
+            this.ButtonOpenFolders.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonOpenFolders.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonToMainPage2
             // 
@@ -890,6 +902,8 @@ namespace PathfinderPortraitManager
             this.ButtonToMainPage2.Text = "ToMainPage";
             this.ButtonToMainPage2.UseVisualStyleBackColor = true;
             this.ButtonToMainPage2.Click += new System.EventHandler(this.ButtonToMainPage2_Click);
+            this.ButtonToMainPage2.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToMainPage2.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonHintExtract
             // 
@@ -904,6 +918,8 @@ namespace PathfinderPortraitManager
             this.ButtonHintExtract.Text = "Hint";
             this.ButtonHintExtract.UseVisualStyleBackColor = true;
             this.ButtonHintExtract.Click += new System.EventHandler(this.ButtonHintExtract_Click);
+            this.ButtonHintExtract.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonHintExtract.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LayoutUnnamed10
             // 
@@ -981,6 +997,8 @@ namespace PathfinderPortraitManager
             this.ButtonToMainPage3.Text = "ToMainPage";
             this.ButtonToMainPage3.UseVisualStyleBackColor = true;
             this.ButtonToMainPage3.Click += new System.EventHandler(this.ButtonToMainPage3_Click);
+            this.ButtonToMainPage3.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToMainPage3.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonOpenFolder
             // 
@@ -995,6 +1013,8 @@ namespace PathfinderPortraitManager
             this.ButtonOpenFolder.Text = "OpenFolder";
             this.ButtonOpenFolder.UseVisualStyleBackColor = true;
             this.ButtonOpenFolder.Click += new System.EventHandler(this.ButtonOpenFolder_Click);
+            this.ButtonOpenFolder.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonOpenFolder.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonDeletePortait
             // 
@@ -1009,6 +1029,8 @@ namespace PathfinderPortraitManager
             this.ButtonDeletePortait.Text = "DeletePortrait";
             this.ButtonDeletePortait.UseVisualStyleBackColor = true;
             this.ButtonDeletePortait.Click += new System.EventHandler(this.ButtonDeletePortait_Click);
+            this.ButtonDeletePortait.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonDeletePortait.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonChangePortrait
             // 
@@ -1023,6 +1045,8 @@ namespace PathfinderPortraitManager
             this.ButtonChangePortrait.Text = "ChangePortrait";
             this.ButtonChangePortrait.UseVisualStyleBackColor = true;
             this.ButtonChangePortrait.Click += new System.EventHandler(this.ButtonChangePortrait_Click);
+            this.ButtonChangePortrait.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonChangePortrait.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonHintFolder
             // 
@@ -1037,6 +1061,8 @@ namespace PathfinderPortraitManager
             this.ButtonHintFolder.Text = "Hint";
             this.ButtonHintFolder.UseVisualStyleBackColor = true;
             this.ButtonHintFolder.Click += new System.EventHandler(this.ButtonHintFolder_Click);
+            this.ButtonHintFolder.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonHintFolder.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LayoutGallery
             // 
@@ -1292,15 +1318,14 @@ namespace PathfinderPortraitManager
             this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 550F));
             this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.Controls.Add(this.tableLayoutPanel7, 1, 1);
-            this.LayoutSettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutSettingsPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutSettingsPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutSettingsPage.Location = new System.Drawing.Point(569, 0);
             this.LayoutSettingsPage.Name = "LayoutSettingsPage";
             this.LayoutSettingsPage.RowCount = 3;
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.Size = new System.Drawing.Size(734, 481);
+            this.LayoutSettingsPage.Size = new System.Drawing.Size(73, 481);
             this.LayoutSettingsPage.TabIndex = 7;
             // 
             // tableLayoutPanel7
@@ -1314,7 +1339,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 4);
             this.tableLayoutPanel7.Controls.Add(this.LabelSettings, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(95, 43);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(-235, 43);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 6;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.49554F));
@@ -1451,22 +1476,6 @@ namespace PathfinderPortraitManager
             this.ButtonValidatePath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
             this.ButtonValidatePath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
             // 
-            // ButtonRestorePath
-            // 
-            this.ButtonRestorePath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonRestorePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonRestorePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonRestorePath.Location = new System.Drawing.Point(417, 15);
-            this.ButtonRestorePath.Margin = new System.Windows.Forms.Padding(15);
-            this.ButtonRestorePath.Name = "ButtonRestorePath";
-            this.ButtonRestorePath.Size = new System.Drawing.Size(106, 51);
-            this.ButtonRestorePath.TabIndex = 3;
-            this.ButtonRestorePath.Text = "ButtonRestore";
-            this.ButtonRestorePath.UseVisualStyleBackColor = true;
-            this.ButtonRestorePath.Click += new System.EventHandler(this.ButtonRestorePath_Click);
-            this.ButtonRestorePath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonRestorePath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
             // ButtonSelectPath
             // 
             this.ButtonSelectPath.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1482,6 +1491,22 @@ namespace PathfinderPortraitManager
             this.ButtonSelectPath.Click += new System.EventHandler(this.ButtonSelectPath_Click);
             this.ButtonSelectPath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
             this.ButtonSelectPath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
+            // 
+            // ButtonRestorePath
+            // 
+            this.ButtonRestorePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonRestorePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonRestorePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonRestorePath.Location = new System.Drawing.Point(417, 15);
+            this.ButtonRestorePath.Margin = new System.Windows.Forms.Padding(15);
+            this.ButtonRestorePath.Name = "ButtonRestorePath";
+            this.ButtonRestorePath.Size = new System.Drawing.Size(106, 51);
+            this.ButtonRestorePath.TabIndex = 3;
+            this.ButtonRestorePath.Text = "ButtonRestore";
+            this.ButtonRestorePath.UseVisualStyleBackColor = true;
+            this.ButtonRestorePath.Click += new System.EventHandler(this.ButtonRestorePath_Click);
+            this.ButtonRestorePath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
+            this.ButtonRestorePath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
             // 
             // ButtonOpenPath
             // 

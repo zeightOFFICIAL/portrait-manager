@@ -48,7 +48,7 @@ namespace PathfinderPortraitManager
         private void ResizeVisibleImagesToWindow()
         {
             if (LayoutScalePage.Enabled == true)
-                using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
+                using (Image img = new Bitmap(TEMPPOOR_APPEND))
                 {
                     ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
                     ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
@@ -59,7 +59,7 @@ namespace PathfinderPortraitManager
                 }
             if (LayoutFilePage.Enabled == true)
             {
-                using (Image img = new Bitmap(RELATIVEPATH_TEMPFULL))
+                using (Image img = new Bitmap(TEMPFULL_APPEND))
                 {
                     ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
                     ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
@@ -123,13 +123,13 @@ namespace PathfinderPortraitManager
         private void LoadAllTempImages()
         {
             ClearTempImages();
-            using (Image imgPoor = new Bitmap(RELATIVEPATH_TEMPPOOR))
+            using (Image imgPoor = new Bitmap(TEMPPOOR_APPEND))
             {
                 PicPortraitLrg.Image = new Bitmap(imgPoor);
                 PicPortraitMed.Image = new Bitmap(imgPoor);
                 PicPortraitSml.Image = new Bitmap(imgPoor);
             }
-            using (Image imgFull = new Bitmap(RELATIVEPATH_TEMPFULL))
+            using (Image imgFull = new Bitmap(TEMPFULL_APPEND))
             {
                 PicPortraitTemp.Image = new Bitmap(imgFull);
             }
@@ -151,12 +151,12 @@ namespace PathfinderPortraitManager
         public static bool CheckExistence(string path)
         {
             if (SystemControl.FileControl.DirectoryExists(path))
-                if (SystemControl.FileControl.FileExist(path, LRG_APPEND) &&
-                    SystemControl.FileControl.FileExist(path, MED_APPEND) &&
-                    SystemControl.FileControl.FileExist(path, SML_APPEND))
-                    if (SystemControl.FileControl.GetFileExtension(path, LRG_APPEND) == ".png" &&
-                        SystemControl.FileControl.GetFileExtension(path, MED_APPEND) == ".png" &&
-                        SystemControl.FileControl.GetFileExtension(path, SML_APPEND) == ".png")
+                if (SystemControl.FileControl.FileExist(path, LARGE_APPEND) &&
+                    SystemControl.FileControl.FileExist(path, MEDIUM_APPEND) &&
+                    SystemControl.FileControl.FileExist(path, SMALL_APPEND))
+                    if (SystemControl.FileControl.GetFileExtension(path, LARGE_APPEND) == ".png" &&
+                        SystemControl.FileControl.GetFileExtension(path, MEDIUM_APPEND) == ".png" &&
+                        SystemControl.FileControl.GetFileExtension(path, SMALL_APPEND) == ".png")
                         return true;
                     else
                         return false;
@@ -170,9 +170,9 @@ namespace PathfinderPortraitManager
             string nameList;
             if (CheckExistence(path))
             {
-                if (SystemControl.FileControl.CheckImagePixeling(path + LRG_APPEND, 692, 1024) &&
-                    SystemControl.FileControl.CheckImagePixeling(path + MED_APPEND, 330, 432) &&
-                    SystemControl.FileControl.CheckImagePixeling(path + SML_APPEND, 185, 242))
+                if (SystemControl.FileControl.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
+                    SystemControl.FileControl.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
+                    SystemControl.FileControl.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
                 {
                     int nameLen = path.Split('\\').Length;
                     nameList = path.Split('\\')[nameLen - 1];
@@ -340,7 +340,7 @@ namespace PathfinderPortraitManager
             {
                 ClearPrimeImages(placeholder);
                 SystemControl.FileControl.TempImagesClear();
-                SystemControl.FileControl.TempImagesCreate(fullPath, RELATIVEPATH_TEMPFULL, RELATIVEPATH_TEMPPOOR, placeholder);
+                SystemControl.FileControl.TempImagesCreate(fullPath, TEMPFULL_APPEND, TEMPPOOR_APPEND, placeholder);
             }
         }
         public void UpdateColorScheme()
@@ -349,12 +349,12 @@ namespace PathfinderPortraitManager
             Color backColor = GAME_TYPES[_gameSelected].BackColor;
             Icon = GAME_TYPES[_gameSelected].GameIcon;
             PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].TitleImage;
-            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackImage;
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackgroundImage;
             foreach (Control ctrl in Controls)
             {
                 UpdateObjectColoring(ctrl, foreColor, backColor);
             }
-            Text = GAME_TYPES[_gameSelected].TitleName;
+            Text = GAME_TYPES[_gameSelected].TitleText;
             TextBoxFullPath.Clear();
             if (_gameSelected == 'p')
             {
@@ -442,8 +442,8 @@ namespace PathfinderPortraitManager
                     {
                         if (!SystemControl.FileControl.DirectoryExists("temp/"))
                             SystemControl.FileControl.DirectoryCreate("temp/");
-                        webImage.Save(RELATIVEPATH_TEMPFULL);
-                        ImageControl.Wraps.CreatePoorImage(webImage, RELATIVEPATH_TEMPPOOR);
+                        webImage.Save(TEMPFULL_APPEND);
+                        ImageControl.Wraps.CreatePoorImage(webImage, TEMPPOOR_APPEND);
                         _isAnyLoaded = true;
                         ClearTempImages();
                         LoadAllTempImages();

@@ -10,7 +10,6 @@ using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace PathfinderPortraitManager
 {
@@ -81,7 +80,7 @@ namespace PathfinderPortraitManager
             HideScrollBar(PanelPortraitLrg);
             if (e.Button == MouseButtons.Left)
             {
-                _mousePos = e.Location;
+                _mousePosition = e.Location;
                 _isDragging = 1;
             }
         }
@@ -90,8 +89,8 @@ namespace PathfinderPortraitManager
             if (_isDragging == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
                                   PicPortraitLrg.Image.Height > PanelPortraitLrg.Height))
             {
-                PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePos.X - e.X),
-                                                              -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePos.Y - e.Y));
+                PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePosition.X - e.X),
+                                                              -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
             HideScrollBar(PanelPortraitLrg);
         }
@@ -105,7 +104,7 @@ namespace PathfinderPortraitManager
             HideScrollBar(PanelPortraitMed);
             if (e.Button == MouseButtons.Left)
             {
-                _mousePos = e.Location;
+                _mousePosition = e.Location;
                 _isDragging = 2;
             }
         }
@@ -114,8 +113,8 @@ namespace PathfinderPortraitManager
             if (_isDragging == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
                                   PicPortraitMed.Image.Height > PanelPortraitMed.Height))
             {
-                PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePos.X - e.X),
-                                                              -PanelPortraitMed.AutoScrollPosition.Y + (_mousePos.Y - e.Y));
+                PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePosition.X - e.X),
+                                                              -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
             HideScrollBar(PanelPortraitMed);
         }
@@ -129,7 +128,7 @@ namespace PathfinderPortraitManager
             HideScrollBar(PanelPortraitSml);
             if (e.Button == MouseButtons.Left)
             {
-                _mousePos = e.Location;
+                _mousePosition = e.Location;
                 _isDragging = 3;
             }
         }
@@ -138,8 +137,8 @@ namespace PathfinderPortraitManager
             if (_isDragging == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
                                   PicPortraitSml.Image.Height > PanelPortraitSml.Height))
             {
-                PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePos.X - e.X),
-                                                              -PanelPortraitSml.AutoScrollPosition.Y + (_mousePos.Y - e.Y));
+                PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePosition.X - e.X),
+                                                              -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
             HideScrollBar(PanelPortraitSml);
         }
@@ -155,12 +154,12 @@ namespace PathfinderPortraitManager
             if (e.Delta > 0)
             {
                 factor = PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
             HideScrollBar(PanelPortraitLrg);
         }
@@ -171,12 +170,12 @@ namespace PathfinderPortraitManager
             if (e.Delta > 0)
             {
                 factor = PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
             HideScrollBar(PanelPortraitMed);
         }
@@ -187,12 +186,12 @@ namespace PathfinderPortraitManager
             if (e.Delta > 0)
             {
                 factor = PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
             else
             {
                 factor = -PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, RELATIVEPATH_TEMPPOOR, aspectRatio, factor);
+                ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
             HideScrollBar(PanelPortraitSml);
         }
@@ -230,12 +229,12 @@ namespace PathfinderPortraitManager
                 if (!Directory.Exists(fullPath))
                 {
                     Directory.CreateDirectory(fullPath);
-                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, RELATIVEPATH_TEMPFULL,
-                                                 fullPath + LRG_APPEND, LRG_ASPECT, 692, 1024);
-                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, RELATIVEPATH_TEMPFULL,
-                                                 fullPath + MED_APPEND, MED_ASPECT, 330, 432);
-                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, RELATIVEPATH_TEMPFULL,
-                                                 fullPath + SML_APPEND, SML_ASPECT, 185, 242);
+                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMPFULL_APPEND,
+                                                 fullPath + LARGE_APPEND, LARGE_ASPECT, 692, 1024);
+                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMPFULL_APPEND,
+                                                 fullPath + MEDIUM_APPEND, MEDIUM_ASPECT, 330, 432);
+                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMPFULL_APPEND,
+                                                 fullPath + SMALL_APPEND, SMALL_ASPECT, 185, 242);
                     placeFound = true;
                 }
                 localName++;
@@ -256,17 +255,17 @@ namespace PathfinderPortraitManager
         }
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
+            using (Image img = new Bitmap(TEMPPOOR_APPEND))
                 ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
         }
         private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
+            using (Image img = new Bitmap(TEMPPOOR_APPEND))
                 ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
         }
         private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(RELATIVEPATH_TEMPPOOR))
+            using (Image img = new Bitmap(TEMPPOOR_APPEND))
                 ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
         }
         private void LabelMedImg_MouseHover(object sender, EventArgs e)
@@ -479,18 +478,18 @@ namespace PathfinderPortraitManager
                 if (!SystemControl.FileControl.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.DirectoryCreate(normalPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, normalPath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, normalPath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, normalPath + SML_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
                     imgCount++;
                 }
                 else
                 {
                     _isRepeat = true;
                     SystemControl.FileControl.DirectoryCreate(safePath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, safePath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, safePath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, safePath + SML_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
                     imgCount++;
                 }
             }
@@ -532,18 +531,18 @@ namespace PathfinderPortraitManager
                 if (!SystemControl.FileControl.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.DirectoryCreate(normalPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, normalPath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, normalPath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, normalPath + SML_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
                     imgCount++;
                 }
                 else
                 {
                     _isRepeat = true;
                     SystemControl.FileControl.DirectoryCreate(safePath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LRG_APPEND, safePath + LRG_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MED_APPEND, safePath + MED_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SML_APPEND, safePath + SML_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
+                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
                     imgCount++;
                 }
             }

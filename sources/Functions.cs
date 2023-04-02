@@ -20,41 +20,16 @@ namespace PathfinderPortraitManager
     {
         public void AddClickEventsFromMainButtons()
         {
-            RootFuncitons.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
-            RootFuncitons.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
-            RootFuncitons.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+            RootFunctions.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
+            RootFunctions.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
+            RootFunctions.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
         public void RemoveClickEventsFromMainButtons()
         {
-            RootFuncitons.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
-            RootFuncitons.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
-            RootFuncitons.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+            RootFunctions.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
+            RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
+            RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
-        
-        class RootFuncitons
-        {
-            static public void AddClickEvent(object sender, EventHandler handler)
-            {
-                if (sender is Button button)
-                {
-                    if (button != null)
-                    {
-                        button.Click += handler;
-                    }
-                }
-            }
-            static public void RemoveClickEvent(object sender, EventHandler handler)
-            {
-                if (sender is Button button)
-                {
-                    if (button != null)
-                    {
-                        button.Click -= handler;
-                    }
-                }
-            }
-        }
-
         private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
@@ -71,13 +46,10 @@ namespace PathfinderPortraitManager
         }
         private void ResizeImageAsWindow(PictureBox pictureBox, Image image, Panel panel)
         {
-            PanelPortraitLrg.VerticalScroll.Visible = false;
-            PanelPortraitLrg.HorizontalScroll.Visible = false;
-            PanelPortraitMed.VerticalScroll.Visible = false;
-            PanelPortraitMed.HorizontalScroll.Visible = false;
-            PanelPortraitSml.VerticalScroll.Visible = false;
-            PanelPortraitSml.HorizontalScroll.Visible = false;
-            float aspectRatio = (pictureBox.Height * 1.0f / pictureBox.Width * 1.0f);
+            RootFunctions.HideScrollBar(PanelPortraitLrg);
+            RootFunctions.HideScrollBar(PanelPortraitMed);
+            RootFunctions.HideScrollBar(PanelPortraitSml);
+            float aspectRatio = pictureBox.Height * 1.0f / pictureBox.Width * 1.0f;
             Tuple<int, int> newSizeTuple = MapNewWidthHeight(panel, aspectRatio);
             pictureBox.Image = ImageControl.Direct.Resize.LowQiality(image, newSizeTuple.Item1, newSizeTuple.Item2);
             ArrangeAutoScroll(panel, newSizeTuple.Item1, newSizeTuple.Item2);
@@ -85,22 +57,24 @@ namespace PathfinderPortraitManager
         private void ResizeVisibleImagesToWindow()
         {
             if (LayoutScalePage.Enabled == true)
+            {
                 using (Image img = new Bitmap(TEMPPOOR_APPEND))
                 {
                     ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
                     ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
                     ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
-                    HideScrollBar(PanelPortraitLrg);
-                    HideScrollBar(PanelPortraitMed);
-                    HideScrollBar(PanelPortraitSml);
+                    RootFunctions.HideScrollBar(PanelPortraitLrg);
+                    RootFunctions.HideScrollBar(PanelPortraitMed);
+                    RootFunctions.HideScrollBar(PanelPortraitSml);
                 }
+            }
             if (LayoutFilePage.Enabled == true)
             {
                 using (Image img = new Bitmap(TEMPFULL_APPEND))
                 {
                     ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
                     ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
-                    HideScrollBar(PanelPortraitTemp);
+                    RootFunctions.HideScrollBar(PanelPortraitTemp);
                 }
             }
         }
@@ -121,42 +95,84 @@ namespace PathfinderPortraitManager
         }
         private void ParentLayoutsDisable()
         {
-            LayoutFilePage.Visible = false;
-            LayoutFilePage.Enabled = false;
-            LayoutMainPage.Visible = false;
-            LayoutMainPage.Enabled = false;
-            LayoutScalePage.Visible = false;
-            LayoutScalePage.Enabled = false;
-            LayoutExtractPage.Enabled = false;
-            LayoutExtractPage.Visible = false;
-            LayoutGallery.Visible = false;
-            LayoutGallery.Enabled = false;
-            LayoutSettingsPage.Visible = false;
-            LayoutSettingsPage.Enabled = false;
+            RootFunctions.LayoutDisable(LayoutFilePage);
+            RootFunctions.LayoutDisable(LayoutMainPage);
+            RootFunctions.LayoutDisable(LayoutScalePage);
+            RootFunctions.LayoutDisable(LayoutExtractPage);
+            RootFunctions.LayoutDisable(LayoutGallery);
+            RootFunctions.LayoutDisable(LayoutSettingsPage);
         }
         private void ParentLayoutsSetDockFill()
         {
-            foreach (Control ctrl in Controls)
+            foreach (Control control in Controls)
             {
-                LayoutsSetDockFill(ctrl);
+                RootFunctions.LayoutsSetDockFill(control);
             }
         }
-        private void LayoutEnable(TableLayoutPanel table)
+        class RootFunctions
         {
-            if (table.Visible == false && table.Enabled == false)
+            static public void AddClickEvent(object sender, EventHandler handler)
             {
-                table.Visible = true;
-                table.Enabled = true;
+                if (sender is Button button)
+                {
+                    if (button != null)
+                    {
+                        button.Click -= handler;
+                        button.Click += handler;
+                    }
+                }
             }
-        }
-        private void LayoutDisable(TableLayoutPanel table)
-        {
-            if (table.Visible == true && table.Enabled == true)
+            static public void RemoveClickEvent(object sender, EventHandler handler)
             {
-                table.Visible = false;
-                table.Enabled = false;
+                if (sender is Button button)
+                {
+                    if (button != null)
+                    {
+                        button.Click -= handler;
+                    }
+                }
             }
-        }
+            static public void LayoutEnable(TableLayoutPanel table)
+            {
+                if (table.Visible == false && table.Enabled == false)
+                {
+                    table.Visible = true;
+                    table.Enabled = true;
+                }
+            }
+            static public void LayoutDisable(TableLayoutPanel table)
+            {
+                if (table.Visible == true && table.Enabled == true)
+                {
+                    table.Visible = false;
+                    table.Enabled = false;
+                }
+            }
+            static public void LayoutsSetDockFill(Control control)
+            {
+                if (control is TableLayoutPanel)
+                {
+                    control.Dock = DockStyle.Fill;
+                }
+                foreach (Control subCtrl in control.Controls)
+                {
+                    LayoutsSetDockFill(subCtrl);
+                }
+            }
+            static public void HideScrollBar(Control control)
+            {
+                if (control is Panel panel)
+                {
+                    if (panel != null)
+                    {
+                        panel.VerticalScroll.Visible = false;
+                        panel.HorizontalScroll.Visible = false;
+                        panel.AutoScroll = false;
+                    }
+                }
+            }
+        }                      
+        
         private void LoadAllTempImages()
         {
             ClearTempImages();
@@ -353,17 +369,6 @@ namespace PathfinderPortraitManager
                 UpdateObjectColoring(subCtrl, a, b);
             }
         }
-        public void LayoutsSetDockFill(Control ctrl)
-        {
-            if (ctrl is TableLayoutPanel)
-            {
-                ctrl.Dock = DockStyle.Fill;
-            }
-            foreach (Control subCtrl in ctrl.Controls)
-            {
-                LayoutsSetDockFill(subCtrl);
-            }
-        }
         public void ClearTempImages()
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
@@ -495,11 +500,6 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        private void HideScrollBar(Panel panel)
-        {
-            panel.VerticalScroll.Visible = false;
-            panel.HorizontalScroll.Visible = false;
-        }
         private bool ValidatePotraitPath(string portraitPath)
         {
             if (SystemControl.FileControl.DirectoryExists(portraitPath) &&
@@ -508,25 +508,5 @@ namespace PathfinderPortraitManager
                 return true;
             return false;
         }
-        //private void RemoveClickEvent(object sender, EventHandler handler)
-        //{
-        //    if (sender is Button button)
-        //    {
-        //        if (button != null)
-        //        {
-        //            button.Click -= handler;
-        //        }
-        //    }
-        //}
-        //private void AddClickEvent(object sender, EventHandler handler)
-        //{
-        //    if (sender is Button button)
-        //    {
-        //        if (button != null)
-        //        {
-        //            button.Click += handler;
-        //        }
-        //    }
-        //}
     }
 }

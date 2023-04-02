@@ -23,8 +23,8 @@ namespace PathfinderPortraitManager
                 request.Method = "HEAD";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;
                 response.Close();
-                LayoutDisable(LayoutURLDialog);
-                LayoutEnable(LayoutFilePage);
+                RootFunctions.LayoutDisable(LayoutURLDialog);
+                RootFunctions.LayoutEnable(LayoutFilePage);
                 CheckWebResourceAndLoad(urlString);
                 ResizeVisibleImagesToWindow();
                 TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
@@ -37,8 +37,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonDenyWeb_Click(object sender, EventArgs e)
         {
-            LayoutDisable(LayoutURLDialog);
-            LayoutEnable(LayoutFilePage);
+            RootFunctions.LayoutDisable(LayoutURLDialog);
+            RootFunctions.LayoutEnable(LayoutFilePage);
             TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
             ResizeVisibleImagesToWindow();
         }
@@ -69,24 +69,24 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
-            LayoutDisable(LayoutFinalPage);
+            RootFunctions.LayoutDisable(LayoutFinalPage);
             ClearTempImages();
             _isAnyLoaded = false;
             SystemControl.FileControl.TempImagesCreate("!DEFAULT!", TEMPFULL_APPEND, TEMPPOOR_APPEND, GAME_TYPES[_gameSelected].PlaceholderImage);
             LoadAllTempImages();
             ParentLayoutsDisable();
-            LayoutEnable(LayoutFilePage);
+            RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
             ButtonToMainPageAndFolder.Enabled = true;
         }
         private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
         {
-            LayoutDisable(LayoutFinalPage);
+            RootFunctions.LayoutDisable(LayoutFinalPage);
             ClearTempImages();
             _isAnyLoaded = false;
             ParentLayoutsDisable();
             System.Diagnostics.Process.Start(LabelDirLoc.Text);
-            LayoutEnable(LayoutMainPage);
+            RootFunctions.LayoutEnable(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
         }
     }

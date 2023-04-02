@@ -77,7 +77,7 @@ namespace PathfinderPortraitManager
         }
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
         {
-            HideScrollBar(PanelPortraitLrg);
+            RootFunctions.HideScrollBar(PanelPortraitLrg);
             if (e.Button == MouseButtons.Left)
             {
                 _mousePosition = e.Location;
@@ -92,16 +92,16 @@ namespace PathfinderPortraitManager
                 PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePosition.X - e.X),
                                                               -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
-            HideScrollBar(PanelPortraitLrg);
+            RootFunctions.HideScrollBar(PanelPortraitLrg);
         }
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
-            HideScrollBar(PanelPortraitLrg);
+            RootFunctions.HideScrollBar(PanelPortraitLrg);
             _isDragging = 0;
         }
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
-            HideScrollBar(PanelPortraitMed);
+            RootFunctions.HideScrollBar(PanelPortraitMed);
             if (e.Button == MouseButtons.Left)
             {
                 _mousePosition = e.Location;
@@ -116,16 +116,16 @@ namespace PathfinderPortraitManager
                 PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePosition.X - e.X),
                                                               -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
-            HideScrollBar(PanelPortraitMed);
+            RootFunctions.HideScrollBar(PanelPortraitMed);
         }
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
-            HideScrollBar(PanelPortraitMed);
+            RootFunctions.HideScrollBar(PanelPortraitMed);
             _isDragging = 0;
         }
         private void PicPortraitSml_MouseDown(object sender, MouseEventArgs e)
         {
-            HideScrollBar(PanelPortraitSml);
+            RootFunctions.HideScrollBar(PanelPortraitSml);
             if (e.Button == MouseButtons.Left)
             {
                 _mousePosition = e.Location;
@@ -140,11 +140,11 @@ namespace PathfinderPortraitManager
                 PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePosition.X - e.X),
                                                               -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
-            HideScrollBar(PanelPortraitSml);
+            RootFunctions.HideScrollBar(PanelPortraitSml);
         }
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
-            HideScrollBar(PanelPortraitSml);
+            RootFunctions.HideScrollBar(PanelPortraitSml);
             _isDragging = 0;
         }
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
@@ -161,7 +161,7 @@ namespace PathfinderPortraitManager
                 factor = -PicPortraitLrg.Width * 1.0f / 8;
                 ImageControl.Direct.Zoom(PicPortraitLrg, PanelPortraitLrg, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
-            HideScrollBar(PanelPortraitLrg);
+            RootFunctions.HideScrollBar(PanelPortraitLrg);
         }
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -177,7 +177,7 @@ namespace PathfinderPortraitManager
                 factor = -PicPortraitMed.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitMed, PanelPortraitMed, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
-            HideScrollBar(PanelPortraitMed);
+            RootFunctions.HideScrollBar(PanelPortraitMed);
         }
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -193,7 +193,7 @@ namespace PathfinderPortraitManager
                 factor = -PicPortraitSml.Width * 1.0f / 10;
                 ImageControl.Direct.Zoom(PicPortraitSml, PanelPortraitSml, e, TEMPPOOR_APPEND, aspectRatio, factor);
             }
-            HideScrollBar(PanelPortraitSml);
+            RootFunctions.HideScrollBar(PanelPortraitSml);
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
@@ -211,13 +211,13 @@ namespace PathfinderPortraitManager
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
             ButtonToMainPageAndFolder.Enabled = true;
-            LayoutDisable(LayoutScalePage);
+            RootFunctions.LayoutDisable(LayoutScalePage);
             string fullPath = "";
             bool placeFound = false;
             uint localName = 1000;
             if (!SystemControl.FileControl.DirectoryExists(GAME_TYPES[_gameSelected].DefaultDirectory))
             {
-                LayoutEnable(LayoutFinalPage);
+                RootFunctions.LayoutEnable(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -241,13 +241,13 @@ namespace PathfinderPortraitManager
             }
             if (CheckExistence(fullPath))
             {
-                LayoutEnable(LayoutFinalPage);
+                RootFunctions.LayoutEnable(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
                 LabelDirLoc.Text = fullPath;
             }
             else
             {
-                LayoutEnable(LayoutFinalPage);
+                RootFunctions.LayoutEnable(LayoutFinalPage);
                 LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = fullPath;
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -294,8 +294,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            LayoutDisable(LayoutFilePage);
-            LayoutEnable(LayoutURLDialog);
+            RootFunctions.LayoutDisable(LayoutFilePage);
+            RootFunctions.LayoutEnable(LayoutURLDialog);
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
@@ -439,21 +439,20 @@ namespace PathfinderPortraitManager
             {
                 ClearImageLists(ListExtract, ImgListExtract);
             }
-            //CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
-            //{
-            //    Title = Properties.TextVariables.TEXT_TITLEOPENFOLDER,
-            //    Multiselect = false,
-            //    InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
-            //    IsFolderPicker = true
-            //};
-            //if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
-            //{
-            //    _extractFolderPath = CommonOpenFileDialog.FileName;
-            //}
-            //else
-            //{
-            //    return;
-            //}
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            if (SystemControl.FileControl.DirectoryExists(defDir))
+            {
+                dialog.SelectedPath = defDir;
+            }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _extractFolderPath = dialog.SelectedPath;
+            }
+            else
+            {
+                return;
+            }
             if (!SystemControl.FileControl.DirectoryExists(_extractFolderPath))
             {
                 return;

@@ -529,7 +529,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game folder was not found. Be sure that you have launched the game at least once. If the problem persists, inform in the bug section. If you are to manage another game, whether it is Kingmaker or WoTR. Change managing game in the settings or main page. Visit settings page for more information..
+        ///   Looks up a localized string similar to Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you have to manage another game, be it Kingmaker or WoTR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information..
         /// </summary>
         internal static string MESG_GAMEFOLDERNOTFOUND {
             get {

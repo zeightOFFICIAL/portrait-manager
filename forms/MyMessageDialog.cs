@@ -15,22 +15,45 @@ namespace PathfinderPortraitManager.forms
     public partial class MyMessageDialog : Form
     {
         Font _bebas_neue18;
-        PrivateFontCollection pfc;
+        PrivateFontCollection _fontCollection;
         public MyMessageDialog(string mesg)
         {
-            pfc = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            _bebas_neue18 = new Font(pfc.Families[0], 18);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+            _bebas_neue18 = new Font(_fontCollection.Families[0], 18);
+
             InitializeComponent();
+
             ButtonClose.Text = Properties.TextVariables.BUTTON_OK;
             ButtonClose.Font = _bebas_neue18;
             LabelMesg.Text = mesg;
             LabelMesg.Font = _bebas_neue18;
         }
-
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
             _bebas_neue18.Dispose();
             Dispose();
+        }
+        private void ButtonClose_MouseEnter(object sender, System.EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button != null)
+                {
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.Black;
+                }
+            }
+        }
+        private void ButtonClose_MouseLeave(object sender, System.EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button != null && button.Enabled == true)
+                {
+                    button.BackColor = Color.Black;
+                    button.ForeColor = Color.White;
+                }
+            }
         }
     }
 }

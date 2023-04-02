@@ -81,7 +81,7 @@
             this.LabelMesg.Name = "LabelMesg";
             this.LabelMesg.Size = new System.Drawing.Size(603, 93);
             this.LabelMesg.TabIndex = 1;
-            this.LabelMesg.Text = "MyMessageMesg";
+            this.LabelMesg.Text = "Message";
             this.LabelMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelMesg.UseCompatibleTextRendering = true;
             // 
@@ -99,8 +99,10 @@
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(279, 25);
             this.ButtonClose.TabIndex = 0;
-            this.ButtonClose.Text = "ButtonClose";
+            this.ButtonClose.Text = "Button Close";
             this.ButtonClose.UseVisualStyleBackColor = true;
+            this.ButtonClose.MouseEnter += new System.EventHandler(this.ButtonClose_MouseEnter);
+            this.ButtonClose.MouseLeave += new System.EventHandler(this.ButtonClose_MouseLeave);
             // 
             // MyMessageDialog
             // 

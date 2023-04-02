@@ -34,5 +34,29 @@ namespace PathfinderPortraitManager.forms
             _bebas_neue18.Dispose();
             Dispose();
         }
+
+        private void ButtonCancel_MouseEnter(object sender, System.EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button != null)
+                {
+                    button.BackColor = Color.White;
+                    button.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void ButtonCancel_MouseLeave(object sender, System.EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if (button != null && button.Enabled == true)
+                {
+                    button.BackColor = Color.Black;
+                    button.ForeColor = Color.White;
+                }
+            }
+        }
     }
 }

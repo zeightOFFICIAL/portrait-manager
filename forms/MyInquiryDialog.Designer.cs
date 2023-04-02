@@ -99,8 +99,10 @@
             this.ButtonOK.Name = "ButtonOK";
             this.ButtonOK.Size = new System.Drawing.Size(124, 39);
             this.ButtonOK.TabIndex = 0;
-            this.ButtonOK.Text = "ButtonYes";
+            this.ButtonOK.Text = "Button Yes";
             this.ButtonOK.UseVisualStyleBackColor = true;
+            this.ButtonOK.MouseEnter += new System.EventHandler(this.ButtonCancel_MouseEnter);
+            this.ButtonOK.MouseLeave += new System.EventHandler(this.ButtonCancel_MouseLeave);
             // 
             // ButtonCancel
             // 
@@ -113,8 +115,10 @@
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(124, 39);
             this.ButtonCancel.TabIndex = 1;
-            this.ButtonCancel.Text = "ButtonCancel";
+            this.ButtonCancel.Text = "Button Cancel";
             this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.MouseEnter += new System.EventHandler(this.ButtonCancel_MouseEnter);
+            this.ButtonCancel.MouseLeave += new System.EventHandler(this.ButtonCancel_MouseLeave);
             // 
             // LabelInquiryMesg
             // 
@@ -124,7 +128,7 @@
             this.LabelInquiryMesg.Name = "LabelInquiryMesg";
             this.LabelInquiryMesg.Size = new System.Drawing.Size(508, 153);
             this.LabelInquiryMesg.TabIndex = 1;
-            this.LabelInquiryMesg.Text = "MyInquiryMesg";
+            this.LabelInquiryMesg.Text = "Inquiry";
             this.LabelInquiryMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MyInquiryDialog

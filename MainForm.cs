@@ -44,6 +44,9 @@ namespace PathfinderPortraitManager
 
         private const string TEMPFULL_APPEND = "temp\\portrait_full.png";
         private const string TEMPPOOR_APPEND = "temp\\portrait_poor.png";
+        private const string TEMP_LARGE_APPEND = "temp\\FULL_DONOTDELETE.png";
+        private const string TEMP_MEDIUM_APPEND = "temp\\MEDIUM_DONOTDELETE.png";
+        private const string TEMP_SMALL_APPEND = "temp\\SMALL_DONOTDELETE.png";
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
@@ -73,9 +76,9 @@ namespace PathfinderPortraitManager
                 Properties.CoreSettings.Default.Save();
                 Properties.UseStamps.Default.isFirstAny = false;
                 Properties.UseStamps.Default.Save();
-                ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
-                ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
             }
+            ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
+            ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
             Width = Properties.CoreSettings.Default.MaxWindowWidth;
             Height = Properties.CoreSettings.Default.MaxWindowHeight;            
             

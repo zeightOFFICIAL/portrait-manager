@@ -255,17 +255,8 @@
   <data name="LABEL_PATH" xml:space="preserve">
     <value>Path to the game portraits folder</value>
   </data>
-  <data name="LABEL_PATH_ERROR" xml:space="preserve">
-    <value>Error.</value>
-  </data>
-  <data name="LABEL_PATH_EXTRA" xml:space="preserve">
-    <value>DEBUG</value>
-  </data>
-  <data name="LABEL_PATH_FINE" xml:space="preserve">
-    <value>All is green!</value>
-  </data>
-  <data name="LABEL_PATH_WARN" xml:space="preserve">
-    <value>Warning. Cannot prove directory</value>
+  <data name="LABEL_SETTINGS" xml:space="preserve">
+    <value>Settings page. Adjust size and game folder.</value>
   </data>
   <data name="LABEL_SMALLIMG" xml:space="preserve">
     <value>Small</value>

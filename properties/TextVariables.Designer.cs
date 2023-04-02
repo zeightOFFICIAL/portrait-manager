@@ -475,38 +475,11 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error..
+        ///   Looks up a localized string similar to Settings page. Adjust size and game folder..
         /// </summary>
-        internal static string LABEL_PATH_ERROR {
+        internal static string LABEL_SETTINGS {
             get {
-                return ResourceManager.GetString("LABEL_PATH_ERROR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DEBUG.
-        /// </summary>
-        internal static string LABEL_PATH_EXTRA {
-            get {
-                return ResourceManager.GetString("LABEL_PATH_EXTRA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All is green!.
-        /// </summary>
-        internal static string LABEL_PATH_FINE {
-            get {
-                return ResourceManager.GetString("LABEL_PATH_FINE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warning. Cannot prove directory.
-        /// </summary>
-        internal static string LABEL_PATH_WARN {
-            get {
-                return ResourceManager.GetString("LABEL_PATH_WARN", resourceCulture);
+                return ResourceManager.GetString("LABEL_SETTINGS", resourceCulture);
             }
         }
         

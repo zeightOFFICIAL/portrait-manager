@@ -10,7 +10,6 @@ using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.Win32;
 
 namespace PathfinderPortraitManager
@@ -431,21 +430,21 @@ namespace PathfinderPortraitManager
             {
                 ClearImageLists(ListExtract, ImgListExtract);
             }
-            CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
-            {
-                Title = Properties.TextVariables.TEXT_TITLEOPENFOLDER,
-                Multiselect = false,
-                InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
-                IsFolderPicker = true
-            };
-            if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                _extractFolderPath = CommonOpenFileDialog.FileName;
-            }
-            else
-            {
-                return;
-            }
+            //CommonOpenFileDialog CommonOpenFileDialog = new CommonOpenFileDialog
+            //{
+            //    Title = Properties.TextVariables.TEXT_TITLEOPENFOLDER,
+            //    Multiselect = false,
+            //    InitialDirectory = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString(),
+            //    IsFolderPicker = true
+            //};
+            //if (CommonOpenFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            //{
+            //    _extractFolderPath = CommonOpenFileDialog.FileName;
+            //}
+            //else
+            //{
+            //    return;
+            //}
             if (!SystemControl.FileControl.DirectoryExists(_extractFolderPath))
             {
                 return;
@@ -642,19 +641,6 @@ namespace PathfinderPortraitManager
             ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
             ButtonOpenPath.Enabled = true;
         }
-        private void ButtonEnableResize_Click(object sender, EventArgs e)
-        {
-            if (FormBorderStyle == FormBorderStyle.FixedSingle)
-            {
-                FormBorderStyle = FormBorderStyle.Sizable;
-                ButtonEnableResize.Text = Properties.TextVariables.BUTTON_APPLY;
-            }
-            else
-            {
-                FormBorderStyle = FormBorderStyle.FixedSingle;
-                ButtonEnableResize.Text = Properties.TextVariables.BUTTON_RESIZE;
-            }
-        }
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
             if (ValidatePotraitPath(TextBoxFullPath.Text)) 
@@ -662,6 +648,7 @@ namespace PathfinderPortraitManager
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
                 ButtonValidatePath.BackColor = Color.LimeGreen;
                 ButtonValidatePath.Enabled = false;
+
             }
             else
             {
@@ -711,6 +698,8 @@ namespace PathfinderPortraitManager
                 _gameSelected = 'w';
                 UpdateColorScheme();
             }
+            Properties.CoreSettings.Default.GameType = _gameSelected;
+            Properties.CoreSettings.Default.Save();
         }
     }
 }

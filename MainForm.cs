@@ -42,7 +42,6 @@ namespace PathfinderPortraitManager
             { 'w', Properties.CoreSettings.Default.WOTRPath }
         };
 
-
         private const string RELATIVEPATH_TEMPFULL = "temp\\portrait_full.png";
         private const string RELATIVEPATH_TEMPPOOR = "temp\\portrait_poor.png";
         private const string LRG_APPEND = "\\Fulllength.png";
@@ -79,6 +78,7 @@ namespace PathfinderPortraitManager
             }
             Width = Properties.CoreSettings.Default.MaxWindowWidth;
             Height = Properties.CoreSettings.Default.MaxWindowHeight;
+            CenterToScreen();
 
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -96,7 +96,7 @@ namespace PathfinderPortraitManager
             LayoutHide(LayoutURLDialog);
             LayoutHide(LayoutFinalPage);
             LayoutReveal(LayoutMainPage);
-            if (!SystemControl.FileControl.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
+            if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
@@ -254,7 +254,6 @@ namespace PathfinderPortraitManager
             Properties.CoreSettings.Default.MaxWindowWidth = Width;
             Properties.CoreSettings.Default.Save();
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            ButtonEnableResize.Text = Properties.TextVariables.BUTTON_RESIZE;
             ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
             ButtonValidatePath.BackColor = Color.Black;
             ButtonValidatePath.ForeColor = Color.White;
@@ -263,6 +262,8 @@ namespace PathfinderPortraitManager
             ButtonOpenPath.ForeColor = Color.White;
             ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
             ButtonOpenPath.Enabled = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            CenterToScreen();
         }
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
@@ -271,6 +272,7 @@ namespace PathfinderPortraitManager
             LayoutReveal(LayoutSettingsPage);
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
-        }        
+            FormBorderStyle = FormBorderStyle.Sizable;
+        }
     }
 }

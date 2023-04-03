@@ -61,7 +61,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advanced.
+        ///   Looks up a localized string similar to Change medium.
         /// </summary>
         internal static string BUTTON_ADVANCED {
             get {

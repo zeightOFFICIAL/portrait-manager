@@ -98,7 +98,6 @@ namespace PathfinderPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
-            RootFunctions.LayoutDisable(LayoutAdvancedMode);
             RootFunctions.LayoutEnable(LayoutMainPage);
            
             if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))

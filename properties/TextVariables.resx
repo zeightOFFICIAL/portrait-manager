@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_ADVANCED" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Change medium</value>
   </data>
   <data name="BUTTON_APPLY" xml:space="preserve">
     <value>Apply</value>

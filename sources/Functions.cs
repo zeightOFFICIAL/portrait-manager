@@ -33,9 +33,6 @@ namespace PathfinderPortraitManager
         private void ClearPrimeImages(Image replaceTo)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
-            ImageControl.Utils.Replace(PicPortraitTempLrg, replaceTo);
-            ImageControl.Utils.Replace(PicPortraitTempMed, replaceTo);
-            ImageControl.Utils.Replace(PicPortraitTempSml, replaceTo);
             ImageControl.Utils.Replace(PicPortraitLrg, replaceTo);
             ImageControl.Utils.Replace(PicPortraitMed, replaceTo);
             ImageControl.Utils.Replace(PicPortraitSml, replaceTo);
@@ -381,7 +378,7 @@ namespace PathfinderPortraitManager
                 ClearPrimeImages(placeholder);
             }
         }
-        public void SafeCopyAllImages(string[] paths)
+        public void SafeCopyAllImages(string fullPath)
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {

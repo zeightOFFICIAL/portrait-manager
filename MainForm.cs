@@ -179,10 +179,26 @@ namespace PathfinderPortraitManager
             ButtonToAdvanced.Visible = true;
             ButtonToAdvanced.Enabled = true;
             ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
-            //LoadAllTempImages(_imageFlag);
+            LoadTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
+        }
+        private void ButtonToFilePage3_Click(object sender, EventArgs e)
+        {
+            _imageFlag = 0;
+            ButtonToAdvanced.Visible = true;
+            ButtonToAdvanced.Enabled = true;
+            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            RootFunctions.LayoutDisable(LayoutFinalPage);
+            ClearTempImages();
+            _isAnyLoaded = false;
+            SystemControl.FileControl.TempImagesCreate("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
+            LoadTempImages(_imageFlag);
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutFilePage);
+            ResizeVisibleImagesToWindow();
+            ButtonToMainPageAndFolder.Enabled = true;
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {
@@ -309,6 +325,8 @@ namespace PathfinderPortraitManager
                 ButtonToAdvanced.Visible = false;
                 ButtonToAdvanced.Enabled = false;
             }
+            LoadTempImages(_imageFlag);
+            ResizeVisibleImagesToWindow();
         }
     }
 }

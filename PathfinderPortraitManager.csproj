@@ -125,9 +125,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>UseStamps.settings</DependentUpon>
     </Compile>
-    <Compile Include="sources\DialogWorks.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="sources\EventHandler.cs">
       <SubType>Form</SubType>
     </Compile>

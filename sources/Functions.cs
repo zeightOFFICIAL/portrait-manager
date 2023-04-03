@@ -67,7 +67,7 @@ namespace PathfinderPortraitManager
             }
             if (LayoutFilePage.Enabled == true)
             {
-                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+                using (Image img = new Bitmap(PicPortraitTemp.Image))
                 {
                     ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
                     ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
@@ -215,7 +215,6 @@ namespace PathfinderPortraitManager
                 ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                //ResizeVisibleImagesToWindow();
             }
         }
         public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
@@ -523,15 +522,31 @@ namespace PathfinderPortraitManager
                 {
                     using (Image webImage = Image.FromStream(stream))
                     {
-                        if (!SystemControl.FileControl.DirectoryExists("temp/"))
-                            SystemControl.FileControl.DirectoryCreate("temp/");
-                        webImage.Save(TEMP_LARGE_APPEND);
+                        
                         _isAnyLoaded = true;
-                        ClearTempImages();
+                        if (_imageFlag == 1)
+                        {
+                            SystemControl.FileControl.FileDelete("", TEMP_MEDIUM_APPEND);
+                            webImage.Save(TEMP_MEDIUM_APPEND);
+                        }
+                        else if (_imageFlag == 2)
+                        {
+                            SystemControl.FileControl.FileDelete("", TEMP_SMALL_APPEND);
+                            webImage.Save(TEMP_SMALL_APPEND);
+                        }
+                        else if (_imageFlag == 100 || _imageFlag == 0)
+                        {
+                            SystemControl.FileControl.TempImagesClear();
+                            SystemControl.FileControl.DirectoryCreate("temp/");
+                            webImage.Save(TEMP_MEDIUM_APPEND);
+                            webImage.Save(TEMP_SMALL_APPEND);
+                            webImage.Save(TEMP_LARGE_APPEND);
+                        }
+                        LoadTempImages(_imageFlag);                    
                     }
                 }
             }
-            catch
+            catch (IOException)
             {
                 using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(Properties.TextVariables.MESG_CANNOTLOAD))
                 {

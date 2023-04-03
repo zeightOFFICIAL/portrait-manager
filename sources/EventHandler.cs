@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Net;
 
 namespace PathfinderPortraitManager
 {
@@ -26,6 +27,7 @@ namespace PathfinderPortraitManager
                     LoadTempImages(_imageFlag);
                     return;
                 }
+                LoadTempImages(_imageFlag);
                 _isAnyLoaded = false;
                 return;
             }
@@ -35,6 +37,7 @@ namespace PathfinderPortraitManager
                 SafeCopyAllImages(fullPath, _imageFlag);
                 LoadTempImages(_imageFlag);
             }
+            ResizeVisibleImagesToWindow();
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
         {
@@ -59,9 +62,12 @@ namespace PathfinderPortraitManager
                 if (_isAnyLoaded == true)
                 {
                     LoadTempImages(_imageFlag);
+                    ResizeVisibleImagesToWindow();
                     return;
                 }
                 _isAnyLoaded = false;
+                LoadTempImages(_imageFlag);
+                ResizeVisibleImagesToWindow();
                 return;
             }
             else
@@ -70,6 +76,7 @@ namespace PathfinderPortraitManager
                 SafeCopyAllImages(path, _imageFlag);
                 LoadTempImages(_imageFlag);
             }
+            ResizeVisibleImagesToWindow();
         }
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
         {
@@ -716,6 +723,69 @@ namespace PathfinderPortraitManager
             }
             Properties.CoreSettings.Default.GameType = _gameSelected;
             Properties.CoreSettings.Default.Save();
+        }
+        private void ButtonLoadWeb_Click(object sender, EventArgs e)
+        {
+            string urlString = TextBoxURL.Text;
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(urlString) as HttpWebRequest;
+                request.Method = "HEAD";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.Close();
+                RootFunctions.LayoutDisable(LayoutURLDialog);
+                RootFunctions.LayoutEnable(LayoutFilePage);
+                CheckWebResourceAndLoad(urlString);
+                ResizeVisibleImagesToWindow();
+                TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
+            }
+            catch
+            {
+                TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_WRONG;
+            }
+
+        }
+        private void ButtonDenyWeb_Click(object sender, EventArgs e)
+        {
+            RootFunctions.LayoutDisable(LayoutURLDialog);
+            RootFunctions.LayoutEnable(LayoutFilePage);
+            TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
+            ResizeVisibleImagesToWindow();
+        }
+        private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
+        {
+            TextBoxURL.Clear();
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+        private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
+        {
+            TextBox senderTextBox = (TextBox)sender;
+            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
+            if (!senderTextBox.Text.Contains("http"))
+            {
+                senderTextBox.Text = "http://" + senderTextBox.Text;
+            }
+        }
+        private void TextBoxURL_Enter(object sender, EventArgs e)
+        {
+            TextBoxURL.Clear();
+        }
+        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
+        {
+            RootFunctions.LayoutDisable(LayoutFinalPage);
+            ClearTempImages();
+            _isAnyLoaded = false;
+            ParentLayoutsDisable();
+            System.Diagnostics.Process.Start(LabelDirLoc.Text);
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            ButtonToMainPageAndFolder.Enabled = true;
         }
     }
 }

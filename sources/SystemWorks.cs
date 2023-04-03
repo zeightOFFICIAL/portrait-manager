@@ -20,40 +20,71 @@ namespace SystemControl
     {
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
-        private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png"};
+        private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png" };
+        private const string TYPE_FILTER = "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*";
+        public class Readonly {
+            public static bool DirectoryExists(string path)
+            {
+                return Directory.Exists(path);
+            }
+            public static bool FileExist(string path)
+            {
+                return File.Exists(path);
+            }
+            public static bool CheckImagePixeling(string path, int expectedWidth, int expectedHeight)
+            {
+                using (Bitmap img = new Bitmap(path))
+                {
+                    if (img.Width == expectedWidth && img.Height == expectedHeight)
+                    {
+                        img.Dispose();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            public static string GetFileExtension(string path)
+            {
+                return Path.GetExtension(path);
+            }
+        }
         public static string OpenFileLocation()
         {
-            string fullPath;
-            OpenFileDialog openFileDialog = new OpenFileDialog()
-            {
-                Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
-                Multiselect = false,
-                CheckFileExists = true,
-                CheckPathExists = true,
-                SupportMultiDottedExtensions = false,
-                Filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*",
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                if (EXTENSIONS_ALLOWED.Contains(Path.GetExtension(openFileDialog.FileName))) 
+            string filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + TYPE_FILTER;
+            using (OpenFileDialog Dialog = new OpenFileDialog()
                 {
-                    fullPath = openFileDialog.FileName;
+                    Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
+                    Multiselect = false,
+                    CheckFileExists = true,
+                    CheckPathExists = true,
+                    SupportMultiDottedExtensions = false,
+                    Filter = filter,
+                })
+            {
+                if (Dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string extension = Readonly.GetFileExtension(Dialog.FileName);
+                    if (EXTENSIONS_ALLOWED.Contains(extension))
+                    {
+                        return Dialog.FileName;
+                    }
+                    else
+                    {
+                        return "!NONE!";
+                    }
                 }
                 else
                 {
-                    fullPath = "!NONE!";
+                    return "!NONE!";
                 }
             }
-            else
-            {
-                fullPath = "!NONE!";
-            }
-            openFileDialog.Dispose();
-            return fullPath;
         }
-        public static void TempImagesCreate(string newPath, string[] tempPaths, Image defaultImg, ushort flag = 0)
+        public static void CreateTempImages(string newPath, string[] tempPaths, Image defaultImg, ushort flag = 0)
         {
-            DirectoryCreate("temp/");
+            if (!CreateDirectory("temp/"))
+            {
+                return;
+            }
             if (newPath == "!DEFAULT!" || newPath == "!NONESELECTED!" || newPath == "!NONE!")
             {
                 using (Image img = new Bitmap(defaultImg))
@@ -95,98 +126,77 @@ namespace SystemControl
                 }
             }
         }
-        public static void TempImagesClear()
+        public static void ClearTempImages()
         {
-            DirectoryDeleteRecursive("temp/");
+            DeleteDirectoryRecursive("temp/");
         }
-        public static void FileDelete(string path, string filename)
+        public static bool DeleteFile(string path)
         {
             try
             {
-                if (FileExist(path, filename))
+                if (Readonly.FileExist(path))
                 {
-                    File.Delete(path + filename);
+                    File.Delete(path);
+                    return true;
                 }
+                return false;
             }
             catch
             {
-                return;
+                return false;
             }
         }
-        public static void DirectoryDeleteRecursive(string path)
+        public static bool DeleteDirectoryRecursive(string path)
         {
             try
             {
-                if (DirectoryExists(path))
+                if (Readonly.DirectoryExists(path))
+                {
                     Directory.Delete(path, true);
-            }
-            catch (IOException)
-            {
-                return;
-            }
-        }
-        public static bool DirectoryExists(string path)
-        {
-            if (Directory.Exists(path))
-                return true;
-            else
+                    return true;
+                }
                 return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
-        public static bool DirectoryCreate(string path)
+        public static bool CreateDirectory(string path)
         {
             try
             {
                 Directory.CreateDirectory(path);
+                return true;
             }
-            catch (IOException)
+            catch
             {
                 return false;
             }
-            return true;
-        }
-        public static bool FileExist(string path, string filename)
-        {
-            if (File.Exists(path + filename))
-                return true;
-            else
-                return false;
-        }
-        public static string GetFileExtension(string path, string filename)
-        {
-            return Path.GetExtension(path + filename);
         }
         public static PrivateFontCollection InitCustomFont(byte[] font)
         {
-            PrivateFontCollection pfc = new PrivateFontCollection();
+            PrivateFontCollection fontCollection = new PrivateFontCollection();
             byte[] fontData = font;
-            IntPtr fontPtr = Marshal.AllocCoTaskMem(fontData.Length);
-            Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
             uint dummy = 0;
-            pfc.AddMemoryFont(fontPtr, font.Length);
-            AddFontMemResourceEx(fontPtr, (uint)font.Length, IntPtr.Zero, ref dummy);
-            Marshal.FreeCoTaskMem(fontPtr);
-            return pfc;
+
+            IntPtr fontPointer = Marshal.AllocCoTaskMem(fontData.Length);
+            Marshal.Copy(fontData, 0, fontPointer, fontData.Length);            
+            fontCollection.AddMemoryFont(fontPointer, font.Length);
+            AddFontMemResourceEx(fontPointer, (uint)font.Length, IntPtr.Zero, ref dummy);
+            Marshal.FreeCoTaskMem(fontPointer);
+            return fontCollection;
         }
-        public static bool CheckImagePixeling(string path, int width, int height)
-        {
-            using (Bitmap img = new Bitmap(path))
-            {
-                if (img.Width == width && img.Height == height)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static void CopyFile(string formPath, string toPath)
+        public static bool CopyFile(string formPath, string toPath)
         {
             try
             {
                 File.Copy(formPath, toPath, true);
+                return true;
             }
-            catch (IOException)
+            catch 
             {
-                return;
+                return false;
             }
         }
     }

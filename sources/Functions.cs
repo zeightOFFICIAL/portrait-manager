@@ -48,7 +48,7 @@ namespace PathfinderPortraitManager
         {
             float aspectRatio = pictureBox.Height * 1.0f / pictureBox.Width * 1.0f;
             Tuple<int, int> newSizeTuple = MapNewWidthHeight(panel, aspectRatio);
-            pictureBox.Image = ImageControl.Direct.Resize.LowQiality(image, newSizeTuple.Item1, newSizeTuple.Item2);
+            pictureBox.Image = ImageControl.Direct.Resize(image, newSizeTuple.Item1, newSizeTuple.Item2);
             ArrangeAutoScroll(panel, newSizeTuple.Item1, newSizeTuple.Item2);
         }
         private void ResizeVisibleImagesToWindow()
@@ -229,13 +229,13 @@ namespace PathfinderPortraitManager
         }
         public static bool CheckExistence(string path)
         {
-            if (SystemControl.FileControl.DirectoryExists(path))
-                if (SystemControl.FileControl.FileExist(path, LARGE_APPEND) &&
-                    SystemControl.FileControl.FileExist(path, MEDIUM_APPEND) &&
-                    SystemControl.FileControl.FileExist(path, SMALL_APPEND))
-                    if (SystemControl.FileControl.GetFileExtension(path, LARGE_APPEND) == ".png" &&
-                        SystemControl.FileControl.GetFileExtension(path, MEDIUM_APPEND) == ".png" &&
-                        SystemControl.FileControl.GetFileExtension(path, SMALL_APPEND) == ".png")
+            if (SystemControl.FileControl.Readonly.DirectoryExists(path))
+                if (SystemControl.FileControl.Readonly.FileExist(path + LARGE_APPEND) &&
+                    SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
+                    SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
+                    if (SystemControl.FileControl.Readonly.GetFileExtension(path + LARGE_APPEND) == ".png" &&
+                        SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
+                        SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
                         return true;
                     else
                         return false;
@@ -249,9 +249,9 @@ namespace PathfinderPortraitManager
             string nameList;
             if (CheckExistence(path))
             {
-                if (SystemControl.FileControl.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
-                    SystemControl.FileControl.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
-                    SystemControl.FileControl.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
+                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
                 {
                     int nameLen = path.Split('\\').Length;
                     nameList = path.Split('\\')[nameLen - 1];
@@ -410,18 +410,18 @@ namespace PathfinderPortraitManager
             {
                 if (flag == 1)
                 {
-                    SystemControl.FileControl.FileDelete("", TEMP_MEDIUM_APPEND);
-                    SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
+                    SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
+                    SystemControl.FileControl.CreateTempImages(path, TEMP_APPENDS, placeholder, flag);
                 }
                 else if (flag == 2)
                 {
-                    SystemControl.FileControl.FileDelete("", TEMP_SMALL_APPEND);
-                    SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
+                    SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
+                    SystemControl.FileControl.CreateTempImages(path, TEMP_APPENDS, placeholder, flag);
                 }
                 else if (flag == 100 || flag == 0)
                 {
-                    SystemControl.FileControl.TempImagesClear();
-                    SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
+                    SystemControl.FileControl.ClearTempImages();
+                    SystemControl.FileControl.CreateTempImages(path, TEMP_APPENDS, placeholder, flag);
                 }
             }
         }
@@ -461,7 +461,7 @@ namespace PathfinderPortraitManager
         }
         public bool LoadGallery(string fromPath)
         {
-            if(!SystemControl.FileControl.DirectoryExists(fromPath))
+            if(!SystemControl.FileControl.Readonly.DirectoryExists(fromPath))
             {
                 return false;
             }
@@ -526,18 +526,18 @@ namespace PathfinderPortraitManager
                         _isAnyLoaded = true;
                         if (_imageFlag == 1)
                         {
-                            SystemControl.FileControl.FileDelete("", TEMP_MEDIUM_APPEND);
+                            SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
                             webImage.Save(TEMP_MEDIUM_APPEND);
                         }
                         else if (_imageFlag == 2)
                         {
-                            SystemControl.FileControl.FileDelete("", TEMP_SMALL_APPEND);
+                            SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_SMALL_APPEND);
                         }
                         else if (_imageFlag == 100 || _imageFlag == 0)
                         {
-                            SystemControl.FileControl.TempImagesClear();
-                            SystemControl.FileControl.DirectoryCreate("temp/");
+                            SystemControl.FileControl.ClearTempImages();
+                            SystemControl.FileControl.CreateDirectory("temp/");
                             webImage.Save(TEMP_MEDIUM_APPEND);
                             webImage.Save(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_LARGE_APPEND);
@@ -556,9 +556,9 @@ namespace PathfinderPortraitManager
         }
         private bool ValidatePotraitPath(string portraitPath)
         {
-            if (SystemControl.FileControl.DirectoryExists(portraitPath) &&
+            if (SystemControl.FileControl.Readonly.DirectoryExists(portraitPath) &&
                 portraitPath.Split('\\').Last() == "Portraits" &&
-                SystemControl.FileControl.DirectoryExists(portraitPath.Replace("Portraits", "Saved Games"))) 
+                SystemControl.FileControl.Readonly.DirectoryExists(portraitPath.Replace("Portraits", "Saved Games"))) 
                 return true;
             return false;
         }

@@ -193,7 +193,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ClearTempImages();
             _isAnyLoaded = false;
-            SystemControl.FileControl.TempImagesCreate("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
+            SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
             LoadTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
@@ -205,7 +205,7 @@ namespace PathfinderPortraitManager
             DisposePrimeImages();
             ClearImageLists(ListGallery, ImgListGallery);
             ClearImageLists(ListExtract, ImgListExtract);
-            SystemControl.FileControl.TempImagesClear();
+            SystemControl.FileControl.ClearTempImages();
             Application.Exit();
         }
         private void ButtonToExtract_Click(object sender, EventArgs e)

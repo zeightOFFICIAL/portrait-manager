@@ -66,7 +66,7 @@ namespace SystemControl
                     {
                         img.Save(tempPaths[2]);
                     }
-                    else
+                    else if (flag == 100)
                     {
                         img.Save(tempPaths[0]);
                         img.Save(tempPaths[1]);
@@ -86,7 +86,7 @@ namespace SystemControl
                     {
                         img.Save(tempPaths[2]);
                     }
-                    else
+                    else if(flag == 100)
                     {
                         img.Save(tempPaths[0]);
                         img.Save(tempPaths[1]);

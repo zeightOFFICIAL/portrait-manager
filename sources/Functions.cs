@@ -170,46 +170,51 @@ namespace PathfinderPortraitManager
             }
         }
 
-        private void LoadAllTempImages(ushort flag)
+        private void LoadTempImages(ushort flag)
         {
-            if (flag == 1)
+            if (flag == 0)
             {
-                using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
-                    ImageControl.Utils.Replace(PicPortraitMed, placeholder);
-                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+                ClearTempImages();
+                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
                 {
                     PicPortraitTemp.Image = new Bitmap(img);
-                    ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
-                    RootFunctions.HideScrollBar(PanelPortraitTemp);
+                }
+            }
+            else if (flag == 1)
+            {
+                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+                {
+                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
                 }
             }
             else if (flag == 2)
             {
-                using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
-                    ImageControl.Utils.Replace(PicPortraitSml, placeholder);
                 using (Image img = new Bitmap(TEMP_SMALL_APPEND))
                 {
-                    PicPortraitTemp.Image = new Bitmap(img);
-                    ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
-                    RootFunctions.HideScrollBar(PanelPortraitTemp);
+                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
                 }
             }
-            else
+            else if (flag == 100)
             {
                 ClearTempImages();
                 using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+                {
                     PicPortraitTemp.Image = new Bitmap(img);
-                using (Image img2 = new Bitmap(TEMP_SMALL_APPEND))
-                    PicPortraitSml.Image = new Bitmap(img2);
-                using (Image img3 = new Bitmap(TEMP_MEDIUM_APPEND))
-                    PicPortraitMed.Image = new Bitmap(img3);
-                using (Image img4 = new Bitmap(TEMP_LARGE_APPEND))
-                    PicPortraitLrg.Image = new Bitmap(img4);
+                }
+            }
+            else if (flag == 200)
+            {
+                using (Image img = new Bitmap(TEMP_SMALL_APPEND))
+                    ImageControl.Utils.Replace(PicPortraitSml, img);
+                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+                    ImageControl.Utils.Replace(PicPortraitMed, img);
+                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+                    ImageControl.Utils.Replace(PicPortraitLrg, img);
                 ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ResizeVisibleImagesToWindow();
-            }  
+            }
         }
         public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
         {
@@ -310,8 +315,8 @@ namespace PathfinderPortraitManager
             ButtonToMainPage.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonToScalePage.Font = _bebas_neue20;
             ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
-            ButtonToAdvancedPage.Font = _bebas_neue20;
-            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            ButtonToAdvanced.Font = _bebas_neue20;
+            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
             ButtonHintOnFilePage.Font = _bebas_neue20;
             ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
@@ -398,27 +403,22 @@ namespace PathfinderPortraitManager
                 ClearPrimeImages(placeholder);
             }
         }
-        public void SafeCopyAllImages(string path, ushort flag = 0)
+        public void SafeCopyAllImages(string path, ushort flag)
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {
                 if (flag == 1)
                 {
-                    ImageControl.Utils.Replace(PicPortraitTemp, placeholder);
-                    ImageControl.Utils.Replace(PicPortraitMed, placeholder);
                     SystemControl.FileControl.FileDelete("", TEMP_MEDIUM_APPEND);
                     SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
                 }
                 else if (flag == 2)
                 {
-                    ImageControl.Utils.Replace(PicPortraitTemp, placeholder);
-                    ImageControl.Utils.Replace(PicPortraitSml, placeholder);
                     SystemControl.FileControl.FileDelete("", TEMP_SMALL_APPEND);
                     SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
                 }
-                else
+                else if (flag == 100)
                 {
-                    ClearPrimeImages(placeholder);
                     SystemControl.FileControl.TempImagesClear();
                     SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
                 }
@@ -526,7 +526,6 @@ namespace PathfinderPortraitManager
                         webImage.Save(TEMP_LARGE_APPEND);
                         _isAnyLoaded = true;
                         ClearTempImages();
-                        LoadAllTempImages(_imageFlag);
                     }
                 }
             }

@@ -39,7 +39,7 @@ namespace PathfinderPortraitManager
             this.ButtonToScalePage = new System.Windows.Forms.Button();
             this.ButtonWebPortraitLoad = new System.Windows.Forms.Button();
             this.ButtonHintOnFilePage = new System.Windows.Forms.Button();
-            this.ButtonToAdvancedPage = new System.Windows.Forms.Button();
+            this.ButtonToAdvanced = new System.Windows.Forms.Button();
             this.ButtonToMainPage = new System.Windows.Forms.Button();
             this.LayoutUnnamed5 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelPortraitTemp = new System.Windows.Forms.Panel();
@@ -183,7 +183,7 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed1.Controls.Add(this.ButtonToScalePage, 0, 4);
             this.LayoutUnnamed1.Controls.Add(this.ButtonWebPortraitLoad, 0, 2);
             this.LayoutUnnamed1.Controls.Add(this.ButtonHintOnFilePage, 0, 8);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToAdvancedPage, 0, 5);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToAdvanced, 0, 5);
             this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 0, 6);
             this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutUnnamed1.Location = new System.Drawing.Point(481, 3);
@@ -271,19 +271,19 @@ namespace PathfinderPortraitManager
             // 
             // ButtonToAdvancedPage
             // 
-            this.ButtonToAdvancedPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToAdvancedPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToAdvancedPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToAdvancedPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToAdvancedPage.Location = new System.Drawing.Point(3, 240);
-            this.ButtonToAdvancedPage.Name = "ButtonToAdvancedPage";
-            this.ButtonToAdvancedPage.Size = new System.Drawing.Size(191, 39);
-            this.ButtonToAdvancedPage.TabIndex = 7;
-            this.ButtonToAdvancedPage.Text = "ToAdvancedPage";
-            this.ButtonToAdvancedPage.UseVisualStyleBackColor = true;
-            this.ButtonToAdvancedPage.Click += new System.EventHandler(this.ButtonToAdvancedPage_Click);
-            this.ButtonToAdvancedPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToAdvancedPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.ButtonToAdvanced.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonToAdvanced.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToAdvanced.ForeColor = System.Drawing.Color.Goldenrod;
+            this.ButtonToAdvanced.Location = new System.Drawing.Point(3, 240);
+            this.ButtonToAdvanced.Name = "ButtonToAdvancedPage";
+            this.ButtonToAdvanced.Size = new System.Drawing.Size(191, 39);
+            this.ButtonToAdvanced.TabIndex = 7;
+            this.ButtonToAdvanced.Text = "ToAdvancedPage";
+            this.ButtonToAdvanced.UseVisualStyleBackColor = true;
+            this.ButtonToAdvanced.Click += new System.EventHandler(this.ButtonToAdvancedPage_Click);
+            this.ButtonToAdvanced.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToAdvanced.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // ButtonToMainPage
             // 
@@ -1728,7 +1728,7 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.Button ButtonRestorePath;
         private System.Windows.Forms.Button ButtonSelectPath;
         private System.Windows.Forms.Label LabelSettings;
-        private System.Windows.Forms.Button ButtonToAdvancedPage;
+        private System.Windows.Forms.Button ButtonToAdvanced;
     }
 }
 

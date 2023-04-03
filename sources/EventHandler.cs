@@ -23,7 +23,7 @@ namespace PathfinderPortraitManager
             {
                 if (_isAnyLoaded == true)
                 {
-                    LoadAllTempImages(_imageFlag);
+                    LoadTempImages(_imageFlag);
                     return;
                 }
                 _isAnyLoaded = false;
@@ -33,7 +33,7 @@ namespace PathfinderPortraitManager
             {
                 _isAnyLoaded = true;
                 SafeCopyAllImages(fullPath, _imageFlag);
-                LoadAllTempImages(_imageFlag);
+                LoadTempImages(_imageFlag);
             }
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
@@ -49,8 +49,8 @@ namespace PathfinderPortraitManager
         }
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
-            string fullPath = SystemControl.FileControl.OpenFileLocation();
-            if (fullPath == "!NONE!")
+            string path = SystemControl.FileControl.OpenFileLocation();
+            if (path == "!NONE!")
             {
                 using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
                 {
@@ -58,7 +58,7 @@ namespace PathfinderPortraitManager
                 }
                 if (_isAnyLoaded == true)
                 {
-                    LoadAllTempImages(_imageFlag);
+                    LoadTempImages(_imageFlag);
                     return;
                 }
                 _isAnyLoaded = false;
@@ -67,8 +67,8 @@ namespace PathfinderPortraitManager
             else
             {
                 _isAnyLoaded = true;
-                SafeCopyAllImages(fullPath, _imageFlag);
-                LoadAllTempImages(_imageFlag);
+                SafeCopyAllImages(path, _imageFlag);
+                LoadTempImages(_imageFlag);
             }
         }
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
@@ -376,7 +376,7 @@ namespace PathfinderPortraitManager
             ButtonToFilePage_Click(sender, e);
             _isAnyLoaded = true;
             SafeCopyAllImages(folderPath, _imageFlag);
-            LoadAllTempImages(_imageFlag);
+            //LoadAllTempImages(_imageFlag);
             if (dr == DialogResult.OK)
             {
                 ListGallery.Items.RemoveByKey(item.Text);

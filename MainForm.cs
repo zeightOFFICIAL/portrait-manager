@@ -85,15 +85,14 @@ namespace PathfinderPortraitManager
             CenterToScreen();
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+            FontsAndTextsLoad(_fontCollection);
+            UpdateColorScheme();
 
             PicPortraitTemp.AllowDrop = true;
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            FontsAndTextsLoad(_fontCollection);
-            UpdateColorScheme();
 
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutURLDialog);
@@ -112,16 +111,17 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            _imageFlag = 0;
-            ButtonToAdvancedPage.Visible = true;
-            ButtonToAdvancedPage.Enabled = true;
-            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
-            SafeCopyAllImages("!DEFAULT!");
-            LoadAllTempImages(_imageFlag);
             _isAnyLoaded = false;
+            _imageFlag = 0;
+            ButtonToAdvanced.Visible = true;
+            ButtonToAdvanced.Enabled = true;
+            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            SafeCopyAllImages("!DEFAULT!", 100);
+            LoadTempImages(100);
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutFilePage);
+            RootFunctions.LayoutEnable(LayoutFilePage);            
             ResizeVisibleImagesToWindow();
+
             if (Properties.UseStamps.Default.isFirstPortrait == true)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
@@ -159,11 +159,12 @@ namespace PathfinderPortraitManager
             else
             {
                 ParentLayoutsDisable();
+                //LoadAllTempImages(_imageFlag); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 RootFunctions.LayoutEnable(LayoutScalePage);
                 
                 ResizeVisibleImagesToWindow();
             }
-            LoadAllTempImages(_imageFlag);
+            LoadTempImages(_imageFlag);
             if (Properties.UseStamps.Default.isFirstScaling)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
@@ -177,10 +178,10 @@ namespace PathfinderPortraitManager
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
             _imageFlag = 0;
-            ButtonToAdvancedPage.Visible = true;
-            ButtonToAdvancedPage.Enabled = true;
-            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
-            LoadAllTempImages(_imageFlag);
+            ButtonToAdvanced.Visible = true;
+            ButtonToAdvanced.Enabled = true;
+            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            //LoadAllTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
@@ -303,12 +304,12 @@ namespace PathfinderPortraitManager
             _imageFlag++;
             if (_imageFlag == 1)
             {
-                ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED2;
+                ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED2;
             }
             else
             {
-                ButtonToAdvancedPage.Visible = false;
-                ButtonToAdvancedPage.Enabled = false;
+                ButtonToAdvanced.Visible = false;
+                ButtonToAdvanced.Enabled = false;
             }
         }
     }

@@ -55,15 +55,15 @@ namespace PathfinderPortraitManager
         {
             if (LayoutScalePage.Enabled == true)
             {
-                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                {
-                    ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
-                    ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
+                using (Image img = new Bitmap(TEMP_SMALL_APPEND))
                     ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
-                    RootFunctions.HideScrollBar(PanelPortraitLrg);
-                    RootFunctions.HideScrollBar(PanelPortraitMed);
-                    RootFunctions.HideScrollBar(PanelPortraitSml);
-                }
+                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+                    ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
+                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+                    ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
+                RootFunctions.HideScrollBar(PanelPortraitLrg);
+                RootFunctions.HideScrollBar(PanelPortraitMed);
+                RootFunctions.HideScrollBar(PanelPortraitSml);
             }
             if (LayoutFilePage.Enabled == true)
             {
@@ -170,14 +170,17 @@ namespace PathfinderPortraitManager
             }
         }
 
+        private void LoadAllTempImages()
+        {
+            LoadTempImages(200);
+        }
         private void LoadTempImages(ushort flag)
         {
             if (flag == 0)
             {
-                ClearTempImages();
                 using (Image img = new Bitmap(TEMP_LARGE_APPEND))
                 {
-                    PicPortraitTemp.Image = new Bitmap(img);
+                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
                 }
             }
             else if (flag == 1)
@@ -196,24 +199,23 @@ namespace PathfinderPortraitManager
             }
             else if (flag == 100)
             {
-                ClearTempImages();
                 using (Image img = new Bitmap(TEMP_LARGE_APPEND))
                 {
-                    PicPortraitTemp.Image = new Bitmap(img);
+                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
                 }
             }
             else if (flag == 200)
             {
                 using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitSml, img);
+                    ImageControl.Utils.Replace(PicPortraitSml, new Bitmap(img));
                 using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitMed, img);
+                    ImageControl.Utils.Replace(PicPortraitMed, new Bitmap(img));
                 using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitLrg, img);
+                    ImageControl.Utils.Replace(PicPortraitLrg, new Bitmap(img));
                 ArrangeAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ArrangeAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
                 ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                ResizeVisibleImagesToWindow();
+                //ResizeVisibleImagesToWindow();
             }
         }
         public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
@@ -417,7 +419,7 @@ namespace PathfinderPortraitManager
                     SystemControl.FileControl.FileDelete("", TEMP_SMALL_APPEND);
                     SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);
                 }
-                else if (flag == 100)
+                else if (flag == 100 || flag == 0)
                 {
                     SystemControl.FileControl.TempImagesClear();
                     SystemControl.FileControl.TempImagesCreate(path, TEMP_APPENDS, placeholder, flag);

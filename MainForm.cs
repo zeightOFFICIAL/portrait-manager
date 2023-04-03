@@ -135,7 +135,6 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
-            _imageFlag = 5;
             if (!_isAnyLoaded)
             {
                 DialogResult dr;
@@ -147,8 +146,8 @@ namespace PathfinderPortraitManager
                 if (dr == DialogResult.OK)
                 {
                     ParentLayoutsDisable();
+                    LoadAllTempImages();
                     RootFunctions.LayoutEnable(LayoutScalePage);
-                    
                     ResizeVisibleImagesToWindow();
                 }
                 else
@@ -159,12 +158,11 @@ namespace PathfinderPortraitManager
             else
             {
                 ParentLayoutsDisable();
-                //LoadAllTempImages(_imageFlag); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                LoadAllTempImages();
                 RootFunctions.LayoutEnable(LayoutScalePage);
-                
                 ResizeVisibleImagesToWindow();
             }
-            LoadTempImages(_imageFlag);
+
             if (Properties.UseStamps.Default.isFirstScaling)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))

@@ -79,9 +79,9 @@ namespace SystemControl
                 }
             }
         }
-        public static void CreateTempImages(string newPath, string[] tempPaths, Image defaultImg, ushort flag = 0)
+        public static void CreateTempImages(string newPath, string[] temp_DoNotDeleteWhileRunningPaths, Image defaultImg, ushort flag = 0)
         {
-            if (!CreateDirectory("temp/"))
+            if (!CreateDirectory("temp_DoNotDeleteWhileRunning/"))
             {
                 return;
             }
@@ -91,17 +91,17 @@ namespace SystemControl
                 {
                     if (flag == 1)
                     {
-                        img.Save(tempPaths[1]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
                     }
                     else if (flag == 2)
                     {
-                        img.Save(tempPaths[2]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
                     }
                     else if (flag == 100 || flag == 0)
                     {
-                        img.Save(tempPaths[0]);
-                        img.Save(tempPaths[1]);
-                        img.Save(tempPaths[2]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[0]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
                     }
                 }
             }
@@ -111,24 +111,24 @@ namespace SystemControl
                 {
                     if (flag == 1)
                     {
-                        img.Save(tempPaths[1]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
                     }
                     else if (flag == 2)
                     {
-                        img.Save(tempPaths[2]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
                     }
                     else if(flag == 100 || flag == 0)
                     {
-                        img.Save(tempPaths[0]);
-                        img.Save(tempPaths[1]);
-                        img.Save(tempPaths[2]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[0]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
+                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
                     }
                 }
             }
         }
         public static void ClearTempImages()
         {
-            DeleteDirectoryRecursive("temp/");
+            DeleteDirectoryRecursive("temp_DoNotDeleteWhileRunning/");
         }
         public static bool DeleteFile(string path)
         {

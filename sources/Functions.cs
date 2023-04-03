@@ -30,67 +30,63 @@ namespace PathfinderPortraitManager
             RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
             RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
-        private void ClearPrimeImages(Image replaceTo)
+        public void ClearPrimeImages(Image replacement)
         {
-            ImageControl.Utils.Replace(PicPortraitTemp, replaceTo);
-            ImageControl.Utils.Replace(PicPortraitLrg, replaceTo);
-            ImageControl.Utils.Replace(PicPortraitMed, replaceTo);
-            ImageControl.Utils.Replace(PicPortraitSml, replaceTo);
+            ImageControl.Utils.Replace(PicPortraitTemp, replacement);
+            ImageControl.Utils.Replace(PicPortraitLrg, replacement);
+            ImageControl.Utils.Replace(PicPortraitMed, replacement);
+            ImageControl.Utils.Replace(PicPortraitSml, replacement);
         }
-        private void DisposePrimeImages()
+        public void DisposePrimeImages()
         {
             ImageControl.Utils.Dispose(PicPortraitTemp);
             ImageControl.Utils.Dispose(PicPortraitLrg);
             ImageControl.Utils.Dispose(PicPortraitMed);
             ImageControl.Utils.Dispose(PicPortraitSml);
         }
-        private void ResizeImageAsWindow(PictureBox pictureBox, Image image, Panel panel)
+        public void ResizeImageToParent(Control control, Image image, Control parent)
         {
-            float aspectRatio = pictureBox.Height * 1.0f / pictureBox.Width * 1.0f;
-            Tuple<int, int> newSizeTuple = MapNewWidthHeight(panel, aspectRatio);
-            pictureBox.Image = ImageControl.Direct.Resize(image, newSizeTuple.Item1, newSizeTuple.Item2);
-            ArrangeAutoScroll(panel, newSizeTuple.Item1, newSizeTuple.Item2);
+            float aspect = control.Height * 1.0f / control.Width * 1.0f;
+            Tuple<int, int> newSize = MapNewSize(parent, aspect);
+            if (control is PictureBox pictureBox)
+            {
+                pictureBox.Image = ImageControl.Direct.Resize(image, newSize.Item1, newSize.Item2);
+            }
+            ArrangeAutoScroll(parent, newSize.Item1, newSize.Item2);
         }
-        private void ResizeVisibleImagesToWindow()
+        public void ResizeVisibleImagesToWindow()
         {
             if (LayoutScalePage.Enabled == true)
             {
                 using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                    ResizeImageAsWindow(PicPortraitSml, img, PanelPortraitSml);
+                    ResizeImageToParent(PicPortraitSml, img, PanelPortraitSml);
                 using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                    ResizeImageAsWindow(PicPortraitMed, img, PanelPortraitMed);
+                    ResizeImageToParent(PicPortraitMed, img, PanelPortraitMed);
                 using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                    ResizeImageAsWindow(PicPortraitLrg, img, PanelPortraitLrg);
-                RootFunctions.HideScrollBar(PanelPortraitLrg);
-                RootFunctions.HideScrollBar(PanelPortraitMed);
-                RootFunctions.HideScrollBar(PanelPortraitSml);
+                    ResizeImageToParent(PicPortraitLrg, img, PanelPortraitLrg);
             }
             if (LayoutFilePage.Enabled == true)
             {
                 using (Image img = new Bitmap(PicPortraitTemp.Image))
-                {
-                    ResizeImageAsWindow(PicPortraitTemp, img, PanelPortraitTemp);
-                    ArrangeAutoScroll(PanelPortraitTemp, 0, 0);
-                    RootFunctions.HideScrollBar(PanelPortraitTemp);
-                }
+                    ResizeImageToParent(PicPortraitTemp, img, PanelPortraitTemp);
             }
         }
-        private static Tuple<int, int> MapNewWidthHeight(Control parent, float aspectRatio)
+        public static Tuple<int, int> MapNewSize(Control parent, float aspect)
         {
-            int srcWidth = parent.Width,
-                srcHeight = parent.Height,
-                dstWidth,
-                dstHeight;
-            dstHeight = srcHeight;
-            dstWidth = (int)(srcHeight * 1.0f / aspectRatio * 1.0f);
-            if (dstWidth < parent.Width)
+            int inWidth = parent.Width,
+                inHeight = parent.Height,
+                outWidth,
+                outHeight;
+            outHeight = inHeight;
+            outWidth = (int)(inHeight * 1.0f / aspect * 1.0f);
+            if (outWidth < parent.Width)
             {
-                dstWidth = srcWidth;
-                dstHeight = (int)(srcWidth * 1.0f / (1.0f / aspectRatio * 1.0f));
+                outWidth = inWidth;
+                outHeight = (int)(inWidth * 1.0f / (1.0f / aspect * 1.0f));
             }
-            return Tuple.Create(dstWidth, dstHeight);
+            return Tuple.Create(outWidth, outHeight);
         }
-        private void ParentLayoutsDisable()
+        public void ParentLayoutsDisable()
         {
             RootFunctions.LayoutDisable(LayoutFilePage);
             RootFunctions.LayoutDisable(LayoutMainPage);
@@ -99,7 +95,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutGallery);
             RootFunctions.LayoutDisable(LayoutSettingsPage);
         }
-        private void ParentLayoutsSetDockFill()
+        public void ParentLayoutsSetDockFill()
         {
             foreach (Control control in Controls)
             {
@@ -169,40 +165,26 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-
-        private void LoadAllTempImages()
+        public void LoadAllTempImages()
         {
             LoadTempImages(200);
         }
-        private void LoadTempImages(ushort flag)
+        public void LoadTempImages(ushort flag)
         {
-            if (flag == 0)
+            if (flag == 0 || flag == 100)
             {
                 using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                {
                     ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-                }
             }
             else if (flag == 1)
             {
                 using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                {
                     ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-                }
             }
             else if (flag == 2)
             {
                 using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                {
                     ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-                }
-            }
-            else if (flag == 100)
-            {
-                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                {
-                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-                }
             }
             else if (flag == 200)
             {
@@ -217,17 +199,20 @@ namespace PathfinderPortraitManager
                 ArrangeAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
             }
         }
-        public static void ArrangeAutoScroll(Panel panel, int xMax, int yMax)
+        public static void ArrangeAutoScroll(Control control, int xMax, int yMax)
         {
-            panel.AutoScroll = false;
-            panel.VerticalScroll.Minimum = 0;
-            panel.HorizontalScroll.Minimum = 0;
-            panel.VerticalScroll.Maximum = xMax;
-            panel.HorizontalScroll.Maximum = yMax;
-            panel.VerticalScroll.Visible = true;
-            panel.HorizontalScroll.Visible = true;
+            if (control is Panel panel)
+            {
+                panel.AutoScroll = false;
+                panel.VerticalScroll.Minimum = 0;
+                panel.HorizontalScroll.Minimum = 0;
+                panel.VerticalScroll.Maximum = xMax;
+                panel.HorizontalScroll.Maximum = yMax;
+                panel.VerticalScroll.Visible = true;
+                panel.HorizontalScroll.Visible = true;
+            }
         }
-        public static bool CheckExistence(string path)
+        public static bool CheckPortraitExistence(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(path))
                 if (SystemControl.FileControl.Readonly.FileExist(path + LARGE_APPEND) &&
@@ -246,22 +231,21 @@ namespace PathfinderPortraitManager
         }
         public void ExploreDirectory(string path)
         {
-            string nameList;
-            if (CheckExistence(path))
+            if (CheckPortraitExistence(path))
             {
                 if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
                     SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
                     SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
-                {
-                    int nameLen = path.Split('\\').Length;
-                    nameList = path.Split('\\')[nameLen - 1];
+                {                    
+                    int pathHops = path.Split('\\').Length;
+                    string folderName = path.Split('\\')[pathHops - 1];
                     using (Image img = new Bitmap(path + "\\Fulllength.png"))
                     {
                         ImgListExtract.Images.Add(path, img);
                     }
                     ListViewItem item = new ListViewItem
                     {
-                        Text = nameList,
+                        Text = folderName,
                         ImageIndex = ListExtract.Items.Count
                     };
                     ListExtract.Items.Add(item);
@@ -397,31 +381,31 @@ namespace PathfinderPortraitManager
                 UpdateObjectColoring(subCtrl, a, b);
             }
         }
-        public void ClearTempImages()
+        public void ReplacePrimeImagesToDefault()
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {
                 ClearPrimeImages(placeholder);
             }
         }
-        public void SafeCopyAllImages(string path, ushort flag)
+        public static void SafeCopyAllImages(string newImagePath, ushort flag)
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {
                 if (flag == 1)
                 {
                     SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
-                    SystemControl.FileControl.CreateTempImages(path, TEMP_APPENDS, placeholder, flag);
+                    SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
                 }
                 else if (flag == 2)
                 {
                     SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
-                    SystemControl.FileControl.CreateTempImages(path, TEMP_APPENDS, placeholder, flag);
+                    SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
                 }
                 else if (flag == 100 || flag == 0)
                 {
                     SystemControl.FileControl.ClearTempImages();
-                    SystemControl.FileControl.CreateTempImages(path, TEMP_APPENDS, placeholder, flag);
+                    SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
                 }
             }
         }
@@ -465,32 +449,32 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
-            List<string> nameList = new List<string>();
+            List<string> folderList = new List<string>();
             foreach (string directory in Directory.GetDirectories(fromPath)) {
-                int nameLen = directory.Split('\\').Length;
-                nameList.Add(directory.Split('\\')[nameLen - 1]);
+                int pathHops = directory.Split('\\').Length;
+                folderList.Add(directory.Split('\\')[pathHops - 1]);
                 using (Image img = new Bitmap(directory + "\\Fulllength.png"))
                 {
-                    ImgListGallery.Images.Add(directory.Split('\\')[nameLen - 1], img);
+                    ImgListGallery.Images.Add(directory.Split('\\')[pathHops - 1], img);
                 }
             }
             for (int count = 0; count < ImgListGallery.Images.Count; count++)
             {
                 ListViewItem item = new ListViewItem
                 {
-                    Text = nameList[count],
+                    Text = folderList[count],
                     ImageIndex = count
                 };
                 ListGallery.Items.Add(item);
             }
             return true;
         }
-        public void ClearImageLists(ListView lv, ImageList il)
+        public static void ClearImageLists(ListView listView, ImageList imageList)
         {
-            lv.Clear();
-            il.Images.Clear();
+            listView.Clear();
+            imageList.Images.Clear();
         }
-        private string ParseDragDropFile(DragEventArgs e)
+        public string ParseDragDropFile(DragEventArgs e)
         {
             string[] filesList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string filePath = "!NONE!";
@@ -512,7 +496,7 @@ namespace PathfinderPortraitManager
             }
             return filePath;
         }
-        private void CheckWebResourceAndLoad(string URL)
+        public void CheckWebResourceAndLoad(string URL)
         {
             try
             {
@@ -537,12 +521,13 @@ namespace PathfinderPortraitManager
                         else if (_imageFlag == 100 || _imageFlag == 0)
                         {
                             SystemControl.FileControl.ClearTempImages();
-                            SystemControl.FileControl.CreateDirectory("temp/");
+                            SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning/");
                             webImage.Save(TEMP_MEDIUM_APPEND);
                             webImage.Save(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_LARGE_APPEND);
                         }
-                        LoadTempImages(_imageFlag);                    
+                        LoadTempImages(_imageFlag);
+                        ResizeVisibleImagesToWindow();
                     }
                 }
             }
@@ -554,11 +539,10 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        private bool ValidatePotraitPath(string portraitPath)
+        public static bool ValidatePotraitPath(string portraitPath)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(portraitPath) &&
-                portraitPath.Split('\\').Last() == "Portraits" &&
-                SystemControl.FileControl.Readonly.DirectoryExists(portraitPath.Replace("Portraits", "Saved Games"))) 
+                portraitPath.Split('\\').Last() == "Portraits") 
                 return true;
             return false;
         }

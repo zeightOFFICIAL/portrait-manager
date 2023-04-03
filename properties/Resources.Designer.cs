@@ -39,8 +39,8 @@ namespace PathfinderPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp;
+                    global::System.Resources.ResourceManager temp_DoNotDeleteWhileRunning = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp_DoNotDeleteWhileRunning;
                 }
                 return resourceMan;
             }

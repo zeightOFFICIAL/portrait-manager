@@ -269,14 +269,14 @@ namespace PathfinderPortraitManager
             this.ButtonHintOnFilePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonHintOnFilePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
-            // ButtonToAdvancedPage
+            // ButtonToAdvanced
             // 
             this.ButtonToAdvanced.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonToAdvanced.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToAdvanced.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonToAdvanced.Location = new System.Drawing.Point(3, 240);
-            this.ButtonToAdvanced.Name = "ButtonToAdvancedPage";
+            this.ButtonToAdvanced.Name = "ButtonToAdvanced";
             this.ButtonToAdvanced.Size = new System.Drawing.Size(191, 39);
             this.ButtonToAdvanced.TabIndex = 7;
             this.ButtonToAdvanced.Text = "ToAdvancedPage";

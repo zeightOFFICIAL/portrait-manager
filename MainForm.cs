@@ -42,9 +42,9 @@ namespace PathfinderPortraitManager
             { 'w', Properties.CoreSettings.Default.KINGPath }
         };
 
-        private const string TEMP_LARGE_APPEND = "temp\\FULLDONOTDELETE.png";
-        private const string TEMP_MEDIUM_APPEND = "temp\\MEDIUMDONOTDELETE.png";
-        private const string TEMP_SMALL_APPEND = "temp\\SMALLDONOTDELETE.png";
+        private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL_DoNotDeleteWhileRunning.png";
+        private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM_DoNotDeleteWhileRunning.png";
+        private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL_DoNotDeleteWhileRunning.png";
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
@@ -54,11 +54,11 @@ namespace PathfinderPortraitManager
         private const float SMALL_ASPECT = 1.308108108f;
         
         private static ushort _imageFlag = 0;
-        private Point _mousePosition = new Point();
-        private int _isDragging = 0;
-        private bool _isAnyLoaded = false;
-        private char _gameSelected = Properties.CoreSettings.Default.GameType;
-        private PrivateFontCollection _fontCollection;
+        private static Point _mousePosition = new Point();
+        private static int _isDragging = 0;
+        private static bool _isAnyLoaded = false;
+        private static char _gameSelected = Properties.CoreSettings.Default.GameType;
+        private static PrivateFontCollection _fontCollection;
 
         public MainForm()
         {
@@ -191,7 +191,7 @@ namespace PathfinderPortraitManager
             ButtonToAdvanced.Enabled = true;
             ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
             RootFunctions.LayoutDisable(LayoutFinalPage);
-            ClearTempImages();
+            ReplacePrimeImagesToDefault();
             _isAnyLoaded = false;
             SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
             LoadTempImages(_imageFlag);
@@ -246,7 +246,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
-            ClearTempImages();
+            ReplacePrimeImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
@@ -266,7 +266,7 @@ namespace PathfinderPortraitManager
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutFinalPage);
-            ClearTempImages();
+            ReplacePrimeImagesToDefault();
             _isAnyLoaded = false;
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);

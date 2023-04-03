@@ -38,9 +38,9 @@ namespace PathfinderPortraitManager
             this.ButtonLocalPortraitLoad = new System.Windows.Forms.Button();
             this.ButtonToScalePage = new System.Windows.Forms.Button();
             this.ButtonWebPortraitLoad = new System.Windows.Forms.Button();
-            this.ButtonToMainPage = new System.Windows.Forms.Button();
             this.ButtonHintOnFilePage = new System.Windows.Forms.Button();
             this.ButtonToAdvancedPage = new System.Windows.Forms.Button();
+            this.ButtonToMainPage = new System.Windows.Forms.Button();
             this.LayoutUnnamed5 = new System.Windows.Forms.TableLayoutPanel();
             this.PanelPortraitTemp = new System.Windows.Forms.Panel();
             this.PicPortraitTemp = new System.Windows.Forms.PictureBox();
@@ -182,9 +182,9 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed1.Controls.Add(this.ButtonLocalPortraitLoad, 0, 1);
             this.LayoutUnnamed1.Controls.Add(this.ButtonToScalePage, 0, 4);
             this.LayoutUnnamed1.Controls.Add(this.ButtonWebPortraitLoad, 0, 2);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 0, 5);
             this.LayoutUnnamed1.Controls.Add(this.ButtonHintOnFilePage, 0, 8);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToAdvancedPage, 0, 6);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToAdvancedPage, 0, 5);
+            this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 0, 6);
             this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutUnnamed1.Location = new System.Drawing.Point(481, 3);
             this.LayoutUnnamed1.Name = "LayoutUnnamed1";
@@ -252,22 +252,6 @@ namespace PathfinderPortraitManager
             this.ButtonWebPortraitLoad.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonWebPortraitLoad.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
-            // ButtonToMainPage
-            // 
-            this.ButtonToMainPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToMainPage.Location = new System.Drawing.Point(3, 240);
-            this.ButtonToMainPage.Name = "ButtonToMainPage";
-            this.ButtonToMainPage.Size = new System.Drawing.Size(191, 39);
-            this.ButtonToMainPage.TabIndex = 0;
-            this.ButtonToMainPage.Text = "ToMainPage";
-            this.ButtonToMainPage.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage.Click += new System.EventHandler(this.ButtonToMainPage_Click);
-            this.ButtonToMainPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToMainPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
             // ButtonHintOnFilePage
             // 
             this.ButtonHintOnFilePage.Cursor = System.Windows.Forms.Cursors.Help;
@@ -291,14 +275,31 @@ namespace PathfinderPortraitManager
             this.ButtonToAdvancedPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToAdvancedPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToAdvancedPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToAdvancedPage.Location = new System.Drawing.Point(3, 285);
+            this.ButtonToAdvancedPage.Location = new System.Drawing.Point(3, 240);
             this.ButtonToAdvancedPage.Name = "ButtonToAdvancedPage";
             this.ButtonToAdvancedPage.Size = new System.Drawing.Size(191, 39);
             this.ButtonToAdvancedPage.TabIndex = 7;
             this.ButtonToAdvancedPage.Text = "ToAdvancedPage";
             this.ButtonToAdvancedPage.UseVisualStyleBackColor = true;
+            this.ButtonToAdvancedPage.Click += new System.EventHandler(this.ButtonToAdvancedPage_Click);
             this.ButtonToAdvancedPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonToAdvancedPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            // 
+            // ButtonToMainPage
+            // 
+            this.ButtonToMainPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonToMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToMainPage.ForeColor = System.Drawing.Color.Goldenrod;
+            this.ButtonToMainPage.Location = new System.Drawing.Point(3, 285);
+            this.ButtonToMainPage.Name = "ButtonToMainPage";
+            this.ButtonToMainPage.Size = new System.Drawing.Size(191, 39);
+            this.ButtonToMainPage.TabIndex = 0;
+            this.ButtonToMainPage.Text = "ToMainPage";
+            this.ButtonToMainPage.UseVisualStyleBackColor = true;
+            this.ButtonToMainPage.Click += new System.EventHandler(this.ButtonToMainPage_Click);
+            this.ButtonToMainPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToMainPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LayoutUnnamed5
             // 

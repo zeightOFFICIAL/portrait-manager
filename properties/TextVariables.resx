@@ -120,6 +120,9 @@
   <data name="BUTTON_ADVANCED" xml:space="preserve">
     <value>Change medium</value>
   </data>
+  <data name="BUTTON_ADVANCED2" xml:space="preserve">
+    <value>Change small</value>
+  </data>
   <data name="BUTTON_APPLY" xml:space="preserve">
     <value>Apply</value>
   </data>

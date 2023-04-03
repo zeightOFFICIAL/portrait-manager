@@ -51,30 +51,67 @@ namespace SystemControl
             openFileDialog.Dispose();
             return fullPath;
         }
-        public static void TempImagesCreate(string newImagePath, string tempPathFull, string tempPathPoor, Image defaultImg)
+        public static void TempImagesCreate(string newPath, string[] tempPaths, Image defaultImg, ushort flag = 0)
         {
-            if (!DirectoryExists("temp/"))
-                DirectoryCreate("temp/");
-            if (newImagePath == "!DEFAULT!" || newImagePath == "!NONESELECTED!" || newImagePath == "!NONE!")
+            DirectoryCreate("temp/");
+            if (newPath == "!DEFAULT!" || newPath == "!NONESELECTED!" || newPath == "!NONE!")
             {
                 using (Image img = new Bitmap(defaultImg))
                 {
-                    img.Save(tempPathFull);
-                    img.Save(tempPathPoor);
+                    if (flag == 1)
+                    {
+                        img.Save(tempPaths[1]);
+                    }
+                    else if (flag == 2)
+                    {
+                        img.Save(tempPaths[2]);
+                    }
+                    else
+                    {
+                        img.Save(tempPaths[0]);
+                        img.Save(tempPaths[1]);
+                        img.Save(tempPaths[2]);
+                    }
                 }
             }
             else
             {
-                using (Image img = new Bitmap(newImagePath))
+                using (Image img = new Bitmap(newPath))
                 {
-                    img.Save(tempPathFull);
-                    ImageControl.Wraps.CreatePoorImage(img, tempPathPoor);
+                    if (flag == 1)
+                    {
+                        img.Save(tempPaths[1]);
+                    }
+                    else if (flag == 2)
+                    {
+                        img.Save(tempPaths[2]);
+                    }
+                    else
+                    {
+                        img.Save(tempPaths[0]);
+                        img.Save(tempPaths[1]);
+                        img.Save(tempPaths[2]);
+                    }
                 }
             }
         }
         public static void TempImagesClear()
         {
             DirectoryDeleteRecursive("temp/");
+        }
+        public static void FileDelete(string path, string filename)
+        {
+            try
+            {
+                if (FileExist(path, filename))
+                {
+                    File.Delete(path + filename);
+                }
+            }
+            catch
+            {
+                return;
+            }
         }
         public static void DirectoryDeleteRecursive(string path)
         {

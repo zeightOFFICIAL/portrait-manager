@@ -42,18 +42,18 @@ namespace PathfinderPortraitManager
             { 'w', Properties.CoreSettings.Default.KINGPath }
         };
 
-        private const string TEMPFULL_APPEND = "temp\\FULLRESOLUTIONDONOTDELETE.png";
-        private const string TEMPPOOR_APPEND = "temp\\POORRESOLUTIONDONOTDELETE.png";
         private const string TEMP_LARGE_APPEND = "temp\\FULLDONOTDELETE.png";
         private const string TEMP_MEDIUM_APPEND = "temp\\MEDIUMDONOTDELETE.png";
         private const string TEMP_SMALL_APPEND = "temp\\SMALLDONOTDELETE.png";
+        private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
         private const float LARGE_ASPECT = 1.479768786f;
         private const float MEDIUM_ASPECT = 1.309090909f;
         private const float SMALL_ASPECT = 1.308108108f;
-
+        
+        private static ushort _imageFlag = 0;
         private Point _mousePosition = new Point();
         private int _isDragging = 0;
         private bool _isAnyLoaded = false;
@@ -112,8 +112,12 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
+            _imageFlag = 0;
+            ButtonToAdvancedPage.Visible = true;
+            ButtonToAdvancedPage.Enabled = true;
+            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
             SafeCopyAllImages("!DEFAULT!");
-            LoadAllTempImages();
+            LoadAllTempImages(_imageFlag);
             _isAnyLoaded = false;
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
@@ -131,6 +135,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
+            _imageFlag = 5;
             if (!_isAnyLoaded)
             {
                 DialogResult dr;
@@ -143,7 +148,7 @@ namespace PathfinderPortraitManager
                 {
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutScalePage);
-                    LoadAllTempImages();
+                    
                     ResizeVisibleImagesToWindow();
                 }
                 else
@@ -155,9 +160,10 @@ namespace PathfinderPortraitManager
             {
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutScalePage);
-                LoadAllTempImages();
+                
                 ResizeVisibleImagesToWindow();
             }
+            LoadAllTempImages(_imageFlag);
             if (Properties.UseStamps.Default.isFirstScaling)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
@@ -170,7 +176,11 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
-            LoadAllTempImages();
+            _imageFlag = 0;
+            ButtonToAdvancedPage.Visible = true;
+            ButtonToAdvancedPage.Enabled = true;
+            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            LoadAllTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
@@ -287,6 +297,19 @@ namespace PathfinderPortraitManager
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
+        }
+        private void ButtonToAdvancedPage_Click(object sender, EventArgs e)
+        {
+            _imageFlag++;
+            if (_imageFlag == 1)
+            {
+                ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED2;
+            }
+            else
+            {
+                ButtonToAdvancedPage.Visible = false;
+                ButtonToAdvancedPage.Enabled = false;
+            }
         }
     }
 }

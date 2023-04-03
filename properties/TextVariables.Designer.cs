@@ -70,6 +70,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change small.
+        /// </summary>
+        internal static string BUTTON_ADVANCED2 {
+            get {
+                return ResourceManager.GetString("BUTTON_ADVANCED2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         internal static string BUTTON_APPLY {

@@ -69,11 +69,15 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
+            _imageFlag = 0;
+            ButtonToAdvancedPage.Visible = true;
+            ButtonToAdvancedPage.Enabled = true;
+            ButtonToAdvancedPage.Text = Properties.TextVariables.BUTTON_ADVANCED;
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ClearTempImages();
             _isAnyLoaded = false;
-            SystemControl.FileControl.TempImagesCreate("!DEFAULT!", TEMPFULL_APPEND, TEMPPOOR_APPEND, GAME_TYPES[_gameSelected].PlaceholderImage);
-            LoadAllTempImages();
+            SystemControl.FileControl.TempImagesCreate("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
+            LoadAllTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();

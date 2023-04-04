@@ -253,13 +253,13 @@
     <value>Large</value>
   </data>
   <data name="LABEL_LARGEIMG2" xml:space="preserve">
-    <value>Character</value>
+    <value>Character portrait</value>
   </data>
   <data name="LABEL_MEDIUMIMG" xml:space="preserve">
     <value>Medium</value>
   </data>
   <data name="LABEL_MEDIUMIMG2" xml:space="preserve">
-    <value>Skills</value>
+    <value>Skills portrait</value>
   </data>
   <data name="LABEL_PATH" xml:space="preserve">
     <value>Path to the game portraits folder</value>
@@ -271,7 +271,7 @@
     <value>Small</value>
   </data>
   <data name="LABEL_SMALLIMG2" xml:space="preserve">
-    <value>Gameplay</value>
+    <value>Gameplay portrait</value>
   </data>
   <data name="LABEL_URLDIALOG" xml:space="preserve">
     <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>

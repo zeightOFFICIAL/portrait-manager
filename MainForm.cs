@@ -111,6 +111,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
+            _tunneledPath = "!NONE!";
             _isAnyLoaded = false;
             _imageFlag = 0;
             ButtonToAdvanced.Visible = true;
@@ -176,6 +177,7 @@ namespace PathfinderPortraitManager
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
             _imageFlag = 0;
+            _tunneledPath = "!NONE!";
             ButtonToAdvanced.Visible = true;
             ButtonToAdvanced.Enabled = true;
             ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
@@ -186,7 +188,10 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
+            ButtonToFilePage3.BackColor = Color.Black;
+            ButtonToFilePage3.ForeColor = Color.White;
             _imageFlag = 0;
+            _tunneledPath = "!NONE!";
             ButtonToAdvanced.Visible = true;
             ButtonToAdvanced.Enabled = true;
             ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
@@ -229,7 +234,7 @@ namespace PathfinderPortraitManager
         {
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutGallery);
-            if (!LoadGallery(GAME_TYPES[_gameSelected].DefaultDirectory))
+            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             {
                 ButtonToMainPage3_Click(sender, e);
                 return;
@@ -265,6 +270,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
+            ButtonToMainPage4.BackColor = Color.Black;
+            ButtonToMainPage4.ForeColor = Color.White;
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
             _isAnyLoaded = false;

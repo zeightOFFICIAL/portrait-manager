@@ -39,8 +39,8 @@ namespace PathfinderPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp_DoNotDeleteWhileRunning = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
-                    resourceMan = temp_DoNotDeleteWhileRunning;
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
+                    resourceMan = temp;
                 }
                 return resourceMan;
             }
@@ -466,7 +466,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Character.
+        ///   Looks up a localized string similar to Character portrait.
         /// </summary>
         internal static string LABEL_LARGEIMG2 {
             get {
@@ -484,7 +484,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skills.
+        ///   Looks up a localized string similar to Skills portrait.
         /// </summary>
         internal static string LABEL_MEDIUMIMG2 {
             get {
@@ -520,7 +520,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gameplay.
+        ///   Looks up a localized string similar to Gameplay portrait.
         /// </summary>
         internal static string LABEL_SMALLIMG2 {
             get {

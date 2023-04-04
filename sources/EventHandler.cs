@@ -17,6 +17,7 @@ namespace PathfinderPortraitManager
     public partial class MainForm : Form
     {
         private string _extractFolderPath = "!NONE!";
+        private string _tunneledPath = "!NONE!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
@@ -220,30 +221,32 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutScalePage);
             string path = "";
             bool placeable = false;
-            uint calling = 1000;
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(GAME_TYPES[_gameSelected].DefaultDirectory))
+            uint calling = 0;
+            if (_tunneledPath != "!NONE!")
             {
-                RootFunctions.LayoutEnable(LayoutFinalPage);
-                LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
-                LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
-                ButtonToMainPageAndFolder.Enabled = false;
-                return;
+                GeneratePortraits(_tunneledPath);
+                path = _tunneledPath;
             }
-            while (!placeable)
+            else
             {
-                path = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + Convert.ToString(calling);
-                if (!Directory.Exists(path))
+                if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
                 {
-                    Directory.CreateDirectory(path);
-                    ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMP_LARGE_APPEND,
-                                                 path + LARGE_APPEND, LARGE_ASPECT, 692, 1024);
-                    ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMP_MEDIUM_APPEND,
-                                                 path + MEDIUM_APPEND, MEDIUM_ASPECT, 330, 432);
-                    ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
-                                                 path + SMALL_APPEND, SMALL_ASPECT, 185, 242);
-                    placeable = true;
+                    RootFunctions.LayoutEnable(LayoutFinalPage);
+                    LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
+                    LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
+                    ButtonToMainPageAndFolder.Enabled = false;
+                    return;
                 }
-                calling++;
+                while (!placeable)
+                {
+                    path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(calling);
+                    if (!Directory.Exists(path))
+                    {
+                        GeneratePortraits(path);
+                        placeable = true;
+                    }
+                    calling++;
+                }
             }
             if (CheckPortraitExistence(path))
             {
@@ -347,7 +350,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(GAME_TYPES[_gameSelected].DefaultDirectory);
+            System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
         }
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
         {
@@ -371,25 +374,28 @@ namespace PathfinderPortraitManager
                 }
             }
             ListViewItem item = ListGallery.SelectedItems[0];
-            string folderPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + "\\Fulllength.png";
+            string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
             DialogResult dr;
             using (forms.MyInquiryDialog Inquiry = new forms.MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
                 Inquiry.ShowDialog();
                 dr = Inquiry.DialogResult;
             }
+            _imageFlag = 0;
             ButtonToMainPage3_Click(sender, e);
             ButtonToFilePage_Click(sender, e);
-            _isAnyLoaded = true;
-            SafeCopyAllImages(folderPath, _imageFlag);
-            //LoadAllTempImages(_imageFlag);
+            SafeCopyAllImages(path, _imageFlag);
+            LoadTempImages(_imageFlag);
             if (dr == DialogResult.OK)
             {
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
-                SystemControl.FileControl.DeleteDirectoryRecursive(GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text);
+                SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
+                _tunneledPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                _isAnyLoaded = true;
                 item.Remove();
             }
+            ResizeVisibleImagesToWindow();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
@@ -417,10 +423,10 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {
-                string folderPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + "\\";
+                string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + "\\";
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 item.Remove();
-                SystemControl.FileControl.DeleteDirectoryRecursive(folderPath);
+                SystemControl.FileControl.DeleteDirectoryRecursive(path);
             }
             ListGallery.Clear();
             for (int count = 0; count < ImgListGallery.Images.Count; count++)
@@ -447,7 +453,7 @@ namespace PathfinderPortraitManager
                 ClearImageLists(ListExtract, ImgListExtract);
             }
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
             if (SystemControl.FileControl.Readonly.DirectoryExists(defDir))
             {
                 dialog.SelectedPath = defDir;
@@ -489,8 +495,8 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.Items)
             {
-                string normalPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text;
-                string safePath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.CreateDirectory(normalPath);
@@ -542,8 +548,8 @@ namespace PathfinderPortraitManager
             }
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                string normalPath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text;
-                string safePath = GAME_TYPES[_gameSelected].DefaultDirectory + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.CreateDirectory(normalPath);
@@ -583,7 +589,7 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
-            System.Diagnostics.Process.Start(GAME_TYPES[_gameSelected].DefaultDirectory);
+            System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
             System.Diagnostics.Process.Start(_extractFolderPath);
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
@@ -643,7 +649,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
-            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
+            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
         }
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
         {
@@ -778,6 +784,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
         {
+            ButtonToMainPageAndFolder.BackColor = Color.Black;
+            ButtonToMainPageAndFolder.ForeColor = Color.White;
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
             _isAnyLoaded = false;

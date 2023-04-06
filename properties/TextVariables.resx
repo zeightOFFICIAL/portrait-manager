@@ -195,6 +195,9 @@
   <data name="BUTTON_SELECTPATH" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="BUTTON_SUCESS" xml:space="preserve">
+    <value>Sucess</value>
+  </data>
   <data name="BUTTON_TOCREATE" xml:space="preserve">
     <value>Create</value>
   </data>

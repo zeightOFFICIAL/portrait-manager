@@ -37,6 +37,7 @@ namespace PathfinderPortraitManager
             else
             {
                 _isAnyLoaded = true;
+                GenerateImageFlagString(_imageFlag);
                 SafeCopyAllImages(path, _imageFlag);
                 LoadTempImages(_imageFlag);
                 ResizeVisibleImagesToWindow();
@@ -75,6 +76,7 @@ namespace PathfinderPortraitManager
             }
             else
             {
+                GenerateImageFlagString(_imageFlag);
                 _isAnyLoaded = true;
                 SafeCopyAllImages(path, _imageFlag);
                 LoadTempImages(_imageFlag);
@@ -657,22 +659,24 @@ namespace PathfinderPortraitManager
             ButtonValidatePath.BackColor = Color.Black;
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
-            ButtonOpenPath.BackColor = Color.Black;
-            ButtonOpenPath.ForeColor = Color.White;
-            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
-            ButtonOpenPath.Enabled = true;
+            ButtonApplyChange.Text = Properties.TextVariables.BUTTON_APPLY;
+            ButtonApplyChange.BackColor = Color.Black;
+            ButtonApplyChange.ForeColor = Color.White;
+            ButtonApplyChange.Enabled = true;
         }
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
             if (ValidatePotraitPath(TextBoxFullPath.Text)) 
             {
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
+                ButtonValidatePath.ForeColor = Color.White;
                 ButtonValidatePath.BackColor = Color.LimeGreen;
                 ButtonValidatePath.Enabled = false;
             }
             else
             {
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_NO;
+                ButtonValidatePath.ForeColor = Color.White;
                 ButtonValidatePath.BackColor = Color.Red;
                 ButtonValidatePath.Enabled = false;
             }
@@ -689,21 +693,6 @@ namespace PathfinderPortraitManager
             {
                 string selectedFolder = dialog.SelectedPath;
                 TextBoxFullPath.Text = selectedFolder;
-            }
-        }
-        private void ButtonOpenPath_Click(object sender, EventArgs e)
-        {
-            ButtonValidatePath_Click(sender, e);
-            try
-            {
-                System.Diagnostics.Process.Start(TextBoxFullPath.Text);
-            }
-            catch
-            {
-                ButtonOpenPath.BackColor = Color.Red;
-                ButtonOpenPath.Text = Properties.TextVariables.BUTTON_VALIDATE;
-                ButtonOpenPath.Enabled = false;
-                return;
             }
         }
         private void ButtonGameType_Click(object sender, EventArgs e)
@@ -743,6 +732,7 @@ namespace PathfinderPortraitManager
                 CheckWebResourceAndLoad(urlString);
                 ResizeVisibleImagesToWindow();
                 TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
+                GenerateImageFlagString(_imageFlag);
             }
             catch
             {
@@ -793,6 +783,22 @@ namespace PathfinderPortraitManager
             System.Diagnostics.Process.Start(LabelDirLoc.Text);
             RootFunctions.LayoutEnable(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
+        }
+        private void ButtonNextImageType_Click(object sender, EventArgs e)
+        {
+            _imageFlag++;
+            if (_imageFlag == 1)
+            {
+                ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED2;
+            }
+            else
+            {
+                ButtonNextImageType.Visible = false;
+                ButtonNextImageType.Enabled = false;
+            }
+            GenerateImageFlagString(_imageFlag);
+            LoadTempImages(_imageFlag);
+            ResizeVisibleImagesToWindow();
         }
     }
 }

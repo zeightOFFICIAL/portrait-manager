@@ -281,16 +281,14 @@ namespace PathfinderPortraitManager
             LabelSelectedPath.Text = Properties.TextVariables.LABEL_PATH;
             ButtonValidatePath.Font = _bebas_neue16;
             ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
-            ButtonOpenPath.Font = _bebas_neue16;
-            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
-            ButtonRestorePath.Font = _bebas_neue16;
-            ButtonRestorePath.Text = Properties.TextVariables.BUTTON_RESTORE;
             ButtonSelectPath.Font = _bebas_neue16;
             ButtonSelectPath.Text = Properties.TextVariables.BUTTON_SELECTPATH;
             ButtonToMainPage5.Font = _bebas_neue20;
             ButtonToMainPage5.Text = Properties.TextVariables.BUTTON_BACK;
             LabelSettings.Font = _bebas_neue16;
             LabelSettings.Text = Properties.TextVariables.LABEL_SETTINGS;
+            ButtonApplyChange.Font = _bebas_neue16;
+            ButtonApplyChange.Text = Properties.TextVariables.BUTTON_APPLY;
 
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
             ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
@@ -300,8 +298,8 @@ namespace PathfinderPortraitManager
             ButtonToMainPage.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonToScalePage.Font = _bebas_neue20;
             ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
-            ButtonToAdvanced.Font = _bebas_neue20;
-            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            ButtonNextImageType.Font = _bebas_neue20;
+            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
             ButtonHintOnFilePage.Font = _bebas_neue20;
             ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
 
@@ -555,6 +553,25 @@ namespace PathfinderPortraitManager
                                          path + MEDIUM_APPEND, MEDIUM_ASPECT, 330, 432);
             ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
                                          path + SMALL_APPEND, SMALL_ASPECT, 185, 242);
+        }
+        public void GenerateImageFlagString(ushort flag = 0)
+        {
+            if (flag == 0)
+            {
+                LabelImageFlag.Text = "◼◼◼";
+            }
+            else if (flag == 1)
+            {
+                LabelImageFlag.Text = "◼◧◻";
+            }
+            else if (flag == 2)
+            {
+                LabelImageFlag.Text = "◼◼◧";
+            }
+            else if (flag == 100)
+            {
+                LabelImageFlag.Text = "◻◻◻";
+            }
         }
     }
 }

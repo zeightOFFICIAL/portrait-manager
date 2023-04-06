@@ -295,6 +295,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sucess.
+        /// </summary>
+        internal static string BUTTON_SUCESS {
+            get {
+                return ResourceManager.GetString("BUTTON_SUCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string BUTTON_TOCREATE {

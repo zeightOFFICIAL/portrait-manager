@@ -114,10 +114,11 @@ namespace PathfinderPortraitManager
             _tunneledPath = "!NONE!";
             _isAnyLoaded = false;
             _imageFlag = 0;
-            ButtonToAdvanced.Visible = true;
-            ButtonToAdvanced.Enabled = true;
-            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            ButtonNextImageType.Visible = true;
+            ButtonNextImageType.Enabled = true;
+            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
             SafeCopyAllImages("!DEFAULT!", 100);
+            GenerateImageFlagString(100);
             LoadTempImages(100);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);            
@@ -163,7 +164,7 @@ namespace PathfinderPortraitManager
                 RootFunctions.LayoutEnable(LayoutScalePage);
                 ResizeVisibleImagesToWindow();
             }
-
+            GenerateImageFlagString(0);
             if (Properties.UseStamps.Default.isFirstScaling)
             {
                 using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
@@ -178,9 +179,9 @@ namespace PathfinderPortraitManager
         {
             _imageFlag = 0;
             _tunneledPath = "!NONE!";
-            ButtonToAdvanced.Visible = true;
-            ButtonToAdvanced.Enabled = true;
-            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            ButtonNextImageType.Visible = true;
+            ButtonNextImageType.Enabled = true;
+            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
             LoadTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
@@ -192,9 +193,9 @@ namespace PathfinderPortraitManager
             ButtonToFilePage3.ForeColor = Color.White;
             _imageFlag = 0;
             _tunneledPath = "!NONE!";
-            ButtonToAdvanced.Visible = true;
-            ButtonToAdvanced.Enabled = true;
-            ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            ButtonNextImageType.Visible = true;
+            ButtonNextImageType.Enabled = true;
+            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
             _isAnyLoaded = false;
@@ -203,6 +204,7 @@ namespace PathfinderPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
+            GenerateImageFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
         }
         private void ButtonExit_Click(object sender, EventArgs e)
@@ -283,6 +285,29 @@ namespace PathfinderPortraitManager
         {
             RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Properties.CoreSettings.Default.MaxWindowHeight = Height;
+            Properties.CoreSettings.Default.MaxWindowWidth = Width;
+            Properties.CoreSettings.Default.Save();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+            ButtonValidatePath.BackColor = Color.Black;
+            ButtonValidatePath.ForeColor = Color.White;
+            ButtonValidatePath.Enabled = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            CenterToScreen();
+        }
+        private void ButtonToSettingsPage_Click(object sender, EventArgs e)
+        {
+            RootFunctions.LayoutDisable(LayoutMainPage);
+            TextBoxFullPath.Text = "";
+            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
+            RootFunctions.LayoutEnable(LayoutSettingsPage);
+            ButtonToMainPage5.ForeColor = Color.White;
+            ButtonToMainPage5.BackColor = Color.Black;
+            FormBorderStyle = FormBorderStyle.Sizable;
+        }
+        private void ButtonApplyChange_Click(object sender, EventArgs e)
+        {
             if (ButtonValidatePath.Text == Properties.TextVariables.BUTTON_OK)
             {
                 if (_gameSelected == 'p')
@@ -293,47 +318,15 @@ namespace PathfinderPortraitManager
                 {
                     Properties.CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
                 }
+                AnyButton_Leave(sender, e);
+                ButtonApplyChange.BackColor = Color.LimeGreen;
+                ButtonApplyChange.ForeColor = Color.White;
+                ButtonApplyChange.Enabled = false;
+                ButtonApplyChange.Text = Properties.TextVariables.BUTTON_SUCESS;
+                Properties.CoreSettings.Default.Save();
                 AddClickEventsFromMainButtons();
                 ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
             }
-            Properties.CoreSettings.Default.MaxWindowHeight = Height;
-            Properties.CoreSettings.Default.MaxWindowWidth = Width;
-            Properties.CoreSettings.Default.Save();
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
-            ButtonValidatePath.BackColor = Color.Black;
-            ButtonValidatePath.ForeColor = Color.White;
-            ButtonValidatePath.Enabled = true;
-            ButtonOpenPath.BackColor = Color.Black;
-            ButtonOpenPath.ForeColor = Color.White;
-            ButtonOpenPath.Text = Properties.TextVariables.BUTTON_OPENPATH;
-            ButtonOpenPath.Enabled = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            CenterToScreen();
-        }
-        private void ButtonToSettingsPage_Click(object sender, EventArgs e)
-        {
-            RootFunctions.LayoutDisable(LayoutMainPage);
-            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
-            RootFunctions.LayoutEnable(LayoutSettingsPage);
-            ButtonToMainPage5.ForeColor = Color.White;
-            ButtonToMainPage5.BackColor = Color.Black;
-            FormBorderStyle = FormBorderStyle.Sizable;
-        }
-        private void ButtonToAdvancedPage_Click(object sender, EventArgs e)
-        {
-            _imageFlag++;
-            if (_imageFlag == 1)
-            {
-                ButtonToAdvanced.Text = Properties.TextVariables.BUTTON_ADVANCED2;
-            }
-            else
-            {
-                ButtonToAdvanced.Visible = false;
-                ButtonToAdvanced.Enabled = false;
-            }
-            LoadTempImages(_imageFlag);
-            ResizeVisibleImagesToWindow();
         }
     }
 }

@@ -18,12 +18,17 @@ namespace PathfinderPortraitManager
     public partial class MainForm : Form
     {
         private string _extractFolderPath = "!NONE!";
-        private string _tunneledName = "!NONE!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
             if (path == "!NONE!")
             {
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
+                {
+                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.ShowDialog();
+                }
+
                 if (_isAnyLoaded == true)
                 {
                     LoadTempImages(_imageFlag);
@@ -60,12 +65,12 @@ namespace PathfinderPortraitManager
             string path = SystemControl.FileControl.OpenFileLocation();
             if (path == "!NONE!")
             {
-                using (MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
                 {
-                    Message.Width = Width - 16;
                     Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
+
                 if (_isAnyLoaded == true)
                 {
                     LoadTempImages(_imageFlag);
@@ -207,15 +212,6 @@ namespace PathfinderPortraitManager
             }
             RootFunctions.HideScrollBar(PanelPortraitSml);
         }
-        private void MainForm_Closed(object sender, FormClosedEventArgs e)
-        {
-            DisposePrimeImages();
-            ClearImageLists(ListGallery, ImgListGallery);
-            ClearImageLists(ListExtract, ImgListExtract);
-            SystemControl.FileControl.ClearTempImages();
-            Dispose();
-            Application.Exit();
-        }
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             ResizeVisibleImagesToWindow();
@@ -227,31 +223,23 @@ namespace PathfinderPortraitManager
             string path = "";
             bool placeable = false;
             uint calling = 0;
-            if (_tunneledName != "!NONE!")
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
             {
-                GeneratePortraits(_tunneledName);
-                path = _tunneledName;
+                RootFunctions.LayoutEnable(LayoutFinalPage);
+                LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
+                LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
+                ButtonToMainPageAndFolder.Enabled = false;
+                return;
             }
-            else
+            while (!placeable)
             {
-                if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
+                path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(calling);
+                if (!Directory.Exists(path))
                 {
-                    RootFunctions.LayoutEnable(LayoutFinalPage);
-                    LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDERROR;
-                    LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
-                    ButtonToMainPageAndFolder.Enabled = false;
-                    return;
+                    GeneratePortraits(path);
+                    placeable = true;
                 }
-                while (!placeable)
-                {
-                    path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(calling);
-                    if (!Directory.Exists(path))
-                    {
-                        GeneratePortraits(path);
-                        placeable = true;
-                    }
-                    calling++;
-                }
+                calling++;
             }
             if (CheckPortraitExistence(path))
             {
@@ -313,15 +301,17 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+            using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
             {
+                Hint.StartPosition = FormStartPosition.CenterParent;
                 Hint.ShowDialog();
             }
         }
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
+            using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
             {
+                Hint.StartPosition = FormStartPosition.CenterParent;
                 Hint.ShowDialog();
             }
         }
@@ -335,17 +325,17 @@ namespace PathfinderPortraitManager
             {
                 _gameSelected = 'p';
             }
-            UpdateColorScheme();
             Properties.CoreSettings.Default.GameType = _gameSelected;
             Properties.CoreSettings.Default.Save();
+            UpdateColorScheme();
             if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
-                    Mesg.StartPosition = FormStartPosition.CenterParent;
-                    Mesg.Width = Width - 15;
-                    Mesg.ShowDialog();
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
                 }
+
                 RemoveClickEventsFromMainButtons();
             }
             else
@@ -396,7 +386,6 @@ namespace PathfinderPortraitManager
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-                _tunneledName = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
                 _isAnyLoaded = true;
                 item.Remove();
             }

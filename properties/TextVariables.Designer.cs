@@ -448,7 +448,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Something went wrong. Considering you reached this stage. It is rather a problem with game directory. Check directory existence shown above. Create it if needed. .
+        ///   Looks up a localized string similar to Something went wrong. Given that you have reached this stage. it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information..
         /// </summary>
         internal static string LABEL_CREATEDERROR {
             get {
@@ -457,7 +457,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The portrait was successfully created in the working directory, the location of which is shown above. It is now available to use in the game..
+        ///   Looks up a localized string similar to The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game..
         /// </summary>
         internal static string LABEL_CREATEDOK {
             get {
@@ -565,7 +565,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you have to manage another game, be it Kingmaker or WoTR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information..
+        ///   Looks up a localized string similar to Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you need to control another game, be it Kingmaker or WotR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information. Until the problem is fixed, all functions will be blocked..
         /// </summary>
         internal static string MESG_GAMEFOLDERNOTFOUND {
             get {
@@ -619,7 +619,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well..
+        ///   Looks up a localized string similar to The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well. Directory should not be protected with extra rights..
         /// </summary>
         internal static string MESG_WRONGFORMAT {
             get {

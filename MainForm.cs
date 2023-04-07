@@ -124,7 +124,6 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
                 {
-                    Hint.Width = Width - 16;
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
@@ -166,7 +165,6 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
                 {
-                    Hint.Width = Width - 16;
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
@@ -218,7 +216,6 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
                 {
-                    Hint.Width = Width - 16;
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
@@ -240,7 +237,6 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
                 {
-                    Hint.Width = Width - 16;
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
@@ -276,7 +272,6 @@ namespace PathfinderPortraitManager
             ReplacePrimeImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
-            ButtonToMainPageAndFolder.Enabled = true;
         }
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
@@ -301,6 +296,15 @@ namespace PathfinderPortraitManager
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
+        }
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            DisposePrimeImages();
+            ClearImageLists(ListGallery, ImgListGallery);
+            ClearImageLists(ListExtract, ImgListExtract);
+            SystemControl.FileControl.ClearTempImages();
+            Dispose();
+            Application.Exit();
         }
     }
 }

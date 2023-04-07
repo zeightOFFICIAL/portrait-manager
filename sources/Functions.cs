@@ -20,7 +20,6 @@ namespace PathfinderPortraitManager
     {
         public void RestoreFilePage()
         {
-            _tunneledName = "!NONE!";
             _isAnyLoaded = false;
             _imageFlag = 0;
             ButtonNextImageType.Visible = true;
@@ -493,13 +492,6 @@ namespace PathfinderPortraitManager
                 (Path.GetExtension(filesList[0]) == ".gif"))
             {
                 filePath = filesList[0];
-            }
-            else
-            {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
-                {
-                    Mesg.ShowDialog();
-                }
             }
             return filePath;
         }

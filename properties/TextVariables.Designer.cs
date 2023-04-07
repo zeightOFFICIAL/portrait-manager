@@ -412,7 +412,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait? Click &quot;no&quot; to create a copy. Or &quot;yes&quot; to replace it..
+        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait?  Be advised that you are risking losing the portrait if you are to leave file page. Click &quot;no&quot; to create a copy. Or &quot;yes&quot; to replace the old portrait..
         /// </summary>
         internal static string INQR_DELETEOLD {
             get {
@@ -556,7 +556,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to delete images. Do you want to proceed? Total images: .
+        ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will not be replaced. Do you want to continue? Total images:.
         /// </summary>
         internal static string MESG_DELETE {
             get {
@@ -601,7 +601,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More than one image selected. Only the first one of the all selected will be processed..
+        ///   Looks up a localized string similar to More than one image selected. Only the first of all selected will be processed..
         /// </summary>
         internal static string MESG_SELECTEDMORE {
             get {

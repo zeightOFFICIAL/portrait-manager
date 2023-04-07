@@ -79,7 +79,7 @@ namespace SystemControl
                 }
             }
         }
-        public static void CreateTempImages(string newPath, string[] temp_DoNotDeleteWhileRunningPaths, Image defaultImg, ushort flag = 0)
+        public static void CreateTempImages(string newPath, string[] tempAppends, Image defaultImg, ushort flag = 0)
         {
             if (!CreateDirectory("temp_DoNotDeleteWhileRunning/"))
             {
@@ -91,17 +91,17 @@ namespace SystemControl
                 {
                     if (flag == 1)
                     {
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
+                        img.Save(tempAppends[1]);
                     }
                     else if (flag == 2)
                     {
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
+                        img.Save(tempAppends[2]);
                     }
                     else if (flag == 100 || flag == 0)
                     {
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[0]);
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
+                        img.Save(tempAppends[0]);
+                        img.Save(tempAppends[1]);
+                        img.Save(tempAppends[2]);
                     }
                 }
             }
@@ -111,17 +111,17 @@ namespace SystemControl
                 {
                     if (flag == 1)
                     {
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
+                        img.Save(tempAppends[1]);
                     }
                     else if (flag == 2)
                     {
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
+                        img.Save(tempAppends[2]);
                     }
                     else if(flag == 100 || flag == 0)
                     {
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[0]);
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[1]);
-                        img.Save(temp_DoNotDeleteWhileRunningPaths[2]);
+                        img.Save(tempAppends[0]);
+                        img.Save(tempAppends[1]);
+                        img.Save(tempAppends[2]);
                     }
                 }
             }

@@ -235,7 +235,7 @@
     <value>This is a page for scaling and cropping the image to your liking. Use the mouse wheel to zoom images in and out. Double click the image to restore it to its original state. Drag the image to customize it. Click "create" to add a new portrait. The uploaded portraits will be almost exact copies of the images you framed on this page. Click "back" to return to the previous page.</value>
   </data>
   <data name="INQR_DELETEOLD" xml:space="preserve">
-    <value>Do you want to delete the old version of the portrait? Click "no" to create a copy. Or "yes" to replace it.</value>
+    <value>Do you want to delete the old version of the portrait?  Be advised that you are risking losing the portrait if you are to leave file page. Click "no" to create a copy. Or "yes" to replace the old portrait.</value>
   </data>
   <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
     <value>You have not uploaded any images. However, you can still use the default image. Click "yes" to continue with the default images. Click "no" to go back and choose another image.</value>
@@ -283,7 +283,7 @@
     <value>Chosen web-image cannot be accessed. Try another time, or simply save it on local drive and load local image.</value>
   </data>
   <data name="MESG_DELETE" xml:space="preserve">
-    <value>You are about to delete images. Do you want to proceed? Total images: </value>
+    <value>You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will not be replaced. Do you want to continue? Total images:</value>
   </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
     <value>Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you need to control another game, be it Kingmaker or WotR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information. Until the problem is fixed, all functions will be blocked.</value>
@@ -298,7 +298,7 @@
     <value>One or more folders already exist in the in-game portraits folder. The names are repeated. The program will rename the output folders so that the images are not overridden.</value>
   </data>
   <data name="MESG_SELECTEDMORE" xml:space="preserve">
-    <value>More than one image selected. Only the first one of the all selected will be processed.</value>
+    <value>More than one image selected. Only the first of all selected will be processed.</value>
   </data>
   <data name="MESG_SUCCESS" xml:space="preserve">
     <value>Done! Images are loaded successfully:</value>

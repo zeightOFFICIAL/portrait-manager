@@ -12,12 +12,14 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Net;
+using System.Linq.Expressions;
 
 namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
         private string _extractFolderPath = "!NONE!";
+        private string _tunneledName = "!NONE!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
@@ -231,6 +233,13 @@ namespace PathfinderPortraitManager
                 ButtonToMainPageAndFolder.Enabled = false;
                 return;
             }
+            if (_tunneledName != "!NONE!")
+            {
+                path = ACTIVE_PATHS[_gameSelected] + "\\" + _tunneledName;
+                _tunneledName = "!NONE!";
+                GeneratePortraits(path);
+                placeable = true;
+            }
             while (!placeable)
             {
                 path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(calling);
@@ -355,40 +364,56 @@ namespace PathfinderPortraitManager
             }
             if (ListGallery.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
                 {
+                    Message.StartPosition= FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
+
                 return;
             }
             else if (ListGallery.SelectedItems.Count > 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_SELECTEDMORE))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_SELECTEDMORE))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
             }
+
             ListViewItem item = ListGallery.SelectedItems[0];
-            string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + "\\Fulllength.png";
-            DialogResult dr;
-            using (forms.MyInquiryDialog Inquiry = new forms.MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
+            using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
+                ClearPrimeImages(img);
+            SystemControl.FileControl.ClearTempImages();
+            SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
+            string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+            using (Image img = new Bitmap(path + LARGE_APPEND))
+                img.Save(TEMP_LARGE_APPEND);
+            using (Image img = new Bitmap(path + MEDIUM_APPEND))
+                img.Save(TEMP_MEDIUM_APPEND);
+            using (Image img = new Bitmap(path + SMALL_APPEND))
+                img.Save(TEMP_SMALL_APPEND);
+            LoadTempImages(100);
+            GenerateImageFlagString(0);
+            _tunneledName = "!NONE!";            
+
+            using (MyInquiryDialog Inquiry = new MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
-                Inquiry.ShowDialog();
-                dr = Inquiry.DialogResult;
+                Inquiry.StartPosition = FormStartPosition.CenterParent;
+                if (Inquiry.ShowDialog() == DialogResult.OK)
+                {
+                    ListGallery.Items.RemoveByKey(item.Text);
+                    ImgListGallery.Images.RemoveByKey(item.Text);
+                    SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
+                    _tunneledName = item.Text;
+                    item.Remove();
+                }
             }
-            _imageFlag = 0;
+
             ButtonToMainPage3_Click(sender, e);
-            ButtonToFilePage_Click(sender, e);
-            SafeCopyAllImages(path, _imageFlag);
-            LoadTempImages(_imageFlag);
-            if (dr == DialogResult.OK)
-            {
-                ListGallery.Items.RemoveByKey(item.Text);
-                ImgListGallery.Images.RemoveByKey(item.Text);
-                SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-                _isAnyLoaded = true;
-                item.Remove();
-            }
+            RootFunctions.LayoutEnable(LayoutFilePage);
+            RestoreFilePage();
+            _isAnyLoaded = true;
             ResizeVisibleImagesToWindow();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
@@ -399,21 +424,21 @@ namespace PathfinderPortraitManager
             }
             if (ListGallery.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 return;
             }
-            DialogResult dr;
-            using (forms.MyInquiryDialog Message = new forms.MyInquiryDialog(Properties.TextVariables.MESG_DELETE+ListGallery.SelectedItems.Count))
+
+            using (MyInquiryDialog Message = new MyInquiryDialog(Properties.TextVariables.MESG_DELETE + ListGallery.SelectedItems.Count))
             {
-                Message.ShowDialog();
-                dr = Message.DialogResult;
-            }
-            if (dr != DialogResult.OK)
-            {
-                return;
+                Message.StartPosition = FormStartPosition.CenterParent;
+                if (Message.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
             }
             foreach (ListViewItem item in ListGallery.SelectedItems)
             {

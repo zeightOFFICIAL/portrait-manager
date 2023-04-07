@@ -12,7 +12,6 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Net;
-using System.Linq.Expressions;
 
 namespace PathfinderPortraitManager
 {
@@ -460,8 +459,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
+            using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
             {
+                Hint.StartPosition = FormStartPosition.CenterParent;
                 Hint.ShowDialog();
             }
         }
@@ -471,22 +471,35 @@ namespace PathfinderPortraitManager
             {
                 ClearImageLists(ListExtract, ImgListExtract);
             }
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
-            if (SystemControl.FileControl.Readonly.DirectoryExists(defDir))
+
+            string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(defaultDir))
             {
-                dialog.SelectedPath = defDir;
+                defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
-            if (dialog.ShowDialog() == DialogResult.OK)
+
+            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
-                _extractFolderPath = dialog.SelectedPath;
-            }
-            else
+                SelectedPath = defaultDir,
+                Description = Properties.TextVariables.TEXT_FOLDEROPEN,
+                ShowNewFolderButton = false,
+                
+            })
             {
-                return;
+                if (FolderChoose.ShowDialog() == DialogResult.OK)
+                {
+                    _extractFolderPath = FolderChoose.SelectedPath;
+                }
+                else
+                {
+                    FolderChoose.Dispose();
+                    _extractFolderPath = "!NONE!";
+                    return;
+                }
             }
             if (!SystemControl.FileControl.Readonly.DirectoryExists(_extractFolderPath))
             {
+                _extractFolderPath = "!NONE!";
                 return;
             }
             ExploreDirectory(_extractFolderPath);
@@ -512,6 +525,7 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
+
             foreach (ListViewItem item in ListExtract.Items)
             {
                 string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
@@ -534,17 +548,21 @@ namespace PathfinderPortraitManager
                     imgCount++;
                 }
             }
+
             if (_isRepeat)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_REPEATFOLDER))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_REPEATFOLDER))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
             }
+
             if (imgCount > 0)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_SUCCESS + imgCount))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_SUCCESS + imgCount))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
             }
@@ -557,14 +575,17 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
+
             if (ListExtract.SelectedItems.Count < 1)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_NONESELECTEDEXTRACT))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_NONESELECTEDEXTRACT))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 return;
             }
+
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
                 string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
@@ -587,17 +608,21 @@ namespace PathfinderPortraitManager
                     imgCount++;
                 }
             }
+
             if (_isRepeat)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_REPEATFOLDER))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_REPEATFOLDER))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
             }
+
             if (imgCount > 0)
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_SUCCESS + imgCount))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_SUCCESS + imgCount))
                 {
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
             }
@@ -610,17 +635,26 @@ namespace PathfinderPortraitManager
             }
             System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
             System.Diagnostics.Process.Start(_extractFolderPath);
+            ButtonToMainPage2_Click(sender, e);            
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
-            using (forms.MyMessageDialog Hint = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+            using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
             {
+                Hint.StartPosition = FormStartPosition.CenterParent;
                 Hint.ShowDialog();
             }
         }
         private void LabelCopyright_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-pathfinder");
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-pathfinder");
+            }
+            catch
+            {
+                return;
+            }
         }
         private void AnyPrimeButton_Enter(object sender, EventArgs e)
         {
@@ -700,16 +734,27 @@ namespace PathfinderPortraitManager
         }
         private void ButtonSelectPath_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            string defDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
-            if (SystemControl.FileControl.Readonly.DirectoryExists(defDir))
+            string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(defaultDir))
             {
-                dialog.SelectedPath = defDir;
+                defaultDir = "";
             }
-            if (dialog.ShowDialog() == DialogResult.OK)
+
+            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
-                string selectedFolder = dialog.SelectedPath;
-                TextBoxFullPath.Text = selectedFolder;
+                SelectedPath = defaultDir,
+                Description = Properties.TextVariables.TEXT_PATHOPEN,
+                ShowNewFolderButton = false,
+            })
+            {
+                if (FolderChoose.ShowDialog() == DialogResult.OK)
+                {
+                    TextBoxFullPath.Text = FolderChoose.SelectedPath;
+                }
+                else
+                {
+                    return;
+                }
             }
         }
         private void ButtonGameType_Click(object sender, EventArgs e)
@@ -737,16 +782,16 @@ namespace PathfinderPortraitManager
         }
         private void ButtonLoadWeb_Click(object sender, EventArgs e)
         {
-            string urlString = TextBoxURL.Text;
+            string url = TextBoxURL.Text;
             try
             {
-                HttpWebRequest request = WebRequest.Create(urlString) as HttpWebRequest;
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
                 request.Method = "HEAD";
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;
                 response.Close();
                 RootFunctions.LayoutDisable(LayoutURLDialog);
                 RootFunctions.LayoutEnable(LayoutFilePage);
-                CheckWebResourceAndLoad(urlString);
+                CheckWebResourceAndLoad(url);
                 ResizeVisibleImagesToWindow();
                 TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
                 GenerateImageFlagString(_imageFlag);

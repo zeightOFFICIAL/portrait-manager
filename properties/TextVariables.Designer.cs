@@ -637,11 +637,29 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select folder to extract from.
+        /// </summary>
+        internal static string TEXT_FOLDEROPEN {
+            get {
+                return ResourceManager.GetString("TEXT_FOLDEROPEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All images.
         /// </summary>
         internal static string TEXT_IMAGEFILTER {
             get {
                 return ResourceManager.GetString("TEXT_IMAGEFILTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select folder which stores portraits.
+        /// </summary>
+        internal static string TEXT_PATHOPEN {
+            get {
+                return ResourceManager.GetString("TEXT_PATHOPEN", resourceCulture);
             }
         }
         

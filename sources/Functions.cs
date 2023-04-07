@@ -247,9 +247,16 @@ namespace PathfinderPortraitManager
                 {                    
                     int pathHops = path.Split('\\').Length;
                     string folderName = path.Split('\\')[pathHops - 1];
-                    using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                    try
                     {
-                        ImgListExtract.Images.Add(path, img);
+                        using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                        {
+                            ImgListExtract.Images.Add(path, img);
+                        }
+                    }
+                    catch
+                    {
+                        return;
                     }
                     ListViewItem item = new ListViewItem
                     {
@@ -459,9 +466,16 @@ namespace PathfinderPortraitManager
             foreach (string directory in Directory.GetDirectories(fromPath)) {
                 int pathHops = directory.Split('\\').Length;
                 folderList.Add(directory.Split('\\')[pathHops - 1]);
-                using (Image img = new Bitmap(directory + "\\Fulllength.png"))
+                try
                 {
-                    ImgListGallery.Images.Add(directory.Split('\\')[pathHops - 1], img);
+                    using (Image img = new Bitmap(directory + "\\Fulllength.png"))
+                    {
+                        ImgListGallery.Images.Add(directory.Split('\\')[pathHops - 1], img);
+                    }
+                }
+                catch
+                {
+                    continue;
                 }
             }
             for (int count = 0; count < ImgListGallery.Images.Count; count++)

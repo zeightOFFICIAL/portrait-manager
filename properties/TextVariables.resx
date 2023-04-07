@@ -315,8 +315,14 @@
   <data name="TEXT_COMMONOPENFILE" xml:space="preserve">
     <value>Choose folder</value>
   </data>
+  <data name="TEXT_FOLDEROPEN" xml:space="preserve">
+    <value>Select folder to extract from</value>
+  </data>
   <data name="TEXT_IMAGEFILTER" xml:space="preserve">
     <value>All images</value>
+  </data>
+  <data name="TEXT_PATHOPEN" xml:space="preserve">
+    <value>Select folder which stores portraits</value>
   </data>
   <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
     <value>Choose image</value>

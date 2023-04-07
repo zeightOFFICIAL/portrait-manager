@@ -187,11 +187,11 @@ namespace SystemControl
             Marshal.FreeCoTaskMem(fontPointer);
             return fontCollection;
         }
-        public static bool CopyFile(string formPath, string toPath)
+        public static bool CopyFile(string fromPath, string toPath)
         {
             try
             {
-                File.Copy(formPath, toPath, true);
+                File.Copy(fromPath, toPath, true);
                 return true;
             }
             catch 

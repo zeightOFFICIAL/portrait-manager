@@ -37,14 +37,14 @@ namespace ImageControl
             using (Bitmap outImage = new Bitmap(Resize(img, newWidth, newHeight)))
                 return new Bitmap(outImage);
         }
-        public static Bitmap Crop(Image srcImg, int xStart, int yStart, int xEnd, int yEnd)
+        public static Bitmap Crop(Image inImage, int xStart, int yStart, int xEnd, int yEnd)
         {
-            Rectangle dstRect = new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
-            Bitmap dstImg = new Bitmap(dstRect.Width, dstRect.Height);
-            dstImg.SetResolution(srcImg.HorizontalResolution, srcImg.VerticalResolution);
-            using (Graphics newRenderer = Graphics.FromImage(dstImg))
-                newRenderer.DrawImage(srcImg, -dstRect.X, -dstRect.Y);
-            return dstImg;
+            Rectangle rect = new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
+            Bitmap outImage = new Bitmap(rect.Width, rect.Height);
+            outImage.SetResolution(inImage.HorizontalResolution, inImage.VerticalResolution);
+            using (Graphics newRenderer = Graphics.FromImage(outImage))
+                newRenderer.DrawImage(inImage, -rect.X, -rect.Y);
+            return outImage;
         }
     }
     public class Utils

@@ -6,6 +6,7 @@
     Primal license header is written in Program.cs
 */
 
+using PathfinderPortraitManager.forms;
 using System;
 using System.IO;
 using System.Drawing;
@@ -17,7 +18,7 @@ namespace PathfinderPortraitManager
     public partial class MainForm : Form
     {
         private string _extractFolderPath = "!NONE!";
-        private string _tunneledPath = "!NONE!";
+        private string _tunneledName = "!NONE!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
@@ -59,8 +60,10 @@ namespace PathfinderPortraitManager
             string path = SystemControl.FileControl.OpenFileLocation();
             if (path == "!NONE!")
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
+                using (MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_WRONGFORMAT))
                 {
+                    Message.Width = Width - 16;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 if (_isAnyLoaded == true)
@@ -224,10 +227,10 @@ namespace PathfinderPortraitManager
             string path = "";
             bool placeable = false;
             uint calling = 0;
-            if (_tunneledPath != "!NONE!")
+            if (_tunneledName != "!NONE!")
             {
-                GeneratePortraits(_tunneledPath);
-                path = _tunneledPath;
+                GeneratePortraits(_tunneledName);
+                path = _tunneledName;
             }
             else
             {
@@ -393,7 +396,7 @@ namespace PathfinderPortraitManager
                 ListGallery.Items.RemoveByKey(item.Text);
                 ImgListGallery.Images.RemoveByKey(item.Text);
                 SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-                _tunneledPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                _tunneledName = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
                 _isAnyLoaded = true;
                 item.Remove();
             }
@@ -651,7 +654,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
-            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
+            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
         }
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
         {
@@ -799,6 +802,28 @@ namespace PathfinderPortraitManager
             GenerateImageFlagString(_imageFlag);
             LoadTempImages(_imageFlag);
             ResizeVisibleImagesToWindow();
+        }
+        private void ButtonApplyChange_Click(object sender, EventArgs e)
+        {
+            if (ButtonValidatePath.Text == Properties.TextVariables.BUTTON_OK)
+            {
+                if (_gameSelected == 'p')
+                {
+                    Properties.CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
+                }
+                else
+                {
+                    Properties.CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
+                }
+                AnyButton_Leave(sender, e);
+                ButtonApplyChange.BackColor = Color.LimeGreen;
+                ButtonApplyChange.ForeColor = Color.White;
+                ButtonApplyChange.Enabled = false;
+                ButtonApplyChange.Text = Properties.TextVariables.BUTTON_SUCESS;
+                Properties.CoreSettings.Default.Save();
+                AddClickEventsFromMainButtons();
+                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
+            }
         }
     }
 }

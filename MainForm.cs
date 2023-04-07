@@ -7,6 +7,7 @@
 */
 
 using PathfinderPortraitManager.sources;
+using PathfinderPortraitManager.forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -101,22 +102,17 @@ namespace PathfinderPortraitManager
            
             if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
             {
-                using (forms.MyMessageDialog Mesg = new forms.MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
+                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
-                    Mesg.StartPosition = FormStartPosition.CenterScreen;
-                    Mesg.ShowDialog();
+                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.ShowDialog();
                 }
                 RemoveClickEventsFromMainButtons();
             }
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            _tunneledPath = "!NONE!";
-            _isAnyLoaded = false;
-            _imageFlag = 0;
-            ButtonNextImageType.Visible = true;
-            ButtonNextImageType.Enabled = true;
-            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            RestoreFilePage();
             SafeCopyAllImages("!DEFAULT!", 100);
             GenerateImageFlagString(100);
             LoadTempImages(100);
@@ -126,10 +122,11 @@ namespace PathfinderPortraitManager
 
             if (Properties.UseStamps.Default.isFirstPortrait == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
                 {
-                    HintDialog.Width = Width - 15;
-                    HintDialog.ShowDialog();
+                    Hint.Width = Width - 16;
+                    Hint.StartPosition = FormStartPosition.CenterParent;
+                    Hint.ShowDialog();
                 }
                 Properties.UseStamps.Default.isFirstPortrait = false;
                 Properties.UseStamps.Default.Save();
@@ -139,22 +136,21 @@ namespace PathfinderPortraitManager
         {
             if (!_isAnyLoaded)
             {
-                DialogResult dr;
-                using (forms.MyInquiryDialog InquiryDialog = new forms.MyInquiryDialog(Properties.TextVariables.INQR_NOIMAGECHOSEN))
+                using (MyInquiryDialog Inquiry = new MyInquiryDialog(Properties.TextVariables.INQR_NOIMAGECHOSEN))
                 {
-                    InquiryDialog.ShowDialog();
-                    dr = InquiryDialog.DialogResult;
-                }
-                if (dr == DialogResult.OK)
-                {
-                    ParentLayoutsDisable();
-                    LoadAllTempImages();
-                    RootFunctions.LayoutEnable(LayoutScalePage);
-                    ResizeVisibleImagesToWindow();
-                }
-                else
-                {
-                    return;
+                    Inquiry.StartPosition = FormStartPosition.CenterParent;
+                    Inquiry.Width = Width - 16;
+                    if (Inquiry.ShowDialog() == DialogResult.OK)
+                    {
+                        ParentLayoutsDisable();
+                        LoadAllTempImages();
+                        RootFunctions.LayoutEnable(LayoutScalePage);
+                        ResizeVisibleImagesToWindow();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
             else
@@ -165,11 +161,14 @@ namespace PathfinderPortraitManager
                 ResizeVisibleImagesToWindow();
             }
             GenerateImageFlagString(0);
+
             if (Properties.UseStamps.Default.isFirstScaling)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
                 {
-                    HintDialog.ShowDialog();
+                    Hint.Width = Width - 16;
+                    Hint.StartPosition = FormStartPosition.CenterParent;
+                    Hint.ShowDialog();
                 }
                 Properties.UseStamps.Default.isFirstScaling = false;
                 Properties.UseStamps.Default.Save();
@@ -177,11 +176,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
-            _imageFlag = 0;
-            _tunneledPath = "!NONE!";
-            ButtonNextImageType.Visible = true;
-            ButtonNextImageType.Enabled = true;
-            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            RestoreFilePage();
+            _isAnyLoaded = true;
             LoadTempImages(_imageFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
@@ -191,14 +187,9 @@ namespace PathfinderPortraitManager
         {
             ButtonToFilePage3.BackColor = Color.Black;
             ButtonToFilePage3.ForeColor = Color.White;
-            _imageFlag = 0;
-            _tunneledPath = "!NONE!";
-            ButtonNextImageType.Visible = true;
-            ButtonNextImageType.Enabled = true;
-            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            RestoreFilePage();
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
-            _isAnyLoaded = false;
             SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
             LoadTempImages(_imageFlag);
             ParentLayoutsDisable();
@@ -219,18 +210,21 @@ namespace PathfinderPortraitManager
         {
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
+            ButtonExtractAll.Enabled = false;
+            ButtonExtractSelected.Enabled = false;
+            ButtonOpenFolders.Enabled = false;
+
             if (Properties.UseStamps.Default.isFirstExtract == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
                 {
-                    HintDialog.ShowDialog();
+                    Hint.Width = Width - 16;
+                    Hint.StartPosition = FormStartPosition.CenterParent;
+                    Hint.ShowDialog();
                 }
                 Properties.UseStamps.Default.isFirstExtract = false;
                 Properties.UseStamps.Default.Save();
             }
-            ButtonExtractAll.Enabled = false;
-            ButtonExtractSelected.Enabled = false;
-            ButtonOpenFolders.Enabled = false;
         }
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
         {
@@ -241,11 +235,14 @@ namespace PathfinderPortraitManager
                 ButtonToMainPage3_Click(sender, e);
                 return;
             }
+
             if (Properties.UseStamps.Default.isFirstGallery == true)
             {
-                using (forms.MyMessageDialog HintDialog = new forms.MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
                 {
-                    HintDialog.ShowDialog();
+                    Hint.Width = Width - 16;
+                    Hint.StartPosition = FormStartPosition.CenterParent;
+                    Hint.ShowDialog();
                 }
                 Properties.UseStamps.Default.isFirstGallery = false;
                 Properties.UseStamps.Default.Save();
@@ -272,11 +269,11 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
+            RestoreFilePage();
             ButtonToMainPage4.BackColor = Color.Black;
             ButtonToMainPage4.ForeColor = Color.White;
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
-            _isAnyLoaded = false;
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
             ButtonToMainPageAndFolder.Enabled = true;
@@ -293,7 +290,6 @@ namespace PathfinderPortraitManager
             ButtonValidatePath.BackColor = Color.Black;
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             CenterToScreen();
         }
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
@@ -305,28 +301,6 @@ namespace PathfinderPortraitManager
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
-        }
-        private void ButtonApplyChange_Click(object sender, EventArgs e)
-        {
-            if (ButtonValidatePath.Text == Properties.TextVariables.BUTTON_OK)
-            {
-                if (_gameSelected == 'p')
-                {
-                    Properties.CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
-                }
-                else
-                {
-                    Properties.CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
-                }
-                AnyButton_Leave(sender, e);
-                ButtonApplyChange.BackColor = Color.LimeGreen;
-                ButtonApplyChange.ForeColor = Color.White;
-                ButtonApplyChange.Enabled = false;
-                ButtonApplyChange.Text = Properties.TextVariables.BUTTON_SUCESS;
-                Properties.CoreSettings.Default.Save();
-                AddClickEventsFromMainButtons();
-                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
-            }
         }
     }
 }

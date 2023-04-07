@@ -18,6 +18,15 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
+        public void RestoreFilePage()
+        {
+            _tunneledName = "!NONE!";
+            _isAnyLoaded = false;
+            _imageFlag = 0;
+            ButtonNextImageType.Visible = true;
+            ButtonNextImageType.Enabled = true;
+            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
+        }
         public void AddClickEventsFromMainButtons()
         {
             RootFunctions.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
@@ -537,11 +546,13 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        public static bool ValidatePotraitPath(string portraitPath)
+        public static bool ValidatePotraitPath(string path)
         {
-            if (SystemControl.FileControl.Readonly.DirectoryExists(portraitPath) &&
-                portraitPath.Split('\\').Last() == "Portraits") 
+            if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
+                path.Split('\\').Last() == "Portraits")
+            {
                 return true;
+            }
             return false;
         }
         public void GeneratePortraits(string path)

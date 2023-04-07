@@ -376,7 +376,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;Select Folder&quot; to select a folder to move. Select the images and click &quot;extract selected&quot; to move only specific images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
+        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;Select Folder&quot; to select a folder to copy. Select the images and click &quot;extract selected&quot; to move only certain images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
             get {
@@ -385,7 +385,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the file page. Here you can choose which image to use as portrait. You can load a local image by clicking the button or the image, or simply drag and drop into the picture. As well, you can load a web picture by clicking the button..
+        ///   Looks up a localized string similar to This is the file page. Here you can choose which image to use as the portrait. You can upload a local image by clicking a button or image, or by simply dragging and dropping it onto the picture. Also, you can upload a web image by clicking the button and following instructions. Use change medium and change small buttons to replace the respective portraits..
         /// </summary>
         internal static string HINT_FILEPAGE {
             get {
@@ -394,7 +394,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a gallery page that displays all the currently available portraits in the game. Select an image and click &quot;edit selected&quot; to copy/replace any portrait and create another one. You can also select multiple or single images and click &quot;delete&quot; to remove them/it from the game folder..
+        ///   Looks up a localized string similar to This is a gallery page that displays all the currently available portraits in the game. Select an image and click &quot;edit selected&quot; to copy/replace any portrait and create another one. You can also select multiple or individual images and click &quot;delete&quot; to remove them from the game folder..
         /// </summary>
         internal static string HINT_GALLERYPAGE {
             get {
@@ -403,7 +403,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a page to scale and crop the image as you see fit. Use the mouse wheel to zoom the image in and out. Double-click the image to restore it to original state. Drag image to adjust it. Click &quot;Create&quot; to add a new portrait. They will be almost exact copies of the images you set up in frames in this page. Press &quot;Back&quot; to return to previous page..
+        ///   Looks up a localized string similar to This is a page for scaling and cropping the image to your liking. Use the mouse wheel to zoom images in and out. Double click the image to restore it to its original state. Drag the image to customize it. Click &quot;create&quot; to add a new portrait. The uploaded portraits will be almost exact copies of the images you framed on this page. Click &quot;back&quot; to return to the previous page..
         /// </summary>
         internal static string HINT_SCALEPAGE {
             get {
@@ -421,7 +421,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You did not load any images. However, you still can use the default image. Proceed with a default image, or choose your own?.
+        ///   Looks up a localized string similar to You have not uploaded any images. However, you can still use the default image. Click &quot;yes&quot; to continue with the default images. Click &quot;no&quot; to go back and choose another image..
         /// </summary>
         internal static string INQR_NOIMAGECHOSEN {
             get {

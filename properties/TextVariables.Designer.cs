@@ -214,15 +214,6 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next.
-        /// </summary>
-        internal static string BUTTON_NEXT {
-            get {
-                return ResourceManager.GetString("BUTTON_NEXT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string BUTTON_NO {
@@ -237,33 +228,6 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_OK {
             get {
                 return ResourceManager.GetString("BUTTON_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open.
-        /// </summary>
-        internal static string BUTTON_OPENPATH {
-            get {
-                return ResourceManager.GetString("BUTTON_OPENPATH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resize.
-        /// </summary>
-        internal static string BUTTON_RESIZE {
-            get {
-                return ResourceManager.GetString("BUTTON_RESIZE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Restore.
-        /// </summary>
-        internal static string BUTTON_RESTORE {
-            get {
-                return ResourceManager.GetString("BUTTON_RESTORE", resourceCulture);
             }
         }
         
@@ -547,7 +511,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chosen web-image cannot be accessed. Try another time, or simply save it on local drive and load local image..
+        ///   Looks up a localized string similar to The selected web image is not available. Try another time, or just save it to your local drive and load it locally..
         /// </summary>
         internal static string MESG_CANNOTLOAD {
             get {
@@ -624,15 +588,6 @@ namespace PathfinderPortraitManager.Properties {
         internal static string MESG_WRONGFORMAT {
             get {
                 return ResourceManager.GetString("MESG_WRONGFORMAT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose folder.
-        /// </summary>
-        internal static string TEXT_COMMONOPENFILE {
-            get {
-                return ResourceManager.GetString("TEXT_COMMONOPENFILE", resourceCulture);
             }
         }
         

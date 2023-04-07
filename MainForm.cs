@@ -63,7 +63,8 @@ namespace PathfinderPortraitManager
 
         public MainForm()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -87,7 +88,15 @@ namespace PathfinderPortraitManager
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            FontsAndTextsLoad(_fontCollection);
+            if (Thread.CurrentThread.CurrentUICulture.Name == "en-US")
+            {
+                SetFonts(_fontCollection);
+            }
+            else
+            {
+                SetFontsNotEN();
+            }
+            SetTexts();
             UpdateColorScheme();
 
             PicPortraitTemp.AllowDrop = true;

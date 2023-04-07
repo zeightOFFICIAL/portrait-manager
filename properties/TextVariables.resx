@@ -168,23 +168,11 @@
   <data name="BUTTON_NEW" xml:space="preserve">
     <value>New</value>
   </data>
-  <data name="BUTTON_NEXT" xml:space="preserve">
-    <value>Next</value>
-  </data>
   <data name="BUTTON_NO" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="BUTTON_OK" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="BUTTON_OPENPATH" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="BUTTON_RESIZE" xml:space="preserve">
-    <value>Resize</value>
-  </data>
-  <data name="BUTTON_RESTORE" xml:space="preserve">
-    <value>Restore</value>
   </data>
   <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
     <value>Edit selected</value>
@@ -280,7 +268,7 @@
     <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
   </data>
   <data name="MESG_CANNOTLOAD" xml:space="preserve">
-    <value>Chosen web-image cannot be accessed. Try another time, or simply save it on local drive and load local image.</value>
+    <value>The selected web image is not available. Try another time, or just save it to your local drive and load it locally.</value>
   </data>
   <data name="MESG_DELETE" xml:space="preserve">
     <value>You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will not be replaced. Do you want to continue? Total images:</value>
@@ -311,9 +299,6 @@
   </data>
   <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
     <value>Incorrect URL</value>
-  </data>
-  <data name="TEXT_COMMONOPENFILE" xml:space="preserve">
-    <value>Choose folder</value>
   </data>
   <data name="TEXT_FOLDEROPEN" xml:space="preserve">
     <value>Select folder to extract from</value>

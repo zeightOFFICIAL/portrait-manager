@@ -244,7 +244,7 @@ namespace PathfinderPortraitManager
                 if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
                     SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
                     SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
-                {                    
+                {
                     int pathHops = path.Split('\\').Length;
                     string folderName = path.Split('\\')[pathHops - 1];
                     try
@@ -267,111 +267,152 @@ namespace PathfinderPortraitManager
                 }
             }
             string[] subDirs = Directory.GetDirectories(path);
-            foreach(string subDir in subDirs)
+            foreach (string subDir in subDirs)
             {
                 ExploreDirectory(subDir);
             }
         }
-        public void FontsAndTextsLoad(PrivateFontCollection fonts)
+        public void SetFonts(PrivateFontCollection fonts)
         {
             Font _bebas_neue20 = new Font(fonts.Families[0], 20),
                  _bebas_neue16 = new Font(fonts.Families[0], 16);
-
             ButtonToFilePage.Font = _bebas_neue20;
-            ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
             ButtonToExtractPage.Font = _bebas_neue20;
-            ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACTPAGE;
             ButtonToGalleryPage.Font = _bebas_neue20;
-            ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERYPAGE;
             ButtonToSettingsPage.Font = _bebas_neue20;
-            ButtonToSettingsPage.Text = Properties.TextVariables.BUTTON_TOSETTINGSPAGE;
             ButtonExit.Font = _bebas_neue20;
-            ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
-
             ButtonKingmaker.Font = _bebas_neue20;
-            ButtonKingmaker.Text = Properties.TextVariables.KING;
             ButtonWotR.Font = _bebas_neue20;
-            ButtonWotR.Text = Properties.TextVariables.WOTR;
             LabelSelectedPath.Font = _bebas_neue16;
-            LabelSelectedPath.Text = Properties.TextVariables.LABEL_PATH;
             ButtonValidatePath.Font = _bebas_neue16;
-            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
             ButtonSelectPath.Font = _bebas_neue16;
-            ButtonSelectPath.Text = Properties.TextVariables.BUTTON_SELECTPATH;
             ButtonToMainPage5.Font = _bebas_neue20;
-            ButtonToMainPage5.Text = Properties.TextVariables.BUTTON_BACK;
             LabelSettings.Font = _bebas_neue16;
-            LabelSettings.Text = Properties.TextVariables.LABEL_SETTINGS;
             ButtonApplyChange.Font = _bebas_neue16;
-            ButtonApplyChange.Text = Properties.TextVariables.BUTTON_APPLY;
-
             ButtonLocalPortraitLoad.Font = _bebas_neue20;
-            ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
             ButtonWebPortraitLoad.Font = _bebas_neue20;
-            ButtonWebPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADWEBPORTRAIT;
             ButtonToMainPage.Font = _bebas_neue20;
-            ButtonToMainPage.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonToScalePage.Font = _bebas_neue20;
-            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
             ButtonNextImageType.Font = _bebas_neue20;
-            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
             ButtonHintOnFilePage.Font = _bebas_neue20;
-            ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
-
             ButtonToFilePage2.Font = _bebas_neue20;
-            ButtonToFilePage2.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonCreatePortrait.Font = _bebas_neue20;
-            ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_TOCREATE;
             LabelMedImage.Font = _bebas_neue20;
-            LabelMedImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
             LabelLrgImg.Font = _bebas_neue20;
-            LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG;
             LabelSmlImg.Font = _bebas_neue20;
-            LabelSmlImg.Text = Properties.TextVariables.LABEL_SMALLIMG;
             ButtonHintOnScalePage.Font = _bebas_neue20;
-            ButtonHintOnScalePage.Text = Properties.TextVariables.BUTTON_HINT;
-
             ButtonDeletePortait.Font = _bebas_neue20;
-            ButtonDeletePortait.Text = Properties.TextVariables.BUTTON_SELECTEDDELETE;
             ButtonToMainPage3.Font = _bebas_neue20;
-            ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_BACK;
             ButtonOpenFolder.Font = _bebas_neue20;
-            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_GALLERYOPENFOLDER;
             ButtonChangePortrait.Font = _bebas_neue20;
-            ButtonChangePortrait.Text = Properties.TextVariables.BUTTON_SELECTEDCHANGE;
             ButtonHintFolder.Font = _bebas_neue20;
-            ButtonHintFolder.Text = Properties.TextVariables.BUTTON_HINT;
-
             LabelURLInfo.Font = _bebas_neue20;
-            LabelURLInfo.Text = Properties.TextVariables.LABEL_URLDIALOG;
             ButtonDenyWeb.Font = _bebas_neue20;
-            ButtonDenyWeb.Text = Properties.TextVariables.BUTTON_CANCEL;
             ButtonLoadWeb.Font = _bebas_neue20;
+            LabelFinalMesg.Font = _bebas_neue20;
+            ButtonToFilePage3.Font = _bebas_neue20;
+            ButtonToMainPage4.Font = _bebas_neue20;
+            ButtonToMainPageAndFolder.Font = _bebas_neue20;
+            ButtonChooseFolder.Font = _bebas_neue20;
+            ButtonExtractAll.Font = _bebas_neue20;
+            ButtonExtractSelected.Font = _bebas_neue20;
+            ButtonOpenFolders.Font = _bebas_neue20;
+            ButtonHintExtract.Font = _bebas_neue20;
+            ButtonToMainPage2.Font = _bebas_neue20;
+        }
+        public void SetFontsNotEN()
+        {
+            Font defFont = new Font(DefaultFont.FontFamily, 13);
+            ButtonToFilePage.Font = defFont;
+            ButtonToExtractPage.Font = defFont;
+            ButtonToGalleryPage.Font = defFont;
+            ButtonToSettingsPage.Font = defFont;
+            ButtonExit.Font = defFont;
+            ButtonKingmaker.Font = defFont;
+            ButtonWotR.Font = defFont;
+            LabelSelectedPath.Font = defFont;
+            ButtonValidatePath.Font = defFont;
+            ButtonSelectPath.Font = defFont;
+            ButtonToMainPage5.Font = defFont;
+            LabelSettings.Font = defFont;
+            ButtonApplyChange.Font = defFont;
+            ButtonLocalPortraitLoad.Font = defFont;
+            ButtonWebPortraitLoad.Font = defFont;
+            ButtonToMainPage.Font = defFont;
+            ButtonToScalePage.Font = defFont;
+            ButtonNextImageType.Font = defFont;
+            ButtonHintOnFilePage.Font = defFont;
+            ButtonToFilePage2.Font = defFont;
+            ButtonCreatePortrait.Font = defFont;
+            LabelMedImage.Font = defFont;
+            LabelLrgImg.Font = defFont;
+            LabelSmlImg.Font = defFont;
+            ButtonHintOnScalePage.Font = defFont;
+            ButtonDeletePortait.Font = defFont;
+            ButtonToMainPage3.Font = defFont;
+            ButtonOpenFolder.Font = defFont;
+            ButtonChangePortrait.Font = defFont;
+            ButtonHintFolder.Font = defFont;
+            LabelURLInfo.Font = defFont;
+            ButtonDenyWeb.Font = defFont;
+            ButtonLoadWeb.Font = defFont;
+            LabelFinalMesg.Font = defFont;
+            ButtonToFilePage3.Font = defFont;
+            ButtonToMainPage4.Font = defFont;
+            ButtonToMainPageAndFolder.Font = defFont;
+            ButtonChooseFolder.Font = defFont;
+            ButtonExtractAll.Font = defFont;
+            ButtonExtractSelected.Font = defFont;
+            ButtonOpenFolders.Font = defFont;
+            ButtonHintExtract.Font = defFont;
+            ButtonToMainPage2.Font = defFont;
+        }
+        public void SetTexts()
+        {
+            ButtonToFilePage.Text = Properties.TextVariables.BUTTON_TOFILEPAGE;
+            ButtonToExtractPage.Text = Properties.TextVariables.BUTTON_TOEXRACTPAGE;
+            ButtonToGalleryPage.Text = Properties.TextVariables.BUTTON_TOGALLERYPAGE;
+            ButtonToSettingsPage.Text = Properties.TextVariables.BUTTON_TOSETTINGSPAGE;
+            ButtonExit.Text = Properties.TextVariables.BUTTON_EXIT;
+            ButtonKingmaker.Text = Properties.TextVariables.KING;
+            ButtonWotR.Text = Properties.TextVariables.WOTR;
+            LabelSelectedPath.Text = Properties.TextVariables.LABEL_PATH;
+            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+            ButtonSelectPath.Text = Properties.TextVariables.BUTTON_SELECTPATH;
+            ButtonToMainPage5.Text = Properties.TextVariables.BUTTON_BACK;
+            LabelSettings.Text = Properties.TextVariables.LABEL_SETTINGS;
+            ButtonApplyChange.Text = Properties.TextVariables.BUTTON_APPLY;
+            ButtonLocalPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADLOCALPORTRAIT;
+            ButtonWebPortraitLoad.Text = Properties.TextVariables.BUTTON_LOADWEBPORTRAIT;
+            ButtonToMainPage.Text = Properties.TextVariables.BUTTON_BACK;
+            ButtonToScalePage.Text = Properties.TextVariables.BUTTON_TOSCALEPAGE;
+            ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
+            ButtonHintOnFilePage.Text = Properties.TextVariables.BUTTON_HINT;
+            ButtonToFilePage2.Text = Properties.TextVariables.BUTTON_BACK;
+            ButtonCreatePortrait.Text = Properties.TextVariables.BUTTON_TOCREATE;
+            LabelMedImage.Text = Properties.TextVariables.LABEL_MEDIUMIMG;
+            LabelLrgImg.Text = Properties.TextVariables.LABEL_LARGEIMG;
+            LabelSmlImg.Text = Properties.TextVariables.LABEL_SMALLIMG;
+            ButtonHintOnScalePage.Text = Properties.TextVariables.BUTTON_HINT;
+            ButtonDeletePortait.Text = Properties.TextVariables.BUTTON_SELECTEDDELETE;
+            ButtonToMainPage3.Text = Properties.TextVariables.BUTTON_BACK;
+            ButtonOpenFolder.Text = Properties.TextVariables.BUTTON_GALLERYOPENFOLDER;
+            ButtonChangePortrait.Text = Properties.TextVariables.BUTTON_SELECTEDCHANGE;
+            ButtonHintFolder.Text = Properties.TextVariables.BUTTON_HINT;
+            LabelURLInfo.Text = Properties.TextVariables.LABEL_URLDIALOG;
+            ButtonDenyWeb.Text = Properties.TextVariables.BUTTON_CANCEL;
             ButtonLoadWeb.Text = Properties.TextVariables.BUTTON_LOAD;
             TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
-
-            LabelFinalMesg.Font = _bebas_neue20;
             LabelFinalMesg.Text = Properties.TextVariables.LABEL_CREATEDOK;
-            ButtonToFilePage3.Font = _bebas_neue20;
             ButtonToFilePage3.Text = Properties.TextVariables.BUTTON_NEW;
-            ButtonToMainPage4.Font = _bebas_neue20;
             ButtonToMainPage4.Text = Properties.TextVariables.BUTTON_MENU;
-            ButtonToMainPageAndFolder.Font = _bebas_neue20;
             ButtonToMainPageAndFolder.Text = Properties.TextVariables.BUTTON_FINALOPENFOLDER;
-
-            ButtonChooseFolder.Font = _bebas_neue20;
             ButtonChooseFolder.Text = Properties.TextVariables.TEXT_TITLEOPENFOLDER;
-            ButtonExtractAll.Font = _bebas_neue20;
             ButtonExtractAll.Text = Properties.TextVariables.BUTTON_EXTRACTALL;
-            ButtonExtractSelected.Font = _bebas_neue20;
             ButtonExtractSelected.Text = Properties.TextVariables.BUTTON_EXTRACTSELECTED;
-            ButtonOpenFolders.Font = _bebas_neue20;
             ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_EXTRACTOPENFOLDER;
-            ButtonHintExtract.Font = _bebas_neue20;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
-            ButtonToMainPage2.Font = _bebas_neue20;
             ButtonToMainPage2.Text = Properties.TextVariables.BUTTON_BACK;
-
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
         public void UpdateObjectColoring(Control ctrl, Color a, Color b)
@@ -544,11 +585,12 @@ namespace PathfinderPortraitManager
                     }
                 }
             }
-            catch (IOException)
+            catch
             {
-                using (forms.MyMessageDialog MesgCannotLoad = new forms.MyMessageDialog(Properties.TextVariables.MESG_CANNOTLOAD))
+                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(Properties.TextVariables.MESG_CANNOTLOAD))
                 {
-                    MesgCannotLoad.ShowDialog();
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
                 }
             }
         }

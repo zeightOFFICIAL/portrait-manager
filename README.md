@@ -67,6 +67,18 @@ Compatible with latest Windows OSs
 * Very unlikely with anything older
 * NOT WORKING WITH UNIX (Linux/MAC)
 
+#### Development and debugging addendum
+```c sharp
+public static bool ValidatePotraitPath(string path)
+{
+    if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
+        path.Split('\\').Last() == "Portraits")
+    {
+        return true;
+    }
+    return false;
+}
+```
 #### Translation addendum
 The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.resx, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. 
 

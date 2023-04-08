@@ -201,4 +201,16 @@
   <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
     <value>Обрезать</value>
   </data>
+  <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="BUTTON_VALIDATE" xml:space="preserve">
+    <value>Проверить</value>
+  </data>
+  <data name="BUTTON_YES" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="HINT_EXTRACTPAGE" xml:space="preserve">
+    <value>Это страница для извлечения портретов из папки. Здесь можно скопировать изображения из одной папки в папку с портретами. Нажмите "выбрать папку", чтобы выбрать папку для копирования. Выберите изображения и нажмите "извлечь выбранные".</value>
+  </data>
 </root>

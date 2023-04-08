@@ -340,7 +340,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;Select Folder&quot; to select a folder to copy. Select the images and click &quot;extract selected&quot; to move only certain images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
+        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;choose folder&quot; to select a folder to copy. Select the images and click &quot;extract selected&quot; to move only certain images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
             get {
@@ -475,7 +475,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings page. Adjust size and game folder..
+        ///   Looks up a localized string similar to This is the settings page. Here you can adjust the size by dragging the corner. And check the path to the correct portrait folder..
         /// </summary>
         internal static string LABEL_SETTINGS {
             get {
@@ -502,7 +502,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source..
+        ///   Looks up a localized string similar to Drag and drop, type, or copy the url of an existing image. The url address must lead to an accessible web-source..
         /// </summary>
         internal static string LABEL_URLDIALOG {
             get {

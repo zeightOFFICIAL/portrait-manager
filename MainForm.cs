@@ -63,8 +63,8 @@ namespace PathfinderPortraitManager
 
         public MainForm()
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)

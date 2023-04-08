@@ -211,7 +211,7 @@
     <value>Yes</value>
   </data>
   <data name="HINT_EXTRACTPAGE" xml:space="preserve">
-    <value>This is the extract page. Here you can copy all images from one folder to the game folder. Click "Select Folder" to select a folder to copy. Select the images and click "extract selected" to move only certain images, or click "extract all" to move all available. To perform the process manually, click "open folders".</value>
+    <value>This is the extract page. Here you can copy all images from one folder to the game folder. Click "choose folder" to select a folder to copy. Select the images and click "extract selected" to move only certain images, or click "extract all" to move all available. To perform the process manually, click "open folders".</value>
   </data>
   <data name="HINT_FILEPAGE" xml:space="preserve">
     <value>This is the file page. Here you can choose which image to use as the portrait. You can upload a local image by clicking a button or image, or by simply dragging and dropping it onto the picture. Also, you can upload a web image by clicking the button and following instructions. Use change medium and change small buttons to replace the respective portraits.</value>
@@ -256,7 +256,7 @@
     <value>Path to the game portraits folder</value>
   </data>
   <data name="LABEL_SETTINGS" xml:space="preserve">
-    <value>Settings page. Adjust size and game folder.</value>
+    <value>This is the settings page. Here you can adjust the size by dragging the corner. And check the path to the correct portrait folder.</value>
   </data>
   <data name="LABEL_SMALLIMG" xml:space="preserve">
     <value>Small</value>
@@ -265,7 +265,7 @@
     <value>Gameplay portrait</value>
   </data>
   <data name="LABEL_URLDIALOG" xml:space="preserve">
-    <value>Drag and drop, input, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
+    <value>Drag and drop, type, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
   </data>
   <data name="MESG_CANNOTLOAD" xml:space="preserve">
     <value>The selected web image is not available. Try another time, or just save it to your local drive and load it locally.</value>

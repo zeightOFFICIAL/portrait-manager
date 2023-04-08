@@ -25,18 +25,6 @@ namespace PathfinderPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("EN")]
-        public string ActiveLocal {
-            get {
-                return ((string)(this["ActiveLocal"]));
-            }
-            set {
-                this["ActiveLocal"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
         public string WOTRPath {
             get {
@@ -92,18 +80,6 @@ namespace PathfinderPortraitManager.Properties {
             }
             set {
                 this["GameType"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool debug {
-            get {
-                return ((bool)(this["debug"]));
-            }
-            set {
-                this["debug"] = value;
             }
         }
     }

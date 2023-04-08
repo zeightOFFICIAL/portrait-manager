@@ -64,7 +64,7 @@ namespace PathfinderPortraitManager
 
         public MainForm()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)

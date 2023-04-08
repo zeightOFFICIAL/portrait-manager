@@ -22,7 +22,7 @@ namespace PathfinderPortraitManager.forms
         readonly PrivateFontCollection _fontCollection;
         public MyInquiryDialog(string mesg)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
             string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
             if (File.Exists(resxFilePath))
             {

@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PathfinderPortraitManager.Properties" GeneratedClassName="CoreSettings">
   <Profiles />
   <Settings>
-    <Setting Name="ActiveLocal" Type="System.String" Scope="User">
-      <Value Profile="(Default)">EN</Value>
-    </Setting>
     <Setting Name="WOTRPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">!NOTSET!</Value>
     </Setting>
@@ -19,9 +16,6 @@
     </Setting>
     <Setting Name="GameType" Type="System.Char" Scope="User">
       <Value Profile="(Default)">p</Value>
-    </Setting>
-    <Setting Name="debug" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

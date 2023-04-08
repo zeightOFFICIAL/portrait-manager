@@ -336,7 +336,7 @@ namespace PathfinderPortraitManager
             Properties.CoreSettings.Default.GameType = _gameSelected;
             Properties.CoreSettings.Default.Save();
             UpdateColorScheme();
-            if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {
@@ -717,7 +717,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
-            if (ValidatePotraitPath(TextBoxFullPath.Text)) 
+            if (ValidatePortraitPath(TextBoxFullPath.Text)) 
             {
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
                 ButtonValidatePath.ForeColor = Color.White;
@@ -769,7 +769,7 @@ namespace PathfinderPortraitManager
                 _gameSelected = 'w';
                 UpdateColorScheme();
             }
-            if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 RemoveClickEventsFromMainButtons();
             }

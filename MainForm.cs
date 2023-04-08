@@ -15,10 +15,7 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.Resources;
-using System.Reflection;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace PathfinderPortraitManager
 {
@@ -91,7 +88,9 @@ namespace PathfinderPortraitManager
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
-            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
+            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, 
+                                               Thread.CurrentThread.CurrentUICulture.Name, 
+                                               "Pathfinder Portrait Manager.resources.dll");
             if (File.Exists(resxFilePath))
             {
                 SetFontsNotEN();
@@ -114,7 +113,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
            
-            if (!ValidatePotraitPath(ACTIVE_PATHS[_gameSelected]))
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
                 {

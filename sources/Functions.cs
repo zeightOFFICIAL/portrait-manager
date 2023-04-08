@@ -594,7 +594,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        public static bool ValidatePotraitPath(string path)
+        public static bool ValidatePortraitPath(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
                 path.Split('\\').Last() == "Portraits")

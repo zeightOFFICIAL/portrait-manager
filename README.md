@@ -6,7 +6,7 @@
 
 ### Description
 
-Desktop application, management tool for portraits in the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous. Requires nothing, no dependencies at all, apart from .NET Framework, which is 99% likely to be already installed. 
+Desktop application, management tool for portraits in the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous. Requires nothing, no dependencies at all, apart from .NET Framework 4.7.2, which is 99% likely to be already installed. 
 
 
 | Kingmaker | Wrath of the Righteous |
@@ -39,6 +39,9 @@ Allows user to browse the already existing/loaded and in-work portraits of the g
 #### Settings
 An attempt to prevent any problems with the path to portraits folder. Now, the program requires the user to select the correct folder in which all the game portraits are stored.
 
+#### Localization
+Now supports translation files. The program language depends on the system language. If next to the exe there is a folder named with the language abbreviation ru/fr/es and so on, loads localization <b>(which is DLL, as has been compiled)</b> file in the folder and applies it in the application.
+
 ### Basic use cases
 1. Download any portrait pack from any source (for example https://www.nexusmods.com/pathfinderkingmaker/mods/92)
 2. Unpack it in any directory, it is recommended to be a non-protected by system or user folder, downloads folder would work just fine
@@ -56,29 +59,29 @@ An attempt to prevent any problems with the path to portraits folder. Now, the p
 5. Close app, launch the game, enjoy!
 
 ### Installation
-Download release, unpack anywhere (verbatim). Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe. As well, do not delete temp folder, while program is working.
+Download release, unpack anywhere (verbatim), but I recommend using separate folder and not-protected directory, since it copies and save images abundantly. Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe. As well, do not delete temp folder, while program is working. Localization folder should be next to exe, and should not be deleted while app is running.
 
 ### Production info and bugs section
-All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP.
+All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP. From now on, version >1.1.0.0, there will be no functionality updates.
 
 ### Build info
 * Visual Studio 2022 17.4.4
 * .NET Framework 4.7.2, no special DLLs involved
 * C#
 ---
-Compatible with latest Windows OSs 
-* ✅ Tested with Windows 11
-* ✅ Tested with Windows 10
-* ⭕ Some minor issues detected with Windows 8/8.1
-* ⭕ Untested but it should be working on Windows 7 as well
-* ⭕ Most likely working with Windows XP/Vista
-* ❌ Very unlikely with anything older
-* ❌ Not working with UNIX-based (Linux/MAC)
+Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is required</b><br>
+✅ Tested with Windows 11<br>
+✅ Tested with Windows 10<br>
+✅⭕ Some minor issues detected with Windows 8/8.1<br>
+⭕ Untested but it probably works on Windows 7<br>
+⭕ Might work with Windows XP/Vista<br>
+❌ Highly unlikely with something older<br>
+❌ Not working with UNIX-based (Linux/MAC)<br>
 
 #### Development and debugging addendum, concerns
 * Code to detect whether the directory is indeed game-created
 ```c sharp
-public static bool ValidatePotraitPath(string path)
+public static bool ValidatePortraitPath(string path)
 {
     if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
         path.Split('\\').Last() == "Portraits")
@@ -88,8 +91,20 @@ public static bool ValidatePotraitPath(string path)
     return false;
 }
 ```
+* There might be problems with folder manipulation
+* FolderBrowserDialog is now (1.1.0.0) in work for choosing folder function
+* Program localization depends on currently active system language
+```c sharp
+public MainForm()
+{
+    Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+    InitializeComponent();
+}
+```
+* The program have not been under heavy and constant testing and debugging, there are a lot of pitfalls
+
 #### Translation addendum
-The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.resx, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. However, I need to integrate any translations manually.
+The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.dll, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. However, I still need to integrate it to the program manually.
 
 ### Copyrights
 1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/blob/master/LICENSE)
@@ -98,5 +113,5 @@ The program was optimized to use several languages and fonts. In order to create
 4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
 5. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
 6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br><br>
-<b>Inform: if your owner rights are violated, you've encountered any bugs, if you have any suggestions.
+<b>Inform: if your owner rights are violated; if you've encountered any bugs; if you have any suggestions.
 Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.</b>

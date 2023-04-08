@@ -322,7 +322,7 @@ namespace PathfinderPortraitManager
         }
         public void SetFontsNotEN()
         {
-            Font defFont = new Font(DefaultFont.FontFamily, 13);
+            Font defFont = new Font(DefaultFont.FontFamily, 12);
             ButtonToFilePage.Font = defFont;
             ButtonToExtractPage.Font = defFont;
             ButtonToGalleryPage.Font = defFont;

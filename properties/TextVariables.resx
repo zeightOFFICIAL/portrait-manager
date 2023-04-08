@@ -235,7 +235,7 @@
     <value>Artemii "Zeight" Saganenko© 2023</value>
   </data>
   <data name="LABEL_CREATEDERROR" xml:space="preserve">
-    <value>Something went wrong. Given that you have reached this stage. it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information.</value>
+    <value>Something went wrong. Given that you have reached this stage, it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information.</value>
   </data>
   <data name="LABEL_CREATEDOK" xml:space="preserve">
     <value>The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game.</value>
@@ -271,7 +271,7 @@
     <value>The selected web image is not available. Try another time, or just save it to your local drive and load it locally.</value>
   </data>
   <data name="MESG_DELETE" xml:space="preserve">
-    <value>You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will not be replaced. Do you want to continue? Total images:</value>
+    <value>You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will  be replaced to placeholder by game itself. Do you want to continue? Total images:</value>
   </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
     <value>Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you need to control another game, be it Kingmaker or WotR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information. Until the problem is fixed, all functions will be blocked.</value>

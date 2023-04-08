@@ -6,33 +6,46 @@
     Primal license header is written in Program.cs
 */
 
+using System;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
+using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {
-        readonly Font _bebas_neue18, _bebas_neue16;
+        readonly Font _font1, _font2;
         readonly PrivateFontCollection _fontCollection;
         public MyMessageDialog(string mesg)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            _bebas_neue18 = new Font(_fontCollection.Families[0], 18);
-            _bebas_neue16 = new Font(_fontCollection.Families[0], 16);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
+            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
+            if (File.Exists(resxFilePath))
+            {
+                _font1 = new Font(DefaultFont.FontFamily, 14);
+                _font2 = new Font(DefaultFont.FontFamily, 12);
+            }
+            else
+            {
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+                _font1 = new Font(_fontCollection.Families[0], 18);
+                _font2 = new Font(_fontCollection.Families[0], 16);
+            }
 
             InitializeComponent();
-
             ButtonClose.Text = Properties.TextVariables.BUTTON_OK;
-            ButtonClose.Font = _bebas_neue18;
+            ButtonClose.Font = _font1;
             LabelMesg.Text = mesg;
-            LabelMesg.Font = _bebas_neue16;
+            LabelMesg.Font = _font2;
         }
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _bebas_neue18.Dispose();
-            _bebas_neue16.Dispose();
+            _font1.Dispose();
+            _font2.Dispose();
             Dispose();
         }
         private void ButtonClose_MouseEnter(object sender, System.EventArgs e)

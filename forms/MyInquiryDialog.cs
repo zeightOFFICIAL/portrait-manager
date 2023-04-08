@@ -6,32 +6,45 @@
     Primal license header is written in Program.cs
 */
 
+using System;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
+using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager.forms
 {
     public partial class MyInquiryDialog : Form
     {
-        readonly Font _bebas_neue18;
+        readonly Font _font;
         readonly PrivateFontCollection _fontCollection;
         public MyInquiryDialog(string mesg)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            _bebas_neue18 = new Font(_fontCollection.Families[0], 18);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
+            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
+            if (File.Exists(resxFilePath))
+            {
+                _font = new Font(DefaultFont.FontFamily, 14);
+            }
+            else
+            {
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+                _font = new Font(_fontCollection.Families[0], 18);
+            }            
             InitializeComponent();
-            LabelInquiryMesg.Font = _bebas_neue18;
+            LabelInquiryMesg.Font = _font;
             LabelInquiryMesg.Text = mesg;
-            ButtonOK.Font = _bebas_neue18;
+            ButtonOK.Font = _font;
             ButtonOK.Text = Properties.TextVariables.BUTTON_YES;
-            ButtonCancel.Font = _bebas_neue18;
+            ButtonCancel.Font = _font;
             ButtonCancel.Text = Properties.TextVariables.BUTTON_NO;
         }
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _bebas_neue18.Dispose();
+            _font.Dispose();
             Dispose();
         }
 

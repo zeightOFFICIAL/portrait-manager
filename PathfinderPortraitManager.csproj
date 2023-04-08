@@ -115,6 +115,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>CoreSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Properties\TextVariables.ru.Designer.cs">
+      <DependentUpon>TextVariables.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\TextVariables.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,11 +158,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\TextVariables.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextVariables.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\TextVariables.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextVariables.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\TextVariables.ru.resx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

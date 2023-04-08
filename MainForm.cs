@@ -15,6 +15,10 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using System.Resources;
+using System.Reflection;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PathfinderPortraitManager
 {
@@ -63,8 +67,7 @@ namespace PathfinderPortraitManager
 
         public MainForm()
         {
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.CoreSettings.Default.ActiveLocal);
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -87,14 +90,16 @@ namespace PathfinderPortraitManager
             CenterToScreen();
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-            if (Thread.CurrentThread.CurrentUICulture.Name == "en-US")
+
+            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
+            if (File.Exists(resxFilePath))
             {
-                SetFonts(_fontCollection);
+                SetFontsNotEN();
             }
             else
             {
-                SetFontsNotEN();
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
+                SetFonts(_fontCollection);
             }
             SetTexts();
             UpdateColorScheme();

@@ -412,7 +412,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Something went wrong. Given that you have reached this stage. it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information..
+        ///   Looks up a localized string similar to Something went wrong. Given that you have reached this stage, it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information..
         /// </summary>
         internal static string LABEL_CREATEDERROR {
             get {
@@ -520,7 +520,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will not be replaced. Do you want to continue? Total images:.
+        ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will  be replaced to placeholder by game itself. Do you want to continue? Total images:.
         /// </summary>
         internal static string MESG_DELETE {
             get {

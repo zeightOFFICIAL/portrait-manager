@@ -11,26 +11,33 @@ Desktop application, management tool for portraits in the Pathfinder series of g
 
 | Kingmaker | Wrath of the Righteous |
 | :-------: | :--------------------: |
-|![image](https://user-images.githubusercontent.com/50341618/227395883-6e96df36-069f-4b47-8f40-6fe7b38a1ec0.png)|![image](https://user-images.githubusercontent.com/50341618/227396112-714300c1-10d6-42fe-b76b-b2b0670e0e7f.png)|
+|![image](https://user-images.githubusercontent.com/50341618/230695030-8eeca4ce-9a8b-4cb6-adc8-5989805932c1.png)|![image](https://user-images.githubusercontent.com/50341618/230695023-ce0ea4a0-33f1-4ca6-9b8e-bb69b4923b1e.png)|
 
 | Load any image | Scale image to portrait |
 | :------------: | :---------------------: |
-|![image](https://user-images.githubusercontent.com/50341618/227396290-3f63cf1a-4139-479b-9877-230e772bf13b.png)|![image](https://user-images.githubusercontent.com/50341618/227396316-67fc3ada-200f-4f36-adf4-586c4d5196b8.png)|
+|![image](https://user-images.githubusercontent.com/50341618/230694986-3885a913-23b1-4cf3-858d-2d3fbbd662a2.png)|![image](https://user-images.githubusercontent.com/50341618/230695012-7bdbd799-4b57-4005-b991-bed54560df1c.png)|
 
 | Extract from folder | Browse existing |
 | :-----------------: | :-------------: |
-|![image](https://user-images.githubusercontent.com/50341618/227396815-0a2a97e1-169d-4861-b667-9c41cc6b5cf6.png)|![image](https://user-images.githubusercontent.com/50341618/227396755-de05f69f-01c9-47af-a005-577693399463.png)|
+|![image](https://user-images.githubusercontent.com/50341618/230695083-27ed532e-1023-4434-8ecf-2275cfd3e8a5.png)|![image](https://user-images.githubusercontent.com/50341618/230695176-0c213a01-380f-43cd-9ea9-45264954b9ec.png)|
+
+| Settings page | Load web-image page |
+| :-----------------: | :-------------: |
+|![image](https://user-images.githubusercontent.com/50341618/230695227-ecb3ddf1-5d43-4b57-b4b6-b9d7c8f64e7b.png)|![image](https://user-images.githubusercontent.com/50341618/230695265-b8f126bc-2640-4531-a8ec-7e1547aa67dc.png)|
 
 ### Features
 
 #### Create new portraits
-Allows user to load any local or web image, to scale it as he sees fit and finally create the portrait in the proper game directory. Supports all prime image formats, which are png, jpg, jpeg, bmp, gif. The created portraits will be almost exact copies of the images set up in frames during scaling. The program automatically crops, resize the image to needed state, creates directory and image file.
+Allows user to load any local or web image, to scale it as he sees fit and finally create the portrait in the proper game directory. Supports all prime image formats, which are png, jpg, jpeg, bmp, gif. Now allows the user to change the image for each portrait type by uploading a local or web image with the specific portrait type selected. The created portraits will be almost exact copies of the images set up in frames during scaling. The program automatically crops, resize the image to needed state, creates directory and image file.
 
 #### Extract from external folders
 Allows user to extract images from local directory right to their proper place in game directory. Choose which folder to process in order to fetch the images, which should be a proper representation of portrait pack*. Select which portraits to move to the game directory. Press extract selected to move the chosen. In case you want to extract all, press the according button. The program automatically copies the folders to the game portraits' directory.
 
 #### Browse gallery and change/delete old images
-Allows user to browse the already existing/loaded and in-work portraits of the game. Makes possible for user to delete or change specific portraits. Select image(s) from the list and press the button which corresponds to needed functionality. Upon deleting, asks whether to proceed. Upon editing, asks whether to make a standalone/copy version or delete the old one and replace. Manages all folder and file processing. 
+Allows user to browse the already existing/loaded and in-work portraits of the game. Makes possible for user to delete or change specific portraits. Select image(s) from the list and press the button which corresponds to needed functionality. Upon deleting, asks whether to proceed. Upon editing, asks whether to make a standalone/copy version or delete the old one and replace. Manages all folder and file processing. Now the in-place replacement is valid. Without any problems, you can change a specific portrait that may already be in use by the game, so the user does not need to use any save-editing. Cannot change in-game NPC portraits! It might come later, however.
+
+#### Settings
+An attempt to prevent any problems with the path to portraits folder. Now, the program requires the user to select the correct folder in which all the game portraits are stored.
 
 ### Basic use cases
 1. Download any portrait pack from any source (for example https://www.nexusmods.com/pathfinderkingmaker/mods/92)
@@ -40,34 +47,36 @@ Allows user to browse the already existing/loaded and in-work portraits of the g
 5. Launch the game, enjoy!
 ---
 1. Press create new portrait
-2. Press choose local and select the image you want to use
-  2b. Press choose web
-  2b next. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally
+2. Press choose local and select the image you want to use<br>
+  2b. Press choose web<br>
+  2b next. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally<br>
 3. Press next and proceed to scaling page. Use mouse wheel in increase/decrease image. Move the image while holding the left mouse button to adjust it. Double-click restores images
 4. Press create to add the portrait to the game portraits folder
 5. In case, you messed up scaling, or simply want to change or delete the portrait. Open browse gallery, find your image. Select it. Press according button. Change the portrait (the name will be new whatsoever), or approve deletion 
 5. Close app, launch the game, enjoy!
 
 ### Installation
-Download release, unpack anywhere (verbatim). Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe.
+Download release, unpack anywhere (verbatim). Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe. As well, do not delete temp folder, while program is working.
 
 ### Production info and bugs section
 All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP.
 
 ### Build info
 * Visual Studio 2022 17.4.4
-* .NET Framework 4.7.2 (no libraries involved, I'm not sure about System.Numerics.Vectors.dll, because I did not use Vectors, however VS adds it to the build so, it might be working without it)
+* .NET Framework 4.7.2, no special DLLs involved
 * C#
 ---
 Compatible with latest Windows OSs 
-* Untested but it should be working on Windows 11
-* ✔ Tested with Windows 10
-* Untested but it should be working on Windows 7 as well
-* Most likely working with Windows XP/Vista
-* Very unlikely with anything older
-* NOT WORKING WITH UNIX (Linux/MAC)
+* ✅ Tested with Windows 11
+* ✅ Tested with Windows 10
+* ⭕ Some minor issues detected with Windows 8/8.1
+* ⭕ Untested but it should be working on Windows 7 as well
+* ⭕ Most likely working with Windows XP/Vista
+* ❌ Very unlikely with anything older
+* ❌ Not working with UNIX-based (Linux/MAC)
 
-#### Development and debugging addendum
+#### Development and debugging addendum, concerns
+* Code to detect whether the directory is indeed game-created
 ```c sharp
 public static bool ValidatePotraitPath(string path)
 {
@@ -80,14 +89,14 @@ public static bool ValidatePotraitPath(string path)
 }
 ```
 #### Translation addendum
-The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.resx, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. 
+The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.resx, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. However, I need to integrate any translations manually.
 
 ### Copyrights
 1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/blob/master/LICENSE)
 2. All rights for Visual Studio 2022 belongs to Microsoft (https://www.microsoft.com/)
 3. All rights for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
 4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
-5. Images and icons used in program belongs to Owlcat Games
+5. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
 6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br><br>
-Inform if your owner rights are violated
-##### Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.
+<b>Inform: if your owner rights are violated, you've encountered any bugs, if you have any suggestions.
+Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.</b>

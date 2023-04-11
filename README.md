@@ -3,6 +3,9 @@
 ## <p align="center">Desktop application for managing in-game portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous</p>
 
 ### Created by Artemii "Zeight" Saganenko
+### Nexus mods link: 
+https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>
+https://www.nexusmods.com/pathfinderkingmaker/mods/277
 
 ### Description
 

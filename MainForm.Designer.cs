@@ -68,8 +68,8 @@ namespace PathfinderPortraitManager
             this.ButtonExit = new System.Windows.Forms.Button();
             this.PictureBoxTitle = new System.Windows.Forms.PictureBox();
             this.LabelCopyright = new System.Windows.Forms.Label();
-            this.ButtonToSettingsPage = new System.Windows.Forms.Button();
             this.LabelVersion = new System.Windows.Forms.Label();
+            this.ButtonToSettingsPage = new System.Windows.Forms.Button();
             this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.ListExtract = new System.Windows.Forms.ListView();
@@ -740,6 +740,20 @@ namespace PathfinderPortraitManager
             this.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelCopyright.Click += new System.EventHandler(this.LabelCopyright_Click);
             // 
+            // LabelVersion
+            // 
+            this.LabelVersion.AutoSize = true;
+            this.LabelVersion.BackColor = System.Drawing.Color.Transparent;
+            this.LabelVersion.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LabelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelVersion.ForeColor = System.Drawing.Color.Goldenrod;
+            this.LabelVersion.Location = new System.Drawing.Point(607, 672);
+            this.LabelVersion.Name = "LabelVersion";
+            this.LabelVersion.Size = new System.Drawing.Size(268, 16);
+            this.LabelVersion.TabIndex = 7;
+            this.LabelVersion.Text = "1.2.0.0";
+            this.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ButtonToSettingsPage
             // 
             this.ButtonToSettingsPage.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -755,20 +769,6 @@ namespace PathfinderPortraitManager
             this.ButtonToSettingsPage.Click += new System.EventHandler(this.ButtonToSettingsPage_Click);
             this.ButtonToSettingsPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonToSettingsPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // LabelVersion
-            // 
-            this.LabelVersion.AutoSize = true;
-            this.LabelVersion.BackColor = System.Drawing.Color.Transparent;
-            this.LabelVersion.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LabelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelVersion.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelVersion.Location = new System.Drawing.Point(607, 672);
-            this.LabelVersion.Name = "LabelVersion";
-            this.LabelVersion.Size = new System.Drawing.Size(268, 16);
-            this.LabelVersion.TabIndex = 7;
-            this.LabelVersion.Text = "1.1.0.0";
-            this.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LayoutExtractPage
             // 

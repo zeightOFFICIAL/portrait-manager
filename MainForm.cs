@@ -310,6 +310,10 @@ namespace PathfinderPortraitManager
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
         }
+        private void ButtonToCustomPortraits_Click(object sender, EventArgs e)
+        {
+
+        }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();

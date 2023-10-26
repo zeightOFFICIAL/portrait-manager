@@ -319,6 +319,7 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Font = _bebas_neue20;
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonToMainPage2.Font = _bebas_neue20;
+            ButtonToCustomPortraits.Font = _bebas_neue20;
         }
         public void SetFontsNotEN()
         {
@@ -366,6 +367,7 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Font = defFont;
             ButtonHintExtract.Font = defFont;
             ButtonToMainPage2.Font = defFont;
+            ButtonToCustomPortraits.Font = defFont;
         }
         public void SetTexts()
         {
@@ -413,6 +415,7 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_EXTRACTOPENFOLDER;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
             ButtonToMainPage2.Text = Properties.TextVariables.BUTTON_BACK;
+            ButtonToCustomPortraits.Text = Properties.TextVariables.BUTTON_CUTSTOMPORT;
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
         public void UpdateObjectColoring(Control ctrl, Color a, Color b)

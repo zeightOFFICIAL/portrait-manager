@@ -70,6 +70,7 @@ namespace PathfinderPortraitManager
             this.LabelCopyright = new System.Windows.Forms.Label();
             this.LabelVersion = new System.Windows.Forms.Label();
             this.ButtonToSettingsPage = new System.Windows.Forms.Button();
+            this.ButtonToCustomPortraits = new System.Windows.Forms.Button();
             this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.ListExtract = new System.Windows.Forms.ListView();
@@ -630,6 +631,7 @@ namespace PathfinderPortraitManager
             this.LayoutMainPage.Controls.Add(this.LabelCopyright, 1, 8);
             this.LayoutMainPage.Controls.Add(this.LabelVersion, 2, 8);
             this.LayoutMainPage.Controls.Add(this.ButtonToSettingsPage, 1, 6);
+            this.LayoutMainPage.Controls.Add(this.ButtonToCustomPortraits, 1, 5);
             this.LayoutMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutMainPage.Name = "LayoutMainPage";
@@ -769,6 +771,22 @@ namespace PathfinderPortraitManager
             this.ButtonToSettingsPage.Click += new System.EventHandler(this.ButtonToSettingsPage_Click);
             this.ButtonToSettingsPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonToSettingsPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            // 
+            // ButtonToCustomPortraits
+            // 
+            this.ButtonToCustomPortraits.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonToCustomPortraits.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonToCustomPortraits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonToCustomPortraits.ForeColor = System.Drawing.Color.Goldenrod;
+            this.ButtonToCustomPortraits.Location = new System.Drawing.Point(277, 429);
+            this.ButtonToCustomPortraits.Name = "ButtonToCustomPortraits";
+            this.ButtonToCustomPortraits.Size = new System.Drawing.Size(324, 39);
+            this.ButtonToCustomPortraits.TabIndex = 8;
+            this.ButtonToCustomPortraits.Text = "ToCustomPortraits";
+            this.ButtonToCustomPortraits.UseVisualStyleBackColor = true;
+            this.ButtonToCustomPortraits.Click += new System.EventHandler(this.ButtonToCustomPortraits_Click);
+            this.ButtonToCustomPortraits.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonToCustomPortraits.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LayoutExtractPage
             // 
@@ -1786,6 +1804,7 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ButtonApplyChange;
+        private System.Windows.Forms.Button ButtonToCustomPortraits;
     }
 }
 

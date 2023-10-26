@@ -62,6 +62,8 @@ namespace PathfinderPortraitManager
         private static char _gameSelected = Properties.CoreSettings.Default.GameType;
         private static PrivateFontCollection _fontCollection;
 
+        private CancellationTokenSource _cancellationTokenSource;
+
         public MainForm()
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
@@ -265,14 +267,14 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
+            _cancellationTokenSource.Cancel();
             _extractFolderPath = "!NONE!";
-            ClearImageLists(ListExtract, ImgListExtract);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
-            ClearImageLists(ListGallery, ImgListGallery);
+            _cancellationTokenSource.Cancel();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }

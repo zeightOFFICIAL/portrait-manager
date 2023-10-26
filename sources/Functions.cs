@@ -7,11 +7,11 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -241,33 +241,34 @@ namespace PathfinderPortraitManager
         }
         public void ExploreDirectory(string path)
         {
-            if (CheckPortraitExistence(path))
+            if (!CheckPortraitExistence(path) ||
+                SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
+                SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
+                SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
             {
-                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
+                return;
+            }
+
+            int pathHops = path.Split('\\').Length;
+            string folderName = path.Split('\\')[pathHops - 1];
+            try
+            {
+                using (Image img = new Bitmap(path + "\\Fulllength.png"))
                 {
-                    int pathHops = path.Split('\\').Length;
-                    string folderName = path.Split('\\')[pathHops - 1];
-                    try
-                    {
-                        using (Image img = new Bitmap(path + "\\Fulllength.png"))
-                        {
-                            ImgListExtract.Images.Add(path, img);
-                        }
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                    ListViewItem item = new ListViewItem
-                    {
-                        Text = folderName,
-                        ImageIndex = ListExtract.Items.Count
-                    };
-                    ListExtract.Items.Add(item);
+                    ImgListExtract.Images.Add(path, img);
                 }
             }
+            catch
+            {
+                return;
+            }
+            ListViewItem item = new ListViewItem
+            {
+                Text = folderName,
+                ImageIndex = ListExtract.Items.Count
+            };
+            ListExtract.Items.Add(item);
+ 
             string[] subDirs = Directory.GetDirectories(path);
             foreach (string subDir in subDirs)
             {
@@ -509,30 +510,46 @@ namespace PathfinderPortraitManager
                 return false;
             }
 
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancelToken = _cancellationTokenSource.Token;
+
             Task.Factory.StartNew(() => {
                 int count = 0;
                 foreach (string dir in Directory.GetDirectories(fromPath))
                 {
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        Invoke((MethodInvoker)delegate {
+                            ImgListGallery.Images.Clear();
+                            ListGallery.Items.Clear();
+                        });
+                        count = 0;
+                        return;
+                    }
+
                     int pathHops = dir.Split('\\').Length;
 
-                        using (Image img = new Bitmap(dir + "\\Fulllength.png"))
+                    using (Image img = new Bitmap(dir + "\\Fulllength.png"))
                         {
-                        Invoke((MethodInvoker)delegate {
-                            ImgListGallery.Images.Add(dir.Split('\\')[pathHops - 1], img);
-                        });
-                    }
-                        ListViewItem item = new ListViewItem
-                        {
-                            Text = dir.Split('\\')[pathHops - 1],
-                            ImageIndex = count
-                        };
+                            Invoke((MethodInvoker)delegate {
+                                ImgListGallery.Images.Add(dir.Split('\\')[pathHops - 1], img);
+                            });
+                        }
+
+                    ListViewItem item = new ListViewItem
+                    {
+                        Text = dir.Split('\\')[pathHops - 1],
+                        ImageIndex = count
+                    };
+
                     ListGallery.BeginInvoke((MethodInvoker)delegate {
                         ListGallery.Items.Add(item);
                     });
+
                     count++;
                 }
 
-            });
+            }, cancelToken);
 
             return true;
         }

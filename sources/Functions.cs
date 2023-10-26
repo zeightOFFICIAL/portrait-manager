@@ -241,34 +241,33 @@ namespace PathfinderPortraitManager
         }
         public void ExploreDirectory(string path)
         {
-            if (!CheckPortraitExistence(path) ||
-                SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
-                SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
-                SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
+            if (CheckPortraitExistence(path))
             {
-                return;
-            }
-
-            int pathHops = path.Split('\\').Length;
-            string folderName = path.Split('\\')[pathHops - 1];
-            try
-            {
-                using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
                 {
-                    ImgListExtract.Images.Add(path, img);
+                    int pathHops = path.Split('\\').Length;
+                    string folderName = path.Split('\\')[pathHops - 1];
+                    try
+                    {
+                        using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                        {
+                            ImgListExtract.Images.Add(path, img);
+                        }
+                    }
+                    catch
+                    {
+                        return;
+                    }
+                    ListViewItem item = new ListViewItem
+                    {
+                        Text = folderName,
+                        ImageIndex = ListExtract.Items.Count
+                    };
+                    ListExtract.Items.Add(item);
                 }
             }
-            catch
-            {
-                return;
-            }
-            ListViewItem item = new ListViewItem
-            {
-                Text = folderName,
-                ImageIndex = ListExtract.Items.Count
-            };
-            ListExtract.Items.Add(item);
- 
             string[] subDirs = Directory.GetDirectories(path);
             foreach (string subDir in subDirs)
             {
@@ -521,8 +520,11 @@ namespace PathfinderPortraitManager
                     {
                         Invoke((MethodInvoker)delegate {
                             ImgListGallery.Images.Clear();
+                        });
+                        ListGallery.BeginInvoke((MethodInvoker)delegate {
                             ListGallery.Items.Clear();
                         });
+
                         count = 0;
                         return;
                     }
@@ -530,11 +532,11 @@ namespace PathfinderPortraitManager
                     int pathHops = dir.Split('\\').Length;
 
                     using (Image img = new Bitmap(dir + "\\Fulllength.png"))
-                        {
-                            Invoke((MethodInvoker)delegate {
-                                ImgListGallery.Images.Add(dir.Split('\\')[pathHops - 1], img);
-                            });
-                        }
+                    {
+                        Invoke((MethodInvoker)delegate {
+                            ImgListGallery.Images.Add(dir.Split('\\')[pathHops - 1], img);
+                        });
+                    }
 
                     ListViewItem item = new ListViewItem
                     {

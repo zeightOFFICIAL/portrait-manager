@@ -267,7 +267,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
-            _cancellationTokenSource.Cancel();
+            ClearImageLists(ListExtract, ImgListExtract);
             _extractFolderPath = "!NONE!";
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -275,6 +275,7 @@ namespace PathfinderPortraitManager
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource.Cancel();
+            ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }

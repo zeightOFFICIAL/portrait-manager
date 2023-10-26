@@ -213,6 +213,9 @@
   <data name="BUTTON_YES" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="HINT_CUSTOMNPC" xml:space="preserve">
+    <value>HINT MESSAGE</value>
+  </data>
   <data name="HINT_EXTRACTPAGE" xml:space="preserve">
     <value>This is the extract page. Here you can copy all images from one folder to the game folder. Click "choose folder" to select a folder to copy. Select the images and click "extract selected" to move only certain images, or click "extract all" to move all available. To perform the process manually, click "open folders".</value>
   </data>

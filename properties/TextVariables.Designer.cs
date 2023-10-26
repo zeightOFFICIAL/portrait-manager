@@ -349,6 +349,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HINT MESSAGE.
+        /// </summary>
+        internal static string HINT_CUSTOMNPC {
+            get {
+                return ResourceManager.GetString("HINT_CUSTOMNPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;choose folder&quot; to select a folder to copy. Select the images and click &quot;extract selected&quot; to move only certain images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
         /// </summary>
         internal static string HINT_EXTRACTPAGE {

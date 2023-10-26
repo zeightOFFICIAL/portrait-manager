@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
@@ -102,6 +103,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutExtractPage);
             RootFunctions.LayoutDisable(LayoutGallery);
             RootFunctions.LayoutDisable(LayoutSettingsPage);
+            RootFunctions.LayoutDisable(LayoutCustom);
         }
         public void ParentLayoutsSetDockFill()
         {
@@ -506,31 +508,32 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
-            List<string> folderList = new List<string>();
-            foreach (string directory in Directory.GetDirectories(fromPath)) {
-                int pathHops = directory.Split('\\').Length;
-                folderList.Add(directory.Split('\\')[pathHops - 1]);
-                try
+
+            Task.Factory.StartNew(() => {
+                int count = 0;
+                foreach (string dir in Directory.GetDirectories(fromPath))
                 {
-                    using (Image img = new Bitmap(directory + "\\Fulllength.png"))
-                    {
-                        ImgListGallery.Images.Add(directory.Split('\\')[pathHops - 1], img);
+                    int pathHops = dir.Split('\\').Length;
+
+                        using (Image img = new Bitmap(dir + "\\Fulllength.png"))
+                        {
+                        Invoke((MethodInvoker)delegate {
+                            ImgListGallery.Images.Add(dir.Split('\\')[pathHops - 1], img);
+                        });
                     }
+                        ListViewItem item = new ListViewItem
+                        {
+                            Text = dir.Split('\\')[pathHops - 1],
+                            ImageIndex = count
+                        };
+                    ListGallery.BeginInvoke((MethodInvoker)delegate {
+                        ListGallery.Items.Add(item);
+                    });
+                    count++;
                 }
-                catch
-                {
-                    continue;
-                }
-            }
-            for (int count = 0; count < ImgListGallery.Images.Count; count++)
-            {
-                ListViewItem item = new ListViewItem
-                {
-                    Text = folderList[count],
-                    ImageIndex = count
-                };
-                ListGallery.Items.Add(item);
-            }
+
+            });
+
             return true;
         }
         public static void ClearImageLists(ListView listView, ImageList imageList)

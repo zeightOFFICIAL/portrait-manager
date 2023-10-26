@@ -312,7 +312,19 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToCustomPortraits_Click(object sender, EventArgs e)
         {
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutCustom);
 
+            if (Properties.UseStamps.Default.isFirstCustom == true)
+            {
+                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_CUSTOMNPC))
+                {
+                    Hint.StartPosition = FormStartPosition.CenterParent;
+                    Hint.ShowDialog();
+                }
+                Properties.UseStamps.Default.isFirstCustom = false;
+                Properties.UseStamps.Default.Save();
+            }
         }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {

@@ -410,6 +410,7 @@ namespace PathfinderPortraitManager
             }
 
             ButtonToMainPage3_Click(sender, e);
+            RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutFilePage);
             RestoreFilePage();
             _isAnyLoaded = true;

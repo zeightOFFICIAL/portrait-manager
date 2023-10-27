@@ -236,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_path.ico" />
+    <Resource Include="resources\wotr_cur.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -65,17 +65,18 @@ Now supports translation files. The program language depends on the system langu
 Download release, unpack anywhere (verbatim), but I recommend using separate folder and not-protected directory, since it copies and save images abundantly. Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe. As well, do not delete temp folder, while program is working. Localization folder should be next to exe, and should not be deleted while app is running.
 
 ### Production info and bugs section
-All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP. From now on, version >1.1.0.0, there will be no functionality updates.
+All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP. From now on, version >1.2.0.0, there will be no functionality updates.
 
 ### Build info
-* Visual Studio 2022 17.4.4
-* .NET Framework 4.7.2, no special DLLs involved
 * C#
+* .NET Framework 4.7.2, no special DLLs involved
+* Visual Studio 2022 17.4.4
+
 ---
 Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is required</b><br>
 ✅ Tested with Windows 11<br>
 ✅ Tested with Windows 10<br>
-✅⭕ Some minor issues detected with Windows 8/8.1<br>
+✅ Some minor issues detected with Windows 8/8.1<br>
 ⭕ Untested but it probably works on Windows 7<br>
 ⭕ Might work with Windows XP/Vista<br>
 ❌ Highly unlikely with something older<br>
@@ -104,7 +105,13 @@ public MainForm()
     InitializeComponent();
 }
 ```
+* 
 * The program have not been under heavy and constant testing and debugging, there are a lot of pitfalls
+
+##### Changelog
+* 1.2.0.0
+* 1.1.0.0b
+* 1.0.0.2e
 
 #### Translation addendum
 The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.dll, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. However, I still need to integrate it to the program manually.
@@ -116,5 +123,6 @@ The program was optimized to use several languages and fonts. In order to create
 4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
 5. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
 6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br><br>
+7. 
 <b>Inform: if your owner rights are violated; if you've encountered any bugs; if you have any suggestions.
 Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.</b>

@@ -1631,19 +1631,20 @@ namespace PathfinderPortraitManager
             this.LayoutCustom.ColumnCount = 2;
             this.LayoutCustom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutCustom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutCustom.Location = new System.Drawing.Point(641, 0);
+            this.LayoutCustom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutCustom.Location = new System.Drawing.Point(0, 0);
             this.LayoutCustom.Name = "LayoutCustom";
             this.LayoutCustom.RowCount = 2;
             this.LayoutCustom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutCustom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutCustom.Size = new System.Drawing.Size(88, 481);
+            this.LayoutCustom.Size = new System.Drawing.Size(780, 617);
             this.LayoutCustom.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(734, 497);
+            this.ClientSize = new System.Drawing.Size(780, 617);
             this.Controls.Add(this.LayoutCustom);
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutSettingsPage);

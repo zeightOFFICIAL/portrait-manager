@@ -17,5 +17,8 @@
     <Setting Name="GameType" Type="System.Char" Scope="User">
       <Value Profile="(Default)">p</Value>
     </Setting>
+    <Setting Name="EnabledCustomNPC" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

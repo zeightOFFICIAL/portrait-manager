@@ -39,8 +39,8 @@ namespace PathfinderPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp_DoNotDeleteWhileRunning = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp_DoNotDeleteWhileRunning;
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
                 }
                 return resourceMan;
             }
@@ -147,6 +147,16 @@ namespace PathfinderPortraitManager.Properties {
             get {
                 object obj = ResourceManager.GetObject("title_wotr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] wotr_cur {
+            get {
+                object obj = ResourceManager.GetObject("wotr_cur", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

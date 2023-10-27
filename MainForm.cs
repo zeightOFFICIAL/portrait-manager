@@ -7,6 +7,7 @@
 */
 
 using PathfinderPortraitManager.forms;
+using PathfinderPortraitManager.Properties;
 using PathfinderPortraitManager.sources;
 using System;
 using System.Collections.Generic;
@@ -86,6 +87,8 @@ namespace PathfinderPortraitManager
             Width = Properties.CoreSettings.Default.MaxWindowWidth;
             Height = Properties.CoreSettings.Default.MaxWindowHeight;
 
+            Cursor = new Cursor("wotr_cur.cur");
+
             CenterToScreen();
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -104,7 +107,6 @@ namespace PathfinderPortraitManager
             }
             SetTexts();
             UpdateColorScheme();
-
             PicPortraitTemp.AllowDrop = true;
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;

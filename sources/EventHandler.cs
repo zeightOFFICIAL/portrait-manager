@@ -449,8 +449,7 @@ namespace PathfinderPortraitManager
                 SystemControl.FileControl.DeleteDirectoryRecursive(path);
             }
             _cancellationTokenSource.Cancel();
-            ImgListGallery.Images.Clear();
-            ListGallery.Clear();
+            ClearImageLists(ListGallery, ImgListGallery);
             if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             {
                 ButtonToMainPage3_Click(sender, e);
@@ -502,6 +501,7 @@ namespace PathfinderPortraitManager
                 _extractFolderPath = "!NONE!";
                 return;
             }
+            ClearImageLists(ListExtract, ImgListExtract);
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = _cancellationTokenSource.Token;
             ExploreDirectory(_extractFolderPath, cancellationToken);

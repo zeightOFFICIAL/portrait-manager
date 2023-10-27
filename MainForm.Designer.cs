@@ -802,7 +802,7 @@ namespace PathfinderPortraitManager
             this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.641887F));
             this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.71623F));
             this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.641887F));
-            this.LayoutExtractPage.Size = new System.Drawing.Size(79, 481);
+            this.LayoutExtractPage.Size = new System.Drawing.Size(81, 481);
             this.LayoutExtractPage.TabIndex = 3;
             this.LayoutExtractPage.Visible = false;
             // 
@@ -822,7 +822,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(73, 391);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(75, 391);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // ListExtract
@@ -855,7 +855,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel6.Controls.Add(this.ButtonToMainPage2, 0, 6);
             this.tableLayoutPanel6.Controls.Add(this.ButtonHintExtract, 0, 7);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(-116, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(-114, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 9;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -981,7 +981,7 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed10.Name = "LayoutUnnamed10";
             this.LayoutUnnamed10.RowCount = 1;
             this.LayoutUnnamed10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed10.Size = new System.Drawing.Size(80, 391);
+            this.LayoutUnnamed10.Size = new System.Drawing.Size(78, 391);
             this.LayoutUnnamed10.TabIndex = 0;
             // 
             // ListGallery
@@ -989,7 +989,7 @@ namespace PathfinderPortraitManager
             this.ListGallery.BackColor = System.Drawing.Color.Black;
             this.ListGallery.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListGallery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListGallery.ForeColor = System.Drawing.SystemColors.Control;
+            this.ListGallery.ForeColor = System.Drawing.SystemColors.WindowText;
             this.ListGallery.HideSelection = false;
             this.ListGallery.LargeImageList = this.ImgListGallery;
             this.ListGallery.Location = new System.Drawing.Point(1, 3);
@@ -1014,7 +1014,7 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed11.Controls.Add(this.ButtonChangePortrait, 0, 1);
             this.LayoutUnnamed11.Controls.Add(this.ButtonHintFolder, 0, 7);
             this.LayoutUnnamed11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed11.Location = new System.Drawing.Point(-110, 3);
+            this.LayoutUnnamed11.Location = new System.Drawing.Point(-111, 3);
             this.LayoutUnnamed11.Name = "LayoutUnnamed11";
             this.LayoutUnnamed11.RowCount = 9;
             this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1121,7 +1121,7 @@ namespace PathfinderPortraitManager
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.640895F));
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.71821F));
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.640895F));
-            this.LayoutGallery.Size = new System.Drawing.Size(86, 481);
+            this.LayoutGallery.Size = new System.Drawing.Size(84, 481);
             this.LayoutGallery.TabIndex = 4;
             // 
             // LayoutURLDialog
@@ -1643,7 +1643,7 @@ namespace PathfinderPortraitManager
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(734, 481);
+            this.ClientSize = new System.Drawing.Size(734, 497);
             this.Controls.Add(this.LayoutCustom);
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutSettingsPage);

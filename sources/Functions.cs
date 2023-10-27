@@ -239,49 +239,63 @@ namespace PathfinderPortraitManager
             else
                 return false;
         }
-        public async Task ExploreDirectory(string path, CancellationToken cancelToken)
+        public void ExploreDirectory(string path, CancellationToken cancelToken)
         {
-            if (CheckPortraitExistence(path))
+            Task.Factory.StartNew(() =>
             {
-                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
+                if (cancelToken.IsCancellationRequested)
                 {
-                    int pathHops = path.Split('\\').Length;
-                    string folderName = path.Split('\\').Last();
-                    try
+                    Invoke((MethodInvoker)delegate
                     {
-                        using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                        ImgListExtract.Images.Clear();
+                        ListExtract.Items.Clear();
+                        ListExtract.Clear();
+                    });
+
+                    return;
+                }
+
+                if (CheckPortraitExistence(path))
+                {
+                    if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
+                        SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
+                        SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
+                    {
+                        string folderName = path.Split('\\').Last();
+                        try
                         {
-                            await Task.Run(() =>
+                            using (Image img = new Bitmap(path + "\\Fulllength.png"))
                             {
+
                                 Invoke((MethodInvoker)delegate
                                 {
                                     ImgListExtract.Images.Add(path, img);
                                 });
+
+                                ListViewItem item = new ListViewItem
+                                {
+                                    Text = folderName,
+                                    ImageIndex = ListExtract.Items.Count
+                                };
                                 Invoke((MethodInvoker)delegate
                                 {
-                                    ListViewItem item = new ListViewItem
-                                    {
-                                        Text = folderName,
-                                        ImageIndex = ListExtract.Items.Count
-                                    };
                                     ListExtract.Items.Add(item);
                                 });
-                            }, cancelToken);
+
+                            }
+                        }
+                        catch
+                        {
+                            return;
                         }
                     }
-                    catch
-                    {
-                        return;
-                    }
                 }
-            }
-            string[] subDirs = Directory.GetDirectories(path);
-            foreach (string subDir in subDirs)
-            {
-                await ExploreDirectory(subDir, cancelToken);
-            }
+                string[] subDirs = Directory.GetDirectories(path);
+                foreach (string subDir in subDirs)
+                {
+                    ExploreDirectory(subDir, cancelToken);
+                }
+            }, cancelToken);
         }
         public void SetFonts(PrivateFontCollection fonts)
         {
@@ -431,7 +445,7 @@ namespace PathfinderPortraitManager
         }
         public void UpdateObjectColoring(Control ctrl, Color a, Color b)
         {
-            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog) 
+            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
                                    || ctrl.Equals(LayoutFinalPage)
                                    || ctrl.Equals(LayoutSettingsPage))
             {
@@ -513,7 +527,7 @@ namespace PathfinderPortraitManager
         }
         public bool LoadGallery(string fromPath)
         {
-            if(!SystemControl.FileControl.Readonly.DirectoryExists(fromPath))
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromPath))
             {
                 return false;
             }
@@ -521,20 +535,20 @@ namespace PathfinderPortraitManager
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _cancellationTokenSource.Token;
 
-            Task.Factory.StartNew(() => {
+            Task.Factory.StartNew(() =>
+            {
                 int count = 0;
                 foreach (string dir in Directory.GetDirectories(fromPath))
                 {
                     if (cancelToken.IsCancellationRequested)
                     {
-                        Invoke((MethodInvoker)delegate {
+                        Invoke((MethodInvoker)delegate
+                        {
                             ImgListGallery.Images.Clear();
-                        });
-                        ListGallery.BeginInvoke((MethodInvoker)delegate {
                             ListGallery.Items.Clear();
+                            ListGallery.Clear();
                         });
 
-                        count = 0;
                         return;
                     }
 
@@ -542,7 +556,8 @@ namespace PathfinderPortraitManager
 
                     using (Image img = new Bitmap(dir + "\\Fulllength.png"))
                     {
-                        Invoke((MethodInvoker)delegate {
+                        Invoke((MethodInvoker)delegate
+                        {
                             ImgListGallery.Images.Add(dir.Split('\\')[pathHops - 1], img);
                         });
                     }
@@ -552,8 +567,8 @@ namespace PathfinderPortraitManager
                         Text = dir.Split('\\')[pathHops - 1],
                         ImageIndex = count
                     };
-
-                    ListGallery.BeginInvoke((MethodInvoker)delegate {
+                    Invoke((MethodInvoker)delegate
+                    {
                         ListGallery.Items.Add(item);
                     });
 
@@ -594,7 +609,7 @@ namespace PathfinderPortraitManager
                 {
                     using (Image webImage = Image.FromStream(stream))
                     {
-                        
+
                         _isAnyLoaded = true;
                         if (_imageFlag == 1)
                         {

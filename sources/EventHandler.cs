@@ -8,12 +8,11 @@
 
 using PathfinderPortraitManager.forms;
 using System;
-using System.IO;
 using System.Drawing;
-using System.Windows.Forms;
+using System.IO;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PathfinderPortraitManager
 {
@@ -40,7 +39,7 @@ namespace PathfinderPortraitManager
                 }
                 _isAnyLoaded = false;
                 LoadTempImages(_imageFlag);
-                ResizeVisibleImagesToWindow();                
+                ResizeVisibleImagesToWindow();
                 return;
             }
             else
@@ -367,7 +366,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_NONESELECTED))
                 {
-                    Message.StartPosition= FormStartPosition.CenterParent;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
 
@@ -396,7 +395,7 @@ namespace PathfinderPortraitManager
                 img.Save(TEMP_SMALL_APPEND);
             LoadTempImages(100);
             GenerateImageFlagString(0);
-            _tunneledName = "!NONE!";            
+            _tunneledName = "!NONE!";
 
             using (MyInquiryDialog Inquiry = new MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
@@ -466,7 +465,7 @@ namespace PathfinderPortraitManager
                 Hint.ShowDialog();
             }
         }
-        private async void ButtonChooseFolder_Click(object sender, EventArgs e)
+        private void ButtonChooseFolder_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath != "!NONE!")
             {
@@ -484,7 +483,7 @@ namespace PathfinderPortraitManager
                 SelectedPath = defaultDir,
                 Description = Properties.TextVariables.TEXT_FOLDEROPEN,
                 ShowNewFolderButton = false,
-                
+
             })
             {
                 if (FolderChoose.ShowDialog() == DialogResult.OK)
@@ -505,20 +504,7 @@ namespace PathfinderPortraitManager
             }
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = _cancellationTokenSource.Token;
-            await ExploreDirectory(_extractFolderPath, cancellationToken);
-            if (ListExtract.Items.Count > 0)
-            {
-                ButtonExtractAll.Enabled = true;
-                ButtonExtractSelected.Enabled = true;
-                ButtonOpenFolders.Enabled = true;
-            }
-            else
-            {
-                _extractFolderPath = "!NONE!";
-                ButtonExtractAll.Enabled = false;
-                ButtonExtractSelected.Enabled = false;
-                ButtonOpenFolders.Enabled = false;
-            }
+            ExploreDirectory(_extractFolderPath, cancellationToken);
         }
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
@@ -638,7 +624,7 @@ namespace PathfinderPortraitManager
             }
             System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
             System.Diagnostics.Process.Start(_extractFolderPath);
-            ButtonToMainPage2_Click(sender, e);            
+            ButtonToMainPage2_Click(sender, e);
         }
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
@@ -720,7 +706,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
-            if (ValidatePortraitPath(TextBoxFullPath.Text)) 
+            if (ValidatePortraitPath(TextBoxFullPath.Text))
             {
                 ButtonValidatePath.Text = Properties.TextVariables.BUTTON_OK;
                 ButtonValidatePath.ForeColor = Color.White;

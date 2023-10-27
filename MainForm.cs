@@ -6,31 +6,31 @@
     Primal license header is written in Program.cs
 */
 
-using PathfinderPortraitManager.sources;
 using PathfinderPortraitManager.forms;
+using PathfinderPortraitManager.sources;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using System.IO;
 
 namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
         private static readonly GameTypeClass WrathType = new GameTypeClass("Wrath of the Righteous",
-            Color.FromArgb(255, 20, 147),   Color.FromArgb(20, 6, 30),
+            Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Properties.Resources.icon_wotr, Properties.Resources.title_wotr,
-            Properties.Resources.bg_wotr,   Properties.Resources.placeholder_wotr,
+            Properties.Resources.bg_wotr, Properties.Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
         private static readonly GameTypeClass KingmakerType = new GameTypeClass("Kingmaker",
-            Color.FromArgb(218, 165, 32),   Color.FromArgb(9, 28, 11),
+            Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Properties.Resources.icon_path, Properties.Resources.title_path,
-            Properties.Resources.bg_path,   Properties.Resources.placeholder_path,
+            Properties.Resources.bg_path, Properties.Resources.placeholder_path,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
@@ -54,7 +54,7 @@ namespace PathfinderPortraitManager
         private const float LARGE_ASPECT = 1.479768786f;
         private const float MEDIUM_ASPECT = 1.309090909f;
         private const float SMALL_ASPECT = 1.308108108f;
-        
+
         private static ushort _imageFlag = 0;
         private static Point _mousePosition = new Point();
         private static int _isDragging = 0;
@@ -76,7 +76,7 @@ namespace PathfinderPortraitManager
                 Properties.CoreSettings.Default.KINGPath = KingmakerType.DefaultDirectory;
                 Properties.CoreSettings.Default.WOTRPath = WrathType.DefaultDirectory;
                 Properties.CoreSettings.Default.MaxWindowHeight = Size.Height;
-                Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;                
+                Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;
                 Properties.CoreSettings.Default.Save();
                 Properties.UseStamps.Default.isFirstAny = false;
                 Properties.UseStamps.Default.Save();
@@ -84,14 +84,14 @@ namespace PathfinderPortraitManager
             ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
             ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
             Width = Properties.CoreSettings.Default.MaxWindowWidth;
-            Height = Properties.CoreSettings.Default.MaxWindowHeight;            
-            
+            Height = Properties.CoreSettings.Default.MaxWindowHeight;
+
             CenterToScreen();
             ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
-            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, 
-                                               Thread.CurrentThread.CurrentUICulture.Name, 
+            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                                               Thread.CurrentThread.CurrentUICulture.Name,
                                                "Pathfinder Portrait Manager.resources.dll");
             if (File.Exists(resxFilePath))
             {
@@ -114,7 +114,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
-           
+
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
@@ -132,7 +132,7 @@ namespace PathfinderPortraitManager
             GenerateImageFlagString(100);
             LoadTempImages(100);
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutFilePage);            
+            RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
 
             if (Properties.UseStamps.Default.isFirstPortrait == true)
@@ -223,9 +223,6 @@ namespace PathfinderPortraitManager
         {
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
-            ButtonExtractAll.Enabled = false;
-            ButtonExtractSelected.Enabled = false;
-            ButtonOpenFolders.Enabled = false;
 
             if (Properties.UseStamps.Default.isFirstExtract == true)
             {
@@ -268,13 +265,14 @@ namespace PathfinderPortraitManager
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
             _extractFolderPath = "!NONE!";
+            _cancellationTokenSource?.Cancel();
             ClearImageLists(ListExtract, ImgListExtract);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
-            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource?.Cancel();
             ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);

@@ -32,7 +32,7 @@ namespace PathfinderPortraitManager.forms
             {
                 _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
                 _font = new Font(_fontCollection.Families[0], 18);
-            }            
+            }
             InitializeComponent();
             LabelInquiryMesg.Font = _font;
             LabelInquiryMesg.Text = mesg;

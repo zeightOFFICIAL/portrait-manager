@@ -12,6 +12,8 @@ using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PathfinderPortraitManager
 {
@@ -464,7 +466,7 @@ namespace PathfinderPortraitManager
                 Hint.ShowDialog();
             }
         }
-        private void ButtonChooseFolder_Click(object sender, EventArgs e)
+        private async void ButtonChooseFolder_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath != "!NONE!")
             {
@@ -501,7 +503,9 @@ namespace PathfinderPortraitManager
                 _extractFolderPath = "!NONE!";
                 return;
             }
-            ExploreDirectory(_extractFolderPath);
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancellationToken = _cancellationTokenSource.Token;
+            await ExploreDirectory(_extractFolderPath, cancellationToken);
             if (ListExtract.Items.Count > 0)
             {
                 ButtonExtractAll.Enabled = true;

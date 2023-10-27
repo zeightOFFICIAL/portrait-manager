@@ -239,7 +239,7 @@ namespace PathfinderPortraitManager
             else
                 return false;
         }
-        public void ExploreDirectory(string path)
+        public async Task ExploreDirectory(string path, CancellationToken cancelToken)
         {
             if (CheckPortraitExistence(path))
             {
@@ -248,30 +248,39 @@ namespace PathfinderPortraitManager
                     SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
                 {
                     int pathHops = path.Split('\\').Length;
-                    string folderName = path.Split('\\')[pathHops - 1];
+                    string folderName = path.Split('\\').Last();
                     try
                     {
                         using (Image img = new Bitmap(path + "\\Fulllength.png"))
                         {
-                            ImgListExtract.Images.Add(path, img);
+                            await Task.Run(() =>
+                            {
+                                Invoke((MethodInvoker)delegate
+                                {
+                                    ImgListExtract.Images.Add(path, img);
+                                });
+                                Invoke((MethodInvoker)delegate
+                                {
+                                    ListViewItem item = new ListViewItem
+                                    {
+                                        Text = folderName,
+                                        ImageIndex = ListExtract.Items.Count
+                                    };
+                                    ListExtract.Items.Add(item);
+                                });
+                            }, cancelToken);
                         }
                     }
                     catch
                     {
                         return;
                     }
-                    ListViewItem item = new ListViewItem
-                    {
-                        Text = folderName,
-                        ImageIndex = ListExtract.Items.Count
-                    };
-                    ListExtract.Items.Add(item);
                 }
             }
             string[] subDirs = Directory.GetDirectories(path);
             foreach (string subDir in subDirs)
             {
-                ExploreDirectory(subDir);
+                await ExploreDirectory(subDir, cancelToken);
             }
         }
         public void SetFonts(PrivateFontCollection fonts)

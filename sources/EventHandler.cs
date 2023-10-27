@@ -447,15 +447,13 @@ namespace PathfinderPortraitManager
                 item.Remove();
                 SystemControl.FileControl.DeleteDirectoryRecursive(path);
             }
+            _cancellationTokenSource.Cancel();
+            ImgListGallery.Images.Clear();
             ListGallery.Clear();
-            for (int count = 0; count < ImgListGallery.Images.Count; count++)
+            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             {
-                ListViewItem item = new ListViewItem
-                {
-                    Text = ImgListGallery.Images.Keys[count],
-                    ImageIndex = count
-                };
-                ListGallery.Items.Add(item);
+                ButtonToMainPage3_Click(sender, e);
+                return;
             }
         }
         private void ButtonHintFolder_Click(object sender, EventArgs e)

@@ -121,9 +121,6 @@
   <data name="placeholder_wotr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\placeholder_wotr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BebasNeue_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\BebasNeue-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="title_wotr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\title_wotr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -145,7 +142,7 @@
   <data name="bg_wotr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\bg_wotr.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="wotr_cur" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\wotr_cur.cur;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="BebasNeue_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\BebasNeue-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

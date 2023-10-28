@@ -149,15 +149,5 @@ namespace PathfinderPortraitManager.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] wotr_cur {
-            get {
-                object obj = ResourceManager.GetObject("wotr_cur", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

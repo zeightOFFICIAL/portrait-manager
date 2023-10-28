@@ -697,5 +697,62 @@ namespace PathfinderPortraitManager
                 LabelImageFlag.Text = "◻◻◻";
             }
         }
+        private bool LoadCustomFolder(string rootPath)
+        {
+
+            string[] threePaths = { Path.Combine(rootPath),
+                                    Path.Combine(rootPath, "..", "Portraits - Army"),
+                                    Path.Combine(rootPath, "..", "Portraits - Npc") };
+            Console.WriteLine(threePaths[0]);
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(threePaths[0]) ||
+                !SystemControl.FileControl.Readonly.DirectoryExists(threePaths[1]) ||
+                !SystemControl.FileControl.Readonly.DirectoryExists(threePaths[2])
+                )
+            {
+                return false;
+            }
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancelToken = _cancellationTokenSource.Token;
+
+            Task.Factory.StartNew(() =>
+            {
+                IterativeParseCustom(threePaths[0], cancelToken);
+                IterativeParseCustom(threePaths[1], cancelToken);
+                IterativeParseCustom(threePaths[2], cancelToken);
+            }, cancelToken);            
+
+            return true;
+        }
+        private void IterativeParseCustom(string fromPath, CancellationToken cancelToken)
+        {
+            string[] subDirs = Directory.GetDirectories(fromPath);
+            if (cancelToken.IsCancellationRequested)
+            {
+                Invoke((MethodInvoker)delegate
+                {
+                    ListBoxCustom.Items.Clear();
+                });
+
+                return;
+            }
+
+            foreach (string dir in subDirs)
+            {
+                if (fromPath == "Portraits" && dir.Split(' ').First() != "CustomNpcPortraits")
+                {
+                    continue;
+                }
+                ListViewItem item = new ListViewItem
+                {
+                    Text = dir.Split('\\').Last(),
+                    Tag = dir
+                };
+                Invoke((MethodInvoker)delegate
+                {
+                    ListBoxCustom.Items.Add(item);
+                });
+            }
+        }
     }
 }

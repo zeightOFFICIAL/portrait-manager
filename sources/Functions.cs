@@ -350,7 +350,6 @@ namespace PathfinderPortraitManager
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonToMainPage2.Font = _bebas_neue20;
             ButtonToCustomPortraits.Font = _bebas_neue20;
-            LabelCustomBoxInfo.Font = _bebas_neue10;
             ButtonToMainPage6.Font = _bebas_neue16;
             ButtonOpenFolderCustom.Font = _bebas_neue16;
             ButtonHelpCustom.Font = _bebas_neue16;
@@ -406,7 +405,6 @@ namespace PathfinderPortraitManager
             ButtonHintExtract.Font = defFont;
             ButtonToMainPage2.Font = defFont;
             ButtonToCustomPortraits.Font = defFont;
-            LabelCustomBoxInfo.Font = defFont8;
             ButtonToMainPage6.Font = defFont;
             ButtonOpenFolderCustom.Font = defFont;
             ButtonHelpCustom.Font = defFont;
@@ -721,7 +719,6 @@ namespace PathfinderPortraitManager
             string[] threePaths = { Path.Combine(rootPath),
                                     Path.Combine(rootPath, "..", "Portraits - Army"),
                                     Path.Combine(rootPath, "..", "Portraits - Npc") };
-            Console.WriteLine(threePaths[0]);
             if (!SystemControl.FileControl.Readonly.DirectoryExists(threePaths[0]) ||
                 !SystemControl.FileControl.Readonly.DirectoryExists(threePaths[1]) ||
                 !SystemControl.FileControl.Readonly.DirectoryExists(threePaths[2])
@@ -735,7 +732,7 @@ namespace PathfinderPortraitManager
 
             Task.Factory.StartNew(() =>
             {
-                IterativeParseCustom(threePaths[0], cancelToken, "Normal - ");
+                IterativeParseCustom(threePaths[0], cancelToken, "Playable - ");
                 IterativeParseCustom(threePaths[1], cancelToken, "Army - ");
                 IterativeParseCustom(threePaths[2], cancelToken, "NPC - ");
             }, cancelToken);            
@@ -757,14 +754,18 @@ namespace PathfinderPortraitManager
 
             foreach (string dir in subDirs)
             {
-                if (fromPath.Split('\\').Last() == "Portraits" && dir.Split('\\').Last().Split('-').First() != "CustomNpcPortraits")
+                string nameText = flag + dir.Split('\\').Last();
+                if (fromPath.Split('\\').Last() == "Portraits" && dir.Split('\\').Last().Split('-').First() != "CustomNpcPortraits ")
                 {
-                    Console.WriteLine(dir.Split('\\').Last().Split('-').First());
                     continue;
+                }
+                if (flag == "Playable - ")
+                {
+                    nameText = flag + dir.Split('\\').Last().Remove(0, 21);
                 }
                 ListViewItem item = new ListViewItem
                 {
-                    Text = flag + dir.Split('\\').Last(),
+                    Text = nameText,
                     Tag = dir
                 };
                 Invoke((MethodInvoker)delegate

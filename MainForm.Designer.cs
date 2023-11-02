@@ -134,7 +134,6 @@ namespace PathfinderPortraitManager
             this.PictureCustom = new System.Windows.Forms.PictureBox();
             this.LayoutUnnamed15 = new System.Windows.Forms.TableLayoutPanel();
             this.ListBoxCustom = new System.Windows.Forms.ListBox();
-            this.LabelCustomBoxInfo = new System.Windows.Forms.Label();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonHelpCustom = new System.Windows.Forms.Button();
             this.ButtonToMainPage6 = new System.Windows.Forms.Button();
@@ -1772,13 +1771,11 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed15.ColumnCount = 1;
             this.LayoutUnnamed15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutUnnamed15.Controls.Add(this.ListBoxCustom, 0, 0);
-            this.LayoutUnnamed15.Controls.Add(this.LabelCustomBoxInfo, 0, 1);
             this.LayoutUnnamed15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutUnnamed15.Location = new System.Drawing.Point(3, 3);
             this.LayoutUnnamed15.Name = "LayoutUnnamed15";
-            this.LayoutUnnamed15.RowCount = 2;
+            this.LayoutUnnamed15.RowCount = 1;
             this.LayoutUnnamed15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.84404F));
-            this.LayoutUnnamed15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.15596F));
             this.LayoutUnnamed15.Size = new System.Drawing.Size(291, 328);
             this.LayoutUnnamed15.TabIndex = 2;
             // 
@@ -1786,6 +1783,7 @@ namespace PathfinderPortraitManager
             // 
             this.ListBoxCustom.BackColor = System.Drawing.SystemColors.MenuText;
             this.ListBoxCustom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListBoxCustom.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ListBoxCustom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListBoxCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ListBoxCustom.ForeColor = System.Drawing.Color.White;
@@ -1795,22 +1793,9 @@ namespace PathfinderPortraitManager
             this.ListBoxCustom.Location = new System.Drawing.Point(3, 3);
             this.ListBoxCustom.Name = "ListBoxCustom";
             this.ListBoxCustom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ListBoxCustom.Size = new System.Drawing.Size(285, 282);
+            this.ListBoxCustom.Size = new System.Drawing.Size(285, 322);
             this.ListBoxCustom.TabIndex = 0;
             this.ListBoxCustom.SelectedValueChanged += new System.EventHandler(this.ListBoxCustom_SelectedValueChanged);
-            // 
-            // LabelCustomBoxInfo
-            // 
-            this.LabelCustomBoxInfo.AutoSize = true;
-            this.LabelCustomBoxInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelCustomBoxInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelCustomBoxInfo.ForeColor = System.Drawing.SystemColors.Window;
-            this.LabelCustomBoxInfo.Location = new System.Drawing.Point(3, 288);
-            this.LabelCustomBoxInfo.Name = "LabelCustomBoxInfo";
-            this.LabelCustomBoxInfo.Size = new System.Drawing.Size(285, 40);
-            this.LabelCustomBoxInfo.TabIndex = 1;
-            this.LabelCustomBoxInfo.Text = "LabelBoxInfo";
-            this.LabelCustomBoxInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel11
             // 
@@ -1954,7 +1939,6 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureCustom)).EndInit();
             this.LayoutUnnamed15.ResumeLayout(false);
-            this.LayoutUnnamed15.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -2074,7 +2058,6 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.Button ButtonHelpCustom;
         private System.Windows.Forms.Label LabelNameInfo;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed15;
-        private System.Windows.Forms.Label LabelCustomBoxInfo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.PictureBox PictureCustom;

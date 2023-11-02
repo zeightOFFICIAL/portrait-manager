@@ -223,6 +223,9 @@ namespace PathfinderPortraitManager
         {
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
+            ButtonExtractAll.Enabled = false;
+            ButtonExtractSelected.Enabled = false;
+            ButtonOpenFolders.Enabled = false;
 
             if (UseStamps.Default.isFirstExtract == true)
             {
@@ -301,7 +304,6 @@ namespace PathfinderPortraitManager
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
         }
-
         private void ButtonToMainPage6_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
@@ -350,5 +352,9 @@ namespace PathfinderPortraitManager
             Application.Exit();
         }
 
+        private void ListBoxCustom_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

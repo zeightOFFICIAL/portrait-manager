@@ -251,6 +251,7 @@ namespace PathfinderPortraitManager
                 return;
             }
 
+
             if (CheckPortraitExistence(path))
             {
                 if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
@@ -275,8 +276,10 @@ namespace PathfinderPortraitManager
                             Invoke((MethodInvoker)delegate
                             {
                                 ListExtract.Items.Add(item);
+                                ButtonExtractAll.Enabled = true;
+                                ButtonExtractSelected.Enabled = true;
+                                ButtonOpenFolders.Enabled = true;
                             });
-
                         }
                     }
                     catch
@@ -301,7 +304,8 @@ namespace PathfinderPortraitManager
         public void SetFonts(PrivateFontCollection fonts)
         {
             Font _bebas_neue20 = new Font(fonts.Families[0], 20),
-                 _bebas_neue16 = new Font(fonts.Families[0], 16);
+                 _bebas_neue16 = new Font(fonts.Families[0], 16),
+                 _bebas_neue10 = new Font(fonts.Families[0], 10);
             ButtonToFilePage.Font = _bebas_neue20;
             ButtonToExtractPage.Font = _bebas_neue20;
             ButtonToGalleryPage.Font = _bebas_neue20;
@@ -346,10 +350,18 @@ namespace PathfinderPortraitManager
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonToMainPage2.Font = _bebas_neue20;
             ButtonToCustomPortraits.Font = _bebas_neue20;
+            LabelCustomBoxInfo.Font = _bebas_neue10;
+            ButtonToMainPage6.Font = _bebas_neue16;
+            ButtonOpenFolderCustom.Font = _bebas_neue16;
+            ButtonHelpCustom.Font = _bebas_neue16;
+            ButtonEditCustomImage.Font = _bebas_neue16;
+            LabelNameInfo.Font = _bebas_neue10;
+            ListBoxCustom.Font = _bebas_neue16;
         }
         public void SetFontsNotEN()
         {
-            Font defFont = new Font(DefaultFont.FontFamily, 12);
+            Font defFont = new Font(DefaultFont.FontFamily, 12),
+                 defFont8 = new Font(DefaultFont.FontFamily, 8);
             ButtonToFilePage.Font = defFont;
             ButtonToExtractPage.Font = defFont;
             ButtonToGalleryPage.Font = defFont;
@@ -394,6 +406,13 @@ namespace PathfinderPortraitManager
             ButtonHintExtract.Font = defFont;
             ButtonToMainPage2.Font = defFont;
             ButtonToCustomPortraits.Font = defFont;
+            LabelCustomBoxInfo.Font = defFont8;
+            ButtonToMainPage6.Font = defFont;
+            ButtonOpenFolderCustom.Font = defFont;
+            ButtonHelpCustom.Font = defFont;
+            ButtonEditCustomImage.Font = defFont;
+            LabelNameInfo.Font = defFont;
+            ListBoxCustom.Font = defFont8;
         }
         public void SetTexts()
         {
@@ -699,7 +718,6 @@ namespace PathfinderPortraitManager
         }
         private bool LoadCustomFolder(string rootPath)
         {
-
             string[] threePaths = { Path.Combine(rootPath),
                                     Path.Combine(rootPath, "..", "Portraits - Army"),
                                     Path.Combine(rootPath, "..", "Portraits - Npc") };
@@ -717,14 +735,14 @@ namespace PathfinderPortraitManager
 
             Task.Factory.StartNew(() =>
             {
-                IterativeParseCustom(threePaths[0], cancelToken);
-                IterativeParseCustom(threePaths[1], cancelToken);
-                IterativeParseCustom(threePaths[2], cancelToken);
+                IterativeParseCustom(threePaths[0], cancelToken, "Normal - ");
+                IterativeParseCustom(threePaths[1], cancelToken, "Army - ");
+                IterativeParseCustom(threePaths[2], cancelToken, "NPC - ");
             }, cancelToken);            
 
             return true;
         }
-        private void IterativeParseCustom(string fromPath, CancellationToken cancelToken)
+        private void IterativeParseCustom(string fromPath, CancellationToken cancelToken, string flag = "NA - ")
         {
             string[] subDirs = Directory.GetDirectories(fromPath);
             if (cancelToken.IsCancellationRequested)
@@ -739,18 +757,19 @@ namespace PathfinderPortraitManager
 
             foreach (string dir in subDirs)
             {
-                if (fromPath == "Portraits" && dir.Split(' ').First() != "CustomNpcPortraits")
+                if (fromPath.Split('\\').Last() == "Portraits" && dir.Split('\\').Last().Split('-').First() != "CustomNpcPortraits")
                 {
+                    Console.WriteLine(dir.Split('\\').Last().Split('-').First());
                     continue;
                 }
                 ListViewItem item = new ListViewItem
                 {
-                    Text = dir.Split('\\').Last(),
+                    Text = flag + dir.Split('\\').Last(),
                     Tag = dir
                 };
                 Invoke((MethodInvoker)delegate
                 {
-                    ListBoxCustom.Items.Add(item);
+                    ListBoxCustom.Items.Add(item.Text);
                 });
             }
         }

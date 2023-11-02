@@ -103,7 +103,6 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutExtractPage);
             RootFunctions.LayoutDisable(LayoutGallery);
             RootFunctions.LayoutDisable(LayoutSettingsPage);
-            RootFunctions.LayoutDisable(LayoutCustom);
         }
         public void ParentLayoutsSetDockFill()
         {
@@ -349,18 +348,10 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Font = _bebas_neue20;
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonToMainPage2.Font = _bebas_neue20;
-            ButtonToCustomPortraits.Font = _bebas_neue20;
-            ButtonToMainPage6.Font = _bebas_neue16;
-            ButtonOpenFolderCustom.Font = _bebas_neue16;
-            ButtonHelpCustom.Font = _bebas_neue16;
-            ButtonEditCustomImage.Font = _bebas_neue16;
-            LabelNameInfo.Font = _bebas_neue10;
-            ListBoxCustom.Font = _bebas_neue16;
         }
         public void SetFontsNotEN()
         {
-            Font defFont = new Font(DefaultFont.FontFamily, 12),
-                 defFont8 = new Font(DefaultFont.FontFamily, 8);
+            Font defFont = new Font(DefaultFont.FontFamily, 12);
             ButtonToFilePage.Font = defFont;
             ButtonToExtractPage.Font = defFont;
             ButtonToGalleryPage.Font = defFont;
@@ -404,13 +395,6 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Font = defFont;
             ButtonHintExtract.Font = defFont;
             ButtonToMainPage2.Font = defFont;
-            ButtonToCustomPortraits.Font = defFont;
-            ButtonToMainPage6.Font = defFont;
-            ButtonOpenFolderCustom.Font = defFont;
-            ButtonHelpCustom.Font = defFont;
-            ButtonEditCustomImage.Font = defFont;
-            LabelNameInfo.Font = defFont;
-            ListBoxCustom.Font = defFont8;
         }
         public void SetTexts()
         {
@@ -458,7 +442,6 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Text = Properties.TextVariables.BUTTON_EXTRACTOPENFOLDER;
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
             ButtonToMainPage2.Text = Properties.TextVariables.BUTTON_BACK;
-            ButtonToCustomPortraits.Text = Properties.TextVariables.BUTTON_CUTSTOMPORT;
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
         }
         public void UpdateObjectColoring(Control ctrl, Color a, Color b)
@@ -712,66 +695,6 @@ namespace PathfinderPortraitManager
             else if (flag == 100)
             {
                 LabelImageFlag.Text = "◻◻◻";
-            }
-        }
-        private bool LoadCustomFolder(string rootPath)
-        {
-            string[] threePaths = { Path.Combine(rootPath),
-                                    Path.Combine(rootPath, "..", "Portraits - Army"),
-                                    Path.Combine(rootPath, "..", "Portraits - Npc") };
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(threePaths[0]) ||
-                !SystemControl.FileControl.Readonly.DirectoryExists(threePaths[1]) ||
-                !SystemControl.FileControl.Readonly.DirectoryExists(threePaths[2])
-                )
-            {
-                return false;
-            }
-
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancelToken = _cancellationTokenSource.Token;
-
-            Task.Factory.StartNew(() =>
-            {
-                IterativeParseCustom(threePaths[0], cancelToken, "Playable - ");
-                IterativeParseCustom(threePaths[1], cancelToken, "Army - ");
-                IterativeParseCustom(threePaths[2], cancelToken, "NPC - ");
-            }, cancelToken);            
-
-            return true;
-        }
-        private void IterativeParseCustom(string fromPath, CancellationToken cancelToken, string flag = "NA - ")
-        {
-            string[] subDirs = Directory.GetDirectories(fromPath);
-            if (cancelToken.IsCancellationRequested)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    ListBoxCustom.Items.Clear();
-                });
-
-                return;
-            }
-
-            foreach (string dir in subDirs)
-            {
-                string nameText = flag + dir.Split('\\').Last();
-                if (fromPath.Split('\\').Last() == "Portraits" && dir.Split('\\').Last().Split('-').First() != "CustomNpcPortraits ")
-                {
-                    continue;
-                }
-                if (flag == "Playable - ")
-                {
-                    nameText = flag + dir.Split('\\').Last().Remove(0, 21);
-                }
-                ListViewItem item = new ListViewItem
-                {
-                    Text = nameText,
-                    Tag = dir
-                };
-                Invoke((MethodInvoker)delegate
-                {
-                    ListBoxCustom.Items.Add(item.Text);
-                });
             }
         }
     }

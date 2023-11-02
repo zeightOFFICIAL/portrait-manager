@@ -15,10 +15,8 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 
 namespace PathfinderPortraitManager
 {
@@ -111,7 +109,6 @@ namespace PathfinderPortraitManager
             PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
             PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
             PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-            ListBoxCustom.Items.RemoveAt(0);
 
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutURLDialog);
@@ -310,8 +307,6 @@ namespace PathfinderPortraitManager
         private void ButtonToMainPage6_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
-            ListBoxCustom.Items.Clear();
-            RootFunctions.LayoutDisable(LayoutCustom);
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
@@ -324,27 +319,7 @@ namespace PathfinderPortraitManager
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
         }
-        private void ButtonToCustomPortraits_Click(object sender, EventArgs e)
-        {
-            ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutCustom);
-            if (!LoadCustomFolder(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage6_Click(sender, e);
-                return;
-            }
 
-            if (UseStamps.Default.isFirstCustom == true)
-            {
-                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_CUSTOMNPC))
-                {
-                    Hint.StartPosition = FormStartPosition.CenterParent;
-                    Hint.ShowDialog();
-                }
-                UseStamps.Default.isFirstCustom = false;
-                UseStamps.Default.Save();
-            }
-        }
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();
@@ -353,28 +328,6 @@ namespace PathfinderPortraitManager
             SystemControl.FileControl.ClearTempImages();
             Dispose();
             Application.Exit();
-        }
-
-        private void ListBoxCustom_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string[] values =  ListBoxCustom.SelectedItem.ToString().Split(new string[] { " - " }, StringSplitOptions.None);
-            string path = "None";
-
-            if (values[0] == "NPC")
-            {
-                path = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc", values[1]);
-            }
-            else if (values[0] == "Army")
-            {
-                path = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army", values[1]);
-
-            }
-            Console.WriteLine(path);
-
-            //using (Image img = new Bitmap("//Fulllength.png"))
-            //{
-            //    PictureCustom.Image = img;
-            //}
         }
     }
 }

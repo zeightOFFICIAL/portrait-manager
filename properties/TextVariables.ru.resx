@@ -132,9 +132,6 @@
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>Отменить</value>
   </data>
-  <data name="BUTTON_CUTSTOMPORT" xml:space="preserve">
-    <value>Портреты NPC</value>
-  </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Выйти</value>
   </data>

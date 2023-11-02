@@ -106,15 +106,6 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Portraits.
-        /// </summary>
-        internal static string BUTTON_CUTSTOMPORT {
-            get {
-                return ResourceManager.GetString("BUTTON_CUTSTOMPORT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string BUTTON_EXIT {
@@ -345,15 +336,6 @@ namespace PathfinderPortraitManager.Properties {
         internal static string BUTTON_YES {
             get {
                 return ResourceManager.GetString("BUTTON_YES", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HINT MESSAGE.
-        /// </summary>
-        internal static string HINT_CUSTOMNPC {
-            get {
-                return ResourceManager.GetString("HINT_CUSTOMNPC", resourceCulture);
             }
         }
         

@@ -85,13 +85,13 @@ namespace PathfinderPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool isFirstCustom {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public string isAwareNPC {
             get {
-                return ((bool)(this["isFirstCustom"]));
+                return ((string)(this["isAwareNPC"]));
             }
             set {
-                this["isFirstCustom"] = value;
+                this["isAwareNPC"] = value;
             }
         }
     }

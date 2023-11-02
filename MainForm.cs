@@ -16,19 +16,21 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private static readonly GameTypeClass WrathType = new GameTypeClass("Wrath of the Righteous",
+        private static readonly GameTypeClass WRATH_TYPE = new GameTypeClass("Wrath of the Righteous",
             Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Resources.icon_wotr, Resources.title_wotr,
             Resources.bg_wotr, Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
-        private static readonly GameTypeClass KingmakerType = new GameTypeClass("Kingmaker",
+        private static readonly GameTypeClass KINGMAKER_TYPE = new GameTypeClass("Kingmaker",
             Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Resources.icon_path, Resources.title_path,
             Resources.bg_path, Resources.placeholder_path,
@@ -36,8 +38,8 @@ namespace PathfinderPortraitManager
             + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
-            { 'p', KingmakerType},
-            { 'w', WrathType}
+            { 'p', KINGMAKER_TYPE},
+            { 'w', WRATH_TYPE}
         };
         private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
@@ -45,9 +47,9 @@ namespace PathfinderPortraitManager
             { 'w', CoreSettings.Default.KINGPath }
         };
 
-        private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL_DoNotDeleteWhileRunning.png";
-        private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM_DoNotDeleteWhileRunning.png";
-        private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL_DoNotDeleteWhileRunning.png";
+        private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
+        private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM.png";
+        private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL.png";
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
@@ -56,14 +58,13 @@ namespace PathfinderPortraitManager
         private const float MEDIUM_ASPECT = 1.309090909f;
         private const float SMALL_ASPECT = 1.308108108f;
 
-        private static ushort _imageFlag = 0;
+        private static ushort _imageSelectionFlag = 0;
         private static Point _mousePosition = new Point();
-        private static int _isDragging = 0;
+        private static int _isDraggingMouse = 0;
         private static bool _isAnyLoaded = false;
         private static char _gameSelected = CoreSettings.Default.GameType;
         private static PrivateFontCollection _fontCollection;
-
-        private CancellationTokenSource _cancellationTokenSource;
+        private static CancellationTokenSource _cancellationTokenSource;
 
         public MainForm()
         {
@@ -74,8 +75,8 @@ namespace PathfinderPortraitManager
         {
             if (UseStamps.Default.isFirstAny)
             {
-                CoreSettings.Default.KINGPath = KingmakerType.DefaultDirectory;
-                CoreSettings.Default.WOTRPath = WrathType.DefaultDirectory;
+                CoreSettings.Default.KINGPath = KINGMAKER_TYPE.DefaultDirectory;
+                CoreSettings.Default.WOTRPath = WRATH_TYPE.DefaultDirectory;
                 CoreSettings.Default.MaxWindowHeight = Size.Height;
                 CoreSettings.Default.MaxWindowWidth = Size.Width;
                 CoreSettings.Default.Save();
@@ -191,7 +192,7 @@ namespace PathfinderPortraitManager
         {
             RestoreFilePage();
             _isAnyLoaded = true;
-            LoadTempImages(_imageFlag);
+            LoadTempImages(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
@@ -204,7 +205,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
             SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
-            LoadTempImages(_imageFlag);
+            LoadTempImages(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindow();
@@ -276,6 +277,8 @@ namespace PathfinderPortraitManager
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
+            TxtBoxSearch.Text = "Search...";
+            TxtBoxSearch.ForeColor = Color.DimGray;
             ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -304,11 +307,6 @@ namespace PathfinderPortraitManager
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
         }
-        private void ButtonToMainPage6_Click(object sender, EventArgs e)
-        {
-            _cancellationTokenSource?.Cancel();
-            RootFunctions.LayoutEnable(LayoutMainPage);
-        }
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutMainPage);
@@ -319,7 +317,6 @@ namespace PathfinderPortraitManager
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
         }
-
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();
@@ -328,6 +325,79 @@ namespace PathfinderPortraitManager
             SystemControl.FileControl.ClearTempImages();
             Dispose();
             Application.Exit();
+        }
+        private void ButtonLoadNormal_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            ClearImageLists(ListGallery, ImgListGallery);
+            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        private void ButtonLoadCustom_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            ClearImageLists(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected]))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        private bool LoadGalleryCustom(string fromRootPath)
+        {
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath) ||
+                !SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(fromRootPath, "..", "Portraits - Npc")) ||
+                !SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(fromRootPath, "..", "Portraits - Army")))
+            {
+                return false;
+            }
+            ClearImageLists(ListGallery, ImgListGallery);
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancelToken = _cancellationTokenSource.Token;
+
+            Task.Factory.StartNew(() =>
+            {                
+                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Npc"), cancelToken);
+                RecursiveParsePortraits(fromRootPath, cancelToken, true);
+                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Army"), cancelToken);
+            }, cancelToken);
+
+            return true;
+        }
+        private void TxtBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtBoxSearch.Text != "")
+            {
+                for (int i = ListGallery.Items.Count - 1; i >= 0; i--)
+                {
+                    var item = ListGallery.Items[i];
+                    if (item.Text.ToLower().Contains(TxtBoxSearch.Text))
+                    {
+                        item.BackColor = SystemColors.Highlight;
+                        item.ForeColor = SystemColors.HighlightText;
+                    }
+                    else
+                    {
+                        ListGallery.Items.Remove(item);
+                    }
+                }
+                if (ListGallery.SelectedItems.Count == 1)
+                {
+                    ListGallery.Focus();
+                }
+            }
+            else
+            {
+                ButtonLoadNormal_Click(sender, e);
+            }
+        }
+        private void TxtBoxSearch_Click(object sender, EventArgs e)
+        {
+            TxtBoxSearch.Clear();
+            TxtBoxSearch.ForeColor = GAME_TYPES[_gameSelected].ForeColor;
         }
     }
 }

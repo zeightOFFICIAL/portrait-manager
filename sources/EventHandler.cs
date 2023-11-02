@@ -10,6 +10,7 @@ using PathfinderPortraitManager.forms;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
@@ -33,21 +34,21 @@ namespace PathfinderPortraitManager
 
                 if (_isAnyLoaded == true)
                 {
-                    LoadTempImages(_imageFlag);
+                    LoadTempImages(_imageSelectionFlag);
                     ResizeVisibleImagesToWindow();
                     return;
                 }
                 _isAnyLoaded = false;
-                LoadTempImages(_imageFlag);
+                LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
                 return;
             }
             else
             {
                 _isAnyLoaded = true;
-                GenerateImageFlagString(_imageFlag);
-                SafeCopyAllImages(path, _imageFlag);
-                LoadTempImages(_imageFlag);
+                GenerateImageFlagString(_imageSelectionFlag);
+                SafeCopyAllImages(path, _imageSelectionFlag);
+                LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
             }
         }
@@ -75,21 +76,21 @@ namespace PathfinderPortraitManager
 
                 if (_isAnyLoaded == true)
                 {
-                    LoadTempImages(_imageFlag);
+                    LoadTempImages(_imageSelectionFlag);
                     ResizeVisibleImagesToWindow();
                     return;
                 }
                 _isAnyLoaded = false;
-                LoadTempImages(_imageFlag);
+                LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
                 return;
             }
             else
             {
-                GenerateImageFlagString(_imageFlag);
+                GenerateImageFlagString(_imageSelectionFlag);
                 _isAnyLoaded = true;
-                SafeCopyAllImages(path, _imageFlag);
-                LoadTempImages(_imageFlag);
+                SafeCopyAllImages(path, _imageSelectionFlag);
+                LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
             }
         }
@@ -102,12 +103,12 @@ namespace PathfinderPortraitManager
             if (e.Button == MouseButtons.Left)
             {
                 _mousePosition = e.Location;
-                _isDragging = 1;
+                _isDraggingMouse = 1;
             }
         }
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDragging == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
+            if (_isDraggingMouse == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
                                   PicPortraitLrg.Image.Height > PanelPortraitLrg.Height))
             {
                 PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePosition.X - e.X),
@@ -117,19 +118,19 @@ namespace PathfinderPortraitManager
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitLrg);
-            _isDragging = 0;
+            _isDraggingMouse = 0;
         }
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 _mousePosition = e.Location;
-                _isDragging = 2;
+                _isDraggingMouse = 2;
             }
         }
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDragging == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
+            if (_isDraggingMouse == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
                                   PicPortraitMed.Image.Height > PanelPortraitMed.Height))
             {
                 PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePosition.X - e.X),
@@ -139,19 +140,19 @@ namespace PathfinderPortraitManager
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitMed);
-            _isDragging = 0;
+            _isDraggingMouse = 0;
         }
         private void PicPortraitSml_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 _mousePosition = e.Location;
-                _isDragging = 3;
+                _isDraggingMouse = 3;
             }
         }
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDragging == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
+            if (_isDraggingMouse == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
                                   PicPortraitSml.Image.Height > PanelPortraitSml.Height))
             {
                 PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePosition.X - e.X),
@@ -161,7 +162,7 @@ namespace PathfinderPortraitManager
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitSml);
-            _isDragging = 0;
+            _isDraggingMouse = 0;
         }
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -235,7 +236,7 @@ namespace PathfinderPortraitManager
             }
             if (_tunneledName != "!NONE!")
             {
-                path = ACTIVE_PATHS[_gameSelected] + "\\" + _tunneledName;
+                path = _tunneledName;
                 _tunneledName = "!NONE!";
                 GeneratePortraits(path);
                 placeable = true;
@@ -386,9 +387,21 @@ namespace PathfinderPortraitManager
                 ClearPrimeImages(img);
             SystemControl.FileControl.ClearTempImages();
             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
-            string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-            using (Image img = new Bitmap(path + LARGE_APPEND))
-                img.Save(TEMP_LARGE_APPEND);
+            string path = item.Tag.ToString().Split('>')[0];
+            string type = item.Tag.ToString().Split('>')[1];
+            Console.WriteLine(path);
+            try
+            {
+                using (Image img = new Bitmap(path + LARGE_APPEND))
+                    img.Save(TEMP_LARGE_APPEND);
+            }
+            catch
+            {
+                using (Image img = new Bitmap(path + MEDIUM_APPEND)) {
+                    Bitmap newImg = ImageControl.Direct.Resize(img, 692, 1024);
+                    newImg.Save(TEMP_LARGE_APPEND);
+                }
+            }                
             using (Image img = new Bitmap(path + MEDIUM_APPEND))
                 img.Save(TEMP_MEDIUM_APPEND);
             using (Image img = new Bitmap(path + SMALL_APPEND))
@@ -400,12 +413,24 @@ namespace PathfinderPortraitManager
             using (MyInquiryDialog Inquiry = new MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
                 Inquiry.StartPosition = FormStartPosition.CenterParent;
+                Console.WriteLine(item.Tag.ToString());
                 if (Inquiry.ShowDialog() == DialogResult.OK)
                 {
                     ListGallery.Items.RemoveByKey(item.Text);
                     ImgListGallery.Images.RemoveByKey(item.Text);
-                    SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-                    _tunneledName = item.Text;
+                    if (type == "LOCAL")
+                    {
+                        SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
+                    }
+                    else
+                    {
+                        SystemControl.FileControl.DeleteDirectoryRecursive(path + "\\BACKUP");
+                        SystemControl.FileControl.CreateDirectory(path + "\\BACKUP");                            
+                        SystemControl.FileControl.CopyFile(path + LARGE_APPEND, path + "\\BACKUP" + LARGE_APPEND);
+                        SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
+                        SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
+                    }
+                    _tunneledName = path;
                     item.Remove();
                 }
             }
@@ -783,7 +808,7 @@ namespace PathfinderPortraitManager
                 CheckWebResourceAndLoad(url);
                 ResizeVisibleImagesToWindow();
                 TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
-                GenerateImageFlagString(_imageFlag);
+                GenerateImageFlagString(_imageSelectionFlag);
             }
             catch
             {
@@ -837,8 +862,8 @@ namespace PathfinderPortraitManager
         }
         private void ButtonNextImageType_Click(object sender, EventArgs e)
         {
-            _imageFlag++;
-            if (_imageFlag == 1)
+            _imageSelectionFlag++;
+            if (_imageSelectionFlag == 1)
             {
                 ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED2;
             }
@@ -847,8 +872,8 @@ namespace PathfinderPortraitManager
                 ButtonNextImageType.Visible = false;
                 ButtonNextImageType.Enabled = false;
             }
-            GenerateImageFlagString(_imageFlag);
-            LoadTempImages(_imageFlag);
+            GenerateImageFlagString(_imageSelectionFlag);
+            LoadTempImages(_imageSelectionFlag);
             ResizeVisibleImagesToWindow();
         }
         private void ButtonApplyChange_Click(object sender, EventArgs e)

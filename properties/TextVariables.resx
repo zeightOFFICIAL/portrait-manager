@@ -183,6 +183,12 @@
   <data name="BUTTON_SELECTPATH" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
+    <value>Show custom</value>
+  </data>
+  <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
+    <value>Show portraits</value>
+  </data>
   <data name="BUTTON_SUCESS" xml:space="preserve">
     <value>Sucess</value>
   </data>

@@ -183,6 +183,12 @@
   <data name="BUTTON_SELECTPATH" xml:space="preserve">
     <value>Выбрать</value>
   </data>
+  <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
+    <value>Для NPC</value>
+  </data>
+  <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
+    <value>Обычные</value>
+  </data>
   <data name="BUTTON_SUCESS" xml:space="preserve">
     <value>Успех</value>
   </data>

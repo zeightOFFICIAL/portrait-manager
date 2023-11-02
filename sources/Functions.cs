@@ -22,7 +22,7 @@ namespace PathfinderPortraitManager
         public void RestoreFilePage()
         {
             _isAnyLoaded = false;
-            _imageFlag = 0;
+            _imageSelectionFlag = 0;
             ButtonNextImageType.Visible = true;
             ButtonNextImageType.Enabled = true;
             ButtonNextImageType.Text = Properties.TextVariables.BUTTON_ADVANCED;
@@ -304,7 +304,7 @@ namespace PathfinderPortraitManager
         {
             Font _bebas_neue20 = new Font(fonts.Families[0], 20),
                  _bebas_neue16 = new Font(fonts.Families[0], 16),
-                 _bebas_neue10 = new Font(fonts.Families[0], 10);
+                 _bebas_neue13 = new Font(fonts.Families[0], 13);
             ButtonToFilePage.Font = _bebas_neue20;
             ButtonToExtractPage.Font = _bebas_neue20;
             ButtonToGalleryPage.Font = _bebas_neue20;
@@ -348,6 +348,8 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Font = _bebas_neue20;
             ButtonHintExtract.Font = _bebas_neue20;
             ButtonToMainPage2.Font = _bebas_neue20;
+            ButtonLoadCustom.Font = _bebas_neue13;
+            ButtonLoadNormal.Font = _bebas_neue13;
         }
         public void SetFontsNotEN()
         {
@@ -395,6 +397,8 @@ namespace PathfinderPortraitManager
             ButtonOpenFolders.Font = defFont;
             ButtonHintExtract.Font = defFont;
             ButtonToMainPage2.Font = defFont;
+            ButtonLoadCustom.Font = defFont;
+            ButtonLoadNormal.Font = defFont;
         }
         public void SetTexts()
         {
@@ -443,12 +447,15 @@ namespace PathfinderPortraitManager
             ButtonHintExtract.Text = Properties.TextVariables.BUTTON_HINT;
             ButtonToMainPage2.Text = Properties.TextVariables.BUTTON_BACK;
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
+            ButtonLoadCustom.Text = Properties.TextVariables.BUTTON_SHOWCUSTOM;
+            ButtonLoadNormal.Text = Properties.TextVariables.BUTTON_SHOWLOCAL;
         }
         public void UpdateObjectColoring(Control ctrl, Color a, Color b)
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
                                    || ctrl.Equals(LayoutFinalPage)
-                                   || ctrl.Equals(LayoutSettingsPage))
+                                   || ctrl.Equals(LayoutSettingsPage) 
+                                   || ctrl.Equals(TxtBoxSearch))
             {
                 return;
             }
@@ -544,18 +551,99 @@ namespace PathfinderPortraitManager
 
             return true;
         }
-        private void IterativeParsePortrais(string fromPath, CancellationToken cancelToken)
+        
+        private void RecursiveParsePortraits(string fromPath, CancellationToken cancelToken, bool flag = false)
+        {
+            if (cancelToken.IsCancellationRequested)
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    ClearImageLists(ListGallery, ImgListGallery);
+                });
+
+                return;
+            }
+
+            if (SystemControl.FileControl.Readonly.FileExist(fromPath + MEDIUM_APPEND) &&
+                SystemControl.FileControl.Readonly.FileExist(fromPath + SMALL_APPEND))
+            {
+                try
+                {
+                    string fromImagePath = fromPath + "\\Fulllength.png";
+                    if (!SystemControl.FileControl.Readonly.FileExist(fromPath + "\\Fulllength.png"))
+                    {   
+                        fromImagePath = fromPath + "\\Medium.png";
+                    }
+                    using (Image img = new Bitmap(fromImagePath))
+                    {
+                        string text = fromPath.Split('\\').Last();
+                        string[] parts = fromPath.Split('\\');
+                        if (flag == true)
+                        {
+                            if (!fromPath.Contains("CustomNpcPortraits") || fromPath.Contains("BACKUP"))
+                            {
+                                return;
+                            }
+                        }
+                        if (text == "Game Default Portraits")
+                        { 
+                            text = parts[parts.Length-2]+" (DEFAULT)";
+                        }
+                        ListViewItem item = new ListViewItem
+                        {
+                            Text = text,
+                            ImageIndex = ListGallery.Items.Count,
+                            Tag = fromPath + ">CUSTOM"
+                        };
+                        Invoke((MethodInvoker)delegate
+                        {
+                            ImgListGallery.Images.Add(fromPath, img);
+                            ListGallery.Items.Add(item);
+                            ButtonExtractAll.Enabled = true;
+                            ButtonExtractSelected.Enabled = true;
+                            ButtonOpenFolders.Enabled = true;
+                        });
+                    }
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            string[] subDirs = Directory.GetDirectories(fromPath);
+            foreach (string subDir in subDirs)
+            {
+                RecursiveParsePortraits(subDir, cancelToken, flag);
+            }
+
+        }
+        private void IterativeParsePortrais(string fromPath, CancellationToken cancelToken, bool flag = false, int depth = 1)
         {
             string[] subDirs = Directory.GetDirectories(fromPath);
             foreach (string subDir in subDirs)
             {
                 if (cancelToken.IsCancellationRequested)
                 {
-                    Invoke((MethodInvoker)delegate
+                    BeginInvoke((MethodInvoker)delegate
                     {
                         ClearImageLists(ListGallery, ImgListGallery);
                     });
 
+                    return;
+                }
+
+                string type;
+
+                if (flag)
+                {
+                    type = "CUSTOM";
+                }
+                else
+                {
+                    type = "LOCAL";
+                }
+                if (fromPath.Contains("BACKUP"))
+                {
                     return;
                 }
                 if (CheckPortraitExistence(subDir))
@@ -569,18 +657,15 @@ namespace PathfinderPortraitManager
                             using (Image img = new Bitmap(subDir + "\\Fulllength.png"))
                             {
 
-                                Invoke((MethodInvoker)delegate
-                                {
-                                    ImgListGallery.Images.Add(subDir, img);
-                                });
-
                                 ListViewItem item = new ListViewItem
                                 {
                                     Text = subDir.Split('\\').Last(),
-                                    ImageIndex = ListGallery.Items.Count
+                                    ImageIndex = ListGallery.Items.Count,
+                                    Tag = subDir+">"+type
                                 };
                                 Invoke((MethodInvoker)delegate
                                 {
+                                    ImgListGallery.Images.Add(subDir, img);
                                     ListGallery.Items.Add(item);
                                 });
 
@@ -591,6 +676,10 @@ namespace PathfinderPortraitManager
                             return;
                         }
                     }
+                }
+                if (depth == 2)
+                {
+
                 }
             }
         }
@@ -627,17 +716,17 @@ namespace PathfinderPortraitManager
                     {
 
                         _isAnyLoaded = true;
-                        if (_imageFlag == 1)
+                        if (_imageSelectionFlag == 1)
                         {
                             SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
                             webImage.Save(TEMP_MEDIUM_APPEND);
                         }
-                        else if (_imageFlag == 2)
+                        else if (_imageSelectionFlag == 2)
                         {
                             SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_SMALL_APPEND);
                         }
-                        else if (_imageFlag == 100 || _imageFlag == 0)
+                        else if (_imageSelectionFlag == 100 || _imageSelectionFlag == 0)
                         {
                             SystemControl.FileControl.ClearTempImages();
                             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning/");
@@ -645,7 +734,7 @@ namespace PathfinderPortraitManager
                             webImage.Save(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_LARGE_APPEND);
                         }
-                        LoadTempImages(_imageFlag);
+                        LoadTempImages(_imageSelectionFlag);
                         ResizeVisibleImagesToWindow();
                     }
                 }

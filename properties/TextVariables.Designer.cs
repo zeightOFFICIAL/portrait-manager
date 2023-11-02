@@ -259,6 +259,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show custom.
+        /// </summary>
+        internal static string BUTTON_SHOWCUSTOM {
+            get {
+                return ResourceManager.GetString("BUTTON_SHOWCUSTOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show portraits.
+        /// </summary>
+        internal static string BUTTON_SHOWLOCAL {
+            get {
+                return ResourceManager.GetString("BUTTON_SHOWLOCAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sucess.
         /// </summary>
         internal static string BUTTON_SUCESS {

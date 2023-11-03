@@ -21,7 +21,7 @@ namespace PathfinderPortraitManager
     {
         public void RestoreFilePage()
         {
-            _isAnyLoaded = false;
+            _isAnyLoadedToPortraitPage = false;
             _imageSelectionFlag = 0;
             ButtonNextImageType.Visible = true;
             ButtonNextImageType.Enabled = true;
@@ -238,6 +238,21 @@ namespace PathfinderPortraitManager
             else
                 return false;
         }
+        public static bool CheckPortraitExistenceStunt(string path)
+        {
+            if (SystemControl.FileControl.Readonly.DirectoryExists(path))
+                if (SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
+                    SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
+                    if (SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
+                        SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
+                        return true;
+                    else
+                        return false;
+                else
+                    return false;
+            else
+                return false;
+        }
         private void RecursiveParseDirectory(string path, CancellationToken cancelToken)
         {
             if (cancelToken.IsCancellationRequested)
@@ -261,12 +276,6 @@ namespace PathfinderPortraitManager
                     {
                         using (Image img = new Bitmap(path + "\\Fulllength.png"))
                         {
-
-                            Invoke((MethodInvoker)delegate
-                            {
-                                ImgListExtract.Images.Add(path, img);
-                            });
-
                             ListViewItem item = new ListViewItem
                             {
                                 Text = path.Split('\\').Last(),
@@ -274,6 +283,7 @@ namespace PathfinderPortraitManager
                             };
                             Invoke((MethodInvoker)delegate
                             {
+                                ImgListExtract.Images.Add(path, img);
                                 ListExtract.Items.Add(item);
                                 ButtonExtractAll.Enabled = true;
                                 ButtonExtractSelected.Enabled = true;
@@ -539,85 +549,19 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
-
+            _cancellationTokenSource?.Cancel();
             ClearImageLists(ListGallery, ImgListGallery);
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _cancellationTokenSource.Token;
 
             Task.Factory.StartNew(() =>
             {
-                IterativeParsePortrais(fromPath, cancelToken);
+                IterativeParsePortraits(fromPath, cancelToken);
             }, cancelToken);
 
             return true;
         }
-        
-        private void RecursiveParsePortraits(string fromPath, CancellationToken cancelToken, bool flag = false)
-        {
-            if (cancelToken.IsCancellationRequested)
-            {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    ClearImageLists(ListGallery, ImgListGallery);
-                });
-
-                return;
-            }
-
-            if (SystemControl.FileControl.Readonly.FileExist(fromPath + MEDIUM_APPEND) &&
-                SystemControl.FileControl.Readonly.FileExist(fromPath + SMALL_APPEND))
-            {
-                try
-                {
-                    string fromImagePath = fromPath + "\\Fulllength.png";
-                    if (!SystemControl.FileControl.Readonly.FileExist(fromPath + "\\Fulllength.png"))
-                    {   
-                        fromImagePath = fromPath + "\\Medium.png";
-                    }
-                    using (Image img = new Bitmap(fromImagePath))
-                    {
-                        string text = fromPath.Split('\\').Last();
-                        string[] parts = fromPath.Split('\\');
-                        if (flag == true)
-                        {
-                            if (!fromPath.Contains("CustomNpcPortraits") || fromPath.Contains("BACKUP"))
-                            {
-                                return;
-                            }
-                        }
-                        if (text == "Game Default Portraits")
-                        { 
-                            text = parts[parts.Length-2]+" (DEFAULT)";
-                        }
-                        ListViewItem item = new ListViewItem
-                        {
-                            Text = text,
-                            ImageIndex = ListGallery.Items.Count,
-                            Tag = fromPath + ">CUSTOM"
-                        };
-                        Invoke((MethodInvoker)delegate
-                        {
-                            ImgListGallery.Images.Add(fromPath, img);
-                            ListGallery.Items.Add(item);
-                            ButtonExtractAll.Enabled = true;
-                            ButtonExtractSelected.Enabled = true;
-                            ButtonOpenFolders.Enabled = true;
-                        });
-                    }
-                }
-                catch
-                {
-                    return;
-                }
-            }
-            string[] subDirs = Directory.GetDirectories(fromPath);
-            foreach (string subDir in subDirs)
-            {
-                RecursiveParsePortraits(subDir, cancelToken, flag);
-            }
-
-        }
-        private void IterativeParsePortrais(string fromPath, CancellationToken cancelToken, bool flag = false, int depth = 1)
+        private void IterativeParsePortraits(string fromPath, CancellationToken cancelToken)
         {
             string[] subDirs = Directory.GetDirectories(fromPath);
             foreach (string subDir in subDirs)
@@ -632,20 +576,6 @@ namespace PathfinderPortraitManager
                     return;
                 }
 
-                string type;
-
-                if (flag)
-                {
-                    type = "CUSTOM";
-                }
-                else
-                {
-                    type = "LOCAL";
-                }
-                if (fromPath.Contains("BACKUP"))
-                {
-                    return;
-                }
                 if (CheckPortraitExistence(subDir))
                 {
                     if (SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + LARGE_APPEND, 692, 1024) &&
@@ -660,8 +590,8 @@ namespace PathfinderPortraitManager
                                 ListViewItem item = new ListViewItem
                                 {
                                     Text = subDir.Split('\\').Last(),
-                                    ImageIndex = ListGallery.Items.Count,
-                                    Tag = subDir+">"+type
+                                    ImageIndex = ImgListGallery.Images.Count,
+                                    Tag = subDir+">LOCAL"
                                 };
                                 Invoke((MethodInvoker)delegate
                                 {
@@ -677,10 +607,68 @@ namespace PathfinderPortraitManager
                         }
                     }
                 }
-                if (depth == 2)
+            }
+        }
+        private void RecursiveParsePortraits(string fromPath, CancellationToken cancelToken, bool flag)
+        {
+            if (cancelToken.IsCancellationRequested)
+            {
+                Invoke((MethodInvoker)delegate
                 {
+                    ClearImageLists(ListGallery, ImgListGallery);
+                });
 
+                return;
+            }
+
+            if (CheckPortraitExistenceStunt(fromPath))
+            {
+                
+                if (SystemControl.FileControl.Readonly.CheckImagePixeling(fromPath + MEDIUM_APPEND, 330, 432) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(fromPath + SMALL_APPEND, 185, 242))
+                {
+                    try
+                    {
+                        string fromPathFilePath = fromPath + "\\Fulllength.png";
+                        string name = "";
+                        if (!SystemControl.FileControl.Readonly.FileExist(fromPathFilePath))
+                        {
+                            fromPathFilePath = fromPath + "\\Medium.png";
+                        }
+                        if (fromPath.Split('\\').Last() == "Game Default Portraits")
+                        {
+                            string[] parts = fromPath.Split('\\');
+                            name = parts[parts.Length - 2] + " DEFAULT";
+                        }
+                        else
+                        {
+                            name = fromPath.Split('\\').Last();
+                        }
+                        using (Image img = new Bitmap(fromPathFilePath))
+                        {
+                            ListViewItem item = new ListViewItem
+                            {
+                                Text = name,
+                                ImageIndex = ListGallery.Items.Count,
+                                Tag = fromPath + ">CUSTOM"
+                            };
+                            Invoke((MethodInvoker)delegate
+                            {
+                                ImgListGallery.Images.Add(fromPath, img);
+                                ListGallery.Items.Add(item);
+                            });
+                        }
+                    }
+                    catch
+                    {
+                        return;
+                    }
                 }
+            }
+            string[] subDirs = Directory.GetDirectories(fromPath);
+            foreach (string subDir in subDirs)
+            {
+                RecursiveParsePortraits(subDir, cancelToken, flag);
             }
         }
         public static void ClearImageLists(ListView listView, ImageList imageList)
@@ -715,7 +703,7 @@ namespace PathfinderPortraitManager
                     using (Image webImage = Image.FromStream(stream))
                     {
 
-                        _isAnyLoaded = true;
+                        _isAnyLoadedToPortraitPage = true;
                         if (_imageSelectionFlag == 1)
                         {
                             SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);

@@ -50,18 +50,20 @@ namespace PathfinderPortraitManager
         private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
         private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM.png";
         private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL.png";
-        private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
-        private const string SMALL_APPEND = "\\Small.png";
+        private const string SMALL_APPEND = "\\Small.png";        
         private const float LARGE_ASPECT = 1.479768786f;
         private const float MEDIUM_ASPECT = 1.309090909f;
         private const float SMALL_ASPECT = 1.308108108f;
+        private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
+        private static readonly string[] APPENDS = { LARGE_APPEND, MEDIUM_APPEND, SMALL_APPEND };
+        private static readonly float[] ASPECTS = { LARGE_ASPECT, MEDIUM_ASPECT, SMALL_ASPECT };
 
         private static ushort _imageSelectionFlag = 0;
         private static Point _mousePosition = new Point();
         private static int _isDraggingMouse = 0;
-        private static bool _isAnyLoaded = false;
+        private static bool _isAnyLoadedToPortraitPage = false;
         private static char _gameSelected = CoreSettings.Default.GameType;
         private static PrivateFontCollection _fontCollection;
         private static CancellationTokenSource _cancellationTokenSource;
@@ -149,7 +151,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
-            if (!_isAnyLoaded)
+            if (!_isAnyLoadedToPortraitPage)
             {
                 using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_NOIMAGECHOSEN))
                 {
@@ -191,7 +193,7 @@ namespace PathfinderPortraitManager
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
             RestoreFilePage();
-            _isAnyLoaded = true;
+            _isAnyLoadedToPortraitPage = true;
             LoadTempImages(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
@@ -278,7 +280,7 @@ namespace PathfinderPortraitManager
         {
             _cancellationTokenSource?.Cancel();
             TxtBoxSearch.Text = "Search...";
-            TxtBoxSearch.ForeColor = Color.DimGray;
+            TxtBoxSearch.ForeColor = Color.DarkGray;
             ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -326,16 +328,6 @@ namespace PathfinderPortraitManager
             Dispose();
             Application.Exit();
         }
-        private void ButtonLoadNormal_Click(object sender, EventArgs e)
-        {
-            _cancellationTokenSource?.Cancel();
-            ClearImageLists(ListGallery, ImgListGallery);
-            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
         private void ButtonLoadCustom_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
@@ -354,15 +346,15 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
+            _cancellationTokenSource?.Cancel();
             ClearImageLists(ListGallery, ImgListGallery);
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _cancellationTokenSource.Token;
 
             Task.Factory.StartNew(() =>
-            {                
-                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Npc"), cancelToken);
-                RecursiveParsePortraits(fromRootPath, cancelToken, true);
-                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Army"), cancelToken);
+            {
+                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Npc"), cancelToken, false);
+                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Army"), cancelToken, false);
             }, cancelToken);
 
             return true;

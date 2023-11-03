@@ -20,7 +20,7 @@ namespace PathfinderPortraitManager
     public partial class MainForm : Form
     {
         private string _extractFolderPath = "!NONE!";
-        private string _tunneledName = "!NONE!";
+        private string _tunneledNameToPortraitPage = "!NONE!";
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
@@ -32,20 +32,20 @@ namespace PathfinderPortraitManager
                     Message.ShowDialog();
                 }
 
-                if (_isAnyLoaded == true)
+                if (_isAnyLoadedToPortraitPage == true)
                 {
                     LoadTempImages(_imageSelectionFlag);
                     ResizeVisibleImagesToWindow();
                     return;
                 }
-                _isAnyLoaded = false;
+                _isAnyLoadedToPortraitPage = false;
                 LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
                 return;
             }
             else
             {
-                _isAnyLoaded = true;
+                _isAnyLoadedToPortraitPage = true;
                 GenerateImageFlagString(_imageSelectionFlag);
                 SafeCopyAllImages(path, _imageSelectionFlag);
                 LoadTempImages(_imageSelectionFlag);
@@ -74,13 +74,13 @@ namespace PathfinderPortraitManager
                     Message.ShowDialog();
                 }
 
-                if (_isAnyLoaded == true)
+                if (_isAnyLoadedToPortraitPage == true)
                 {
                     LoadTempImages(_imageSelectionFlag);
                     ResizeVisibleImagesToWindow();
                     return;
                 }
-                _isAnyLoaded = false;
+                _isAnyLoadedToPortraitPage = false;
                 LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
                 return;
@@ -88,7 +88,7 @@ namespace PathfinderPortraitManager
             else
             {
                 GenerateImageFlagString(_imageSelectionFlag);
-                _isAnyLoaded = true;
+                _isAnyLoadedToPortraitPage = true;
                 SafeCopyAllImages(path, _imageSelectionFlag);
                 LoadTempImages(_imageSelectionFlag);
                 ResizeVisibleImagesToWindow();
@@ -234,10 +234,10 @@ namespace PathfinderPortraitManager
                 ButtonToMainPageAndFolder.Enabled = false;
                 return;
             }
-            if (_tunneledName != "!NONE!")
+            if (_tunneledNameToPortraitPage != "!NONE!")
             {
-                path = _tunneledName;
-                _tunneledName = "!NONE!";
+                path = _tunneledNameToPortraitPage;
+                _tunneledNameToPortraitPage = "!NONE!";
                 GeneratePortraits(path);
                 placeable = true;
             }
@@ -408,7 +408,7 @@ namespace PathfinderPortraitManager
                 img.Save(TEMP_SMALL_APPEND);
             LoadTempImages(100);
             GenerateImageFlagString(0);
-            _tunneledName = "!NONE!";
+            _tunneledNameToPortraitPage = "!NONE!";
 
             using (MyInquiryDialog Inquiry = new MyInquiryDialog(Properties.TextVariables.INQR_DELETEOLD))
             {
@@ -430,7 +430,7 @@ namespace PathfinderPortraitManager
                         SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
                         SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
                     }
-                    _tunneledName = path;
+                    _tunneledNameToPortraitPage = path;
                     item.Remove();
                 }
             }
@@ -439,7 +439,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutFilePage);
             RestoreFilePage();
-            _isAnyLoaded = true;
+            _isAnyLoadedToPortraitPage = true;
             ResizeVisibleImagesToWindow();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
@@ -854,7 +854,7 @@ namespace PathfinderPortraitManager
             ButtonToMainPageAndFolder.ForeColor = Color.White;
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
-            _isAnyLoaded = false;
+            _isAnyLoadedToPortraitPage = false;
             ParentLayoutsDisable();
             System.Diagnostics.Process.Start(LabelDirLoc.Text);
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -896,6 +896,16 @@ namespace PathfinderPortraitManager
                 Properties.CoreSettings.Default.Save();
                 AddClickEventsFromMainButtons();
                 ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
+            }
+        }
+        private void ButtonLoadNormal_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            ClearImageLists(ListGallery, ImgListGallery);
+            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
             }
         }
     }

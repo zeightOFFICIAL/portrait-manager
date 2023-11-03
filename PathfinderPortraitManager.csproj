@@ -236,6 +236,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_path.ico" />
+    <None Include="resources\rus.jpg" />
+    <None Include="resources\ger.jpg" />
+    <None Include="resources\eng.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

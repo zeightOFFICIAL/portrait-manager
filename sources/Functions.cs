@@ -470,7 +470,8 @@ namespace PathfinderPortraitManager
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
                                    || ctrl.Equals(LayoutFinalPage)
-                                   || ctrl.Equals(LayoutSettingsPage))
+                                   || ctrl.Equals(LayoutSettingsPage)
+                                   || ctrl.Equals(LayoutLang))
             {
                 return;
             }
@@ -652,6 +653,10 @@ namespace PathfinderPortraitManager
                         {
                             return;
                         }
+                    }
+                    if (fromPath.Contains("BACKUP"))
+                    {
+                        return;
                     }
                     using (Image img = new Bitmap(fromPathFilePath))
                     {

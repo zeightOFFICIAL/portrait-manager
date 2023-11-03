@@ -433,6 +433,13 @@ namespace PathfinderPortraitManager
                     _tunneledNameToPortraitPage = path;
                     item.Remove();
                 }
+                else
+                {
+                    if (type == "CUSTOM")
+                    {
+                        _tunneledNameToPortraitPage = Path.Combine(path, path.Split('\\').Last().Split('-').Last()+DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString());
+                    }
+                }
             }
 
             ButtonToMainPage3_Click(sender, e);

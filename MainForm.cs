@@ -18,7 +18,6 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PathfinderPortraitManager
 {
@@ -354,7 +353,6 @@ namespace PathfinderPortraitManager
 
             return true;
         }
-
         private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
         {
             string fromPath;
@@ -367,7 +365,6 @@ namespace PathfinderPortraitManager
                 return;
             }
         }
-
         private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
         {
             string fromPath;
@@ -379,6 +376,27 @@ namespace PathfinderPortraitManager
                 ButtonToMainPage3_Click(sender, e);
                 return;
             }
+        }
+        private void PicBoxEng_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            SetFonts(_fontCollection);
+            SetTexts();
+        }
+
+        private void PicBoxRus_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+            SetFontsNotEN();
+            SetTexts();
+        }
+
+        private void PicBoxGer_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ge");
+            SetFontsNotEN();
+            SetTexts();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
 
@@ -374,7 +374,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 RemoveClickEventsFromCustomPortraitsButtons();
@@ -389,7 +389,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 AddClickEventsToCustomPortraitsButtons();
@@ -983,9 +983,14 @@ namespace PathfinderPortraitManager
         }
         private void ButtonLoadCustom_Click(object sender, EventArgs e)
         {
+            string fromPath, fromPath2;
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true))
+            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
+                !LoadGalleryCustom(fromPath, false) ||
+                !LoadGalleryCustom(fromPath2, false))
             {
                 ButtonToMainPage3_Click(sender, e);
                 return;
@@ -1035,10 +1040,11 @@ namespace PathfinderPortraitManager
         }
         private void PicBoxEng_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
             _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
             CoreSettings.Default.SelectedLang = "en-EN";
             CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
             FontsInit(_fontCollection);
             TextsInit();
         }
@@ -1047,6 +1053,7 @@ namespace PathfinderPortraitManager
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
             CoreSettings.Default.SelectedLang = "ru-RU";
             CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
             FontsInitNotEN();
             TextsInit();
         }
@@ -1055,6 +1062,7 @@ namespace PathfinderPortraitManager
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
             CoreSettings.Default.SelectedLang = "de-DE";
             CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
             FontsInitNotEN();
             TextsInit();
         }

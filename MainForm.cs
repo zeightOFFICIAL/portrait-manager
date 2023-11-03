@@ -98,7 +98,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 RemoveClickEventsFromMainButtons();
@@ -107,7 +107,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
             }
@@ -116,7 +116,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 RemoveClickEventsFromCustomPortraitsButtons();
@@ -131,7 +131,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
                 AddClickEventsToCustomPortraitsButtons();

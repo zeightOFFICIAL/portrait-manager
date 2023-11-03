@@ -1516,13 +1516,13 @@ namespace PathfinderPortraitManager
             this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.Controls.Add(this.tableLayoutPanel7, 1, 1);
             this.LayoutSettingsPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutSettingsPage.Location = new System.Drawing.Point(403, 3);
+            this.LayoutSettingsPage.Location = new System.Drawing.Point(403, 0);
             this.LayoutSettingsPage.Name = "LayoutSettingsPage";
             this.LayoutSettingsPage.RowCount = 3;
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.Size = new System.Drawing.Size(64, 481);
+            this.LayoutSettingsPage.Size = new System.Drawing.Size(75, 481);
             this.LayoutSettingsPage.TabIndex = 7;
             // 
             // tableLayoutPanel7
@@ -1537,7 +1537,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel10, 0, 3);
             this.tableLayoutPanel7.Controls.Add(this.LayoutUnnamed16, 0, 5);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(-240, 18);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(-234, 18);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 7;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.95415F));
@@ -1803,7 +1803,7 @@ namespace PathfinderPortraitManager
             this.CheckBoxVerified.Name = "CheckBoxVerified";
             this.CheckBoxVerified.Size = new System.Drawing.Size(169, 39);
             this.CheckBoxVerified.TabIndex = 8;
-            this.CheckBoxVerified.Text = "CustomNPC verified";
+            this.CheckBoxVerified.Text = "CustomNPC?";
             this.CheckBoxVerified.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckBoxVerified.UseVisualStyleBackColor = true;
             // 

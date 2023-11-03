@@ -831,9 +831,8 @@ namespace PathfinderPortraitManager
         }
         public bool ValidateCustomPath(string path)
         {
-            if (SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Army")) ||
-                SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Npc")) ||
-                Directory.GetDirectories(path).Any(name => name.Contains("CustomNpcPortraits - ")))
+            if (SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Army")) &&
+                SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Npc")))
                 {
                 return true;
             }

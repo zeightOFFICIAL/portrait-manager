@@ -73,7 +73,17 @@ namespace PathfinderPortraitManager
         {
             if (UseStamps.Default.isFirstAny)
             {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+                if (CultureInfo.CurrentUICulture.ToString() == "en-US" ||
+                    CultureInfo.CurrentUICulture.ToString() == "ru-RU" ||
+                    CultureInfo.CurrentUICulture.ToString() == "de-DE")
+                {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+                }
+                
                 CoreSettings.Default.KINGPath = KINGMAKER_TYPE.DefaultDirectory;
                 CoreSettings.Default.WOTRPath = WRATH_TYPE.DefaultDirectory;
                 CoreSettings.Default.MaxWindowHeight = Size.Height;

@@ -650,7 +650,6 @@ namespace PathfinderPortraitManager
             this.LayoutMainPage.Controls.Add(this.ButtonToSettingsPage, 1, 5);
             this.LayoutMainPage.Controls.Add(this.ButtonExit, 1, 6);
             this.LayoutMainPage.Controls.Add(this.LayoutLang, 0, 0);
-            this.LayoutMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutMainPage.Name = "LayoutMainPage";
             this.LayoutMainPage.RowCount = 8;
@@ -663,7 +662,7 @@ namespace PathfinderPortraitManager
             this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
             this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayoutMainPage.Size = new System.Drawing.Size(734, 481);
+            this.LayoutMainPage.Size = new System.Drawing.Size(64, 481);
             this.LayoutMainPage.TabIndex = 0;
             // 
             // ButtonToFilePage
@@ -672,7 +671,7 @@ namespace PathfinderPortraitManager
             this.ButtonToFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToFilePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToFilePage.Location = new System.Drawing.Point(205, 213);
+            this.ButtonToFilePage.Location = new System.Drawing.Point(-130, 213);
             this.ButtonToFilePage.Name = "ButtonToFilePage";
             this.ButtonToFilePage.Size = new System.Drawing.Size(324, 39);
             this.ButtonToFilePage.TabIndex = 0;
@@ -688,7 +687,7 @@ namespace PathfinderPortraitManager
             this.ButtonToExtractPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToExtractPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToExtractPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToExtractPage.Location = new System.Drawing.Point(205, 258);
+            this.ButtonToExtractPage.Location = new System.Drawing.Point(-130, 258);
             this.ButtonToExtractPage.Name = "ButtonToExtractPage";
             this.ButtonToExtractPage.Size = new System.Drawing.Size(324, 39);
             this.ButtonToExtractPage.TabIndex = 3;
@@ -704,7 +703,7 @@ namespace PathfinderPortraitManager
             this.ButtonToGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToGalleryPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToGalleryPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToGalleryPage.Location = new System.Drawing.Point(205, 303);
+            this.ButtonToGalleryPage.Location = new System.Drawing.Point(-130, 303);
             this.ButtonToGalleryPage.Name = "ButtonToGalleryPage";
             this.ButtonToGalleryPage.Size = new System.Drawing.Size(324, 39);
             this.ButtonToGalleryPage.TabIndex = 2;
@@ -721,7 +720,7 @@ namespace PathfinderPortraitManager
             this.PictureBoxTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxTitle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxTitle.Location = new System.Drawing.Point(205, 48);
+            this.PictureBoxTitle.Location = new System.Drawing.Point(-130, 48);
             this.PictureBoxTitle.Name = "PictureBoxTitle";
             this.PictureBoxTitle.Size = new System.Drawing.Size(324, 159);
             this.PictureBoxTitle.TabIndex = 4;
@@ -736,7 +735,7 @@ namespace PathfinderPortraitManager
             this.LabelCopyright.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LabelCopyright.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelCopyright.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelCopyright.Location = new System.Drawing.Point(205, 465);
+            this.LabelCopyright.Location = new System.Drawing.Point(-130, 465);
             this.LabelCopyright.Name = "LabelCopyright";
             this.LabelCopyright.Size = new System.Drawing.Size(324, 16);
             this.LabelCopyright.TabIndex = 5;
@@ -751,9 +750,9 @@ namespace PathfinderPortraitManager
             this.LabelVersion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LabelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelVersion.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelVersion.Location = new System.Drawing.Point(535, 465);
+            this.LabelVersion.Location = new System.Drawing.Point(200, 465);
             this.LabelVersion.Name = "LabelVersion";
-            this.LabelVersion.Size = new System.Drawing.Size(196, 16);
+            this.LabelVersion.Size = new System.Drawing.Size(1, 16);
             this.LabelVersion.TabIndex = 7;
             this.LabelVersion.Text = "1.2.0.0";
             this.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -764,7 +763,7 @@ namespace PathfinderPortraitManager
             this.ButtonToSettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToSettingsPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToSettingsPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToSettingsPage.Location = new System.Drawing.Point(205, 348);
+            this.ButtonToSettingsPage.Location = new System.Drawing.Point(-130, 348);
             this.ButtonToSettingsPage.Name = "ButtonToSettingsPage";
             this.ButtonToSettingsPage.Size = new System.Drawing.Size(324, 39);
             this.ButtonToSettingsPage.TabIndex = 6;
@@ -780,7 +779,7 @@ namespace PathfinderPortraitManager
             this.ButtonExit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonExit.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonExit.Location = new System.Drawing.Point(205, 393);
+            this.ButtonExit.Location = new System.Drawing.Point(-130, 393);
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.Size = new System.Drawing.Size(324, 39);
             this.ButtonExit.TabIndex = 1;
@@ -808,7 +807,7 @@ namespace PathfinderPortraitManager
             this.LayoutLang.RowCount = 2;
             this.LayoutLang.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.LayoutLang.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.LayoutLang.Size = new System.Drawing.Size(196, 39);
+            this.LayoutLang.Size = new System.Drawing.Size(1, 39);
             this.LayoutLang.TabIndex = 8;
             // 
             // PicBoxEng
@@ -1043,7 +1042,7 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed10.Name = "LayoutUnnamed10";
             this.LayoutUnnamed10.RowCount = 1;
             this.LayoutUnnamed10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed10.Size = new System.Drawing.Size(68, 402);
+            this.LayoutUnnamed10.Size = new System.Drawing.Size(314, 402);
             this.LayoutUnnamed10.TabIndex = 0;
             // 
             // ListGallery
@@ -1055,9 +1054,9 @@ namespace PathfinderPortraitManager
             this.ListGallery.ForeColor = System.Drawing.SystemColors.WindowText;
             this.ListGallery.HideSelection = false;
             this.ListGallery.LargeImageList = this.ImgListGallery;
-            this.ListGallery.Location = new System.Drawing.Point(0, 3);
+            this.ListGallery.Location = new System.Drawing.Point(5, 3);
             this.ListGallery.Name = "ListGallery";
-            this.ListGallery.Size = new System.Drawing.Size(1, 396);
+            this.ListGallery.Size = new System.Drawing.Size(93, 396);
             this.ListGallery.TabIndex = 1;
             this.ListGallery.UseCompatibleStateImageBehavior = false;
             // 
@@ -1077,7 +1076,7 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed11.Controls.Add(this.ButtonChangePortrait, 0, 1);
             this.LayoutUnnamed11.Controls.Add(this.ButtonHintFolder, 0, 7);
             this.LayoutUnnamed11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed11.Location = new System.Drawing.Point(-121, 3);
+            this.LayoutUnnamed11.Location = new System.Drawing.Point(109, 3);
             this.LayoutUnnamed11.Name = "LayoutUnnamed11";
             this.LayoutUnnamed11.RowCount = 9;
             this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1179,13 +1178,13 @@ namespace PathfinderPortraitManager
             this.LayoutGallery.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutGallery.Controls.Add(this.LayoutUnnamed10, 0, 1);
             this.LayoutGallery.Controls.Add(this.tableLayoutPanel11, 0, 0);
-            this.LayoutGallery.Location = new System.Drawing.Point(660, 0);
+            this.LayoutGallery.Location = new System.Drawing.Point(414, 0);
             this.LayoutGallery.Name = "LayoutGallery";
             this.LayoutGallery.RowCount = 3;
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.523937F));
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.96509F));
             this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.510967F));
-            this.LayoutGallery.Size = new System.Drawing.Size(74, 481);
+            this.LayoutGallery.Size = new System.Drawing.Size(320, 481);
             this.LayoutGallery.TabIndex = 4;
             // 
             // tableLayoutPanel11
@@ -1208,7 +1207,7 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel11.RowCount = 2;
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(68, 39);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(314, 39);
             this.tableLayoutPanel11.TabIndex = 1;
             // 
             // ButtonLoadNormal
@@ -1217,10 +1216,11 @@ namespace PathfinderPortraitManager
             this.ButtonLoadNormal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLoadNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLoadNormal.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadNormal.Location = new System.Drawing.Point(10, 7);
+            this.ButtonLoadNormal.Location = new System.Drawing.Point(36, 7);
             this.ButtonLoadNormal.Name = "ButtonLoadNormal";
-            this.ButtonLoadNormal.Size = new System.Drawing.Size(7, 29);
+            this.ButtonLoadNormal.Size = new System.Drawing.Size(54, 29);
             this.ButtonLoadNormal.TabIndex = 0;
+            this.ButtonLoadNormal.TabStop = false;
             this.ButtonLoadNormal.Text = "LoadNormal";
             this.ButtonLoadNormal.UseVisualStyleBackColor = true;
             this.ButtonLoadNormal.Click += new System.EventHandler(this.ButtonLoadNormal_Click);
@@ -1233,10 +1233,11 @@ namespace PathfinderPortraitManager
             this.ButtonLoadCustom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLoadCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLoadCustom.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustom.Location = new System.Drawing.Point(24, 7);
+            this.ButtonLoadCustom.Location = new System.Drawing.Point(104, 7);
             this.ButtonLoadCustom.Name = "ButtonLoadCustom";
-            this.ButtonLoadCustom.Size = new System.Drawing.Size(7, 29);
+            this.ButtonLoadCustom.Size = new System.Drawing.Size(54, 29);
             this.ButtonLoadCustom.TabIndex = 1;
+            this.ButtonLoadCustom.TabStop = false;
             this.ButtonLoadCustom.Text = "LoadCustom";
             this.ButtonLoadCustom.UseVisualStyleBackColor = true;
             this.ButtonLoadCustom.Click += new System.EventHandler(this.ButtonLoadCustom_Click);
@@ -1249,10 +1250,11 @@ namespace PathfinderPortraitManager
             this.ButtonLoadCustomNPC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLoadCustomNPC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLoadCustomNPC.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustomNPC.Location = new System.Drawing.Point(37, 7);
+            this.ButtonLoadCustomNPC.Location = new System.Drawing.Point(164, 7);
             this.ButtonLoadCustomNPC.Name = "ButtonLoadCustomNPC";
-            this.ButtonLoadCustomNPC.Size = new System.Drawing.Size(6, 29);
+            this.ButtonLoadCustomNPC.Size = new System.Drawing.Size(52, 29);
             this.ButtonLoadCustomNPC.TabIndex = 2;
+            this.ButtonLoadCustomNPC.TabStop = false;
             this.ButtonLoadCustomNPC.Text = "LoadNPC";
             this.ButtonLoadCustomNPC.UseVisualStyleBackColor = true;
             this.ButtonLoadCustomNPC.Click += new System.EventHandler(this.ButtonLoadCustomNPC_Click);
@@ -1265,10 +1267,11 @@ namespace PathfinderPortraitManager
             this.ButtonLoadCustomArmy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLoadCustomArmy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLoadCustomArmy.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustomArmy.Location = new System.Drawing.Point(49, 7);
+            this.ButtonLoadCustomArmy.Location = new System.Drawing.Point(222, 7);
             this.ButtonLoadCustomArmy.Name = "ButtonLoadCustomArmy";
-            this.ButtonLoadCustomArmy.Size = new System.Drawing.Size(6, 29);
+            this.ButtonLoadCustomArmy.Size = new System.Drawing.Size(52, 29);
             this.ButtonLoadCustomArmy.TabIndex = 3;
+            this.ButtonLoadCustomArmy.TabStop = false;
             this.ButtonLoadCustomArmy.Text = "LoadArmy";
             this.ButtonLoadCustomArmy.UseVisualStyleBackColor = true;
             this.ButtonLoadCustomArmy.Click += new System.EventHandler(this.ButtonLoadCustomArmy_Click);

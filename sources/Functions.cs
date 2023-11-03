@@ -517,6 +517,7 @@ namespace PathfinderPortraitManager
 
             ctrl.ForeColor = a;
             ctrl.BackColor = b;
+            ctrl.TabStop = false;
 
             foreach (Control subCtrl in ctrl.Controls)
             {

@@ -36,7 +36,8 @@ namespace SystemControl
             {
                 using (Bitmap img = new Bitmap(path))
                 {
-                    if (img.Width == expectedWidth && img.Height == expectedHeight)
+                    if (img.Width <= expectedWidth + 2 && img.Height <= expectedHeight + 3 &&
+                        img.Width >= expectedWidth - 2 && img.Height >= expectedHeight - 3)
                     {
                         img.Dispose();
                         return true;

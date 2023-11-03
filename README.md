@@ -14,19 +14,27 @@ Desktop application, management tool for portraits in the Pathfinder series of g
 
 | Kingmaker | Wrath of the Righteous |
 | :-------: | :--------------------: |
-|![image](https://user-images.githubusercontent.com/50341618/230695030-8eeca4ce-9a8b-4cb6-adc8-5989805932c1.png)|![image](https://user-images.githubusercontent.com/50341618/230695023-ce0ea4a0-33f1-4ca6-9b8e-bb69b4923b1e.png)|
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/5ffd3ba8-8375-4a94-97ee-aa6b7fe2762b)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/c57f06c9-6a6d-4a2c-bfe5-b6265744b799)|
 
 | Load any image | Scale image to portrait |
 | :------------: | :---------------------: |
-|![image](https://user-images.githubusercontent.com/50341618/230694986-3885a913-23b1-4cf3-858d-2d3fbbd662a2.png)|![image](https://user-images.githubusercontent.com/50341618/230695012-7bdbd799-4b57-4005-b991-bed54560df1c.png)|
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/84fe93f0-8020-4d60-888e-c642ac6a4fab)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/9bb6daec-0cf7-45e2-a748-d7cf5ff819aa)|
 
-| Extract from folder | Browse existing |
+| Extract from folder | Browse existing Custom Army |
 | :-----------------: | :-------------: |
-|![image](https://user-images.githubusercontent.com/50341618/230695083-27ed532e-1023-4434-8ecf-2275cfd3e8a5.png)|![image](https://user-images.githubusercontent.com/50341618/230695176-0c213a01-380f-43cd-9ea9-45264954b9ec.png)|
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/6d62a1b4-a603-46ce-bade-234883930924)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/97f51e75-6c77-4657-8dfb-f1757e887af4)|
+
+| Browse existing portraits | Browse existing Custom NPC |
+| :-----------------: | :-------------: |
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/7ccd5446-b406-4763-ba3f-691d4503d78c)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/8b509422-0399-4e46-b545-354b1b85b918)|
 
 | Settings page | Load web-image page |
 | :-----------------: | :-------------: |
-|![image](https://user-images.githubusercontent.com/50341618/230695227-ecb3ddf1-5d43-4b57-b4b6-b9d7c8f64e7b.png)|![image](https://user-images.githubusercontent.com/50341618/230695265-b8f126bc-2640-4531-a8ec-7e1547aa67dc.png)|
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/17ae9a9e-287f-4017-bd57-e2473268e75b)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/914124d3-c4f7-41f0-a3c8-80fbe0e3a270)|
+
+| Russian translation | German translation |
+| :-----------------: | :-------------: |
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/d9786dca-6487-4970-a415-bd0db0d36e38)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/022fc44d-2dec-4195-b274-84182e4d23b6)|
 
 ### Features
 
@@ -38,6 +46,9 @@ Allows user to extract images from local directory right to their proper place i
 
 #### Browse gallery and change/delete old images
 Allows user to browse the already existing/loaded and in-work portraits of the game. Makes possible for user to delete or change specific portraits. Select image(s) from the list and press the button which corresponds to needed functionality. Upon deleting, asks whether to proceed. Upon editing, asks whether to make a standalone/copy version or delete the old one and replace. Manages all folder and file processing. Now the in-place replacement is valid. Without any problems, you can change a specific portrait that may already be in use by the game, so the user does not need to use any save-editing. Cannot change in-game NPC portraits! It might come later, however.
+
+#### Browse Custom NPC portraits, change/delete images
+Allows the user to edit/delete portraits created using Custom NPC Portraits. Any portrait created by the mod are available for change. Viewing is done through the "View Gallery" page, with a help of buttons at the top of the corresponding page. You must have custom NPC portraits installed and allow it to create source folders with custom portraits.
 
 #### Settings
 An attempt to prevent any problems with the path to portraits folder. Now, the program requires the user to select the correct folder in which all the game portraits are stored.

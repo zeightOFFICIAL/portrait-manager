@@ -252,6 +252,9 @@
   <data name="LABEL_CREATEDOK" xml:space="preserve">
     <value>Портрет успешно создан в рабочей директории, расположение которой указано выше. Теперь он доступен для использования в игре.</value>
   </data>
+  <data name="LABEL_LANG" xml:space="preserve">
+    <value>Язык интерфейса:</value>
+  </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Большой</value>
   </data>

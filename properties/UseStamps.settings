@@ -18,7 +18,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="isAwareNPC" Type="System.String" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">NotRevealed</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -73,7 +73,7 @@ namespace PathfinderPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("p")]
+        [global::System.Configuration.DefaultSettingValueAttribute("w")]
         public char GameType {
             get {
                 return ((char)(this["GameType"]));
@@ -92,6 +92,18 @@ namespace PathfinderPortraitManager.Properties {
             }
             set {
                 this["EnabledCustomNPC"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-EN")]
+        public string SelectedLang {
+            get {
+                return ((string)(this["SelectedLang"]));
+            }
+            set {
+                this["SelectedLang"] = value;
             }
         }
     }

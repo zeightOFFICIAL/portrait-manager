@@ -85,7 +85,7 @@ namespace PathfinderPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("NotRevealed")]
         public string isAwareNPC {
             get {
                 return ((string)(this["isAwareNPC"]));

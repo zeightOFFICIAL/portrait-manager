@@ -252,6 +252,9 @@
   <data name="LABEL_CREATEDOK" xml:space="preserve">
     <value>The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game.</value>
   </data>
+  <data name="LABEL_LANG" xml:space="preserve">
+    <value>UI Language: </value>
+  </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>
   </data>
@@ -282,8 +285,17 @@
   <data name="MESG_CANNOTLOAD" xml:space="preserve">
     <value>The selected web image is not available. Try another time, or just save it to your local drive and load it locally.</value>
   </data>
+  <data name="MESG_CUSTOMFOUND" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="MESG_CUSTOMNOTFOUND" xml:space="preserve">
+    <value>NOT</value>
+  </data>
   <data name="MESG_DELETE" xml:space="preserve">
     <value>You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will  be replaced to placeholder by game itself. Do you want to continue? Total images:</value>
+  </data>
+  <data name="MESG_GAMEFOLDERFOUND" xml:space="preserve">
+    <value>Folder found! You can start creating your own portraits! Click “Create Portrait” to add a new one, “Extract Folder” to add multiple portraits from another folder, “View Gallery” to edit or delete old ones.</value>
   </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
     <value>Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you need to control another game, be it Kingmaker or WotR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information. Until the problem is fixed, all functions will be blocked.</value>

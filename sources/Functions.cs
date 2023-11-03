@@ -19,7 +19,7 @@ namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        public void RestoreFilePage()
+        public void RestoreFilePageToInit()
         {
             _isAnyLoadedToPortraitPage = false;
             _imageSelectionFlag = 0;
@@ -38,6 +38,12 @@ namespace PathfinderPortraitManager
             RootFunctions.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
             RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
             RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+        }
+        public void RemoveClickEventsFromCustomPortraitsButtons()
+        {
+            RootFunctions.RemoveClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
+            RootFunctions.RemoveClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
+            RootFunctions.RemoveClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
         }
         public void ClearPrimeImages(Image replacement)
         {
@@ -63,7 +69,7 @@ namespace PathfinderPortraitManager
             }
             ArrangeAutoScroll(parent, newSize.Item1, newSize.Item2);
         }
-        public void ResizeVisibleImagesToWindow()
+        public void ResizeVisibleImagesToWindowSize()
         {
             if (LayoutScalePage.Enabled == true)
             {
@@ -176,9 +182,9 @@ namespace PathfinderPortraitManager
         }
         public void LoadAllTempImages()
         {
-            LoadTempImages(200);
+            LoadTempImagesToPicBox(200);
         }
-        public void LoadTempImages(ushort flag)
+        public void LoadTempImagesToPicBox(ushort flag)
         {
             if (flag == 0 || flag == 100)
             {
@@ -310,7 +316,7 @@ namespace PathfinderPortraitManager
                 RecursiveParseDirectory(path, cancelToken);
             }, cancelToken);
         }
-        public void SetFonts(PrivateFontCollection fonts)
+        public void FontsInit(PrivateFontCollection fonts)
         {
             Font _bebas_neue20 = new Font(fonts.Families[0], 20),
                  _bebas_neue16 = new Font(fonts.Families[0], 16),
@@ -363,7 +369,7 @@ namespace PathfinderPortraitManager
             ButtonLoadCustomArmy.Font = _bebas_neue13;
             ButtonLoadCustomNPC.Font = _bebas_neue13;
         }
-        public void SetFontsNotEN()
+        public void FontsInitNotEN()
         {
             Font defFont = new Font(DefaultFont.FontFamily, 12);
             ButtonToFilePage.Font = defFont;
@@ -494,7 +500,7 @@ namespace PathfinderPortraitManager
                 ClearPrimeImages(placeholder);
             }
         }
-        public static void SafeCopyAllImages(string newImagePath, ushort flag)
+        public static void CreateAllImagesInTemp(string newImagePath, ushort flag)
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
             {
@@ -735,8 +741,8 @@ namespace PathfinderPortraitManager
                             webImage.Save(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_LARGE_APPEND);
                         }
-                        LoadTempImages(_imageSelectionFlag);
-                        ResizeVisibleImagesToWindow();
+                        LoadTempImagesToPicBox(_imageSelectionFlag);
+                        ResizeVisibleImagesToWindowSize();
                     }
                 }
             }
@@ -787,5 +793,17 @@ namespace PathfinderPortraitManager
                 LabelImageFlag.Text = "◻◻◻";
             }
         }
+        public bool ValidateCustomPath(string path)
+        {
+            if (SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Army")) ||
+                SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Npc")) ||
+                Directory.GetDirectories(path).Any(name => name.Contains("CustomNpcPortraits - ")))
+                {
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }

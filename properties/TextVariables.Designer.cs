@@ -466,6 +466,15 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UI Language: .
+        /// </summary>
+        internal static string LABEL_LANG {
+            get {
+                return ResourceManager.GetString("LABEL_LANG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Large.
         /// </summary>
         internal static string LABEL_LARGEIMG {
@@ -556,11 +565,38 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to YES.
+        /// </summary>
+        internal static string MESG_CUSTOMFOUND {
+            get {
+                return ResourceManager.GetString("MESG_CUSTOMFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOT.
+        /// </summary>
+        internal static string MESG_CUSTOMNOTFOUND {
+            get {
+                return ResourceManager.GetString("MESG_CUSTOMNOTFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will  be replaced to placeholder by game itself. Do you want to continue? Total images:.
         /// </summary>
         internal static string MESG_DELETE {
             get {
                 return ResourceManager.GetString("MESG_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder found! You can start creating your own portraits! Click “Create Portrait” to add a new one, “Extract Folder” to add multiple portraits from another folder, “View Gallery” to edit or delete old ones..
+        /// </summary>
+        internal static string MESG_GAMEFOLDERFOUND {
+            get {
+                return ResourceManager.GetString("MESG_GAMEFOLDERFOUND", resourceCulture);
             }
         }
         

@@ -69,53 +69,32 @@ namespace PathfinderPortraitManager
 
         public MainForm()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (UseStamps.Default.isFirstAny)
             {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
                 CoreSettings.Default.KINGPath = KINGMAKER_TYPE.DefaultDirectory;
                 CoreSettings.Default.WOTRPath = WRATH_TYPE.DefaultDirectory;
                 CoreSettings.Default.MaxWindowHeight = Size.Height;
                 CoreSettings.Default.MaxWindowWidth = Size.Width;
+                CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
                 CoreSettings.Default.Save();
                 UseStamps.Default.isFirstAny = false;
                 UseStamps.Default.Save();
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(CoreSettings.Default.SelectedLang);
             }
             ACTIVE_PATHS['w'] = CoreSettings.Default.WOTRPath;
             ACTIVE_PATHS['p'] = CoreSettings.Default.KINGPath;
             Width = CoreSettings.Default.MaxWindowWidth;
             Height = CoreSettings.Default.MaxWindowHeight;
-
-            CenterToScreen();
-            ParentLayoutsSetDockFill();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-
-            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                               Thread.CurrentThread.CurrentUICulture.Name,
-                                               "Pathfinder Portrait Manager.resources.dll");
-            if (File.Exists(resxFilePath))
-            {
-                SetFontsNotEN();
-            }
-            else
-            {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-                SetFonts(_fontCollection);
-            }
-            SetTexts();
-            UpdateColorScheme();
-            PicPortraitTemp.AllowDrop = true;
-            PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
-            PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
-            PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-
-            ParentLayoutsDisable();
-            RootFunctions.LayoutDisable(LayoutURLDialog);
-            RootFunctions.LayoutDisable(LayoutFinalPage);
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            FormInit();
+            LanguageInit();
 
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
@@ -126,16 +105,82 @@ namespace PathfinderPortraitManager
                 }
                 RemoveClickEventsFromMainButtons();
             }
+            else if (UseStamps.Default.isFirstAny)
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERFOUND))
+                {
+                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.ShowDialog();
+                }
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND))
+                {
+                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.ShowDialog();
+                }
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+                UseStamps.Default.Save();
+            }
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND))
+                {
+                    Message.StartPosition = FormStartPosition.CenterScreen;
+                    Message.ShowDialog();
+                }
+                CheckBoxVerified.Checked = true;
+                UseStamps.Default.isAwareNPC = "WorkRevealed";
+                UseStamps.Default.Save();
+            }
+
+        }
+        private void LanguageInit()
+        {
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
+                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
+            {
+                FontsInitNotEN();
+            }
+            else
+            {
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+                FontsInit(_fontCollection);
+            }
+            SetTexts();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+        }
+        private void FormInit()
+        {
+            CenterToScreen();
+            ParentLayoutsSetDockFill();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            UpdateColorScheme();
+
+            PicPortraitTemp.AllowDrop = true;
+            PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
+            PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
+            PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutDisable(LayoutURLDialog);
+            RootFunctions.LayoutDisable(LayoutFinalPage);
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            CheckBoxVerified.AutoCheck = false;
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            RestoreFilePage();
-            SafeCopyAllImages("!DEFAULT!", 100);
+            RestoreFilePageToInit();
+            CreateAllImagesInTemp("!DEFAULT!", 100);
             GenerateImageFlagString(100);
-            LoadTempImages(100);
+            LoadTempImagesToPicBox(100);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
 
             if (UseStamps.Default.isFirstPortrait == true)
             {
@@ -161,7 +206,7 @@ namespace PathfinderPortraitManager
                         ParentLayoutsDisable();
                         LoadAllTempImages();
                         RootFunctions.LayoutEnable(LayoutScalePage);
-                        ResizeVisibleImagesToWindow();
+                        ResizeVisibleImagesToWindowSize();
                     }
                     else
                     {
@@ -174,7 +219,7 @@ namespace PathfinderPortraitManager
                 ParentLayoutsDisable();
                 LoadAllTempImages();
                 RootFunctions.LayoutEnable(LayoutScalePage);
-                ResizeVisibleImagesToWindow();
+                ResizeVisibleImagesToWindowSize();
             }
             GenerateImageFlagString(0);
 
@@ -191,25 +236,25 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
-            RestoreFilePage();
+            RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
-            LoadTempImages(_imageSelectionFlag);
+            LoadTempImagesToPicBox(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
         }
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
             ButtonToFilePage3.BackColor = Color.Black;
             ButtonToFilePage3.ForeColor = Color.White;
-            RestoreFilePage();
+            RestoreFilePageToInit();
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePrimeImagesToDefault();
             SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
-            LoadTempImages(_imageSelectionFlag);
+            LoadTempImagesToPicBox(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
             GenerateImageFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
         }
@@ -284,7 +329,7 @@ namespace PathfinderPortraitManager
         }
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
-            RestoreFilePage();
+            RestoreFilePageToInit();
             ButtonToMainPage4.BackColor = Color.Black;
             ButtonToMainPage4.ForeColor = Color.White;
             RootFunctions.LayoutDisable(LayoutFinalPage);
@@ -379,23 +424,29 @@ namespace PathfinderPortraitManager
         }
         private void PicBoxEng_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
             _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-            SetFonts(_fontCollection);
+            CoreSettings.Default.SelectedLang = "en-EN";
+            CoreSettings.Default.Save();
+            FontsInit(_fontCollection);
             SetTexts();
         }
 
         private void PicBoxRus_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
-            SetFontsNotEN();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+            CoreSettings.Default.SelectedLang = "ru-RU";
+            CoreSettings.Default.Save();
+            FontsInitNotEN();
             SetTexts();
         }
 
         private void PicBoxGer_Click(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ge");
-            SetFontsNotEN();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
+            CoreSettings.Default.SelectedLang = "de-DE";
+            CoreSettings.Default.Save();
+            FontsInitNotEN();
             SetTexts();
         }
     }

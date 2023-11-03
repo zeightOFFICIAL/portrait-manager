@@ -34,22 +34,22 @@ namespace PathfinderPortraitManager
 
                 if (_isAnyLoadedToPortraitPage == true)
                 {
-                    LoadTempImages(_imageSelectionFlag);
-                    ResizeVisibleImagesToWindow();
+                    LoadTempImagesToPicBox(_imageSelectionFlag);
+                    ResizeVisibleImagesToWindowSize();
                     return;
                 }
                 _isAnyLoadedToPortraitPage = false;
-                LoadTempImages(_imageSelectionFlag);
-                ResizeVisibleImagesToWindow();
+                LoadTempImagesToPicBox(_imageSelectionFlag);
+                ResizeVisibleImagesToWindowSize();
                 return;
             }
             else
             {
                 _isAnyLoadedToPortraitPage = true;
                 GenerateImageFlagString(_imageSelectionFlag);
-                SafeCopyAllImages(path, _imageSelectionFlag);
-                LoadTempImages(_imageSelectionFlag);
-                ResizeVisibleImagesToWindow();
+                CreateAllImagesInTemp(path, _imageSelectionFlag);
+                LoadTempImagesToPicBox(_imageSelectionFlag);
+                ResizeVisibleImagesToWindowSize();
             }
         }
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
@@ -76,22 +76,22 @@ namespace PathfinderPortraitManager
 
                 if (_isAnyLoadedToPortraitPage == true)
                 {
-                    LoadTempImages(_imageSelectionFlag);
-                    ResizeVisibleImagesToWindow();
+                    LoadTempImagesToPicBox(_imageSelectionFlag);
+                    ResizeVisibleImagesToWindowSize();
                     return;
                 }
                 _isAnyLoadedToPortraitPage = false;
-                LoadTempImages(_imageSelectionFlag);
-                ResizeVisibleImagesToWindow();
+                LoadTempImagesToPicBox(_imageSelectionFlag);
+                ResizeVisibleImagesToWindowSize();
                 return;
             }
             else
             {
                 GenerateImageFlagString(_imageSelectionFlag);
                 _isAnyLoadedToPortraitPage = true;
-                SafeCopyAllImages(path, _imageSelectionFlag);
-                LoadTempImages(_imageSelectionFlag);
-                ResizeVisibleImagesToWindow();
+                CreateAllImagesInTemp(path, _imageSelectionFlag);
+                LoadTempImagesToPicBox(_imageSelectionFlag);
+                ResizeVisibleImagesToWindowSize();
             }
         }
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
@@ -217,7 +217,7 @@ namespace PathfinderPortraitManager
         }
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
         }
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
@@ -406,7 +406,7 @@ namespace PathfinderPortraitManager
                 img.Save(TEMP_MEDIUM_APPEND);
             using (Image img = new Bitmap(path + SMALL_APPEND))
                 img.Save(TEMP_SMALL_APPEND);
-            LoadTempImages(100);
+            LoadTempImagesToPicBox(100);
             GenerateImageFlagString(0);
             _tunneledNameToPortraitPage = "!NONE!";
 
@@ -445,9 +445,9 @@ namespace PathfinderPortraitManager
             ButtonToMainPage3_Click(sender, e);
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutFilePage);
-            RestoreFilePage();
+            RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
         }
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
@@ -813,7 +813,7 @@ namespace PathfinderPortraitManager
                 RootFunctions.LayoutDisable(LayoutURLDialog);
                 RootFunctions.LayoutEnable(LayoutFilePage);
                 CheckWebResourceAndLoad(url);
-                ResizeVisibleImagesToWindow();
+                ResizeVisibleImagesToWindowSize();
                 TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
                 GenerateImageFlagString(_imageSelectionFlag);
             }
@@ -828,7 +828,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutEnable(LayoutFilePage);
             TextBoxURL.Text = Properties.TextVariables.TEXTBOX_URL_INPUT;
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
         }
         private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
         {
@@ -880,8 +880,8 @@ namespace PathfinderPortraitManager
                 ButtonNextImageType.Enabled = false;
             }
             GenerateImageFlagString(_imageSelectionFlag);
-            LoadTempImages(_imageSelectionFlag);
-            ResizeVisibleImagesToWindow();
+            LoadTempImagesToPicBox(_imageSelectionFlag);
+            ResizeVisibleImagesToWindowSize();
         }
         private void ButtonApplyChange_Click(object sender, EventArgs e)
         {

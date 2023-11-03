@@ -47,7 +47,7 @@ Allows user to extract images from local directory right to their proper place i
 #### Browse gallery and change/delete old images
 Allows user to browse the already existing/loaded and in-work portraits of the game. Makes possible for user to delete or change specific portraits. Select image(s) from the list and press the button which corresponds to needed functionality. Upon deleting, asks whether to proceed. Upon editing, asks whether to make a standalone/copy version or delete the old one and replace. Manages all folder and file processing. Now the in-place replacement is valid. Without any problems, you can change a specific portrait that may already be in use by the game, so the user does not need to use any save-editing. Cannot change in-game NPC portraits! It might come later, however.
 
-#### Browse Custom NPC portraits, change/delete images
+#### Browse Custom NPC Portraits, change/delete images
 Allows the user to edit/delete portraits created using Custom NPC Portraits. Any portrait created by the mod are available for change. Viewing is done through the "View Gallery" page, with a help of buttons at the top of the corresponding page. You must have custom NPC portraits installed and allow it to create source folders with custom portraits.
 
 #### Settings
@@ -65,8 +65,8 @@ Now supports translation files. The program language depends on the system langu
 ---
 1. Press create new portrait
 2. Press choose local and select the image you want to use<br>
-  2b. Press choose web<br>
-  2b next. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally<br>
+2b. Press choose web<br>
+2b next. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally<br>
 3. Press next and proceed to scaling page. Use mouse wheel in increase/decrease image. Move the image while holding the left mouse button to adjust it. Double-click restores images
 4. Press create to add the portrait to the game portraits folder
 5. In case, you messed up scaling, or simply want to change or delete the portrait. Open browse gallery, find your image. Select it. Press according button. Change the portrait (the name will be new whatsoever), or approve deletion 
@@ -133,7 +133,9 @@ The program was optimized to use several languages and fonts. In order to create
 3. All rights for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
 4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
 5. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
-6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)<br><br>
-7. 
+6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)
+7. All right to Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits)<br>
+7.b. Please note, that I am not using any of Assets of Custom Npc Portraits.
+
 <b>Inform: if your owner rights are violated; if you've encountered any bugs; if you have any suggestions.
 Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.</b>

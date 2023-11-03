@@ -94,7 +94,8 @@ namespace PathfinderPortraitManager
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonLoadNormal = new System.Windows.Forms.Button();
             this.ButtonLoadCustom = new System.Windows.Forms.Button();
-            this.TxtBoxSearch = new System.Windows.Forms.TextBox();
+            this.ButtonLoadCustomNPC = new System.Windows.Forms.Button();
+            this.ButtonLoadCustomArmy = new System.Windows.Forms.Button();
             this.LayoutURLDialog = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.LabelURLInfo = new System.Windows.Forms.Label();
@@ -1116,15 +1117,18 @@ namespace PathfinderPortraitManager
             // 
             // tableLayoutPanel11
             // 
-            this.tableLayoutPanel11.ColumnCount = 5;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.72727F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.54546F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel11.ColumnCount = 7;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.64242F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.34984F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.55418F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.34984F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.73065F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.73065F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.64242F));
             this.tableLayoutPanel11.Controls.Add(this.ButtonLoadNormal, 1, 1);
-            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustom, 2, 1);
-            this.tableLayoutPanel11.Controls.Add(this.TxtBoxSearch, 3, 1);
+            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustom, 3, 1);
+            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustomNPC, 4, 1);
+            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustomArmy, 5, 1);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -1140,9 +1144,9 @@ namespace PathfinderPortraitManager
             this.ButtonLoadNormal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLoadNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLoadNormal.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadNormal.Location = new System.Drawing.Point(94, 7);
+            this.ButtonLoadNormal.Location = new System.Drawing.Point(80, 7);
             this.ButtonLoadNormal.Name = "ButtonLoadNormal";
-            this.ButtonLoadNormal.Size = new System.Drawing.Size(159, 29);
+            this.ButtonLoadNormal.Size = new System.Drawing.Size(134, 29);
             this.ButtonLoadNormal.TabIndex = 0;
             this.ButtonLoadNormal.Text = "LoadNormal";
             this.ButtonLoadNormal.UseVisualStyleBackColor = true;
@@ -1156,9 +1160,9 @@ namespace PathfinderPortraitManager
             this.ButtonLoadCustom.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonLoadCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLoadCustom.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustom.Location = new System.Drawing.Point(259, 7);
+            this.ButtonLoadCustom.Location = new System.Drawing.Point(238, 7);
             this.ButtonLoadCustom.Name = "ButtonLoadCustom";
-            this.ButtonLoadCustom.Size = new System.Drawing.Size(159, 29);
+            this.ButtonLoadCustom.Size = new System.Drawing.Size(134, 29);
             this.ButtonLoadCustom.TabIndex = 1;
             this.ButtonLoadCustom.Text = "LoadCustom";
             this.ButtonLoadCustom.UseVisualStyleBackColor = true;
@@ -1166,20 +1170,37 @@ namespace PathfinderPortraitManager
             this.ButtonLoadCustom.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
             this.ButtonLoadCustom.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
-            // TxtBoxSearch
+            // ButtonLoadCustomNPC
             // 
-            this.TxtBoxSearch.BackColor = System.Drawing.SystemColors.MenuText;
-            this.TxtBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TxtBoxSearch.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.TxtBoxSearch.Location = new System.Drawing.Point(424, 7);
-            this.TxtBoxSearch.Name = "TxtBoxSearch";
-            this.TxtBoxSearch.Size = new System.Drawing.Size(209, 27);
-            this.TxtBoxSearch.TabIndex = 2;
-            this.TxtBoxSearch.Text = "Search...";
-            this.TxtBoxSearch.Click += new System.EventHandler(this.TxtBoxSearch_Click);
-            this.TxtBoxSearch.TextChanged += new System.EventHandler(this.TxtBoxSearch_TextChanged);
+            this.ButtonLoadCustomNPC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonLoadCustomNPC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonLoadCustomNPC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonLoadCustomNPC.ForeColor = System.Drawing.Color.Goldenrod;
+            this.ButtonLoadCustomNPC.Location = new System.Drawing.Point(378, 7);
+            this.ButtonLoadCustomNPC.Name = "ButtonLoadCustomNPC";
+            this.ButtonLoadCustomNPC.Size = new System.Drawing.Size(130, 29);
+            this.ButtonLoadCustomNPC.TabIndex = 2;
+            this.ButtonLoadCustomNPC.Text = "LoadNPC";
+            this.ButtonLoadCustomNPC.UseVisualStyleBackColor = true;
+            this.ButtonLoadCustomNPC.Click += new System.EventHandler(this.ButtonLoadCustomNPC_Click);
+            this.ButtonLoadCustomNPC.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonLoadCustomNPC.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            // 
+            // ButtonLoadCustomArmy
+            // 
+            this.ButtonLoadCustomArmy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonLoadCustomArmy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonLoadCustomArmy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonLoadCustomArmy.ForeColor = System.Drawing.Color.Goldenrod;
+            this.ButtonLoadCustomArmy.Location = new System.Drawing.Point(514, 7);
+            this.ButtonLoadCustomArmy.Name = "ButtonLoadCustomArmy";
+            this.ButtonLoadCustomArmy.Size = new System.Drawing.Size(130, 29);
+            this.ButtonLoadCustomArmy.TabIndex = 3;
+            this.ButtonLoadCustomArmy.Text = "LoadArmy";
+            this.ButtonLoadCustomArmy.UseVisualStyleBackColor = true;
+            this.ButtonLoadCustomArmy.Click += new System.EventHandler(this.ButtonLoadCustomArmy_Click);
+            this.ButtonLoadCustomArmy.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
+            this.ButtonLoadCustomArmy.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
             // 
             // LayoutURLDialog
             // 
@@ -1744,7 +1765,6 @@ namespace PathfinderPortraitManager
             this.LayoutUnnamed11.ResumeLayout(false);
             this.LayoutGallery.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
-            this.tableLayoutPanel11.PerformLayout();
             this.LayoutURLDialog.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1871,8 +1891,9 @@ namespace PathfinderPortraitManager
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Button ButtonLoadNormal;
         private System.Windows.Forms.Button ButtonLoadCustom;
-        private System.Windows.Forms.TextBox TxtBoxSearch;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button ButtonLoadCustomNPC;
+        private System.Windows.Forms.Button ButtonLoadCustomArmy;
     }
 }
 

@@ -279,8 +279,6 @@ namespace PathfinderPortraitManager
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
-            TxtBoxSearch.Text = "Search...";
-            TxtBoxSearch.ForeColor = Color.DarkGray;
             ClearImageLists(ListGallery, ImgListGallery);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -332,17 +330,15 @@ namespace PathfinderPortraitManager
         {
             _cancellationTokenSource?.Cancel();
             ClearImageLists(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected]))
+            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true))
             {
                 ButtonToMainPage3_Click(sender, e);
                 return;
             }
         }
-        private bool LoadGalleryCustom(string fromRootPath)
+        private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
         {
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath) ||
-                !SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(fromRootPath, "..", "Portraits - Npc")) ||
-                !SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(fromRootPath, "..", "Portraits - Army")))
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath))
             {
                 return false;
             }
@@ -353,43 +349,36 @@ namespace PathfinderPortraitManager
 
             Task.Factory.StartNew(() =>
             {
-                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Npc"), cancelToken, false);
-                RecursiveParsePortraits(Path.Combine(fromRootPath, "..", "Portraits - Army"), cancelToken, false);
+                RecursiveParsePortraits(fromRootPath, cancelToken, flag);
             }, cancelToken);
 
             return true;
         }
-        private void TxtBoxSearch_TextChanged(object sender, EventArgs e)
+
+        private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
         {
-            if (TxtBoxSearch.Text != "")
+            string fromPath;
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            _cancellationTokenSource?.Cancel();
+            ClearImageLists(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(fromPath, false))
             {
-                for (int i = ListGallery.Items.Count - 1; i >= 0; i--)
-                {
-                    var item = ListGallery.Items[i];
-                    if (item.Text.ToLower().Contains(TxtBoxSearch.Text))
-                    {
-                        item.BackColor = SystemColors.Highlight;
-                        item.ForeColor = SystemColors.HighlightText;
-                    }
-                    else
-                    {
-                        ListGallery.Items.Remove(item);
-                    }
-                }
-                if (ListGallery.SelectedItems.Count == 1)
-                {
-                    ListGallery.Focus();
-                }
-            }
-            else
-            {
-                ButtonLoadNormal_Click(sender, e);
+                ButtonToMainPage3_Click(sender, e);
+                return;
             }
         }
-        private void TxtBoxSearch_Click(object sender, EventArgs e)
+
+        private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
         {
-            TxtBoxSearch.Clear();
-            TxtBoxSearch.ForeColor = GAME_TYPES[_gameSelected].ForeColor;
+            string fromPath;
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
+            _cancellationTokenSource?.Cancel();
+            ClearImageLists(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(fromPath, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
         }
     }
 }

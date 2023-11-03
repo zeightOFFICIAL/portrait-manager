@@ -360,6 +360,8 @@ namespace PathfinderPortraitManager
             ButtonToMainPage2.Font = _bebas_neue20;
             ButtonLoadCustom.Font = _bebas_neue13;
             ButtonLoadNormal.Font = _bebas_neue13;
+            ButtonLoadCustomArmy.Font = _bebas_neue13;
+            ButtonLoadCustomNPC.Font = _bebas_neue13;
         }
         public void SetFontsNotEN()
         {
@@ -409,6 +411,8 @@ namespace PathfinderPortraitManager
             ButtonToMainPage2.Font = defFont;
             ButtonLoadCustom.Font = defFont;
             ButtonLoadNormal.Font = defFont;
+            ButtonLoadCustomArmy.Font = defFont;
+            ButtonLoadCustomNPC.Font = defFont;
         }
         public void SetTexts()
         {
@@ -458,14 +462,15 @@ namespace PathfinderPortraitManager
             ButtonToMainPage2.Text = Properties.TextVariables.BUTTON_BACK;
             LabelCopyright.Text = Properties.TextVariables.LABEL_COPY;
             ButtonLoadCustom.Text = Properties.TextVariables.BUTTON_SHOWCUSTOM;
+            ButtonLoadCustomArmy.Text = Properties.TextVariables.BUTTON_CUSTOMARMY;
+            ButtonLoadCustomNPC.Text = Properties.TextVariables.BUTTON_CUSTOMNPC;
             ButtonLoadNormal.Text = Properties.TextVariables.BUTTON_SHOWLOCAL;
         }
         public void UpdateObjectColoring(Control ctrl, Color a, Color b)
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
                                    || ctrl.Equals(LayoutFinalPage)
-                                   || ctrl.Equals(LayoutSettingsPage) 
-                                   || ctrl.Equals(TxtBoxSearch))
+                                   || ctrl.Equals(LayoutSettingsPage))
             {
                 return;
             }
@@ -623,46 +628,49 @@ namespace PathfinderPortraitManager
 
             if (CheckPortraitExistenceStunt(fromPath))
             {
-                
-                if (SystemControl.FileControl.Readonly.CheckImagePixeling(fromPath + MEDIUM_APPEND, 330, 432) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(fromPath + SMALL_APPEND, 185, 242))
+
+                try
                 {
-                    try
+                    string fromPathFilePath = fromPath + "\\Fulllength.png";
+                    string name;
+                    if (!SystemControl.FileControl.Readonly.FileExist(fromPathFilePath))
                     {
-                        string fromPathFilePath = fromPath + "\\Fulllength.png";
-                        string name = "";
-                        if (!SystemControl.FileControl.Readonly.FileExist(fromPathFilePath))
+                        fromPathFilePath = fromPath + "\\Medium.png";
+                    }
+                    if (fromPath.Split('\\').Last() == "Game Default Portraits")
+                    {
+                        string[] parts = fromPath.Split('\\');
+                        name = parts[parts.Length - 2] + " DEFAULT";
+                    }
+                    else
+                    {
+                        name = fromPath.Split('\\').Last();
+                    }
+                    if (flag)
+                    {
+                        if (!fromPath.Contains("CustomNpcPortraits - "))
                         {
-                            fromPathFilePath = fromPath + "\\Medium.png";
-                        }
-                        if (fromPath.Split('\\').Last() == "Game Default Portraits")
-                        {
-                            string[] parts = fromPath.Split('\\');
-                            name = parts[parts.Length - 2] + " DEFAULT";
-                        }
-                        else
-                        {
-                            name = fromPath.Split('\\').Last();
-                        }
-                        using (Image img = new Bitmap(fromPathFilePath))
-                        {
-                            ListViewItem item = new ListViewItem
-                            {
-                                Text = name,
-                                ImageIndex = ListGallery.Items.Count,
-                                Tag = fromPath + ">CUSTOM"
-                            };
-                            Invoke((MethodInvoker)delegate
-                            {
-                                ImgListGallery.Images.Add(fromPath, img);
-                                ListGallery.Items.Add(item);
-                            });
+                            return;
                         }
                     }
-                    catch
+                    using (Image img = new Bitmap(fromPathFilePath))
                     {
-                        return;
+                        ListViewItem item = new ListViewItem
+                        {
+                            Text = name,
+                            ImageIndex = ListGallery.Items.Count,
+                            Tag = fromPath + ">CUSTOM"
+                        };
+                        Invoke((MethodInvoker)delegate
+                        {
+                            ImgListGallery.Images.Add(fromPath, img);
+                            ListGallery.Items.Add(item);
+                        });
                     }
+                }
+                catch
+                {
+                    return;
                 }
             }
             string[] subDirs = Directory.GetDirectories(fromPath);

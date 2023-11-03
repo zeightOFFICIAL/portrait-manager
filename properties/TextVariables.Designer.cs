@@ -106,6 +106,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show custom army.
+        /// </summary>
+        internal static string BUTTON_CUSTOMARMY {
+            get {
+                return ResourceManager.GetString("BUTTON_CUSTOMARMY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show custom NPC.
+        /// </summary>
+        internal static string BUTTON_CUSTOMNPC {
+            get {
+                return ResourceManager.GetString("BUTTON_CUSTOMNPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string BUTTON_EXIT {

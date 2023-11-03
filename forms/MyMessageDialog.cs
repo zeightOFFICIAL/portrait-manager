@@ -6,11 +6,10 @@
     Primal license header is written in Program.cs
 */
 
-using System;
+using PathfinderPortraitManager.Properties;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,24 +19,25 @@ namespace PathfinderPortraitManager.forms
     {
         readonly Font _font1, _font2;
         readonly PrivateFontCollection _fontCollection;
-        public MyMessageDialog(string mesg)
+        public MyMessageDialog(string mesg, string locale)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
-            if (File.Exists(resxFilePath))
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
+
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
+                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
             {
-                _font1 = new Font(DefaultFont.FontFamily, 14);
-                _font2 = new Font(DefaultFont.FontFamily, 12);
+                _font1 = new Font(DefaultFont.FontFamily, 13);
+                _font2 = new Font(DefaultFont.FontFamily, 11);
             }
             else
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-                _font1 = new Font(_fontCollection.Families[0], 18);
-                _font2 = new Font(_fontCollection.Families[0], 16);
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+                _font1 = new Font(_fontCollection.Families[0], 17);
+                _font2 = new Font(_fontCollection.Families[0], 15);
             }
 
             InitializeComponent();
-            ButtonClose.Text = Properties.TextVariables.BUTTON_OK;
+            ButtonClose.Text = TextVariables.BUTTON_OK;
             ButtonClose.Font = _font1;
             LabelMesg.Text = mesg;
             LabelMesg.Font = _font2;

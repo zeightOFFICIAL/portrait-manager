@@ -106,7 +106,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show custom army.
+        ///   Looks up a localized string similar to Custom army.
         /// </summary>
         internal static string BUTTON_CUSTOMARMY {
             get {
@@ -115,7 +115,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show custom NPC.
+        ///   Looks up a localized string similar to Custom NPC.
         /// </summary>
         internal static string BUTTON_CUSTOMNPC {
             get {

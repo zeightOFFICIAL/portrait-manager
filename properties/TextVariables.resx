@@ -133,10 +133,10 @@
     <value>Cancel</value>
   </data>
   <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
-    <value>Show custom army</value>
+    <value>Custom army</value>
   </data>
   <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>Show custom NPC</value>
+    <value>Custom NPC</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Exit</value>

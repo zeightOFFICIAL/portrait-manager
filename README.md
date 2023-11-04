@@ -26,7 +26,7 @@ Desktop application, management tool for portraits in the Pathfinder series of g
 
 | Browse existing portraits | Browse existing Custom NPC |
 | :-----------------: | :-------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/7ccd5446-b406-4763-ba3f-691d4503d78c)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/8b509422-0399-4e46-b545-354b1b85b918)|
+|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/20bd3800-6a52-425d-a2c5-478403be7c39)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/8b509422-0399-4e46-b545-354b1b85b918)|
 
 | Settings page | Load web-image page |
 | :-----------------: | :-------------: |

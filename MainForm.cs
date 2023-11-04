@@ -97,12 +97,14 @@ namespace PathfinderPortraitManager
             {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(CoreSettings.Default.SelectedLang);
             }
+
             ACTIVE_PATHS['w'] = CoreSettings.Default.WOTRPath;
             ACTIVE_PATHS['p'] = CoreSettings.Default.KINGPath;
             Width = CoreSettings.Default.MaxWindowWidth;
             Height = CoreSettings.Default.MaxWindowHeight;
             FormInit();
             LanguageInit();
+            CenterToScreen();
 
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
@@ -126,7 +128,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.StartPosition = FormStartPosition.CenterScreen;
                     Message.ShowDialog();
                 }
                 RemoveClickEventsFromCustomPortraitsButtons();
@@ -141,7 +143,7 @@ namespace PathfinderPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.StartPosition = FormStartPosition.CenterScreen;
                     Message.ShowDialog();
                 }
                 AddClickEventsToCustomPortraitsButtons();
@@ -174,6 +176,7 @@ namespace PathfinderPortraitManager
                 _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
                 FontsInit(_fontCollection);
             }
+
             TextsInit();
             LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
         }
@@ -244,6 +247,7 @@ namespace PathfinderPortraitManager
                 RootFunctions.LayoutEnable(LayoutScalePage);
                 ResizeVisibleImagesToWindowSize();
             }
+
             GenerateImageSelectionFlagString(0);
 
             if (UseStamps.Default.isFirstScaling)
@@ -312,6 +316,7 @@ namespace PathfinderPortraitManager
         {
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutGallery);
+
             if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             {
                 ButtonToMainPage3_Click(sender, e);

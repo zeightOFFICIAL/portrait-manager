@@ -97,7 +97,7 @@ namespace PathfinderPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-EN")]
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
         public string SelectedLang {
             get {
                 return ((string)(this["SelectedLang"]));

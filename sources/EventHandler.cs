@@ -174,17 +174,17 @@ namespace PathfinderPortraitManager
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitLrg);
-            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f), factor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f), zoomFactor;
 
             if (e.Delta > 0)
             {
-                factor = PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, factor);
+                zoomFactor = PicPortraitLrg.Width * 1.0f / 8;
+                ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                factor = -PicPortraitLrg.Width * 1.0f / 8;
-                ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, factor);
+                zoomFactor = -PicPortraitLrg.Width * 1.0f / 8;
+                ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitLrg);
@@ -192,17 +192,17 @@ namespace PathfinderPortraitManager
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitMed);
-            float aspectRatio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f), factor;
+            float aspectRatio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f), zoomFactor;
 
             if (e.Delta > 0)
             {
-                factor = PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, factor);
+                zoomFactor = PicPortraitMed.Width * 1.0f / 10;
+                ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                factor = -PicPortraitMed.Width * 1.0f / 10;
-                ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, factor);
+                zoomFactor = -PicPortraitMed.Width * 1.0f / 10;
+                ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitMed);
@@ -210,17 +210,17 @@ namespace PathfinderPortraitManager
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitSml);
-            float aspectRatio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f), factor;
+            float aspectRatio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f), zoomFactor;
 
             if (e.Delta > 0)
             {
-                factor = PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, factor);
+                zoomFactor = PicPortraitSml.Width * 1.0f / 10;
+                ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                factor = -PicPortraitSml.Width * 1.0f / 10;
-                ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, factor);
+                zoomFactor = -PicPortraitSml.Width * 1.0f / 10;
+                ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitSml);
@@ -235,7 +235,7 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutScalePage);
 
             string path = "";
-            bool placeableDirection = false;
+            bool placeableFilepath = false;
             uint pseudoUniqueName = 0;
 
             if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
@@ -252,16 +252,16 @@ namespace PathfinderPortraitManager
                 path = _tunneledNameToPortraitPage;
                 _tunneledNameToPortraitPage = "!NONE!";
                 GeneratePortraits(path);
-                placeableDirection = true;
+                placeableFilepath = true;
             }
 
-            while (!placeableDirection)
+            while (!placeableFilepath)
             {
                 path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(pseudoUniqueName);
                 if (!Directory.Exists(path))
                 {
                     GeneratePortraits(path);
-                    placeableDirection = true;
+                    placeableFilepath = true;
                 }
                 pseudoUniqueName++;
             }
@@ -420,6 +420,7 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
+
             if (ListGallery.SelectedItems.Count < 1)
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
@@ -593,6 +594,7 @@ namespace PathfinderPortraitManager
                     return;
                 }
             }
+
             if (!SystemControl.FileControl.Readonly.DirectoryExists(_extractFolderPath))
             {
                 _extractFolderPath = "!NONE!";
@@ -606,8 +608,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
-            bool _isRepeat = false;
+            bool isRepeat = false;
             uint imgCount = 0;
+
             if (ListExtract.Items.Count < 1)
             {
                 return;
@@ -615,8 +618,9 @@ namespace PathfinderPortraitManager
 
             foreach (ListViewItem item in ListExtract.Items)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text,
+                    safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.CreateDirectory(normalPath);
@@ -627,7 +631,7 @@ namespace PathfinderPortraitManager
                 }
                 else
                 {
-                    _isRepeat = true;
+                    isRepeat = true;
                     SystemControl.FileControl.CreateDirectory(safePath);
                     SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
                     SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
@@ -636,7 +640,7 @@ namespace PathfinderPortraitManager
                 }
             }
 
-            if (_isRepeat)
+            if (isRepeat)
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
                 {
@@ -656,8 +660,9 @@ namespace PathfinderPortraitManager
         }
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
         {
-            bool _isRepeat = false;
+            bool isRepeat = false;
             uint imgCount = 0;
+
             if (ListExtract.Items.Count < 1)
             {
                 return;
@@ -675,8 +680,9 @@ namespace PathfinderPortraitManager
 
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text,
+                    safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
                     SystemControl.FileControl.CreateDirectory(normalPath);
@@ -687,7 +693,7 @@ namespace PathfinderPortraitManager
                 }
                 else
                 {
-                    _isRepeat = true;
+                    isRepeat = true;
                     SystemControl.FileControl.CreateDirectory(safePath);
                     SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
                     SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
@@ -696,7 +702,7 @@ namespace PathfinderPortraitManager
                 }
             }
 
-            if (_isRepeat)
+            if (isRepeat)
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
                 {
@@ -720,6 +726,7 @@ namespace PathfinderPortraitManager
             {
                 return;
             }
+
             System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
             System.Diagnostics.Process.Start(_extractFolderPath);
             ButtonToMainPage2_Click(sender, e);
@@ -822,6 +829,7 @@ namespace PathfinderPortraitManager
         private void ButtonSelectPath_Click(object sender, EventArgs e)
         {
             string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
+            
             if (!SystemControl.FileControl.Readonly.DirectoryExists(defaultDir))
             {
                 defaultDir = "";
@@ -856,6 +864,7 @@ namespace PathfinderPortraitManager
                 _gameSelected = 'w';
                 UpdateColorScheme();
             }
+
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
                 RemoveClickEventsFromMainButtons();
@@ -864,12 +873,14 @@ namespace PathfinderPortraitManager
             {
                 AddClickEventsToMainButtons();
             }
+
             CoreSettings.Default.GameType = _gameSelected;
             CoreSettings.Default.Save();
         }
         private void ButtonLoadWeb_Click(object sender, EventArgs e)
         {
             string url = TextBoxURL.Text;
+
             try
             {
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
@@ -911,6 +922,7 @@ namespace PathfinderPortraitManager
         private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
         {
             TextBox senderTextBox = (TextBox)sender;
+
             senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
             if (!senderTextBox.Text.Contains("http"))
             {
@@ -936,6 +948,7 @@ namespace PathfinderPortraitManager
         private void ButtonNextImageType_Click(object sender, EventArgs e)
         {
             _imageSelectionFlag++;
+
             if (_imageSelectionFlag == 1)
             {
                 ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
@@ -945,6 +958,7 @@ namespace PathfinderPortraitManager
                 ButtonNextImageType.Visible = false;
                 ButtonNextImageType.Enabled = false;
             }
+
             GenerateImageSelectionFlagString(_imageSelectionFlag);
             LoadTempImagesToPicBox(_imageSelectionFlag);
             ResizeVisibleImagesToWindowSize();
@@ -961,6 +975,7 @@ namespace PathfinderPortraitManager
                 {
                     CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
                 }
+
                 AnyButton_Leave(sender, e);
                 ButtonApplyChange.BackColor = Color.LimeGreen;
                 ButtonApplyChange.ForeColor = Color.White;
@@ -984,10 +999,12 @@ namespace PathfinderPortraitManager
         private void ButtonLoadCustom_Click(object sender, EventArgs e)
         {
             string fromPath, fromPath2;
+
             fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
             fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
+
             if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
                 !LoadGalleryCustom(fromPath, false) ||
                 !LoadGalleryCustom(fromPath2, false))
@@ -1002,6 +1019,7 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
+
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
             _cancellationTokenSource = new CancellationTokenSource();
@@ -1017,6 +1035,7 @@ namespace PathfinderPortraitManager
         private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
         {
             string fromPath;
+
             fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
@@ -1029,6 +1048,7 @@ namespace PathfinderPortraitManager
         private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
         {
             string fromPath;
+
             fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);

@@ -71,7 +71,7 @@ namespace PathfinderPortraitManager
         {
             float aspect = control.Height * 1.0f / control.Width * 1.0f;
 
-            Tuple<int, int> newSize = MapNewSize(parent, aspect);
+            Tuple<int, int> newSize = CalculateNewSize(parent, aspect);
 
             if (control is PictureBox pictureBox)
             {
@@ -98,7 +98,7 @@ namespace PathfinderPortraitManager
                     ResizeImageToParentControl(PicPortraitTemp, img, PanelPortraitTemp);
             }
         }
-        public static Tuple<int, int> MapNewSize(Control parent, float aspect)
+        public static Tuple<int, int> CalculateNewSize(Control parent, float aspect)
         {
             int inWidth = parent.Width, inHeight = parent.Height,
                 outWidth, outHeight;
@@ -348,6 +348,7 @@ namespace PathfinderPortraitManager
             Font bebasNeue20 = new Font(fonts.Families[0], 20), 
                  bebasNeue16 = new Font(fonts.Families[0], 16),
                  bebasNeue13 = new Font(fonts.Families[0], 13);
+
             ButtonToFilePage.Font = bebasNeue20;
             ButtonToExtractPage.Font = bebasNeue20;
             ButtonToGalleryPage.Font = bebasNeue20;
@@ -399,6 +400,7 @@ namespace PathfinderPortraitManager
         public void FontsInitNotEN()
         {
             Font defFont12 = new Font(DefaultFont.FontFamily, 12);
+
             ButtonToFilePage.Font = defFont12;
             ButtonToExtractPage.Font = defFont12;
             ButtonToGalleryPage.Font = defFont12;
@@ -556,6 +558,7 @@ namespace PathfinderPortraitManager
         {
             Color foreColor = GAME_TYPES[_gameSelected].ForeColor;
             Color backColor = GAME_TYPES[_gameSelected].BackColor;
+
             Icon = GAME_TYPES[_gameSelected].GameIcon;
             PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].TitleImage;
             LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackgroundImage;
@@ -595,6 +598,7 @@ namespace PathfinderPortraitManager
             {
                 return false;
             }
+
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
             _cancellationTokenSource = new CancellationTokenSource();
@@ -610,6 +614,7 @@ namespace PathfinderPortraitManager
         private void IterativeParsePortraitsFolderAsync(string fromPath, CancellationToken cancelToken)
         {
             string[] subDirs = Directory.GetDirectories(fromPath);
+
             foreach (string subDir in subDirs)
             {
                 if (cancelToken.IsCancellationRequested)

@@ -17,35 +17,36 @@ namespace PathfinderPortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {
-        readonly Font _font1, _font2;
-        readonly PrivateFontCollection _fontCollection;
-        public MyMessageDialog(string mesg, string locale)
+        private readonly Font _fontLarge, _fontMedium;
+        private readonly PrivateFontCollection _fontCollection;
+
+        public MyMessageDialog(string message, string locale)
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
 
             if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
                 Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
             {
-                _font1 = new Font(DefaultFont.FontFamily, 13);
-                _font2 = new Font(DefaultFont.FontFamily, 11);
+                _fontLarge = new Font(DefaultFont.FontFamily, 13);
+                _fontMedium = new Font(DefaultFont.FontFamily, 11);
             }
             else
             {
                 _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-                _font1 = new Font(_fontCollection.Families[0], 17);
-                _font2 = new Font(_fontCollection.Families[0], 15);
+                _fontLarge = new Font(_fontCollection.Families[0], 17);
+                _fontMedium = new Font(_fontCollection.Families[0], 15);
             }
 
             InitializeComponent();
             ButtonClose.Text = TextVariables.BUTTON_OK;
-            ButtonClose.Font = _font1;
-            LabelMesg.Text = mesg;
-            LabelMesg.Font = _font2;
+            ButtonClose.Font = _fontLarge;
+            LabelMesg.Text = message;
+            LabelMesg.Font = _fontMedium;
         }
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _font1.Dispose();
-            _font2.Dispose();
+            _fontLarge.Dispose();
+            _fontMedium.Dispose();
             Dispose();
         }
         private void ButtonClose_MouseEnter(object sender, System.EventArgs e)

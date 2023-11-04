@@ -41,6 +41,7 @@ namespace ImageControl
         {
             Rectangle rect = new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
             Bitmap outImage = new Bitmap(rect.Width, rect.Height);
+
             outImage.SetResolution(inImage.HorizontalResolution, inImage.VerticalResolution);
             using (Graphics newRenderer = Graphics.FromImage(outImage))
                 newRenderer.DrawImage(inImage, -rect.X, -rect.Y);
@@ -65,12 +66,14 @@ namespace ImageControl
     {
         public static void ZoomImage(PictureBox pictureBox, Panel panel, MouseEventArgs mouseEvent, string imagePath, float aspect, float factor)
         {
-            float newWidth = pictureBox.Width + factor * aspect;
-            float newHeight = pictureBox.Height + factor;
+            float newWidth = pictureBox.Width + factor * aspect,
+                newHeight = pictureBox.Height + factor;
+
             if (newWidth <= panel.Width || newHeight <= panel.Height)
             {
                 return;
             }
+
             using (Bitmap img = new Bitmap(imagePath))
             {
                 pictureBox.Image = Direct.Zoom(img, (int)newWidth, (int)newHeight);
@@ -83,8 +86,9 @@ namespace ImageControl
             using (Image inImage = new Bitmap(imagePath))
             {
                 float factor = inImage.Width * 1.0f / pictureBox.Image.Width * 1.0f;
-                Tuple<int, int, int, int> tuple = CalculateCropRectangle(panel, factor, aspect, inImage.Height, inImage.Width);
-                using (Image croppedImage = Direct.Crop(inImage, tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4))
+                Tuple<int, int, int, int> rectanglePoints = CalculateCropRectangle(panel, factor, aspect, inImage.Height, inImage.Width);
+
+                using (Image croppedImage = Direct.Crop(inImage, rectanglePoints.Item1, rectanglePoints.Item2, rectanglePoints.Item3, rectanglePoints.Item4))
                 using (Image resizedImage = Direct.Resize(croppedImage, newWidth, newHeight))
                 {
                     resizedImage.Save(saveLocation);
@@ -98,8 +102,10 @@ namespace ImageControl
                 yStart = -(int)(panel.AutoScrollPosition.Y * factor),
                 xSize = (int)(panel.Width * factor),
                 ySize = (int)(xSize * aspect);
+
             int xEnd = xSize + xStart,
                 yEnd = ySize + yStart;
+
             if (yEnd > height || xEnd > width)
             {
                 ySize = (int)(panel.Height * factor);
@@ -107,6 +113,7 @@ namespace ImageControl
                 xEnd = xSize + xStart;
                 yEnd = ySize + yStart;
             }
+
             return Tuple.Create(xStart, yStart, xEnd, yEnd);
         }
     }

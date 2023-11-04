@@ -17,9 +17,10 @@ namespace PathfinderPortraitManager.forms
 {
     public partial class MyInquiryDialog : Form
     {
-        readonly Font _font;
-        readonly PrivateFontCollection _fontCollection;
-        public MyInquiryDialog(string mesg, string locale)
+        private readonly Font _font;
+        private readonly PrivateFontCollection _fontCollection;
+
+        public MyInquiryDialog(string message, string locale)
         {
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
 
@@ -36,7 +37,7 @@ namespace PathfinderPortraitManager.forms
 
             InitializeComponent();
             LabelInquiryMesg.Font = _font;
-            LabelInquiryMesg.Text = mesg;
+            LabelInquiryMesg.Text = message;
             ButtonOK.Font = _font;
             ButtonOK.Text = TextVariables.BUTTON_YES;
             ButtonCancel.Font = _font;

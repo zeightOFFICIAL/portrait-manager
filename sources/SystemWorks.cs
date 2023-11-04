@@ -43,6 +43,7 @@ namespace SystemControl
                         return true;
                     }
                 }
+
                 return false;
             }
             public static string GetFileExtension(string path)
@@ -53,6 +54,7 @@ namespace SystemControl
         public static string OpenFileLocation()
         {
             string filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + TYPE_FILTER;
+
             using (OpenFileDialog Dialog = new OpenFileDialog()
             {
                 Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
@@ -66,6 +68,7 @@ namespace SystemControl
                 if (Dialog.ShowDialog() == DialogResult.OK)
                 {
                     string extension = Readonly.GetFileExtension(Dialog.FileName);
+
                     if (EXTENSIONS_ALLOWED.Contains(extension))
                     {
                         return Dialog.FileName;
@@ -87,6 +90,7 @@ namespace SystemControl
             {
                 return;
             }
+
             if (newPath == "!DEFAULT!" || newPath == "!NONESELECTED!" || newPath == "!NONE!")
             {
                 using (Image img = new Bitmap(defaultImg))

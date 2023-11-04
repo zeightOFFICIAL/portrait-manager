@@ -44,7 +44,7 @@ Allows the user to upload any local or web image, scale it as desired, and final
 #### Extract from external folders
 Allows the user to extract images from a local directory directly into the game directory. Select the folder containing the correct portrait package images to process and create the images in game folder. Choose which portraits to move to the game directory. You can extract selected ones to move only certain ones. Or extract every one. The program automatically copies folders to the game portraits' directory. Works only with regular portraits. Custom NPC portraits don't work.
 
-*A valid image package must contain three images: small - 185x242 (factor 1.308), medium - 330x432 (factor 1.309), full size - 692x1024 (factor 1.479). The program performs recursive parsing, so corresponding folders located deeper than one directory will still be processed. Other files will be ignored. Please note that these are the official proportions shown in the game, other sizes may not fit. The failsafe is +2 pixels in width and +3 pixels in height, but this cannot be promised to work in game.
+* A valid image package must contain three images: small - 185x242 (factor 1.308), medium - 330x432 (factor 1.309), full size - 692x1024 (factor 1.479). The program performs recursive parsing, so corresponding folders located deeper than one directory will still be processed. Other files will be ignored. Please note that these are the official proportions shown in the game, other sizes may not fit. The failsafe is +/- 2 pixels in width and +/- 3 pixels in height, but this cannot be promised to work in game.
 
 #### Browse gallery and change/delete portraits
 Allows the user to view existing/created and in-work game portraits. Allows the user to delete or change any portrait. Select the image(s) from the list and click the button corresponding to the required functionality. When deleting, it asks whether to continue. When editing, it asks whether to make a standalone/copy version or delete the old one and replace it. Manages all processing of folders and files. On-site replacement is now valid. It is no problem to change a specific portrait that may already be used by the game, so the user does not need to use any save-edit.
@@ -83,10 +83,10 @@ Now supports localization. The concept has changed. Now there is no need to add 
 7. Close the application, launch the game and enjoy!
 
 ### Installation
-Download release, unpack anywhere (verbatim), but I recommend using separate folder and not-protected directory, since it copies and save images abundantly. Launch Pathfinder Portrait Manager.exe, use the app as you see fit. Don't delete or move configuration file away from exe. As well, do not delete temp folder, while program is working. Localization folder should be next to exe, and should not be deleted while app is running.
+Download the release, unpack it anywhere (literally), but I recommend using a separate folder and an unprotected directory, as it copies and saves images a lot. Launch Pathfinder Portrait Manager.exe and use the application as you wish. Do not delete or move the configuration file from the EXE. Also, do not delete the temporary folder while the program is running. Localization folders (ru, de) must be located next to the EXE. Do not delete anything that comes within 7z package
 
 ### Production info and bugs section
-All the errors and bugs should be reported to in the according section of nexusmods. I believe (more hope like) that the only bugs left are minor/graphical and non-critical for usability, so most likely there will be no patches. However, if something essential appears, I will try to fix it ASAP. From now on, version >1.2.0.0, there will be no functionality updates.
+All bugs and errors should be reported in the corresponding Nexusmods section. I believe (hope) that there are only minor/graphical bugs left that are not critical for usability, so most likely there will be no patches. However, if something critical happens, I will try to fix it as soon as possible. From now on, there will be no functionality updates in version >1.2.0.0. Please note that the Pathfinder game's portraits folder is statically created, and the functionality is simple, so there is very little chance of a bug occurring in the program. Please check dependencies, launch and start the game at least once, reinstall the game.
 
 ### Build info
 * C#
@@ -97,40 +97,35 @@ All the errors and bugs should be reported to in the according section of nexusm
 Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is required</b><br>
 ✅ Tested with Windows 11<br>
 ✅ Tested with Windows 10<br>
-✅ Some minor issues detected with Windows 8/8.1<br>
+⭕ Some minor issues detected with Windows 8/8.1 <b>.NET Framework does not come with Windows 8!</b><br> 
 ⭕ Untested but it probably works on Windows 7<br>
-⭕ Might work with Windows XP/Vista<br>
+⭕ Might work with Windows XP/Vista <b>.NET Framework does not come with with Windows Vista/XP!</b><br>
 ❌ Highly unlikely with something older<br>
-❌ Not working with UNIX-based (Linux/MAC)<br>
+❌ Not working with UNIX-based (Linux/MAC) .NET Framework is exclusively for Windows and system file structure differs greatly<br>
 
 #### Development and debugging addendum, concerns
-* Code to detect whether the directory is indeed game-created
-```c sharp
-public static bool ValidatePortraitPath(string path)
-{
-    if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
-        path.Split('\\').Last() == "Portraits")
-    {
-        return true;
-    }
-    return false;
-}
-```
-* There might be problems with folder manipulation
-* FolderBrowserDialog is now (1.1.0.0) in work for choosing folder function
-* Program localization depends on currently active system language
-```c sharp
-public MainForm()
-{
-    Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-    InitializeComponent();
-}
-```
-* 
-* The program have not been under heavy and constant testing and debugging, there are a lot of pitfalls
+* Pathfinder portrait's game folder is created statically, so it is the same no matter what device you are using (bound to Windows' file system). The directory detection code uses system paths to locate the AppData/LocalLow/Owlcat/Pathfinder/Portraits folder.
+* Custom NPC Portraits uses previously mentioned system paths to navigate required folders. So if the first point fails, it fails too.
+* If you are using Custom NPC Portraits, be sure to START the game at least once. <b>THE PROGRAM DOES NOT CREATE NEW PORTRAITS!</b>, it only modifies existing ones. So, to actually change someone's portrait, you need to meet them in the game and let the Custom NPC Portraits create his/her folder in the appropriate directory.
+* Also keep in mind that some Custom NPC Portraits do not use the fulllength.png (largest) portrait as it is not utilized in the game, this program allows you to change it, but it does not work in the game itself.
+* Each user has his own configuration. It is stored in an XML file in the AppData folder. It stores basic information about the window size, folder paths, selected language, and so on. The file is open for navigation and observation if there are any problems. We advise you not to change it.
+* FolderBrowserDialog now (1.1.0.0) works for folder feature selection.
+* The localization of the program initially depends on the current active system language, but later you can change the localization using the buttons on the main page. If the former does not work, try changing the language via buttons.
+* Asynchronous image loading now (1.2.0.0) works for loading images into the Browse Gallery and Extract Folder pages.
+* The program has not been subjected to thorough and constant testing and debugging, there are many pitfalls
+* Most important topics: asynchronous loading, folder/file manipulation, folder discovery, image cropping/resizing.
+* If any of this doesn't help you find the bug, please let me know personally via Nexusmods.
 
 ##### Changelog
 * 1.2.0.0
+    * Added asynchronous loading of Browse Gallery and Extract Folder, now loading images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
+    * Change Custom NPC Portraits. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be changed
+    * Major code refactoring
+    * Optimization changes
+    * The concept of localization has been changed. Now you can change the localization using the buttons on the main page, no need to download any locale files, it is built into the program. Initial localization still depends on the system language. Current available localizations: en-US, ru-RU, de-DE (the latter translated by AI)
+    * Chang in the settings page after adding the feature for managing Custom NPC portraits.
+    * Added fault tolerance for Extract Folder, so partially incorrect portraits are still processed by a program. Yet, it cannot be promised that it will work in the game.
+    * Nothing is broken... I think. This cannot be promised >_<
 * 1.1.0.0b
     * Minor graphical changes
     * Optimization changes
@@ -148,9 +143,6 @@ public MainForm()
     * Browse existing portrait(s)
     * Extract image(s) from another folder
 
-#### Translation addendum
-The program was optimized to use several languages and fonts. In order to create a translation, load TextVariables.resx, copy it. Change its name to TextVariables.{X}.dll, where X - is a short calling for language, fr, ru, en, etc. After that, full value fields to the according translations. However, I still need to integrate it to the program manually.
-
 ### Copyrights
 1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/blob/master/LICENSE)
 2. All rights for Visual Studio 2022 belongs to Microsoft (https://www.microsoft.com/)
@@ -161,5 +153,5 @@ The program was optimized to use several languages and fonts. In order to create
 7. All right to Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits)<br>
     7.b. Please note, that I am not using any of Assets of Custom Npc Portraits.
 
-<b>Inform: if your owner rights are violated; if you've encountered any bugs; if you have any suggestions.
-Disclaimer: this is not a product of Owlcat Games, it is developed by a third parties. Every image used in this application, and processed by it, does not belong to this program's author. Clients (users) are responsible for selecting the image, and using processed by the program images.</b>
+<b>Inform: if your owner's rights have been violated; if you encounter any errors; if you have suggestions for improving functionality/optimization.
+Disclaimer: This is not a product of Owlcat Games, it is developed by a third party. Every image used and processed in this application does not belong to me. Clients (users) of this application are responsible for selecting a specific image and subsequent use of the processed image. This program only allows users to modify images more easily. Whether they are protected or not, selecting an image and its use is entirely at the discretion of the user. Custom NPC Portrait does not belong to me, but to edvin76, I do not utilize any of the assets.</b>

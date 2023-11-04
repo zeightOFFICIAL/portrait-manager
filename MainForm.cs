@@ -333,6 +333,15 @@ namespace PathfinderPortraitManager
                 UseStamps.Default.isFirstGallery = false;
                 UseStamps.Default.Save();
             }
+
+            if (_gameSelected == 'p')
+            {
+                ButtonLoadCustomArmy.Visible = false;
+            }
+            else
+            {
+                ButtonLoadCustomArmy.Visible = true;
+            }
         }
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {

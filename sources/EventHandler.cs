@@ -384,6 +384,7 @@ namespace PathfinderPortraitManager
                 ButtonLoadCustom.Visible = false;
                 ButtonLoadCustomNPC.Visible = false;
                 ButtonLoadCustomArmy.Visible = false;
+
             }
             else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
             {
@@ -569,6 +570,7 @@ namespace PathfinderPortraitManager
                 ClearImageListsSync(ListExtract, ImgListExtract);
             }
 
+            _cancellationTokenSource?.Cancel();
             string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
             if (!SystemControl.FileControl.Readonly.DirectoryExists(defaultDir))
             {
@@ -872,6 +874,46 @@ namespace PathfinderPortraitManager
             else
             {
                 AddClickEventsToMainButtons();
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+            }
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                AddClickEventsToCustomPortraitsButtons();
+                CheckBoxVerified.Checked = true;
+                UseStamps.Default.isAwareNPC = "WorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = true;
+                ButtonLoadCustomNPC.Visible = true;
+                ButtonLoadCustomArmy.Visible = true;
+            }
+
+            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
+            {
+                CheckBoxVerified.Checked = true;
+            }
+            else
+            {
+                CheckBoxVerified.Checked = false;
             }
 
             CoreSettings.Default.GameType = _gameSelected;

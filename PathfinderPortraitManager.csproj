@@ -57,7 +57,7 @@
     <StartupObject>PathfinderPortraitManager.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon_wotr.ico</ApplicationIcon>
+    <ApplicationIcon>icon_path.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
     <DebugSymbols>true</DebugSymbols>

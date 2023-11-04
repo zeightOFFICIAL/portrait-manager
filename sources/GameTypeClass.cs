@@ -6,7 +6,6 @@
     Primal license header is written in Program.cs
 */
 
-using System;
 using System.Drawing;
 
 namespace PathfinderPortraitManager.sources
@@ -24,8 +23,9 @@ namespace PathfinderPortraitManager.sources
         public string DefaultDirectory { get; set; }
         public GameTypeClass(string newGameName, Color newForeColor, Color newBackColor, Icon newIcon,
                              Image newTitleImage, Image newBackgroundImage, Image newPlaceImage,
-                             string newDefDirectory, string newTitleText) {
-            GameName = newGameName; 
+                             string newDefDirectory, string newTitleText)
+        {
+            GameName = newGameName;
             ForeColor = newForeColor;
             BackColor = newBackColor;
             GameIcon = newIcon;

@@ -6,13 +6,13 @@
     Primal license header is written in Program.cs
 */
 
-using System.Drawing;
-using System.Windows.Forms;
-using System.IO;
-using System.Drawing.Text;
-using System.Runtime.InteropServices;
-using System.Linq;
 using System;
+using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SystemControl
 {
@@ -22,7 +22,8 @@ namespace SystemControl
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
         private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png" };
         private const string TYPE_FILTER = "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*";
-        public class Readonly {
+        public class Readonly
+        {
             public static bool DirectoryExists(string path)
             {
                 return Directory.Exists(path);
@@ -35,7 +36,8 @@ namespace SystemControl
             {
                 using (Bitmap img = new Bitmap(path))
                 {
-                    if (img.Width == expectedWidth && img.Height == expectedHeight)
+                    if (img.Width <= expectedWidth + 2 && img.Height <= expectedHeight + 3 &&
+                        img.Width >= expectedWidth - 2 && img.Height >= expectedHeight - 3)
                     {
                         img.Dispose();
                         return true;
@@ -52,14 +54,14 @@ namespace SystemControl
         {
             string filter = PathfinderPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + TYPE_FILTER;
             using (OpenFileDialog Dialog = new OpenFileDialog()
-                {
-                    Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
-                    Multiselect = false,
-                    CheckFileExists = true,
-                    CheckPathExists = true,
-                    SupportMultiDottedExtensions = false,
-                    Filter = filter,
-                })
+            {
+                Title = PathfinderPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
+                Multiselect = false,
+                CheckFileExists = true,
+                CheckPathExists = true,
+                SupportMultiDottedExtensions = false,
+                Filter = filter,
+            })
             {
                 if (Dialog.ShowDialog() == DialogResult.OK)
                 {
@@ -117,7 +119,7 @@ namespace SystemControl
                     {
                         img.Save(tempAppends[2]);
                     }
-                    else if(flag == 100 || flag == 0)
+                    else if (flag == 100 || flag == 0)
                     {
                         img.Save(tempAppends[0]);
                         img.Save(tempAppends[1]);
@@ -181,7 +183,7 @@ namespace SystemControl
             uint dummy = 0;
 
             IntPtr fontPointer = Marshal.AllocCoTaskMem(fontData.Length);
-            Marshal.Copy(fontData, 0, fontPointer, fontData.Length);            
+            Marshal.Copy(fontData, 0, fontPointer, fontData.Length);
             fontCollection.AddMemoryFont(fontPointer, font.Length);
             AddFontMemResourceEx(fontPointer, (uint)font.Length, IntPtr.Zero, ref dummy);
             Marshal.FreeCoTaskMem(fontPointer);
@@ -194,7 +196,7 @@ namespace SystemControl
                 File.Copy(fromPath, toPath, true);
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }

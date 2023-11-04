@@ -8,8 +8,8 @@
 
 using System;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace ImageControl
 {
@@ -89,7 +89,7 @@ namespace ImageControl
                 {
                     resizedImage.Save(saveLocation);
                     resizedImage.Dispose();
-                }               
+                }
             }
         }
         public static Tuple<int, int, int, int> CalculateCropRectangle(Panel panel, float factor, float aspect, int height, int width)

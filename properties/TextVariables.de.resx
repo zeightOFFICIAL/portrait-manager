@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BUTTON_ADVANCED" xml:space="preserve">
+    <value>Medium wechseln</value>
+  </data>
+  <data name="BUTTON_ADVANCED2" xml:space="preserve">
+    <value>Kleine Änderungen</value>
+  </data>
+  <data name="BUTTON_APPLY" xml:space="preserve">
+    <value>Bewerbung</value>
+  </data>
+  <data name="BUTTON_BACK" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="BUTTON_CANCEL" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
+    <value>Armee</value>
+  </data>
+  <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
+    <value>NPC</value>
+  </data>
+  <data name="BUTTON_EXIT" xml:space="preserve">
+    <value>Ausfahrt</value>
+  </data>
+  <data name="BUTTON_EXTRACTALL" xml:space="preserve">
+    <value>Alle extrahieren</value>
+  </data>
+  <data name="BUTTON_EXTRACTOPENFOLDER" xml:space="preserve">
+    <value>Ordner öffnen</value>
+  </data>
+  <data name="BUTTON_EXTRACTSELECTED" xml:space="preserve">
+    <value>Auszug ausgewählt</value>
+  </data>
+  <data name="BUTTON_FINALOPENFOLDER" xml:space="preserve">
+    <value>Öffnen Sie</value>
+  </data>
+  <data name="BUTTON_GALLERYOPENFOLDER" xml:space="preserve">
+    <value>Ordner öffnen</value>
+  </data>
+  <data name="BUTTON_HINT" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BUTTON_LOAD" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
+    <value>Wählen Sie lokal</value>
+  </data>
+  <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
+    <value>Web auswählen</value>
+  </data>
+  <data name="BUTTON_MENU" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+  <data name="BUTTON_NEW" xml:space="preserve">
+    <value>Neu</value>
+  </data>
+  <data name="BUTTON_NO" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="BUTTON_OK" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
+    <value>Ausgewählte bearbeiten</value>
+  </data>
+  <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
+    <value>Ausgewählte löschen</value>
+  </data>
+  <data name="BUTTON_SELECTPATH" xml:space="preserve">
+    <value>Wählen Sie</value>
+  </data>
+  <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
+    <value>Benutzerdefiniert anzeigen</value>
+  </data>
+  <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
+    <value>Porträts anzeigen</value>
+  </data>
+  <data name="BUTTON_SUCESS" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="BUTTON_TOCREATE" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="BUTTON_TOEXRACTPAGE" xml:space="preserve">
+    <value>Ordner extrahieren</value>
+  </data>
+  <data name="BUTTON_TOFILEPAGE" xml:space="preserve">
+    <value>Porträt erstellen</value>
+  </data>
+  <data name="BUTTON_TOGALLERYPAGE" xml:space="preserve">
+    <value>Galerie durchsuchen</value>
+  </data>
+  <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
+    <value>Bild skalieren</value>
+  </data>
+  <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="BUTTON_VALIDATE" xml:space="preserve">
+    <value>Validieren Sie</value>
+  </data>
+  <data name="BUTTON_YES" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="HINT_EXTRACTPAGE" xml:space="preserve">
+    <value>Dies ist die Extraktionsseite. Hier können Sie alle Bilder aus einem Ordner in den Spielordner kopieren. Klicken Sie auf "Ordner wählen", um einen Ordner zum Kopieren auszuwählen. Wählen Sie die Bilder aus und klicken Sie auf "Ausgewählte extrahieren", um nur bestimmte Bilder zu übertragen, oder klicken Sie auf "Alle extrahieren", um alle verfügbaren Bilder zu übertragen. Um den Vorgang manuell auszuführen, klicken Sie auf "Ordner öffnen".</value>
+  </data>
+  <data name="HINT_FILEPAGE" xml:space="preserve">
+    <value>Dies ist die Dateiseite. Hier können Sie wählen, welches Bild Sie als Porträt verwenden möchten. Sie können ein lokales Bild hochladen, indem Sie auf eine Schaltfläche oder ein Bild klicken oder es einfach per Drag &amp; Drop auf das Bild ziehen. Sie können auch ein Webbild hochladen, indem Sie auf die Schaltfläche klicken und den Anweisungen folgen. Verwenden Sie die Schaltflächen "Mittelgroß ändern" und "Klein ändern", um die jeweiligen Porträts zu ersetzen.</value>
+  </data>
+  <data name="HINT_GALLERYPAGE" xml:space="preserve">
+    <value>Dies ist eine Galerieseite, die alle derzeit verfügbaren Porträts im Spiel anzeigt. Wählen Sie ein Bild aus und klicken Sie auf "Ausgewählte bearbeiten", um ein Porträt zu kopieren/ersetzen und ein neues zu erstellen. Du kannst auch mehrere oder einzelne Bilder auswählen und auf "löschen" klicken, um sie aus dem Spielordner zu entfernen. Wenn du CustomNPC installiert hast, drücke die entsprechenden Schaltflächen oben, um die von der Mod verwalteten Porträts anzuzeigen.</value>
+  </data>
+  <data name="HINT_SCALEPAGE" xml:space="preserve">
+    <value>Dies ist eine Seite, auf der Sie das Bild nach Ihren Wünschen skalieren und zuschneiden können. Verwenden Sie das Mausrad, um Bilder zu vergrößern oder zu verkleinern. Doppelklicken Sie auf das Bild, um es wieder in seinen ursprünglichen Zustand zu versetzen. Ziehen Sie das Bild, um es individuell zu gestalten. Klicken Sie auf "Erstellen", um ein neues Porträt hinzuzufügen. Die hochgeladenen Porträts sind fast exakte Kopien der Bilder, die Sie auf dieser Seite eingerahmt haben. Klicken Sie auf "Zurück", um zur vorherigen Seite zurückzukehren.</value>
+  </data>
+  <data name="INQR_DELETEOLD" xml:space="preserve">
+    <value>Möchten Sie die alte Version des Porträts löschen?  Beachten Sie, dass Sie das Porträt verlieren können, wenn Sie die Dateiseite verlassen. Klicken Sie auf 'nein', um eine Kopie zu erstellen. Oder "Ja", um das alte Porträt zu ersetzen.</value>
+  </data>
+  <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
+    <value>Sie haben keine Bilder hochgeladen. Sie können jedoch weiterhin das Standardbild verwenden. Klicken Sie auf "Ja", um mit den Standardbildern fortzufahren. Klicken Sie auf "Nein", um zurückzugehen und ein anderes Bild auszuwählen.</value>
+  </data>
+  <data name="KING" xml:space="preserve">
+    <value>Kingmaker</value>
+  </data>
+  <data name="LABEL_COPY" xml:space="preserve">
+    <value>Artemii "Zeight" Saganenko© 2023</value>
+  </data>
+  <data name="LABEL_CREATEDERROR" xml:space="preserve">
+    <value>Etwas ist schief gelaufen. Da Sie dieses Stadium erreicht haben, handelt es sich höchstwahrscheinlich um ein Problem mit dem Spielverzeichnis. Überprüfen Sie das Vorhandensein und die Konsistenz des oben angezeigten Verzeichnisses. Erstellen Sie es, falls nötig. Besuchen Sie die Einstellungsseite für weitere Informationen.</value>
+  </data>
+  <data name="LABEL_CREATEDOK" xml:space="preserve">
+    <value>Das Porträt wurde erfolgreich im Arbeitsverzeichnis erstellt, dessen Position oben angegeben ist. Jetzt kann es im Spiel verwendet werden.</value>
+  </data>
+  <data name="LABEL_LANG" xml:space="preserve">
+    <value>UI Sprache:</value>
+  </data>
+  <data name="LABEL_LARGEIMG" xml:space="preserve">
+    <value>Groß</value>
+  </data>
+  <data name="LABEL_LARGEIMG2" xml:space="preserve">
+    <value>Charakter-Porträt</value>
+  </data>
+  <data name="LABEL_MEDIUMIMG" xml:space="preserve">
+    <value>Mittel</value>
+  </data>
+  <data name="LABEL_MEDIUMIMG2" xml:space="preserve">
+    <value>Skills-Porträt</value>
+  </data>
+  <data name="LABEL_PATH" xml:space="preserve">
+    <value>Pfad zum Ordner mit den Spielporträts</value>
+  </data>
+  <data name="LABEL_SETTINGS" xml:space="preserve">
+    <value>Dies ist die Einstellungsseite. Hier können Sie die Größe durch Ziehen an der Ecke anpassen. Und überprüfen Sie den Pfad zum richtigen Porträtordner.</value>
+  </data>
+  <data name="LABEL_SMALLIMG" xml:space="preserve">
+    <value>Klein</value>
+  </data>
+  <data name="LABEL_SMALLIMG2" xml:space="preserve">
+    <value>Gameplay-Porträt</value>
+  </data>
+  <data name="LABEL_URLDIALOG" xml:space="preserve">
+    <value>Ziehen Sie das Bild per Drag &amp; Drop, geben Sie es ein oder kopieren Sie die URL eines vorhandenen Bildes. Die Url-Adresse muss zu einer zugänglichen Web-Quelle führen.</value>
+  </data>
+  <data name="MESG_CANNOTLOAD" xml:space="preserve">
+    <value>Das ausgewählte Webbild ist nicht verfügbar. Versuchen Sie es ein anderes Mal, oder speichern Sie es auf Ihrem lokalen Laufwerk und laden Sie es lokal. Bitte beachten Sie, dass WEBP nicht unterstützt wird.</value>
+  </data>
+  <data name="MESG_CUSTOMFOUND" xml:space="preserve">
+    <value>Sieht so aus, als hättest du Custom NPC Portraits von edvin76 installiert! Mit diesem Programm kannst du das Aussehen der NSC-Porträts einfacher anpassen. Gehe auf die Seite Galerieansicht und klicke auf die Schaltfläche, um benutzerdefinierte NSCs anzuzeigen, und bearbeite jedes beliebige Porträt, das du möchtest. Bitte beachte, dass beim Bearbeiten von NSC-Porträts eine Sicherungskopie im Ordner erstellt wird, wenn die alten Porträts ersetzt werden müssen. Wenn eine Kopie erstellt werden muss, wird diese in einem neuen Ordner abgelegt. Bitte beachten Sie, dass dieses Programm keine Porträts für benutzerdefinierte NSCs erstellt, sondern sie nur ersetzt!</value>
+  </data>
+  <data name="MESG_CUSTOMNOTFOUND" xml:space="preserve">
+    <value>Benutzerdefinierter NPC nicht gefunden. Wenn nicht installiert, weiter. Andernfalls überprüfen Sie die Installation im Spiel selbst über den Unity Mod Manager, starten Sie das Spiel mindestens einmal, damit der Custom NPC Ordner für Porträts erstellt. Bitte beachten Sie, dass dieses Programm keine Porträts für Custom NPCs erstellt, sondern diese nur ersetzt!</value>
+  </data>
+  <data name="MESG_DELETE" xml:space="preserve">
+    <value>Sie sind dabei, Bilder zu löschen. Dieser Vorgang ist nicht umkehrbar. Wenn Ihre Porträts im Spiel in Gebrauch sind, werden sie durch Platzhalter im Spiel selbst ersetzt. Willst du fortfahren? Bilder insgesamt:</value>
+  </data>
+  <data name="MESG_GAMEFOLDERFOUND" xml:space="preserve">
+    <value>Mappe gefunden! Sie können jetzt Ihre eigenen Porträts erstellen! Klicken Sie auf "Porträt erstellen", um ein neues Porträt hinzuzufügen, auf "Ordner extrahieren", um mehrere Porträts aus einem anderen Ordner hinzuzufügen, auf "Galerie ansehen", um alte Porträts zu bearbeiten oder zu löschen.</value>
+  </data>
+  <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
+    <value>Spielordner nicht gefunden. Stellen Sie sicher, dass Sie das Spiel mindestens einmal gestartet haben. Wenn das Problem weiterhin besteht, melden Sie es bitte in der Bug-Sektion. Wenn Sie ein anderes Spiel steuern müssen, sei es Kingmaker oder WotR. Ändern Sie den Spieltyp in den Einstellungen oder indem Sie auf das Titelbild klicken. Besuchen Sie die Einstellungsseite für weitere Informationen. Bis das Problem behoben ist, werden alle Funktionen blockiert sein.</value>
+  </data>
+  <data name="MESG_NONESELECTED" xml:space="preserve">
+    <value>Sie haben kein Porträt ausgewählt. Um es zu bearbeiten oder zu löschen, wählen Sie mindestens ein Bild aus der Liste aus.</value>
+  </data>
+  <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
+    <value>Sie haben kein Porträt ausgewählt. Um zu extrahieren, wählen Sie mindestens ein Bild aus der Liste aus.</value>
+  </data>
+  <data name="MESG_REPEATFOLDER" xml:space="preserve">
+    <value>Ein oder mehrere Ordner existieren bereits im Ordner "Porträts im Spiel". Die Namen werden wiederholt. Das Programm wird die Ausgabeordner umbenennen, damit die Bilder nicht überschrieben werden.</value>
+  </data>
+  <data name="MESG_SELECTEDMORE" xml:space="preserve">
+    <value>Mehr als ein Bild ausgewählt. Nur das erste der ausgewählten Bilder wird verarbeitet.</value>
+  </data>
+  <data name="MESG_SUCCESS" xml:space="preserve">
+    <value>Erledigt! Die Bilder wurden erfolgreich geladen:</value>
+  </data>
+  <data name="MESG_WRONGFORMAT" xml:space="preserve">
+    <value>Die Datei hat nicht das richtige Format. Bitte wählen Sie ein Bild aus den zulässigen Formaten. Zulässig sind die Formate PNG, JPG, JPEG, BMP oder GIF. Möglicherweise ist die Datei auch nicht verfügbar. Das Verzeichnis sollte nicht mit zusätzlichen Rechten geschützt sein.</value>
+  </data>
+  <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
+    <value>URL hier eingeben</value>
+  </data>
+  <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
+    <value>Falsche URL</value>
+  </data>
+  <data name="TEXT_FOLDEROPEN" xml:space="preserve">
+    <value>Wählen Sie den zu extrahierenden Ordner aus</value>
+  </data>
+  <data name="TEXT_IMAGEFILTER" xml:space="preserve">
+    <value>Alle Bilder</value>
+  </data>
+  <data name="TEXT_PATHOPEN" xml:space="preserve">
+    <value>Ordner auswählen, in dem die Porträts gespeichert werden</value>
+  </data>
+  <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
+    <value>Bild auswählen</value>
+  </data>
+  <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
+    <value>Ordner auswählen</value>
+  </data>
+  <data name="WOTR" xml:space="preserve">
+    <value>WotR</value>
+  </data>
+</root>

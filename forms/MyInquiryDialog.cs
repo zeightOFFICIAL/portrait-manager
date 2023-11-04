@@ -6,11 +6,10 @@
     Primal license header is written in Program.cs
 */
 
-using System;
+using PathfinderPortraitManager.Properties;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,26 +19,28 @@ namespace PathfinderPortraitManager.forms
     {
         readonly Font _font;
         readonly PrivateFontCollection _fontCollection;
-        public MyInquiryDialog(string mesg)
+        public MyInquiryDialog(string mesg, string locale)
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Thread.CurrentThread.CurrentUICulture.Name, "Pathfinder Portrait Manager.resources.dll");
-            if (File.Exists(resxFilePath))
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
+
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
+                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
             {
-                _font = new Font(DefaultFont.FontFamily, 14);
+                _font = new Font(DefaultFont.FontFamily, 12);
             }
             else
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-                _font = new Font(_fontCollection.Families[0], 18);
-            }            
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+                _font = new Font(_fontCollection.Families[0], 17);
+            }
+
             InitializeComponent();
             LabelInquiryMesg.Font = _font;
             LabelInquiryMesg.Text = mesg;
             ButtonOK.Font = _font;
-            ButtonOK.Text = Properties.TextVariables.BUTTON_YES;
+            ButtonOK.Text = TextVariables.BUTTON_YES;
             ButtonCancel.Font = _font;
-            ButtonCancel.Text = Properties.TextVariables.BUTTON_NO;
+            ButtonCancel.Text = TextVariables.BUTTON_NO;
         }
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)

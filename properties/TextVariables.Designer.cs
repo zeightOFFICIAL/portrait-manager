@@ -106,6 +106,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom army.
+        /// </summary>
+        internal static string BUTTON_CUSTOMARMY {
+            get {
+                return ResourceManager.GetString("BUTTON_CUSTOMARMY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom NPC.
+        /// </summary>
+        internal static string BUTTON_CUSTOMNPC {
+            get {
+                return ResourceManager.GetString("BUTTON_CUSTOMNPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string BUTTON_EXIT {
@@ -259,6 +277,24 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show custom.
+        /// </summary>
+        internal static string BUTTON_SHOWCUSTOM {
+            get {
+                return ResourceManager.GetString("BUTTON_SHOWCUSTOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show portraits.
+        /// </summary>
+        internal static string BUTTON_SHOWLOCAL {
+            get {
+                return ResourceManager.GetString("BUTTON_SHOWLOCAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sucess.
         /// </summary>
         internal static string BUTTON_SUCESS {
@@ -340,7 +376,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;choose folder&quot; to select a folder to copy. Select the images and click &quot;extract selected&quot; to move only certain images, or click &quot;extract all&quot; to move all available. To perform the process manually, click &quot;open folders&quot;..
+        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;choose folder&quot; to select a folder to copy. Select the images and click &apos;extract selected&apos; to move only certain images, or click &apos;extract all&apos; to move all available. To perform the process manually, click &apos;open folders&apos;..
         /// </summary>
         internal static string HINT_EXTRACTPAGE {
             get {
@@ -358,7 +394,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a gallery page that displays all the currently available portraits in the game. Select an image and click &quot;edit selected&quot; to copy/replace any portrait and create another one. You can also select multiple or individual images and click &quot;delete&quot; to remove them from the game folder..
+        ///   Looks up a localized string similar to This is a gallery page that displays all the currently available portraits in the game. Select an image and click &apos;edit selected&apos; to copy/replace any portrait and create another one. You can also select multiple or individual images and click &apos;delete&apos; to remove them from the game folder. If you have CustomNPC installed, press corresponding buttons in the top to show mod&apos;s managed portraits..
         /// </summary>
         internal static string HINT_GALLERYPAGE {
             get {
@@ -367,7 +403,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a page for scaling and cropping the image to your liking. Use the mouse wheel to zoom images in and out. Double click the image to restore it to its original state. Drag the image to customize it. Click &quot;create&quot; to add a new portrait. The uploaded portraits will be almost exact copies of the images you framed on this page. Click &quot;back&quot; to return to the previous page..
+        ///   Looks up a localized string similar to This is a page for scaling and cropping the image to your liking. Use the mouse wheel to zoom images in and out. Double-click the image to restore it to its original state. Drag the image to customize it. Click &apos;create&apos; to add a new portrait. The uploaded portraits will be almost exact copies of the images you framed on this page. Click &apos;back&apos; to return to the previous page..
         /// </summary>
         internal static string HINT_SCALEPAGE {
             get {
@@ -376,7 +412,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait?  Be advised that you are risking losing the portrait if you are to leave file page. Click &quot;no&quot; to create a copy. Or &quot;yes&quot; to replace the old portrait..
+        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait?  Be advised that you are risking losing the portrait if you are to leave file page. Click &apos;no&apos; to create a copy. Or &apos;yes&apos; to replace the old portrait..
         /// </summary>
         internal static string INQR_DELETEOLD {
             get {
@@ -385,7 +421,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not uploaded any images. However, you can still use the default image. Click &quot;yes&quot; to continue with the default images. Click &quot;no&quot; to go back and choose another image..
+        ///   Looks up a localized string similar to You have not uploaded any images. However, you can still use the default image. Click &apos;yes&apos; to continue with the default images. Click &apos;no&apos; to go back and choose another image..
         /// </summary>
         internal static string INQR_NOIMAGECHOSEN {
             get {
@@ -426,6 +462,15 @@ namespace PathfinderPortraitManager.Properties {
         internal static string LABEL_CREATEDOK {
             get {
                 return ResourceManager.GetString("LABEL_CREATEDOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UI Language: .
+        /// </summary>
+        internal static string LABEL_LANG {
+            get {
+                return ResourceManager.GetString("LABEL_LANG", resourceCulture);
             }
         }
         
@@ -511,7 +556,7 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected web image is not available. Try another time, or just save it to your local drive and load it locally..
+        ///   Looks up a localized string similar to The selected web image is not available. Try another time, or just save it to your local drive and load it locally. Be advised WEBP is not supported..
         /// </summary>
         internal static string MESG_CANNOTLOAD {
             get {
@@ -520,11 +565,38 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will  be replaced to placeholder by game itself. Do you want to continue? Total images:.
+        ///   Looks up a localized string similar to Looks like you&apos;ve installed Custom NPC Portraits from edvin76! This program will allow you to more easily customize the appearance of NPC portraits. Go to the Gallery View page and click the button to display custom NPCs, edit any portrait you want. Please note that when editing NPC portraits, if the old ones need to be replaced, a backup copy is created in the folder. If a copy needs to be made, it will be placed in a new folder. Please note that this program does not create portraits for Custom NPCs, but  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MESG_CUSTOMFOUND {
+            get {
+                return ResourceManager.GetString("MESG_CUSTOMFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom NPC not found. If not installed, continue. Otherwise, double-check the installation in the game itself via Unity Mod Manager, launch the game at least once so that the Custom NPC creates folders for portraits. Please note that this program does not create portraits for Custom NPCs, but only replaces them!.
+        /// </summary>
+        internal static string MESG_CUSTOMNOTFOUND {
+            get {
+                return ResourceManager.GetString("MESG_CUSTOMNOTFOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will be replaced to placeholder by game itself. Do you want to continue? Total images:.
         /// </summary>
         internal static string MESG_DELETE {
             get {
                 return ResourceManager.GetString("MESG_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder found! You can start creating your own portraits! Click &apos;Create Portrait&apos; to add a new one, &apos;Extract Folder&apos; to add multiple portraits from another folder, &apos;View Gallery&apos; to edit or delete old ones..
+        /// </summary>
+        internal static string MESG_GAMEFOLDERFOUND {
+            get {
+                return ResourceManager.GetString("MESG_GAMEFOLDERFOUND", resourceCulture);
             }
         }
         

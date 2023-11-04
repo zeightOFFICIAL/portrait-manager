@@ -15,7 +15,13 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="GameType" Type="System.Char" Scope="User">
-      <Value Profile="(Default)">p</Value>
+      <Value Profile="(Default)">w</Value>
+    </Setting>
+    <Setting Name="EnabledCustomNPC" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SelectedLang" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en-EN</Value>
     </Setting>
   </Settings>
 </SettingsFile>

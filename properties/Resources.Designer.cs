@@ -39,8 +39,8 @@ namespace PathfinderPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp_DoNotDeleteWhileRunning = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp_DoNotDeleteWhileRunning;
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
                 }
                 return resourceMan;
             }
@@ -91,6 +91,26 @@ namespace PathfinderPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap eng {
+            get {
+                object obj = ResourceManager.GetObject("eng", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ger {
+            get {
+                object obj = ResourceManager.GetObject("ger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon icon_path {
@@ -126,6 +146,16 @@ namespace PathfinderPortraitManager.Properties {
         internal static System.Drawing.Bitmap placeholder_wotr {
             get {
                 object obj = ResourceManager.GetObject("placeholder_wotr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rus {
+            get {
+                object obj = ResourceManager.GetObject("rus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

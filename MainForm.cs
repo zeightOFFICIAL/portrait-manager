@@ -6,8 +6,9 @@
     Primal license header is written in Program.cs
 */
 
-using PathfinderPortraitManager.sources;
 using PathfinderPortraitManager.forms;
+using PathfinderPortraitManager.Properties;
+using PathfinderPortraitManager.sources;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,92 +16,172 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.IO;
 
 namespace PathfinderPortraitManager
 {
     public partial class MainForm : Form
     {
-        private static readonly GameTypeClass WrathType = new GameTypeClass("Wrath of the Righteous",
-            Color.FromArgb(255, 20, 147),   Color.FromArgb(20, 6, 30),
-            Properties.Resources.icon_wotr, Properties.Resources.title_wotr,
-            Properties.Resources.bg_wotr,   Properties.Resources.placeholder_wotr,
+        private static readonly GameTypeClass WRATH_TYPE = new GameTypeClass("Wrath of the Righteous",
+            Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
+            Resources.icon_wotr, Resources.title_wotr,
+            Resources.bg_wotr, Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
-        private static readonly GameTypeClass KingmakerType = new GameTypeClass("Kingmaker",
-            Color.FromArgb(218, 165, 32),   Color.FromArgb(9, 28, 11),
-            Properties.Resources.icon_path, Properties.Resources.title_path,
-            Properties.Resources.bg_path,   Properties.Resources.placeholder_path,
+        private static readonly GameTypeClass KINGMAKER_TYPE = new GameTypeClass("Kingmaker",
+            Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
+            Resources.icon_path, Resources.title_path,
+            Resources.bg_path, Resources.placeholder_path,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
-            { 'p', KingmakerType},
-            { 'w', WrathType}
+            { 'p', KINGMAKER_TYPE},
+            { 'w', WRATH_TYPE}
         };
         private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
-            { 'p', Properties.CoreSettings.Default.WOTRPath },
-            { 'w', Properties.CoreSettings.Default.KINGPath }
+            { 'p', CoreSettings.Default.WOTRPath },
+            { 'w', CoreSettings.Default.KINGPath }
         };
 
-        private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL_DoNotDeleteWhileRunning.png";
-        private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM_DoNotDeleteWhileRunning.png";
-        private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL_DoNotDeleteWhileRunning.png";
-        private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
+        private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
+        private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM.png";
+        private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL.png";
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
         private const float LARGE_ASPECT = 1.479768786f;
         private const float MEDIUM_ASPECT = 1.309090909f;
         private const float SMALL_ASPECT = 1.308108108f;
-        
-        private static ushort _imageFlag = 0;
+        private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
+        private static readonly string[] APPENDS = { LARGE_APPEND, MEDIUM_APPEND, SMALL_APPEND };
+        private static readonly float[] ASPECTS = { LARGE_ASPECT, MEDIUM_ASPECT, SMALL_ASPECT };
+
+        private static ushort _imageSelectionFlag = 0;
         private static Point _mousePosition = new Point();
-        private static int _isDragging = 0;
-        private static bool _isAnyLoaded = false;
-        private static char _gameSelected = Properties.CoreSettings.Default.GameType;
+        private static int _isDraggingMouse = 0;
+        private static bool _isAnyLoadedToPortraitPage = false;
+        private static char _gameSelected = CoreSettings.Default.GameType;
         private static PrivateFontCollection _fontCollection;
+        private static CancellationTokenSource _cancellationTokenSource;
 
         public MainForm()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
             InitializeComponent();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (Properties.UseStamps.Default.isFirstAny)
+            if (UseStamps.Default.isFirstAny)
             {
-                Properties.CoreSettings.Default.KINGPath = KingmakerType.DefaultDirectory;
-                Properties.CoreSettings.Default.WOTRPath = WrathType.DefaultDirectory;
-                Properties.CoreSettings.Default.MaxWindowHeight = Size.Height;
-                Properties.CoreSettings.Default.MaxWindowWidth = Size.Width;                
-                Properties.CoreSettings.Default.Save();
-                Properties.UseStamps.Default.isFirstAny = false;
-                Properties.UseStamps.Default.Save();
-            }
-            ACTIVE_PATHS['w'] = Properties.CoreSettings.Default.WOTRPath;
-            ACTIVE_PATHS['p'] = Properties.CoreSettings.Default.KINGPath;
-            Width = Properties.CoreSettings.Default.MaxWindowWidth;
-            Height = Properties.CoreSettings.Default.MaxWindowHeight;            
-            
-            CenterToScreen();
-            ParentLayoutsSetDockFill();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-
-            string resxFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, 
-                                               Thread.CurrentThread.CurrentUICulture.Name, 
-                                               "Pathfinder Portrait Manager.resources.dll");
-            if (File.Exists(resxFilePath))
-            {
-                SetFontsNotEN();
+                if (CultureInfo.CurrentUICulture.ToString() == "en-US" ||
+                    CultureInfo.CurrentUICulture.ToString() == "ru-RU" ||
+                    CultureInfo.CurrentUICulture.ToString() == "de-DE")
+                {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+                }
+                else
+                {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+                }
+                
+                CoreSettings.Default.KINGPath = KINGMAKER_TYPE.DefaultDirectory;
+                CoreSettings.Default.WOTRPath = WRATH_TYPE.DefaultDirectory;
+                CoreSettings.Default.MaxWindowHeight = Size.Height;
+                CoreSettings.Default.MaxWindowWidth = Size.Width;
+                CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
+                CoreSettings.Default.Save();
+                UseStamps.Default.isFirstAny = false;
+                UseStamps.Default.Save();
             }
             else
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Properties.Resources.BebasNeue_Regular);
-                SetFonts(_fontCollection);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(CoreSettings.Default.SelectedLang);
             }
-            SetTexts();
+            ACTIVE_PATHS['w'] = CoreSettings.Default.WOTRPath;
+            ACTIVE_PATHS['p'] = CoreSettings.Default.KINGPath;
+            Width = CoreSettings.Default.MaxWindowWidth;
+            Height = CoreSettings.Default.MaxWindowHeight;
+            FormInit();
+            LanguageInit();
+
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                RemoveClickEventsFromMainButtons();
+            }
+            else if (UseStamps.Default.isFirstAny)
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+            }
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                AddClickEventsToCustomPortraitsButtons();
+                CheckBoxVerified.Checked = true;
+                UseStamps.Default.isAwareNPC = "WorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = true;
+                ButtonLoadCustomNPC.Visible = true;
+                ButtonLoadCustomArmy.Visible = true;
+            }
+
+            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
+            {
+                CheckBoxVerified.Checked = true;
+            }
+            else
+            {
+                CheckBoxVerified.Checked = false;
+            }
+        }
+        private void LanguageInit()
+        {
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
+                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
+            {
+                FontsInitNotEN();
+            }
+            else
+            {
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+                FontsInit(_fontCollection);
+            }
+            TextsInit();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+        }
+        private void FormInit()
+        {
+            CenterToScreen();
+            ParentLayoutsSetDockFill();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateColorScheme();
 
             PicPortraitTemp.AllowDrop = true;
@@ -112,52 +193,43 @@ namespace PathfinderPortraitManager
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
-           
-            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(Properties.TextVariables.MESG_GAMEFOLDERNOTFOUND))
-                {
-                    Message.StartPosition = FormStartPosition.CenterScreen;
-                    Message.ShowDialog();
-                }
-                RemoveClickEventsFromMainButtons();
-            }
+            CheckBoxVerified.AutoCheck = false;
         }
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
-            RestoreFilePage();
-            SafeCopyAllImages("!DEFAULT!", 100);
-            GenerateImageFlagString(100);
-            LoadTempImages(100);
+            RestoreFilePageToInit();
+            CreateAllImagesInTemp("!DEFAULT!", 100);
+            GenerateImageSelectionFlagString(100);
+            LoadTempImagesToPicBox(100);
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutFilePage);            
-            ResizeVisibleImagesToWindow();
+            RootFunctions.LayoutEnable(LayoutFilePage);
+            ResizeVisibleImagesToWindowSize();
 
-            if (Properties.UseStamps.Default.isFirstPortrait == true)
+            if (UseStamps.Default.isFirstPortrait == true)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_FILEPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
                 {
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
-                Properties.UseStamps.Default.isFirstPortrait = false;
-                Properties.UseStamps.Default.Save();
+                UseStamps.Default.isFirstPortrait = false;
+                UseStamps.Default.Save();
             }
         }
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
-            if (!_isAnyLoaded)
+            if (!_isAnyLoadedToPortraitPage)
             {
-                using (MyInquiryDialog Inquiry = new MyInquiryDialog(Properties.TextVariables.INQR_NOIMAGECHOSEN))
+                using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_NOIMAGECHOSEN, CoreSettings.Default.SelectedLang))
                 {
                     Inquiry.StartPosition = FormStartPosition.CenterParent;
                     Inquiry.Width = Width - 16;
                     if (Inquiry.ShowDialog() == DialogResult.OK)
                     {
                         ParentLayoutsDisable();
-                        LoadAllTempImages();
+                        LoadAllTempImagesToPicBox();
                         RootFunctions.LayoutEnable(LayoutScalePage);
-                        ResizeVisibleImagesToWindow();
+                        ResizeVisibleImagesToWindowSize();
                     }
                     else
                     {
@@ -168,52 +240,52 @@ namespace PathfinderPortraitManager
             else
             {
                 ParentLayoutsDisable();
-                LoadAllTempImages();
+                LoadAllTempImagesToPicBox();
                 RootFunctions.LayoutEnable(LayoutScalePage);
-                ResizeVisibleImagesToWindow();
+                ResizeVisibleImagesToWindowSize();
             }
-            GenerateImageFlagString(0);
+            GenerateImageSelectionFlagString(0);
 
-            if (Properties.UseStamps.Default.isFirstScaling)
+            if (UseStamps.Default.isFirstScaling)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_SCALEPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
                 {
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
-                Properties.UseStamps.Default.isFirstScaling = false;
-                Properties.UseStamps.Default.Save();
+                UseStamps.Default.isFirstScaling = false;
+                UseStamps.Default.Save();
             }
         }
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
-            RestoreFilePage();
-            _isAnyLoaded = true;
-            LoadTempImages(_imageFlag);
+            RestoreFilePageToInit();
+            _isAnyLoadedToPortraitPage = true;
+            LoadTempImagesToPicBox(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
-            ResizeVisibleImagesToWindow();
+            ResizeVisibleImagesToWindowSize();
         }
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
             ButtonToFilePage3.BackColor = Color.Black;
             ButtonToFilePage3.ForeColor = Color.White;
-            RestoreFilePage();
+            RestoreFilePageToInit();
             RootFunctions.LayoutDisable(LayoutFinalPage);
-            ReplacePrimeImagesToDefault();
+            ReplacePictureBoxImagesToDefault();
             SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
-            LoadTempImages(_imageFlag);
+            LoadTempImagesToPicBox(_imageSelectionFlag);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
-            ResizeVisibleImagesToWindow();
-            GenerateImageFlagString(100);
+            ResizeVisibleImagesToWindowSize();
+            GenerateImageSelectionFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             DisposePrimeImages();
-            ClearImageLists(ListGallery, ImgListGallery);
-            ClearImageLists(ListExtract, ImgListExtract);
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            ClearImageListsSync(ListExtract, ImgListExtract);
             SystemControl.FileControl.ClearTempImages();
             Application.Exit();
         }
@@ -225,15 +297,15 @@ namespace PathfinderPortraitManager
             ButtonExtractSelected.Enabled = false;
             ButtonOpenFolders.Enabled = false;
 
-            if (Properties.UseStamps.Default.isFirstExtract == true)
+            if (UseStamps.Default.isFirstExtract == true)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_EXTRACTPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
                 {
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
-                Properties.UseStamps.Default.isFirstExtract = false;
-                Properties.UseStamps.Default.Save();
+                UseStamps.Default.isFirstExtract = false;
+                UseStamps.Default.Save();
             }
         }
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
@@ -246,55 +318,57 @@ namespace PathfinderPortraitManager
                 return;
             }
 
-            if (Properties.UseStamps.Default.isFirstGallery == true)
+            if (UseStamps.Default.isFirstGallery == true)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(Properties.TextVariables.HINT_GALLERYPAGE))
+                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
                 {
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
-                Properties.UseStamps.Default.isFirstGallery = false;
-                Properties.UseStamps.Default.Save();
+                UseStamps.Default.isFirstGallery = false;
+                UseStamps.Default.Save();
             }
         }
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
-            ReplacePrimeImagesToDefault();
+            ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
             _extractFolderPath = "!NONE!";
-            ClearImageLists(ListExtract, ImgListExtract);
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListExtract, ImgListExtract);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
-            ClearImageLists(ListGallery, ImgListGallery);
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
-            RestoreFilePage();
             ButtonToMainPage4.BackColor = Color.Black;
             ButtonToMainPage4.ForeColor = Color.White;
-            RootFunctions.LayoutDisable(LayoutFinalPage);
-            ReplacePrimeImagesToDefault();
+            RestoreFilePageToInit();
+            ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
+            RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
-            Properties.CoreSettings.Default.MaxWindowHeight = Height;
-            Properties.CoreSettings.Default.MaxWindowWidth = Width;
-            Properties.CoreSettings.Default.Save();
+            CoreSettings.Default.MaxWindowHeight = Height;
+            CoreSettings.Default.MaxWindowWidth = Width;
+            CoreSettings.Default.Save();
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            ButtonValidatePath.Text = Properties.TextVariables.BUTTON_VALIDATE;
+            ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
             ButtonValidatePath.BackColor = Color.Black;
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
@@ -303,9 +377,8 @@ namespace PathfinderPortraitManager
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutMainPage);
-            TextBoxFullPath.Text = "";
-            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
             RootFunctions.LayoutEnable(LayoutSettingsPage);
+            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
@@ -313,11 +386,12 @@ namespace PathfinderPortraitManager
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();
-            ClearImageLists(ListGallery, ImgListGallery);
-            ClearImageLists(ListExtract, ImgListExtract);
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            ClearImageListsSync(ListExtract, ImgListExtract);
             SystemControl.FileControl.ClearTempImages();
             Dispose();
             Application.Exit();
         }
+
     }
 }

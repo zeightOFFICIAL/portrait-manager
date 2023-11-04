@@ -117,7 +117,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is requi
 * If any of this doesn't help you find the bug, please let me know personally via Nexusmods.
 
 ##### Changelog
-* 1.2.0.0
+* 1.2.0.0 (current)
     * Added asynchronous loading of Browse Gallery and Extract Folder, now loading images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
     * Change Custom NPC Portraits. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be changed
     * Major code refactoring

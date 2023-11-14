@@ -150,7 +150,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is requi
 4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
 5. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
 6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)
-7. All right to Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits)<br>
+7. All rights to Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits)<br>
     7.b. Please note, that I am not using any of Assets of Custom Npc Portraits.
 
 <b>Inform: if your owner's rights have been violated; if you encounter any errors; if you have suggestions for improving functionality/optimization.

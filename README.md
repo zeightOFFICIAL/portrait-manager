@@ -118,12 +118,12 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is requi
 
 ##### Changelog
 * 1.2.0.0 (current)
-    * Added asynchronous loading of Browse Gallery and Extract Folder. Loading images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
-    * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered
+    * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
+    * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application
     * Major code refactoring
     * Optimization changes
-    * The concept of localization has been changed. Now you can change the localization using the buttons on the main page, no need to download any locale files, it is built into the program. Initial localization still depends on the system language. Current available localizations: en-US, ru-RU, de-DE (the latter translated by AI)
-    * Changes in the settings page, after adding the feature for managing Custom NPC portraits.
+    * The concept of localization has been changed. Now you can change the localization using the buttons on the main page, no need to download any locale files, it is built into the program. Initial localization still depends on the system language. Current available localizations: en-US, ru-RU, de-DE (the latter one is translated by AI, so it is flawed)
+    * Changes in the settings page.
     * Added fault tolerance for Extract Folder, so partially incorrect portraits are still processed by a program. Yet, it cannot be promised that it will work in the game.
     * Nothing is broken... I think. This cannot be promised >_<
 * 1.1.0.0b

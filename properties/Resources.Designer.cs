@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PathfinderPortraitManager.Properties {
+namespace OwlcatPortraitManager.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PathfinderPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OwlcatPortraitManager.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -76,6 +76,16 @@ namespace PathfinderPortraitManager.Properties {
         internal static System.Drawing.Bitmap bg_path {
             get {
                 object obj = ResourceManager.GetObject("bg_path", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg_rt {
+            get {
+                object obj = ResourceManager.GetObject("bg_rt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,6 +153,16 @@ namespace PathfinderPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap placeholder_rt {
+            get {
+                object obj = ResourceManager.GetObject("placeholder_rt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap placeholder_wotr {
             get {
                 object obj = ResourceManager.GetObject("placeholder_wotr", resourceCulture);
@@ -166,6 +186,16 @@ namespace PathfinderPortraitManager.Properties {
         internal static System.Drawing.Bitmap title_path {
             get {
                 object obj = ResourceManager.GetObject("title_path", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap title_rt {
+            get {
+                object obj = ResourceManager.GetObject("title_rt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

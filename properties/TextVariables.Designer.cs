@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PathfinderPortraitManager.Properties {
+namespace OwlcatPortraitManager.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PathfinderPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PathfinderPortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OwlcatPortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

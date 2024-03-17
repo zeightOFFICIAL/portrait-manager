@@ -1,13 +1,15 @@
 ﻿/*    
-    Pathfinder Portrait Manager. Desktop application for managing in game
-    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
-    Copyright (C) 2023-2024 Artemii "Zeight" Saganenko
-    LICENSE terms are written in LICENSE file
-    Primal license header is written in Program.cs
+    Owlcat Portrait Manager. Desktop application for managing in game
+    portraits for Owlcat Games products. Including Pathfinder: Kingmaker,
+    Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
+    Copyright (C) 2024 Artemii "Zeight" Saganenko
+
+    GPL-2.0 license terms are written in LICENSE file
+    License header for this project is written in Program.cs
 */
 
-using PathfinderPortraitManager.forms;
-using PathfinderPortraitManager.Properties;
+using OwlcatPortraitManager.forms;
+using OwlcatPortraitManager.Properties;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -18,7 +20,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PathfinderPortraitManager
+namespace OwlcatPortraitManager
 {
     public partial class MainForm : Form
     {

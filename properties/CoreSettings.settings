@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PathfinderPortraitManager.Properties" GeneratedClassName="CoreSettings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OwlcatPortraitManager.Properties" GeneratedClassName="CoreSettings">
   <Profiles />
   <Settings>
     <Setting Name="WOTRPath" Type="System.String" Scope="User">
@@ -22,6 +22,9 @@
     </Setting>
     <Setting Name="SelectedLang" Type="System.String" Scope="User">
       <Value Profile="(Default)">en-US</Value>
+    </Setting>
+    <Setting Name="ROGUEPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">!NOTSET!</Value>
     </Setting>
   </Settings>
 </SettingsFile>

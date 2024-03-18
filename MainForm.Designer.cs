@@ -9,8 +9,6 @@
 */
 
 
-using System.Drawing.Text;
-
 namespace OwlcatPortraitManager
 {
     partial class MainForm

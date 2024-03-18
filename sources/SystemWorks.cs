@@ -24,16 +24,19 @@ namespace SystemControl
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
         private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png" };
         private const string TYPE_FILTER = "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*";
+        
         public class Readonly
         {
             public static bool DirectoryExists(string path)
             {
                 return Directory.Exists(path);
             }
+
             public static bool FileExist(string path)
             {
                 return File.Exists(path);
             }
+            
             public static bool CheckImagePixeling(string path, int expectedWidth, int expectedHeight)
             {
                 using (Bitmap img = new Bitmap(path))
@@ -48,11 +51,13 @@ namespace SystemControl
 
                 return false;
             }
+            
             public static string GetFileExtension(string path)
             {
                 return Path.GetExtension(path);
             }
         }
+        
         public static string OpenFileLocation()
         {
             string filter = OwlcatPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + TYPE_FILTER;
@@ -86,6 +91,7 @@ namespace SystemControl
                 }
             }
         }
+        
         public static void CreateTempImages(string newPath, string[] tempAppends, Image defaultImg, ushort flag = 0)
         {
             if (!CreateDirectory("temp_DoNotDeleteWhileRunning/"))
@@ -134,10 +140,12 @@ namespace SystemControl
                 }
             }
         }
+        
         public static void ClearTempImages()
         {
             DeleteDirectoryRecursive("temp_DoNotDeleteWhileRunning/");
         }
+        
         public static bool DeleteFile(string path)
         {
             try
@@ -154,6 +162,7 @@ namespace SystemControl
                 return false;
             }
         }
+        
         public static bool DeleteDirectoryRecursive(string path)
         {
             try
@@ -170,6 +179,7 @@ namespace SystemControl
                 return false;
             }
         }
+        
         public static bool CreateDirectory(string path)
         {
             try
@@ -182,6 +192,7 @@ namespace SystemControl
                 return false;
             }
         }
+        
         public static PrivateFontCollection InitCustomFont(byte[] font)
         {
             PrivateFontCollection fontCollection = new PrivateFontCollection();
@@ -195,6 +206,7 @@ namespace SystemControl
             Marshal.FreeCoTaskMem(fontPointer);
             return fontCollection;
         }
+        
         public static bool CopyFile(string fromPath, string toPath)
         {
             try

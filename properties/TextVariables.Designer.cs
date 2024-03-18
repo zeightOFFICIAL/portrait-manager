@@ -439,7 +439,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2023.
+        ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2024.
         /// </summary>
         internal static string LABEL_COPY {
             get {

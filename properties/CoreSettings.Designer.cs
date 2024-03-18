@@ -106,5 +106,17 @@ namespace OwlcatPortraitManager.Properties {
                 this["SelectedLang"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
+        public string ROGUEPath {
+            get {
+                return ((string)(this["ROGUEPath"]));
+            }
+            set {
+                this["ROGUEPath"] = value;
+            }
+        }
     }
 }

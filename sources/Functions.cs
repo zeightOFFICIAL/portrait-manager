@@ -812,11 +812,11 @@ namespace OwlcatPortraitManager
         {
             Directory.CreateDirectory(path);
             ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMP_LARGE_APPEND,
-                                         path + LARGE_APPEND, LARGE_ASPECT, 692, 1024);
+                                         path + LARGE_APPEND, LARGE_ASPECT_PATH, 692, 1024);
             ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMP_MEDIUM_APPEND,
-                                         path + MEDIUM_APPEND, MEDIUM_ASPECT, 330, 432);
+                                         path + MEDIUM_APPEND, MEDIUM_ASPECT_PATH, 330, 432);
             ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
-                                         path + SMALL_APPEND, SMALL_ASPECT, 185, 242);
+                                         path + SMALL_APPEND, SMALL_ASPECT_PATH, 185, 242);
         }
         public void GenerateImageSelectionFlagString(ushort flag = 0)
         {

@@ -244,7 +244,7 @@
     <value>Kingmaker</value>
   </data>
   <data name="LABEL_COPY" xml:space="preserve">
-    <value>Artemii "Zeight" Saganenko© 2023</value>
+    <value>Artemii "Zeight" Saganenko© 2024</value>
   </data>
   <data name="LABEL_CREATEDERROR" xml:space="preserve">
     <value>Something went wrong. Given that you have reached this stage, it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information.</value>

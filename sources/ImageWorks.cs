@@ -33,12 +33,14 @@ namespace ImageControl
                 return new Bitmap(outImage);
             }
         }
+        
         public static Bitmap Zoom(Image inImage, int newWidth, int newHeight)
         {
             using (Bitmap img = new Bitmap(inImage))
             using (Bitmap outImage = new Bitmap(Resize(img, newWidth, newHeight)))
                 return new Bitmap(outImage);
         }
+        
         public static Bitmap Crop(Image inImage, int xStart, int yStart, int xEnd, int yEnd)
         {
             Rectangle rect = new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
@@ -50,6 +52,7 @@ namespace ImageControl
             return outImage;
         }
     }
+    
     public class Utils
     {
         public static bool Replace(PictureBox pictureBox, Image toImage)
@@ -58,18 +61,20 @@ namespace ImageControl
             pictureBox.Image = toImage;
             return true;
         }
+        
         public static bool Dispose(PictureBox pictureBox)
         {
             pictureBox.Image.Dispose();
             return true;
         }
     }
+    
     public class Wraps
     {
         public static void ZoomImage(PictureBox pictureBox, Panel panel, MouseEventArgs mouseEvent, string imagePath, float aspect, float factor)
         {
-            float newWidth = pictureBox.Width + factor * aspect,
-                newHeight = pictureBox.Height + factor;
+            float newWidth = pictureBox.Width + factor * aspect;
+            float newHeight = pictureBox.Height + factor;
 
             if (newWidth <= panel.Width || newHeight <= panel.Height)
             {
@@ -83,6 +88,7 @@ namespace ImageControl
                 panel.AutoScrollPosition = new Point(mouseEvent.X - panel.Width / 2, mouseEvent.Y - panel.Height / 2);
             }
         }
+        
         public static void CropImage(PictureBox pictureBox, Panel panel, string imagePath, string saveLocation, float aspect, int newWidth, int newHeight)
         {
             using (Image inImage = new Bitmap(imagePath))
@@ -98,6 +104,7 @@ namespace ImageControl
                 }
             }
         }
+        
         public static Tuple<int, int, int, int> CalculateCropRectangle(Panel panel, float factor, float aspect, int height, int width)
         {
             int xStart = -(int)(panel.AutoScrollPosition.X * factor),
@@ -119,6 +126,7 @@ namespace ImageControl
             return Tuple.Create(xStart, yStart, xEnd, yEnd);
         }
     }
+    
     public class Concomitant
     {
         public static void SetPanelScroll(Panel panel, int xMax, int yMax)

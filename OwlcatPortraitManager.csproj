@@ -217,6 +217,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>UseStamps.Designer.cs</LastGenOutput>
     </None>
+    <None Include="resources\BebasNeue-Regular-ru.ttf" />
     <None Include="resources\BebasNeue-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +248,7 @@
     <Content Include="icon_path.ico" />
     <Content Include="icon_rt.ico" />
     <Content Include="icon_wotr.ico" />
+    <None Include="resources\icon_rt.ico" />
     <None Include="resources\title_rt.png" />
     <None Include="resources\placeholder_rt.png" />
     <None Include="resources\bg_rt.jpg" />

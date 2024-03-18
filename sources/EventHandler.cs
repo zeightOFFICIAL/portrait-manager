@@ -10,6 +10,7 @@
 
 using OwlcatPortraitManager.forms;
 using OwlcatPortraitManager.Properties;
+
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -26,6 +27,7 @@ namespace OwlcatPortraitManager
     {
         private string _extractFolderPath = "!NONE!";
         private string _tunneledNameToPortraitPage = "!NONE!";
+
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
@@ -59,6 +61,7 @@ namespace OwlcatPortraitManager
                 ResizeVisibleImagesToWindowSize();
             }
         }
+        
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -70,6 +73,7 @@ namespace OwlcatPortraitManager
                 e.Effect = DragDropEffects.None;
             }
         }
+        
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
             string path = SystemControl.FileControl.OpenFileLocation();
@@ -103,10 +107,12 @@ namespace OwlcatPortraitManager
                 ResizeVisibleImagesToWindowSize();
             }
         }
+
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
         {
             PicPortraitTemp_Click(sender, e);
         }
+
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -115,6 +121,7 @@ namespace OwlcatPortraitManager
                 _isDraggingMouse = 1;
             }
         }
+
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
@@ -124,11 +131,13 @@ namespace OwlcatPortraitManager
                                                               -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
         }
+        
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitLrg);
             _isDraggingMouse = 0;
         }
+        
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -137,6 +146,7 @@ namespace OwlcatPortraitManager
                 _isDraggingMouse = 2;
             }
         }
+        
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
@@ -146,11 +156,13 @@ namespace OwlcatPortraitManager
                                                               -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
         }
+
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitMed);
             _isDraggingMouse = 0;
         }
+
         private void PicPortraitSml_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -159,6 +171,7 @@ namespace OwlcatPortraitManager
                 _isDraggingMouse = 3;
             }
         }
+
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
@@ -168,69 +181,75 @@ namespace OwlcatPortraitManager
                                                               -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
         }
+
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitSml);
             _isDraggingMouse = 0;
         }
+        
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitLrg);
-            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f), zoomFactor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            float zoomFactor = PicPortraitLrg.Width * 1.0f / 14;
 
             if (e.Delta > 0)
             {
-                zoomFactor = PicPortraitLrg.Width * 1.0f / 8;
                 ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                zoomFactor = -PicPortraitLrg.Width * 1.0f / 8;
+                zoomFactor = -zoomFactor;
                 ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitLrg);
         }
+
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitMed);
-            float aspectRatio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f), zoomFactor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            float zoomFactor = PicPortraitLrg.Width * 1.0f / 10;
 
             if (e.Delta > 0)
             {
-                zoomFactor = PicPortraitMed.Width * 1.0f / 10;
                 ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                zoomFactor = -PicPortraitMed.Width * 1.0f / 10;
+                zoomFactor = -zoomFactor;
                 ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitMed);
         }
+
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitSml);
-            float aspectRatio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f), zoomFactor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            float zoomFactor = PicPortraitLrg.Width * 1.0f / 6;
 
             if (e.Delta > 0)
             {
-                zoomFactor = PicPortraitSml.Width * 1.0f / 10;
                 ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                zoomFactor = -PicPortraitSml.Width * 1.0f / 10;
+                zoomFactor = -zoomFactor;
                 ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitSml);
         }
+        
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             ResizeVisibleImagesToWindowSize();
         }
+
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
             ButtonToMainPageAndFolder.Enabled = true;
@@ -282,50 +301,61 @@ namespace OwlcatPortraitManager
                 ButtonToMainPageAndFolder.Enabled = false;
             }
         }
+        
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
                 ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
         }
+        
         private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
         {
             using (Image img = new Bitmap(TEMP_LARGE_APPEND))
                 ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
         }
+        
         private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             using (Image img = new Bitmap(TEMP_SMALL_APPEND))
                 ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
         }
+        
         private void LabelMedImg_MouseHover(object sender, EventArgs e)
         {
             LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG2;
         }
+        
         private void LabelLrgImg_MouseHover(object sender, EventArgs e)
         {
             LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG2;
         }
+        
         private void LabelSmlImg_MouseHover(object sender, EventArgs e)
         {
             LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG2;
         }
+        
         private void LabelMedImg_MouseLeave(object sender, EventArgs e)
         {
             LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
         }
+        
         private void LabelLrgImg_MouseLeave(object sender, EventArgs e)
         {
             LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
         }
+        
         private void LabelSmlImg_MouseLeave(object sender, EventArgs e)
         {
             LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
         }
+        
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutFilePage);
             RootFunctions.LayoutEnable(LayoutURLDialog);
         }
+        
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
@@ -334,6 +364,7 @@ namespace OwlcatPortraitManager
                 Hint.ShowDialog();
             }
         }
+
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
@@ -342,15 +373,20 @@ namespace OwlcatPortraitManager
                 Hint.ShowDialog();
             }
         }
+
         private void PictureBoxTitle_Click(object sender, EventArgs e)
         {
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
             }
-            else
+            else if (_gameSelected == 'r')
             {
                 _gameSelected = 'p';
+            }
+            else
+            {
+                _gameSelected = 'r';
             }
 
             CoreSettings.Default.GameType = _gameSelected;
@@ -364,7 +400,6 @@ namespace OwlcatPortraitManager
                     Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
-
                 RemoveClickEventsFromMainButtons();
             }
             else
@@ -372,7 +407,20 @@ namespace OwlcatPortraitManager
                 AddClickEventsToMainButtons();
             }
 
-            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            if (_gameSelected == 'r')
+            {
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+                return;
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
+                (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
@@ -388,7 +436,8 @@ namespace OwlcatPortraitManager
                 ButtonLoadCustomArmy.Visible = false;
 
             }
-            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) 
+                && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
                 {
@@ -413,10 +462,12 @@ namespace OwlcatPortraitManager
                 CheckBoxVerified.Checked = false;
             }
         }
+        
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
         }
+        
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
         {
             if (ListGallery.Items.Count < 1)
@@ -449,8 +500,8 @@ namespace OwlcatPortraitManager
             SystemControl.FileControl.ClearTempImages();
             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
 
-            string path = item.Tag.ToString().Split('>')[0],
-                type = item.Tag.ToString().Split('>')[1];
+            string path = item.Tag.ToString().Split('>')[0];
+            string type = item.Tag.ToString().Split('>')[1];
 
             try
             {

@@ -71,6 +71,16 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BebasNeue_Regular_ru {
+            get {
+                object obj = ResourceManager.GetObject("BebasNeue_Regular_ru", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap bg_path {
@@ -126,6 +136,16 @@ namespace OwlcatPortraitManager.Properties {
         internal static System.Drawing.Icon icon_path {
             get {
                 object obj = ResourceManager.GetObject("icon_path", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon icon_rt {
+            get {
+                object obj = ResourceManager.GetObject("icon_rt", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

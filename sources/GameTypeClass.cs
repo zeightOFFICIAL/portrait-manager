@@ -23,6 +23,7 @@ namespace OwlcatPortraitManager.sources
         public Color BackColor { get; set; }
         public Icon GameIcon { get; set; }
         public string DefaultDirectory { get; set; }
+        
         public GameTypeClass(string newGameName, Color newForeColor, Color newBackColor, Icon newIcon,
                              Image newTitleImage, Image newBackgroundImage, Image newPlaceImage,
                              string newDefDirectory, string newTitleText)

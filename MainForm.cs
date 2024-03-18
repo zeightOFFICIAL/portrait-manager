@@ -4,13 +4,14 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko
 
-    GPL-2.0 license terms are written in LICENSE file
-    License header for this project is written in Program.cs
+    GPL-2.0 license terms are listed in LICENSE file
+    License header for this project is listed in Program.cs
 */
 
 using OwlcatPortraitManager.forms;
 using OwlcatPortraitManager.Properties;
 using OwlcatPortraitManager.sources;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -35,15 +36,24 @@ namespace OwlcatPortraitManager
             Resources.bg_path, Resources.placeholder_path,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
+        private static readonly GameTypeClass ROGUE_TYPE = new GameTypeClass("Rogue Trader",
+            Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
+            Resources.icon_rt, Resources.title_rt,
+            Resources.bg_rt, Resources.placeholder_rt,
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
+            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer 40000 (Rogue Trader)");
+
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
             { 'p', KINGMAKER_TYPE},
-            { 'w', WRATH_TYPE}
+            { 'w', WRATH_TYPE},
+            { 'r', ROGUE_TYPE }
         };
         private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
             { 'p', CoreSettings.Default.WOTRPath },
-            { 'w', CoreSettings.Default.KINGPath }
+            { 'w', CoreSettings.Default.KINGPath },
+            { 'r', CoreSettings.Default.ROGUEPath }
         };
 
         private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
@@ -52,16 +62,17 @@ namespace OwlcatPortraitManager
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
-        private const float LARGE_ASPECT = 1.479768786f;
-        private const float MEDIUM_ASPECT = 1.309090909f;
-        private const float SMALL_ASPECT = 1.308108108f;
+        private const float LARGE_ASPECT_PATH = 1.479768786f;
+        private const float MEDIUM_ASPECT_PATH = 1.309090909f;
+        private const float SMALL_ASPECT_PATH = 1.308108108f;
+        private const float LARGE_ASPECT_W40K = 1.37037037037f;
+        private const float MEDIUM_ASPECT_W40K = 1.33928571429f;
+        private const float SMALL_ASPECT_W40K = 1.29230769231f;
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
-        private static readonly string[] APPENDS = { LARGE_APPEND, MEDIUM_APPEND, SMALL_APPEND };
-        private static readonly float[] ASPECTS = { LARGE_ASPECT, MEDIUM_ASPECT, SMALL_ASPECT };
 
         private static ushort _imageSelectionFlag = 0;
-        private static Point _mousePosition = new Point();
-        private static int _isDraggingMouse = 0;
+        private static ushort _isDraggingMouse = 0;
+        private static Point _mousePosition = new Point();        
         private static bool _isAnyLoadedToPortraitPage = false;
         private static char _gameSelected = CoreSettings.Default.GameType;
         private static PrivateFontCollection _fontCollection;
@@ -71,13 +82,16 @@ namespace OwlcatPortraitManager
         {
             InitializeComponent();
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (UseStamps.Default.isFirstAny)
             {
-                if (CultureInfo.CurrentUICulture.ToString() == "en-US" ||
-                    CultureInfo.CurrentUICulture.ToString() == "ru-RU" ||
-                    CultureInfo.CurrentUICulture.ToString() == "de-DE")
+                var currentUICulture = CultureInfo.CurrentUICulture.ToString();
+                if (currentUICulture == "en-US" ||
+                    currentUICulture == "ru-RU" ||
+                    currentUICulture == "de-DE" ||
+                    currentUICulture == "fr-FR")
                 {
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
                 }
@@ -88,6 +102,7 @@ namespace OwlcatPortraitManager
                 
                 CoreSettings.Default.KINGPath = KINGMAKER_TYPE.DefaultDirectory;
                 CoreSettings.Default.WOTRPath = WRATH_TYPE.DefaultDirectory;
+                CoreSettings.Default.ROGUEPath = ROGUE_TYPE.DefaultDirectory;
                 CoreSettings.Default.MaxWindowHeight = Size.Height;
                 CoreSettings.Default.MaxWindowWidth = Size.Width;
                 CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
@@ -102,6 +117,7 @@ namespace OwlcatPortraitManager
 
             ACTIVE_PATHS['w'] = CoreSettings.Default.WOTRPath;
             ACTIVE_PATHS['p'] = CoreSettings.Default.KINGPath;
+            ACTIVE_PATHS['r'] = CoreSettings.Default.ROGUEPath;
             Width = CoreSettings.Default.MaxWindowWidth;
             Height = CoreSettings.Default.MaxWindowHeight;
             FormInit();
@@ -112,7 +128,7 @@ namespace OwlcatPortraitManager
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
-                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.StartPosition = FormStartPosition.CenterScreen;
                     Message.ShowDialog();
                 }
                 RemoveClickEventsFromMainButtons();
@@ -126,7 +142,20 @@ namespace OwlcatPortraitManager
                 }
             }
 
-            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            if (_gameSelected == 'r')
+            {
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+                return;
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
+                (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
@@ -141,7 +170,8 @@ namespace OwlcatPortraitManager
                 ButtonLoadCustomNPC.Visible = false;
                 ButtonLoadCustomArmy.Visible = false;
             }
-            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
+                (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
                 {
@@ -166,12 +196,13 @@ namespace OwlcatPortraitManager
                 CheckBoxVerified.Checked = false;
             }
         }
+
         private void LanguageInit()
         {
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
-                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU")) 
             {
-                FontsInitNotEN();
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_ru);
+                FontsInit(_fontCollection);
             }
             else
             {
@@ -182,6 +213,7 @@ namespace OwlcatPortraitManager
             TextsInit();
             LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
         }
+        
         private void FormInit()
         {
             CenterToScreen();
@@ -200,6 +232,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutEnable(LayoutMainPage);
             CheckBoxVerified.AutoCheck = false;
         }
+        
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
             RestoreFilePageToInit();
@@ -221,6 +254,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.Save();
             }
         }
+
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
             if (!_isAnyLoadedToPortraitPage)
@@ -263,6 +297,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.Save();
             }
         }
+        
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
             RestoreFilePageToInit();
@@ -272,6 +307,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindowSize();
         }
+
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
             ButtonToFilePage3.BackColor = Color.Black;
@@ -287,6 +323,7 @@ namespace OwlcatPortraitManager
             GenerateImageSelectionFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
         }
+        
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             DisposePrimeImages();
@@ -295,6 +332,7 @@ namespace OwlcatPortraitManager
             SystemControl.FileControl.ClearTempImages();
             Application.Exit();
         }
+        
         private void ButtonToExtract_Click(object sender, EventArgs e)
         {
             ParentLayoutsDisable();
@@ -314,6 +352,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.Save();
             }
         }
+        
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
         {
             ParentLayoutsDisable();
@@ -336,21 +375,23 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.Save();
             }
 
-            if (_gameSelected == 'p')
-            {
-                ButtonLoadCustomArmy.Visible = false;
-            }
-            else
+            if (_gameSelected == 'w')
             {
                 ButtonLoadCustomArmy.Visible = true;
             }
+            else if (_gameSelected == 'p')
+            {
+                ButtonLoadCustomArmy.Visible = false;
+            }
         }
+        
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
             ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
+
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
             _extractFolderPath = "!NONE!";
@@ -359,6 +400,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
+
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
@@ -366,6 +408,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
+
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
             ButtonToMainPage4.BackColor = Color.Black;
@@ -376,6 +419,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
+       
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutSettingsPage);
@@ -390,6 +434,7 @@ namespace OwlcatPortraitManager
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
         }
+        
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutMainPage);
@@ -399,6 +444,7 @@ namespace OwlcatPortraitManager
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
         }
+
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();

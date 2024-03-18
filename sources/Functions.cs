@@ -4,11 +4,12 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko
 
-    GPL-2.0 license terms are written in LICENSE file
-    License header for this project is written in Program.cs
+    GPL-2.0 license terms are listed in LICENSE file
+    License header for this project is listed in Program.cs
 */
 
 using OwlcatPortraitManager.Properties;
+
 using System;
 using System.Drawing;
 using System.Drawing.Text;
@@ -31,30 +32,35 @@ namespace OwlcatPortraitManager
             ButtonNextImageType.Enabled = true;         
             ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
         }
+
         public void AddClickEventsToMainButtons()
         {
             RootFunctions.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
             RootFunctions.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
             RootFunctions.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
+
         public void RemoveClickEventsFromMainButtons()
         {
             RootFunctions.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
             RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
             RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
+
         public void AddClickEventsToCustomPortraitsButtons()
         {
             RootFunctions.AddClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
             RootFunctions.AddClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
             RootFunctions.AddClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
         }
+
         public void RemoveClickEventsFromCustomPortraitsButtons()
         {
             RootFunctions.RemoveClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
             RootFunctions.RemoveClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
             RootFunctions.RemoveClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
         }
+        
         public void ClearPictureBoxImages(Image replacement)
         {
             ImageControl.Utils.Replace(PicPortraitTemp, replacement);
@@ -62,6 +68,7 @@ namespace OwlcatPortraitManager
             ImageControl.Utils.Replace(PicPortraitMed, replacement);
             ImageControl.Utils.Replace(PicPortraitSml, replacement);
         }
+        
         public void DisposePrimeImages()
         {
             ImageControl.Utils.Dispose(PicPortraitTemp);
@@ -69,10 +76,10 @@ namespace OwlcatPortraitManager
             ImageControl.Utils.Dispose(PicPortraitMed);
             ImageControl.Utils.Dispose(PicPortraitSml);
         }
+       
         public void ResizeImageToParentControl(Control control, Image image, Control parent)
         {
             float aspect = control.Height * 1.0f / control.Width * 1.0f;
-
             Tuple<int, int> newSize = CalculateNewSize(parent, aspect);
 
             if (control is PictureBox pictureBox)
@@ -82,6 +89,7 @@ namespace OwlcatPortraitManager
 
             DisableAutoScroll(parent, newSize.Item1, newSize.Item2);
         }
+        
         public void ResizeVisibleImagesToWindowSize()
         {
             if (LayoutScalePage.Enabled == true)
@@ -100,10 +108,11 @@ namespace OwlcatPortraitManager
                     ResizeImageToParentControl(PicPortraitTemp, img, PanelPortraitTemp);
             }
         }
+
         public static Tuple<int, int> CalculateNewSize(Control parent, float aspect)
         {
-            int inWidth = parent.Width, inHeight = parent.Height,
-                outWidth, outHeight;
+            int inWidth = parent.Width, inHeight = parent.Height;
+            int outWidth, outHeight;
 
             outHeight = inHeight;
             outWidth = (int)(inHeight * 1.0f / aspect * 1.0f);
@@ -116,6 +125,7 @@ namespace OwlcatPortraitManager
 
             return Tuple.Create(outWidth, outHeight);
         }
+        
         public void ParentLayoutsDisable()
         {
             RootFunctions.LayoutDisable(LayoutFilePage);
@@ -125,6 +135,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutDisable(LayoutGallery);
             RootFunctions.LayoutDisable(LayoutSettingsPage);
         }
+        
         public void ParentLayoutsSetDockFill()
         {
             foreach (Control control in Controls)
@@ -132,6 +143,7 @@ namespace OwlcatPortraitManager
                 RootFunctions.LayoutsSetDockFill(control);
             }
         }
+        
         class RootFunctions
         {
             static public void AddClickEvent(object sender, EventHandler handler)
@@ -147,6 +159,7 @@ namespace OwlcatPortraitManager
 
                 }
             }
+            
             static public void RemoveClickEvent(object sender, EventHandler handler)
             {
                 if (sender is Button button)
@@ -159,6 +172,7 @@ namespace OwlcatPortraitManager
 
                 }
             }
+            
             static public void LayoutEnable(TableLayoutPanel table)
             {
                 if (table.Visible == false && table.Enabled == false)
@@ -167,6 +181,7 @@ namespace OwlcatPortraitManager
                     table.Enabled = true;
                 }
             }
+            
             static public void LayoutDisable(TableLayoutPanel table)
             {
                 if (table.Visible == true && table.Enabled == true)
@@ -175,6 +190,7 @@ namespace OwlcatPortraitManager
                     table.Enabled = false;
                 }
             }
+            
             static public void LayoutsSetDockFill(Control control)
             {
                 if (control is TableLayoutPanel)
@@ -187,6 +203,7 @@ namespace OwlcatPortraitManager
                     LayoutsSetDockFill(subCtrl);
                 }
             }
+            
             static public void HideScrollBar(Control control)
             {
                 if (control is Panel panel)
@@ -202,10 +219,12 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         public void LoadAllTempImagesToPicBox()
         {
             LoadTempImagesToPicBox(200);
         }
+        
         public void LoadTempImagesToPicBox(ushort selectionFlag)
         {
             if (selectionFlag == 0 || selectionFlag == 100)
@@ -236,6 +255,7 @@ namespace OwlcatPortraitManager
                 DisableAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
             }
         }
+        
         public static void DisableAutoScroll(Control control, int xMax, int yMax)
         {
             if (control is Panel panel)
@@ -249,6 +269,7 @@ namespace OwlcatPortraitManager
                 panel.HorizontalScroll.Visible = true;
             }
         }
+        
         public static bool CheckPortraitExistence(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(path))
@@ -269,6 +290,7 @@ namespace OwlcatPortraitManager
             else
                 return false;
         }
+        
         public static bool CheckPortraitExistenceClipped(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(path))
@@ -287,6 +309,7 @@ namespace OwlcatPortraitManager
             else
                 return false;
         }
+        
         private void RecursiveParsePortraitsDirectoryAsync(string path, CancellationToken cancelToken)
         {
             if (cancelToken.IsCancellationRequested)
@@ -301,9 +324,12 @@ namespace OwlcatPortraitManager
 
             if (CheckPortraitExistence(path))
             {
-                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 692, 1024) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 330, 432) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 185, 242))
+                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 
+                    GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 
+                    GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
+                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 
+                    GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
                 {
                     try
                     {
@@ -338,6 +364,7 @@ namespace OwlcatPortraitManager
                 RecursiveParsePortraitsDirectoryAsync(subDir, cancelToken);
             }
         }
+        
         public void ExploreDirectory(string path, CancellationToken cancelToken)
         {                
             Task.Factory.StartNew(() =>
@@ -345,63 +372,65 @@ namespace OwlcatPortraitManager
                 RecursiveParsePortraitsDirectoryAsync(path, cancelToken);
             }, cancelToken);
         }
-        public void FontsInit(PrivateFontCollection fonts)
+        
+        public void FontsInit(PrivateFontCollection fonts, int headSize = 20, int underSize = 16, int smallSize = 13)
         {
-            Font bebasNeue20 = new Font(fonts.Families[0], 20), 
-                 bebasNeue16 = new Font(fonts.Families[0], 16),
-                 bebasNeue13 = new Font(fonts.Families[0], 13);
+            Font bebasNeueHead = new Font(fonts.Families[0], headSize), 
+                 bebasNeueUnder = new Font(fonts.Families[0], underSize),
+                 bebasNeueSmall = new Font(fonts.Families[0], smallSize);
 
-            ButtonToFilePage.Font = bebasNeue20;
-            ButtonToExtractPage.Font = bebasNeue20;
-            ButtonToGalleryPage.Font = bebasNeue20;
-            ButtonToSettingsPage.Font = bebasNeue20;
-            ButtonExit.Font = bebasNeue20;
-            ButtonKingmaker.Font = bebasNeue20;
-            ButtonWotR.Font = bebasNeue20;
-            LabelSelectedPath.Font = bebasNeue16;
-            ButtonValidatePath.Font = bebasNeue16;
-            ButtonSelectPath.Font = bebasNeue16;
-            ButtonToMainPage5.Font = bebasNeue20;
-            LabelSettings.Font = bebasNeue16;
-            ButtonApplyChange.Font = bebasNeue16;
-            ButtonLocalPortraitLoad.Font = bebasNeue20;
-            ButtonWebPortraitLoad.Font = bebasNeue20;
-            ButtonToMainPage.Font = bebasNeue20;
-            ButtonToScalePage.Font = bebasNeue20;
-            ButtonNextImageType.Font = bebasNeue20;
-            ButtonHintOnFilePage.Font = bebasNeue20;
-            ButtonToFilePage2.Font = bebasNeue20;
-            ButtonCreatePortrait.Font = bebasNeue20;
-            LabelMedImage.Font = bebasNeue20;
-            LabelLrgImg.Font = bebasNeue20;
-            LabelSmlImg.Font = bebasNeue20;
-            ButtonHintOnScalePage.Font = bebasNeue20;
-            ButtonDeletePortait.Font = bebasNeue20;
-            ButtonToMainPage3.Font = bebasNeue20;
-            ButtonOpenFolder.Font = bebasNeue20;
-            ButtonChangePortrait.Font = bebasNeue20;
-            ButtonHintFolder.Font = bebasNeue20;
-            LabelURLInfo.Font = bebasNeue20;
-            ButtonDenyWeb.Font = bebasNeue20;
-            ButtonLoadWeb.Font = bebasNeue20;
-            LabelFinalMesg.Font = bebasNeue20;
-            ButtonToFilePage3.Font = bebasNeue20;
-            ButtonToMainPage4.Font = bebasNeue20;
-            ButtonToMainPageAndFolder.Font = bebasNeue20;
-            ButtonChooseFolder.Font = bebasNeue20;
-            ButtonExtractAll.Font = bebasNeue20;
-            ButtonExtractSelected.Font = bebasNeue20;
-            ButtonOpenFolders.Font = bebasNeue20;
-            ButtonHintExtract.Font = bebasNeue20;
-            ButtonToMainPage2.Font = bebasNeue20;
-            ButtonLoadCustom.Font = bebasNeue13;
-            ButtonLoadNormal.Font = bebasNeue13;
-            ButtonLoadCustomArmy.Font = bebasNeue13;
-            ButtonLoadCustomNPC.Font = bebasNeue13;
+            ButtonToFilePage.Font = bebasNeueHead;
+            ButtonToExtractPage.Font = bebasNeueHead;
+            ButtonToGalleryPage.Font = bebasNeueHead;
+            ButtonToSettingsPage.Font = bebasNeueHead;
+            ButtonExit.Font = bebasNeueHead;
+            ButtonKingmaker.Font = bebasNeueHead;
+            ButtonWotR.Font = bebasNeueHead;
+            LabelSelectedPath.Font = bebasNeueUnder;
+            ButtonValidatePath.Font = bebasNeueUnder;
+            ButtonSelectPath.Font = bebasNeueUnder;
+            ButtonToMainPage5.Font = bebasNeueHead;
+            LabelSettings.Font = bebasNeueUnder;
+            ButtonApplyChange.Font = bebasNeueUnder;
+            ButtonLocalPortraitLoad.Font = bebasNeueHead;
+            ButtonWebPortraitLoad.Font = bebasNeueHead;
+            ButtonToMainPage.Font = bebasNeueHead;
+            ButtonToScalePage.Font = bebasNeueHead;
+            ButtonNextImageType.Font = bebasNeueHead;
+            ButtonHintOnFilePage.Font = bebasNeueHead;
+            ButtonToFilePage2.Font = bebasNeueHead;
+            ButtonCreatePortrait.Font = bebasNeueHead;
+            LabelMedImage.Font = bebasNeueHead;
+            LabelLrgImg.Font = bebasNeueHead;
+            LabelSmlImg.Font = bebasNeueHead;
+            ButtonHintOnScalePage.Font = bebasNeueHead;
+            ButtonDeletePortait.Font = bebasNeueHead;
+            ButtonToMainPage3.Font = bebasNeueHead;
+            ButtonOpenFolder.Font = bebasNeueHead;
+            ButtonChangePortrait.Font = bebasNeueHead;
+            ButtonHintFolder.Font = bebasNeueHead;
+            LabelURLInfo.Font = bebasNeueHead;
+            ButtonDenyWeb.Font = bebasNeueHead;
+            ButtonLoadWeb.Font = bebasNeueHead;
+            LabelFinalMesg.Font = bebasNeueHead;
+            ButtonToFilePage3.Font = bebasNeueHead;
+            ButtonToMainPage4.Font = bebasNeueHead;
+            ButtonToMainPageAndFolder.Font = bebasNeueHead;
+            ButtonChooseFolder.Font = bebasNeueHead;
+            ButtonExtractAll.Font = bebasNeueHead;
+            ButtonExtractSelected.Font = bebasNeueHead;
+            ButtonOpenFolders.Font = bebasNeueHead;
+            ButtonHintExtract.Font = bebasNeueHead;
+            ButtonToMainPage2.Font = bebasNeueHead;
+            ButtonLoadCustom.Font = bebasNeueSmall;
+            ButtonLoadNormal.Font = bebasNeueSmall;
+            ButtonLoadCustomArmy.Font = bebasNeueSmall;
+            ButtonLoadCustomNPC.Font = bebasNeueSmall;
         }
-        public void FontsInitNotEN()
+        
+        public void FontsInitNotEN(int defSize = 12)
         {
-            Font defFont12 = new Font(DefaultFont.FontFamily, 12);
+            Font defFont12 = new Font(DefaultFont.FontFamily, defSize);
 
             ButtonToFilePage.Font = defFont12;
             ButtonToExtractPage.Font = defFont12;
@@ -451,6 +480,7 @@ namespace OwlcatPortraitManager
             ButtonLoadCustomArmy.Font = defFont12;
             ButtonLoadCustomNPC.Font = defFont12;
         }
+        
         public void TextsInit()
         {
             ButtonToFilePage.Text = TextVariables.BUTTON_TOFILEPAGE;
@@ -503,6 +533,7 @@ namespace OwlcatPortraitManager
             ButtonLoadCustomNPC.Text = TextVariables.BUTTON_CUSTOMNPC;
             ButtonLoadNormal.Text = TextVariables.BUTTON_SHOWLOCAL;
         }
+        
         public void UpdateObjectColoringInDepth(Control ctrl, Color a, Color b)
         {
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
@@ -528,6 +559,7 @@ namespace OwlcatPortraitManager
                 UpdateObjectColoringInDepth(subCtrl, a, b);
             }
         }
+        
         public void ReplacePictureBoxImagesToDefault()
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
@@ -535,6 +567,7 @@ namespace OwlcatPortraitManager
                 ClearPictureBoxImages(placeholder);
             }
         }
+        
         public static void CreateAllImagesInTemp(string newImagePath, ushort flag)
         {
             using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
@@ -556,6 +589,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         public void UpdateColorScheme()
         {
             Color foreColor = GAME_TYPES[_gameSelected].ForeColor;
@@ -583,7 +617,7 @@ namespace OwlcatPortraitManager
                 ButtonWotR.BackColor = Color.Black;
                 TextBoxFullPath.Text = CoreSettings.Default.KINGPath;
             }
-            else
+            else if (_gameSelected == 'w')
             {
                 ButtonKingmaker.Enabled = true;
                 ButtonKingmaker.ForeColor = Color.White;
@@ -593,7 +627,18 @@ namespace OwlcatPortraitManager
                 ButtonWotR.BackColor = foreColor;
                 TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
             }
+            else if (_gameSelected == 'r')
+            {
+                ButtonKingmaker.Enabled = false;
+                ButtonKingmaker.ForeColor = Color.White;
+                ButtonKingmaker.BackColor = Color.Black;
+                ButtonWotR.Enabled = false;
+                ButtonWotR.ForeColor = backColor;
+                ButtonWotR.BackColor = foreColor;
+                TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
+            }
         }
+
         public bool LoadGallery(string path)
         {
             if (!SystemControl.FileControl.Readonly.DirectoryExists(path))
@@ -812,11 +857,14 @@ namespace OwlcatPortraitManager
         {
             Directory.CreateDirectory(path);
             ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMP_LARGE_APPEND,
-                                         path + LARGE_APPEND, LARGE_ASPECT_PATH, 692, 1024);
+                                         path + LARGE_APPEND, GAME_TYPES[_gameSelected].GetLargeAspect(),
+                                         GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight());
             ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMP_MEDIUM_APPEND,
-                                         path + MEDIUM_APPEND, MEDIUM_ASPECT_PATH, 330, 432);
+                                         path + MEDIUM_APPEND, GAME_TYPES[_gameSelected].GetMediumAspect(),
+                                         GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight());
             ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
-                                         path + SMALL_APPEND, SMALL_ASPECT_PATH, 185, 242);
+                                         path + SMALL_APPEND, GAME_TYPES[_gameSelected].GetSmallAspect(),
+                                         GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight());
         }
         public void GenerateImageSelectionFlagString(ushort flag = 0)
         {

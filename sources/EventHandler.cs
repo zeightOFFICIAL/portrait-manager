@@ -4,8 +4,8 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko
 
-    GPL-2.0 license terms are written in LICENSE file
-    License header for this project is written in Program.cs
+    GPL-2.0 license terms are listed in LICENSE file
+    License header for this project is listed in Program.cs
 */
 
 using OwlcatPortraitManager.forms;
@@ -1180,6 +1180,21 @@ namespace OwlcatPortraitManager
             LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
             FontsInitNotEN();
             TextsInit();
+        }
+
+        private void ButtonRT_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonKingmaker_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonWotR_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -217,44 +217,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>UseStamps.Designer.cs</LastGenOutput>
     </None>
-    <None Include="resources\BebasNeue-Regular-ru.ttf" />
-    <None Include="resources\BebasNeue-Regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\icon_path.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\icon_wotr.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\title_path.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\title_wotr.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\placeholder_path.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\placeholder_wotr.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\bg_path.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resources\bg_wotr.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon_path.ico" />
     <Content Include="icon_rt.ico" />
     <Content Include="icon_wotr.ico" />
-    <None Include="resources\icon_rt.ico" />
-    <None Include="resources\title_rt.png" />
-    <None Include="resources\placeholder_rt.png" />
-    <None Include="resources\bg_rt.jpg" />
-    <None Include="resources\rus.jpg" />
-    <None Include="resources\ger.jpg" />
-    <None Include="resources\eng.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,19 +29,24 @@ namespace OwlcatPortraitManager
             Resources.icon_wotr, Resources.title_wotr,
             Resources.bg_wotr, Resources.placeholder_wotr,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)");
+            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)",
+            185, 242, 330, 432, 692, 1024, 1.308108108f, 1.309090909f, 1.479768786f);
+
         private static readonly GameTypeClass KINGMAKER_TYPE = new GameTypeClass("Kingmaker",
             Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Resources.icon_path, Resources.title_path,
             Resources.bg_path, Resources.placeholder_path,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)");
+            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)",
+            185, 242, 330, 432, 692, 1024, 1.308108108f, 1.309090909f, 1.479768786f);
+
         private static readonly GameTypeClass ROGUE_TYPE = new GameTypeClass("Rogue Trader",
             Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
             Resources.icon_rt, Resources.title_rt,
             Resources.bg_rt, Resources.placeholder_rt,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer 40000 (Rogue Trader)");
+            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer 40000 (Rogue Trader)",
+            260, 336, 448, 600, 1080, 1480, 1.29230769231f, 1.33928571429f, 1.37037037037f);
 
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
@@ -62,12 +67,6 @@ namespace OwlcatPortraitManager
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
-        private const float LARGE_ASPECT_PATH = 1.479768786f;
-        private const float MEDIUM_ASPECT_PATH = 1.309090909f;
-        private const float SMALL_ASPECT_PATH = 1.308108108f;
-        private const float LARGE_ASPECT_W40K = 1.37037037037f;
-        private const float MEDIUM_ASPECT_W40K = 1.33928571429f;
-        private const float SMALL_ASPECT_W40K = 1.29230769231f;
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
 
         private static ushort _imageSelectionFlag = 0;

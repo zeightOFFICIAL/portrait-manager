@@ -1,4 +1,5 @@
 ![list1](https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png)
+![w40k_title](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/ff408a64-1347-4b1d-b66a-477ddc715857)
 
 ## <p align="center">Desktop application for managing in-game portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous</p>
 
@@ -9,7 +10,7 @@ https://www.nexusmods.com/pathfinderkingmaker/mods/277
 
 ### Description
 
-Desktop application, management tool for portraits in the Pathfinder series of games. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports both Kingmaker and Wrath of the Righteous. Requires nothing, no dependencies at all, apart from .NET Framework 4.7.2, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images.
+Desktop application, management tool for portraits in Owlcat Games products, currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing, no dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series.
 
 
 | Kingmaker | Wrath of the Righteous |
@@ -90,7 +91,7 @@ All bugs and errors should be reported in the corresponding Nexusmods section. I
 
 ### Build info
 * C#
-* .NET Framework 4.7.2, no special DLLs involved
+* .NET Framework 4.8, no special DLLs involved
 * Visual Studio 2022 17.4.4
 
 ---
@@ -117,7 +118,8 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is requi
 * If any of this doesn't help you find the bug, please let me know personally via Nexusmods.
 
 ##### Changelog
-* 1.2.0.0 (current)
+* 1.3.0.0 (current)
+* 1.2.0.0
     * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application
     * Major code refactoring
@@ -146,12 +148,14 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is requi
 ### Copyrights
 1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/blob/master/LICENSE)
 2. All rights for Visual Studio 2022 belongs to Microsoft (https://www.microsoft.com/)
-3. All rights for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
-4. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
-5. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
-6. Used font Bebas Neue belongs to its creator (https://fonts.google.com/specimen/Bebas+Neue)
-7. All rights to Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits)<br>
-    7.b. Please note, that I am not using any of Assets of Custom Npc Portraits.
+3. All rights for Pathfinder: Kingmaker belongs to Owlcat Games (https://owlcat.games/)
+4. All rights for Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
+5. All rights for Warhammer 40000: Rogue Trader belongs to Owlcat Games (https://owlcat.games/)
+6. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
+7. Images and icons used in program belongs to Owlcat Games (https://owlcat.games/)
+8. Used font Bebas Neue belongs to its creator Ryoichi Tsunekawa (https://fonts.google.com/specimen/Bebas+Neue, http://dharmatype.com)
+9. Used font Bebas Neue for cyrillics belons to its creator Ryoichi Tsunekawa and AA (https://fonts-online.ru/fonts/bebas-neue-cyrillic, http://dharmatype.com)
+10. All rights to Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits). Please note, that none of the Assets of Custom Npc Portraits is used, just its result<br>
 
 <b>Inform: if your owner's rights have been violated; if you encounter any errors; if you have suggestions for improving functionality/optimization.
 Disclaimer: This is not a product of Owlcat Games, it is developed by a third party. Every image used and processed in this application does not belong to me. Clients (users) of this application are responsible for selecting a specific image and subsequent use of the processed image. This program only allows users to modify images more easily. Whether they are protected or not, selecting an image and its use is entirely at the discretion of the user. Custom NPC Portrait does not belong to me, but to edvin76, I do not utilize any of the assets.</b>

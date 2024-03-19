@@ -56,7 +56,7 @@ Allows the user to view existing/created and in-work game portraits. Allows the 
 #### Browse Custom NPC Portraits, change/delete portraits (only for Pathfinder)
 Allows the user to edit/delete portraits created using Custom NPC Portraits. Any portrait created by the mod can be modified. Viewing is implemented through the “Browse Gallery” page, using the buttons at the top of the corresponding page. You must have custom NPC portraits installed and allow it to create source folders with custom portraits. I cannot do anything about it but Custom NPC creates folders with portraits for characters only after the player character meets it in the game itself. So, it is either you find mod which contains pre-made folders, or make do with first encounter being with default portrait. Now, if you make a copy of custom portrait, the program creates a new directory in the same location as the original one, so it doesn't actually work in game after, since the mod still uses the old image, to put simply I cannot change how Custom NPC works, and would not do it anyway. On the other hand, when replacing, a backup is created in the same location, and it works in the game after replacing the original file, since Custom NPC still uses this updated old portrait. This program does not create new custom portraits, but merely manages existing!
 
-Considering Warhammer 40000: Rogue Trader. Once Custom NPC portraits mod is implemented, I will make some changes so Owlcat Portrait Manager can work with custom npc portraits in Rogue Trader.
+Considering Warhammer 40000: Rogue Trader. Once Custom NPC portraits mod is implemented, I will make some changes so Owlcat Portrait Manager can work with custom npc portraits in Rogue Trader. Until then there is a game check that blocks Custom NPC for Rogue Trader.
 
 #### Settings
 An attempt to prevent any problems with the path to portraits folder. Now, the program requires the user to select the correct folder in which all the game portraits are stored. Allows to observe whether Custom NPC Portraits mod is enabled and which localization is currently in use.
@@ -96,18 +96,23 @@ All bugs and errors should be reported in the corresponding Nexusmods section. I
 
 ### Build info
 * C#
-* .NET Framework 4.8, no special DLLs involved
+* .NET Framework 4.8, no special DLLs involved, translations' .dll comes with release.
 * Visual Studio 2022 17.4.4
 
 ---
-Compatible with latest Windows OSs, <b>in any case .NET Framework 4.7.2 is required</b><br>
-✅ Tested with Windows 11<br>
-✅ Tested with Windows 10<br>
-⭕ Some minor issues detected with Windows 8/8.1 <b>.NET Framework does not come with Windows 8!</b><br> 
-⭕ Untested but it probably works on Windows 7<br>
-⭕ Might work with Windows XP/Vista <b>.NET Framework does not come with with Windows Vista/XP!</b><br>
-❌ Highly unlikely with something older<br>
-❌ Not working with UNIX-based (Linux/MAC) .NET Framework is exclusively for Windows and system file structure differs greatly<br>
+Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is required!</b> If you used previous mod version (1.2.0.0) with 4.7.2 .NET Framework, most likely nothing has changed for you.<br>
+✅✅ Works with Windows 11. Tested.<br>
+✅✅ Works with Windows 10, use at least build 1607. Tested.<br>
+⭕❌ Probably works with Windows 8.1. Not tested. Install .NET Framework 4.8 manually.<br>
+❌❌ Not working with Windows 8. Not tested. Cannot install .NET Framework 4.8.<br> 
+⭕❌ Probably works with Windows 7. Not tested. Install SP1 update and .NET Framework 4.8 manually.<br>
+❌❌ Not working with Windows Vista. Not tested. Not enough users to adapt for .NET Framework 4.6.<br>
+❌❌ Not working with Windows XP. Not tested. Not enough users to adapt for .NET Framework 4.0<br>
+❌❌ Not working with anything older.<br>
+❌❌ Not working with UNIX-based, including Linux, MAC, BSD, Solaris. Since .NET Framework is exclusively for Windows<br>
+
+<p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/06bfadea-0877-413f-a239-e1f49710f6e8" width="450px" margin="auto"></img><br>This table should cover whether you need to install .NET Framework on your PC. If the plus mark is placed on counter section then you need not worry, otherwise, try install it on your machine using official verisons.</p><br>
+
 
 #### Development and debugging addendum, concerns
 * Pathfinder portrait's game folder is created statically, so it is the same no matter what device you are using (bound to Windows' file system). The directory detection code uses system paths to locate the AppData/LocalLow/Owlcat/Pathfinder/Portraits folder.

@@ -1,17 +1,20 @@
-![list1](https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png)
+# <p align="center">Owlcat Portrait Manager</p>
+
+### <p align="center">including:</p>
+![pathfinder title](https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png)
 ![w40k_title](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/ff408a64-1347-4b1d-b66a-477ddc715857)
 
-## <p align="center">Desktop application for managing in-game portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous</p>
+## <p align="center">Desktop application for managing in-game portraits for Owlcat Games' works</p>
+### <p align="center">Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p><hr>
 
 ### Created by Artemii "Zeight" Saganenko
 ### Nexus mods link: 
 https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>
-https://www.nexusmods.com/pathfinderkingmaker/mods/277
+https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>
+https://www.nexusmods.com/warhammer40kroguetrader/mods/(ADD URL ONCE PUBLISHED)
 
 ### Description
-
-Desktop application, management tool for portraits in Owlcat Games products, currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing, no dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series.
-
+Desktop application, management tool for portraits in Owlcat Games products, currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing, no dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.
 
 | Kingmaker | Wrath of the Righteous |
 | :-------: | :--------------------: |
@@ -40,18 +43,20 @@ Desktop application, management tool for portraits in Owlcat Games products, cur
 ### Features
 
 #### Create new portraits
-Allows the user to upload any local or web image, scale it as desired, and finally create a portrait in the appropriate game directory. Supports all major image formats: png, jpg, jpeg, bmp, gif. Now allows the user to change the image for each portrait type: small, medium, full length, by uploading a local or web image with the specific portrait type selected. Unsupported files are ignored. The created portraits will be almost exact copies of the images displayed in the frames when scaled. The error is raised by trimming and resizing errors, they are expected and nothing can be done about it. The program automatically crops, resizes the image to the required state, creates a directory and an image file.
+Allows the user to upload any local or web image, scale it as desired, and finally create a portrait in the appropriate game directory. Supports all major image formats: png, jpg, jpeg, bmp, gif. Now allows the user to change the image for each portrait type: small, medium, full length, by uploading a local or web image with the specific portrait type selected. Unsupported files are ignored. The created portraits will be almost exact copies of the images displayed in the frames when scaled. The minor diviation is due to trimming and resizing errors, they are expected and nothing can be done about it. The program automatically crops, resizes the image to the required state, creates a directory and an image file. User must simply click the button.
 
 #### Extract from external folders
-Allows the user to extract images from a local directory directly into the game directory. Select the folder containing the correct portrait package images to process and create the images in game folder. Choose which portraits to move to the game directory. You can extract selected ones to move only certain ones. Or extract every one. The program automatically copies folders to the game portraits' directory. Works only with regular portraits. Custom NPC portraits don't work.
+Allows the user to extract images that are to be portraits from a local directory directly into the game directory. Select the folder containing the correct portrait package images to process and create the portrait in game folder. Choose which images to move to the game directory. You can extract selected ones to move only certain images. Or extract every one of them. The program automatically copies folders to the game portraits' directory. Works only with regular portraits. Custom NPC portraits don't work. The latter functionality will not be implemented, since it is rather irrelevant and senseless.
 
-* A valid image package must contain three images: small - 185x242 (factor 1.308), medium - 330x432 (factor 1.309), full size - 692x1024 (factor 1.479). The program performs recursive parsing, so corresponding folders located deeper than one directory will still be processed. Other files will be ignored. Please note that these are the official proportions shown in the game, other sizes may not fit. The failsafe is +/- 2 pixels in width and +/- 3 pixels in height, but this cannot be promised to work in game.
+* A valid image package must contain three images: small - 185x242 (factor 1.308), medium - 330x432 (factor 1.309), full size - 692x1024 (factor 1.479) for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous. Small - 260x336 (factor 1.292), medium - 448x600 (factor 1.339), full size - 1080x1480 (factor 1.370) for Warhammer 40000: Rogue Trader. The program performs recursive parsing, so corresponding folders located deeper than one directory will still be processed. Other files will be ignored. Please note that these are the official proportions shown in the game, other sizes may not fit. The failsafe is +/- 2 pixels in width and +/- 3 pixels in height, but this cannot be promised to work in game. (ADD REMARK CONSIDERING BEHAVIOUR)
 
 #### Browse gallery and change/delete portraits
-Allows the user to view existing/created and in-work game portraits. Allows the user to delete or change any portrait. Select the image(s) from the list and click the button corresponding to the required functionality. When deleting, it asks whether to continue. When editing, it asks whether to make a standalone/copy version or delete the old one and replace it. Manages all processing of folders and files. On-site replacement is now valid. It is no problem to change a specific portrait that may already be used by the game, so the user does not need to use any save-edit.
+Allows the user to view existing/created and in-work game portraits. Allows the user to delete or change any portrait. Select the image(s) from the list and click the button corresponding to the required functionality. When deleting, it asks whether to continue. When editing, it asks whether to make a standalone/copy version, meaning to delete the old one/replace it. Manages all processing of folders and files. On-site replacement is now valid. It is no problem to change a specific portrait that may already be used by the game, so the user does not need to use any save-edit. It literally recreates portrait based on new specifics.
 
-#### Browse Custom NPC Portraits, change/delete portraits
-Allows the user to edit/delete portraits created using Custom NPC Portraits. Any portrait created by the mod can be modified. Viewing is carried out through the “Browse Gallery” page, using the buttons at the top of the corresponding page. You must have custom NPC portraits installed and allow it to create source folders with custom portraits. If you make a copy, the program creates a new directory in the same location as the original one, so it doesn't actually work in game after, since the mod still uses the old image. On the other hand, when replacing, a backup is created in the same location, and it works in the game after replacing the original file. This program does not create new custom portraits, but merely manages existing.
+#### Browse Custom NPC Portraits, change/delete portraits (only for Pathfinder)
+Allows the user to edit/delete portraits created using Custom NPC Portraits. Any portrait created by the mod can be modified. Viewing is implemented through the “Browse Gallery” page, using the buttons at the top of the corresponding page. You must have custom NPC portraits installed and allow it to create source folders with custom portraits. I cannot do anything about it but Custom NPC creates folders with portraits for characters only after the player character meets it in the game itself. So, it is either you find mod which contains pre-made folders, or make do with first encounter being with default portrait. Now, if you make a copy of custom portrait, the program creates a new directory in the same location as the original one, so it doesn't actually work in game after, since the mod still uses the old image, to put simply I cannot change how Custom NPC works, and would not do it anyway. On the other hand, when replacing, a backup is created in the same location, and it works in the game after replacing the original file, since Custom NPC still uses this updated old portrait. This program does not create new custom portraits, but merely manages existing!
+
+Considering Warhammer 40000: Rogue Trader. Once Custom NPC portraits mod is implemented, I will make some changes so Owlcat Portrait Manager can work with custom npc portraits in Rogue Trader.
 
 #### Settings
 An attempt to prevent any problems with the path to portraits folder. Now, the program requires the user to select the correct folder in which all the game portraits are stored. Allows to observe whether Custom NPC Portraits mod is enabled and which localization is currently in use.

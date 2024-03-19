@@ -111,7 +111,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
 ❌❌ Not working with anything older.<br>
 ❌❌ Not working with UNIX-based, including Linux, MAC, BSD, Solaris. Since .NET Framework is exclusively for Windows<br>
 
-<p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/06bfadea-0877-413f-a239-e1f49710f6e8" width="450px" margin="auto"></img><br>This table should cover whether you need to install .NET Framework on your PC. If the plus mark is placed on counter section then you need not worry, otherwise, try install it on your machine using official verisons.</p><br>
+<p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/06bfadea-0877-413f-a239-e1f49710f6e8" width="450px" margin="auto"></img><br>This table should cover whether you need to install .NET Framework on your PC. If the plus mark is placed on counter section then you can install the required version (which is 4.8), otherwise, your OS is not supported for this tool.</p><br>
 
 
 #### Development and debugging addendum, concerns

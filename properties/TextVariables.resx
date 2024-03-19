@@ -318,6 +318,9 @@
   <data name="MESG_WRONGFORMAT" xml:space="preserve">
     <value>The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well. Directory should not be protected with extra rights.</value>
   </data>
+  <data name="ROGUE" xml:space="preserve">
+    <value>Rogue Trader</value>
+  </data>
   <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
     <value>Input URL here</value>
   </data>

@@ -566,6 +566,7 @@ namespace OwlcatPortraitManager
             _isAnyLoadedToPortraitPage = true;
             ResizeVisibleImagesToWindowSize();
         }
+
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
             if (ListGallery.Items.Count < 1)
@@ -608,6 +609,7 @@ namespace OwlcatPortraitManager
                 return;
             }
         }
+
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
@@ -616,6 +618,7 @@ namespace OwlcatPortraitManager
                 Hint.ShowDialog();
             }
         }
+
         private void ButtonChooseFolder_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath != "!NONE!")
@@ -661,6 +664,7 @@ namespace OwlcatPortraitManager
             CancellationToken cancellationToken = _cancellationTokenSource.Token;
             ExploreDirectory(_extractFolderPath, cancellationToken);
         }
+        
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
             bool isRepeat = false;
@@ -673,8 +677,8 @@ namespace OwlcatPortraitManager
 
             foreach (ListViewItem item in ListExtract.Items)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text,
-                    safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
@@ -713,6 +717,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
         {
             bool isRepeat = false;
@@ -735,8 +740,8 @@ namespace OwlcatPortraitManager
 
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text,
-                    safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
@@ -775,6 +780,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         private void ButtonOpenFolders_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath == "!NONE!")
@@ -786,6 +792,7 @@ namespace OwlcatPortraitManager
             System.Diagnostics.Process.Start(_extractFolderPath);
             ButtonToMainPage2_Click(sender, e);
         }
+        
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
@@ -794,17 +801,19 @@ namespace OwlcatPortraitManager
                 Hint.ShowDialog();
             }
         }
+        
         private void LabelCopyright_Click(object sender, EventArgs e)
         {
             try
             {
-                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-pathfinder");
+                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-owlcat");
             }
             catch
             {
                 return;
             }
         }
+
         private void AnyPrimeButton_Enter(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -816,6 +825,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         private void AnyPrimeButton_Leave(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -827,6 +837,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+
         private void AnyButton_Enter(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -838,6 +849,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+
         private void AnyButton_Leave(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -849,10 +861,12 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
             TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
         }
+
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
         {
             ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
@@ -864,6 +878,7 @@ namespace OwlcatPortraitManager
             ButtonApplyChange.ForeColor = Color.White;
             ButtonApplyChange.Enabled = true;
         }
+
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
             if (ValidatePortraitPath(TextBoxFullPath.Text))
@@ -881,6 +896,7 @@ namespace OwlcatPortraitManager
                 ButtonValidatePath.Enabled = false;
             }
         }
+
         private void ButtonSelectPath_Click(object sender, EventArgs e)
         {
             string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
@@ -907,18 +923,277 @@ namespace OwlcatPortraitManager
                 }
             }
         }
-        private void ButtonGameType_Click(object sender, EventArgs e)
+        
+        private void ButtonLoadWeb_Click(object sender, EventArgs e)
         {
-            if (_gameSelected == 'w')
+            string url = TextBoxURL.Text;
+
+            try
             {
-                _gameSelected = 'p';
-                UpdateColorScheme();
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                request.Method = "HEAD";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.Close();
+                RootFunctions.LayoutDisable(LayoutURLDialog);
+                RootFunctions.LayoutEnable(LayoutFilePage);
+                CheckWebResourceAndLoad(url);
+                ResizeVisibleImagesToWindowSize();
+                TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+                GenerateImageSelectionFlagString(_imageSelectionFlag);
+            }
+            catch
+            {
+                TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
+            }
+
+        }
+        
+        private void ButtonDenyWeb_Click(object sender, EventArgs e)
+        {
+            RootFunctions.LayoutDisable(LayoutURLDialog);
+            RootFunctions.LayoutEnable(LayoutFilePage);
+            TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+            ResizeVisibleImagesToWindowSize();
+        }
+        
+        private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
+        {
+            TextBoxURL.Clear();
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
-                _gameSelected = 'w';
-                UpdateColorScheme();
+                e.Effect = DragDropEffects.None;
             }
+        }
+        
+        private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
+        {
+            TextBox senderTextBox = (TextBox)sender;
+
+            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
+            if (!senderTextBox.Text.Contains("http"))
+            {
+                senderTextBox.Text = "http://" + senderTextBox.Text;
+            }
+        }
+        
+        private void TextBoxURL_Enter(object sender, EventArgs e)
+        {
+            TextBoxURL.Clear();
+        }
+        
+        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
+        {
+            ButtonToMainPageAndFolder.BackColor = Color.Black;
+            ButtonToMainPageAndFolder.ForeColor = Color.White;
+            RootFunctions.LayoutDisable(LayoutFinalPage);
+            ReplacePictureBoxImagesToDefault();
+            _isAnyLoadedToPortraitPage = false;
+            ParentLayoutsDisable();
+            System.Diagnostics.Process.Start(LabelDirLoc.Text);
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            ButtonToMainPageAndFolder.Enabled = true;
+        }
+        
+        private void ButtonNextImageType_Click(object sender, EventArgs e)
+        {
+            _imageSelectionFlag++;
+
+            if (_imageSelectionFlag == 1)
+            {
+                ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
+            }
+            else
+            {
+                ButtonNextImageType.Visible = false;
+                ButtonNextImageType.Enabled = false;
+            }
+
+            GenerateImageSelectionFlagString(_imageSelectionFlag);
+            LoadTempImagesToPicBox(_imageSelectionFlag);
+            ResizeVisibleImagesToWindowSize();
+        }
+        
+        private void ButtonApplyChange_Click(object sender, EventArgs e)
+        {
+            if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
+            {
+                if (_gameSelected == 'p')
+                {
+                    CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
+                }
+                else if (_gameSelected == 'w')
+                {
+                    CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
+                }
+                else if (_gameSelected == 'r')
+                {
+                    CoreSettings.Default.ROGUEPath = TextBoxFullPath.Text;
+                }
+
+                AnyButton_Leave(sender, e);
+                ButtonApplyChange.BackColor = Color.LimeGreen;
+                ButtonApplyChange.ForeColor = Color.White;
+                ButtonApplyChange.Enabled = false;
+                ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
+                CoreSettings.Default.Save();
+                AddClickEventsToMainButtons();
+                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
+            }
+        }
+        
+        private void ButtonLoadNormal_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        
+        private void ButtonLoadCustom_Click(object sender, EventArgs e)
+        {
+            string fromPath, fromPath2;
+
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+
+            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
+                !LoadGalleryCustom(fromPath, false) ||
+                !LoadGalleryCustom(fromPath2, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+
+        private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
+        {
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath))
+            {
+                return false;
+            }
+
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancelToken = _cancellationTokenSource.Token;
+
+            Task.Factory.StartNew(() =>
+            {
+                RecursiveParsePortraitsFolderAsync(fromRootPath, cancelToken, flag);
+            }, cancelToken);
+
+            return true;
+        }
+        
+        private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
+        {
+            string fromPath;
+
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(fromPath, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        
+        private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
+        {
+            string fromPath;
+
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(fromPath, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        
+        private void PicBoxEng_Click(object sender, EventArgs e)
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
+            CoreSettings.Default.SelectedLang = "en-EN";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+            FontsInit(_fontCollection);
+            TextsInit();
+        }
+        
+        private void PicBoxRus_Click(object sender, EventArgs e)
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_ru);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+            CoreSettings.Default.SelectedLang = "ru-RU";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+            FontsInit(_fontCollection);
+            TextsInit();
+        }
+        
+        private void PicBoxGer_Click(object sender, EventArgs e)
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
+            CoreSettings.Default.SelectedLang = "de-DE";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+            FontsInit(_fontCollection);
+            TextsInit();
+        }
+
+        private void PicBoxFra_Click(object sender, EventArgs e)
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            CoreSettings.Default.SelectedLang = "fr-FR";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+            FontsInit(_fontCollection);
+            TextsInit();
+        }
+
+        private void ButtonRT_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'r';
+            UpdateColorScheme();
+            RemoveClickEventsFromCustomPortraitsButtons();
+
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            {
+                RemoveClickEventsFromMainButtons();
+            }
+            else
+            {
+                AddClickEventsToMainButtons();
+            }
+
+            ButtonLoadCustom.Visible = false;
+            ButtonLoadCustomNPC.Visible = false;
+            ButtonLoadCustomArmy.Visible = false;
+            CheckBoxVerified.Checked = false;
+
+            CoreSettings.Default.GameType = _gameSelected;
+            CoreSettings.Default.Save();
+        }
+
+        private void ButtonKingmaker_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'p';
+            UpdateColorScheme();
 
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
@@ -972,229 +1247,61 @@ namespace OwlcatPortraitManager
             CoreSettings.Default.GameType = _gameSelected;
             CoreSettings.Default.Save();
         }
-        private void ButtonLoadWeb_Click(object sender, EventArgs e)
-        {
-            string url = TextBoxURL.Text;
-
-            try
-            {
-                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                request.Method = "HEAD";
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                response.Close();
-                RootFunctions.LayoutDisable(LayoutURLDialog);
-                RootFunctions.LayoutEnable(LayoutFilePage);
-                CheckWebResourceAndLoad(url);
-                ResizeVisibleImagesToWindowSize();
-                TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-                GenerateImageSelectionFlagString(_imageSelectionFlag);
-            }
-            catch
-            {
-                TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
-            }
-
-        }
-        private void ButtonDenyWeb_Click(object sender, EventArgs e)
-        {
-            RootFunctions.LayoutDisable(LayoutURLDialog);
-            RootFunctions.LayoutEnable(LayoutFilePage);
-            TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            ResizeVisibleImagesToWindowSize();
-        }
-        private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
-        {
-            TextBoxURL.Clear();
-            if (e.Data.GetDataPresent(DataFormats.Text))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-        private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
-        {
-            TextBox senderTextBox = (TextBox)sender;
-
-            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
-            if (!senderTextBox.Text.Contains("http"))
-            {
-                senderTextBox.Text = "http://" + senderTextBox.Text;
-            }
-        }
-        private void TextBoxURL_Enter(object sender, EventArgs e)
-        {
-            TextBoxURL.Clear();
-        }
-        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
-        {
-            ButtonToMainPageAndFolder.BackColor = Color.Black;
-            ButtonToMainPageAndFolder.ForeColor = Color.White;
-            RootFunctions.LayoutDisable(LayoutFinalPage);
-            ReplacePictureBoxImagesToDefault();
-            _isAnyLoadedToPortraitPage = false;
-            ParentLayoutsDisable();
-            System.Diagnostics.Process.Start(LabelDirLoc.Text);
-            RootFunctions.LayoutEnable(LayoutMainPage);
-            ButtonToMainPageAndFolder.Enabled = true;
-        }
-        private void ButtonNextImageType_Click(object sender, EventArgs e)
-        {
-            _imageSelectionFlag++;
-
-            if (_imageSelectionFlag == 1)
-            {
-                ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
-            }
-            else
-            {
-                ButtonNextImageType.Visible = false;
-                ButtonNextImageType.Enabled = false;
-            }
-
-            GenerateImageSelectionFlagString(_imageSelectionFlag);
-            LoadTempImagesToPicBox(_imageSelectionFlag);
-            ResizeVisibleImagesToWindowSize();
-        }
-        private void ButtonApplyChange_Click(object sender, EventArgs e)
-        {
-            if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
-            {
-                if (_gameSelected == 'p')
-                {
-                    CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
-                }
-                else
-                {
-                    CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
-                }
-
-                AnyButton_Leave(sender, e);
-                ButtonApplyChange.BackColor = Color.LimeGreen;
-                ButtonApplyChange.ForeColor = Color.White;
-                ButtonApplyChange.Enabled = false;
-                ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
-                CoreSettings.Default.Save();
-                AddClickEventsToMainButtons();
-                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
-            }
-        }
-        private void ButtonLoadNormal_Click(object sender, EventArgs e)
-        {
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private void ButtonLoadCustom_Click(object sender, EventArgs e)
-        {
-            string fromPath, fromPath2;
-
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-
-            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
-                !LoadGalleryCustom(fromPath, false) ||
-                !LoadGalleryCustom(fromPath2, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
-        {
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath))
-            {
-                return false;
-            }
-
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancelToken = _cancellationTokenSource.Token;
-
-            Task.Factory.StartNew(() =>
-            {
-                RecursiveParsePortraitsFolderAsync(fromRootPath, cancelToken, flag);
-            }, cancelToken);
-
-            return true;
-        }
-        private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
-        {
-            string fromPath;
-
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(fromPath, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
-        {
-            string fromPath;
-
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(fromPath, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private void PicBoxEng_Click(object sender, EventArgs e)
-        {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
-            CoreSettings.Default.SelectedLang = "en-EN";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInit(_fontCollection);
-            TextsInit();
-        }
-        private void PicBoxRus_Click(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-            CoreSettings.Default.SelectedLang = "ru-RU";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInitNotEN();
-            TextsInit();
-        }
-        private void PicBoxGer_Click(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
-            CoreSettings.Default.SelectedLang = "de-DE";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInitNotEN();
-            TextsInit();
-        }
-
-        private void ButtonRT_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ButtonKingmaker_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void ButtonWotR_Click(object sender, EventArgs e)
         {
+            _gameSelected = 'w';
+            UpdateColorScheme();
 
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            {
+                RemoveClickEventsFromMainButtons();
+            }
+            else
+            {
+                AddClickEventsToMainButtons();
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+            }
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            {
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                AddClickEventsToCustomPortraitsButtons();
+                CheckBoxVerified.Checked = true;
+                UseStamps.Default.isAwareNPC = "WorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = true;
+                ButtonLoadCustomNPC.Visible = true;
+                ButtonLoadCustomArmy.Visible = true;
+            }
+
+            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
+            {
+                CheckBoxVerified.Checked = true;
+            }
+            else
+            {
+                CheckBoxVerified.Checked = false;
+            }
         }
+    
     }
 }

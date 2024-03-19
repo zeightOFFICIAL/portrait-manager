@@ -45,7 +45,7 @@ namespace OwlcatPortraitManager
             Resources.icon_rt, Resources.title_rt,
             Resources.bg_rt, Resources.placeholder_rt,
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer 40000 (Rogue Trader)",
+            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer Portrait Manager (Rogue Trader)",
             260, 336, 448, 600, 1080, 1480, 1.29230769231f, 1.33928571429f, 1.37037037037f);
 
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>

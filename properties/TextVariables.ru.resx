@@ -318,6 +318,9 @@
   <data name="MESG_WRONGFORMAT" xml:space="preserve">
     <value>Файл имеет неправильный формат. Пожалуйста, выберите изображение из разрешенных форматов. Допускаются форматы PNG, JPG, JPEG, BMP или GIF. Файл может быть недоступен. Каталог не должен быть защищен дополнительными правами.</value>
   </data>
+  <data name="ROGUE" xml:space="preserve">
+    <value>Rogue Trader</value>
+  </data>
   <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
     <value>Введите URL...</value>
   </data>

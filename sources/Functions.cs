@@ -426,6 +426,7 @@ namespace OwlcatPortraitManager
             ButtonLoadNormal.Font = bebasNeueSmall;
             ButtonLoadCustomArmy.Font = bebasNeueSmall;
             ButtonLoadCustomNPC.Font = bebasNeueSmall;
+            ButtonRT.Font = bebasNeueHead;
         }
         
         public void FontsInitNotEN(int defSize = 12)
@@ -532,6 +533,7 @@ namespace OwlcatPortraitManager
             ButtonLoadCustomArmy.Text = TextVariables.BUTTON_CUSTOMARMY;
             ButtonLoadCustomNPC.Text = TextVariables.BUTTON_CUSTOMNPC;
             ButtonLoadNormal.Text = TextVariables.BUTTON_SHOWLOCAL;
+            ButtonRT.Text = TextVariables.ROGUE;
         }
         
         public void UpdateObjectColoringInDepth(Control ctrl, Color a, Color b)
@@ -612,30 +614,48 @@ namespace OwlcatPortraitManager
                 ButtonKingmaker.Enabled = false;
                 ButtonKingmaker.ForeColor = backColor;
                 ButtonKingmaker.BackColor = foreColor;
+
                 ButtonWotR.Enabled = true;
                 ButtonWotR.ForeColor = Color.White;
                 ButtonWotR.BackColor = Color.Black;
+
+                ButtonRT.Enabled = true;
+                ButtonRT.ForeColor = Color.White;
+                ButtonRT.BackColor = Color.Black;
+
                 TextBoxFullPath.Text = CoreSettings.Default.KINGPath;
             }
             else if (_gameSelected == 'w')
             {
                 ButtonKingmaker.Enabled = true;
                 ButtonKingmaker.ForeColor = Color.White;
-                ButtonKingmaker.BackColor = Color.Black;
+                ButtonKingmaker.BackColor = Color.Black;   
+                
                 ButtonWotR.Enabled = false;
                 ButtonWotR.ForeColor = backColor;
                 ButtonWotR.BackColor = foreColor;
+
+                ButtonRT.Enabled = true;
+                ButtonRT.ForeColor = Color.White;
+                ButtonRT.BackColor = Color.Black;
+
                 TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
             }
             else if (_gameSelected == 'r')
             {
-                ButtonKingmaker.Enabled = false;
+                ButtonKingmaker.Enabled = true;
                 ButtonKingmaker.ForeColor = Color.White;
                 ButtonKingmaker.BackColor = Color.Black;
-                ButtonWotR.Enabled = false;
-                ButtonWotR.ForeColor = backColor;
-                ButtonWotR.BackColor = foreColor;
-                TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
+
+                ButtonWotR.Enabled = true;
+                ButtonWotR.ForeColor = Color.White;
+                ButtonWotR.BackColor = Color.Black;
+
+                ButtonRT.Enabled = false;
+                ButtonRT.ForeColor = backColor;
+                ButtonRT.BackColor = foreColor;
+                
+                TextBoxFullPath.Text = CoreSettings.Default.ROGUEPath;
             }
         }
 
@@ -658,6 +678,7 @@ namespace OwlcatPortraitManager
 
             return true;
         }
+
         private void IterativeParsePortraitsFolderAsync(string fromPath, CancellationToken cancelToken)
         {
             string[] subDirs = Directory.GetDirectories(fromPath);

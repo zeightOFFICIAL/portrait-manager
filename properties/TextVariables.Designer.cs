@@ -664,6 +664,15 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rogue Trader.
+        /// </summary>
+        internal static string ROGUE {
+            get {
+                return ResourceManager.GetString("ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select folder to extract from.
         /// </summary>
         internal static string TEXT_FOLDEROPEN {

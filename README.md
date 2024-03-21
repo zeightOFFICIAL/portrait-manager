@@ -130,6 +130,10 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
 
 ##### Changelog
 * 1.3.0.0 (current)
+    * Added Warhammer 40000: Rogue Trader support
+    * Added french localization, verified all translations and typings.
+    * Minor refactoring
+    * Minor graphical changes, now all languages support Bebas Neue font, some margings, paddings adjusted.
 * 1.2.0.0
     * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application

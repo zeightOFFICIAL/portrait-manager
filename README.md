@@ -1,13 +1,14 @@
+<hr>
+
 # <p align="center">Owlcat Portrait Manager</p>
+### <p align="center">Desktop application for managing in-game portraits for Owlcat Games products</p>
 
-### <p align="center">including:</p>
-![pathfinder title](https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png)
-![w40k_title](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/ff408a64-1347-4b1d-b66a-477ddc715857)
+<img src="https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png" width="50%"/><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/ff408a64-1347-4b1d-b66a-477ddc715857" width="50%"/>
 
-## <p align="center">Desktop application for managing in-game portraits for Owlcat Games' works</p>
-### <p align="center">Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p><hr>
+###### <p align="center">Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p><hr>
 
 ### Created by Artemii "Zeight" Saganenko
+### Designed by Artemii "Zeight Saganenko
 ### Nexus mods link: 
 https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>
 https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>

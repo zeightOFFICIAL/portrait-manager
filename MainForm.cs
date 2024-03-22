@@ -2,7 +2,7 @@
     Owlcat Portrait Manager. Desktop application for managing in game
     portraits for Owlcat Games products. Including Pathfinder: Kingmaker,
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE file
     License header for this project is listed in Program.cs
@@ -54,6 +54,7 @@ namespace OwlcatPortraitManager
             { 'w', WRATH_TYPE},
             { 'r', ROGUE_TYPE }
         };
+
         private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
             { 'p', CoreSettings.Default.WOTRPath },
@@ -64,17 +65,22 @@ namespace OwlcatPortraitManager
         private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
         private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM.png";
         private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL.png";
+
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
 
         private static ushort _imageSelectionFlag = 0;
-        private static ushort _isDraggingMouse = 0;
-        private static Point _mousePosition = new Point();        
         private static bool _isAnyLoadedToPortraitPage = false;
+
+        private static ushort _isDraggingMouse = 0;
+        private static Point _mousePosition = new Point();
+        
         private static char _gameSelected = CoreSettings.Default.GameType;
+
         private static PrivateFontCollection _fontCollection;
+
         private static CancellationTokenSource _cancellationTokenSource;
 
         public MainForm()
@@ -106,6 +112,7 @@ namespace OwlcatPortraitManager
                 CoreSettings.Default.MaxWindowWidth = Size.Width;
                 CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
                 CoreSettings.Default.Save();
+
                 UseStamps.Default.isFirstAny = false;
                 UseStamps.Default.Save();
             }
@@ -119,6 +126,7 @@ namespace OwlcatPortraitManager
             ACTIVE_PATHS['r'] = CoreSettings.Default.ROGUEPath;
             Width = CoreSettings.Default.MaxWindowWidth;
             Height = CoreSettings.Default.MaxWindowHeight;
+
             FormInit();
             LanguageInit();
             CenterToScreen();
@@ -130,6 +138,7 @@ namespace OwlcatPortraitManager
                     Message.StartPosition = FormStartPosition.CenterScreen;
                     Message.ShowDialog();
                 }
+
                 RemoveClickEventsFromMainButtons();
             }
             else if (UseStamps.Default.isFirstAny)
@@ -144,9 +153,11 @@ namespace OwlcatPortraitManager
             if (_gameSelected == 'r')
             {
                 RemoveClickEventsFromCustomPortraitsButtons();
-                CheckBoxVerified.Checked = false;
+                
                 UseStamps.Default.isAwareNPC = "NotRevealed";
                 UseStamps.Default.Save();
+
+                CheckBoxVerified.Checked = false;
                 ButtonLoadCustom.Visible = false;
                 ButtonLoadCustomNPC.Visible = false;
                 ButtonLoadCustomArmy.Visible = false;
@@ -161,10 +172,13 @@ namespace OwlcatPortraitManager
                     Message.StartPosition = FormStartPosition.CenterScreen;
                     Message.ShowDialog();
                 }
+
                 RemoveClickEventsFromCustomPortraitsButtons();
-                CheckBoxVerified.Checked = false;
+                
                 UseStamps.Default.isAwareNPC = "NotWorkRevealed";
                 UseStamps.Default.Save();
+
+                CheckBoxVerified.Checked = false;
                 ButtonLoadCustom.Visible = false;
                 ButtonLoadCustomNPC.Visible = false;
                 ButtonLoadCustomArmy.Visible = false;
@@ -177,10 +191,13 @@ namespace OwlcatPortraitManager
                     Message.StartPosition = FormStartPosition.CenterScreen;
                     Message.ShowDialog();
                 }
+
                 AddClickEventsToCustomPortraitsButtons();
-                CheckBoxVerified.Checked = true;
+                
                 UseStamps.Default.isAwareNPC = "WorkRevealed";
                 UseStamps.Default.Save();
+
+                CheckBoxVerified.Checked = true;
                 ButtonLoadCustom.Visible = true;
                 ButtonLoadCustomNPC.Visible = true;
                 ButtonLoadCustomArmy.Visible = true;
@@ -215,9 +232,9 @@ namespace OwlcatPortraitManager
         
         private void FormInit()
         {
-            CenterToScreen();
-            ParentLayoutsSetDockFill();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            CenterToScreen();
+            ParentLayoutsSetDockFill();            
             UpdateColorScheme();
 
             PicPortraitTemp.AllowDrop = true;
@@ -229,6 +246,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
+
             CheckBoxVerified.AutoCheck = false;
         }
         
@@ -336,6 +354,7 @@ namespace OwlcatPortraitManager
         {
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
+
             ButtonExtractAll.Enabled = false;
             ButtonExtractSelected.Enabled = false;
             ButtonOpenFolders.Enabled = false;

@@ -4,7 +4,7 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file
+    GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs
 */
 
@@ -36,14 +36,17 @@ namespace OwlcatPortraitManager.sources
                              float newSmallAspect, float newMediumAspect, float newLargeAspect)
         {
             GameName = newGameName;
+            TitleText = newTitleText;
+
             ForeColor = newForeColor;
             BackColor = newBackColor;
             GameIcon = newIcon;
             TitleImage = newTitleImage;
             BackgroundImage = newBackgroundImage;
-            PlaceholderImage = newPlaceImage;
+            PlaceholderImage = newPlaceImage;            
+
             DefaultDirectory = newDefDirectory;
-            TitleText = newTitleText;
+            
 
             NativePixeling = new Dictionary<string, int>()
             {

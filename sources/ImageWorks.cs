@@ -4,7 +4,7 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file
+    GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs
 */
 
@@ -30,6 +30,7 @@ namespace ImageControl
                     newRenderer.PixelOffsetMode = PixelOffsetMode.HighQuality;
                     newRenderer.DrawImage(inImage, new Rectangle(0, 0, newWidth, newHeight));
                 }
+
                 return new Bitmap(outImage);
             }
         }
@@ -49,6 +50,7 @@ namespace ImageControl
             outImage.SetResolution(inImage.HorizontalResolution, inImage.VerticalResolution);
             using (Graphics newRenderer = Graphics.FromImage(outImage))
                 newRenderer.DrawImage(inImage, -rect.X, -rect.Y);
+
             return outImage;
         }
     }
@@ -59,12 +61,14 @@ namespace ImageControl
         {
             pictureBox.Image.Dispose();
             pictureBox.Image = toImage;
+
             return true;
         }
         
         public static bool Dispose(PictureBox pictureBox)
         {
             pictureBox.Image.Dispose();
+
             return true;
         }
     }

@@ -4,7 +4,7 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file
+    GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs
 */
 
@@ -373,7 +373,7 @@ namespace OwlcatPortraitManager
             }, cancelToken);
         }
         
-        public void FontsInit(PrivateFontCollection fonts, int headSize = 20, int underSize = 16, int smallSize = 13)
+        public void FontsInit(PrivateFontCollection fonts, int headSize = 19, int underSize = 16, int smallSize = 13)
         {
             Font bebasNeueHead = new Font(fonts.Families[0], headSize), 
                  bebasNeueUnder = new Font(fonts.Families[0], underSize),
@@ -728,6 +728,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         private void RecursiveParsePortraitsFolderAsync(string fromPath, CancellationToken cancelToken, bool flag)
         {
             if (cancelToken.IsCancellationRequested)
@@ -747,10 +748,12 @@ namespace OwlcatPortraitManager
                 {
                     string fromPathFilePath = fromPath + "\\Fulllength.png";
                     string name;
+
                     if (!SystemControl.FileControl.Readonly.FileExist(fromPathFilePath))
                     {
                         fromPathFilePath = fromPath + "\\Medium.png";
                     }
+
                     if (fromPath.Split('\\').Last() == "Game Default Portraits")
                     {
                         string[] parts = fromPath.Split('\\');
@@ -760,6 +763,7 @@ namespace OwlcatPortraitManager
                     {
                         name = fromPath.Split('\\').Last();
                     }
+
                     if (flag)
                     {
                         if (!fromPath.Contains("CustomNpcPortraits - "))
@@ -767,10 +771,12 @@ namespace OwlcatPortraitManager
                             return;
                         }
                     }
+
                     if (fromPath.Contains("BACKUP"))
                     {
                         return;
                     }
+
                     using (Image img = new Bitmap(fromPathFilePath))
                     {
                         ListViewItem item = new ListViewItem
@@ -797,12 +803,14 @@ namespace OwlcatPortraitManager
                 RecursiveParsePortraitsFolderAsync(subDir, cancelToken, flag);
             }
         }
+        
         public static void ClearImageListsSync(ListView listView, ImageList imageList)
         {
             listView.Items.Clear();
             listView.Clear();
             imageList.Images.Clear();
         }
+        
         public string ParseDragDropFile(DragEventArgs e)
         {
             string[] filesList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -820,6 +828,7 @@ namespace OwlcatPortraitManager
 
             return filePath;
         }
+
         public void CheckWebResourceAndLoad(string URL)
         {
             try
@@ -833,6 +842,7 @@ namespace OwlcatPortraitManager
                     {
 
                         _isAnyLoadedToPortraitPage = true;
+
                         if (_imageSelectionFlag == 1)
                         {
                             SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
@@ -851,6 +861,7 @@ namespace OwlcatPortraitManager
                             webImage.Save(TEMP_SMALL_APPEND);
                             webImage.Save(TEMP_LARGE_APPEND);
                         }
+
                         LoadTempImagesToPicBox(_imageSelectionFlag);
                         ResizeVisibleImagesToWindowSize();
                     }
@@ -865,6 +876,7 @@ namespace OwlcatPortraitManager
                 }
             }
         }
+        
         public static bool ValidatePortraitPath(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
@@ -874,6 +886,7 @@ namespace OwlcatPortraitManager
             }
             return false;
         }
+        
         public void GeneratePortraits(string path)
         {
             Directory.CreateDirectory(path);
@@ -887,6 +900,7 @@ namespace OwlcatPortraitManager
                                          path + SMALL_APPEND, GAME_TYPES[_gameSelected].GetSmallAspect(),
                                          GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight());
         }
+        
         public void GenerateImageSelectionFlagString(ushort flag = 0)
         {
             if (flag == 0)
@@ -906,6 +920,7 @@ namespace OwlcatPortraitManager
                 LabelImageFlag.Text = "◻◻◻";
             }
         }
+        
         public bool ValidateCustomPath(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Army")) &&

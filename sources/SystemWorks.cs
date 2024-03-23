@@ -4,7 +4,7 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file
+    GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs
 */
 
@@ -45,6 +45,7 @@ namespace SystemControl
                         img.Width >= expectedWidth - 2 && img.Height >= expectedHeight - 3)
                     {
                         img.Dispose();
+
                         return true;
                     }
                 }
@@ -155,6 +156,7 @@ namespace SystemControl
                     File.Delete(path);
                     return true;
                 }
+
                 return false;
             }
             catch
@@ -170,8 +172,10 @@ namespace SystemControl
                 if (Readonly.DirectoryExists(path))
                 {
                     Directory.Delete(path, true);
+
                     return true;
                 }
+
                 return false;
             }
             catch
@@ -185,6 +189,7 @@ namespace SystemControl
             try
             {
                 Directory.CreateDirectory(path);
+
                 return true;
             }
             catch
@@ -198,12 +203,13 @@ namespace SystemControl
             PrivateFontCollection fontCollection = new PrivateFontCollection();
             byte[] fontData = font;
             uint dummy = 0;
-
             IntPtr fontPointer = Marshal.AllocCoTaskMem(fontData.Length);
+
             Marshal.Copy(fontData, 0, fontPointer, fontData.Length);
             fontCollection.AddMemoryFont(fontPointer, font.Length);
             AddFontMemResourceEx(fontPointer, (uint)font.Length, IntPtr.Zero, ref dummy);
             Marshal.FreeCoTaskMem(fontPointer);
+
             return fontCollection;
         }
         
@@ -212,6 +218,7 @@ namespace SystemControl
             try
             {
                 File.Copy(fromPath, toPath, true);
+
                 return true;
             }
             catch

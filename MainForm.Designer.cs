@@ -2,7 +2,7 @@
     Owlcat Portrait Manager. Desktop application for managing in game
     portraits for Owlcat Games products. Including Pathfinder: Kingmaker,
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE file
     License header for this project is listed in Program.cs
@@ -1938,38 +1938,27 @@ namespace OwlcatPortraitManager
 
         #endregion
 
-        // prime layouts
         private System.Windows.Forms.TableLayoutPanel LayoutMainPage;
         private System.Windows.Forms.TableLayoutPanel LayoutFilePage;
         private System.Windows.Forms.TableLayoutPanel LayoutScalePage;
         private System.Windows.Forms.TableLayoutPanel LayoutExtractPage;
-
-        // aux layouts
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed2;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed3;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed4;
         private System.Windows.Forms.TableLayoutPanel LayoutUnnamed5;
-
-        // buttons controlling layouts
         private System.Windows.Forms.Button ButtonToFilePage;
         private System.Windows.Forms.Button ButtonToMainPage;
         private System.Windows.Forms.Button ButtonToScalePage;
         private System.Windows.Forms.Button ButtonToGalleryPage;
         private System.Windows.Forms.Button ButtonToFilePage2;
-
-        // function buttons for Create new portrait
         private System.Windows.Forms.Button ButtonCreatePortrait;
         private System.Windows.Forms.Button ButtonLocalPortraitLoad;
         private System.Windows.Forms.Button ButtonWebPortraitLoad;
         private System.Windows.Forms.Button ButtonExit;
         private System.Windows.Forms.Button ButtonToExtractPage;
-
-        // hint buttons
         private System.Windows.Forms.Button ButtonHintOnFilePage;
         private System.Windows.Forms.Button ButtonHintOnScalePage;
-
-        // image control for Create new portrait
         private System.Windows.Forms.PictureBox PicPortraitTemp;
         private System.Windows.Forms.PictureBox PicPortraitLrg;
         private System.Windows.Forms.PictureBox PicPortraitMed;

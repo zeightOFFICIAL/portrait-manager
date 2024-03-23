@@ -4,13 +4,13 @@
     Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file
+    GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs
 */
 
 using OwlcatPortraitManager.forms;
-using OwlcatPortraitManager.Properties;
 using OwlcatPortraitManager.sources;
+using OwlcatPortraitManager.Properties;
 
 using System;
 using System.Collections.Generic;
@@ -256,6 +256,7 @@ namespace OwlcatPortraitManager
             CreateAllImagesInTemp("!DEFAULT!", 100);
             GenerateImageSelectionFlagString(100);
             LoadTempImagesToPicBox(100);
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindowSize();
@@ -267,6 +268,7 @@ namespace OwlcatPortraitManager
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
+
                 UseStamps.Default.isFirstPortrait = false;
                 UseStamps.Default.Save();
             }
@@ -284,6 +286,7 @@ namespace OwlcatPortraitManager
                     {
                         ParentLayoutsDisable();
                         LoadAllTempImagesToPicBox();
+
                         RootFunctions.LayoutEnable(LayoutScalePage);
                         ResizeVisibleImagesToWindowSize();
                     }
@@ -297,6 +300,7 @@ namespace OwlcatPortraitManager
             {
                 ParentLayoutsDisable();
                 LoadAllTempImagesToPicBox();
+
                 RootFunctions.LayoutEnable(LayoutScalePage);
                 ResizeVisibleImagesToWindowSize();
             }
@@ -310,6 +314,7 @@ namespace OwlcatPortraitManager
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
+
                 UseStamps.Default.isFirstScaling = false;
                 UseStamps.Default.Save();
             }
@@ -320,6 +325,7 @@ namespace OwlcatPortraitManager
             RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
             LoadTempImagesToPicBox(_imageSelectionFlag);
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindowSize();
@@ -334,6 +340,7 @@ namespace OwlcatPortraitManager
             ReplacePictureBoxImagesToDefault();
             SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PlaceholderImage);
             LoadTempImagesToPicBox(_imageSelectionFlag);
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindowSize();
@@ -366,6 +373,7 @@ namespace OwlcatPortraitManager
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
+
                 UseStamps.Default.isFirstExtract = false;
                 UseStamps.Default.Save();
             }
@@ -389,6 +397,7 @@ namespace OwlcatPortraitManager
                     Hint.StartPosition = FormStartPosition.CenterParent;
                     Hint.ShowDialog();
                 }
+
                 UseStamps.Default.isFirstGallery = false;
                 UseStamps.Default.Save();
             }
@@ -415,6 +424,7 @@ namespace OwlcatPortraitManager
             _extractFolderPath = "!NONE!";
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListExtract, ImgListExtract);
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
@@ -423,6 +433,7 @@ namespace OwlcatPortraitManager
         {
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
         }
@@ -433,6 +444,7 @@ namespace OwlcatPortraitManager
             ButtonToMainPage4.ForeColor = Color.White;
             RestoreFilePageToInit();
             ReplacePictureBoxImagesToDefault();
+
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -442,9 +454,11 @@ namespace OwlcatPortraitManager
         {
             RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
+
             CoreSettings.Default.MaxWindowHeight = Height;
             CoreSettings.Default.MaxWindowWidth = Width;
             CoreSettings.Default.Save();
+
             FormBorderStyle = FormBorderStyle.FixedSingle;
             ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
             ButtonValidatePath.BackColor = Color.Black;
@@ -457,6 +471,7 @@ namespace OwlcatPortraitManager
         {
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutSettingsPage);
+
             TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;

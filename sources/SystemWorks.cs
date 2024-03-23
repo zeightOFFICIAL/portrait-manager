@@ -198,17 +198,25 @@ namespace SystemControl
             }
         }
         
-        public static PrivateFontCollection InitCustomFont(byte[] font)
+        public static PrivateFontCollection InitCustomFont(byte[] font, byte[] fontSecond)
         {
             PrivateFontCollection fontCollection = new PrivateFontCollection();
+
             byte[] fontData = font;
+            byte[] fontDataSecond = fontSecond;
             uint dummy = 0;
+            uint dummySecond = 0;
             IntPtr fontPointer = Marshal.AllocCoTaskMem(fontData.Length);
+            IntPtr fontSecondPointer = Marshal.AllocCoTaskMem(fontDataSecond.Length);
 
             Marshal.Copy(fontData, 0, fontPointer, fontData.Length);
+            Marshal.Copy(fontDataSecond, 0, fontSecondPointer, fontDataSecond.Length);
             fontCollection.AddMemoryFont(fontPointer, font.Length);
+            fontCollection.AddMemoryFont(fontSecondPointer, fontSecond.Length);
             AddFontMemResourceEx(fontPointer, (uint)font.Length, IntPtr.Zero, ref dummy);
+            AddFontMemResourceEx(fontSecondPointer, (uint)fontSecond.Length, IntPtr.Zero, ref dummySecond);
             Marshal.FreeCoTaskMem(fontPointer);
+            Marshal.FreeCoTaskMem(fontSecondPointer);
 
             return fontCollection;
         }

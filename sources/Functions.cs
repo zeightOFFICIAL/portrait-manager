@@ -373,11 +373,11 @@ namespace OwlcatPortraitManager
             }, cancelToken);
         }
         
-        public void FontsInit(PrivateFontCollection fonts, int headSize = 19, int underSize = 16, int smallSize = 13)
+        public void FontsInit(PrivateFontCollection fonts, ushort family = 0, int headSize = 19, int underSize = 16, int smallSize = 13)
         {
-            Font bebasNeueHead = new Font(fonts.Families[0], headSize), 
-                 bebasNeueUnder = new Font(fonts.Families[0], underSize),
-                 bebasNeueSmall = new Font(fonts.Families[0], smallSize);
+            Font bebasNeueHead = new Font(fonts.Families[family], headSize), 
+                 bebasNeueUnder = new Font(fonts.Families[family], underSize),
+                 bebasNeueSmall = new Font(fonts.Families[family], smallSize);
 
             ButtonToFilePage.Font = bebasNeueHead;
             ButtonToExtractPage.Font = bebasNeueHead;

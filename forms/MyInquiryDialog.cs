@@ -24,16 +24,15 @@ namespace OwlcatPortraitManager.forms
 
         public MyInquiryDialog(string message, string locale)
         {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
 
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
-                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
             {
-                _font = new Font(DefaultFont.FontFamily, 12);
+                _font = new Font(_fontCollection.Families[1], 17);
             }
             else
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
                 _font = new Font(_fontCollection.Families[0], 17);
             }
 

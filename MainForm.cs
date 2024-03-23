@@ -127,6 +127,7 @@ namespace OwlcatPortraitManager
             Width = CoreSettings.Default.MaxWindowWidth;
             Height = CoreSettings.Default.MaxWindowHeight;
 
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
             FormInit();
             LanguageInit();
             CenterToScreen();
@@ -215,14 +216,12 @@ namespace OwlcatPortraitManager
 
         private void LanguageInit()
         {
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU")) 
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_ru);
-                FontsInit(_fontCollection);
+                FontsInit(_fontCollection, 1);
             }
             else
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
                 FontsInit(_fontCollection);
             }
 
@@ -487,6 +486,5 @@ namespace OwlcatPortraitManager
             Dispose();
             Application.Exit();
         }
-
     }
 }

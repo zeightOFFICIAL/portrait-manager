@@ -352,8 +352,10 @@ namespace OwlcatPortraitManager
         
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            RootFunctions.LayoutDisable(LayoutFilePage);
-            RootFunctions.LayoutEnable(LayoutURLDialog);
+            RootFunctions.LayoutDisable(LayoutFilePage);            
+            RootFunctions.LayoutEnable(LayoutURLDialog); 
+            AnyButton_Leave(ButtonDenyWeb, e);
+            AnyButton_Leave(ButtonLoadWeb, e);
         }
         
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
@@ -1124,46 +1126,66 @@ namespace OwlcatPortraitManager
         
         private void PicBoxEng_Click(object sender, EventArgs e)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            FontsInit(_fontCollection);
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
             CoreSettings.Default.SelectedLang = "en-EN";
             CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInit(_fontCollection);
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
+
+            PicBoxEng.Enabled = false;
+            PicBoxFra.Enabled = true;
+            PicBoxGer.Enabled = true;
+            PicBoxRus.Enabled = true;
         }
         
         private void PicBoxRus_Click(object sender, EventArgs e)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_ru);
+            FontsInit(_fontCollection, 1);
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
             CoreSettings.Default.SelectedLang = "ru-RU";
             CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInit(_fontCollection);
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
+
+            PicBoxEng.Enabled = true;
+            PicBoxFra.Enabled = true;
+            PicBoxGer.Enabled = true;
+            PicBoxRus.Enabled = false;
         }
         
         private void PicBoxGer_Click(object sender, EventArgs e)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            FontsInit(_fontCollection);
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
             CoreSettings.Default.SelectedLang = "de-DE";
             CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInit(_fontCollection);
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
+
+            PicBoxEng.Enabled = true;
+            PicBoxFra.Enabled = true;
+            PicBoxGer.Enabled = false;
+            PicBoxRus.Enabled = true;
         }
 
         private void PicBoxFra_Click(object sender, EventArgs e)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            FontsInit(_fontCollection);
+
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
             CoreSettings.Default.SelectedLang = "fr-FR";
             CoreSettings.Default.Save();
             LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInit(_fontCollection);
             TextsInit();
+
+            PicBoxEng.Enabled = true;
+            PicBoxFra.Enabled = false;
+            PicBoxGer.Enabled = true;
+            PicBoxRus.Enabled = true;
         }
 
         private void ButtonRT_Click(object sender, EventArgs e)

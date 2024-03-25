@@ -3,16 +3,19 @@
 # <p align="center">Owlcat Portrait Manager</p>
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games products</p>
 
-<img src="https://user-images.githubusercontent.com/50341618/227392274-89674a5f-96f7-4113-92f9-152702ebffe4.png" width="50%"/><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/ff408a64-1347-4b1d-b66a-477ddc715857" width="50%"/>
+<p align="center">
+<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="50%"/>    
+<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="50%"/>
+</p>
 
 ###### <p align="center">Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p><hr>
 
 ### Created by Artemii "Zeight" Saganenko
-### Designed by Artemii "Zeight Saganenko
+### Designed by Artemii "Zeight" Saganenko
 ### Nexus mods link: 
 https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>
 https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>
-https://www.nexusmods.com/warhammer40kroguetrader/mods/(ADD URL ONCE PUBLISHED)
+https://www.nexusmods.com/warhammer40kroguetrader/mods/1 (ADD REAL URL)<br>
 
 ### Description
 Desktop application, management tool for portraits in Owlcat Games products, currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing, no dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.

@@ -231,7 +231,6 @@
     <Content Include="icon_path.ico" />
     <Content Include="icon_rt.ico" />
     <Content Include="icon_wotr.ico" />
-    <None Include="resources\fra.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

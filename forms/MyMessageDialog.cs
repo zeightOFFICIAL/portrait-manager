@@ -1,11 +1,11 @@
 ﻿/*    
     Owlcat Portrait Manager. Desktop application for managing in game
-    portraits for Owlcat Games products. Including Pathfinder: Kingmaker,
-    Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file
-    License header for this project is listed in Program.cs
+    GPL-2.0 license terms are listed in LICENSE file.
+    License header for this project is listed in Program.cs.
 */
 
 using OwlcatPortraitManager.Properties;

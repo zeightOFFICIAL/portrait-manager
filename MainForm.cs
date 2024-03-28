@@ -1,11 +1,11 @@
 ﻿/*    
     Owlcat Portrait Manager. Desktop application for managing in game
-    portraits for Owlcat Games products. Including Pathfinder: Kingmaker,
-    Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE file.
-    License header for this project is listed in Program.cs
+    License header for this project is listed in Program.cs.
 */
 
 using OwlcatPortraitManager.forms;
@@ -247,6 +247,10 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutEnable(LayoutMainPage);
 
             CheckBoxVerified.AutoCheck = false;
+
+            ResizeImageBoxToParentControl(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
+            ResizeImageBoxToParentControl(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
+            ResizeImageBoxToParentControl(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
         }
         
         private void ButtonToFilePage_Click(object sender, EventArgs e)
@@ -464,6 +468,10 @@ namespace OwlcatPortraitManager
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
+
+            ResizeImageBoxToParentControl(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
+            ResizeImageBoxToParentControl(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
+            ResizeImageBoxToParentControl(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
         }
         
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)

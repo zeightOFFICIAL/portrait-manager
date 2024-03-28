@@ -96,7 +96,9 @@ namespace OwlcatPortraitManager
                 if (currentUICulture == "en-US" ||
                     currentUICulture == "ru-RU" ||
                     currentUICulture == "de-DE" ||
-                    currentUICulture == "fr-FR")
+                    currentUICulture == "fr-FR" ||
+                    currentUICulture == "pl-PL"
+                    )
                 {
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
                 }

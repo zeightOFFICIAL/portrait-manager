@@ -76,7 +76,7 @@ namespace OwlcatPortraitManager
         
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
-            string path = SystemControl.FileControl.OpenFileLocation();
+            string path = SystemControl.FileControl.OpenFileLocation(TextVariables.TEXT_IMAGEFILTER, TextVariables.TEXT_TITLEOPENFILE);
 
             if (path == "!NONE!")
             {

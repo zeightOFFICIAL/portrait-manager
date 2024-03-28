@@ -19,6 +19,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
     GPL-2.0 license terms are listed in LICENSE file.
+    This is a License header for this project.
 */
 
 

@@ -83,6 +83,9 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageWorks">
+      <HintPath>C:\Users\Артемий\source\repos\ImageWorks\ImageWorks\ImageWorks\bin\Debug\ImageWorks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -106,6 +109,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="SystemWorks">
+      <HintPath>C:\Users\Артемий\source\repos\SystemWorks\SystemWorks\SystemWorks\bin\Release\SystemWorks.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -166,8 +172,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sources\GameTypeClass.cs" />
-    <Compile Include="sources\ImageWorks.cs" />
-    <Compile Include="sources\SystemWorks.cs" />
+    <Content Include="sources\ImageWorks.cs" />
+    <Content Include="sources\SystemWorks.cs" />
     <EmbeddedResource Include="forms\MyInquiryDialog.resx">
       <DependentUpon>MyInquiryDialog.cs</DependentUpon>
     </EmbeddedResource>

@@ -58,14 +58,14 @@ namespace SystemControl
                 return Path.GetExtension(path);
             }
         }
-        
-        public static string OpenFileLocation()
+
+        public static string OpenFileLocation(string textImageFilterText, string openFileStringTitle)
         {
-            string filter = OwlcatPortraitManager.Properties.TextVariables.TEXT_IMAGEFILTER + TYPE_FILTER;
+            string filter = textImageFilterText + TYPE_FILTER;
 
             using (OpenFileDialog Dialog = new OpenFileDialog()
             {
-                Title = OwlcatPortraitManager.Properties.TextVariables.TEXT_TITLEOPENFILE,
+                Title = openFileStringTitle,
                 Multiselect = false,
                 CheckFileExists = true,
                 CheckPathExists = true,
@@ -92,7 +92,7 @@ namespace SystemControl
                 }
             }
         }
-        
+
         public static void CreateTempImages(string newPath, string[] tempAppends, Image defaultImg, ushort flag = 0)
         {
             if (!CreateDirectory("temp_DoNotDeleteWhileRunning/"))

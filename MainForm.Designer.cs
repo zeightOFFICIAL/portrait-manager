@@ -400,7 +400,7 @@ namespace OwlcatPortraitManager
             this.LayoutScalePage.Controls.Add(this.LayoutUnnamed3, 0, 3);
             this.LayoutScalePage.Controls.Add(this.LayoutUnnamed4, 0, 2);
             this.LayoutScalePage.ForeColor = System.Drawing.Color.White;
-            this.LayoutScalePage.Location = new System.Drawing.Point(140, 0);
+            this.LayoutScalePage.Location = new System.Drawing.Point(29, 0);
             this.LayoutScalePage.Name = "LayoutScalePage";
             this.LayoutScalePage.RowCount = 5;
             this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.92792F));
@@ -408,7 +408,7 @@ namespace OwlcatPortraitManager
             this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.333276F));
-            this.LayoutScalePage.Size = new System.Drawing.Size(47, 481);
+            this.LayoutScalePage.Size = new System.Drawing.Size(142, 481);
             this.LayoutScalePage.TabIndex = 2;
             // 
             // LayoutUnnamed2
@@ -427,7 +427,7 @@ namespace OwlcatPortraitManager
             this.LayoutUnnamed2.Name = "LayoutUnnamed2";
             this.LayoutUnnamed2.RowCount = 1;
             this.LayoutUnnamed2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed2.Size = new System.Drawing.Size(41, 313);
+            this.LayoutUnnamed2.Size = new System.Drawing.Size(136, 313);
             this.LayoutUnnamed2.TabIndex = 0;
             // 
             // PanelPortraitLrg
@@ -435,10 +435,10 @@ namespace OwlcatPortraitManager
             this.PanelPortraitLrg.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PanelPortraitLrg.Controls.Add(this.PicPortraitLrg);
             this.PanelPortraitLrg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitLrg.Location = new System.Drawing.Point(16, 3);
+            this.PanelPortraitLrg.Location = new System.Drawing.Point(48, 3);
             this.PanelPortraitLrg.Name = "PanelPortraitLrg";
             this.PanelPortraitLrg.Padding = new System.Windows.Forms.Padding(10);
-            this.PanelPortraitLrg.Size = new System.Drawing.Size(7, 307);
+            this.PanelPortraitLrg.Size = new System.Drawing.Size(37, 307);
             this.PanelPortraitLrg.TabIndex = 3;
             // 
             // PicPortraitLrg
@@ -461,10 +461,10 @@ namespace OwlcatPortraitManager
             this.PanelPortraitMed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PanelPortraitMed.Controls.Add(this.PicPortraitMed);
             this.PanelPortraitMed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitMed.Location = new System.Drawing.Point(4, 3);
+            this.PanelPortraitMed.Location = new System.Drawing.Point(9, 3);
             this.PanelPortraitMed.Name = "PanelPortraitMed";
             this.PanelPortraitMed.Padding = new System.Windows.Forms.Padding(10);
-            this.PanelPortraitMed.Size = new System.Drawing.Size(6, 307);
+            this.PanelPortraitMed.Size = new System.Drawing.Size(33, 307);
             this.PanelPortraitMed.TabIndex = 4;
             // 
             // PicPortraitMed
@@ -487,10 +487,10 @@ namespace OwlcatPortraitManager
             this.PanelPortraitSml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PanelPortraitSml.Controls.Add(this.PicPortraitSml);
             this.PanelPortraitSml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitSml.Location = new System.Drawing.Point(29, 3);
+            this.PanelPortraitSml.Location = new System.Drawing.Point(91, 3);
             this.PanelPortraitSml.Name = "PanelPortraitSml";
             this.PanelPortraitSml.Padding = new System.Windows.Forms.Padding(10);
-            this.PanelPortraitSml.Size = new System.Drawing.Size(6, 307);
+            this.PanelPortraitSml.Size = new System.Drawing.Size(33, 307);
             this.PanelPortraitSml.TabIndex = 5;
             // 
             // PicPortraitSml
@@ -526,7 +526,7 @@ namespace OwlcatPortraitManager
             this.LayoutUnnamed3.Name = "LayoutUnnamed3";
             this.LayoutUnnamed3.RowCount = 1;
             this.LayoutUnnamed3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed3.Size = new System.Drawing.Size(41, 44);
+            this.LayoutUnnamed3.Size = new System.Drawing.Size(136, 44);
             this.LayoutUnnamed3.TabIndex = 1;
             // 
             // ButtonHintOnScalePage
@@ -536,7 +536,7 @@ namespace OwlcatPortraitManager
             this.ButtonHintOnScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonHintOnScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonHintOnScalePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonHintOnScalePage.Location = new System.Drawing.Point(166, 3);
+            this.ButtonHintOnScalePage.Location = new System.Drawing.Point(223, 3);
             this.ButtonHintOnScalePage.Name = "ButtonHintOnScalePage";
             this.ButtonHintOnScalePage.Size = new System.Drawing.Size(1, 38);
             this.ButtonHintOnScalePage.TabIndex = 0;
@@ -552,7 +552,7 @@ namespace OwlcatPortraitManager
             this.ButtonToFilePage2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonToFilePage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonToFilePage2.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToFilePage2.Location = new System.Drawing.Point(-138, 3);
+            this.ButtonToFilePage2.Location = new System.Drawing.Point(-93, 3);
             this.ButtonToFilePage2.Name = "ButtonToFilePage2";
             this.ButtonToFilePage2.Size = new System.Drawing.Size(164, 38);
             this.ButtonToFilePage2.TabIndex = 0;
@@ -568,7 +568,7 @@ namespace OwlcatPortraitManager
             this.ButtonCreatePortrait.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonCreatePortrait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCreatePortrait.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonCreatePortrait.Location = new System.Drawing.Point(16, 3);
+            this.ButtonCreatePortrait.Location = new System.Drawing.Point(66, 3);
             this.ButtonCreatePortrait.Name = "ButtonCreatePortrait";
             this.ButtonCreatePortrait.Size = new System.Drawing.Size(164, 38);
             this.ButtonCreatePortrait.TabIndex = 2;
@@ -598,7 +598,7 @@ namespace OwlcatPortraitManager
             this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayoutUnnamed4.Size = new System.Drawing.Size(41, 44);
+            this.LayoutUnnamed4.Size = new System.Drawing.Size(136, 44);
             this.LayoutUnnamed4.TabIndex = 2;
             // 
             // LabelMedImage
@@ -606,9 +606,9 @@ namespace OwlcatPortraitManager
             this.LabelMedImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelMedImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LabelMedImage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelMedImage.Location = new System.Drawing.Point(4, 0);
+            this.LabelMedImage.Location = new System.Drawing.Point(9, 0);
             this.LabelMedImage.Name = "LabelMedImage";
-            this.LabelMedImage.Size = new System.Drawing.Size(6, 44);
+            this.LabelMedImage.Size = new System.Drawing.Size(34, 44);
             this.LabelMedImage.TabIndex = 0;
             this.LabelMedImage.Text = "ForMedImage";
             this.LabelMedImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -620,9 +620,9 @@ namespace OwlcatPortraitManager
             this.LabelLrgImg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelLrgImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LabelLrgImg.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelLrgImg.Location = new System.Drawing.Point(16, 0);
+            this.LabelLrgImg.Location = new System.Drawing.Point(49, 0);
             this.LabelLrgImg.Name = "LabelLrgImg";
-            this.LabelLrgImg.Size = new System.Drawing.Size(7, 44);
+            this.LabelLrgImg.Size = new System.Drawing.Size(37, 44);
             this.LabelLrgImg.TabIndex = 1;
             this.LabelLrgImg.Text = "ForLrgImage";
             this.LabelLrgImg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -634,9 +634,9 @@ namespace OwlcatPortraitManager
             this.LabelSmlImg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelSmlImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LabelSmlImg.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelSmlImg.Location = new System.Drawing.Point(29, 0);
+            this.LabelSmlImg.Location = new System.Drawing.Point(92, 0);
             this.LabelSmlImg.Name = "LabelSmlImg";
-            this.LabelSmlImg.Size = new System.Drawing.Size(5, 44);
+            this.LabelSmlImg.Size = new System.Drawing.Size(33, 44);
             this.LabelSmlImg.TabIndex = 2;
             this.LabelSmlImg.Text = "ForSmlImage";
             this.LabelSmlImg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1550,13 +1550,13 @@ namespace OwlcatPortraitManager
             this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.Controls.Add(this.tableLayoutPanel7, 1, 1);
             this.LayoutSettingsPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutSettingsPage.Location = new System.Drawing.Point(573, 0);
+            this.LayoutSettingsPage.Location = new System.Drawing.Point(70, 0);
             this.LayoutSettingsPage.Name = "LayoutSettingsPage";
             this.LayoutSettingsPage.RowCount = 3;
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.Size = new System.Drawing.Size(125, 481);
+            this.LayoutSettingsPage.Size = new System.Drawing.Size(628, 481);
             this.LayoutSettingsPage.TabIndex = 7;
             // 
             // tableLayoutPanel7
@@ -1571,7 +1571,7 @@ namespace OwlcatPortraitManager
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel10, 0, 3);
             this.tableLayoutPanel7.Controls.Add(this.LayoutUnnamed16, 0, 5);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(-209, 18);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(42, 18);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 7;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.95415F));

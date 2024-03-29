@@ -8,6 +8,10 @@
     License header for this project is listed in Program.cs.
 */
 
+/*
+    1. !NOT COMPILED!, only code. Compile to separate dll. In project use reference to the dll.
+*/
+
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;

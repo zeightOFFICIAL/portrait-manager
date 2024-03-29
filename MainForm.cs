@@ -249,10 +249,6 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutEnable(LayoutMainPage);
 
             CheckBoxVerified.AutoCheck = false;
-
-            ResizeImageBoxToParentControl(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
-            ResizeImageBoxToParentControl(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
-            ResizeImageBoxToParentControl(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
         }
         
         private void ButtonToFilePage_Click(object sender, EventArgs e)
@@ -292,6 +288,10 @@ namespace OwlcatPortraitManager
                         ParentLayoutsDisable();
                         LoadAllTempImagesToPicBox();
 
+                        FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
+                        FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
+                        FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
+
                         RootFunctions.LayoutEnable(LayoutScalePage);
                         ResizeVisibleImagesToWindowSize();
                     }
@@ -305,6 +305,10 @@ namespace OwlcatPortraitManager
             {
                 ParentLayoutsDisable();
                 LoadAllTempImagesToPicBox();
+
+                FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
+                FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
+                FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
 
                 RootFunctions.LayoutEnable(LayoutScalePage);
                 ResizeVisibleImagesToWindowSize();
@@ -470,10 +474,6 @@ namespace OwlcatPortraitManager
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
-
-            ResizeImageBoxToParentControl(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
-            ResizeImageBoxToParentControl(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
-            ResizeImageBoxToParentControl(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
         }
         
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)

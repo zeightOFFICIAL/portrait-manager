@@ -16,6 +16,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -88,16 +89,6 @@ namespace OwlcatPortraitManager
             }
 
             DisableAutoScroll(parent, newSize.Item1, newSize.Item2);
-        }
-
-        private void ResizeImageBoxToParentControl(Panel control, float aspectRatio = 1.0f)
-        {
-            int activeSizeX = control.Width + control.Margin.Right + control.Margin.Left;
-            int activeSizeY = control.Height + control.Margin.Top + control.Margin.Bottom;
-            Console.WriteLine(activeSizeY + " " + activeSizeX + "\n");
-
-            
-            
         }
         
         public void ResizeVisibleImagesToWindowSize()
@@ -939,6 +930,26 @@ namespace OwlcatPortraitManager
                 return true;
             }
             return false;
+        }
+        
+        public void FixPicBoxAspectRatio(Panel parent, float aspect)
+        {
+            int width = parent.Width;
+            int height = parent.Height;
+
+            if (width * aspect < height)
+            {
+                int diff = (height - (int)(width * aspect * 1.0f)) / 2;
+                parent.Margin = new Padding(3, diff, 3, diff);
+            }
+            else {
+                int diff = (width - (int)(height / aspect * 1.0f)) / 2;
+                parent.Margin = new Padding(diff, 3, diff, 3);
+            }
+
+            Console.WriteLine((parent.Height) * 1.0f / (parent.Width) * 1.0f);
+            Console.WriteLine(aspect);
+            Console.WriteLine();
         }
     }
 }

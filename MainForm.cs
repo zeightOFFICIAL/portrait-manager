@@ -461,9 +461,6 @@ namespace OwlcatPortraitManager
        
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
-            RootFunctions.LayoutDisable(LayoutSettingsPage);
-            RootFunctions.LayoutEnable(LayoutMainPage);
-
             CoreSettings.Default.MaxWindowHeight = Height;
             CoreSettings.Default.MaxWindowWidth = Width;
             CoreSettings.Default.Save();
@@ -474,6 +471,7 @@ namespace OwlcatPortraitManager
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
+            Application.Restart();
         }
         
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)

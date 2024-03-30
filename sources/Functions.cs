@@ -16,7 +16,6 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -942,14 +941,10 @@ namespace OwlcatPortraitManager
                 int diff = (height - (int)(width * aspect * 1.0f)) / 2;
                 parent.Margin = new Padding(3, diff, 3, diff);
             }
-            else {
+            else if (width * aspect > height) {
                 int diff = (width - (int)(height / aspect * 1.0f)) / 2;
                 parent.Margin = new Padding(diff, 3, diff, 3);
             }
-
-            Console.WriteLine((parent.Height) * 1.0f / (parent.Width) * 1.0f);
-            Console.WriteLine(aspect);
-            Console.WriteLine();
         }
     }
 }

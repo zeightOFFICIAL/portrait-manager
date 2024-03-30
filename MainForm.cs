@@ -74,6 +74,8 @@ namespace OwlcatPortraitManager
         private static ushort _imageSelectionFlag = 0;
         private static bool _isAnyLoadedToPortraitPage = false;
 
+        private static ushort _activeMenuIndex;
+
         private static ushort _isDraggingMouse = 0;
         private static Point _mousePosition = new Point();
         
@@ -83,6 +85,7 @@ namespace OwlcatPortraitManager
 
         private static CancellationTokenSource _cancellationTokenSource;
 
+
         public MainForm()
         {
             InitializeComponent();
@@ -90,6 +93,8 @@ namespace OwlcatPortraitManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             if (UseStamps.Default.isFirstAny)
             {
                 var currentUICulture = CultureInfo.CurrentUICulture.ToString();
@@ -253,6 +258,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 1;
+
             RestoreFilePageToInit();
             CreateAllImagesInTemp("!DEFAULT!", 100);
             GenerateImageSelectionFlagString(100);
@@ -277,6 +284,8 @@ namespace OwlcatPortraitManager
 
         private void ButtonToScalePage_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 2;
+
             if (!_isAnyLoadedToPortraitPage)
             {
                 using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_NOIMAGECHOSEN, CoreSettings.Default.SelectedLang))
@@ -331,6 +340,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 1;
+
             RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
             LoadTempImagesToPicBox(_imageSelectionFlag);
@@ -342,6 +353,8 @@ namespace OwlcatPortraitManager
 
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 1;
+
             ButtonToFilePage3.BackColor = Color.Black;
             ButtonToFilePage3.ForeColor = Color.White;
             RestoreFilePageToInit();
@@ -359,6 +372,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonExit_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             DisposePrimeImages();
             ClearImageListsSync(ListGallery, ImgListGallery);
             ClearImageListsSync(ListExtract, ImgListExtract);
@@ -368,6 +383,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonToExtract_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 3;
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
 
@@ -390,6 +407,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 4;
+
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutGallery);
 
@@ -423,6 +442,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
@@ -430,6 +451,8 @@ namespace OwlcatPortraitManager
 
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             _extractFolderPath = "!NONE!";
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListExtract, ImgListExtract);
@@ -440,6 +463,8 @@ namespace OwlcatPortraitManager
 
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
 
@@ -449,6 +474,8 @@ namespace OwlcatPortraitManager
 
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             ButtonToMainPage4.BackColor = Color.Black;
             ButtonToMainPage4.ForeColor = Color.White;
             RestoreFilePageToInit();
@@ -461,6 +488,8 @@ namespace OwlcatPortraitManager
        
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
+
             CoreSettings.Default.MaxWindowHeight = Height;
             CoreSettings.Default.MaxWindowWidth = Width;
             CoreSettings.Default.Save();
@@ -476,6 +505,8 @@ namespace OwlcatPortraitManager
         
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 5;
+
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutSettingsPage);
 

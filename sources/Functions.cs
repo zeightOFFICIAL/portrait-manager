@@ -697,9 +697,12 @@ namespace OwlcatPortraitManager
 
                 if (CheckPortraitExistence(subDir))
                 {
-                    if (SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + LARGE_APPEND, 692, 1024) &&
-                        SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + MEDIUM_APPEND, 330, 432) &&
-                        SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + SMALL_APPEND, 185, 242))
+                    if (SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + LARGE_APPEND,
+                        GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
+                        SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + MEDIUM_APPEND,
+                        GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
+                        SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + SMALL_APPEND,
+                        GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
                     {
                         try
                         {

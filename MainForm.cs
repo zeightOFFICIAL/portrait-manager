@@ -1,5 +1,5 @@
 ﻿/*    
-    Owlcat Portrait Manager. Desktop application for managing in game
+    Portrait Manager: Owlcat. Desktop application for managing in game
     portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
     2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
@@ -280,6 +280,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstPortrait = false;
                 UseStamps.Default.Save();
             }
+            Focus();
         }
 
         private void ButtonToScalePage_Click(object sender, EventArgs e)
@@ -336,6 +337,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstScaling = false;
                 UseStamps.Default.Save();
             }
+            Focus();
         }
         
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
@@ -349,6 +351,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindowSize();
+            Focus();
         }
 
         private void ButtonToFilePage3_Click(object sender, EventArgs e)
@@ -368,6 +371,7 @@ namespace OwlcatPortraitManager
             ResizeVisibleImagesToWindowSize();
             GenerateImageSelectionFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
+            Focus();
         }
         
         private void ButtonExit_Click(object sender, EventArgs e)
@@ -403,6 +407,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstExtract = false;
                 UseStamps.Default.Save();
             }
+            Focus();
         }
         
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
@@ -438,6 +443,7 @@ namespace OwlcatPortraitManager
             {
                 ButtonLoadCustomArmy.Visible = false;
             }
+            Focus();
         }
         
         private void ButtonToMainPage_Click(object sender, EventArgs e)
@@ -447,6 +453,7 @@ namespace OwlcatPortraitManager
             ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
         }
 
         private void ButtonToMainPage2_Click(object sender, EventArgs e)
@@ -459,6 +466,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
         }
 
         private void ButtonToMainPage3_Click(object sender, EventArgs e)
@@ -470,6 +478,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
         }
 
         private void ButtonToMainPage4_Click(object sender, EventArgs e)
@@ -484,6 +493,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
         }
        
         private void ButtonToMainPage5_Click(object sender, EventArgs e)
@@ -502,6 +512,7 @@ namespace OwlcatPortraitManager
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
             Application.Restart();
+            Focus();
         }
         
         private void ButtonToSettingsPage_Click(object sender, EventArgs e)
@@ -515,6 +526,7 @@ namespace OwlcatPortraitManager
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
+            Focus();
         }
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
@@ -527,14 +539,23 @@ namespace OwlcatPortraitManager
             Application.Exit();
         }
 
-        private void PictureBoxTitle_MouseHover(object sender, EventArgs e)
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
-        }
-
-        private void PictureBoxTitle_MouseLeave(object sender, EventArgs e)
-        {
-
+            if (_activeMenuIndex == 0)
+            {
+                switch (e.KeyChar)
+                {
+                    case '1':
+                        ButtonToFilePage_Click(sender, e);
+                        break;
+                    case '2':
+                        ButtonToExtract_Click(sender, e);
+                        break;
+                    case '3':
+                        ButtonToGalleryPage_Click(sender, e);
+                        break;
+                }
+            }
         }
     }
 }

@@ -816,6 +816,18 @@ namespace OwlcatPortraitManager
             }
         }
 
+        private void LabelVersion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-owlcat/releases/tag/1.3.5.0c");
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void AnyPrimeButton_Enter(object sender, EventArgs e)
         {
             if (sender is Button button)

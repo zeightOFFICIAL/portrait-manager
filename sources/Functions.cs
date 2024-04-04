@@ -611,6 +611,8 @@ namespace OwlcatPortraitManager
 
             if (_gameSelected == 'p')
             {
+                ButtonLoadNormal.Visible = true;
+
                 ButtonKingmaker.Enabled = false;
                 ButtonKingmaker.ForeColor = backColor;
                 ButtonKingmaker.BackColor = foreColor;
@@ -627,6 +629,8 @@ namespace OwlcatPortraitManager
             }
             else if (_gameSelected == 'w')
             {
+                ButtonLoadNormal.Visible = true;
+
                 ButtonKingmaker.Enabled = true;
                 ButtonKingmaker.ForeColor = Color.White;
                 ButtonKingmaker.BackColor = Color.Black;   
@@ -643,6 +647,8 @@ namespace OwlcatPortraitManager
             }
             else if (_gameSelected == 'r')
             {
+                ButtonLoadNormal.Visible = false;
+
                 ButtonKingmaker.Enabled = true;
                 ButtonKingmaker.ForeColor = Color.White;
                 ButtonKingmaker.BackColor = Color.Black;

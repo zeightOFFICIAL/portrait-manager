@@ -490,6 +490,7 @@ namespace OwlcatPortraitManager
         {
             _activeMenuIndex = 0;
 
+            CoreSettings.Default.GameType = _gameSelected;
             CoreSettings.Default.MaxWindowHeight = Height;
             CoreSettings.Default.MaxWindowWidth = Width;
             CoreSettings.Default.Save();
@@ -524,6 +525,16 @@ namespace OwlcatPortraitManager
             SystemControl.FileControl.ClearTempImages();
             Dispose();
             Application.Exit();
+        }
+
+        private void PictureBoxTitle_MouseHover(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void PictureBoxTitle_MouseLeave(object sender, EventArgs e)
+        {
+
         }
     }
 }

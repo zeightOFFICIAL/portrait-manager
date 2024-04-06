@@ -1,11 +1,15 @@
 <hr>
 
+<p align="center">
+<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/blob/rogue-trader/media/main_title.jpg" width="90%"/>
+</p>
+
 # <p align="center">Owlcat Portrait Manager</p>
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games products</p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="50%"/>    
-<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="50%"/>
+<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/>    
+<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/>
 </p>
 
 ###### <p align="center">Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p><hr>

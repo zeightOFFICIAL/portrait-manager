@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_ADVANCED" xml:space="preserve">
-    <value>Medium wechseln</value>
+    <value>Mittleres Porträt</value>
   </data>
   <data name="BUTTON_ADVANCED2" xml:space="preserve">
-    <value>Kleine Änderungen</value>
+    <value>Kleines Porträt</value>
   </data>
   <data name="BUTTON_APPLY" xml:space="preserve">
-    <value>Bewerbung</value>
+    <value>Anwenden</value>
   </data>
   <data name="BUTTON_BACK" xml:space="preserve">
     <value>Zurück</value>
   </data>
   <data name="BUTTON_CANCEL" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Stornieren</value>
   </data>
   <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
-    <value>Armee</value>
+    <value>Armeen</value>
   </data>
   <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>NPC</value>
+    <value>Figuren</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
-    <value>Ausfahrt</value>
+    <value>Hinausgehen</value>
   </data>
   <data name="BUTTON_EXTRACTALL" xml:space="preserve">
-    <value>Alle extrahieren</value>
+    <value>Alle verschieben</value>
   </data>
   <data name="BUTTON_EXTRACTOPENFOLDER" xml:space="preserve">
     <value>Ordner öffnen</value>
   </data>
   <data name="BUTTON_EXTRACTSELECTED" xml:space="preserve">
-    <value>Auszug ausgewählt</value>
+    <value>Bewegen</value>
   </data>
   <data name="BUTTON_FINALOPENFOLDER" xml:space="preserve">
-    <value>Öffnen Sie</value>
+    <value>Offen</value>
   </data>
   <data name="BUTTON_GALLERYOPENFOLDER" xml:space="preserve">
     <value>Ordner öffnen</value>
@@ -160,19 +160,19 @@
     <value>?</value>
   </data>
   <data name="BUTTON_LOAD" xml:space="preserve">
-    <value>Laden</value>
+    <value>Herunterladen</value>
   </data>
   <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
-    <value>Wählen Sie lokal</value>
+    <value>Wählen</value>
   </data>
   <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
-    <value>Web auswählen</value>
+    <value>Herunterladen</value>
   </data>
   <data name="BUTTON_MENU" xml:space="preserve">
-    <value>Menü</value>
+    <value>Hauptmenü</value>
   </data>
   <data name="BUTTON_NEW" xml:space="preserve">
-    <value>Neu</value>
+    <value>Erstellen</value>
   </data>
   <data name="BUTTON_NO" xml:space="preserve">
     <value>Nein</value>
@@ -181,22 +181,22 @@
     <value>Ok</value>
   </data>
   <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
-    <value>Ausgewählte bearbeiten</value>
+    <value>Ändern</value>
   </data>
   <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
-    <value>Ausgewählte löschen</value>
+    <value>Löschen</value>
   </data>
   <data name="BUTTON_SELECTPATH" xml:space="preserve">
-    <value>Wählen Sie</value>
+    <value>Weg</value>
   </data>
   <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
-    <value>Benutzerdefiniert anzeigen</value>
+    <value>CustomNPC</value>
   </data>
   <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
-    <value>Porträts anzeigen</value>
+    <value>Porträts</value>
   </data>
   <data name="BUTTON_SUCESS" xml:space="preserve">
-    <value>Erfolg</value>
+    <value>Erfolgreich</value>
   </data>
   <data name="BUTTON_TOCREATE" xml:space="preserve">
     <value>Erstellen</value>
@@ -205,40 +205,40 @@
     <value>Ordner extrahieren</value>
   </data>
   <data name="BUTTON_TOFILEPAGE" xml:space="preserve">
-    <value>Porträt erstellen</value>
+    <value>Erstellen Porträt</value>
   </data>
   <data name="BUTTON_TOGALLERYPAGE" xml:space="preserve">
-    <value>Galerie durchsuchen</value>
+    <value>Galerie</value>
   </data>
   <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
-    <value>Bild skalieren</value>
+    <value>Porträt zuschneiden</value>
   </data>
   <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="BUTTON_VALIDATE" xml:space="preserve">
-    <value>Validieren Sie</value>
+    <value>Überprüfen</value>
   </data>
   <data name="BUTTON_YES" xml:space="preserve">
     <value>Ja</value>
   </data>
   <data name="HINT_EXTRACTPAGE" xml:space="preserve">
-    <value>Dies ist die Extraktionsseite. Hier können Sie alle Bilder aus einem Ordner in den Spielordner kopieren. Klicken Sie auf "Ordner wählen", um einen Ordner zum Kopieren auszuwählen. Wählen Sie die Bilder aus und klicken Sie auf "Ausgewählte extrahieren", um nur bestimmte Bilder zu übertragen, oder klicken Sie auf "Alle extrahieren", um alle verfügbaren Bilder zu übertragen. Um den Vorgang manuell auszuführen, klicken Sie auf "Ordner öffnen".</value>
+    <value>Dies ist die Seite zum Extrahieren von Ordnern. Hier können Sie alle Bilder aus einem beliebigen Ordner in den Spielordner kopieren. Klicken Sie auf die Schaltfläche „Ordner auswählen“, um einen Ordner zum Kopieren auszuwählen. Wählen Sie die Bilder aus und klicken Sie auf die Schaltfläche „Ausgewählte extrahieren“, um nur bestimmte Bilder zu verschieben, oder klicken Sie auf die Schaltfläche „Alle extrahieren“, um alle vorhandenen Porträts zu verschieben. Um den Vorgang manuell durchzuführen, klicken Sie auf die Schaltfläche „Ordner öffnen“.</value>
   </data>
   <data name="HINT_FILEPAGE" xml:space="preserve">
-    <value>Dies ist die Dateiseite. Hier können Sie wählen, welches Bild Sie als Porträt verwenden möchten. Sie können ein lokales Bild hochladen, indem Sie auf eine Schaltfläche oder ein Bild klicken oder es einfach per Drag &amp; Drop auf das Bild ziehen. Sie können auch ein Webbild hochladen, indem Sie auf die Schaltfläche klicken und den Anweisungen folgen. Verwenden Sie die Schaltflächen "Mittelgroß ändern" und "Klein ändern", um die jeweiligen Porträts zu ersetzen.</value>
+    <value>Dies ist die Bildauswahlseite. Hier können Sie auswählen, welches Bild Sie als Porträt verwenden möchten. Sie können ein lokales Bild hochladen, indem Sie auf eine Schaltfläche oder ein Bild klicken oder es einfach auf das Bild ziehen. Sie können auch ein Webbild hochladen, indem Sie auf die Schaltfläche klicken und den Anweisungen folgen. Um die entsprechenden Porträts zu ersetzen, verwenden Sie die Schaltflächen „Mittleres Porträt“ und „Kleines Porträt“.</value>
   </data>
   <data name="HINT_GALLERYPAGE" xml:space="preserve">
-    <value>Dies ist eine Galerieseite, die alle derzeit verfügbaren Porträts im Spiel anzeigt. Wählen Sie ein Bild aus und klicken Sie auf "Ausgewählte bearbeiten", um ein Porträt zu kopieren/ersetzen und ein neues zu erstellen. Du kannst auch mehrere oder einzelne Bilder auswählen und auf "löschen" klicken, um sie aus dem Spielordner zu entfernen. Wenn du CustomNPC installiert hast, drücke die entsprechenden Schaltflächen oben, um die von der Mod verwalteten Porträts anzuzeigen.</value>
+    <value>Dies ist eine Galerieseite, die alle in das Spiel geladenen Porträts anzeigt. Wählen Sie ein Bild aus und klicken Sie auf die Schaltfläche „Bearbeiten“, um ein beliebiges Porträt zu kopieren/ersetzen und ein neues zu erstellen. Sie können auch mehrere Bilder oder einige davon auswählen und auf die Schaltfläche „Löschen“ klicken, um sie aus dem Spielordner zu entfernen. Wenn Sie CustomNPC installiert haben, klicken Sie oben auf die entsprechenden Schaltflächen, um die vom Mod gesteuerten Porträts anzuzeigen.</value>
   </data>
   <data name="HINT_SCALEPAGE" xml:space="preserve">
-    <value>Dies ist eine Seite, auf der Sie das Bild nach Ihren Wünschen skalieren und zuschneiden können. Verwenden Sie das Mausrad, um Bilder zu vergrößern oder zu verkleinern. Doppelklicken Sie auf das Bild, um es wieder in seinen ursprünglichen Zustand zu versetzen. Ziehen Sie das Bild, um es individuell zu gestalten. Klicken Sie auf "Erstellen", um ein neues Porträt hinzuzufügen. Die hochgeladenen Porträts sind fast exakte Kopien der Bilder, die Sie auf dieser Seite eingerahmt haben. Klicken Sie auf "Zurück", um zur vorherigen Seite zurückzukehren.</value>
+    <value>Dies ist eine Seite zum Skalieren und Zuschneiden des Bildes nach Wunsch. Verwenden Sie das Mausrad zum Vergrößern oder Verkleinern. Doppelklicken Sie auf das Bild, um es in seinen ursprünglichen Zustand zurückzusetzen. Klicken Sie auf das Bild und ziehen Sie es, um es zu ändern. Klicken Sie auf die Schaltfläche „Erstellen“, um ein neues Porträt hinzuzufügen. Die von Ihnen hochgeladenen Porträts sind nahezu exakte Kopien der Bilder, die Sie auf dieser Seite gerahmt haben. Klicken Sie auf die Schaltfläche „Zurück“, um zur vorherigen Seite zurückzukehren.</value>
   </data>
   <data name="INQR_DELETEOLD" xml:space="preserve">
-    <value>Möchten Sie die alte Version des Porträts löschen?  Beachten Sie, dass Sie das Porträt verlieren können, wenn Sie die Dateiseite verlassen. Klicken Sie auf 'nein', um eine Kopie zu erstellen. Oder "Ja", um das alte Porträt zu ersetzen.</value>
+    <value>Möchten Sie die alte Version des Porträts löschen? Bitte beachten Sie, dass beim Verlassen der Bildauswahlseite das Risiko besteht, dass Ihr Porträt verloren geht. Klicken Sie auf „Nein“, um eine Kopie zu erstellen. Oder „Ja“, um das alte Porträt zu ersetzen.</value>
   </data>
   <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
-    <value>Sie haben keine Bilder hochgeladen. Sie können jedoch weiterhin das Standardbild verwenden. Klicken Sie auf "Ja", um mit den Standardbildern fortzufahren. Klicken Sie auf "Nein", um zurückzugehen und ein anderes Bild auszuwählen.</value>
+    <value>Sie haben keine Bilder hochgeladen. Sie können jedoch das Standardbild verwenden. Klicken Sie auf „Ja“, um mit den Standardbildern fortzufahren. Klicken Sie auf „Nein“, um zurückzugehen und ein anderes Bild auszuwählen.</value>
   </data>
   <data name="KING" xml:space="preserve">
     <value>Kingmaker</value>
@@ -247,85 +247,85 @@
     <value>Artemii "Zeight" Saganenko© 2024</value>
   </data>
   <data name="LABEL_CREATEDERROR" xml:space="preserve">
-    <value>Etwas ist schief gelaufen. Da Sie dieses Stadium erreicht haben, handelt es sich höchstwahrscheinlich um ein Problem mit dem Spielverzeichnis. Überprüfen Sie das Vorhandensein und die Konsistenz des oben angezeigten Verzeichnisses. Erstellen Sie es, falls nötig. Besuchen Sie die Einstellungsseite für weitere Informationen.</value>
+    <value>Etwas ist schief gelaufen. Wenn Sie dieses Stadium erreicht haben, liegt das Problem höchstwahrscheinlich im Spielverzeichnis. Führen Sie das Spiel mindestens einmal aus. Überprüfen Sie die Verfügbarkeit des oben genannten Verzeichnisses. Erstellen Sie bei Bedarf eine. Weitere Informationen finden Sie auf der Seite „Einstellungen“. Wenn das Problem weiterhin besteht, schreiben Sie dem Autor auf Nexusmods.</value>
   </data>
   <data name="LABEL_CREATEDOK" xml:space="preserve">
-    <value>Das Porträt wurde erfolgreich im Arbeitsverzeichnis erstellt, dessen Position oben angegeben ist. Jetzt kann es im Spiel verwendet werden.</value>
+    <value>Das Porträt wurde erfolgreich im Arbeitsverzeichnis erstellt, dessen Speicherort oben angegeben ist. Es kann jetzt im Spiel verwendet werden. Ein gutes Spiel haben!</value>
   </data>
   <data name="LABEL_LANG" xml:space="preserve">
-    <value>UI Sprache:</value>
+    <value>Schnittstellensprache::</value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
-    <value>Groß</value>
+    <value>Großes Porträt</value>
   </data>
   <data name="LABEL_LARGEIMG2" xml:space="preserve">
-    <value>Charakter-Porträt</value>
+    <value>Charakterseite</value>
   </data>
   <data name="LABEL_MEDIUMIMG" xml:space="preserve">
-    <value>Mittel</value>
+    <value>Mittleres Porträt</value>
   </data>
   <data name="LABEL_MEDIUMIMG2" xml:space="preserve">
-    <value>Skills-Porträt</value>
+    <value>Fähigkeiten, Dialog</value>
   </data>
   <data name="LABEL_PATH" xml:space="preserve">
-    <value>Pfad zum Ordner mit den Spielporträts</value>
+    <value>Pfad zum Ordner „Porträts“.</value>
   </data>
   <data name="LABEL_SETTINGS" xml:space="preserve">
-    <value>Dies ist die Einstellungsseite. Hier können Sie die Größe durch Ziehen an der Ecke anpassen. Und überprüfen Sie den Pfad zum richtigen Porträtordner.</value>
+    <value>Dies ist die Einstellungsseite. Hier können Sie die Größe anpassen, indem Sie das Fenster um die Ecke ziehen. Und überprüfen Sie den Pfad zum gewünschten Ordner mit Porträts.</value>
   </data>
   <data name="LABEL_SMALLIMG" xml:space="preserve">
-    <value>Klein</value>
+    <value>Kleines Porträt</value>
   </data>
   <data name="LABEL_SMALLIMG2" xml:space="preserve">
-    <value>Gameplay-Porträt</value>
+    <value>Gameplay, Karte</value>
   </data>
   <data name="LABEL_URLDIALOG" xml:space="preserve">
-    <value>Ziehen Sie das Bild per Drag &amp; Drop, geben Sie es ein oder kopieren Sie die URL eines vorhandenen Bildes. Die Url-Adresse muss zu einer zugänglichen Web-Quelle führen.</value>
+    <value>Ziehen Sie die URL eines vorhandenen Bildes, geben Sie sie ein oder kopieren Sie sie. Die URL muss auf eine zugängliche Webquelle verweisen.</value>
   </data>
   <data name="MESG_CANNOTLOAD" xml:space="preserve">
-    <value>Das ausgewählte Webbild ist nicht verfügbar. Versuchen Sie es ein anderes Mal, oder speichern Sie es auf Ihrem lokalen Laufwerk und laden Sie es lokal. Bitte beachten Sie, dass WEBP nicht unterstützt wird.</value>
+    <value>Das ausgewählte Webbild ist nicht verfügbar. Versuchen Sie es ein anderes Mal erneut oder speichern Sie es einfach auf Ihrem lokalen Laufwerk und laden Sie es lokal herunter. Bitte beachten Sie, dass das WEBP-Format nicht unterstützt wird.</value>
   </data>
   <data name="MESG_CUSTOMFOUND" xml:space="preserve">
-    <value>Sieht so aus, als hättest du Custom NPC Portraits von edvin76 installiert! Mit diesem Programm kannst du das Aussehen der NSC-Porträts einfacher anpassen. Gehe auf die Seite Galerieansicht und klicke auf die Schaltfläche, um benutzerdefinierte NSCs anzuzeigen, und bearbeite jedes beliebige Porträt, das du möchtest. Bitte beachte, dass beim Bearbeiten von NSC-Porträts eine Sicherungskopie im Ordner erstellt wird, wenn die alten Porträts ersetzt werden müssen. Wenn eine Kopie erstellt werden muss, wird diese in einem neuen Ordner abgelegt. Bitte beachten Sie, dass dieses Programm keine Porträts für benutzerdefinierte NSCs erstellt, sondern sie nur ersetzt!</value>
+    <value>Sieht so aus, als hätten Sie Custom NPC Portraits von edvin76 installiert! Mit diesem Programm können Sie das Erscheinungsbild von benutzerdefinierten NPC-Porträts einfacher anpassen. Gehen Sie zur Seite „Galerie“ und klicken Sie auf die Schaltfläche, um Porträts anzuzeigen. Bearbeiten Sie jedes Porträt nach Ihren Wünschen. Bitte beachten Sie, dass beim Bearbeiten von Porträts, falls Sie alte ersetzen müssen, eine Sicherungskopie im Ordner erstellt wird. Wenn Sie eine Kopie erstellen müssen, wird diese in einem neuen Ordner abgelegt. Bitte beachten Sie, dass dieses Programm keine Porträts für benutzerdefinierte NPCs erstellt, sondern diese nur ersetzt!</value>
   </data>
   <data name="MESG_CUSTOMNOTFOUND" xml:space="preserve">
-    <value>Benutzerdefinierter NPC nicht gefunden. Wenn nicht installiert, weiter. Andernfalls überprüfen Sie die Installation im Spiel selbst über den Unity Mod Manager, starten Sie das Spiel mindestens einmal, damit der Custom NPC Ordner für Porträts erstellt. Bitte beachten Sie, dass dieses Programm keine Porträts für Custom NPCs erstellt, sondern diese nur ersetzt!</value>
+    <value>Benutzerdefinierter NPC nicht gefunden. Wenn es nicht installiert ist, ignorieren Sie diese Warnung. Andernfalls überprüfen Sie die Installation im Spiel selbst noch einmal über den Unity Mod Manager. Führen Sie das Spiel mindestens einmal aus, damit der benutzerdefinierte NPC Porträtordner erstellt. Bitte beachten Sie, dass dieses Programm keine Porträts für benutzerdefinierte NPCs erstellt, sondern diese nur ersetzt!</value>
   </data>
   <data name="MESG_DELETE" xml:space="preserve">
-    <value>Sie sind dabei, Bilder zu löschen. Dieser Vorgang ist nicht umkehrbar. Wenn Ihre Porträts im Spiel in Gebrauch sind, werden sie durch Platzhalter im Spiel selbst ersetzt. Willst du fortfahren? Bilder insgesamt:</value>
+    <value>Sie sind dabei, die Bilder zu löschen. Dieser Vorgang ist irreversibel! Wenn Ihre In-Game-Porträts verwendet werden, werden diese vom Spiel selbst durch normale Porträts ersetzt. Möchtest du fortfahren? Gesamtbilder: </value>
   </data>
   <data name="MESG_GAMEFOLDERFOUND" xml:space="preserve">
-    <value>Mappe gefunden! Sie können jetzt Ihre eigenen Porträts erstellen! Klicken Sie auf "Porträt erstellen", um ein neues Porträt hinzuzufügen, auf "Ordner extrahieren", um mehrere Porträts aus einem anderen Ordner hinzuzufügen, auf "Galerie ansehen", um alte Porträts zu bearbeiten oder zu löschen.</value>
+    <value>Ordner gefunden! Sie können mit der Erstellung Ihrer Porträts beginnen! Klicken Sie auf die Schaltfläche „Porträt erstellen“, um ein neues Porträt hinzuzufügen, auf „Ordner extrahieren“, um mehrere Porträts aus einem anderen Ordner hinzuzufügen, und auf „Galerie anzeigen“, um alte Porträts zu bearbeiten oder zu löschen.</value>
   </data>
   <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
-    <value>Spielordner nicht gefunden. Stellen Sie sicher, dass Sie das Spiel mindestens einmal gestartet haben. Wenn das Problem weiterhin besteht, melden Sie es bitte in der Bug-Sektion. Wenn Sie ein anderes Spiel steuern müssen, sei es Kingmaker oder WotR. Ändern Sie den Spieltyp in den Einstellungen oder indem Sie auf das Titelbild klicken. Besuchen Sie die Einstellungsseite für weitere Informationen. Bis das Problem behoben ist, werden alle Funktionen blockiert sein.</value>
+    <value>Der Spielordner wurde nicht gefunden. Stellen Sie sicher, dass Sie das Spiel mindestens einmal gestartet haben. Wenn das Problem weiterhin besteht, melden Sie es bitte im Abschnitt „Fehler“. Wenn Sie ein anderes Spiel verwalten müssen, sei es Kingmaker, WotR oder Rogue Trader. Ändern Sie den Spieltyp in den Einstellungen oder indem Sie auf das Titelbild klicken. Weitere Informationen finden Sie auf der Seite „Einstellungen“. Bis das Problem behoben ist, sind alle Funktionen gesperrt.</value>
   </data>
   <data name="MESG_NONESELECTED" xml:space="preserve">
-    <value>Sie haben kein Porträt ausgewählt. Um es zu bearbeiten oder zu löschen, wählen Sie mindestens ein Bild aus der Liste aus.</value>
+    <value>Sie haben keine Porträts ausgewählt. Wählen Sie zum Bearbeiten oder Löschen mindestens ein Bild aus der Liste aus.</value>
   </data>
   <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
-    <value>Sie haben kein Porträt ausgewählt. Um zu extrahieren, wählen Sie mindestens ein Bild aus der Liste aus.</value>
+    <value>Sie haben keine Porträts ausgewählt. Wählen Sie zum Extrahieren mindestens ein Bild aus der Liste aus.</value>
   </data>
   <data name="MESG_REPEATFOLDER" xml:space="preserve">
-    <value>Ein oder mehrere Ordner existieren bereits im Ordner "Porträts im Spiel". Die Namen werden wiederholt. Das Programm wird die Ausgabeordner umbenennen, damit die Bilder nicht überschrieben werden.</value>
+    <value>Im In-Game-Porträtordner sind bereits ein oder mehrere Ordner vorhanden. Ihre Namen werden wiederholt. Das Programm benennt die Ausgabeordner um, damit die Bilder nicht überschrieben werden.</value>
   </data>
   <data name="MESG_SELECTEDMORE" xml:space="preserve">
-    <value>Mehr als ein Bild ausgewählt. Nur das erste der ausgewählten Bilder wird verarbeitet.</value>
+    <value>Es ist mehr als ein Bild ausgewählt. Es wird nur das erste aller ausgewählten Bilder verarbeitet.</value>
   </data>
   <data name="MESG_SUCCESS" xml:space="preserve">
-    <value>Erledigt! Die Bilder wurden erfolgreich geladen:</value>
+    <value>Erledigt! Bilder erfolgreich hochgeladen: </value>
   </data>
   <data name="MESG_WRONGFORMAT" xml:space="preserve">
-    <value>Die Datei hat nicht das richtige Format. Bitte wählen Sie ein Bild aus den zulässigen Formaten. Zulässig sind die Formate PNG, JPG, JPEG, BMP oder GIF. Möglicherweise ist die Datei auch nicht verfügbar. Das Verzeichnis sollte nicht mit zusätzlichen Rechten geschützt sein.</value>
+    <value>Die Datei hat nicht das richtige Format. Bitte wählen Sie ein Bild aus den zulässigen Formaten aus. Akzeptierte Formate sind PNG, JPG, JPEG, BMP oder GIF. Möglicherweise ist die Datei auch nicht verfügbar. Das Verzeichnis sollte nicht durch zusätzliche Rechte geschützt werden! Versuchen Sie, das kyrillische Alphabet im Ordnerpfad zu vermeiden.</value>
   </data>
   <data name="ROGUE" xml:space="preserve">
     <value>Rogue Trader</value>
   </data>
   <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
-    <value>URL hier eingeben</value>
+    <value>URL eingeben...</value>
   </data>
   <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
-    <value>Falsche URL</value>
+    <value>Ungültige URL...</value>
   </data>
   <data name="TEXT_FOLDEROPEN" xml:space="preserve">
     <value>Wählen Sie den zu extrahierenden Ordner aus</value>
@@ -334,10 +334,11 @@
     <value>Alle Bilder</value>
   </data>
   <data name="TEXT_PATHOPEN" xml:space="preserve">
-    <value>Ordner auswählen, in dem die Porträts gespeichert werden</value>
+    <value>Wählen Sie den Ordner im Spiel aus</value>
   </data>
   <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
-    <value>Bild auswählen</value>
+    <value>Bild
+	</value>
   </data>
   <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
     <value>Ordner auswählen</value>

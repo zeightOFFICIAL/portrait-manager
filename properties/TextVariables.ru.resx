@@ -253,7 +253,7 @@
     <value>Портрет был успешно создан в рабочем каталоге, расположение которого указано выше. Теперь он доступен для использования в игре. Приятной игры!</value>
   </data>
   <data name="LABEL_LANG" xml:space="preserve">
-    <value>Язык интерфейса: </value>
+    <value>Язык интерфейса </value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Большой портрет</value>

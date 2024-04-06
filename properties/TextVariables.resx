@@ -136,7 +136,7 @@
     <value>Army</value>
   </data>
   <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>CustomNPC</value>
+    <value>Characters</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Exit</value>
@@ -163,10 +163,10 @@
     <value>Load</value>
   </data>
   <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
-    <value>Choose local</value>
+    <value>Local image</value>
   </data>
   <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
-    <value>Choose web</value>
+    <value>Web image</value>
   </data>
   <data name="BUTTON_MENU" xml:space="preserve">
     <value>Menu</value>
@@ -190,7 +190,7 @@
     <value>Select</value>
   </data>
   <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
-    <value>Show custom</value>
+    <value>CustomNPC</value>
   </data>
   <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
     <value>Show portraits</value>
@@ -253,7 +253,7 @@
     <value>The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game.</value>
   </data>
   <data name="LABEL_LANG" xml:space="preserve">
-    <value>UI Language: </value>
+    <value>UI Language </value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>

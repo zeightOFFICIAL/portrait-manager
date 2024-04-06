@@ -558,6 +558,7 @@ namespace OwlcatPortraitManager
             ctrl.ForeColor = a;
             ctrl.BackColor = b;
             ctrl.TabStop = false;
+            ctrl.TabIndex = 1;
 
             foreach (Control subCtrl in ctrl.Controls)
             {

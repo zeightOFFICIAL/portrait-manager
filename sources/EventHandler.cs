@@ -106,6 +106,7 @@ namespace OwlcatPortraitManager
                 LoadTempImagesToPicBox(_imageSelectionFlag);
                 ResizeVisibleImagesToWindowSize();
             }
+            Focus();
         }
 
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)

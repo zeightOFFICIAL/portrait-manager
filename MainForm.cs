@@ -239,6 +239,7 @@ namespace OwlcatPortraitManager
         private void FormInit()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
             CenterToScreen();
             ParentLayoutsSetDockFill();            
             UpdateColorScheme();
@@ -553,6 +554,27 @@ namespace OwlcatPortraitManager
                         break;
                     case '3':
                         ButtonToGalleryPage_Click(sender, e);
+                        break;
+                }
+            }
+            else if (_activeMenuIndex == 1)
+            {
+                switch (e.KeyChar)
+                {
+                    case '1':
+                        ButtonLocalPortraitLoad_Click(sender, e);
+                        break;
+                    case '2':
+                        ButtonWebPortraitLoad_Click(sender, e);
+                        break;
+                    case '\b':
+                        ButtonToMainPage_Click(sender, e);
+                        break;
+                    case (char)Keys.Right:
+                        ButtonNextImageType_Click(sender, e);
+                        break;
+                    case (char)Keys.Return:
+                        ButtonToScalePage_Click(sender, e);
                         break;
                 }
             }

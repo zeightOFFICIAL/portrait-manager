@@ -39,6 +39,7 @@ namespace OwlcatPortraitManager.forms
             }
 
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             ButtonClose.Text = TextVariables.BUTTON_OK;
             ButtonClose.Font = _fontLarge;
             LabelMesg.Text = message;

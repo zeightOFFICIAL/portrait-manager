@@ -2,11 +2,11 @@
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Owlcat Portrait Manager")]
+[assembly: AssemblyTitle("Portrait Manager: Owlcat")]
 [assembly: AssemblyDescription("Desktop application for managing in game portraits for Owlcat Games products")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Artemii Saganenko")]
-[assembly: AssemblyProduct("Owlcat Portrait Manager")]
+[assembly: AssemblyConfiguration("P/W/R - P")]
+[assembly: AssemblyCompany("ZEIGHT")]
+[assembly: AssemblyProduct("Portrait Manager: Owlcat")]
 [assembly: AssemblyCopyright("Copyright Artemii Saganenko ©2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

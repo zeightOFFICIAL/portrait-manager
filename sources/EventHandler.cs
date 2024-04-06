@@ -958,9 +958,10 @@ namespace OwlcatPortraitManager
             }
             catch
             {
+                Focus();
                 TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
             }
-
+            Focus();
         }
         
         private void ButtonDenyWeb_Click(object sender, EventArgs e)
@@ -969,6 +970,8 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutEnable(LayoutFilePage);
             TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
             ResizeVisibleImagesToWindowSize();
+
+            Focus();
         }
         
         private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
@@ -1025,6 +1028,7 @@ namespace OwlcatPortraitManager
             {
                 ButtonNextImageType.Visible = false;
                 ButtonNextImageType.Enabled = false;
+                LblToAdvancedPage.Visible = false;
             }
 
             GenerateImageSelectionFlagString(_imageSelectionFlag);
@@ -1148,7 +1152,6 @@ namespace OwlcatPortraitManager
             TextsInit();
 
             PicBoxEng.Enabled = false;
-            PicBoxFra.Enabled = true;
             PicBoxGer.Enabled = true;
             PicBoxRus.Enabled = true;
         }
@@ -1164,7 +1167,6 @@ namespace OwlcatPortraitManager
             TextsInit();
 
             PicBoxEng.Enabled = true;
-            PicBoxFra.Enabled = true;
             PicBoxGer.Enabled = true;
             PicBoxRus.Enabled = false;
         }
@@ -1180,24 +1182,7 @@ namespace OwlcatPortraitManager
             TextsInit();
 
             PicBoxEng.Enabled = true;
-            PicBoxFra.Enabled = true;
             PicBoxGer.Enabled = false;
-            PicBoxRus.Enabled = true;
-        }
-
-        private void PicBoxFra_Click(object sender, EventArgs e)
-        {
-            FontsInit(_fontCollection);
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
-            CoreSettings.Default.SelectedLang = "fr-FR";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            TextsInit();
-
-            PicBoxEng.Enabled = true;
-            PicBoxFra.Enabled = false;
-            PicBoxGer.Enabled = true;
             PicBoxRus.Enabled = true;
         }
 

@@ -109,8 +109,8 @@ namespace OwlcatPortraitManager.forms
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(603, 44);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
@@ -127,7 +127,8 @@ namespace OwlcatPortraitManager.forms
             this.ButtonClose.MaximumSize = new System.Drawing.Size(90000, 40);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(200, 38);
-            this.ButtonClose.TabIndex = 0;
+            this.ButtonClose.TabIndex = 1;
+            this.ButtonClose.TabStop = false;
             this.ButtonClose.Text = "Button Close";
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.MouseEnter += new System.EventHandler(this.ButtonClose_MouseEnter);

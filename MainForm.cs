@@ -19,6 +19,7 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace OwlcatPortraitManager
 {
@@ -101,8 +102,7 @@ namespace OwlcatPortraitManager
                 var currentUICulture = CultureInfo.CurrentUICulture.ToString();
                 if (currentUICulture == "en-US" ||
                     currentUICulture == "ru-RU" ||
-                    currentUICulture == "de-DE" ||
-                    currentUICulture == "fr-FR"
+                    currentUICulture == "de-DE"
                     )
                 {
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
@@ -169,6 +169,8 @@ namespace OwlcatPortraitManager
                 ButtonLoadCustom.Visible = false;
                 ButtonLoadCustomNPC.Visible = false;
                 ButtonLoadCustomArmy.Visible = false;
+
+                Focus();
                 return;
             }
 
@@ -219,6 +221,8 @@ namespace OwlcatPortraitManager
             {
                 CheckBoxVerified.Checked = false;
             }
+
+            Focus();
         }
 
         private void LanguageInit()
@@ -239,7 +243,7 @@ namespace OwlcatPortraitManager
         private void FormInit()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.Selectable, false);
+            
             CenterToScreen();
             ParentLayoutsSetDockFill();            
             UpdateColorScheme();
@@ -281,6 +285,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstPortrait = false;
                 UseStamps.Default.Save();
             }
+
             if (!_isAspectRatioFixed)
             {
                 FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
@@ -288,6 +293,7 @@ namespace OwlcatPortraitManager
                 FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
                 _isAspectRatioFixed = true;
             }
+
             Focus();
         }
 
@@ -311,6 +317,7 @@ namespace OwlcatPortraitManager
                     }
                     else
                     {
+                        _activeMenuIndex = 1;
                         return;
                     }
                 }
@@ -337,7 +344,6 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstScaling = false;
                 UseStamps.Default.Save();
             }
-            Focus();
         }
         
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
@@ -351,6 +357,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
             ResizeVisibleImagesToWindowSize();
+
             Focus();
         }
 
@@ -371,6 +378,7 @@ namespace OwlcatPortraitManager
             ResizeVisibleImagesToWindowSize();
             GenerateImageSelectionFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
+
             Focus();
         }
         
@@ -407,6 +415,7 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstExtract = false;
                 UseStamps.Default.Save();
             }
+
             Focus();
         }
         
@@ -443,6 +452,7 @@ namespace OwlcatPortraitManager
             {
                 ButtonLoadCustomArmy.Visible = false;
             }
+
             Focus();
         }
         
@@ -453,6 +463,7 @@ namespace OwlcatPortraitManager
             ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
+
             Focus();
         }
 
@@ -466,6 +477,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
+
             Focus();
         }
 
@@ -478,6 +490,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutMainPage);
+
             Focus();
         }
 
@@ -493,6 +506,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
+
             Focus();
         }
        
@@ -513,6 +527,7 @@ namespace OwlcatPortraitManager
             CenterToScreen();
             Application.Restart();
             _isAspectRatioFixed = false;
+
             Focus();
         }
         
@@ -527,6 +542,7 @@ namespace OwlcatPortraitManager
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
+
             Focus();
         }
 
@@ -570,13 +586,24 @@ namespace OwlcatPortraitManager
                     case '\b':
                         ButtonToMainPage_Click(sender, e);
                         break;
-                    case (char)Keys.Right:
+                    case 'r':
+                        ButtonToScalePage_Click(sender, e);
+                        break;
+                    case 'e':
                         ButtonNextImageType_Click(sender, e);
                         break;
-                    case (char)Keys.Return:
+                    case (char)13:
                         ButtonToScalePage_Click(sender, e);
                         break;
                 }
+            }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
             }
         }
     }

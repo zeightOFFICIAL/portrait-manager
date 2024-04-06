@@ -37,6 +37,7 @@ namespace OwlcatPortraitManager.forms
             }
 
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             LabelInquiryMesg.Font = _font;
             LabelInquiryMesg.Text = message;
             ButtonOK.Font = _font;

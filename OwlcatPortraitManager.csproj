@@ -7,7 +7,7 @@
     <ProjectGuid>{BD9F7CB4-BCED-4FCB-B450-EDCB88B2A514}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>OwlcatPortraitManager</RootNamespace>
-    <AssemblyName>Owlcat Portrait Manager</AssemblyName>
+    <AssemblyName>Portrait Manager Owlcat</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -140,11 +140,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>CoreSettings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Properties\TextVariables.fr.Designer.cs">
-      <DependentUpon>TextVariables.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Properties\TextVariables.de.Designer.cs">
       <DependentUpon>TextVariables.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -192,10 +187,6 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\TextVariables.fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TextVariables.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\TextVariables.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

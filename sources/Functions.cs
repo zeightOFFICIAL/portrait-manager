@@ -29,8 +29,9 @@ namespace OwlcatPortraitManager
             _imageSelectionFlag = 0;
             _isAnyLoadedToPortraitPage = false;
             ButtonNextImageType.Visible = true;
-            ButtonNextImageType.Enabled = true;         
+            ButtonNextImageType.Enabled = true;       
             ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
+            LblToAdvancedPage.Visible = true;
         }
 
         public void AddClickEventsToMainButtons()
@@ -172,7 +173,7 @@ namespace OwlcatPortraitManager
 
                 }
             }
-            
+
             static public void LayoutEnable(TableLayoutPanel table)
             {
                 if (table.Visible == false && table.Enabled == false)
@@ -559,6 +560,7 @@ namespace OwlcatPortraitManager
             ctrl.BackColor = b;
             ctrl.TabStop = false;
             ctrl.TabIndex = 1;
+            ctrl.PreviewKeyDown += new PreviewKeyDownEventHandler(Ctrl_PreviewKeyDown);
 
             foreach (Control subCtrl in ctrl.Controls)
             {
@@ -886,6 +888,7 @@ namespace OwlcatPortraitManager
                 {
                     Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
+                    Focus();
                 }
             }
         }
@@ -957,6 +960,15 @@ namespace OwlcatPortraitManager
             else if (width * aspect > height) {
                 int diff = (width - (int)(height / aspect * 1.0f)) / 2;
                 parent.Margin = new Padding(diff, 3, diff, 3);
+            }
+        }
+
+        public void Ctrl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right ||
+                e.KeyCode == Keys.Enter)
+            {
+                e.IsInputKey = true;
             }
         }
     }

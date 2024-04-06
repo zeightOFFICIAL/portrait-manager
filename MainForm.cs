@@ -75,6 +75,7 @@ namespace OwlcatPortraitManager
         private static bool _isAnyLoadedToPortraitPage = false;
 
         private static ushort _activeMenuIndex;
+        private static bool _isAspectRatioFixed = false;
 
         private static ushort _isDraggingMouse = 0;
         private static Point _mousePosition = new Point();
@@ -101,8 +102,7 @@ namespace OwlcatPortraitManager
                 if (currentUICulture == "en-US" ||
                     currentUICulture == "ru-RU" ||
                     currentUICulture == "de-DE" ||
-                    currentUICulture == "fr-FR" ||
-                    currentUICulture == "pl-PL"
+                    currentUICulture == "fr-FR"
                     )
                 {
                     Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
@@ -281,6 +281,13 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstPortrait = false;
                 UseStamps.Default.Save();
             }
+            if (!_isAspectRatioFixed)
+            {
+                FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
+                FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
+                FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
+                _isAspectRatioFixed = true;
+            }
             Focus();
         }
 
@@ -299,10 +306,6 @@ namespace OwlcatPortraitManager
                         ParentLayoutsDisable();
                         LoadAllTempImagesToPicBox();
 
-                        FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
-                        FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
-                        FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
-
                         RootFunctions.LayoutEnable(LayoutScalePage);
                         ResizeVisibleImagesToWindowSize();
                     }
@@ -316,10 +319,6 @@ namespace OwlcatPortraitManager
             {
                 ParentLayoutsDisable();
                 LoadAllTempImagesToPicBox();
-
-                FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
-                FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
-                FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
 
                 RootFunctions.LayoutEnable(LayoutScalePage);
                 ResizeVisibleImagesToWindowSize();
@@ -513,6 +512,7 @@ namespace OwlcatPortraitManager
             ButtonValidatePath.Enabled = true;
             CenterToScreen();
             Application.Restart();
+            _isAspectRatioFixed = false;
             Focus();
         }
         

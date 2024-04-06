@@ -949,7 +949,7 @@ namespace OwlcatPortraitManager
             int width = parent.Width;
             int height = parent.Height;
 
-            if (width * aspect < height)
+            if (width * aspect <= height)
             {
                 int diff = (height - (int)(width * aspect * 1.0f)) / 2;
                 parent.Margin = new Padding(3, diff, 3, diff);

@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_ADVANCED" xml:space="preserve">
-    <value>Change medium</value>
+    <value>Medium portrait</value>
   </data>
   <data name="BUTTON_ADVANCED2" xml:space="preserve">
-    <value>Change small</value>
+    <value>Small portrait</value>
   </data>
   <data name="BUTTON_APPLY" xml:space="preserve">
     <value>Apply</value>
@@ -133,10 +133,10 @@
     <value>Cancel</value>
   </data>
   <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
-    <value>Custom army</value>
+    <value>Army</value>
   </data>
   <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>Custom NPC</value>
+    <value>CustomNPC</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Exit</value>

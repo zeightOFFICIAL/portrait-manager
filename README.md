@@ -1,14 +1,12 @@
-<hr>
-
 <p align="center">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/blob/rogue-trader/media/main_title.jpg" width="90%"/>
+<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/blob/rogue-trader/media/main_title.jpg" width="100%"/>
 </p>
 
-# <p align="center">Owlcat Portrait Manager</p>
+# <p align="center">Portrait Manager: Owlcat</p>
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games products</p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/>    
+<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/>
 <img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/>
 </p>
 

@@ -255,6 +255,7 @@ namespace OwlcatPortraitManager
         {
             ButtonToMainPageAndFolder.Enabled = true;
             RootFunctions.LayoutDisable(LayoutScalePage);
+            _activeMenuIndex = 100;
 
             string path = "";
             bool placeableFilepath = false;
@@ -263,6 +264,7 @@ namespace OwlcatPortraitManager
             if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
             {
                 RootFunctions.LayoutEnable(LayoutFinalPage);
+                Focus();
                 LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -291,12 +293,14 @@ namespace OwlcatPortraitManager
             if (CheckPortraitExistence(path))
             {
                 RootFunctions.LayoutEnable(LayoutFinalPage);
+                Focus();
                 LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
                 LabelDirLoc.Text = path;
             }
             else
             {
                 RootFunctions.LayoutEnable(LayoutFinalPage);
+                Focus();
                 LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = path;
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -354,7 +358,8 @@ namespace OwlcatPortraitManager
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
             RootFunctions.LayoutDisable(LayoutFilePage);            
-            RootFunctions.LayoutEnable(LayoutURLDialog); 
+            RootFunctions.LayoutEnable(LayoutURLDialog);
+            Focus();
             AnyButton_Leave(ButtonDenyWeb, e);
             AnyButton_Leave(ButtonLoadWeb, e);
         }
@@ -565,6 +570,7 @@ namespace OwlcatPortraitManager
             ButtonToMainPage3_Click(sender, e);
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutFilePage);
+            Focus();
             RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
             ResizeVisibleImagesToWindowSize();
@@ -951,6 +957,7 @@ namespace OwlcatPortraitManager
                 response.Close();
                 RootFunctions.LayoutDisable(LayoutURLDialog);
                 RootFunctions.LayoutEnable(LayoutFilePage);
+                Focus();
                 CheckWebResourceAndLoad(url);
                 ResizeVisibleImagesToWindowSize();
                 TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
@@ -1005,6 +1012,7 @@ namespace OwlcatPortraitManager
         
         private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 0;
             ButtonToMainPageAndFolder.BackColor = Color.Black;
             ButtonToMainPageAndFolder.ForeColor = Color.White;
             RootFunctions.LayoutDisable(LayoutFinalPage);
@@ -1013,6 +1021,7 @@ namespace OwlcatPortraitManager
             ParentLayoutsDisable();
             System.Diagnostics.Process.Start(LabelDirLoc.Text);
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
             ButtonToMainPageAndFolder.Enabled = true;
         }
         

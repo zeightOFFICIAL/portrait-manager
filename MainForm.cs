@@ -19,7 +19,6 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace OwlcatPortraitManager
 {
@@ -257,6 +256,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
             RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
 
             CheckBoxVerified.AutoCheck = false;
         }
@@ -272,6 +272,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
+            Focus();
             ResizeVisibleImagesToWindowSize();
 
             if (UseStamps.Default.isFirstPortrait == true)
@@ -293,8 +294,6 @@ namespace OwlcatPortraitManager
                 FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
                 _isAspectRatioFixed = true;
             }
-
-            Focus();
         }
 
         private void ButtonToScalePage_Click(object sender, EventArgs e)
@@ -313,6 +312,7 @@ namespace OwlcatPortraitManager
                         LoadAllTempImagesToPicBox();
 
                         RootFunctions.LayoutEnable(LayoutScalePage);
+                        Focus();
                         ResizeVisibleImagesToWindowSize();
                     }
                     else
@@ -328,6 +328,7 @@ namespace OwlcatPortraitManager
                 LoadAllTempImagesToPicBox();
 
                 RootFunctions.LayoutEnable(LayoutScalePage);
+                Focus();
                 ResizeVisibleImagesToWindowSize();
             }
 
@@ -356,6 +357,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
+            Focus();
             ResizeVisibleImagesToWindowSize();
 
             Focus();
@@ -375,11 +377,10 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutFilePage);
+            Focus();
             ResizeVisibleImagesToWindowSize();
             GenerateImageSelectionFlagString(100);
             ButtonToMainPageAndFolder.Enabled = true;
-
-            Focus();
         }
         
         private void ButtonExit_Click(object sender, EventArgs e)
@@ -399,6 +400,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
+            Focus();
 
             ButtonExtractAll.Enabled = false;
             ButtonExtractSelected.Enabled = false;
@@ -415,8 +417,6 @@ namespace OwlcatPortraitManager
                 UseStamps.Default.isFirstExtract = false;
                 UseStamps.Default.Save();
             }
-
-            Focus();
         }
         
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
@@ -425,6 +425,7 @@ namespace OwlcatPortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutGallery);
+            Focus();
 
             if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             {
@@ -452,8 +453,6 @@ namespace OwlcatPortraitManager
             {
                 ButtonLoadCustomArmy.Visible = false;
             }
-
-            Focus();
         }
         
         private void ButtonToMainPage_Click(object sender, EventArgs e)
@@ -592,8 +591,32 @@ namespace OwlcatPortraitManager
                     case 'e':
                         ButtonNextImageType_Click(sender, e);
                         break;
-                    case (char)13:
-                        ButtonToScalePage_Click(sender, e);
+                }
+            }
+            else if (_activeMenuIndex == 2)
+            {
+                switch (e.KeyChar)
+                {
+                    case 'q':
+                        ButtonToFilePage2_Click(sender, e);
+                        break;
+                    case 'e':
+                        ButtonCreatePortrait_Click(sender, e);
+                        break;
+                }
+            }
+            else if (_activeMenuIndex == 100)
+            {
+                switch (e.KeyChar)
+                {
+                    case '1':
+                        ButtonToMainPage4_Click(sender, e);
+                        break;
+                    case '2':
+                        ButtonToFilePage3_Click(sender, e);
+                        break;
+                    case '3':
+                        ButtonToMainPageAndFolder_Click(sender, e);
                         break;
                 }
             }

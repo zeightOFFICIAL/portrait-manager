@@ -211,7 +211,7 @@
     <value>Galerie</value>
   </data>
   <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
-    <value>Porträt zuschneiden</value>
+    <value>Zuschneiden</value>
   </data>
   <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
     <value>Einstellungen</value>

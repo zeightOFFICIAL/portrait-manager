@@ -620,6 +620,36 @@ namespace OwlcatPortraitManager
                         break;
                 }
             }
+            else if (_activeMenuIndex == 4)
+            {
+                switch (e.KeyChar)
+                {
+                    case 'o':
+                        ButtonOpenFolder_Click(sender, e);
+                        break;
+                    case 'q':
+                        ButtonToMainPage3_Click(sender, e);
+                        break;
+                }
+            }
+            else if (_activeMenuIndex == 3)
+            {
+                //switch (e.KeyChar)
+                //{
+                //    case 'e':
+                //        ButtonOpenFolder_Click(sender, e);
+                //        break;
+                //    case 'r':
+                //        ButtonToMainPage3_Click(sender, e);
+                //        break;
+                //    case 'o':
+                //        ButtonOpenFolder_Click(sender, e);
+                //        break;
+                //    case 'q':
+                //        ButtonToMainPage3_Click(sender, e);
+                //        break;
+                //}
+            }
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)

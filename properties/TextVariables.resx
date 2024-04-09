@@ -304,7 +304,7 @@
     <value>You have not selected any portrait. To edit or delete, select at least one image from the list.</value>
   </data>
   <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
-    <value>You have not selected any portrait. To extract select at least one image from the list.</value>
+    <value>You have not selected any portrait. To extract, select at least one image from the list.</value>
   </data>
   <data name="MESG_REPEATFOLDER" xml:space="preserve">
     <value>One or more folders already exist in the in-game portraits folder. The names are repeated. The program will rename the output folders so that the images are not overridden.</value>

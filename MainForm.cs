@@ -648,6 +648,12 @@ namespace OwlcatPortraitManager
                     case '3':
                         ButtonToMainPageAndFolder_Click(sender, e);
                         break;
+                    case 'q':
+                        ButtonToMainPage4_Click(sender, e);
+                        break;
+                    case '\b':
+                        ButtonToMainPage4_Click(sender, e);
+                        break;
                 }
             }
             else if (_activeMenuIndex == 4)

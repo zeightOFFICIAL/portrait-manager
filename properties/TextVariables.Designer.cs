@@ -61,7 +61,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change medium.
+        ///   Looks up a localized string similar to Medium portrait.
         /// </summary>
         internal static string BUTTON_ADVANCED {
             get {
@@ -70,7 +70,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change small.
+        ///   Looks up a localized string similar to Small portrait.
         /// </summary>
         internal static string BUTTON_ADVANCED2 {
             get {
@@ -106,7 +106,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom army.
+        ///   Looks up a localized string similar to Army.
         /// </summary>
         internal static string BUTTON_CUSTOMARMY {
             get {
@@ -115,7 +115,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom NPC.
+        ///   Looks up a localized string similar to Characters.
         /// </summary>
         internal static string BUTTON_CUSTOMNPC {
             get {
@@ -196,7 +196,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose local.
+        ///   Looks up a localized string similar to Local image.
         /// </summary>
         internal static string BUTTON_LOADLOCALPORTRAIT {
             get {
@@ -205,7 +205,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose web.
+        ///   Looks up a localized string similar to Web image.
         /// </summary>
         internal static string BUTTON_LOADWEBPORTRAIT {
             get {
@@ -277,7 +277,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show custom.
+        ///   Looks up a localized string similar to CustomNPC.
         /// </summary>
         internal static string BUTTON_SHOWCUSTOM {
             get {
@@ -466,7 +466,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UI Language: .
+        ///   Looks up a localized string similar to UI Language .
         /// </summary>
         internal static string LABEL_LANG {
             get {
@@ -619,7 +619,7 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not selected any portrait. To extract select at least one image from the list..
+        ///   Looks up a localized string similar to You have not selected any portrait. To extract, select at least one image from the list..
         /// </summary>
         internal static string MESG_NONESELECTEDEXTRACT {
             get {

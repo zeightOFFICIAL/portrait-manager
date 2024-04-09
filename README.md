@@ -17,7 +17,7 @@
 ### Nexus mods link: 
 https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>
 https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>
-https://www.nexusmods.com/warhammer40kroguetrader/mods/1 (ADD REAL URL)<br>
+https://www.nexusmods.com/warhammer40kroguetrader/mods/120
 
 ### Description
 Desktop application, management tool for portraits in Owlcat Games products, currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing, no dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.

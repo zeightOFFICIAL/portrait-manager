@@ -357,6 +357,7 @@ namespace OwlcatPortraitManager
         
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 200;
             RootFunctions.LayoutDisable(LayoutFilePage);            
             RootFunctions.LayoutEnable(LayoutURLDialog);
             Focus();
@@ -957,6 +958,7 @@ namespace OwlcatPortraitManager
                 response.Close();
                 RootFunctions.LayoutDisable(LayoutURLDialog);
                 RootFunctions.LayoutEnable(LayoutFilePage);
+                _activeMenuIndex = 1;
                 Focus();
                 CheckWebResourceAndLoad(url);
                 ResizeVisibleImagesToWindowSize();
@@ -977,6 +979,7 @@ namespace OwlcatPortraitManager
             RootFunctions.LayoutEnable(LayoutFilePage);
             TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
             ResizeVisibleImagesToWindowSize();
+            _activeMenuIndex = 1;
 
             Focus();
         }

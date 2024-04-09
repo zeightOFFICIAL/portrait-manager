@@ -71,10 +71,18 @@ namespace OwlcatPortraitManager
         private const string SMALL_APPEND = "\\Small.png";
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
 
+        private static ushort _activeMenuIndex; 
+        /*
+         * 0 - Menu page
+         * 1 - File page
+         * 2 - Scale page
+         * 3 - Extract page
+         * 4 - Gallery page
+         * 100 - File>web page
+         * 200 - Scale>finish page
+         */
         private static ushort _imageSelectionFlag = 0;
         private static bool _isAnyLoadedToPortraitPage = false;
-
-        private static ushort _activeMenuIndex;
         private static bool _isAspectRatioFixed = false;
 
         private static ushort _isDraggingMouse = 0;
@@ -570,6 +578,12 @@ namespace OwlcatPortraitManager
                     case '3':
                         ButtonToGalleryPage_Click(sender, e);
                         break;
+                    case '\t':
+                        PictureBoxTitle_Click(sender, e);
+                        break;
+                    case '\b':
+                        ButtonExit_Click(sender, e);
+                        break;
                 }
             }
             else if (_activeMenuIndex == 1)
@@ -579,10 +593,19 @@ namespace OwlcatPortraitManager
                     case '1':
                         ButtonLocalPortraitLoad_Click(sender, e);
                         break;
+                    case 'l':
+                        ButtonLocalPortraitLoad_Click(sender, e);
+                        break;
                     case '2':
                         ButtonWebPortraitLoad_Click(sender, e);
                         break;
+                    case 'w':
+                        ButtonWebPortraitLoad_Click(sender, e);
+                        break;
                     case '\b':
+                        ButtonToMainPage_Click(sender, e);
+                        break;
+                    case 'q':
                         ButtonToMainPage_Click(sender, e);
                         break;
                     case 'r':
@@ -600,9 +623,16 @@ namespace OwlcatPortraitManager
                     case 'q':
                         ButtonToFilePage2_Click(sender, e);
                         break;
+                    case '\b':
+                        ButtonToFilePage2_Click(sender, e);
+                        break;
                     case 'e':
                         ButtonCreatePortrait_Click(sender, e);
                         break;
+                    case 'r':
+                        ResizeVisibleImagesToWindowSize();
+                        break;
+
                 }
             }
             else if (_activeMenuIndex == 100)
@@ -630,25 +660,47 @@ namespace OwlcatPortraitManager
                     case 'q':
                         ButtonToMainPage3_Click(sender, e);
                         break;
+                    case '\b':
+                        ButtonToMainPage3_Click(sender, e);
+                        break;
                 }
             }
             else if (_activeMenuIndex == 3)
             {
-                //switch (e.KeyChar)
-                //{
-                //    case 'e':
-                //        ButtonOpenFolder_Click(sender, e);
-                //        break;
-                //    case 'r':
-                //        ButtonToMainPage3_Click(sender, e);
-                //        break;
-                //    case 'o':
-                //        ButtonOpenFolder_Click(sender, e);
-                //        break;
-                //    case 'q':
-                //        ButtonToMainPage3_Click(sender, e);
-                //        break;
-                //}
+                switch (e.KeyChar)
+                {
+                    case 'e':
+                        ButtonChooseFolder_Click(sender, e);
+                        break;
+                    case 'r':
+                        ButtonExtractAll_Click(sender, e);
+                        break;
+                    case 'o':
+                        ButtonOpenFolders_Click(sender, e);
+                        break;
+                    case 'q':
+                        ButtonToMainPage2_Click(sender, e);
+                        break;
+                    case '\b':
+                        ButtonToMainPage2_Click(sender, e);
+                        break;
+                }
+            }
+            else if (_activeMenuIndex == 200)
+            {
+                switch (e.KeyChar)
+                {
+                    case 'q':
+                        ButtonDenyWeb_Click(sender, e);
+                        break;
+                    case '\b':
+                        ButtonDenyWeb_Click(sender, e);
+                        break;
+                    case 'e':
+                        ButtonLoadWeb_Click(sender, e);
+                        break;
+
+                }
             }
         }
 

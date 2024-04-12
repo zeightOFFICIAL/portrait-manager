@@ -1,55 +1,22 @@
 <p align="center">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/blob/rogue-trader/media/main_title.jpg" width="100%"/>
+<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/main_title.jpg" width="100%"/>
 </p>
 
-# <p align="center">Portrait Manager: Owlcat</p>
-### <p align="center">Desktop application for managing in-game portraits for Owlcat Games products</p>
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/>
-<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/>
-</p>
-
-###### <p align="center">Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p><hr>
-
-### Created by Artemii "Zeight" Saganenko
-### Designed by Artemii "Zeight" Saganenko
-### Nexus mods link: 
-https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>
-https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>
-https://www.nexusmods.com/warhammer40kroguetrader/mods/120
+# <p align="center"> Portrait Manager: Owlcat Games </p>
+### <p align="center">Desktop application for managing in-game portraits for Owlcat Games' products</p>
+###### <p align="center"><img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/><img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p>
+#### <p align="center">Nexus mods link:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120</p>
+#### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2024</p><hr>
 
 ### Description
-Desktop application, management tool for portraits in Owlcat Games products, currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits as well as modifying old ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing, no dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.
-
-| Kingmaker | Wrath of the Righteous |
-| :-------: | :--------------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/5ffd3ba8-8375-4a94-97ee-aa6b7fe2762b)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/c57f06c9-6a6d-4a2c-bfe5-b6265744b799)|
-
-| Load any image | Scale image to portrait |
-| :------------: | :---------------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/84fe93f0-8020-4d60-888e-c642ac6a4fab)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/9bb6daec-0cf7-45e2-a748-d7cf5ff819aa)|
-
-| Extract from folder | Browse existing Custom Army |
-| :-----------------: | :-------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/6d62a1b4-a603-46ce-bade-234883930924)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/97f51e75-6c77-4657-8dfb-f1757e887af4)|
-
-| Browse existing portraits | Browse existing Custom NPC |
-| :-----------------: | :-------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/20bd3800-6a52-425d-a2c5-478403be7c39)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/8b509422-0399-4e46-b545-354b1b85b918)|
-
-| Settings page | Load web-image page |
-| :-----------------: | :-------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/17ae9a9e-287f-4017-bd57-e2473268e75b)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/914124d3-c4f7-41f0-a3c8-80fbe0e3a270)|
-
-| Russian translation | German translation |
-| :-----------------: | :-------------: |
-|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/d9786dca-6487-4970-a415-bd0db0d36e38)|![image](https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/assets/50341618/022fc44d-2dec-4195-b274-84182e4d23b6)|
+Desktop application, management tool for portraits in Owlcat Games products. Currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits and browsing, modifying existing ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing additional. No dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.
 
 ### Features
 
 #### Create new portraits
-Allows the user to upload any local or web image, scale it as desired, and finally create a portrait in the appropriate game directory. Supports all major image formats: png, jpg, jpeg, bmp, gif. Now allows the user to change the image for each portrait type: small, medium, full length, by uploading a local or web image with the specific portrait type selected. Unsupported files are ignored. The created portraits will be almost exact copies of the images displayed in the frames when scaled. The minor diviation is due to trimming and resizing errors, they are expected and nothing can be done about it. The program automatically crops, resizes the image to the required state, creates a directory and an image file. User must simply click the button.
+Allows the user to upload any local or web image, scale it as desired, and finally create a portrait in the appropriate game directory. Supports all major image formats: png, jpg, jpeg, bmp, gif. Allows the user to change the image for each portrait type: small, medium, full length, by uploading a local or web image with the specific portrait type selected. Unsupported files are ignored. The created portraits will be almost exact copies of the images displayed in the frames when scaled. The minor diviation is due to trimming and resizing errors, they are expected and nothing can be done about it. The program automatically crops, resizes the image to the required state, creates a directory and an image file. User must simply click the button. Now panels for each portrait type represent proper aspect ratio of needed portrait and game type, which makes cropping more accurate as the user see the portrait to be created more precise.
+
+#### ------------------------------------------------------------------------
 
 #### Extract from external folders
 Allows the user to extract images that are to be portraits from a local directory directly into the game directory. Select the folder containing the correct portrait package images to process and create the portrait in game folder. Choose which images to move to the game directory. You can extract selected ones to move only certain images. Or extract every one of them. The program automatically copies folders to the game portraits' directory. Works only with regular portraits. Custom NPC portraits don't work. The latter functionality will not be implemented, since it is rather irrelevant and senseless.

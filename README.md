@@ -11,10 +11,19 @@
 ### Description
 Desktop application, management tool for portraits in Owlcat Games products. Currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits and browsing, modifying existing ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing additional. No dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.
 
+|![path_main](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/fe1a9371-9879-4c84-97bc-8cc25c22f8ee)|![wotr_main](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/806f1114-ea79-411a-91c7-4369e1e22d07)|![rt_main](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/7a188b87-5148-4d67-b61f-d56e3d264f18)|
+|---|---|---|
+
 ### Features
 
 #### Create new portraits
 Allows the user to upload any local or web image, scale it as desired, and finally create a portrait in the appropriate game directory. Supports all major image formats: png, jpg, jpeg, bmp, gif. Allows the user to change the image for each portrait type: small, medium, full length, by uploading a local or web image with the specific portrait type selected. Unsupported files are ignored. The created portraits will be almost exact copies of the images displayed in the frames when scaled. The minor diviation is due to trimming and resizing errors, they are expected and nothing can be done about it. The program automatically crops, resizes the image to the required state, creates a directory and an image file. User must simply click the button. Now panels for each portrait type represent proper aspect ratio of needed portrait and game type, which makes cropping more accurate as the user see the portrait to be created more precise.
+
+|![path_file](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/77384f78-c5dd-4e87-af34-a867a978672c)|![wotr_file-1](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/6b01bb4d-8e81-48f6-a915-963d37be77a4)|![rt_file](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/bf8bc07a-7e3a-409c-8f38-245fdabcbf83)|
+|---|---|---|
+
+|![wotr_scale](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/4f3a271d-c264-41a6-9f18-f0506a9aa6a0)|![wotr_web](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/1eb4f9c6-7bc5-4b9d-ad53-44712b3563cc)|![wotr_final](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/f4b18678-0764-4b1a-941d-8c33b4024d5e)|
+|---|---|---|
 
 #### ------------------------------------------------------------------------
 

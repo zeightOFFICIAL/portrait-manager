@@ -40,17 +40,22 @@ namespace OwlcatPortraitManager.forms
 
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
+            Focus();
+
             ButtonClose.Text = TextVariables.BUTTON_OK;
             ButtonClose.Font = _fontLarge;
             LabelMesg.Text = message;
             LabelMesg.Font = _fontMedium;
         }
+
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
             _fontLarge.Dispose();
             _fontMedium.Dispose();
             Dispose();
         }
+
         private void ButtonClose_MouseEnter(object sender, System.EventArgs e)
         {
             if (sender is Button button)
@@ -62,6 +67,7 @@ namespace OwlcatPortraitManager.forms
                 }
             }
         }
+
         private void ButtonClose_MouseLeave(object sender, System.EventArgs e)
         {
             if (sender is Button button)
@@ -71,6 +77,14 @@ namespace OwlcatPortraitManager.forms
                     button.BackColor = Color.Black;
                     button.ForeColor = Color.White;
                 }
+            }
+        }
+
+        private void MyMessageDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.E)
+            {
+                Close();
             }
         }
     }

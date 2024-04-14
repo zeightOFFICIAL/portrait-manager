@@ -156,6 +156,7 @@ namespace OwlcatPortraitManager.forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "_";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyMessageDialog_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyMessageDialog_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

@@ -38,6 +38,9 @@ namespace OwlcatPortraitManager.forms
 
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
+            Focus();
+
             LabelInquiryMesg.Font = _font;
             LabelInquiryMesg.Text = message;
             ButtonOK.Font = _font;
@@ -73,6 +76,20 @@ namespace OwlcatPortraitManager.forms
                     button.BackColor = Color.Black;
                     button.ForeColor = Color.White;
                 }
+            }
+        }
+
+        private void MyInquiryDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.E)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+                Close();
             }
         }
     }

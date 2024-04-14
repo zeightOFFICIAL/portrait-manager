@@ -71,7 +71,8 @@ namespace OwlcatPortraitManager
         private const string SMALL_APPEND = "\\Small.png";
         private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
 
-        private static ushort _activeMenuIndex; 
+        private static char _gameSelected = CoreSettings.Default.GameType;
+
         /*
          * 0 - Menu page
          * 1 - File page
@@ -81,14 +82,18 @@ namespace OwlcatPortraitManager
          * 100 - File>web page
          * 200 - Scale>finish page
          */
+        private static ushort _activeMenuIndex;
+        /* 0 - all loaded
+         * 1 - first loaded
+         * 2 - first, second loaded
+         * 100 - not loaded
+         */
         private static ushort _imageSelectionFlag = 0;
         private static bool _isAnyLoadedToPortraitPage = false;
         private static bool _isAspectRatioFixed = false;
 
         private static ushort _isDraggingMouse = 0;
-        private static Point _mousePosition = new Point();
-        
-        private static char _gameSelected = CoreSettings.Default.GameType;
+        private static Point _mousePosition = new Point();      
 
         private static PrivateFontCollection _fontCollection;
 
@@ -145,6 +150,7 @@ namespace OwlcatPortraitManager
             FormInit();
             LanguageInit();
             CenterToScreen();
+            Show();
 
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
@@ -250,6 +256,7 @@ namespace OwlcatPortraitManager
         private void FormInit()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
             
             CenterToScreen();
             ParentLayoutsSetDockFill();            
@@ -534,7 +541,6 @@ namespace OwlcatPortraitManager
             CenterToScreen();
             Application.Restart();
             _isAspectRatioFixed = false;
-
             Focus();
         }
         

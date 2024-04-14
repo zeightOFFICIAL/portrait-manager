@@ -163,6 +163,7 @@ namespace OwlcatPortraitManager.forms
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyInquiryDialog_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyInquiryDialog_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

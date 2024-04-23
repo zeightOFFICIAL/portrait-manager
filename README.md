@@ -111,10 +111,13 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
 
 ##### Changelog
 * 1.3.0.0 (current)
-    * Added Warhammer 40000: Rogue Trader support
-    * Added french localization, verified all translations and typings.
-    * Minor refactoring
-    * Minor graphical changes, now all languages support Bebas Neue font, some margings, paddings adjusted.
+    * Added Warhammer 40000: Rogue Trader full support, except CustomNPC, which for the current time being have not been developed yet
+    * Re-verified all translations and typings. No linguist is involved, so minor mistakes still can be found. I consider nothing crucial, but expect no flawlessness in the matter. If one would like to participate write on my email
+    * Minor refactoring, nothing of interest for users. Plus tiny optimization tweaks
+    * Minor graphical changes, now all languages support Bebas Neue font, some margings, paddings adjusted, fixed buttons' and labels' text being hidden from sight
+    * Added keyboard events and legend for them. Now users are able to navigate the tool using keyboard, including dialogs/modal forms and main form, except settings page, however
+    * Transfered from .NET Framework 4.7.2 to .NET Framework 4.8. Nothing changed for users. 4.8 is an LTS as well and considering Microsoft information will be supported for at least 10 years
+    * A bit tired of saying it but seemingly there is nothing I can so far)) Do not hope for functional updates, and expect almost immediate support for new Owlcat Games products. Obsidian Edition is coming till the end of the year 2024))
 * 1.2.0.0
     * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application

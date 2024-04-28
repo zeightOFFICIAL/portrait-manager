@@ -142,7 +142,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Settings page back button, now restarts application
     * Transferred from .NET Framework 4.7.2 to .NET Framework 4.8. Nothing changed for users. 4.8 is an LTS as well and considering Microsoft information will be supported for at least 10 years
     * A bit tired of saying it, but seemingly there is nothing I can add so far)) Do not hope for functional updates, and expect almost immediate support for new Owlcat Games products. Obsidian Edition is coming till the end of the year 2024)) I believe 
-    * Yes, its size now is 2x bigger. But if you can install ~40gb game, I believe you can share 7.5Mb, instead of 3.2Mb)
+    * Yes, its size now is 2x bigger. But if you can install ~40gb game, I believe you can share 7.5 Mb, instead of 3.2 Mb)
 * 1.2.0.0
     * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application

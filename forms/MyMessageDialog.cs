@@ -1,19 +1,21 @@
 ﻿/*    
-    Pathfinder Portrait Manager. Desktop application for managing in game
-    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
-    Copyright (C) 2023-2024 Artemii "Zeight" Saganenko
-    LICENSE terms are written in LICENSE file
-    Primal license header is written in Program.cs
+    Portrait Manager: Owlcat. Desktop application for managing in game
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+
+    GPL-2.0 license terms are listed in LICENSE file.
+    License header for this project is listed in Program.cs.
 */
 
-using PathfinderPortraitManager.Properties;
+using OwlcatPortraitManager.Properties;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace PathfinderPortraitManager.forms
+namespace OwlcatPortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {
@@ -22,33 +24,38 @@ namespace PathfinderPortraitManager.forms
 
         public MyMessageDialog(string message, string locale)
         {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
 
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU") ||
-                Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("de-DE"))
+            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
             {
-                _fontLarge = new Font(DefaultFont.FontFamily, 13);
-                _fontMedium = new Font(DefaultFont.FontFamily, 11);
+                _fontLarge = new Font(_fontCollection.Families[1], 17);
+                _fontMedium = new Font(_fontCollection.Families[1], 15);
             }
             else
             {
-                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
                 _fontLarge = new Font(_fontCollection.Families[0], 17);
                 _fontMedium = new Font(_fontCollection.Families[0], 15);
             }
 
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
+            Focus();
+
             ButtonClose.Text = TextVariables.BUTTON_OK;
             ButtonClose.Font = _fontLarge;
             LabelMesg.Text = message;
             LabelMesg.Font = _fontMedium;
         }
+
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
             _fontLarge.Dispose();
             _fontMedium.Dispose();
             Dispose();
         }
+
         private void ButtonClose_MouseEnter(object sender, System.EventArgs e)
         {
             if (sender is Button button)
@@ -60,6 +67,7 @@ namespace PathfinderPortraitManager.forms
                 }
             }
         }
+
         private void ButtonClose_MouseLeave(object sender, System.EventArgs e)
         {
             if (sender is Button button)
@@ -69,6 +77,14 @@ namespace PathfinderPortraitManager.forms
                     button.BackColor = Color.Black;
                     button.ForeColor = Color.White;
                 }
+            }
+        }
+
+        private void MyMessageDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.E)
+            {
+                Close();
             }
         }
     }

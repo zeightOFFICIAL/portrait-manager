@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_ADVANCED" xml:space="preserve">
-    <value>Change medium</value>
+    <value>Medium portrait</value>
   </data>
   <data name="BUTTON_ADVANCED2" xml:space="preserve">
-    <value>Change small</value>
+    <value>Small portrait</value>
   </data>
   <data name="BUTTON_APPLY" xml:space="preserve">
     <value>Apply</value>
@@ -133,10 +133,10 @@
     <value>Cancel</value>
   </data>
   <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
-    <value>Custom army</value>
+    <value>Army</value>
   </data>
   <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>Custom NPC</value>
+    <value>Characters</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>Exit</value>
@@ -163,10 +163,10 @@
     <value>Load</value>
   </data>
   <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
-    <value>Choose local</value>
+    <value>Local image</value>
   </data>
   <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
-    <value>Choose web</value>
+    <value>Web image</value>
   </data>
   <data name="BUTTON_MENU" xml:space="preserve">
     <value>Menu</value>
@@ -190,7 +190,7 @@
     <value>Select</value>
   </data>
   <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
-    <value>Show custom</value>
+    <value>CustomNPC</value>
   </data>
   <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
     <value>Show portraits</value>
@@ -244,7 +244,7 @@
     <value>Kingmaker</value>
   </data>
   <data name="LABEL_COPY" xml:space="preserve">
-    <value>Artemii "Zeight" Saganenko© 2023</value>
+    <value>Artemii "Zeight" Saganenko© 2024</value>
   </data>
   <data name="LABEL_CREATEDERROR" xml:space="preserve">
     <value>Something went wrong. Given that you have reached this stage, it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information.</value>
@@ -253,7 +253,7 @@
     <value>The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game.</value>
   </data>
   <data name="LABEL_LANG" xml:space="preserve">
-    <value>UI Language: </value>
+    <value>UI Language </value>
   </data>
   <data name="LABEL_LARGEIMG" xml:space="preserve">
     <value>Large</value>
@@ -304,7 +304,7 @@
     <value>You have not selected any portrait. To edit or delete, select at least one image from the list.</value>
   </data>
   <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
-    <value>You have not selected any portrait. To extract select at least one image from the list.</value>
+    <value>You have not selected any portrait. To extract, select at least one image from the list.</value>
   </data>
   <data name="MESG_REPEATFOLDER" xml:space="preserve">
     <value>One or more folders already exist in the in-game portraits folder. The names are repeated. The program will rename the output folders so that the images are not overridden.</value>
@@ -317,6 +317,9 @@
   </data>
   <data name="MESG_WRONGFORMAT" xml:space="preserve">
     <value>The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well. Directory should not be protected with extra rights.</value>
+  </data>
+  <data name="ROGUE" xml:space="preserve">
+    <value>Rogue Trader</value>
   </data>
   <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
     <value>Input URL here</value>

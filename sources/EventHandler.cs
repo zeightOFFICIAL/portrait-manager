@@ -1,13 +1,16 @@
 ﻿/*    
-    Pathfinder Portrait Manager. Desktop application for managing in game
-    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
-    Copyright (C) 2023-2024 Artemii "Zeight" Saganenko
-    LICENSE terms are written in LICENSE file
-    Primal license header is written in Program.cs
+    Portrait Manager: Owlcat. Desktop application for managing in game
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+
+    GPL-2.0 license terms are listed in LICENSE file.
+    License header for this project is listed in Program.cs.
 */
 
-using PathfinderPortraitManager.forms;
-using PathfinderPortraitManager.Properties;
+using OwlcatPortraitManager.forms;
+using OwlcatPortraitManager.Properties;
+
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -18,12 +21,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PathfinderPortraitManager
+namespace OwlcatPortraitManager
 {
     public partial class MainForm : Form
     {
         private string _extractFolderPath = "!NONE!";
         private string _tunneledNameToPortraitPage = "!NONE!";
+
         private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
         {
             string path = ParseDragDropFile(e);
@@ -57,6 +61,7 @@ namespace PathfinderPortraitManager
                 ResizeVisibleImagesToWindowSize();
             }
         }
+        
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -68,9 +73,10 @@ namespace PathfinderPortraitManager
                 e.Effect = DragDropEffects.None;
             }
         }
+        
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
-            string path = SystemControl.FileControl.OpenFileLocation();
+            string path = SystemControl.FileControl.OpenFileLocation(TextVariables.TEXT_IMAGEFILTER, TextVariables.TEXT_TITLEOPENFILE);
 
             if (path == "!NONE!")
             {
@@ -100,11 +106,14 @@ namespace PathfinderPortraitManager
                 LoadTempImagesToPicBox(_imageSelectionFlag);
                 ResizeVisibleImagesToWindowSize();
             }
+            Focus();
         }
+
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
         {
             PicPortraitTemp_Click(sender, e);
         }
+
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -113,6 +122,7 @@ namespace PathfinderPortraitManager
                 _isDraggingMouse = 1;
             }
         }
+
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
@@ -122,11 +132,13 @@ namespace PathfinderPortraitManager
                                                               -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
         }
+        
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitLrg);
             _isDraggingMouse = 0;
         }
+        
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -135,6 +147,7 @@ namespace PathfinderPortraitManager
                 _isDraggingMouse = 2;
             }
         }
+        
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
@@ -144,11 +157,13 @@ namespace PathfinderPortraitManager
                                                               -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
         }
+
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitMed);
             _isDraggingMouse = 0;
         }
+
         private void PicPortraitSml_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -157,6 +172,7 @@ namespace PathfinderPortraitManager
                 _isDraggingMouse = 3;
             }
         }
+
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
@@ -166,73 +182,80 @@ namespace PathfinderPortraitManager
                                                               -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
             }
         }
+
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitSml);
             _isDraggingMouse = 0;
         }
+        
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitLrg);
-            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f), zoomFactor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            float zoomFactor = PicPortraitLrg.Width * 1.0f / 14;
 
             if (e.Delta > 0)
             {
-                zoomFactor = PicPortraitLrg.Width * 1.0f / 8;
                 ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                zoomFactor = -PicPortraitLrg.Width * 1.0f / 8;
+                zoomFactor = -zoomFactor;
                 ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitLrg);
         }
+
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitMed);
-            float aspectRatio = (PicPortraitMed.Width * 1.0f / PicPortraitMed.Height * 1.0f), zoomFactor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            float zoomFactor = PicPortraitLrg.Width * 1.0f / 10;
 
             if (e.Delta > 0)
             {
-                zoomFactor = PicPortraitMed.Width * 1.0f / 10;
                 ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                zoomFactor = -PicPortraitMed.Width * 1.0f / 10;
+                zoomFactor = -zoomFactor;
                 ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitMed);
         }
+
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
         {
             RootFunctions.HideScrollBar(PanelPortraitSml);
-            float aspectRatio = (PicPortraitSml.Width * 1.0f / PicPortraitSml.Height * 1.0f), zoomFactor;
+            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            float zoomFactor = PicPortraitLrg.Width * 1.0f / 6;
 
             if (e.Delta > 0)
             {
-                zoomFactor = PicPortraitSml.Width * 1.0f / 10;
                 ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             }
             else
             {
-                zoomFactor = -PicPortraitSml.Width * 1.0f / 10;
+                zoomFactor = -zoomFactor;
                 ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             }
 
             RootFunctions.HideScrollBar(PanelPortraitSml);
         }
+        
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             ResizeVisibleImagesToWindowSize();
         }
+
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
             ButtonToMainPageAndFolder.Enabled = true;
             RootFunctions.LayoutDisable(LayoutScalePage);
+            _activeMenuIndex = 100;
 
             string path = "";
             bool placeableFilepath = false;
@@ -241,6 +264,7 @@ namespace PathfinderPortraitManager
             if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
             {
                 RootFunctions.LayoutEnable(LayoutFinalPage);
+                Focus();
                 LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
                 ButtonToMainPageAndFolder.Enabled = false;
@@ -269,61 +293,78 @@ namespace PathfinderPortraitManager
             if (CheckPortraitExistence(path))
             {
                 RootFunctions.LayoutEnable(LayoutFinalPage);
+                Focus();
                 LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
                 LabelDirLoc.Text = path;
             }
             else
             {
                 RootFunctions.LayoutEnable(LayoutFinalPage);
+                Focus();
                 LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
                 LabelDirLoc.Text = path;
                 ButtonToMainPageAndFolder.Enabled = false;
             }
         }
+        
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
                 ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
         }
+        
         private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
         {
             using (Image img = new Bitmap(TEMP_LARGE_APPEND))
                 ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
         }
+        
         private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             using (Image img = new Bitmap(TEMP_SMALL_APPEND))
                 ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
         }
+        
         private void LabelMedImg_MouseHover(object sender, EventArgs e)
         {
             LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG2;
         }
+        
         private void LabelLrgImg_MouseHover(object sender, EventArgs e)
         {
             LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG2;
         }
+        
         private void LabelSmlImg_MouseHover(object sender, EventArgs e)
         {
             LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG2;
         }
+        
         private void LabelMedImg_MouseLeave(object sender, EventArgs e)
         {
             LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
         }
+        
         private void LabelLrgImg_MouseLeave(object sender, EventArgs e)
         {
             LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
         }
+        
         private void LabelSmlImg_MouseLeave(object sender, EventArgs e)
         {
             LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
         }
+        
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
-            RootFunctions.LayoutDisable(LayoutFilePage);
+            _activeMenuIndex = 200;
+            RootFunctions.LayoutDisable(LayoutFilePage);            
             RootFunctions.LayoutEnable(LayoutURLDialog);
+            Focus();
+            AnyButton_Leave(ButtonDenyWeb, e);
+            AnyButton_Leave(ButtonLoadWeb, e);
         }
+        
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
@@ -332,6 +373,7 @@ namespace PathfinderPortraitManager
                 Hint.ShowDialog();
             }
         }
+
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
@@ -340,15 +382,20 @@ namespace PathfinderPortraitManager
                 Hint.ShowDialog();
             }
         }
+
         private void PictureBoxTitle_Click(object sender, EventArgs e)
         {
             if (_gameSelected == 'p')
             {
                 _gameSelected = 'w';
             }
-            else
+            else if (_gameSelected == 'r')
             {
                 _gameSelected = 'p';
+            }
+            else
+            {
+                _gameSelected = 'r';
             }
 
             CoreSettings.Default.GameType = _gameSelected;
@@ -362,7 +409,6 @@ namespace PathfinderPortraitManager
                     Message.StartPosition = FormStartPosition.CenterParent;
                     Message.ShowDialog();
                 }
-
                 RemoveClickEventsFromMainButtons();
             }
             else
@@ -370,7 +416,20 @@ namespace PathfinderPortraitManager
                 AddClickEventsToMainButtons();
             }
 
-            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            if (_gameSelected == 'r')
+            {
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+                return;
+            }
+
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
+                (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
                 {
@@ -386,7 +445,8 @@ namespace PathfinderPortraitManager
                 ButtonLoadCustomArmy.Visible = false;
 
             }
-            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) 
+                && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
             {
                 using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
                 {
@@ -411,10 +471,12 @@ namespace PathfinderPortraitManager
                 CheckBoxVerified.Checked = false;
             }
         }
+        
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
         }
+        
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
         {
             if (ListGallery.Items.Count < 1)
@@ -447,8 +509,8 @@ namespace PathfinderPortraitManager
             SystemControl.FileControl.ClearTempImages();
             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
 
-            string path = item.Tag.ToString().Split('>')[0],
-                type = item.Tag.ToString().Split('>')[1];
+            string path = item.Tag.ToString().Split('>')[0];
+            string type = item.Tag.ToString().Split('>')[1];
 
             try
             {
@@ -509,10 +571,12 @@ namespace PathfinderPortraitManager
             ButtonToMainPage3_Click(sender, e);
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutFilePage);
+            Focus();
             RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
             ResizeVisibleImagesToWindowSize();
         }
+
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
             if (ListGallery.Items.Count < 1)
@@ -555,6 +619,7 @@ namespace PathfinderPortraitManager
                 return;
             }
         }
+
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
@@ -563,6 +628,7 @@ namespace PathfinderPortraitManager
                 Hint.ShowDialog();
             }
         }
+
         private void ButtonChooseFolder_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath != "!NONE!")
@@ -608,6 +674,7 @@ namespace PathfinderPortraitManager
             CancellationToken cancellationToken = _cancellationTokenSource.Token;
             ExploreDirectory(_extractFolderPath, cancellationToken);
         }
+        
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
             bool isRepeat = false;
@@ -620,8 +687,8 @@ namespace PathfinderPortraitManager
 
             foreach (ListViewItem item in ListExtract.Items)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text,
-                    safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
@@ -660,6 +727,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+        
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
         {
             bool isRepeat = false;
@@ -682,8 +750,8 @@ namespace PathfinderPortraitManager
 
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text,
-                    safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 
                 if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
                 {
@@ -722,6 +790,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+        
         private void ButtonOpenFolders_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath == "!NONE!")
@@ -733,6 +802,7 @@ namespace PathfinderPortraitManager
             System.Diagnostics.Process.Start(_extractFolderPath);
             ButtonToMainPage2_Click(sender, e);
         }
+        
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
             using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
@@ -741,17 +811,31 @@ namespace PathfinderPortraitManager
                 Hint.ShowDialog();
             }
         }
+        
         private void LabelCopyright_Click(object sender, EventArgs e)
         {
             try
             {
-                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-pathfinder");
+                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-owlcat");
             }
             catch
             {
                 return;
             }
         }
+
+        private void LabelVersion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-owlcat/releases/tag/1.3.5.0c");
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void AnyPrimeButton_Enter(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -763,6 +847,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+        
         private void AnyPrimeButton_Leave(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -774,6 +859,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+
         private void AnyButton_Enter(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -785,6 +871,7 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+
         private void AnyButton_Leave(object sender, EventArgs e)
         {
             if (sender is Button button)
@@ -796,10 +883,12 @@ namespace PathfinderPortraitManager
                 }
             }
         }
+
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
             TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
         }
+
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
         {
             ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
@@ -811,6 +900,7 @@ namespace PathfinderPortraitManager
             ButtonApplyChange.ForeColor = Color.White;
             ButtonApplyChange.Enabled = true;
         }
+
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
             if (ValidatePortraitPath(TextBoxFullPath.Text))
@@ -828,6 +918,7 @@ namespace PathfinderPortraitManager
                 ButtonValidatePath.Enabled = false;
             }
         }
+
         private void ButtonSelectPath_Click(object sender, EventArgs e)
         {
             string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
@@ -854,18 +945,287 @@ namespace PathfinderPortraitManager
                 }
             }
         }
-        private void ButtonGameType_Click(object sender, EventArgs e)
+        
+        private void ButtonLoadWeb_Click(object sender, EventArgs e)
         {
-            if (_gameSelected == 'w')
+            string url = TextBoxURL.Text;
+
+            try
             {
-                _gameSelected = 'p';
-                UpdateColorScheme();
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                request.Method = "HEAD";
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                response.Close();
+                RootFunctions.LayoutDisable(LayoutURLDialog);
+                RootFunctions.LayoutEnable(LayoutFilePage);
+                _activeMenuIndex = 1;
+                Focus();
+                CheckWebResourceAndLoad(url);
+                ResizeVisibleImagesToWindowSize();
+                TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+                GenerateImageSelectionFlagString(_imageSelectionFlag);
+            }
+            catch
+            {
+                Focus();
+                TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
+            }
+            Focus();
+        }
+        
+        private void ButtonDenyWeb_Click(object sender, EventArgs e)
+        {
+            RootFunctions.LayoutDisable(LayoutURLDialog);
+            RootFunctions.LayoutEnable(LayoutFilePage);
+            TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+            ResizeVisibleImagesToWindowSize();
+            _activeMenuIndex = 1;
+
+            Focus();
+        }
+        
+        private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
+        {
+            TextBoxURL.Clear();
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                e.Effect = DragDropEffects.Copy;
             }
             else
             {
-                _gameSelected = 'w';
-                UpdateColorScheme();
+                e.Effect = DragDropEffects.None;
             }
+        }
+        
+        private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
+        {
+            TextBox senderTextBox = (TextBox)sender;
+
+            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
+            if (!senderTextBox.Text.Contains("http"))
+            {
+                senderTextBox.Text = "http://" + senderTextBox.Text;
+            }
+        }
+        
+        private void TextBoxURL_Enter(object sender, EventArgs e)
+        {
+            TextBoxURL.Clear();
+        }
+        
+        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
+        {
+            _activeMenuIndex = 0;
+            ButtonToMainPageAndFolder.BackColor = Color.Black;
+            ButtonToMainPageAndFolder.ForeColor = Color.White;
+            RootFunctions.LayoutDisable(LayoutFinalPage);
+            ReplacePictureBoxImagesToDefault();
+            _isAnyLoadedToPortraitPage = false;
+            ParentLayoutsDisable();
+            System.Diagnostics.Process.Start(LabelDirLoc.Text);
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
+            ButtonToMainPageAndFolder.Enabled = true;
+        }
+        
+        private void ButtonNextImageType_Click(object sender, EventArgs e)
+        {
+            _imageSelectionFlag++;
+
+            if (_imageSelectionFlag == 1)
+            {
+                ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
+            }
+            else
+            {
+                ButtonNextImageType.Visible = false;
+                ButtonNextImageType.Enabled = false;
+                LblToAdvancedPage.Visible = false;
+            }
+
+            GenerateImageSelectionFlagString(_imageSelectionFlag);
+            LoadTempImagesToPicBox(_imageSelectionFlag);
+            ResizeVisibleImagesToWindowSize();
+        }
+        
+        private void ButtonApplyChange_Click(object sender, EventArgs e)
+        {
+            if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
+            {
+                if (_gameSelected == 'p')
+                {
+                    CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
+                }
+                else if (_gameSelected == 'w')
+                {
+                    CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
+                }
+                else if (_gameSelected == 'r')
+                {
+                    CoreSettings.Default.ROGUEPath = TextBoxFullPath.Text;
+                }
+
+                AnyButton_Leave(sender, e);
+                ButtonApplyChange.BackColor = Color.LimeGreen;
+                ButtonApplyChange.ForeColor = Color.White;
+                ButtonApplyChange.Enabled = false;
+                ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
+                CoreSettings.Default.Save();
+                AddClickEventsToMainButtons();
+                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
+            }
+        }
+        
+        private void ButtonLoadNormal_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        
+        private void ButtonLoadCustom_Click(object sender, EventArgs e)
+        {
+            string fromPath, fromPath2;
+
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+
+            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
+                !LoadGalleryCustom(fromPath, false) ||
+                !LoadGalleryCustom(fromPath2, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+
+        private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
+        {
+            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath))
+            {
+                return false;
+            }
+
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            _cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken cancelToken = _cancellationTokenSource.Token;
+
+            Task.Factory.StartNew(() =>
+            {
+                RecursiveParsePortraitsFolderAsync(fromRootPath, cancelToken, flag);
+            }, cancelToken);
+
+            return true;
+        }
+        
+        private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
+        {
+            string fromPath;
+
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(fromPath, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        
+        private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
+        {
+            string fromPath;
+
+            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
+            _cancellationTokenSource?.Cancel();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            if (!LoadGalleryCustom(fromPath, false))
+            {
+                ButtonToMainPage3_Click(sender, e);
+                return;
+            }
+        }
+        
+        private void PicBoxEng_Click(object sender, EventArgs e)
+        {
+            FontsInit(_fontCollection);
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
+            CoreSettings.Default.SelectedLang = "en-EN";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
+            TextsInit();
+
+            PicBoxEng.Enabled = false;
+            PicBoxGer.Enabled = true;
+            PicBoxRus.Enabled = true;
+        }
+        
+        private void PicBoxRus_Click(object sender, EventArgs e)
+        {
+            FontsInit(_fontCollection, 1);
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+            CoreSettings.Default.SelectedLang = "ru-RU";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
+            TextsInit();
+
+            PicBoxEng.Enabled = true;
+            PicBoxGer.Enabled = true;
+            PicBoxRus.Enabled = false;
+        }
+        
+        private void PicBoxGer_Click(object sender, EventArgs e)
+        {
+            FontsInit(_fontCollection);
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
+            CoreSettings.Default.SelectedLang = "de-DE";
+            CoreSettings.Default.Save();
+            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
+            TextsInit();
+
+            PicBoxEng.Enabled = true;
+            PicBoxGer.Enabled = false;
+            PicBoxRus.Enabled = true;
+        }
+
+        private void ButtonRT_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'r';
+            UpdateColorScheme();
+            RemoveClickEventsFromCustomPortraitsButtons();
+
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            {
+                RemoveClickEventsFromMainButtons();
+            }
+            else
+            {
+                AddClickEventsToMainButtons();
+            }
+
+            ButtonLoadCustom.Visible = false;
+            ButtonLoadCustomNPC.Visible = false;
+            ButtonLoadCustomArmy.Visible = false;
+            CheckBoxVerified.Checked = false;
+
+            CoreSettings.Default.GameType = _gameSelected;
+            CoreSettings.Default.Save();
+        }
+
+        private void ButtonKingmaker_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'p';
+            UpdateColorScheme();
 
             if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
@@ -919,214 +1279,61 @@ namespace PathfinderPortraitManager
             CoreSettings.Default.GameType = _gameSelected;
             CoreSettings.Default.Save();
         }
-        private void ButtonLoadWeb_Click(object sender, EventArgs e)
-        {
-            string url = TextBoxURL.Text;
 
-            try
-            {
-                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                request.Method = "HEAD";
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                response.Close();
-                RootFunctions.LayoutDisable(LayoutURLDialog);
-                RootFunctions.LayoutEnable(LayoutFilePage);
-                CheckWebResourceAndLoad(url);
-                ResizeVisibleImagesToWindowSize();
-                TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-                GenerateImageSelectionFlagString(_imageSelectionFlag);
-            }
-            catch
-            {
-                TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
-            }
+        private void ButtonWotR_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'w';
+            UpdateColorScheme();
 
-        }
-        private void ButtonDenyWeb_Click(object sender, EventArgs e)
-        {
-            RootFunctions.LayoutDisable(LayoutURLDialog);
-            RootFunctions.LayoutEnable(LayoutFilePage);
-            TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            ResizeVisibleImagesToWindowSize();
-        }
-        private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
-        {
-            TextBoxURL.Clear();
-            if (e.Data.GetDataPresent(DataFormats.Text))
+            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             {
-                e.Effect = DragDropEffects.Copy;
+                RemoveClickEventsFromMainButtons();
             }
             else
             {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-        private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
-        {
-            TextBox senderTextBox = (TextBox)sender;
-
-            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
-            if (!senderTextBox.Text.Contains("http"))
-            {
-                senderTextBox.Text = "http://" + senderTextBox.Text;
-            }
-        }
-        private void TextBoxURL_Enter(object sender, EventArgs e)
-        {
-            TextBoxURL.Clear();
-        }
-        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
-        {
-            ButtonToMainPageAndFolder.BackColor = Color.Black;
-            ButtonToMainPageAndFolder.ForeColor = Color.White;
-            RootFunctions.LayoutDisable(LayoutFinalPage);
-            ReplacePictureBoxImagesToDefault();
-            _isAnyLoadedToPortraitPage = false;
-            ParentLayoutsDisable();
-            System.Diagnostics.Process.Start(LabelDirLoc.Text);
-            RootFunctions.LayoutEnable(LayoutMainPage);
-            ButtonToMainPageAndFolder.Enabled = true;
-        }
-        private void ButtonNextImageType_Click(object sender, EventArgs e)
-        {
-            _imageSelectionFlag++;
-
-            if (_imageSelectionFlag == 1)
-            {
-                ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
-            }
-            else
-            {
-                ButtonNextImageType.Visible = false;
-                ButtonNextImageType.Enabled = false;
-            }
-
-            GenerateImageSelectionFlagString(_imageSelectionFlag);
-            LoadTempImagesToPicBox(_imageSelectionFlag);
-            ResizeVisibleImagesToWindowSize();
-        }
-        private void ButtonApplyChange_Click(object sender, EventArgs e)
-        {
-            if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
-            {
-                if (_gameSelected == 'p')
-                {
-                    CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
-                }
-                else
-                {
-                    CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
-                }
-
-                AnyButton_Leave(sender, e);
-                ButtonApplyChange.BackColor = Color.LimeGreen;
-                ButtonApplyChange.ForeColor = Color.White;
-                ButtonApplyChange.Enabled = false;
-                ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
-                CoreSettings.Default.Save();
                 AddClickEventsToMainButtons();
-                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
-            }
-        }
-        private void ButtonLoadNormal_Click(object sender, EventArgs e)
-        {
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private void ButtonLoadCustom_Click(object sender, EventArgs e)
-        {
-            string fromPath, fromPath2;
-
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-
-            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
-                !LoadGalleryCustom(fromPath, false) ||
-                !LoadGalleryCustom(fromPath2, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
-        {
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath))
-            {
-                return false;
             }
 
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancelToken = _cancellationTokenSource.Token;
-
-            Task.Factory.StartNew(() =>
+            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
             {
-                RecursiveParsePortraitsFolderAsync(fromRootPath, cancelToken, flag);
-            }, cancelToken);
-
-            return true;
-        }
-        private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
-        {
-            string fromPath;
-
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(fromPath, false))
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                RemoveClickEventsFromCustomPortraitsButtons();
+                CheckBoxVerified.Checked = false;
+                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = false;
+                ButtonLoadCustomNPC.Visible = false;
+                ButtonLoadCustomArmy.Visible = false;
+            }
+            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
             {
-                ButtonToMainPage3_Click(sender, e);
-                return;
+                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+                {
+                    Message.StartPosition = FormStartPosition.CenterParent;
+                    Message.ShowDialog();
+                }
+                AddClickEventsToCustomPortraitsButtons();
+                CheckBoxVerified.Checked = true;
+                UseStamps.Default.isAwareNPC = "WorkRevealed";
+                UseStamps.Default.Save();
+                ButtonLoadCustom.Visible = true;
+                ButtonLoadCustomNPC.Visible = true;
+                ButtonLoadCustomArmy.Visible = true;
+            }
+
+            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
+            {
+                CheckBoxVerified.Checked = true;
+            }
+            else
+            {
+                CheckBoxVerified.Checked = false;
             }
         }
-        private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
-        {
-            string fromPath;
-
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(fromPath, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
-        }
-        private void PicBoxEng_Click(object sender, EventArgs e)
-        {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
-            CoreSettings.Default.SelectedLang = "en-EN";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInit(_fontCollection);
-            TextsInit();
-        }
-        private void PicBoxRus_Click(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-            CoreSettings.Default.SelectedLang = "ru-RU";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInitNotEN();
-            TextsInit();
-        }
-        private void PicBoxGer_Click(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
-            CoreSettings.Default.SelectedLang = "de-DE";
-            CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-            FontsInitNotEN();
-            TextsInit();
-        }
+    
     }
 }

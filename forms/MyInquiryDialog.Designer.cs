@@ -1,4 +1,14 @@
-﻿namespace PathfinderPortraitManager.forms
+﻿/*    
+    Portrait Manager: Owlcat. Desktop application for managing in game
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+
+    GPL-2.0 license terms are listed in LICENSE file.
+    License header for this project is listed in Program.cs.
+*/
+
+namespace OwlcatPortraitManager.forms
 {
     partial class MyInquiryDialog
     {
@@ -99,6 +109,7 @@
             this.ButtonOK.Name = "ButtonOK";
             this.ButtonOK.Size = new System.Drawing.Size(124, 39);
             this.ButtonOK.TabIndex = 0;
+            this.ButtonOK.TabStop = false;
             this.ButtonOK.Text = "Button Yes";
             this.ButtonOK.UseVisualStyleBackColor = true;
             this.ButtonOK.MouseEnter += new System.EventHandler(this.ButtonCancel_MouseEnter);
@@ -114,7 +125,8 @@
             this.ButtonCancel.Margin = new System.Windows.Forms.Padding(110, 3, 20, 3);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(124, 39);
-            this.ButtonCancel.TabIndex = 1;
+            this.ButtonCancel.TabIndex = 0;
+            this.ButtonCancel.TabStop = false;
             this.ButtonCancel.Text = "Button Cancel";
             this.ButtonCancel.UseVisualStyleBackColor = true;
             this.ButtonCancel.MouseEnter += new System.EventHandler(this.ButtonCancel_MouseEnter);
@@ -151,6 +163,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyInquiryDialog_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyInquiryDialog_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

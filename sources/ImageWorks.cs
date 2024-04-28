@@ -1,9 +1,15 @@
 ﻿/*    
-    Pathfinder Portrait Manager. Desktop application for managing in game
-    portraits for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous
-    Copyright (C) 2023-2024 Artemii "Zeight" Saganenko
-    LICENSE terms are written in LICENSE file
-    Primal license header is written in Program.cs
+    Portrait Manager: Owlcat. Desktop application for managing in game
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+
+    GPL-2.0 license terms are listed in LICENSE file.
+    License header for this project is listed in Program.cs.
+*/
+
+/*
+    1. !NOT COMPILED!, only code. Compile to separate dll. In project use reference to the dll.
 */
 
 using System;
@@ -28,15 +34,18 @@ namespace ImageControl
                     newRenderer.PixelOffsetMode = PixelOffsetMode.HighQuality;
                     newRenderer.DrawImage(inImage, new Rectangle(0, 0, newWidth, newHeight));
                 }
+
                 return new Bitmap(outImage);
             }
         }
+        
         public static Bitmap Zoom(Image inImage, int newWidth, int newHeight)
         {
             using (Bitmap img = new Bitmap(inImage))
             using (Bitmap outImage = new Bitmap(Resize(img, newWidth, newHeight)))
                 return new Bitmap(outImage);
         }
+        
         public static Bitmap Crop(Image inImage, int xStart, int yStart, int xEnd, int yEnd)
         {
             Rectangle rect = new Rectangle(xStart, yStart, xEnd - xStart, yEnd - yStart);
@@ -45,29 +54,35 @@ namespace ImageControl
             outImage.SetResolution(inImage.HorizontalResolution, inImage.VerticalResolution);
             using (Graphics newRenderer = Graphics.FromImage(outImage))
                 newRenderer.DrawImage(inImage, -rect.X, -rect.Y);
+
             return outImage;
         }
     }
+    
     public class Utils
     {
         public static bool Replace(PictureBox pictureBox, Image toImage)
         {
             pictureBox.Image.Dispose();
             pictureBox.Image = toImage;
+
             return true;
         }
+        
         public static bool Dispose(PictureBox pictureBox)
         {
             pictureBox.Image.Dispose();
+
             return true;
         }
     }
+    
     public class Wraps
     {
         public static void ZoomImage(PictureBox pictureBox, Panel panel, MouseEventArgs mouseEvent, string imagePath, float aspect, float factor)
         {
-            float newWidth = pictureBox.Width + factor * aspect,
-                newHeight = pictureBox.Height + factor;
+            float newWidth = pictureBox.Width + factor * aspect;
+            float newHeight = pictureBox.Height + factor;
 
             if (newWidth <= panel.Width || newHeight <= panel.Height)
             {
@@ -81,6 +96,7 @@ namespace ImageControl
                 panel.AutoScrollPosition = new Point(mouseEvent.X - panel.Width / 2, mouseEvent.Y - panel.Height / 2);
             }
         }
+        
         public static void CropImage(PictureBox pictureBox, Panel panel, string imagePath, string saveLocation, float aspect, int newWidth, int newHeight)
         {
             using (Image inImage = new Bitmap(imagePath))
@@ -96,6 +112,7 @@ namespace ImageControl
                 }
             }
         }
+        
         public static Tuple<int, int, int, int> CalculateCropRectangle(Panel panel, float factor, float aspect, int height, int width)
         {
             int xStart = -(int)(panel.AutoScrollPosition.X * factor),
@@ -117,6 +134,7 @@ namespace ImageControl
             return Tuple.Create(xStart, yStart, xEnd, yEnd);
         }
     }
+    
     public class Concomitant
     {
         public static void SetPanelScroll(Panel panel, int xMax, int yMax)

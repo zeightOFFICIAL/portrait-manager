@@ -1,4 +1,14 @@
-﻿namespace PathfinderPortraitManager.forms
+﻿/*    
+    Portrait Manager: Owlcat. Desktop application for managing in game
+    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
+    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+
+    GPL-2.0 license terms are listed in LICENSE file.
+    License header for this project is listed in Program.cs.
+*/
+
+namespace OwlcatPortraitManager.forms
 {
     partial class MyMessageDialog
     {
@@ -99,8 +109,8 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(603, 44);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
@@ -117,7 +127,8 @@
             this.ButtonClose.MaximumSize = new System.Drawing.Size(90000, 40);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(200, 38);
-            this.ButtonClose.TabIndex = 0;
+            this.ButtonClose.TabIndex = 1;
+            this.ButtonClose.TabStop = false;
             this.ButtonClose.Text = "Button Close";
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.MouseEnter += new System.EventHandler(this.ButtonClose_MouseEnter);
@@ -145,6 +156,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "_";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyMessageDialog_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyMessageDialog_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

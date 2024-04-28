@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Portrait Manager: Owlcat")]
 [assembly: AssemblyDescription("Desktop application for managing in game portraits for Owlcat Games products")]
-[assembly: AssemblyConfiguration("P/W/R - P")]
+[assembly: AssemblyConfiguration("P/W/R - W")]
 [assembly: AssemblyCompany("ZEIGHT")]
 [assembly: AssemblyProduct("Portrait Manager: Owlcat")]
 [assembly: AssemblyCopyright("Copyright Artemii Saganenko ©2024")]

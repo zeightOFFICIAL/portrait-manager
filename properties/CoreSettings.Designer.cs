@@ -73,7 +73,7 @@ namespace OwlcatPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("p")]
+        [global::System.Configuration.DefaultSettingValueAttribute("w")]
         public char GameType {
             get {
                 return ((char)(this["GameType"]));

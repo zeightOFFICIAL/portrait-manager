@@ -1,5 +1,5 @@
 <p align="center">
-<img src="" width="100%"/>
+<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/55c84625-2b73-48a3-b279-bbee1240dd17" width="100%"/>
 </p>
 
 # <p align="center"> Portrait Manager: Owlcat Games </p>
@@ -63,34 +63,39 @@ Now supports localization. The concept has changed. Now there is no need to add 
 |---|---|---|
 
 ### Basic use cases
-1. Download any portrait pack from any source (for example https://www.nexusmods.com/pathfinderkingmaker/mods/92)
-2. Unpack it in any directory, it is recommended to be a non-protected by system or user folder, downloads folder would work just fine
-3. Launch the program, press extract, press choose folder, find the folder you just unpacked
-4. Select which images to copy, press extract selected or press extract all to copy all the available portraits
-5. Close app, launch the game, enjoy!
----
-1. Press create new portrait
-2. Press choose local and select the image you want to use<br>
-    2b. Press choose web<br>
-    2b next. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally<br>
-3. Press next and proceed to scaling page. Use mouse wheel in increase/decrease image. Move the image while holding the left mouse button to adjust it. Double-click restores images
-4. Press create to add the portrait to the game portraits folder
-5. In case, you messed up scaling, or simply want to change or delete the portrait. Open browse gallery, find your image. Select it. Press according button. Change the portrait (the name will be new whatsoever), or approve deletion 
+1. Choose your poison. Pathfinder, Warhammer?
+2. Download any portrait pack from any source (for example https://www.nexusmods.com/pathfinderkingmaker/mods/92, https://www.nexusmods.com/warhammer40kroguetrader/mods/21). Make sure you're downloading the right package for the right game
+3. Unpack it in any directory, it is recommended to be a non-protected by system and not a user folder, downloads folder would work just fine
+4. Launch the program, choose the game, press extract, press choose folder, find the folder you just unpacked
+5. Select which images to copy, press extract selected or press extract all to copy all the available portraits
 6. Close app, launch the game, enjoy!
 ---
-1. Download and install Custom NPC Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) using Unity Mod Manager.
-2. Launch the game and play. Find the character whose portrait you would like to change, remember it.
-       2b. Download any portrait package that is compatible with Custom NPC Portraits, extract it manually (unfortunately, this program does not support such an operation, since there are not many such compatible portrait packages) into the game portraits' folder.
+1. Choose your poison. Pathfinder, Warhammer?
+2. Press create new portrait
+3. If you want to use local image jump to step 4, if web image go for step 5
+4. Press choose local and select the image you want to use, jump to step 7
+5. Press choose web 
+6. Input URL and press load, if the source is available, proceed. Otherwise, try another image, or simply download it and find locally
+7. Press next and proceed to scaling page. Use mouse wheel in increase/decrease image. Move the image while holding the left mouse button to adjust it. Double-click restores images
+8. Press create to add the portrait to the game portraits folder
+9. In case, you messed up scaling, or simply want to change or delete the portrait. Open browse gallery, find your image. Select it. Press according button. Change the portrait (the name will be new whatsoever), or approve deletion 
+10. Close app, launch the game, enjoy!
+---
+1. Download and install Custom NPC Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) using Unity Mod Manager (https://www.nexusmods.com/site/mods/21) 
+2. If you are ready to cope with default portrait of NPC for the first meeting. Launch the game and play. Find the character whose portrait you would like to change, remember it. Go to step 4.
+3. If you are not ready for step 2. Download any portrait package that is compatible with Custom NPC Portraits, extract it manually (unfortunately, this program does not support such an operation, since there are not many such compatible portrait packages) into the game portraits' folder.
 4. Launch the program, go to 'Browse Gallery', click 'Show Custom' or 'Army', 'NPC', find the character.
 5. Click edit, when asked whether to replace the original or not, click 'yes', a backup copy will be created in the same folder.
-6. Adjust as desired.
-7. Close the application, launch the game and enjoy!
+6. Adjust it as desired (see steps 4,5 of previous use case).
+7. Close the app, launch the game and enjoy!
 
 ### Installation
 Download the release, unpack it anywhere (literally), but I recommend using a separate folder and an unprotected directory, as it copies and saves images a lot. Launch Pathfinder Portrait Manager.exe and use the application as you wish. Do not delete or move the configuration file from the EXE. Also, do not delete the temporary folder while the program is running. Localization folders (ru, de) must be located next to the EXE. Do not delete anything that comes within 7z package
 
+<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/292d9cb6-436d-48c8-aff4-f36bc263e74b" width="100%"/>
+
 ### Production info and bugs section
-All bugs and errors should be reported in the corresponding Nexusmods section. I believe (hope) that there are only minor/graphical bugs left that are not critical for usability, so most likely there will be no patches. However, if something critical happens, I will try to fix it as soon as possible. From now on, there will be no functionality updates in version >1.2.0.0. Please note that the Pathfinder game's portraits folder is statically created, and the functionality is simple, so there is very little chance of a bug occurring in the program. Please check dependencies, launch and start the game at least once, reinstall the game.
+All bugs and errors should be reported in the corresponding Nexusmods section. I believe (hope) that there are only minor/graphical bugs left that are not critical for usability, so most likely there will be no patches. However, if something critical happens, I will try to fix it as soon as possible. From now on, there will be no functionality updates in version >1.2.0.0. I decieved you, from now on, there will be no functional updates, versions >1.3.5.0. Please note that the Pathfinder/Warhammer game's portraits folder is statically created, and the functionality is simple, so there is very little chance of a bug occurring in the program. Please check dependencies, launch and start the game at least once, reinstall the game (if you performed all of these steps, and it still does not work, I wholeheartedly admit my mistake >_<), report to bug section.
 
 ### Build info
 * C#
@@ -109,20 +114,21 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
 ❌❌ Not working with anything older.<br>
 ❌❌ Not working with UNIX-based, including Linux, MAC, BSD, Solaris. Since .NET Framework is exclusively for Windows<br>
 
-<p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/06bfadea-0877-413f-a239-e1f49710f6e8" width="450px" margin="auto"></img><br>This table should cover whether you need to install .NET Framework on your PC. If the plus mark is placed on counter section then you can install the required version (which is 4.8), otherwise, your OS is not supported for this tool.</p><br>
+<p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/06bfadea-0877-413f-a239-e1f49710f6e8" width="450px" margin="auto"></img><br>This table should cover whether you can install .NET Framework on your PC. If the plus mark is placed on counter section then you can install the required version (which is 4.8), otherwise, your OS does not support this tool.</p><br>
 
 
 #### Development and debugging addendum, concerns
-* Pathfinder portrait's game folder is created statically, so it is the same no matter what device you are using (bound to Windows' file system). The directory detection code uses system paths to locate the AppData/LocalLow/Owlcat/Pathfinder/Portraits folder.
+* Pathfinder portrait's game folder is created statically, so it is the same no matter what device you are using (bound to Windows' file system). The directory detection code uses system paths to locate the AppData/LocalLow/Owlcat/Pathfinder || Warhammer/Portraits folder.
 * Custom NPC Portraits uses previously mentioned system paths to navigate required folders. So if the first point fails, it fails too.
 * If you are using Custom NPC Portraits, be sure to START the game at least once. <b>THE PROGRAM DOES NOT CREATE NEW PORTRAITS!</b>, it only modifies existing ones. So, to actually change someone's portrait, you need to meet them in the game and let the Custom NPC Portraits create his/her folder in the appropriate directory.
-* Also keep in mind that some Custom NPC Portraits do not use the fulllength.png (largest) portrait as it is not utilized in the game, this program allows you to change it, but it does not work in the game itself.
+* Also keep in mind that some Custom NPC Portraits do not use the fulllength.png (largest) portrait as it is not utilized in the game, this program allows you to change it, but it does not used in the game itself.
 * Each user has his own configuration. It is stored in an XML file in the AppData folder. It stores basic information about the window size, folder paths, selected language, and so on. The file is open for navigation and observation if there are any problems. We advise you not to change it.
 * FolderBrowserDialog now (1.1.0.0) works for folder feature selection.
 * The localization of the program initially depends on the current active system language, but later you can change the localization using the buttons on the main page. If the former does not work, try changing the language via buttons.
 * Asynchronous image loading now (1.2.0.0) works for loading images into the Browse Gallery and Extract Folder pages.
 * The program has not been subjected to thorough and constant testing and debugging, there are many pitfalls
 * Most important topics: asynchronous loading, folder/file manipulation, folder discovery, image cropping/resizing.
+* From latter version (1.3.5.0) program reads pressed keys, so user can navigate the tool. I was forced to use focus() method, since after each mouse clicking event main window lose its focus, disabling keypressing. This is a quickfix, but nothing more elegant I come up with works
 * If any of this doesn't help you find the bug, please let me know personally via Nexusmods.
 
 ##### Changelog

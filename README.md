@@ -4,7 +4,7 @@
 
 # <p align="center"> Portrait Manager: Owlcat Games </p>
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games' products</p>
-###### <p align="center"><img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p>
+###### <p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/a316db5e-a269-48cf-81b4-4c54f13ff2e6" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/3bf58f3f-1260-4faa-852f-03408cc6f21c" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p>
 #### <p align="center">Nexus mods link:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120</p>
 #### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2024</p><hr>
 

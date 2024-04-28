@@ -1,25 +1,34 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/main_title.jpg" width="100%"/>
+<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/25734230-7b05-43dc-8fed-a73fb0ab9e3c" width="100%"/>
 </p>
 
 # <p align="center"> Portrait Manager: Owlcat Games </p>
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games' products</p>
-###### <p align="center"><img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/><img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p>
+###### <p align="center"><img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/pathfinder_title.jpg" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://raw.githubusercontent.com/zeightOFFICIAL/portrait-manager-owlcat/rogue-trader/media/w40k_title.jpg" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader</p>
 #### <p align="center">Nexus mods link:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120</p>
 #### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2024</p><hr>
 
 ### Description
 Desktop application, management tool for portraits in Owlcat Games products. Currently including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits and browsing, modifying existing ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing additional. No dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.
 
+|![path_main](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/fe1a9371-9879-4c84-97bc-8cc25c22f8ee)|![wotr_main](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/806f1114-ea79-411a-91c7-4369e1e22d07)|![rt_main](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/7a188b87-5148-4d67-b61f-d56e3d264f18)|
+|---|---|---|
+
 ### Features
 
 #### Create new portraits
 Allows the user to upload any local or web image, scale it as desired, and finally create a portrait in the appropriate game directory. Supports all major image formats: png, jpg, jpeg, bmp, gif. Allows the user to change the image for each portrait type: small, medium, full length, by uploading a local or web image with the specific portrait type selected. Unsupported files are ignored. The created portraits will be almost exact copies of the images displayed in the frames when scaled. The minor diviation is due to trimming and resizing errors, they are expected and nothing can be done about it. The program automatically crops, resizes the image to the required state, creates a directory and an image file. User must simply click the button. Now panels for each portrait type represent proper aspect ratio of needed portrait and game type, which makes cropping more accurate as the user see the portrait to be created more precise.
 
+|![path_file](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/77384f78-c5dd-4e87-af34-a867a978672c)|![wotr_file-1](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/6b01bb4d-8e81-48f6-a915-963d37be77a4)|![rt_file](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/bf8bc07a-7e3a-409c-8f38-245fdabcbf83)|
+|---|---|---|
+
+|![wotr_scale](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/4f3a271d-c264-41a6-9f18-f0506a9aa6a0)|![wotr_web](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/1eb4f9c6-7bc5-4b9d-ad53-44712b3563cc)|![wotr_final](https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/f4b18678-0764-4b1a-941d-8c33b4024d5e)|
+|---|---|---|
+
 #### ------------------------------------------------------------------------
 
 #### Extract from external folders
-Allows the user to extract images that are to be portraits from a local directory directly into the game directory. Select the folder containing the correct portrait package images to process and create the portrait in game folder. Choose which images to move to the game directory. You can extract selected ones to move only certain images. Or extract every one of them. The program automatically copies folders to the game portraits' directory. Works only with regular portraits. Custom NPC portraits don't work. The latter functionality will not be implemented, since it is rather irrelevant and senseless.
+Allows the user to extract images that are to be portraits from a local directory into the game portraits directory. Select the folder containing the correct portrait packages to process and create the portrait in game folder. Choose which images to move to the game directory. You can extract selected ones to move only certain images. Or extract every one of them. The program automatically copies folders to the game portraits' directory. Works only with regular portraits. Custom NPC portraits don't work. The latter functionality will not be implemented, since it is rather irrelevant and senseless.
 
 * A valid image package must contain three images: small - 185x242 (factor 1.308), medium - 330x432 (factor 1.309), full size - 692x1024 (factor 1.479) for Pathfinder: Kingmaker and Pathfinder: Wrath of the Righteous. Small - 260x336 (factor 1.292), medium - 448x600 (factor 1.339), full size - 1080x1480 (factor 1.370) for Warhammer 40000: Rogue Trader. The program performs recursive parsing, so corresponding folders located deeper than one directory will still be processed. Other files will be ignored. Please note that these are the official proportions shown in the game, other sizes may not fit. The failsafe is +/- 2 pixels in width and +/- 3 pixels in height, but this cannot be promised to work in game. (ADD REMARK CONSIDERING BEHAVIOUR)
 
@@ -102,10 +111,13 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
 
 ##### Changelog
 * 1.3.0.0 (current)
-    * Added Warhammer 40000: Rogue Trader support
-    * Added french localization, verified all translations and typings.
-    * Minor refactoring
-    * Minor graphical changes, now all languages support Bebas Neue font, some margings, paddings adjusted.
+    * Added Warhammer 40000: Rogue Trader full support, except CustomNPC, which for the current time being have not been developed yet
+    * Re-verified all translations and typings. No linguist is involved, so minor mistakes still can be found. I consider nothing crucial, but expect no flawlessness in the matter. If one would like to participate write on my email
+    * Minor refactoring, nothing of interest for users. Plus tiny optimization tweaks
+    * Minor graphical changes, now all languages support Bebas Neue font, some margings, paddings adjusted, fixed buttons' and labels' text being hidden from sight
+    * Added keyboard events and legends for them. Now users are able to navigate the tool using keyboard, including dialogs/modal forms and main form, except settings page, however
+    * Transfered from .NET Framework 4.7.2 to .NET Framework 4.8. Nothing changed for users. 4.8 is an LTS as well and considering Microsoft information will be supported for at least 10 years
+    * A bit tired of saying it but seemingly there is nothing I can add so far)) Do not hope for functional updates, and expect almost immediate support for new Owlcat Games products. Obsidian Edition is coming till the end of the year 2024)) I believe 
 * 1.2.0.0
     * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application

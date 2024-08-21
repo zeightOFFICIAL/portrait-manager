@@ -48,6 +48,9 @@ namespace OwlcatPortraitManager
             + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer Portrait Manager (Rogue Trader)",
             260, 336, 448, 600, 1080, 1480, 1.29230769231f, 1.33928571429f, 1.37037037037f);
 
+        //private static readonly GameTypeClass TYRANNY_TYPE = new GameTypeClass("Tyranny",
+        //    Color.FromArgb(214, 14, 14), Color.FromArgb(63, 4, 4));
+
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
             { 'p', KINGMAKER_TYPE},

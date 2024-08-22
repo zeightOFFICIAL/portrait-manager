@@ -175,4 +175,37 @@
   <data name="icon_tyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icon_tyr.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bg_poe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bg_poe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_poed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bg_poed.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_tyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\bg_tyr.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_poe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_poe.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_poed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_poed.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="placeholder_poe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\placeholder_poe.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="placeholder_poed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\placeholder_poed.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="placeholder_tyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\placeholder_tyr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_poe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\title_poe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_poed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\title_poed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="title_tyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\title_tyr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -48,21 +48,46 @@ namespace OwlcatPortraitManager
             + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer Portrait Manager (Rogue Trader)",
             260, 336, 448, 600, 1080, 1480, 1.29230769231f, 1.33928571429f, 1.37037037037f);
 
-        //private static readonly GameTypeClass TYRANNY_TYPE = new GameTypeClass("Tyranny",
-        //    Color.FromArgb(214, 14, 14), Color.FromArgb(63, 4, 4));
+        private static readonly GameTypeClass TYRANNY_TYPE = new GameTypeClass("Tyranny",
+            Color.FromArgb(214, 14, 14), Color.FromArgb(63, 4, 4),
+            Resources.icon_tyr, Resources.title_tyr,
+            Resources.bg_tyr, Resources.placeholder_tyr,
+            "__NONE__", "Tyranny Portrait Manager",
+            76, 96, 0, 0, 210, 330, 1.2631f, 0f, 1.5714f);
+
+        private static readonly GameTypeClass PILLARS_TYPE = new GameTypeClass("Pillars of Eternity",
+            Color.FromArgb(13, 176, 177), Color.FromArgb(3, 55, 55),
+            Resources.icon_poe, Resources.title_poe,
+            Resources.bg_poe, Resources.placeholder_poe,
+            "__NONE__", "Pillars of Eternity Portrait Manager",
+            76, 96, 0, 0, 210, 330, 1.2631f, 0f, 1.5714f);
+
+        private static readonly GameTypeClass DEADFIRE_TYPE = new GameTypeClass("Deadfire",
+            Color.FromArgb(91, 138, 170), Color.FromArgb(57, 56, 5),
+            Resources.icon_poed, Resources.title_poed,
+            Resources.bg_poed, Resources.placeholder_poed,
+            "__NONE__", "Pillars of Eternity Portrait Manager (Deadfire)",
+            76, 96, 90, 141, 210, 330, 1.2631f, 1.5667f, 1.5714f);
+
 
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
-            { 'p', KINGMAKER_TYPE},
-            { 'w', WRATH_TYPE},
-            { 'r', ROGUE_TYPE }
+            { 'p', KINGMAKER_TYPE },
+            { 'w', WRATH_TYPE },
+            { 'r', ROGUE_TYPE },
+            { 't', TYRANNY_TYPE },
+            { 'e', PILLARS_TYPE },
+            { 'd', DEADFIRE_TYPE }
         };
 
         private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
         {
             { 'p', CoreSettings.Default.WOTRPath },
             { 'w', CoreSettings.Default.KINGPath },
-            { 'r', CoreSettings.Default.ROGUEPath }
+            { 'r', CoreSettings.Default.ROGUEPath },
+            { 't', CoreSettings.Default.TYRANNYPath },
+            { 'e', CoreSettings.Default.PILLARSPath },
+            { 'd', CoreSettings.Default.DEADFIREPath }
         };
 
         private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";

@@ -12,7 +12,7 @@ namespace OwlcatPortraitManager.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
     internal sealed partial class CoreSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static CoreSettings defaultInstance = ((CoreSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new CoreSettings())));
@@ -116,6 +116,42 @@ namespace OwlcatPortraitManager.Properties {
             }
             set {
                 this["ROGUEPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
+        public string TYRANNYPath {
+            get {
+                return ((string)(this["TYRANNYPath"]));
+            }
+            set {
+                this["TYRANNYPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
+        public string PILLARSPath {
+            get {
+                return ((string)(this["PILLARSPath"]));
+            }
+            set {
+                this["PILLARSPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
+        public string DEADFIREPath {
+            get {
+                return ((string)(this["DEADFIREPath"]));
+            }
+            set {
+                this["DEADFIREPath"] = value;
             }
         }
     }

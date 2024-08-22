@@ -49,21 +49,21 @@ namespace OwlcatPortraitManager
             260, 336, 448, 600, 1080, 1480, 1.29230769231f, 1.33928571429f, 1.37037037037f);
 
         private static readonly GameTypeClass TYRANNY_TYPE = new GameTypeClass("Tyranny",
-            Color.FromArgb(214, 14, 14), Color.FromArgb(63, 4, 4),
+            Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
             Resources.icon_tyr, Resources.title_tyr,
             Resources.bg_tyr, Resources.placeholder_tyr,
             "__NONE__", "Tyranny Portrait Manager",
             76, 96, 0, 0, 210, 330, 1.2631f, 0f, 1.5714f);
 
         private static readonly GameTypeClass PILLARS_TYPE = new GameTypeClass("Pillars of Eternity",
-            Color.FromArgb(13, 176, 177), Color.FromArgb(3, 55, 55),
+            Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
             Resources.icon_poe, Resources.title_poe,
             Resources.bg_poe, Resources.placeholder_poe,
             "__NONE__", "Pillars of Eternity Portrait Manager",
             76, 96, 0, 0, 210, 330, 1.2631f, 0f, 1.5714f);
 
         private static readonly GameTypeClass DEADFIRE_TYPE = new GameTypeClass("Deadfire",
-            Color.FromArgb(91, 138, 170), Color.FromArgb(57, 56, 5),
+            Color.FromArgb(121, 208, 215), Color.FromArgb(27, 47, 49),
             Resources.icon_poed, Resources.title_poed,
             Resources.bg_poed, Resources.placeholder_poed,
             "__NONE__", "Pillars of Eternity Portrait Manager (Deadfire)",

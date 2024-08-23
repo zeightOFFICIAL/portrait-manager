@@ -15,7 +15,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="GameType" Type="System.Char" Scope="User">
-      <Value Profile="(Default)">d</Value>
+      <Value Profile="(Default)">l</Value>
     </Setting>
     <Setting Name="EnabledCustomNPC" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -33,6 +33,9 @@
       <Value Profile="(Default)">!NOTSET!</Value>
     </Setting>
     <Setting Name="DEADFIREPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">!NOTSET!</Value>
+    </Setting>
+    <Setting Name="WASTEPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">!NOTSET!</Value>
     </Setting>
   </Settings>

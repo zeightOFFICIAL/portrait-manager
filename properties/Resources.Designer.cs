@@ -133,6 +133,16 @@ namespace OwlcatPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_waste {
+            get {
+                object obj = ResourceManager.GetObject("bg_waste", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bg_wotr {
             get {
                 object obj = ResourceManager.GetObject("bg_wotr", resourceCulture);
@@ -223,6 +233,16 @@ namespace OwlcatPortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon icon_waste {
+            get {
+                object obj = ResourceManager.GetObject("icon_waste", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon icon_wotr {
             get {
                 object obj = ResourceManager.GetObject("icon_wotr", resourceCulture);
@@ -276,6 +296,16 @@ namespace OwlcatPortraitManager.Properties {
         internal static System.Drawing.Bitmap placeholder_tyr {
             get {
                 object obj = ResourceManager.GetObject("placeholder_tyr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap placeholder_waste {
+            get {
+                object obj = ResourceManager.GetObject("placeholder_waste", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -346,6 +376,16 @@ namespace OwlcatPortraitManager.Properties {
         internal static System.Drawing.Bitmap title_tyr {
             get {
                 object obj = ResourceManager.GetObject("title_tyr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap title_waste {
+            get {
+                object obj = ResourceManager.GetObject("title_waste", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

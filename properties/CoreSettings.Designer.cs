@@ -73,7 +73,7 @@ namespace OwlcatPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("d")]
+        [global::System.Configuration.DefaultSettingValueAttribute("l")]
         public char GameType {
             get {
                 return ((char)(this["GameType"]));
@@ -152,6 +152,18 @@ namespace OwlcatPortraitManager.Properties {
             }
             set {
                 this["DEADFIREPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
+        public string WASTEPath {
+            get {
+                return ((string)(this["WASTEPath"]));
+            }
+            set {
+                this["WASTEPath"] = value;
             }
         }
     }

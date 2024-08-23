@@ -69,6 +69,12 @@ namespace OwlcatPortraitManager
             "__NONE__", "Pillars of Eternity Portrait Manager (Deadfire)",
             76, 96, 90, 141, 210, 330, 1.2631f, 1.5667f, 1.5714f);
 
+        private static readonly GameTypeClass WASTE_TYPE = new GameTypeClass("Wasteland",
+            Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
+            Resources.icon_waste, Resources.title_waste,
+            Resources.bg_waste, Resources.placeholder_waste,
+            "__NONE__", "Wasteland Portrait Manager (Wasteland 3)",
+            256, 256, 0, 0, 0, 0, 1.0f, 0f, 0f);
 
         private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
         {
@@ -77,7 +83,8 @@ namespace OwlcatPortraitManager
             { 'r', ROGUE_TYPE },
             { 't', TYRANNY_TYPE },
             { 'e', PILLARS_TYPE },
-            { 'd', DEADFIRE_TYPE }
+            { 'd', DEADFIRE_TYPE },
+            { 'l', WASTE_TYPE }
         };
 
         private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
@@ -87,7 +94,8 @@ namespace OwlcatPortraitManager
             { 'r', CoreSettings.Default.ROGUEPath },
             { 't', CoreSettings.Default.TYRANNYPath },
             { 'e', CoreSettings.Default.PILLARSPath },
-            { 'd', CoreSettings.Default.DEADFIREPath }
+            { 'd', CoreSettings.Default.DEADFIREPath },
+            { 'l', CoreSettings.Default.WASTEPath }
         };
 
         private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";

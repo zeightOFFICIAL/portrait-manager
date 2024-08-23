@@ -542,15 +542,15 @@ namespace OwlcatPortraitManager
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
                                    || ctrl.Equals(LayoutFinalPage)
                                    || ctrl.Equals(LayoutSettingsPage)
-                                   || ctrl.Equals(LayoutLang))
+                                   || ctrl.Equals(LayoutLang)
+                                   || ctrl.Equals(LayoutStartMenu))
             {
                 return;
             }
 
             if (ctrl.Equals(LabelCopyright) || ctrl.Equals(LabelVersion) ||
                 ctrl.Equals(LblPointerToFilePage) ||
-                ctrl.Equals(LblPointerToGalleryPage) ||
-                ctrl.Equals(LblPointerToExtractPage))
+                ctrl.Equals(LblPointerToGalleryPage))
             {
                 ctrl.ForeColor = a;
                 return;

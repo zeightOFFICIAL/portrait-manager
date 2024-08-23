@@ -202,6 +202,9 @@
     <Content Include="icon_path.ico" />
     <Content Include="icon_rt.ico" />
     <Content Include="icon_wotr.ico" />
+    <None Include="resources\title_path.png" />
+    <None Include="resources\nm_logo.png" />
+    <None Include="resources\github_logo.png" />
     <None Include="resources\placeholder_waste.png" />
     <None Include="resources\bg_waste.jpg" />
     <None Include="resources\title_waste.png" />

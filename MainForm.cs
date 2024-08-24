@@ -794,5 +794,40 @@ namespace OwlcatPortraitManager
         {
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
         }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_path;
+        }
+
+        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+        }
+
+        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+        }
+
+        private void pictureBox4_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+        }
+
+        private void pictureBox5_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+        }
+
+        private void pictureBox6_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+        }
+
+        private void pictureBox7_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+        }
     }
 }

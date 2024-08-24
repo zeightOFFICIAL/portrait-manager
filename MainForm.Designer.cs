@@ -2272,6 +2272,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartKing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartKing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartKing.FlatAppearance.BorderSize = 0;
+            this.ButtonStartKing.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartKing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartKing.ForeColor = System.Drawing.Color.White;
             this.ButtonStartKing.Location = new System.Drawing.Point(59, 3);
@@ -2320,6 +2321,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartWotr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartWotr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartWotr.FlatAppearance.BorderSize = 0;
+            this.ButtonStartWotr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWotr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartWotr.ForeColor = System.Drawing.Color.White;
             this.ButtonStartWotr.Location = new System.Drawing.Point(58, 3);
@@ -2367,6 +2369,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartRt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartRt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartRt.FlatAppearance.BorderSize = 0;
+            this.ButtonStartRt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartRt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartRt.ForeColor = System.Drawing.Color.White;
             this.ButtonStartRt.Location = new System.Drawing.Point(55, 3);
@@ -2414,6 +2417,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartPoe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartPoe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartPoe.FlatAppearance.BorderSize = 0;
+            this.ButtonStartPoe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartPoe.ForeColor = System.Drawing.Color.White;
             this.ButtonStartPoe.Location = new System.Drawing.Point(58, 3);
@@ -2461,6 +2465,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartPoed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartPoed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartPoed.FlatAppearance.BorderSize = 0;
+            this.ButtonStartPoed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartPoed.ForeColor = System.Drawing.Color.White;
             this.ButtonStartPoed.Location = new System.Drawing.Point(56, 3);
@@ -2508,6 +2513,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartTyr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartTyr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartTyr.FlatAppearance.BorderSize = 0;
+            this.ButtonStartTyr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartTyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartTyr.ForeColor = System.Drawing.Color.White;
             this.ButtonStartTyr.Location = new System.Drawing.Point(61, 3);
@@ -2555,6 +2561,7 @@ namespace OwlcatPortraitManager
             this.ButtonStartWaste.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonStartWaste.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonStartWaste.FlatAppearance.BorderSize = 0;
+            this.ButtonStartWaste.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartWaste.ForeColor = System.Drawing.Color.White;
             this.ButtonStartWaste.Location = new System.Drawing.Point(60, 3);

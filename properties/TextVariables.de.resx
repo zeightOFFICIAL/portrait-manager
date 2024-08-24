@@ -327,14 +327,26 @@
   <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
     <value>Ungültige URL...</value>
   </data>
+  <data name="TEXT_DEADFIRE" xml:space="preserve">
+    <value>Deadfire</value>
+  </data>
   <data name="TEXT_FOLDEROPEN" xml:space="preserve">
     <value>Wählen Sie den zu extrahierenden Ordner aus</value>
   </data>
   <data name="TEXT_IMAGEFILTER" xml:space="preserve">
     <value>Alle Bilder</value>
   </data>
+  <data name="TEXT_KINGMAKER" xml:space="preserve">
+    <value>Kingmaker</value>
+  </data>
   <data name="TEXT_PATHOPEN" xml:space="preserve">
     <value>Wählen Sie den Ordner im Spiel aus</value>
+  </data>
+  <data name="TEXT_PILLARS" xml:space="preserve">
+    <value>Pillars of Eternity</value>
+  </data>
+  <data name="TEXT_ROGUE" xml:space="preserve">
+    <value>Rogue Trader</value>
   </data>
   <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
     <value>Bild
@@ -342,6 +354,15 @@
   </data>
   <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
     <value>Ordner auswählen</value>
+  </data>
+  <data name="TEXT_TYR" xml:space="preserve">
+    <value>Tyranny</value>
+  </data>
+  <data name="TEXT_WASTE" xml:space="preserve">
+    <value>Wasteland 3</value>
+  </data>
+  <data name="TEXT_WOTR" xml:space="preserve">
+    <value>Wrath of the Righteous</value>
   </data>
   <data name="WOTR" xml:space="preserve">
     <value>WotR</value>

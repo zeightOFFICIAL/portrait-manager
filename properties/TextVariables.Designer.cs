@@ -673,6 +673,15 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deadfire.
+        /// </summary>
+        internal static string TEXT_DEADFIRE {
+            get {
+                return ResourceManager.GetString("TEXT_DEADFIRE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select folder to extract from.
         /// </summary>
         internal static string TEXT_FOLDEROPEN {
@@ -691,11 +700,38 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kingmaker.
+        /// </summary>
+        internal static string TEXT_KINGMAKER {
+            get {
+                return ResourceManager.GetString("TEXT_KINGMAKER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select folder which stores portraits.
         /// </summary>
         internal static string TEXT_PATHOPEN {
             get {
                 return ResourceManager.GetString("TEXT_PATHOPEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity.
+        /// </summary>
+        internal static string TEXT_PILLARS {
+            get {
+                return ResourceManager.GetString("TEXT_PILLARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rogue Trader.
+        /// </summary>
+        internal static string TEXT_ROGUE {
+            get {
+                return ResourceManager.GetString("TEXT_ROGUE", resourceCulture);
             }
         }
         
@@ -714,6 +750,33 @@ namespace OwlcatPortraitManager.Properties {
         internal static string TEXT_TITLEOPENFOLDER {
             get {
                 return ResourceManager.GetString("TEXT_TITLEOPENFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyranny.
+        /// </summary>
+        internal static string TEXT_TYR {
+            get {
+                return ResourceManager.GetString("TEXT_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3.
+        /// </summary>
+        internal static string TEXT_WASTE {
+            get {
+                return ResourceManager.GetString("TEXT_WASTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrath of the Righteous.
+        /// </summary>
+        internal static string TEXT_WOTR {
+            get {
+                return ResourceManager.GetString("TEXT_WOTR", resourceCulture);
             }
         }
         

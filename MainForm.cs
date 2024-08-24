@@ -759,5 +759,40 @@ namespace OwlcatPortraitManager
                 e.Handled = true;
             }
         }
+
+        private void ButtonStartKing_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_path;
+        }
+
+        private void ButtonStartWotr_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+        }
+
+        private void ButtonStartRt_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+        }
+
+        private void ButtonStartPoe_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+        }
+
+        private void ButtonStartPoed_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+        }
+
+        private void ButtonStartTyr_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+        }
+
+        private void ButtonStartWaste_MouseEnter(object sender, EventArgs e)
+        {
+            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+        }
     }
 }

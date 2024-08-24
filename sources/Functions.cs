@@ -428,6 +428,13 @@ namespace OwlcatPortraitManager
             ButtonLoadCustomArmy.Font = bebasNeueSmall;
             ButtonLoadCustomNPC.Font = bebasNeueSmall;
             ButtonRT.Font = bebasNeueHead;
+            ButtonStartKing.Font = bebasNeueSmall;
+            ButtonStartPoe.Font = bebasNeueSmall;
+            ButtonStartPoed.Font = bebasNeueSmall;
+            ButtonStartWotr.Font = bebasNeueSmall;
+            ButtonStartTyr.Font = bebasNeueSmall;
+            ButtonStartWaste.Font = bebasNeueSmall;
+            ButtonStartRt.Font = bebasNeueSmall;
         }
         
         public void FontsInitNotEN(int defSize = 12)
@@ -481,6 +488,13 @@ namespace OwlcatPortraitManager
             ButtonLoadNormal.Font = defFont12;
             ButtonLoadCustomArmy.Font = defFont12;
             ButtonLoadCustomNPC.Font = defFont12;
+            ButtonStartKing.Font = defFont12;
+            ButtonStartPoe.Font = defFont12;
+            ButtonStartPoed.Font = defFont12;
+            ButtonStartWotr.Font = defFont12;
+            ButtonStartTyr.Font = defFont12;
+            ButtonStartWaste.Font = defFont12;
+            ButtonStartRt.Font = defFont12;
         }
         
         public void TextsInit()
@@ -535,6 +549,13 @@ namespace OwlcatPortraitManager
             ButtonLoadCustomNPC.Text = TextVariables.BUTTON_CUSTOMNPC;
             ButtonLoadNormal.Text = TextVariables.BUTTON_SHOWLOCAL;
             ButtonRT.Text = TextVariables.ROGUE;
+            ButtonStartKing.Text = TextVariables.TEXT_KINGMAKER;
+            ButtonStartPoe.Text = TextVariables.TEXT_PILLARS;
+            ButtonStartPoed.Text = TextVariables.TEXT_DEADFIRE;
+            ButtonStartWotr.Text = TextVariables.TEXT_WOTR;
+            ButtonStartTyr.Text = TextVariables.TEXT_TYR;
+            ButtonStartWaste.Text = TextVariables.TEXT_WASTE;
+            ButtonStartRt.Text = TextVariables.TEXT_ROGUE;
         }
         
         public void UpdateObjectColoringInDepth(Control ctrl, Color a, Color b)

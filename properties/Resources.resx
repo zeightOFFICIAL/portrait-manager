@@ -226,4 +226,46 @@
   <data name="title_path" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\title_path.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="start_path" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_path.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_path1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_path.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_poe1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_poe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_poed1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_poed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_rt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_rt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_tyr1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_tyr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_waste1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_waste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_wotr1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_wotr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_poe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_poe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_poed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_poed.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_rt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_rt.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_tyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_tyr.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_waste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_waste.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_wotr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\start_wotr.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

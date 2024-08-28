@@ -8,14 +8,14 @@
     License header for this project is listed in Program.cs.
 */
 
-using OwlcatPortraitManager.Properties;
+using PortraitManager.Properties;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace OwlcatPortraitManager.forms
+namespace PortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {

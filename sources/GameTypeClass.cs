@@ -11,7 +11,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace OwlcatPortraitManager.sources
+namespace PortraitManager.sources
 {
     public class GameTypeClass
     {

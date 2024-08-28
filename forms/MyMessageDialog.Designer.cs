@@ -8,7 +8,7 @@
     License header for this project is listed in Program.cs.
 */
 
-namespace OwlcatPortraitManager.forms
+namespace PortraitManager.forms
 {
     partial class MyMessageDialog
     {

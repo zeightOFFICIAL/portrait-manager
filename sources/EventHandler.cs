@@ -8,8 +8,8 @@
     License header for this project is listed in Program.cs.
 */
 
-using OwlcatPortraitManager.forms;
-using OwlcatPortraitManager.Properties;
+using PortraitManager.forms;
+using PortraitManager.Properties;
 
 using System;
 using System.Drawing;
@@ -21,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OwlcatPortraitManager
+namespace PortraitManager
 {
     public partial class MainForm : Form
     {

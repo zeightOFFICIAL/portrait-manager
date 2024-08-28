@@ -8,9 +8,9 @@
     License header for this project is listed in Program.cs.
 */
 
-using OwlcatPortraitManager.forms;
-using OwlcatPortraitManager.sources;
-using OwlcatPortraitManager.Properties;
+using PortraitManager.forms;
+using PortraitManager.sources;
+using PortraitManager.Properties;
 
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace OwlcatPortraitManager
+namespace PortraitManager
 {
     public partial class MainForm : Form
     {
@@ -828,6 +828,86 @@ namespace OwlcatPortraitManager
         private void pictureBox7_MouseEnter(object sender, EventArgs e)
         {
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
+        }
+
+        private void ButtonStartKing_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartWotr_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartRt_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartPoe_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartPoed_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartTyr_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartWaste_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox5_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox6_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox7_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

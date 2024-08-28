@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OwlcatPortraitManager.Properties {
+namespace PortraitManager.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OwlcatPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OwlcatPortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

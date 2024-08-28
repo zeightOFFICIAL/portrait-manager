@@ -9,7 +9,7 @@
 */
 
 
-namespace OwlcatPortraitManager
+namespace PortraitManager
 {
     partial class MainForm
     {
@@ -190,6 +190,8 @@ namespace OwlcatPortraitManager
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -247,6 +249,8 @@ namespace OwlcatPortraitManager
             this.tableLayoutPanel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.tableLayoutPanel20.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // LayoutFilePage
@@ -2217,7 +2221,7 @@ namespace OwlcatPortraitManager
             // LayoutStartMenu
             // 
             this.LayoutStartMenu.BackColor = System.Drawing.Color.Black;
-            this.LayoutStartMenu.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.start_path;
+            this.LayoutStartMenu.BackgroundImage = global::PortraitManager.Properties.Resources.start_path;
             this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.LayoutStartMenu.ColumnCount = 2;
             this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.23433F));
@@ -2282,10 +2286,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartKing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ButtonStartKing.UseVisualStyleBackColor = false;
             this.ButtonStartKing.MouseEnter += new System.EventHandler(this.ButtonStartKing_MouseEnter);
+            this.ButtonStartKing.MouseLeave += new System.EventHandler(this.ButtonStartKing_MouseLeave);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_path1;
+            this.pictureBox1.BackgroundImage = global::PortraitManager.Properties.Resources.icon_path1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2296,6 +2301,7 @@ namespace OwlcatPortraitManager
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
             // tableLayoutPanel14
             // 
@@ -2332,10 +2338,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartWotr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStartWotr.UseVisualStyleBackColor = false;
             this.ButtonStartWotr.MouseEnter += new System.EventHandler(this.ButtonStartWotr_MouseEnter);
+            this.ButtonStartWotr.MouseLeave += new System.EventHandler(this.ButtonStartWotr_MouseLeave);
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_wotr1;
+            this.pictureBox2.BackgroundImage = global::PortraitManager.Properties.Resources.icon_wotr1;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2346,6 +2353,7 @@ namespace OwlcatPortraitManager
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.MouseEnter += new System.EventHandler(this.pictureBox2_MouseEnter);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
             // 
             // tableLayoutPanel15
             // 
@@ -2382,10 +2390,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartRt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStartRt.UseVisualStyleBackColor = false;
             this.ButtonStartRt.MouseEnter += new System.EventHandler(this.ButtonStartRt_MouseEnter);
+            this.ButtonStartRt.MouseLeave += new System.EventHandler(this.ButtonStartRt_MouseLeave);
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_rt1;
+            this.pictureBox3.BackgroundImage = global::PortraitManager.Properties.Resources.icon_rt1;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2396,6 +2405,7 @@ namespace OwlcatPortraitManager
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.MouseEnter += new System.EventHandler(this.pictureBox3_MouseEnter);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
             // 
             // tableLayoutPanel16
             // 
@@ -2432,10 +2442,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartPoe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStartPoe.UseVisualStyleBackColor = false;
             this.ButtonStartPoe.MouseEnter += new System.EventHandler(this.ButtonStartPoe_MouseEnter);
+            this.ButtonStartPoe.MouseLeave += new System.EventHandler(this.ButtonStartPoe_MouseLeave);
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_poe1;
+            this.pictureBox4.BackgroundImage = global::PortraitManager.Properties.Resources.icon_poe1;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2446,6 +2457,7 @@ namespace OwlcatPortraitManager
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.MouseEnter += new System.EventHandler(this.pictureBox4_MouseEnter);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.pictureBox4_MouseLeave);
             // 
             // tableLayoutPanel17
             // 
@@ -2482,10 +2494,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartPoed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStartPoed.UseVisualStyleBackColor = false;
             this.ButtonStartPoed.MouseEnter += new System.EventHandler(this.ButtonStartPoed_MouseEnter);
+            this.ButtonStartPoed.MouseLeave += new System.EventHandler(this.ButtonStartPoed_MouseLeave);
             // 
             // pictureBox5
             // 
-            this.pictureBox5.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_poed1;
+            this.pictureBox5.BackgroundImage = global::PortraitManager.Properties.Resources.icon_poed1;
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2496,6 +2509,7 @@ namespace OwlcatPortraitManager
             this.pictureBox5.TabIndex = 5;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.MouseEnter += new System.EventHandler(this.pictureBox5_MouseEnter);
+            this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
             // 
             // tableLayoutPanel18
             // 
@@ -2532,10 +2546,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartTyr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStartTyr.UseVisualStyleBackColor = false;
             this.ButtonStartTyr.MouseEnter += new System.EventHandler(this.ButtonStartTyr_MouseEnter);
+            this.ButtonStartTyr.MouseLeave += new System.EventHandler(this.ButtonStartTyr_MouseLeave);
             // 
             // pictureBox6
             // 
-            this.pictureBox6.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_tyr1;
+            this.pictureBox6.BackgroundImage = global::PortraitManager.Properties.Resources.icon_tyr1;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2546,6 +2561,7 @@ namespace OwlcatPortraitManager
             this.pictureBox6.TabIndex = 6;
             this.pictureBox6.TabStop = false;
             this.pictureBox6.MouseEnter += new System.EventHandler(this.pictureBox6_MouseEnter);
+            this.pictureBox6.MouseLeave += new System.EventHandler(this.pictureBox6_MouseLeave);
             // 
             // tableLayoutPanel19
             // 
@@ -2582,10 +2598,11 @@ namespace OwlcatPortraitManager
             this.ButtonStartWaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStartWaste.UseVisualStyleBackColor = false;
             this.ButtonStartWaste.MouseEnter += new System.EventHandler(this.ButtonStartWaste_MouseEnter);
+            this.ButtonStartWaste.MouseLeave += new System.EventHandler(this.ButtonStartWaste_MouseLeave);
             // 
             // pictureBox7
             // 
-            this.pictureBox7.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.icon_waste1;
+            this.pictureBox7.BackgroundImage = global::PortraitManager.Properties.Resources.icon_waste1;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2596,19 +2613,23 @@ namespace OwlcatPortraitManager
             this.pictureBox7.TabIndex = 7;
             this.pictureBox7.TabStop = false;
             this.pictureBox7.MouseEnter += new System.EventHandler(this.pictureBox7_MouseEnter);
+            this.pictureBox7.MouseLeave += new System.EventHandler(this.pictureBox7_MouseLeave);
             // 
             // tableLayoutPanel20
             // 
-            this.tableLayoutPanel20.ColumnCount = 2;
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.2796F));
-            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.7204F));
-            this.tableLayoutPanel20.Controls.Add(this.label7, 1, 0);
+            this.tableLayoutPanel20.ColumnCount = 3;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel20.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel20.Controls.Add(this.pictureBox8, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.pictureBox9, 2, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Location = new System.Drawing.Point(334, 442);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 1;
-            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel20.Size = new System.Drawing.Size(397, 36);
             this.tableLayoutPanel20.TabIndex = 14;
             // 
@@ -2617,12 +2638,38 @@ namespace OwlcatPortraitManager
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(151, 0);
+            this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(243, 36);
+            this.label7.Size = new System.Drawing.Size(311, 36);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Portrait Manager 1.4\r\nArtemii \"Zeight\" Saganenko© 2024";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label7.Text = "Portrait Manager 1.5\r\nArtemii \"Zeight\" Saganenko© 2024";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackgroundImage = global::PortraitManager.Properties.Resources.nm_logo;
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox8.Location = new System.Drawing.Point(320, 3);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(33, 30);
+            this.pictureBox8.TabIndex = 1;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.pictureBox8_Click);
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackgroundImage = global::PortraitManager.Properties.Resources.github_logo;
+            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox9.Location = new System.Drawing.Point(359, 3);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(35, 30);
+            this.pictureBox9.TabIndex = 2;
+            this.pictureBox9.TabStop = false;
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // MainForm
             // 
@@ -2733,6 +2780,8 @@ namespace OwlcatPortraitManager
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.tableLayoutPanel20.ResumeLayout(false);
             this.tableLayoutPanel20.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2888,6 +2937,8 @@ namespace OwlcatPortraitManager
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
     }
 }
 

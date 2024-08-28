@@ -970,7 +970,6 @@ namespace OwlcatPortraitManager
             // 
             // PicBoxEng
             // 
-            this.PicBoxEng.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.eng;
             this.PicBoxEng.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PicBoxEng.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicBoxEng.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -983,7 +982,6 @@ namespace OwlcatPortraitManager
             // 
             // PicBoxRus
             // 
-            this.PicBoxRus.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.rus;
             this.PicBoxRus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PicBoxRus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicBoxRus.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -996,7 +994,6 @@ namespace OwlcatPortraitManager
             // 
             // PicBoxGer
             // 
-            this.PicBoxGer.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.ger;
             this.PicBoxGer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PicBoxGer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PicBoxGer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2221,7 +2218,7 @@ namespace OwlcatPortraitManager
             // 
             this.LayoutStartMenu.BackColor = System.Drawing.Color.Black;
             this.LayoutStartMenu.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.start_path;
-            this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.LayoutStartMenu.ColumnCount = 2;
             this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.23433F));
             this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.76567F));
@@ -2275,9 +2272,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartKing.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartKing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartKing.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartKing.Location = new System.Drawing.Point(59, 3);
+            this.ButtonStartKing.Location = new System.Drawing.Point(56, 3);
+            this.ButtonStartKing.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartKing.Name = "ButtonStartKing";
-            this.ButtonStartKing.Size = new System.Drawing.Size(230, 45);
+            this.ButtonStartKing.Size = new System.Drawing.Size(233, 45);
             this.ButtonStartKing.TabIndex = 0;
             this.ButtonStartKing.Text = "path:king";
             this.ButtonStartKing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2292,8 +2290,9 @@ namespace OwlcatPortraitManager
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 45);
+            this.pictureBox1.Size = new System.Drawing.Size(53, 45);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
@@ -2324,9 +2323,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartWotr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWotr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartWotr.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartWotr.Location = new System.Drawing.Point(58, 3);
+            this.ButtonStartWotr.Location = new System.Drawing.Point(55, 3);
+            this.ButtonStartWotr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartWotr.Name = "ButtonStartWotr";
-            this.ButtonStartWotr.Size = new System.Drawing.Size(246, 45);
+            this.ButtonStartWotr.Size = new System.Drawing.Size(249, 45);
             this.ButtonStartWotr.TabIndex = 1;
             this.ButtonStartWotr.Text = "path:wotr";
             this.ButtonStartWotr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2340,8 +2340,9 @@ namespace OwlcatPortraitManager
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(49, 45);
+            this.pictureBox2.Size = new System.Drawing.Size(52, 45);
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.MouseEnter += new System.EventHandler(this.pictureBox2_MouseEnter);
@@ -2372,9 +2373,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartRt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartRt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartRt.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartRt.Location = new System.Drawing.Point(55, 3);
+            this.ButtonStartRt.Location = new System.Drawing.Point(52, 3);
+            this.ButtonStartRt.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartRt.Name = "ButtonStartRt";
-            this.ButtonStartRt.Size = new System.Drawing.Size(264, 45);
+            this.ButtonStartRt.Size = new System.Drawing.Size(267, 45);
             this.ButtonStartRt.TabIndex = 2;
             this.ButtonStartRt.Text = "wh:rt";
             this.ButtonStartRt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2388,8 +2390,9 @@ namespace OwlcatPortraitManager
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(46, 45);
+            this.pictureBox3.Size = new System.Drawing.Size(49, 45);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.MouseEnter += new System.EventHandler(this.pictureBox3_MouseEnter);
@@ -2420,9 +2423,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartPoe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartPoe.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartPoe.Location = new System.Drawing.Point(58, 3);
+            this.ButtonStartPoe.Location = new System.Drawing.Point(55, 3);
+            this.ButtonStartPoe.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoe.Name = "ButtonStartPoe";
-            this.ButtonStartPoe.Size = new System.Drawing.Size(276, 45);
+            this.ButtonStartPoe.Size = new System.Drawing.Size(279, 45);
             this.ButtonStartPoe.TabIndex = 3;
             this.ButtonStartPoe.Text = "poe";
             this.ButtonStartPoe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2436,8 +2440,9 @@ namespace OwlcatPortraitManager
             this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(49, 45);
+            this.pictureBox4.Size = new System.Drawing.Size(52, 45);
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.MouseEnter += new System.EventHandler(this.pictureBox4_MouseEnter);
@@ -2468,9 +2473,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartPoed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartPoed.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartPoed.Location = new System.Drawing.Point(56, 3);
+            this.ButtonStartPoed.Location = new System.Drawing.Point(53, 3);
+            this.ButtonStartPoed.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoed.Name = "ButtonStartPoed";
-            this.ButtonStartPoed.Size = new System.Drawing.Size(293, 45);
+            this.ButtonStartPoed.Size = new System.Drawing.Size(296, 45);
             this.ButtonStartPoed.TabIndex = 4;
             this.ButtonStartPoed.Text = "poe:df";
             this.ButtonStartPoed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2484,8 +2490,9 @@ namespace OwlcatPortraitManager
             this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox5.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(47, 45);
+            this.pictureBox5.Size = new System.Drawing.Size(50, 45);
             this.pictureBox5.TabIndex = 5;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.MouseEnter += new System.EventHandler(this.pictureBox5_MouseEnter);
@@ -2516,9 +2523,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartTyr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartTyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartTyr.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartTyr.Location = new System.Drawing.Point(61, 3);
+            this.ButtonStartTyr.Location = new System.Drawing.Point(58, 3);
+            this.ButtonStartTyr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartTyr.Name = "ButtonStartTyr";
-            this.ButtonStartTyr.Size = new System.Drawing.Size(303, 45);
+            this.ButtonStartTyr.Size = new System.Drawing.Size(306, 45);
             this.ButtonStartTyr.TabIndex = 5;
             this.ButtonStartTyr.Text = "tyr";
             this.ButtonStartTyr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2532,8 +2540,9 @@ namespace OwlcatPortraitManager
             this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox6.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(52, 45);
+            this.pictureBox6.Size = new System.Drawing.Size(55, 45);
             this.pictureBox6.TabIndex = 6;
             this.pictureBox6.TabStop = false;
             this.pictureBox6.MouseEnter += new System.EventHandler(this.pictureBox6_MouseEnter);
@@ -2564,9 +2573,10 @@ namespace OwlcatPortraitManager
             this.ButtonStartWaste.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartWaste.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartWaste.Location = new System.Drawing.Point(60, 3);
+            this.ButtonStartWaste.Location = new System.Drawing.Point(57, 3);
+            this.ButtonStartWaste.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartWaste.Name = "ButtonStartWaste";
-            this.ButtonStartWaste.Size = new System.Drawing.Size(319, 45);
+            this.ButtonStartWaste.Size = new System.Drawing.Size(322, 45);
             this.ButtonStartWaste.TabIndex = 6;
             this.ButtonStartWaste.Text = "w3";
             this.ButtonStartWaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2580,8 +2590,9 @@ namespace OwlcatPortraitManager
             this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox7.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(51, 45);
+            this.pictureBox7.Size = new System.Drawing.Size(54, 45);
             this.pictureBox7.TabIndex = 7;
             this.pictureBox7.TabStop = false;
             this.pictureBox7.MouseEnter += new System.EventHandler(this.pictureBox7_MouseEnter);

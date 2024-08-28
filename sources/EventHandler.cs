@@ -504,7 +504,7 @@ namespace PortraitManager
             }
 
             ListViewItem item = ListGallery.SelectedItems[0];
-            using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
+            using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
                 ClearPictureBoxImages(img);
             SystemControl.FileControl.ClearTempImages();
             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
@@ -842,8 +842,8 @@ namespace PortraitManager
             {
                 if (button != null)
                 {
-                    button.BackColor = GAME_TYPES[_gameSelected].ForeColor;
-                    button.ForeColor = GAME_TYPES[_gameSelected].BackColor;
+                    button.BackColor = GAME_TYPES[_gameSelected].ControlForeColor;
+                    button.ForeColor = GAME_TYPES[_gameSelected].ControlBackColor;
                 }
             }
         }
@@ -854,8 +854,8 @@ namespace PortraitManager
             {
                 if (button != null)
                 {
-                    button.BackColor = GAME_TYPES[_gameSelected].BackColor;
-                    button.ForeColor = GAME_TYPES[_gameSelected].ForeColor;
+                    button.BackColor = GAME_TYPES[_gameSelected].ControlBackColor;
+                    button.ForeColor = GAME_TYPES[_gameSelected].ControlForeColor;
                 }
             }
         }
@@ -886,7 +886,7 @@ namespace PortraitManager
 
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
-            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].DefaultDirectory;
+            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].NormalDefaultDirectory;
         }
 
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)

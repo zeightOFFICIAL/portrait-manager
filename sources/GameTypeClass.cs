@@ -1,10 +1,18 @@
 ﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games, 
+    Obsidian Entertainment and inXile Entertainment. 
+    Including: 
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous, 
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity, 
+        5. Pillars of Eternity: Deadfire, 
+        6. Tyranny,
+        7. Wasteland 3.
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file.
+    GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
 
@@ -15,17 +23,17 @@ namespace PortraitManager.sources
 {
     public class GameTypeClass
     {
-        public string GameName;
-        public string TitleText;
-        public Image TitleImage { get; set; }
-        public Image BackgroundImage { get; set; }
-        public Image PlaceholderImage { get; set; }
-        public Color ForeColor { get; set; }
-        public Color BackColor { get; set; }
-        public Icon GameIcon { get; set; }
-        public string DefaultDirectory { get; set; }
-        public Dictionary<string, int> NativePixeling { get; set; } 
-        public Dictionary<string, float> NativeAspect { get; set; }
+        public string FullGameName;
+        public string WindowTitleText;
+        public Image MenuTitleImage { get; set; }
+        public Image MenuBackgroundImage { get; set; }
+        public Image PortraitPlaceholderImage { get; set; }
+        public Color ControlForeColor { get; set; }
+        public Color ControlBackColor { get; set; }
+        public Icon ApplicationIcon { get; set; }
+        public string NormalDefaultDirectory { get; set; }
+        public Dictionary<string, int> PortraitNativePixeling { get; set; } 
+        public Dictionary<string, float> PortraitNativeAspect { get; set; }
         
         public GameTypeClass(string newGameName, Color newForeColor, Color newBackColor, Icon newIcon,
                              Image newTitleImage, Image newBackgroundImage, Image newPlaceImage,
@@ -35,20 +43,20 @@ namespace PortraitManager.sources
                              int newLargeWidth, int newLargeHeight,
                              float newSmallAspect, float newMediumAspect, float newLargeAspect)
         {
-            GameName = newGameName;
-            TitleText = newTitleText;
+            FullGameName = newGameName;
+            WindowTitleText = newTitleText;
 
-            ForeColor = newForeColor;
-            BackColor = newBackColor;
-            GameIcon = newIcon;
-            TitleImage = newTitleImage;
-            BackgroundImage = newBackgroundImage;
-            PlaceholderImage = newPlaceImage;            
+            ControlForeColor = newForeColor;
+            ControlBackColor = newBackColor;
+            ApplicationIcon = newIcon;
+            MenuTitleImage = newTitleImage;
+            MenuBackgroundImage = newBackgroundImage;
+            PortraitPlaceholderImage = newPlaceImage;            
 
-            DefaultDirectory = newDefDirectory;
+            NormalDefaultDirectory = newDefDirectory;
             
 
-            NativePixeling = new Dictionary<string, int>()
+            PortraitNativePixeling = new Dictionary<string, int>()
             {
                 { "SMALL WIDTH", newSmallWidth},
                 { "SMALL HEIGHT", newSmallHeight},
@@ -58,7 +66,7 @@ namespace PortraitManager.sources
                 { "LARGE HEIGHT", newLargeHeight}
             };
 
-            NativeAspect = new Dictionary<string, float>()
+            PortraitNativeAspect = new Dictionary<string, float>()
             {
                 { "SMALL ASPECT", newSmallAspect},
                 { "MEDIUM ASPECT", newMediumAspect},
@@ -68,47 +76,47 @@ namespace PortraitManager.sources
 
         public int GetSmallWidth()
         {
-            return NativePixeling["SMALL WIDTH"];
+            return PortraitNativePixeling["SMALL WIDTH"];
         }
 
         public int GetSmallHeight()
         {
-            return NativePixeling["SMALL HEIGHT"];
+            return PortraitNativePixeling["SMALL HEIGHT"];
         }
 
         public int GetMediumWidth()
         {
-            return NativePixeling["MEDIUM WIDTH"];
+            return PortraitNativePixeling["MEDIUM WIDTH"];
         }
 
         public int GetMediumHeight()
         {
-            return NativePixeling["MEDIUM HEIGHT"];
+            return PortraitNativePixeling["MEDIUM HEIGHT"];
         }
 
         public int GetLargeWidth()
         {
-            return NativePixeling["LARGE WIDTH"];
+            return PortraitNativePixeling["LARGE WIDTH"];
         }
 
         public int GetLargeHeight()
         {
-            return NativePixeling["LARGE HEIGHT"];
+            return PortraitNativePixeling["LARGE HEIGHT"];
         }
     
         public float GetSmallAspect()
         {
-            return NativeAspect["SMALL ASPECT"];
+            return PortraitNativeAspect["SMALL ASPECT"];
         }
 
         public float GetMediumAspect()
         {
-            return NativeAspect["MEDIUM ASPECT"];
+            return PortraitNativeAspect["MEDIUM ASPECT"];
         }
 
         public float GetLargeAspect()
         {
-            return NativeAspect["LARGE ASPECT"];
+            return PortraitNativeAspect["LARGE ASPECT"];
         }
     }
 }

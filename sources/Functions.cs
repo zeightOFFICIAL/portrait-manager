@@ -591,7 +591,7 @@ namespace PortraitManager
         
         public void ReplacePictureBoxImagesToDefault()
         {
-            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
+            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
             {
                 ClearPictureBoxImages(placeholder);
             }
@@ -599,7 +599,7 @@ namespace PortraitManager
         
         public static void CreateAllImagesInTemp(string newImagePath, ushort flag)
         {
-            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PlaceholderImage))
+            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
             {
                 if (flag == 1)
                 {
@@ -621,19 +621,19 @@ namespace PortraitManager
         
         public void UpdateColorScheme()
         {
-            Color foreColor = GAME_TYPES[_gameSelected].ForeColor;
-            Color backColor = GAME_TYPES[_gameSelected].BackColor;
+            Color foreColor = GAME_TYPES[_gameSelected].ControlForeColor;
+            Color backColor = GAME_TYPES[_gameSelected].ControlBackColor;
 
-            Icon = GAME_TYPES[_gameSelected].GameIcon;
-            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].TitleImage;
-            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].BackgroundImage;
+            Icon = GAME_TYPES[_gameSelected].ApplicationIcon;
+            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].MenuTitleImage;
+            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].MenuBackgroundImage;
 
             foreach (Control ctrl in Controls)
             {
                 UpdateObjectColoringInDepth(ctrl, foreColor, backColor);
             }
 
-            Text = GAME_TYPES[_gameSelected].TitleText;
+            Text = GAME_TYPES[_gameSelected].WindowTitleText;
             TextBoxFullPath.Clear();
 
             if (_gameSelected == 'p')

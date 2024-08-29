@@ -110,11 +110,12 @@ namespace PortraitManager
         private static char _gameSelected = CoreSettings.Default.GameType;
 
         /*
-         * 0 - Menu page
-         * 1 - File page
-         * 2 - Scale page
-         * 3 - Extract page
-         * 4 - Gallery page
+         * 0 - Start page
+         * 1 - Menu page
+         * 2 - File page
+         * 3 - Scale page
+         * 4 - Extract page
+         * 5 - Gallery page
          * 100 - File>web page
          * 200 - Scale>finish page
          */
@@ -144,6 +145,20 @@ namespace PortraitManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             _activeMenuIndex = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             if (UseStamps.Default.isFirstAny)
             {
@@ -182,11 +197,11 @@ namespace PortraitManager
             //Width = CoreSettings.Default.MaxWindowWidth;
             //Height = CoreSettings.Default.MaxWindowHeight;
 
-            //_fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            //FormInit();
-            //LanguageInit();
-            //CenterToScreen();
-            //Show();
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
+            FormInit();
+            LanguageInit();
+            CenterToScreen();
+            Show();
 
             //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             //{
@@ -306,7 +321,8 @@ namespace PortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutDisable(LayoutFinalPage);
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            //RootFunctions.LayoutEnable(LayoutMainPage);
+            RootFunctions.LayoutEnable(LayoutStartMenu);
             Focus();
 
             CheckBoxVerified.AutoCheck = false;
@@ -765,7 +781,7 @@ namespace PortraitManager
             var font = ButtonStartKing.Font;
 
             LayoutStartMenu.BackgroundImage = Resources.start_path;
-            ButtonStartKing.Font = new Font(font.FontFamily, 15);
+            ButtonStartKing.Font = new Font(font.FontFamily, 18);
         }
 
         private void ButtonStartWotr_MouseEnter(object sender, EventArgs e)

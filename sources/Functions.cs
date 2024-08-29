@@ -135,6 +135,7 @@ namespace PortraitManager
             RootFunctions.LayoutDisable(LayoutExtractPage);
             RootFunctions.LayoutDisable(LayoutGallery);
             RootFunctions.LayoutDisable(LayoutSettingsPage);
+            RootFunctions.LayoutDisable(LayoutStartMenu);
         }
         
         public void ParentLayoutsSetDockFill()

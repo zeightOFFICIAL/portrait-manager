@@ -21,6 +21,18 @@ using System.Drawing;
 
 namespace PortraitManager.sources
 {
+    public class GameClass
+    {
+        public string FullGameName;
+        public string ShortGameName;
+
+        public string WindowTitleText;
+
+        public Image MenuTitleImage;
+        public Image MenuBackgroundImage;
+    }
+
+
     public class GameTypeClass
     {
         public string FullGameName;

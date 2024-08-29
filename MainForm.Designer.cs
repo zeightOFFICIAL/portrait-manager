@@ -193,6 +193,10 @@ namespace PortraitManager
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.LayoutPathPage = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelBackToStart = new System.Windows.Forms.Label();
+            this.LabelNextToMain = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -252,6 +256,8 @@ namespace PortraitManager
             this.tableLayoutPanel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            this.LayoutPathPage.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayoutFilePage
@@ -2235,7 +2241,6 @@ namespace PortraitManager
             this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel18, 1, 6);
             this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel19, 1, 7);
             this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel20, 1, 8);
-            this.LayoutStartMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutStartMenu.Location = new System.Drawing.Point(0, 0);
             this.LayoutStartMenu.Name = "LayoutStartMenu";
             this.LayoutStartMenu.RowCount = 9;
@@ -2248,7 +2253,7 @@ namespace PortraitManager
             this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutStartMenu.Size = new System.Drawing.Size(734, 481);
+            this.LayoutStartMenu.Size = new System.Drawing.Size(427, 481);
             this.LayoutStartMenu.TabIndex = 8;
             // 
             // tableLayoutPanel13
@@ -2259,12 +2264,12 @@ namespace PortraitManager
             this.tableLayoutPanel13.Controls.Add(this.ButtonStartKing, 1, 0);
             this.tableLayoutPanel13.Controls.Add(this.PictureBoxStarKing, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(439, 43);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(310, 43);
             this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(130, 3, 3, 3);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(292, 51);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(114, 51);
             this.tableLayoutPanel13.TabIndex = 7;
             // 
             // ButtonStartKing
@@ -2277,10 +2282,10 @@ namespace PortraitManager
             this.ButtonStartKing.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartKing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartKing.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartKing.Location = new System.Drawing.Point(56, 3);
+            this.ButtonStartKing.Location = new System.Drawing.Point(22, 3);
             this.ButtonStartKing.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartKing.Name = "ButtonStartKing";
-            this.ButtonStartKing.Size = new System.Drawing.Size(233, 45);
+            this.ButtonStartKing.Size = new System.Drawing.Size(89, 45);
             this.ButtonStartKing.TabIndex = 0;
             this.ButtonStartKing.Text = "path:king";
             this.ButtonStartKing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2299,7 +2304,7 @@ namespace PortraitManager
             this.PictureBoxStarKing.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStarKing.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStarKing.Name = "PictureBoxStarKing";
-            this.PictureBoxStarKing.Size = new System.Drawing.Size(53, 45);
+            this.PictureBoxStarKing.Size = new System.Drawing.Size(19, 45);
             this.PictureBoxStarKing.TabIndex = 1;
             this.PictureBoxStarKing.TabStop = false;
             this.PictureBoxStarKing.Click += new System.EventHandler(this.PictureBoxStarKing_Click);
@@ -2314,12 +2319,12 @@ namespace PortraitManager
             this.tableLayoutPanel14.Controls.Add(this.ButtonStartWotr, 1, 0);
             this.tableLayoutPanel14.Controls.Add(this.PictureBoxStartWotr, 0, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(424, 100);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(295, 100);
             this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(115, 3, 3, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(307, 51);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(129, 51);
             this.tableLayoutPanel14.TabIndex = 8;
             // 
             // ButtonStartWotr
@@ -2332,10 +2337,10 @@ namespace PortraitManager
             this.ButtonStartWotr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWotr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartWotr.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartWotr.Location = new System.Drawing.Point(55, 3);
+            this.ButtonStartWotr.Location = new System.Drawing.Point(23, 3);
             this.ButtonStartWotr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartWotr.Name = "ButtonStartWotr";
-            this.ButtonStartWotr.Size = new System.Drawing.Size(249, 45);
+            this.ButtonStartWotr.Size = new System.Drawing.Size(103, 45);
             this.ButtonStartWotr.TabIndex = 1;
             this.ButtonStartWotr.Text = "path:wotr";
             this.ButtonStartWotr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2353,7 +2358,7 @@ namespace PortraitManager
             this.PictureBoxStartWotr.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartWotr.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartWotr.Name = "PictureBoxStartWotr";
-            this.PictureBoxStartWotr.Size = new System.Drawing.Size(52, 45);
+            this.PictureBoxStartWotr.Size = new System.Drawing.Size(20, 45);
             this.PictureBoxStartWotr.TabIndex = 2;
             this.PictureBoxStartWotr.TabStop = false;
             this.PictureBoxStartWotr.Click += new System.EventHandler(this.PictureBoxStartWotr_Click);
@@ -2368,12 +2373,12 @@ namespace PortraitManager
             this.tableLayoutPanel15.Controls.Add(this.ButtonStartRt, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.PictureBoxStartRt, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(409, 157);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(280, 157);
             this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(322, 51);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(144, 51);
             this.tableLayoutPanel15.TabIndex = 9;
             // 
             // ButtonStartRt
@@ -2386,10 +2391,10 @@ namespace PortraitManager
             this.ButtonStartRt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartRt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartRt.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartRt.Location = new System.Drawing.Point(52, 3);
+            this.ButtonStartRt.Location = new System.Drawing.Point(23, 3);
             this.ButtonStartRt.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartRt.Name = "ButtonStartRt";
-            this.ButtonStartRt.Size = new System.Drawing.Size(267, 45);
+            this.ButtonStartRt.Size = new System.Drawing.Size(118, 45);
             this.ButtonStartRt.TabIndex = 2;
             this.ButtonStartRt.Text = "wh:rt";
             this.ButtonStartRt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2407,7 +2412,7 @@ namespace PortraitManager
             this.PictureBoxStartRt.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartRt.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartRt.Name = "PictureBoxStartRt";
-            this.PictureBoxStartRt.Size = new System.Drawing.Size(49, 45);
+            this.PictureBoxStartRt.Size = new System.Drawing.Size(20, 45);
             this.PictureBoxStartRt.TabIndex = 3;
             this.PictureBoxStartRt.TabStop = false;
             this.PictureBoxStartRt.Click += new System.EventHandler(this.PictureBoxStartRt_Click);
@@ -2422,12 +2427,12 @@ namespace PortraitManager
             this.tableLayoutPanel16.Controls.Add(this.ButtonStartPoe, 1, 0);
             this.tableLayoutPanel16.Controls.Add(this.PictureBoxStartPoe, 0, 0);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(394, 214);
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(265, 214);
             this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(85, 3, 3, 3);
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(337, 51);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(159, 51);
             this.tableLayoutPanel16.TabIndex = 10;
             // 
             // ButtonStartPoe
@@ -2440,10 +2445,10 @@ namespace PortraitManager
             this.ButtonStartPoe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartPoe.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartPoe.Location = new System.Drawing.Point(55, 3);
+            this.ButtonStartPoe.Location = new System.Drawing.Point(26, 3);
             this.ButtonStartPoe.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoe.Name = "ButtonStartPoe";
-            this.ButtonStartPoe.Size = new System.Drawing.Size(279, 45);
+            this.ButtonStartPoe.Size = new System.Drawing.Size(130, 45);
             this.ButtonStartPoe.TabIndex = 3;
             this.ButtonStartPoe.Text = "poe";
             this.ButtonStartPoe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2461,7 +2466,7 @@ namespace PortraitManager
             this.PictureBoxStartPoe.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartPoe.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartPoe.Name = "PictureBoxStartPoe";
-            this.PictureBoxStartPoe.Size = new System.Drawing.Size(52, 45);
+            this.PictureBoxStartPoe.Size = new System.Drawing.Size(23, 45);
             this.PictureBoxStartPoe.TabIndex = 4;
             this.PictureBoxStartPoe.TabStop = false;
             this.PictureBoxStartPoe.Click += new System.EventHandler(this.PictureBoxStartPoe_Click);
@@ -2476,12 +2481,12 @@ namespace PortraitManager
             this.tableLayoutPanel17.Controls.Add(this.ButtonStartPoed, 1, 0);
             this.tableLayoutPanel17.Controls.Add(this.PictureBoxStartPoed, 0, 0);
             this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel17.Location = new System.Drawing.Point(379, 271);
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(250, 271);
             this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(70, 3, 3, 3);
             this.tableLayoutPanel17.Name = "tableLayoutPanel17";
             this.tableLayoutPanel17.RowCount = 1;
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(352, 51);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(174, 51);
             this.tableLayoutPanel17.TabIndex = 11;
             // 
             // ButtonStartPoed
@@ -2494,10 +2499,10 @@ namespace PortraitManager
             this.ButtonStartPoed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartPoed.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartPoed.Location = new System.Drawing.Point(53, 3);
+            this.ButtonStartPoed.Location = new System.Drawing.Point(26, 3);
             this.ButtonStartPoed.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoed.Name = "ButtonStartPoed";
-            this.ButtonStartPoed.Size = new System.Drawing.Size(296, 45);
+            this.ButtonStartPoed.Size = new System.Drawing.Size(145, 45);
             this.ButtonStartPoed.TabIndex = 4;
             this.ButtonStartPoed.Text = "poe:df";
             this.ButtonStartPoed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2515,7 +2520,7 @@ namespace PortraitManager
             this.PictureBoxStartPoed.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartPoed.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartPoed.Name = "PictureBoxStartPoed";
-            this.PictureBoxStartPoed.Size = new System.Drawing.Size(50, 45);
+            this.PictureBoxStartPoed.Size = new System.Drawing.Size(23, 45);
             this.PictureBoxStartPoed.TabIndex = 5;
             this.PictureBoxStartPoed.TabStop = false;
             this.PictureBoxStartPoed.Click += new System.EventHandler(this.PictureBoxStartPoed_Click);
@@ -2530,12 +2535,12 @@ namespace PortraitManager
             this.tableLayoutPanel18.Controls.Add(this.ButtonStartTyr, 1, 0);
             this.tableLayoutPanel18.Controls.Add(this.PictureBoxStartTyr, 0, 0);
             this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(364, 328);
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(235, 328);
             this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(55, 3, 3, 3);
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(367, 51);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(189, 51);
             this.tableLayoutPanel18.TabIndex = 12;
             // 
             // ButtonStartTyr
@@ -2548,10 +2553,10 @@ namespace PortraitManager
             this.ButtonStartTyr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartTyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartTyr.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartTyr.Location = new System.Drawing.Point(58, 3);
+            this.ButtonStartTyr.Location = new System.Drawing.Point(30, 3);
             this.ButtonStartTyr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartTyr.Name = "ButtonStartTyr";
-            this.ButtonStartTyr.Size = new System.Drawing.Size(306, 45);
+            this.ButtonStartTyr.Size = new System.Drawing.Size(156, 45);
             this.ButtonStartTyr.TabIndex = 5;
             this.ButtonStartTyr.Text = "tyr";
             this.ButtonStartTyr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2569,7 +2574,7 @@ namespace PortraitManager
             this.PictureBoxStartTyr.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartTyr.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartTyr.Name = "PictureBoxStartTyr";
-            this.PictureBoxStartTyr.Size = new System.Drawing.Size(55, 45);
+            this.PictureBoxStartTyr.Size = new System.Drawing.Size(27, 45);
             this.PictureBoxStartTyr.TabIndex = 6;
             this.PictureBoxStartTyr.TabStop = false;
             this.PictureBoxStartTyr.Click += new System.EventHandler(this.PictureBoxStartTyr_Click);
@@ -2584,12 +2589,12 @@ namespace PortraitManager
             this.tableLayoutPanel19.Controls.Add(this.ButtonStartWaste, 1, 0);
             this.tableLayoutPanel19.Controls.Add(this.PictureBoxStartWaste, 0, 0);
             this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(349, 385);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(220, 385);
             this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(40, 3, 3, 3);
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 1;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(382, 51);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(204, 51);
             this.tableLayoutPanel19.TabIndex = 13;
             // 
             // ButtonStartWaste
@@ -2602,10 +2607,10 @@ namespace PortraitManager
             this.ButtonStartWaste.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStartWaste.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartWaste.Location = new System.Drawing.Point(57, 3);
+            this.ButtonStartWaste.Location = new System.Drawing.Point(30, 3);
             this.ButtonStartWaste.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartWaste.Name = "ButtonStartWaste";
-            this.ButtonStartWaste.Size = new System.Drawing.Size(322, 45);
+            this.ButtonStartWaste.Size = new System.Drawing.Size(171, 45);
             this.ButtonStartWaste.TabIndex = 6;
             this.ButtonStartWaste.Text = "w3";
             this.ButtonStartWaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2623,7 +2628,7 @@ namespace PortraitManager
             this.PictureBoxStartWaste.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartWaste.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartWaste.Name = "PictureBoxStartWaste";
-            this.PictureBoxStartWaste.Size = new System.Drawing.Size(54, 45);
+            this.PictureBoxStartWaste.Size = new System.Drawing.Size(27, 45);
             this.PictureBoxStartWaste.TabIndex = 7;
             this.PictureBoxStartWaste.TabStop = false;
             this.PictureBoxStartWaste.Click += new System.EventHandler(this.PictureBoxStartWaste_Click);
@@ -2640,12 +2645,12 @@ namespace PortraitManager
             this.tableLayoutPanel20.Controls.Add(this.pictureBox8, 1, 0);
             this.tableLayoutPanel20.Controls.Add(this.pictureBox9, 2, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(334, 442);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(205, 442);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 1;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(397, 36);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(219, 36);
             this.tableLayoutPanel20.TabIndex = 14;
             // 
             // label7
@@ -2655,7 +2660,7 @@ namespace PortraitManager
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(311, 36);
+            this.label7.Size = new System.Drawing.Size(169, 36);
             this.label7.TabIndex = 0;
             this.label7.Text = "Portrait Manager 1.5\r\nArtemii \"Zeight\" Saganenko© 2024";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2666,9 +2671,9 @@ namespace PortraitManager
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox8.Location = new System.Drawing.Point(320, 3);
+            this.pictureBox8.Location = new System.Drawing.Point(178, 3);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(33, 30);
+            this.pictureBox8.Size = new System.Drawing.Size(15, 30);
             this.pictureBox8.TabIndex = 1;
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Click += new System.EventHandler(this.PictureBoxOpenNexus_Click);
@@ -2679,9 +2684,9 @@ namespace PortraitManager
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox9.Location = new System.Drawing.Point(359, 3);
+            this.pictureBox9.Location = new System.Drawing.Point(199, 3);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(35, 30);
+            this.pictureBox9.Size = new System.Drawing.Size(17, 30);
             this.pictureBox9.TabIndex = 2;
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Click += new System.EventHandler(this.PictureBoxOpenGithub_Click);
@@ -2689,18 +2694,89 @@ namespace PortraitManager
             // LayoutPathPage
             // 
             this.LayoutPathPage.BackColor = System.Drawing.Color.Black;
-            this.LayoutPathPage.ColumnCount = 2;
-            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutPathPage.Location = new System.Drawing.Point(473, 64);
+            this.LayoutPathPage.ColumnCount = 5;
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.LayoutPathPage.Controls.Add(this.tableLayoutPanel21, 2, 1);
+            this.LayoutPathPage.Controls.Add(this.LabelBackToStart, 1, 1);
+            this.LayoutPathPage.Controls.Add(this.LabelNextToMain, 3, 1);
+            this.LayoutPathPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutPathPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutPathPage.Name = "LayoutPathPage";
-            this.LayoutPathPage.RowCount = 4;
+            this.LayoutPathPage.RowCount = 3;
             this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.LayoutPathPage.Size = new System.Drawing.Size(734, 481);
             this.LayoutPathPage.TabIndex = 9;
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 1;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Controls.Add(this.textBox1, 0, 1);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(88, 43);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 5;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(374, 395);
+            this.tableLayoutPanel21.TabIndex = 0;
+            // 
+            // LabelBackToStart
+            // 
+            this.LabelBackToStart.AutoSize = true;
+            this.LabelBackToStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelBackToStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelBackToStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelBackToStart.ForeColor = System.Drawing.Color.White;
+            this.LabelBackToStart.Location = new System.Drawing.Point(35, 190);
+            this.LabelBackToStart.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
+            this.LabelBackToStart.Name = "LabelBackToStart";
+            this.LabelBackToStart.Size = new System.Drawing.Size(45, 101);
+            this.LabelBackToStart.TabIndex = 3;
+            this.LabelBackToStart.Text = "《";
+            this.LabelBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelBackToStart.Click += new System.EventHandler(this.LabelBackToStart_Click);
+            this.LabelBackToStart.MouseEnter += new System.EventHandler(this.LabelBackToStart_MouseEnter);
+            this.LabelBackToStart.MouseLeave += new System.EventHandler(this.LabelBackToStart_MouseLeave);
+            // 
+            // LabelNextToMain
+            // 
+            this.LabelNextToMain.AutoSize = true;
+            this.LabelNextToMain.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelNextToMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelNextToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelNextToMain.ForeColor = System.Drawing.Color.White;
+            this.LabelNextToMain.Location = new System.Drawing.Point(470, 190);
+            this.LabelNextToMain.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
+            this.LabelNextToMain.Name = "LabelNextToMain";
+            this.LabelNextToMain.Size = new System.Drawing.Size(45, 101);
+            this.LabelNextToMain.TabIndex = 4;
+            this.LabelNextToMain.Text = "》";
+            this.LabelNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelNextToMain.Click += new System.EventHandler(this.LabelNextToMain_Click);
+            this.LabelNextToMain.MouseEnter += new System.EventHandler(this.LabelNextToMain_MouseEnter);
+            this.LabelNextToMain.MouseLeave += new System.EventHandler(this.LabelNextToMain_MouseLeave);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.Black;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(3, 153);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(368, 24);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
@@ -2709,8 +2785,8 @@ namespace PortraitManager
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(734, 481);
-            this.Controls.Add(this.LayoutStartMenu);
             this.Controls.Add(this.LayoutPathPage);
+            this.Controls.Add(this.LayoutStartMenu);
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutSettingsPage);
             this.Controls.Add(this.LayoutURLDialog);
@@ -2814,6 +2890,10 @@ namespace PortraitManager
             this.tableLayoutPanel20.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            this.LayoutPathPage.ResumeLayout(false);
+            this.LayoutPathPage.PerformLayout();
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.tableLayoutPanel21.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2972,6 +3052,10 @@ namespace PortraitManager
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.TableLayoutPanel LayoutPathPage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
+        private System.Windows.Forms.Label LabelBackToStart;
+        private System.Windows.Forms.Label LabelNextToMain;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

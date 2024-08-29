@@ -204,6 +204,15 @@
     <Content Include="icon_path.ico" />
     <Content Include="icon_rt.ico" />
     <Content Include="icon_wotr.ico" />
+    <None Include="resources\rightarrow.png" />
+    <None Include="resources\leftarrow.png" />
+    <None Include="resources\path_wotr.jpg" />
+    <None Include="resources\path_waste.jpg" />
+    <None Include="resources\path_tyr.jpg" />
+    <None Include="resources\path_rt.jpg" />
+    <None Include="resources\path_poed.jpg" />
+    <None Include="resources\path_poe.jpg" />
+    <None Include="resources\path_path.jpg" />
     <None Include="resources\icon.ico" />
     <None Include="resources\start_wotr.jpg" />
     <None Include="resources\start_waste.jpg" />

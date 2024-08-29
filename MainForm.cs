@@ -1016,72 +1016,157 @@ namespace PortraitManager
 
         private void ButtonStartKing_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_path;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void PictureBoxStarKing_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_path;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void PictureBoxStartWotr_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_wotr;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void ButtonStartWotr_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            ParentLayoutsDisable();
+            LayoutPathPage.BackgroundImage = Resources.path_wotr;
+            RootFunctions.LayoutEnable(LayoutPathPage);
         }
 
         private void PictureBoxStartRt_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            ParentLayoutsDisable();
+            LayoutPathPage.BackgroundImage = Resources.path_rt;
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void ButtonStartRt_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            ParentLayoutsDisable();
+            LayoutPathPage.BackgroundImage = Resources.path_rt;
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void PictureBoxStartPoe_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_poe;
+            ParentLayoutsDisable();            
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void ButtonStartPoe_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_poe;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);
+            
         }
 
         private void PictureBoxStartPoed_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_poed;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);
         }
 
         private void ButtonStartPoed_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_poed;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void PictureBoxStartTyr_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_tyr;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void ButtonStartTyr_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_tyr;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void PictureBoxStartWaste_Click(object sender, EventArgs e)
         {
-
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_waste;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void ButtonStartWaste_Click(object sender, EventArgs e)
         {
+            _activeMenuIndex = 1;
+            LayoutPathPage.BackgroundImage = Resources.path_waste;
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutPathPage);           
+        }
 
+        private void LabelBackToStart_Click(object sender, EventArgs e)
+        {
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutStartMenu);
+            _activeMenuIndex = 0;
+            StartMenuFontsInit(_fontCollection);
+            StartMenuTextInit();
+        }
+
+        private void LabelNextToMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelBackToStart_MouseEnter(object sender, EventArgs e)
+        {
+            var font = LabelBackToStart.Font;
+
+            LabelBackToStart.Font = new Font(font.FontFamily, 41);
+        }
+
+        private void LabelBackToStart_MouseLeave(object sender, EventArgs e)
+        {
+            var font = LabelBackToStart.Font;
+
+            LabelBackToStart.Font = new Font(font.FontFamily, 27);
+        }
+
+        private void LabelNextToMain_MouseEnter(object sender, EventArgs e)
+        {
+            var font = LabelNextToMain.Font;
+
+            LabelNextToMain.Font = new Font(font.FontFamily, 41);
+        }
+
+        private void LabelNextToMain_MouseLeave(object sender, EventArgs e)
+        {
+            var font = LabelNextToMain.Font;
+
+            LabelNextToMain.Font = new Font(font.FontFamily, 27);
         }
     }
 }

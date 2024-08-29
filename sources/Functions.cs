@@ -136,6 +136,7 @@ namespace PortraitManager
             RootFunctions.LayoutDisable(LayoutGallery);
             RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
+            RootFunctions.LayoutDisable(LayoutPathPage);
         }
         
         public void ParentLayoutsSetDockFill()
@@ -375,6 +376,30 @@ namespace PortraitManager
             }, cancelToken);
         }
         
+        public void StartMenuFontsInit(PrivateFontCollection fonts)
+        {
+            Font font = new Font(fonts.Families[0], 13);
+
+            ButtonStartKing.Font = font;
+            ButtonStartPoe.Font = font;
+            ButtonStartPoed.Font = font;
+            ButtonStartWotr.Font = font;
+            ButtonStartTyr.Font = font;
+            ButtonStartWaste.Font = font;
+            ButtonStartRt.Font = font;
+        }
+
+        public void StartMenuTextInit()
+        {
+            ButtonStartKing.Text = TextVariables.TEXT_KINGMAKER;
+            ButtonStartPoe.Text = TextVariables.TEXT_PILLARS;
+            ButtonStartPoed.Text = TextVariables.TEXT_DEADFIRE;
+            ButtonStartWotr.Text = TextVariables.TEXT_WOTR;
+            ButtonStartTyr.Text = TextVariables.TEXT_TYR;
+            ButtonStartWaste.Text = TextVariables.TEXT_WASTE;
+            ButtonStartRt.Text = TextVariables.TEXT_ROGUE;
+        }
+
         public void FontsInit(PrivateFontCollection fonts, ushort family = 0, int headSize = 19, int underSize = 16, int smallSize = 13)
         {
             Font bebasNeueHead = new Font(fonts.Families[family], headSize), 
@@ -429,13 +454,7 @@ namespace PortraitManager
             ButtonLoadCustomArmy.Font = bebasNeueSmall;
             ButtonLoadCustomNPC.Font = bebasNeueSmall;
             ButtonRT.Font = bebasNeueHead;
-            ButtonStartKing.Font = bebasNeueSmall;
-            ButtonStartPoe.Font = bebasNeueSmall;
-            ButtonStartPoed.Font = bebasNeueSmall;
-            ButtonStartWotr.Font = bebasNeueSmall;
-            ButtonStartTyr.Font = bebasNeueSmall;
-            ButtonStartWaste.Font = bebasNeueSmall;
-            ButtonStartRt.Font = bebasNeueSmall;
+            
         }
         
         public void FontsInitNotEN(int defSize = 12)
@@ -550,13 +569,7 @@ namespace PortraitManager
             ButtonLoadCustomNPC.Text = TextVariables.BUTTON_CUSTOMNPC;
             ButtonLoadNormal.Text = TextVariables.BUTTON_SHOWLOCAL;
             ButtonRT.Text = TextVariables.ROGUE;
-            ButtonStartKing.Text = TextVariables.TEXT_KINGMAKER;
-            ButtonStartPoe.Text = TextVariables.TEXT_PILLARS;
-            ButtonStartPoed.Text = TextVariables.TEXT_DEADFIRE;
-            ButtonStartWotr.Text = TextVariables.TEXT_WOTR;
-            ButtonStartTyr.Text = TextVariables.TEXT_TYR;
-            ButtonStartWaste.Text = TextVariables.TEXT_WASTE;
-            ButtonStartRt.Text = TextVariables.TEXT_ROGUE;
+            
         }
         
         public void UpdateObjectColoringInDepth(Control ctrl, Color a, Color b)
@@ -847,7 +860,7 @@ namespace PortraitManager
             listView.Clear();
             imageList.Images.Clear();
         }
-        
+
         public string ParseDragDropFile(DragEventArgs e)
         {
             string[] filesList = (string[])e.Data.GetData(DataFormats.FileDrop, false);

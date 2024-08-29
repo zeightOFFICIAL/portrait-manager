@@ -73,7 +73,7 @@ namespace PortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("l")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-")]
         public char GameType {
             get {
                 return ((char)(this["GameType"]));

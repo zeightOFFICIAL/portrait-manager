@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OwlcatPortraitManager.Properties" GeneratedClassName="CoreSettings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PortraitManager.Properties" GeneratedClassName="CoreSettings">
   <Profiles />
   <Settings>
     <Setting Name="WOTRPath" Type="System.String" Scope="User">
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="GameType" Type="System.Char" Scope="User">
-      <Value Profile="(Default)">l</Value>
+      <Value Profile="(Default)">-</Value>
     </Setting>
     <Setting Name="EnabledCustomNPC" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

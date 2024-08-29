@@ -111,11 +111,12 @@ namespace PortraitManager
 
         /*
          * 0 - Start page
-         * 1 - Menu page
-         * 2 - File page
-         * 3 - Scale page
-         * 4 - Extract page
-         * 5 - Gallery page
+         * 1 - Path page
+         * 2 - Menu page
+         * 3 - File page
+         * 4 - Scale page
+         * 5 - Extract page
+         * 6 - Gallery page
          * 100 - File>web page
          * 200 - Scale>finish page
          */
@@ -144,52 +145,54 @@ namespace PortraitManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _activeMenuIndex = 0;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
+            CenterToScreen();
+            ParentLayoutsSetDockFill();
+            ParentLayoutsDisable();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            if (UseStamps.Default.isFirstAny)
+            if (CoreSettings.Default.GameType == '-')
             {
-                var currentUICulture = CultureInfo.CurrentUICulture.ToString();
-                if (currentUICulture == "en-US" ||
-                    currentUICulture == "ru-RU" ||
-                    currentUICulture == "de-DE"
-                    )
-                {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-                }
-                else
-                {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-                }
-
-                CoreSettings.Default.KINGPath = KINGMAKER_TYPE.NormalDefaultDirectory;
-                CoreSettings.Default.WOTRPath = WRATH_TYPE.NormalDefaultDirectory;
-                CoreSettings.Default.ROGUEPath = ROGUE_TYPE.NormalDefaultDirectory;
-                CoreSettings.Default.MaxWindowHeight = Size.Height;
-                CoreSettings.Default.MaxWindowWidth = Size.Width;
-                CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
-                CoreSettings.Default.Save();
-
-                UseStamps.Default.isFirstAny = false;
-                UseStamps.Default.Save();
+                RootFunctions.LayoutEnable(LayoutStartMenu);
+                _activeMenuIndex = 0;
+                StartMenuFontsInit(_fontCollection);
+                StartMenuTextInit();
             }
-            else
-            {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(CoreSettings.Default.SelectedLang);
-            }
+
+            Show();
+            Focus();
+
+            //if (UseStamps.Default.isFirstAny)
+            //{
+            //    var currentUICulture = CultureInfo.CurrentUICulture.ToString();
+            //    if (currentUICulture == "en-US" ||
+            //        currentUICulture == "ru-RU" ||
+            //        currentUICulture == "de-DE"
+            //        )
+            //    {
+            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+            //    }
+            //    else
+            //    {
+            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            //    }
+
+            //    CoreSettings.Default.KINGPath = KINGMAKER_TYPE.NormalDefaultDirectory;
+            //    CoreSettings.Default.WOTRPath = WRATH_TYPE.NormalDefaultDirectory;
+            //    CoreSettings.Default.ROGUEPath = ROGUE_TYPE.NormalDefaultDirectory;
+            //    CoreSettings.Default.MaxWindowHeight = Size.Height;
+            //    CoreSettings.Default.MaxWindowWidth = Size.Width;
+            //    CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
+            //    CoreSettings.Default.Save();
+
+            //    UseStamps.Default.isFirstAny = false;
+            //    UseStamps.Default.Save();
+            //}
+            //else
+            //{
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(CoreSettings.Default.SelectedLang);
+            //}
 
             //ACTIVE_PATHS['w'] = CoreSettings.Default.WOTRPath;
             //ACTIVE_PATHS['p'] = CoreSettings.Default.KINGPath;
@@ -197,11 +200,12 @@ namespace PortraitManager
             //Width = CoreSettings.Default.MaxWindowWidth;
             //Height = CoreSettings.Default.MaxWindowHeight;
 
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            FormInit();
-            LanguageInit();
-            CenterToScreen();
-            Show();
+
+
+            //FormInit();
+            //LanguageInit();
+            //CenterToScreen();
+
 
             //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             //{
@@ -786,145 +790,296 @@ namespace PortraitManager
 
         private void ButtonStartWotr_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartWotr.Font;
+
             LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 18);
         }
 
         private void ButtonStartRt_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartRt.Font;
+
+            ButtonStartRt.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_rt;
         }
 
         private void ButtonStartPoe_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartPoe.Font;
+
+            ButtonStartPoe.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_poe;
         }
 
         private void ButtonStartPoed_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartPoed.Font;
+
+            ButtonStartPoed.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_poed;
         }
 
         private void ButtonStartTyr_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartTyr.Font;
+
+            ButtonStartTyr.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_tyr;
         }
 
         private void ButtonStartWaste_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartWaste.Font;
+
+            ButtonStartWaste.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
         }
 
-        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartKing_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartKing.Font;
+
             LayoutStartMenu.BackgroundImage = Resources.start_path;
+            ButtonStartKing.Font = new Font(font.FontFamily, 18);
         }
 
-        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartWotr_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartWotr.Font;
+
             LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 18);
         }
 
-        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartRt_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartRt.Font;
+
+            ButtonStartRt.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_rt;
         }
 
-        private void pictureBox4_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartPoe_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartPoe.Font;
+
+            ButtonStartPoe.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_poe;
         }
 
-        private void pictureBox5_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartPoed_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartPoed.Font;
+
+            ButtonStartPoed.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_poed;
         }
 
-        private void pictureBox6_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartTyr_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartTyr.Font;
+
+            ButtonStartTyr.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_tyr;
         }
 
-        private void pictureBox7_MouseEnter(object sender, EventArgs e)
+        private void PictureBoxStartWaste_MouseEnter(object sender, EventArgs e)
         {
+            var font = ButtonStartWaste.Font;
+
+            ButtonStartWaste.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
         }
 
         private void ButtonStartKing_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartKing.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_path;
+            ButtonStartKing.Font = new Font(font.FontFamily, 13);
         }
 
         private void ButtonStartWotr_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartWotr.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 13);
         }
 
         private void ButtonStartRt_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartRt.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+            ButtonStartRt.Font = new Font(font.FontFamily, 13);
         }
 
         private void ButtonStartPoe_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartPoe.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+            ButtonStartPoe.Font = new Font(font.FontFamily, 13);
         }
 
         private void ButtonStartPoed_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartPoed.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+            ButtonStartPoed.Font = new Font(font.FontFamily, 13);
         }
 
         private void ButtonStartTyr_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartTyr.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+            ButtonStartTyr.Font = new Font(font.FontFamily, 13);
         }
 
         private void ButtonStartWaste_MouseLeave(object sender, EventArgs e)
         {
+            var font = ButtonStartWaste.Font;
 
+            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+            ButtonStartWaste.Font = new Font(font.FontFamily, 13);
         }
 
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        private void PictureBoxStartKing_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartKing.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_path;
+            ButtonStartKing.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxStartWotr_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartWotr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxStartRt_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartRt.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+            ButtonStartRt.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxStartPoe_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoe.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+            ButtonStartPoe.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxStartPoed_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoed.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+            ButtonStartPoed.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxStartTyr_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartTyr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+            ButtonStartTyr.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxStartWaste_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartWaste.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+            ButtonStartWaste.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void PictureBoxOpenNexus_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        private void PictureBoxOpenGithub_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        private void ButtonStartKing_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        private void PictureBoxStarKing_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox5_MouseLeave(object sender, EventArgs e)
+        private void PictureBoxStartWotr_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox6_MouseLeave(object sender, EventArgs e)
+        private void ButtonStartWotr_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox7_MouseLeave(object sender, EventArgs e)
+        private void PictureBoxStartRt_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox8_Click(object sender, EventArgs e)
+        private void ButtonStartRt_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox9_Click(object sender, EventArgs e)
+        private void PictureBoxStartPoe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartPoe_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxStartPoed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartPoed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxStartTyr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartTyr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxStartWaste_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonStartWaste_Click(object sender, EventArgs e)
         {
 
         }

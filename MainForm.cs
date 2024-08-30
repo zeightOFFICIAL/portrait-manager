@@ -20,6 +20,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
+
 namespace PortraitManager
 {
     public partial class MainForm : Form
@@ -137,16 +138,25 @@ namespace PortraitManager
 
         private static CancellationTokenSource _cancellationTokenSource;
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;     
+                return handleParam;
+            }
+        }
 
         public MainForm()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.Selectable, false);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.Selectable, false);
+        {            
             _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
             CenterToScreen();
             ParentLayoutsSetDockFill();
@@ -627,149 +637,149 @@ namespace PortraitManager
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (_activeMenuIndex == 0)
-            {
-                switch (e.KeyChar)
-                {
-                    case '1':
-                        ButtonToFilePage_Click(sender, e);
-                        break;
-                    case '2':
-                        ButtonToExtract_Click(sender, e);
-                        break;
-                    case '3':
-                        ButtonToGalleryPage_Click(sender, e);
-                        break;
-                    case '\t':
-                        PictureBoxTitle_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonExit_Click(sender, e);
-                        break;
-                }
-            }
-            else if (_activeMenuIndex == 1)
-            {
-                switch (e.KeyChar)
-                {
-                    case '1':
-                        ButtonLocalPortraitLoad_Click(sender, e);
-                        break;
-                    case 'l':
-                        ButtonLocalPortraitLoad_Click(sender, e);
-                        break;
-                    case '2':
-                        ButtonWebPortraitLoad_Click(sender, e);
-                        break;
-                    case 'w':
-                        ButtonWebPortraitLoad_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonToMainPage_Click(sender, e);
-                        break;
-                    case 'q':
-                        ButtonToMainPage_Click(sender, e);
-                        break;
-                    case 'r':
-                        ButtonToScalePage_Click(sender, e);
-                        break;
-                    case 'e':
-                        ButtonNextImageType_Click(sender, e);
-                        break;
-                }
-            }
-            else if (_activeMenuIndex == 2)
-            {
-                switch (e.KeyChar)
-                {
-                    case 'q':
-                        ButtonToFilePage2_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonToFilePage2_Click(sender, e);
-                        break;
-                    case 'e':
-                        ButtonCreatePortrait_Click(sender, e);
-                        break;
-                    case 'r':
-                        ResizeVisibleImagesToWindowSize();
-                        break;
+            //if (_activeMenuIndex == 0)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case '1':
+            //            ButtonToFilePage_Click(sender, e);
+            //            break;
+            //        case '2':
+            //            ButtonToExtract_Click(sender, e);
+            //            break;
+            //        case '3':
+            //            ButtonToGalleryPage_Click(sender, e);
+            //            break;
+            //        case '\t':
+            //            PictureBoxTitle_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonExit_Click(sender, e);
+            //            break;
+            //    }
+            //}
+            //else if (_activeMenuIndex == 1)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case '1':
+            //            ButtonLocalPortraitLoad_Click(sender, e);
+            //            break;
+            //        case 'l':
+            //            ButtonLocalPortraitLoad_Click(sender, e);
+            //            break;
+            //        case '2':
+            //            ButtonWebPortraitLoad_Click(sender, e);
+            //            break;
+            //        case 'w':
+            //            ButtonWebPortraitLoad_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonToMainPage_Click(sender, e);
+            //            break;
+            //        case 'q':
+            //            ButtonToMainPage_Click(sender, e);
+            //            break;
+            //        case 'r':
+            //            ButtonToScalePage_Click(sender, e);
+            //            break;
+            //        case 'e':
+            //            ButtonNextImageType_Click(sender, e);
+            //            break;
+            //    }
+            //}
+            //else if (_activeMenuIndex == 2)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case 'q':
+            //            ButtonToFilePage2_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonToFilePage2_Click(sender, e);
+            //            break;
+            //        case 'e':
+            //            ButtonCreatePortrait_Click(sender, e);
+            //            break;
+            //        case 'r':
+            //            ResizeVisibleImagesToWindowSize();
+            //            break;
 
-                }
-            }
-            else if (_activeMenuIndex == 100)
-            {
-                switch (e.KeyChar)
-                {
-                    case '1':
-                        ButtonToMainPage4_Click(sender, e);
-                        break;
-                    case '2':
-                        ButtonToFilePage3_Click(sender, e);
-                        break;
-                    case '3':
-                        ButtonToMainPageAndFolder_Click(sender, e);
-                        break;
-                    case 'q':
-                        ButtonToMainPage4_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonToMainPage4_Click(sender, e);
-                        break;
-                }
-            }
-            else if (_activeMenuIndex == 4)
-            {
-                switch (e.KeyChar)
-                {
-                    case 'o':
-                        ButtonOpenFolder_Click(sender, e);
-                        break;
-                    case 'q':
-                        ButtonToMainPage3_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonToMainPage3_Click(sender, e);
-                        break;
-                }
-            }
-            else if (_activeMenuIndex == 3)
-            {
-                switch (e.KeyChar)
-                {
-                    case 'e':
-                        ButtonChooseFolder_Click(sender, e);
-                        break;
-                    case 'r':
-                        ButtonExtractAll_Click(sender, e);
-                        break;
-                    case 'o':
-                        ButtonOpenFolders_Click(sender, e);
-                        break;
-                    case 'q':
-                        ButtonToMainPage2_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonToMainPage2_Click(sender, e);
-                        break;
-                }
-            }
-            else if (_activeMenuIndex == 200)
-            {
-                switch (e.KeyChar)
-                {
-                    case 'q':
-                        ButtonDenyWeb_Click(sender, e);
-                        break;
-                    case '\b':
-                        ButtonDenyWeb_Click(sender, e);
-                        break;
-                    case 'e':
-                        ButtonLoadWeb_Click(sender, e);
-                        break;
+            //    }
+            //}
+            //else if (_activeMenuIndex == 100)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case '1':
+            //            ButtonToMainPage4_Click(sender, e);
+            //            break;
+            //        case '2':
+            //            ButtonToFilePage3_Click(sender, e);
+            //            break;
+            //        case '3':
+            //            ButtonToMainPageAndFolder_Click(sender, e);
+            //            break;
+            //        case 'q':
+            //            ButtonToMainPage4_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonToMainPage4_Click(sender, e);
+            //            break;
+            //    }
+            //}
+            //else if (_activeMenuIndex == 4)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case 'o':
+            //            ButtonOpenFolder_Click(sender, e);
+            //            break;
+            //        case 'q':
+            //            ButtonToMainPage3_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonToMainPage3_Click(sender, e);
+            //            break;
+            //    }
+            //}
+            //else if (_activeMenuIndex == 3)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case 'e':
+            //            ButtonChooseFolder_Click(sender, e);
+            //            break;
+            //        case 'r':
+            //            ButtonExtractAll_Click(sender, e);
+            //            break;
+            //        case 'o':
+            //            ButtonOpenFolders_Click(sender, e);
+            //            break;
+            //        case 'q':
+            //            ButtonToMainPage2_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonToMainPage2_Click(sender, e);
+            //            break;
+            //    }
+            //}
+            //else if (_activeMenuIndex == 200)
+            //{
+            //    switch (e.KeyChar)
+            //    {
+            //        case 'q':
+            //            ButtonDenyWeb_Click(sender, e);
+            //            break;
+            //        case '\b':
+            //            ButtonDenyWeb_Click(sender, e);
+            //            break;
+            //        case 'e':
+            //            ButtonLoadWeb_Click(sender, e);
+            //            break;
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -1167,6 +1177,11 @@ namespace PortraitManager
             var font = LabelNextToMain.Font;
 
             LabelNextToMain.Font = new Font(font.FontFamily, 27);
+        }
+
+        private void LayoutPathPage_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

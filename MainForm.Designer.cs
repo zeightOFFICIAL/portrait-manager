@@ -194,9 +194,9 @@ namespace PortraitManager
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.LayoutPathPage = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LabelBackToStart = new System.Windows.Forms.Label();
             this.LabelNextToMain = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -2695,9 +2695,9 @@ namespace PortraitManager
             // 
             this.LayoutPathPage.BackColor = System.Drawing.Color.Black;
             this.LayoutPathPage.ColumnCount = 5;
-            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 390F));
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.LayoutPathPage.Controls.Add(this.tableLayoutPanel21, 2, 1);
@@ -2712,6 +2712,7 @@ namespace PortraitManager
             this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.LayoutPathPage.Size = new System.Drawing.Size(734, 481);
             this.LayoutPathPage.TabIndex = 9;
+            this.LayoutPathPage.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutPathPage_Paint);
             // 
             // tableLayoutPanel21
             // 
@@ -2719,7 +2720,7 @@ namespace PortraitManager
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel21.Controls.Add(this.textBox1, 0, 1);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(88, 43);
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 5;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
@@ -2727,8 +2728,20 @@ namespace PortraitManager
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(374, 395);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(384, 395);
             this.tableLayoutPanel21.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.Black;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(3, 153);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(378, 24);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LabelBackToStart
             // 
@@ -2737,13 +2750,13 @@ namespace PortraitManager
             this.LabelBackToStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelBackToStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelBackToStart.ForeColor = System.Drawing.Color.White;
-            this.LabelBackToStart.Location = new System.Drawing.Point(35, 190);
+            this.LabelBackToStart.Location = new System.Drawing.Point(25, 190);
             this.LabelBackToStart.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
             this.LabelBackToStart.Name = "LabelBackToStart";
             this.LabelBackToStart.Size = new System.Drawing.Size(45, 101);
             this.LabelBackToStart.TabIndex = 3;
             this.LabelBackToStart.Text = "《";
-            this.LabelBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelBackToStart.Click += new System.EventHandler(this.LabelBackToStart_Click);
             this.LabelBackToStart.MouseEnter += new System.EventHandler(this.LabelBackToStart_MouseEnter);
             this.LabelBackToStart.MouseLeave += new System.EventHandler(this.LabelBackToStart_MouseLeave);
@@ -2765,18 +2778,6 @@ namespace PortraitManager
             this.LabelNextToMain.Click += new System.EventHandler(this.LabelNextToMain_Click);
             this.LabelNextToMain.MouseEnter += new System.EventHandler(this.LabelNextToMain_MouseEnter);
             this.LabelNextToMain.MouseLeave += new System.EventHandler(this.LabelNextToMain_MouseLeave);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.Black;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(3, 153);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(368, 24);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 

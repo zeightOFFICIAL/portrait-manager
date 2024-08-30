@@ -164,6 +164,7 @@ namespace PortraitManager
 
             if (CoreSettings.Default.GameType == '-')
             {
+                _gameSelected = '-';
                 RootFunctions.LayoutEnable(LayoutStartMenu);
                 _activeMenuIndex = 0;
             }
@@ -1024,135 +1025,116 @@ namespace PortraitManager
 
         private void ButtonStartKing_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_path;
-            ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutPathPage);
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStarKing_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_path;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStartWotr_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'w';
             LayoutPathPage.BackgroundImage = Resources.path_wotr;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void ButtonStartWotr_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
-            ParentLayoutsDisable();
-
+            _gameSelected = 'w';
             LayoutPathPage.BackgroundImage = Resources.path_wotr;
-            RootFunctions.LayoutEnable(LayoutPathPage);
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStartRt_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
-            ParentLayoutsDisable();
-
+            _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.path_rt;
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void ButtonStartRt_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
-            ParentLayoutsDisable();
-
+            _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.path_rt;
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStartPoe_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.path_poe;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void ButtonStartPoe_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.path_poe;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStartPoed_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.path_poed;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);
+            OpenPathSelectPage();
         }
 
         private void ButtonStartPoed_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.path_poed;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStartTyr_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.path_tyr;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void ButtonStartTyr_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.path_tyr;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void PictureBoxStartWaste_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'l';
             LayoutPathPage.BackgroundImage = Resources.path_waste;
-            ParentLayoutsDisable();
-
-            RootFunctions.LayoutEnable(LayoutPathPage);            
+            OpenPathSelectPage();
         }
 
         private void ButtonStartWaste_Click(object sender, EventArgs e)
         {
-            _activeMenuIndex = 1;
+            _gameSelected = 'l';
             LayoutPathPage.BackgroundImage = Resources.path_waste;
-            ParentLayoutsDisable();
+            OpenPathSelectPage();
+        }
 
-            RootFunctions.LayoutEnable(LayoutPathPage);           
+        private void OpenPathSelectPage()
+        {
+            _activeMenuIndex = 1;
+            ParentLayoutsDisable();
+            LabelStartResetPath_Click(this, new EventArgs());
+            RootFunctions.LayoutEnable(LayoutPathPage);
         }
 
         private void LabelBackToStart_Click(object sender, EventArgs e)
         {
+            _gameSelected = '-';
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
             _activeMenuIndex = 0;
-
         }
 
         private void LabelNextToMain_Click(object sender, EventArgs e)
@@ -1219,6 +1201,12 @@ namespace PortraitManager
             var font = LabelStartSelectPath.Font;
 
             LabelStartSelectPath.Font = new Font(font.FontFamily, 13);
+        }
+
+        private void LabelStartResetPath_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(GameTypes['w']);
+            TextBoxGameFolder.Text = GameTypes[_gameSelected].DefaultDirectory;
         }
     }
 }

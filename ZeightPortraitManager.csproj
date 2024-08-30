@@ -149,6 +149,9 @@
     <Compile Include="sources\GameTypeClass.cs" />
     <Compile Include="sources\ImageWorks.cs" />
     <Compile Include="sources\SystemWorks.cs" />
+    <Compile Include="sources\Variables.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="forms\MyInquiryDialog.resx">
       <DependentUpon>MyInquiryDialog.cs</DependentUpon>
     </EmbeddedResource>

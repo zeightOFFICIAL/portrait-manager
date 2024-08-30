@@ -194,12 +194,12 @@ namespace PortraitManager
             this.PictureBoxOpenGitHub = new System.Windows.Forms.PictureBox();
             this.LayoutPathPage = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelPathExplain = new System.Windows.Forms.Label();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.LabelStartResetPath = new System.Windows.Forms.Label();
             this.LabelStartSelectPath = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextBoxGameFolder = new System.Windows.Forms.TextBox();
             this.LabelPathTitle = new System.Windows.Forms.Label();
-            this.LabelPathExplain = new System.Windows.Forms.Label();
             this.LabelBackToStart = new System.Windows.Forms.Label();
             this.LabelNextToMain = new System.Windows.Forms.Label();
             this.LayoutFilePage.SuspendLayout();
@@ -2715,6 +2715,8 @@ namespace PortraitManager
             // LayoutPathPage
             // 
             this.LayoutPathPage.BackColor = System.Drawing.Color.Black;
+            this.LayoutPathPage.BackgroundImage = global::PortraitManager.Properties.Resources.path_path;
+            this.LayoutPathPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.LayoutPathPage.ColumnCount = 5;
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
@@ -2724,13 +2726,14 @@ namespace PortraitManager
             this.LayoutPathPage.Controls.Add(this.tableLayoutPanel21, 2, 1);
             this.LayoutPathPage.Controls.Add(this.LabelBackToStart, 1, 1);
             this.LayoutPathPage.Controls.Add(this.LabelNextToMain, 3, 1);
-            this.LayoutPathPage.Location = new System.Drawing.Point(440, 296);
+            this.LayoutPathPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutPathPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutPathPage.Name = "LayoutPathPage";
             this.LayoutPathPage.RowCount = 3;
             this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutPathPage.Size = new System.Drawing.Size(515, 312);
+            this.LayoutPathPage.Size = new System.Drawing.Size(734, 481);
             this.LayoutPathPage.TabIndex = 9;
             this.LayoutPathPage.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutPathPage_Paint);
             // 
@@ -2738,10 +2741,10 @@ namespace PortraitManager
             // 
             this.tableLayoutPanel21.ColumnCount = 1;
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 3);
-            this.tableLayoutPanel21.Controls.Add(this.textBox1, 0, 2);
-            this.tableLayoutPanel21.Controls.Add(this.LabelPathTitle, 0, 1);
             this.tableLayoutPanel21.Controls.Add(this.LabelPathExplain, 0, 4);
+            this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 3);
+            this.tableLayoutPanel21.Controls.Add(this.TextBoxGameFolder, 0, 2);
+            this.tableLayoutPanel21.Controls.Add(this.LabelPathTitle, 0, 1);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
@@ -2751,8 +2754,20 @@ namespace PortraitManager
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(384, 226);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(384, 395);
             this.tableLayoutPanel21.TabIndex = 0;
+            // 
+            // LabelPathExplain
+            // 
+            this.LabelPathExplain.AutoSize = true;
+            this.LabelPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelPathExplain.ForeColor = System.Drawing.Color.White;
+            this.LabelPathExplain.Location = new System.Drawing.Point(3, 216);
+            this.LabelPathExplain.Name = "LabelPathExplain";
+            this.LabelPathExplain.Size = new System.Drawing.Size(378, 179);
+            this.LabelPathExplain.TabIndex = 3;
+            this.LabelPathExplain.Text = "LABEL_PATH_EXPLAIN";
+            this.LabelPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tableLayoutPanel22
             // 
@@ -2762,7 +2777,7 @@ namespace PortraitManager
             this.tableLayoutPanel22.Controls.Add(this.LabelStartResetPath, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.LabelStartSelectPath, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 115);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 174);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2782,6 +2797,7 @@ namespace PortraitManager
             this.LabelStartResetPath.TabIndex = 0;
             this.LabelStartResetPath.Text = "LABEL_RESET";
             this.LabelStartResetPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelStartResetPath.Click += new System.EventHandler(this.LabelStartResetPath_Click);
             this.LabelStartResetPath.MouseEnter += new System.EventHandler(this.LabelResetPath_MouseEnter);
             this.LabelStartResetPath.MouseLeave += new System.EventHandler(this.LabelResetPath_MouseLeave);
             // 
@@ -2801,41 +2817,29 @@ namespace PortraitManager
             this.LabelStartSelectPath.MouseEnter += new System.EventHandler(this.LabelSelectPath_MouseEnter);
             this.LabelStartSelectPath.MouseLeave += new System.EventHandler(this.LabelSelectPath_MouseLeave);
             // 
-            // textBox1
+            // TextBoxGameFolder
             // 
-            this.textBox1.BackColor = System.Drawing.Color.Black;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(3, 85);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(378, 24);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBoxGameFolder.BackColor = System.Drawing.Color.Black;
+            this.TextBoxGameFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TextBoxGameFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TextBoxGameFolder.ForeColor = System.Drawing.Color.White;
+            this.TextBoxGameFolder.Location = new System.Drawing.Point(3, 144);
+            this.TextBoxGameFolder.Name = "TextBoxGameFolder";
+            this.TextBoxGameFolder.Size = new System.Drawing.Size(378, 24);
+            this.TextBoxGameFolder.TabIndex = 0;
+            this.TextBoxGameFolder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LabelPathTitle
             // 
             this.LabelPathTitle.AutoSize = true;
             this.LabelPathTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelPathTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelPathTitle.Location = new System.Drawing.Point(3, 37);
+            this.LabelPathTitle.Location = new System.Drawing.Point(3, 96);
             this.LabelPathTitle.Name = "LabelPathTitle";
             this.LabelPathTitle.Size = new System.Drawing.Size(378, 45);
             this.LabelPathTitle.TabIndex = 2;
             this.LabelPathTitle.Text = "LABEL_[GAMETITLE_FULL]";
             this.LabelPathTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LabelPathExplain
-            // 
-            this.LabelPathExplain.AutoSize = true;
-            this.LabelPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelPathExplain.ForeColor = System.Drawing.Color.White;
-            this.LabelPathExplain.Location = new System.Drawing.Point(3, 157);
-            this.LabelPathExplain.Name = "LabelPathExplain";
-            this.LabelPathExplain.Size = new System.Drawing.Size(378, 69);
-            this.LabelPathExplain.TabIndex = 3;
-            this.LabelPathExplain.Text = "LABEL_PATH_EXPLAIN";
-            this.LabelPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LabelBackToStart
             // 
@@ -2847,7 +2851,7 @@ namespace PortraitManager
             this.LabelBackToStart.Location = new System.Drawing.Point(25, 190);
             this.LabelBackToStart.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
             this.LabelBackToStart.Name = "LabelBackToStart";
-            this.LabelBackToStart.Size = new System.Drawing.Size(45, 1);
+            this.LabelBackToStart.Size = new System.Drawing.Size(45, 101);
             this.LabelBackToStart.TabIndex = 3;
             this.LabelBackToStart.Text = "《";
             this.LabelBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2865,7 +2869,7 @@ namespace PortraitManager
             this.LabelNextToMain.Location = new System.Drawing.Point(470, 190);
             this.LabelNextToMain.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
             this.LabelNextToMain.Name = "LabelNextToMain";
-            this.LabelNextToMain.Size = new System.Drawing.Size(45, 1);
+            this.LabelNextToMain.Size = new System.Drawing.Size(45, 101);
             this.LabelNextToMain.TabIndex = 4;
             this.LabelNextToMain.Text = "》";
             this.LabelNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2880,16 +2884,16 @@ namespace PortraitManager
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(734, 481);
-            this.Controls.Add(this.LayoutStartMenu);
             this.Controls.Add(this.LayoutSettingsPage);
             this.Controls.Add(this.LayoutURLDialog);
-            this.Controls.Add(this.LayoutScalePage);
             this.Controls.Add(this.LayoutFinalPage);
-            this.Controls.Add(this.LayoutExtractPage);
             this.Controls.Add(this.LayoutGallery);
             this.Controls.Add(this.LayoutFilePage);
             this.Controls.Add(this.LayoutPathPage);
             this.Controls.Add(this.LayoutMainPage);
+            this.Controls.Add(this.LayoutStartMenu);
+            this.Controls.Add(this.LayoutScalePage);
+            this.Controls.Add(this.LayoutExtractPage);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3153,7 +3157,7 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
         private System.Windows.Forms.Label LabelBackToStart;
         private System.Windows.Forms.Label LabelNextToMain;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextBoxGameFolder;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
         private System.Windows.Forms.Label LabelStartResetPath;
         private System.Windows.Forms.Label LabelStartSelectPath;

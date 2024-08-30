@@ -21,15 +21,39 @@ using System.Drawing;
 
 namespace PortraitManager.sources
 {
-    public class GameClass
+    public class GameType
     {
         public string FullGameName;
         public string ShortGameName;
 
         public string WindowTitleText;
-
         public Image MenuTitleImage;
         public Image MenuBackgroundImage;
+        public Icon ApplicationIcon;
+        public Color ForeColor;
+        public Color BackColor;
+
+        private Dictionary<string, float> PortraitSpecifics;
+
+        public string DefaultDirectory;
+
+        public GameType(string newFullGameName, string newShortGameName, string newWindowTitleText,
+                         Image newMenuTitleImage, Image newMenuBackgroundImage, Icon newApplicationIcon,
+                         Color newForeColor, Color newBackColor,
+                         string newDefaultDirectory, 
+                         Dictionary<string, float> newPortraitSpecifics)
+        {
+            FullGameName = newFullGameName;
+            ShortGameName = newShortGameName;
+            WindowTitleText = newWindowTitleText;
+            MenuTitleImage = newMenuTitleImage;
+            MenuBackgroundImage = newMenuBackgroundImage;
+            ApplicationIcon = newApplicationIcon;
+            ForeColor = newForeColor;
+            BackColor = newBackColor;
+            DefaultDirectory = newDefaultDirectory;
+            PortraitSpecifics = newPortraitSpecifics;
+        }
     }
 
 

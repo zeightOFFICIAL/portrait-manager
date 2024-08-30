@@ -137,6 +137,8 @@ namespace PortraitManager
             RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
             RootFunctions.LayoutDisable(LayoutPathPage);
+            RootFunctions.LayoutDisable(LayoutURLDialog);
+            RootFunctions.LayoutDisable(LayoutFinalPage);
         }
         
         public void ParentLayoutsSetDockFill()
@@ -385,22 +387,27 @@ namespace PortraitManager
             ButtonStartPoed.Font = font;
             ButtonStartWotr.Font = font;
             ButtonStartTyr.Font = font;
-            ButtonStartWaste.Font = font;
+            ButtonStartW3.Font = font;
             ButtonStartRt.Font = font;
         }
 
         public void PathMenuFontsInit(PrivateFontCollection fonts)
         {
-            Font font = new Font(fonts.Families[0], 13);
+            Font font = new Font(fonts.Families[0], 13),
+                font2 = new Font(fonts.Families[0], 20);
 
-            LabelResetPath.Font = font;
-            LabelSelectPath.Font = font;
+            LabelStartResetPath.Font = font;
+            LabelStartSelectPath.Font = font;
+            LabelPathExplain.Font = font;
+            LabelPathTitle.Font = font2;
         }
 
         public void PathMenuTextInit()
         {
-            LabelResetPath.Text = TextVariables.LABEL_RESET;
-            LabelSelectPath.Text = TextVariables.LABEL_CHOOSE;
+            LabelStartResetPath.Text = TextVariables.LABEL_RESET;
+            LabelStartSelectPath.Text = TextVariables.LABEL_CHOOSE;
+            LabelPathTitle.Text = TextVariables.TEXT_KINGMAKER;
+            LabelPathExplain.Text = TextVariables.LABEL_PATH_EXPLAIN;
         }
 
         public void StartMenuTextInit()
@@ -410,7 +417,7 @@ namespace PortraitManager
             ButtonStartPoed.Text = TextVariables.TEXT_DEADFIRE;
             ButtonStartWotr.Text = TextVariables.TEXT_WOTR;
             ButtonStartTyr.Text = TextVariables.TEXT_TYR;
-            ButtonStartWaste.Text = TextVariables.TEXT_WASTE;
+            ButtonStartW3.Text = TextVariables.TEXT_WASTE;
             ButtonStartRt.Text = TextVariables.TEXT_ROGUE;
         }
 
@@ -527,7 +534,7 @@ namespace PortraitManager
             ButtonStartPoed.Font = defFont12;
             ButtonStartWotr.Font = defFont12;
             ButtonStartTyr.Font = defFont12;
-            ButtonStartWaste.Font = defFont12;
+            ButtonStartW3.Font = defFont12;
             ButtonStartRt.Font = defFont12;
         }
         

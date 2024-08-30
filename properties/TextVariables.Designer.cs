@@ -439,6 +439,16 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Portrait Manager 1.5
+        ///Artemii &quot;Zeight&quot; Saganenko© 2024.
+        /// </summary>
+        internal static string LABEL_AUTHOR {
+            get {
+                return ResourceManager.GetString("LABEL_AUTHOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose ▭.
         /// </summary>
         internal static string LABEL_CHOOSE {
@@ -471,6 +481,24 @@ namespace PortraitManager.Properties {
         internal static string LABEL_CREATEDOK {
             get {
                 return ResourceManager.GetString("LABEL_CREATEDOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kingmaker.
+        /// </summary>
+        internal static string LABEL_KING {
+            get {
+                return ResourceManager.GetString("LABEL_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder: Kingmaker.
+        /// </summary>
+        internal static string LABEL_KING_FULL {
+            get {
+                return ResourceManager.GetString("LABEL_KING_FULL", resourceCulture);
             }
         }
         
@@ -529,11 +557,65 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter the path to the game folder and/or make sure the folder contains the game&apos;s executable file. Use [reset] to set the game folder to the default if possible, or [choose] to manually select the path..
+        /// </summary>
+        internal static string LABEL_PATH_EXPLAIN {
+            get {
+                return ResourceManager.GetString("LABEL_PATH_EXPLAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity.
+        /// </summary>
+        internal static string LABEL_POE {
+            get {
+                return ResourceManager.GetString("LABEL_POE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity.
+        /// </summary>
+        internal static string LABEL_POE_FULL {
+            get {
+                return ResourceManager.GetString("LABEL_POE_FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadfire.
+        /// </summary>
+        internal static string LABEL_POED {
+            get {
+                return ResourceManager.GetString("LABEL_POED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity: Deadfire.
+        /// </summary>
+        internal static string LABEL_POED_FULL {
+            get {
+                return ResourceManager.GetString("LABEL_POED_FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset ↺.
         /// </summary>
         internal static string LABEL_RESET {
             get {
                 return ResourceManager.GetString("LABEL_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rogue Trader.
+        /// </summary>
+        internal static string LABEL_RT {
+            get {
+                return ResourceManager.GetString("LABEL_RT", resourceCulture);
             }
         }
         
@@ -565,11 +647,65 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tyranny.
+        /// </summary>
+        internal static string LABEL_TYR {
+            get {
+                return ResourceManager.GetString("LABEL_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyranny.
+        /// </summary>
+        internal static string LABEL_TYR_FULL {
+            get {
+                return ResourceManager.GetString("LABEL_TYR_FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drag and drop, type, or copy the url of an existing image. The url address must lead to an accessible web-source..
         /// </summary>
         internal static string LABEL_URLDIALOG {
             get {
                 return ResourceManager.GetString("LABEL_URLDIALOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3.
+        /// </summary>
+        internal static string LABEL_W3 {
+            get {
+                return ResourceManager.GetString("LABEL_W3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3.
+        /// </summary>
+        internal static string LABEL_W3_FULL {
+            get {
+                return ResourceManager.GetString("LABEL_W3_FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrath of the Righteous.
+        /// </summary>
+        internal static string LABEL_WOTR {
+            get {
+                return ResourceManager.GetString("LABEL_WOTR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder: Wrath of the Righteous.
+        /// </summary>
+        internal static string LABEL_WOTR_FULL {
+            get {
+                return ResourceManager.GetString("LABEL_WOTR_FULL", resourceCulture);
             }
         }
         
@@ -813,6 +949,15 @@ namespace PortraitManager.Properties {
         internal static string TEXTBOX_URL_WRONG {
             get {
                 return ResourceManager.GetString("TEXTBOX_URL_WRONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait Manager.
+        /// </summary>
+        internal static string TITLE_MAIN {
+            get {
+                return ResourceManager.GetString("TITLE_MAIN", resourceCulture);
             }
         }
         

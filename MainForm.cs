@@ -166,8 +166,6 @@ namespace PortraitManager
             {
                 RootFunctions.LayoutEnable(LayoutStartMenu);
                 _activeMenuIndex = 0;
-                StartMenuFontsInit(_fontCollection);
-                StartMenuTextInit();
             }
 
             Show();
@@ -840,9 +838,9 @@ namespace PortraitManager
 
         private void ButtonStartWaste_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartWaste.Font;
+            var font = ButtonStartW3.Font;
 
-            ButtonStartWaste.Font = new Font(font.FontFamily, 18);
+            ButtonStartW3.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
         }
 
@@ -896,9 +894,9 @@ namespace PortraitManager
 
         private void PictureBoxStartWaste_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartWaste.Font;
+            var font = ButtonStartW3.Font;
 
-            ButtonStartWaste.Font = new Font(font.FontFamily, 18);
+            ButtonStartW3.Font = new Font(font.FontFamily, 18);
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
         }
 
@@ -952,10 +950,10 @@ namespace PortraitManager
 
         private void ButtonStartWaste_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartWaste.Font;
+            var font = ButtonStartW3.Font;
 
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
-            ButtonStartWaste.Font = new Font(font.FontFamily, 13);
+            ButtonStartW3.Font = new Font(font.FontFamily, 13);
         }
 
         private void PictureBoxStartKing_MouseLeave(object sender, EventArgs e)
@@ -1008,10 +1006,10 @@ namespace PortraitManager
 
         private void PictureBoxStartWaste_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartWaste.Font;
+            var font = ButtonStartW3.Font;
 
             LayoutStartMenu.BackgroundImage = Resources.start_waste;
-            ButtonStartWaste.Font = new Font(font.FontFamily, 13);
+            ButtonStartW3.Font = new Font(font.FontFamily, 13);
         }
 
         private void PictureBoxOpenNexus_Click(object sender, EventArgs e)
@@ -1029,8 +1027,6 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_path;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
             RootFunctions.LayoutEnable(LayoutPathPage);
         }
 
@@ -1039,8 +1035,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_path;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1049,8 +1044,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_wotr;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1058,8 +1052,7 @@ namespace PortraitManager
         {
             _activeMenuIndex = 1;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             LayoutPathPage.BackgroundImage = Resources.path_wotr;
             RootFunctions.LayoutEnable(LayoutPathPage);
         }
@@ -1068,8 +1061,7 @@ namespace PortraitManager
         {
             _activeMenuIndex = 1;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             LayoutPathPage.BackgroundImage = Resources.path_rt;
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
@@ -1078,8 +1070,7 @@ namespace PortraitManager
         {
             _activeMenuIndex = 1;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             LayoutPathPage.BackgroundImage = Resources.path_rt;
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
@@ -1089,8 +1080,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_poe;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1099,10 +1089,8 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_poe;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
-            RootFunctions.LayoutEnable(LayoutPathPage);
-            
+
+            RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
         private void PictureBoxStartPoed_Click(object sender, EventArgs e)
@@ -1110,8 +1098,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_poed;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);
         }
 
@@ -1120,8 +1107,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_poed;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1130,8 +1116,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_tyr;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1140,8 +1125,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_tyr;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1150,8 +1134,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_waste;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);            
         }
 
@@ -1160,8 +1143,7 @@ namespace PortraitManager
             _activeMenuIndex = 1;
             LayoutPathPage.BackgroundImage = Resources.path_waste;
             ParentLayoutsDisable();
-            PathMenuFontsInit(_fontCollection);
-            PathMenuTextInit();
+
             RootFunctions.LayoutEnable(LayoutPathPage);           
         }
 
@@ -1170,8 +1152,7 @@ namespace PortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
             _activeMenuIndex = 0;
-            StartMenuFontsInit(_fontCollection);
-            StartMenuTextInit();
+
         }
 
         private void LabelNextToMain_Click(object sender, EventArgs e)
@@ -1214,30 +1195,30 @@ namespace PortraitManager
 
         private void LabelResetPath_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelResetPath.Font;
+            var font = LabelStartResetPath.Font;
 
-            LabelResetPath.Font = new Font(font.FontFamily, 21);
+            LabelStartResetPath.Font = new Font(font.FontFamily, 21);
         }
 
         private void LabelResetPath_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelResetPath.Font;
+            var font = LabelStartResetPath.Font;
 
-            LabelResetPath.Font = new Font(font.FontFamily, 13);
+            LabelStartResetPath.Font = new Font(font.FontFamily, 13);
         }
 
         private void LabelSelectPath_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelSelectPath.Font;
+            var font = LabelStartSelectPath.Font;
 
-            LabelSelectPath.Font = new Font(font.FontFamily, 21);
+            LabelStartSelectPath.Font = new Font(font.FontFamily, 21);
         }
 
         private void LabelSelectPath_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelSelectPath.Font;
+            var font = LabelStartSelectPath.Font;
 
-            LabelSelectPath.Font = new Font(font.FontFamily, 13);
+            LabelStartSelectPath.Font = new Font(font.FontFamily, 13);
         }
     }
 }

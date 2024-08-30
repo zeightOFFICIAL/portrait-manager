@@ -243,6 +243,10 @@
   <data name="KING" xml:space="preserve">
     <value>Kingmaker</value>
   </data>
+  <data name="LABEL_AUTHOR" xml:space="preserve">
+    <value>Portrait Manager 1.5
+Artemii "Zeight" Saganenko© 2024</value>
+  </data>
   <data name="LABEL_CHOOSE" xml:space="preserve">
     <value>Choose ▭</value>
   </data>
@@ -254,6 +258,12 @@
   </data>
   <data name="LABEL_CREATEDOK" xml:space="preserve">
     <value>The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game.</value>
+  </data>
+  <data name="LABEL_KING" xml:space="preserve">
+    <value>Kingmaker</value>
+  </data>
+  <data name="LABEL_KING_FULL" xml:space="preserve">
+    <value>Pathfinder: Kingmaker</value>
   </data>
   <data name="LABEL_LANG" xml:space="preserve">
     <value>UI Language </value>
@@ -273,8 +283,26 @@
   <data name="LABEL_PATH" xml:space="preserve">
     <value>Path to the game portraits folder</value>
   </data>
+  <data name="LABEL_PATH_EXPLAIN" xml:space="preserve">
+    <value>Please enter the path to the game folder and/or make sure the folder contains the game's executable file. Use [reset] to set the game folder to the default if possible, or [choose] to manually select the path.</value>
+  </data>
+  <data name="LABEL_POE" xml:space="preserve">
+    <value>Pillars of Eternity</value>
+  </data>
+  <data name="LABEL_POED" xml:space="preserve">
+    <value>Deadfire</value>
+  </data>
+  <data name="LABEL_POED_FULL" xml:space="preserve">
+    <value>Pillars of Eternity: Deadfire</value>
+  </data>
+  <data name="LABEL_POE_FULL" xml:space="preserve">
+    <value>Pillars of Eternity</value>
+  </data>
   <data name="LABEL_RESET" xml:space="preserve">
     <value>Reset ↺</value>
+  </data>
+  <data name="LABEL_RT" xml:space="preserve">
+    <value>Rogue Trader</value>
   </data>
   <data name="LABEL_SETTINGS" xml:space="preserve">
     <value>This is the settings page. Here you can adjust the size by dragging the corner. And check the path to the correct portrait folder.</value>
@@ -285,8 +313,26 @@
   <data name="LABEL_SMALLIMG2" xml:space="preserve">
     <value>Gameplay portrait</value>
   </data>
+  <data name="LABEL_TYR" xml:space="preserve">
+    <value>Tyranny</value>
+  </data>
+  <data name="LABEL_TYR_FULL" xml:space="preserve">
+    <value>Tyranny</value>
+  </data>
   <data name="LABEL_URLDIALOG" xml:space="preserve">
     <value>Drag and drop, type, or copy the url of an existing image. The url address must lead to an accessible web-source.</value>
+  </data>
+  <data name="LABEL_W3" xml:space="preserve">
+    <value>Wasteland 3</value>
+  </data>
+  <data name="LABEL_W3_FULL" xml:space="preserve">
+    <value>Wasteland 3</value>
+  </data>
+  <data name="LABEL_WOTR" xml:space="preserve">
+    <value>Wrath of the Righteous</value>
+  </data>
+  <data name="LABEL_WOTR_FULL" xml:space="preserve">
+    <value>Pathfinder: Wrath of the Righteous</value>
   </data>
   <data name="MESG_CANNOTLOAD" xml:space="preserve">
     <value>The selected web image is not available. Try another time, or just save it to your local drive and load it locally. Be advised WEBP is not supported.</value>
@@ -368,6 +414,9 @@
   </data>
   <data name="TEXT_WOTR" xml:space="preserve">
     <value>Wrath of the Righteous</value>
+  </data>
+  <data name="TITLE_MAIN" xml:space="preserve">
+    <value>Portrait Manager</value>
   </data>
   <data name="WOTR" xml:space="preserve">
     <value>WotR</value>

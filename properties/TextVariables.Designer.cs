@@ -439,6 +439,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose ▭.
+        /// </summary>
+        internal static string LABEL_CHOOSE {
+            get {
+                return ResourceManager.GetString("LABEL_CHOOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2024.
         /// </summary>
         internal static string LABEL_COPY {
@@ -516,6 +525,15 @@ namespace PortraitManager.Properties {
         internal static string LABEL_PATH {
             get {
                 return ResourceManager.GetString("LABEL_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset ↺.
+        /// </summary>
+        internal static string LABEL_RESET {
+            get {
+                return ResourceManager.GetString("LABEL_RESET", resourceCulture);
             }
         }
         

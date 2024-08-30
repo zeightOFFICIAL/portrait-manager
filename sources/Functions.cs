@@ -389,6 +389,20 @@ namespace PortraitManager
             ButtonStartRt.Font = font;
         }
 
+        public void PathMenuFontsInit(PrivateFontCollection fonts)
+        {
+            Font font = new Font(fonts.Families[0], 13);
+
+            LabelResetPath.Font = font;
+            LabelSelectPath.Font = font;
+        }
+
+        public void PathMenuTextInit()
+        {
+            LabelResetPath.Text = TextVariables.LABEL_RESET;
+            LabelSelectPath.Text = TextVariables.LABEL_CHOOSE;
+        }
+
         public void StartMenuTextInit()
         {
             ButtonStartKing.Text = TextVariables.TEXT_KINGMAKER;

@@ -195,6 +195,9 @@ namespace PortraitManager
             this.LayoutPathPage = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelResetPath = new System.Windows.Forms.Label();
+            this.LabelSelectPath = new System.Windows.Forms.Label();
             this.LabelBackToStart = new System.Windows.Forms.Label();
             this.LabelNextToMain = new System.Windows.Forms.Label();
             this.LayoutFilePage.SuspendLayout();
@@ -258,6 +261,7 @@ namespace PortraitManager
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.LayoutPathPage.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
+            this.tableLayoutPanel22.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayoutFilePage
@@ -2719,15 +2723,16 @@ namespace PortraitManager
             this.tableLayoutPanel21.ColumnCount = 1;
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel21.Controls.Add(this.textBox1, 0, 1);
+            this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 2);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 5;
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel21.Size = new System.Drawing.Size(384, 395);
             this.tableLayoutPanel21.TabIndex = 0;
             // 
@@ -2737,11 +2742,58 @@ namespace PortraitManager
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(3, 153);
+            this.textBox1.Location = new System.Drawing.Point(3, 148);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(378, 24);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tableLayoutPanel22
+            // 
+            this.tableLayoutPanel22.ColumnCount = 2;
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.Controls.Add(this.LabelResetPath, 0, 0);
+            this.tableLayoutPanel22.Controls.Add(this.LabelSelectPath, 1, 0);
+            this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 178);
+            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
+            this.tableLayoutPanel22.RowCount = 1;
+            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(378, 39);
+            this.tableLayoutPanel22.TabIndex = 1;
+            // 
+            // LabelResetPath
+            // 
+            this.LabelResetPath.AutoSize = true;
+            this.LabelResetPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelResetPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelResetPath.ForeColor = System.Drawing.Color.White;
+            this.LabelResetPath.Location = new System.Drawing.Point(65, 0);
+            this.LabelResetPath.Margin = new System.Windows.Forms.Padding(65, 0, 3, 0);
+            this.LabelResetPath.Name = "LabelResetPath";
+            this.LabelResetPath.Size = new System.Drawing.Size(121, 39);
+            this.LabelResetPath.TabIndex = 0;
+            this.LabelResetPath.Text = "label_reset";
+            this.LabelResetPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelResetPath.MouseEnter += new System.EventHandler(this.LabelResetPath_MouseEnter);
+            this.LabelResetPath.MouseLeave += new System.EventHandler(this.LabelResetPath_MouseLeave);
+            // 
+            // LabelSelectPath
+            // 
+            this.LabelSelectPath.AutoSize = true;
+            this.LabelSelectPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPath.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPath.Location = new System.Drawing.Point(192, 0);
+            this.LabelSelectPath.Margin = new System.Windows.Forms.Padding(3, 0, 65, 0);
+            this.LabelSelectPath.Name = "LabelSelectPath";
+            this.LabelSelectPath.Size = new System.Drawing.Size(121, 39);
+            this.LabelSelectPath.TabIndex = 1;
+            this.LabelSelectPath.Text = "label_select";
+            this.LabelSelectPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPath.MouseEnter += new System.EventHandler(this.LabelSelectPath_MouseEnter);
+            this.LabelSelectPath.MouseLeave += new System.EventHandler(this.LabelSelectPath_MouseLeave);
             // 
             // LabelBackToStart
             // 
@@ -2895,6 +2947,8 @@ namespace PortraitManager
             this.LayoutPathPage.PerformLayout();
             this.tableLayoutPanel21.ResumeLayout(false);
             this.tableLayoutPanel21.PerformLayout();
+            this.tableLayoutPanel22.ResumeLayout(false);
+            this.tableLayoutPanel22.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3057,6 +3111,9 @@ namespace PortraitManager
         private System.Windows.Forms.Label LabelBackToStart;
         private System.Windows.Forms.Label LabelNextToMain;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
+        private System.Windows.Forms.Label LabelResetPath;
+        private System.Windows.Forms.Label LabelSelectPath;
     }
 }
 

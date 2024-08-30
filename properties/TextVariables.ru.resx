@@ -243,6 +243,9 @@
   <data name="KING" xml:space="preserve">
     <value>Kingmaker</value>
   </data>
+  <data name="LABEL_CHOOSE" xml:space="preserve">
+    <value>Выбрать ▭</value>
+  </data>
   <data name="LABEL_COPY" xml:space="preserve">
     <value>Артемий "Zeight" Саганенко© 2024</value>
   </data>
@@ -269,6 +272,9 @@
   </data>
   <data name="LABEL_PATH" xml:space="preserve">
     <value>Путь к папке портретов</value>
+  </data>
+  <data name="LABEL_RESET" xml:space="preserve">
+    <value>Сброс ↺</value>
   </data>
   <data name="LABEL_SETTINGS" xml:space="preserve">
     <value>Это страница настроек. Здесь можно настроить размер, перетащив окно за угол. И проверить путь к нужной папке с портретами.</value>

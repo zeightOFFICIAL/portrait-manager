@@ -2751,7 +2751,7 @@ namespace PortraitManager
             this.tableLayoutPanel21.RowCount = 5;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.tableLayoutPanel21.Size = new System.Drawing.Size(384, 395);
@@ -2762,9 +2762,9 @@ namespace PortraitManager
             this.LabelPathExplain.AutoSize = true;
             this.LabelPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelPathExplain.ForeColor = System.Drawing.Color.White;
-            this.LabelPathExplain.Location = new System.Drawing.Point(3, 216);
+            this.LabelPathExplain.Location = new System.Drawing.Point(3, 222);
             this.LabelPathExplain.Name = "LabelPathExplain";
-            this.LabelPathExplain.Size = new System.Drawing.Size(378, 179);
+            this.LabelPathExplain.Size = new System.Drawing.Size(378, 173);
             this.LabelPathExplain.TabIndex = 3;
             this.LabelPathExplain.Text = "LABEL_PATH_EXPLAIN";
             this.LabelPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2777,7 +2777,7 @@ namespace PortraitManager
             this.tableLayoutPanel22.Controls.Add(this.LabelStartResetPath, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.LabelStartSelectPath, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 174);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 180);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2814,6 +2814,7 @@ namespace PortraitManager
             this.LabelStartSelectPath.TabIndex = 1;
             this.LabelStartSelectPath.Text = "LABEL_SELECT";
             this.LabelStartSelectPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelStartSelectPath.Click += new System.EventHandler(this.LabelStartSelectPath_Click);
             this.LabelStartSelectPath.MouseEnter += new System.EventHandler(this.LabelSelectPath_MouseEnter);
             this.LabelStartSelectPath.MouseLeave += new System.EventHandler(this.LabelSelectPath_MouseLeave);
             // 
@@ -2821,11 +2822,12 @@ namespace PortraitManager
             // 
             this.TextBoxGameFolder.BackColor = System.Drawing.Color.Black;
             this.TextBoxGameFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxGameFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TextBoxGameFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TextBoxGameFolder.ForeColor = System.Drawing.Color.White;
-            this.TextBoxGameFolder.Location = new System.Drawing.Point(3, 144);
+            this.TextBoxGameFolder.Location = new System.Drawing.Point(3, 140);
+            this.TextBoxGameFolder.Multiline = true;
             this.TextBoxGameFolder.Name = "TextBoxGameFolder";
-            this.TextBoxGameFolder.Size = new System.Drawing.Size(378, 24);
+            this.TextBoxGameFolder.Size = new System.Drawing.Size(378, 34);
             this.TextBoxGameFolder.TabIndex = 0;
             this.TextBoxGameFolder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -2834,7 +2836,7 @@ namespace PortraitManager
             this.LabelPathTitle.AutoSize = true;
             this.LabelPathTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelPathTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelPathTitle.Location = new System.Drawing.Point(3, 96);
+            this.LabelPathTitle.Location = new System.Drawing.Point(3, 92);
             this.LabelPathTitle.Name = "LabelPathTitle";
             this.LabelPathTitle.Size = new System.Drawing.Size(378, 45);
             this.LabelPathTitle.TabIndex = 2;

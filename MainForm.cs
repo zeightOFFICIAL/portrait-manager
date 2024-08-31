@@ -1205,8 +1205,28 @@ namespace PortraitManager
 
         private void LabelStartResetPath_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(GameTypes['w']);
             TextBoxGameFolder.Text = GameTypes[_gameSelected].DefaultDirectory;
+        }
+
+        private void LabelStartSelectPath_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
+            {
+                SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
+                Description = TextVariables.TEXT_FOLDEROPEN,
+                ShowNewFolderButton = false,
+            })
+            {
+                if (FolderChoose.ShowDialog() == DialogResult.OK)
+                {
+                    TextBoxGameFolder.Text = FolderChoose.SelectedPath;
+                }
+                else
+                {
+                    FolderChoose.Dispose();                    
+                    return;
+                }
+            }
         }
     }
 }

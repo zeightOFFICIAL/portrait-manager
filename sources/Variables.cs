@@ -14,7 +14,7 @@ namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        private static readonly Dictionary<char, GameType> GameTypes = new Dictionary<char, GameType>
+        private readonly Dictionary<char, GameType> GameTypes = new Dictionary<char, GameType>
         {
             { 'k', KingType },
             { 'w', WotrType },
@@ -26,10 +26,10 @@ namespace PortraitManager
         };
 
         private static readonly GameType KingType = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
-            Resources.title_path, Resources.bg_path, Resources.icon_path, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
+            Resources.title_path, Resources.bg_path, Resources.placeholder_path, Resources.icon_path, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits",
-            new System.Collections.Generic.Dictionary<string, float> 
+            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits",
+            new Dictionary<string, float> 
             { 
                 { "SMALL_WIDTH", 185},
                 { "SMALL_HEIGHT", 242},
@@ -43,10 +43,10 @@ namespace PortraitManager
             });
 
         private static readonly GameType WotrType = new GameType("Pathfinder: Wrath of the Righteous", "Wrath of the Righteous", "Portrait Manager: Owlcat (Wotr)",
-            Resources.title_wotr, Resources.bg_wotr, Resources.icon_wotr, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
+            Resources.title_wotr, Resources.bg_wotr, Resources.placeholder_wotr, Resources.icon_wotr, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits",
-            new System.Collections.Generic.Dictionary<string, float>
+            new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 185},
                 { "SMALL_HEIGHT", 242},
@@ -60,10 +60,10 @@ namespace PortraitManager
             });
 
         private static readonly GameType RtType = new GameType("Warhammer 40K: Rogue Trader", "Rogue Trader", "Portrait Manager: Owlcat (RT)",
-            Resources.title_rt, Resources.bg_rt, Resources.icon_rt, Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
+            Resources.title_rt, Resources.bg_rt, Resources.placeholder_rt, Resources.icon_rt, Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits",
-            new System.Collections.Generic.Dictionary<string, float>
+            new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 260},
                 { "SMALL_HEIGHT", 336},
@@ -77,9 +77,9 @@ namespace PortraitManager
             });
 
         private static readonly GameType PoeType = new GameType("Pillars of Eternity", "Pillars of Eternity", "Portrait Manager: Obsidian (PoE)",
-            Resources.title_poe, Resources.bg_poe, Resources.icon_poe, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
-            " ",
-            new System.Collections.Generic.Dictionary<string, float>
+            Resources.title_poe, Resources.bg_poe, Resources.placeholder_poe, Resources.icon_poe, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
+            "",
+            new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 76},
                 { "SMALL_HEIGHT", 96},
@@ -90,9 +90,9 @@ namespace PortraitManager
             });
 
         private static readonly GameType PoedType = new GameType("Pillars of Eternity: Deadfire", "Deadfire", "Portrait Manager: Obsidian (PoED)",
-            Resources.title_poed, Resources.bg_poed, Resources.icon_poed, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
-            " ",
-            new System.Collections.Generic.Dictionary<string, float>
+            Resources.title_poed, Resources.bg_poed, Resources.placeholder_poed, Resources.icon_poed, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
+            "",
+            new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 76},
                 { "SMALL_HEIGHT", 96},
@@ -106,9 +106,9 @@ namespace PortraitManager
             });
 
         private static readonly GameType TyrType = new GameType("Tyranny", "Tyranny", "Portrait Manager: Obsidian (Tyranny)",
-            Resources.title_tyr, Resources.bg_tyr, Resources.icon_tyr, Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
-            " ",
-            new System.Collections.Generic.Dictionary<string, float>
+            Resources.title_tyr, Resources.bg_tyr, Resources.placeholder_tyr, Resources.icon_tyr, Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
+            "",
+            new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 76},
                 { "SMALL_HEIGHT", 96},
@@ -119,10 +119,10 @@ namespace PortraitManager
             });
 
         private static readonly GameType W3Type = new GameType("Wasteland 3", "Wasteland 3", "Portrait Manager: inXile (W3)",
-            Resources.title_waste, Resources.bg_waste, Resources.icon_waste, Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
+            Resources.title_waste, Resources.bg_waste, Resources.placeholder_waste, Resources.icon_waste, Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             + "\\My Games\\Wasteland3",
-            new System.Collections.Generic.Dictionary<string, float>
+            new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 256},
                 { "SMALL_HEIGHT", 256},

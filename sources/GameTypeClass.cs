@@ -29,28 +29,32 @@ namespace PortraitManager.sources
         public string WindowTitleText;
         public Image MenuTitleImage;
         public Image MenuBackgroundImage;
+        public Image PlaceholderPortrait;
         public Icon ApplicationIcon;
         public Color ForeColor;
         public Color BackColor;
 
         private Dictionary<string, float> PortraitSpecifics;
-
         public string DefaultDirectory;
 
         public GameType(string newFullGameName, string newShortGameName, string newWindowTitleText,
-                         Image newMenuTitleImage, Image newMenuBackgroundImage, Icon newApplicationIcon,
+                         Image newMenuTitleImage, Image newMenuBackgroundImage, Image newPlaceholderPortrait,
+                         Icon newApplicationIcon,
                          Color newForeColor, Color newBackColor,
                          string newDefaultDirectory, 
                          Dictionary<string, float> newPortraitSpecifics)
         {
             FullGameName = newFullGameName;
             ShortGameName = newShortGameName;
+
             WindowTitleText = newWindowTitleText;
             MenuTitleImage = newMenuTitleImage;
             MenuBackgroundImage = newMenuBackgroundImage;
             ApplicationIcon = newApplicationIcon;
+            PlaceholderPortrait = newPlaceholderPortrait;
             ForeColor = newForeColor;
             BackColor = newBackColor;
+
             DefaultDirectory = newDefaultDirectory;
             PortraitSpecifics = newPortraitSpecifics;
         }

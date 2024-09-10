@@ -134,26 +134,29 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
 
 ##### Changelog
 * 1.5 (current)
-    * --
-    * --
-    * --    
+    * Added Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3 full support
+    * Major graphics overhaul. Completely changed visual representation of the application
+    * Major code refactoring
+    * ---
+    * ---
 * 1.3.5.0
-    * Added Warhammer 40000: Rogue Trader full support, except for CustomNPC, which for the current time being have not been developed yet
-    * Re-verified all translations and typings. No linguist is involved, so minor mistakes can be found still. I consider nothing crucial, but expect no flawlessness in the matter. If one would like to participate, write on my email. From my point of view, such correctness is acceptable
+    * Added Warhammer 40000: Rogue Trader full support. It does not support CustomNPC
+    * Re-verified all translations and typings. No linguist is involved, so minor mistakes can be found. I consider nothing crucial, but expect no flawlessness in the matter
     * Minor refactoring, nothing of interest for users. Plus tiny optimization tweaks
     * Minor graphical changes, now all languages support Bebas Neue font, some margins, paddings adjusted, fixed buttons' and labels' text from being hidden from sight
-    * Added keyboard events and legends for them. Now users are able to navigate the tool using keyboard, including dialogs/modal forms and main form, except settings page, however
+    * Added keyboard events and legends for them. Now users are able to navigate the tool using keyboard, including dialogs/modal forms and main form, except settings page
     * Settings page back button, now restarts application
-    * Transferred from .NET Framework 4.7.2 to .NET Framework 4.8. Nothing changed for users. 4.8 is an LTS as well and considering Microsoft information will be supported for at least 10 years
-    * Yes, its size now is 2x bigger. But if you can install ~40gb game, I believe you can share 7.5 Mb, instead of 3.2 Mb)
+    * Transferred from .NET Framework 4.7.2 to .NET Framework 4.8. Nothing changed for users
+    * Increased program size. It is 2 times bigger now. ~7.5 Mb
 * 1.2.0.0
-    * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, you can select any image as quickly as it appears on the page. Allowing more smooth and convenient experience
+    * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application
     * Major code refactoring
     * Optimization changes
-    * The concept of localization has been changed. Now you can change the localization using the buttons on the main page, no need to download any locale files, it is built into the program. Initial localization still depends on the system language. Current available localizations: en-US, ru-RU, de-DE (the latter one is translated by AI, so it is flawed)
-    * Changes in the settings page.
-    * Added fault tolerance for Extract Folder, so partially incorrect portraits are still processed by a program. Yet, it cannot be promised that it will work in the game.
+    * The concept of localization has been changed. Now you can change the localization using the buttons on the main page. Initial localization depends on the system language
+    * Currently available localizations: en-US, ru-RU, de-DE, the latter one is translated by AI, so it is flawed
+    * Changes in the settings page
+    * Added fault tolerance for Extract Folder, so partially incorrect portraits are still processed by a program
 * 1.1.0.0b
     * Minor graphical changes
     * Optimization changes
@@ -161,7 +164,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Added localization support, now includes translation file for Russian language
     * Removed unnecessary if/else on image zooming
     * Removed dependency on outdated folder chose dialog, swapped to new FolderBrowserDialog
-    * Added settings page to set up portrait folder path and form size for each game type
+    * Added settings page to set up portrait folder path for each game type and to resize window
     * Added features that allow user to change every portrait separately
 * 1.0.0.2e
     * Create new portrait from image

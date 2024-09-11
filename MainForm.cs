@@ -1,10 +1,18 @@
 ﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games, 
+    Obsidian Entertainment and inXile Entertainment. 
+    Including: 
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous, 
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity, 
+        5. Pillars of Eternity: Deadfire, 
+        6. Tyranny,
+        7. Wasteland 3.
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file.
+    GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
 
@@ -240,7 +248,7 @@ namespace PortraitManager
             }
 
             TextsInit();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
+            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
         }
         
         private void FormInit()
@@ -283,11 +291,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isFirstPortrait == true)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
-                {
-                    Hint.StartPosition = FormStartPosition.CenterParent;
-                    Hint.ShowDialog();
-                }
+                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
+                //{
+                //    Hint.StartPosition = FormStartPosition.CenterParent;
+                //    Hint.ShowDialog();
+                //}
 
                 UseStamps.Default.isFirstPortrait = false;
                 UseStamps.Default.Save();
@@ -308,25 +316,25 @@ namespace PortraitManager
 
             if (!_isAnyLoadedToPortraitPage)
             {
-                using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_NOIMAGECHOSEN, CoreSettings.Default.SelectedLang))
-                {
-                    Inquiry.StartPosition = FormStartPosition.CenterParent;
-                    Inquiry.Width = Width - 16;
-                    if (Inquiry.ShowDialog() == DialogResult.OK)
-                    {
-                        ParentLayoutsDisable();
-                        LoadAllTempImagesToPicBox();
+                //using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_NOIMAGECHOSEN, CoreSettings.Default.SelectedLang))
+                //{
+                //    Inquiry.StartPosition = FormStartPosition.CenterParent;
+                //    Inquiry.Width = Width - 16;
+                //    if (Inquiry.ShowDialog() == DialogResult.OK)
+                //    {
+                //        ParentLayoutsDisable();
+                //        LoadAllTempImagesToPicBox();
 
-                        RootFunctions.LayoutEnable(LayoutScalePage);
-                        Focus();
-                        ResizeVisibleImagesToWindowSize();
-                    }
-                    else
-                    {
-                        _activeMenuIndex = 1;
-                        return;
-                    }
-                }
+                //        RootFunctions.LayoutEnable(LayoutScalePage);
+                //        Focus();
+                //        ResizeVisibleImagesToWindowSize();
+                //    }
+                //    else
+                //    {
+                //        _activeMenuIndex = 1;
+                //        return;
+                //    }
+                //}
             }
             else
             {
@@ -342,11 +350,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isFirstScaling)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
-                {
-                    Hint.StartPosition = FormStartPosition.CenterParent;
-                    Hint.ShowDialog();
-                }
+                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
+                //{
+                //    Hint.StartPosition = FormStartPosition.CenterParent;
+                //    Hint.ShowDialog();
+                //}
 
                 UseStamps.Default.isFirstScaling = false;
                 UseStamps.Default.Save();
@@ -414,11 +422,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isFirstExtract == true)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
-                {
-                    Hint.StartPosition = FormStartPosition.CenterParent;
-                    Hint.ShowDialog();
-                }
+                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
+                //{
+                //    Hint.StartPosition = FormStartPosition.CenterParent;
+                //    Hint.ShowDialog();
+                //}
 
                 UseStamps.Default.isFirstExtract = false;
                 UseStamps.Default.Save();
@@ -441,11 +449,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isFirstGallery == true)
             {
-                using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
-                {
-                    Hint.StartPosition = FormStartPosition.CenterParent;
-                    Hint.ShowDialog();
-                }
+                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
+                //{
+                //    Hint.StartPosition = FormStartPosition.CenterParent;
+                //    Hint.ShowDialog();
+                //}
 
                 UseStamps.Default.isFirstGallery = false;
                 UseStamps.Default.Save();
@@ -525,7 +533,7 @@ namespace PortraitManager
             CoreSettings.Default.Save();
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
+            //ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
             ButtonValidatePath.BackColor = Color.Black;
             ButtonValidatePath.ForeColor = Color.White;
             ButtonValidatePath.Enabled = true;
@@ -1139,7 +1147,7 @@ namespace PortraitManager
             using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
                 SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
-                Description = TextVariables.TEXT_FOLDEROPEN,
+                //Description = TextVariables.TEXT_FOLDEROPEN,
                 ShowNewFolderButton = false,
             })
             {

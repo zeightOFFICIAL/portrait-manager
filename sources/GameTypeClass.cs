@@ -16,6 +16,7 @@
     License header for this project is listed in Program.cs.
 */
 
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -25,16 +26,17 @@ namespace PortraitManager.sources
     {
         public string FullGameName;
         public string ShortGameName;
-
         public string WindowTitleText;
+
         public Image MenuTitleImage;
         public Image MenuBackgroundImage;
         public Image PlaceholderPortrait;
         public Icon ApplicationIcon;
+
         public Color ForeColor;
         public Color BackColor;
 
-        private Dictionary<string, float> PortraitSpecifics;
+        private readonly Dictionary<string, float> PortraitSpecifics;
         public string DefaultDirectory;
 
         public GameType(string newFullGameName, string newShortGameName, string newWindowTitleText,
@@ -46,17 +48,28 @@ namespace PortraitManager.sources
         {
             FullGameName = newFullGameName;
             ShortGameName = newShortGameName;
-
             WindowTitleText = newWindowTitleText;
+
             MenuTitleImage = newMenuTitleImage;
             MenuBackgroundImage = newMenuBackgroundImage;
             ApplicationIcon = newApplicationIcon;
             PlaceholderPortrait = newPlaceholderPortrait;
+
             ForeColor = newForeColor;
             BackColor = newBackColor;
 
             DefaultDirectory = newDefaultDirectory;
             PortraitSpecifics = newPortraitSpecifics;
+        }
+
+        public float GetPortraitSpecific(string key)
+        {
+            return PortraitSpecifics[key];
+        }
+
+        public Tuple<Color, Color> GetColorScheme()
+        {
+            return new Tuple<Color, Color>(ForeColor, BackColor);
         }
     }
 }

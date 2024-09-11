@@ -29,23 +29,12 @@ namespace PortraitManager
 {    
     public partial class MainForm : Form
     {
-        private readonly Dictionary<char, GameType> GameTypes = new Dictionary<char, GameType>
-        {
-            { 'k', KING_TYPE },
-            { 'w', WOTR_TYPE },
-            { 'r', ROGUE_TYPE },
-            { 't', TYR_TYPE },
-            { 'p', PILLARS_TYPE },
-            { 'd', DEADFIRE_TYPE },
-            { 'l', WASTE_TYPE }
-        };
-
         private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
             Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
             + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits",
-            new Dictionary<string, float> 
-            { 
+            new Dictionary<string, float>
+            {
                 { "SMALL_WIDTH", 185},
                 { "SMALL_HEIGHT", 242},
                 { "MEDIUM_WIDTH", 330},
@@ -143,5 +132,17 @@ namespace PortraitManager
                 { "SMALL_HEIGHT", 256},
                 { "SMALL_AR", 1.0f},
             });
+
+
+        private static readonly Dictionary<char, GameType> GameTypes = new Dictionary<char, GameType>
+        {
+            { 'k', KING_TYPE },
+            { 'w', WOTR_TYPE },
+            { 'r', ROGUE_TYPE },
+            { 't', TYR_TYPE },
+            { 'p', PILLARS_TYPE },
+            { 'd', DEADFIRE_TYPE },
+            { 'l', WASTE_TYPE }
+        };
     }
 }

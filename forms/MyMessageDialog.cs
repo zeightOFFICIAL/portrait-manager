@@ -43,7 +43,7 @@ namespace PortraitManager.forms
             SetStyle(ControlStyles.Selectable, false);
             Focus();
 
-            ButtonClose.Text = TextVariables.BUTTON_OK;
+            //ButtonClose.Text = TextVariables.BUTTON_OK;
             ButtonClose.Font = _fontLarge;
             LabelMesg.Text = message;
             LabelMesg.Font = _fontMedium;

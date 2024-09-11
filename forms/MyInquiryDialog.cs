@@ -44,9 +44,9 @@ namespace PortraitManager.forms
             LabelInquiryMesg.Font = _font;
             LabelInquiryMesg.Text = message;
             ButtonOK.Font = _font;
-            ButtonOK.Text = TextVariables.BUTTON_YES;
+            //ButtonOK.Text = TextVariables.BUTTON_YES;
             ButtonCancel.Font = _font;
-            ButtonCancel.Text = TextVariables.BUTTON_NO;
+            //ButtonCancel.Text = TextVariables.BUTTON_NO;
         }
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)

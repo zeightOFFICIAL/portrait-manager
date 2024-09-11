@@ -34,11 +34,11 @@ namespace PortraitManager
 
             if (path == "!NONE!")
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
 
                 if (_isAnyLoadedToPortraitPage == true)
                 {
@@ -76,37 +76,37 @@ namespace PortraitManager
         
         private void PicPortraitTemp_Click(object sender, EventArgs e)
         {
-            string path = SystemControl.FileControl.OpenFileLocation(TextVariables.TEXT_IMAGEFILTER, TextVariables.TEXT_TITLEOPENFILE);
+            //string path = SystemControl.FileControl.OpenFileLocation(TextVariables.TEXT_IMAGEFILTER, TextVariables.TEXT_TITLEOPENFILE);
 
-            if (path == "!NONE!")
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+            //if (path == "!NONE!")
+            //{
+            //    //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
+            //    //{
+            //    //    Message.StartPosition = FormStartPosition.CenterParent;
+            //    //    Message.ShowDialog();
+            //    //}
 
-                if (_isAnyLoadedToPortraitPage == true)
-                {
-                    LoadTempImagesToPicBox(_imageSelectionFlag);
-                    ResizeVisibleImagesToWindowSize();
-                    return;
-                }
+            //    if (_isAnyLoadedToPortraitPage == true)
+            //    {
+            //        LoadTempImagesToPicBox(_imageSelectionFlag);
+            //        ResizeVisibleImagesToWindowSize();
+            //        return;
+            //    }
 
-                _isAnyLoadedToPortraitPage = false;
-                LoadTempImagesToPicBox(_imageSelectionFlag);
-                ResizeVisibleImagesToWindowSize();
-                return;
-            }
-            else
-            {
-                _isAnyLoadedToPortraitPage = true;
-                GenerateImageSelectionFlagString(_imageSelectionFlag);
-                CreateAllImagesInTemp(path, _imageSelectionFlag);
-                LoadTempImagesToPicBox(_imageSelectionFlag);
-                ResizeVisibleImagesToWindowSize();
-            }
-            Focus();
+            //    _isAnyLoadedToPortraitPage = false;
+            //    LoadTempImagesToPicBox(_imageSelectionFlag);
+            //    ResizeVisibleImagesToWindowSize();
+            //    return;
+            //}
+            //else
+            //{
+            //    _isAnyLoadedToPortraitPage = true;
+            //    GenerateImageSelectionFlagString(_imageSelectionFlag);
+            //    CreateAllImagesInTemp(path, _imageSelectionFlag);
+            //    LoadTempImagesToPicBox(_imageSelectionFlag);
+            //    ResizeVisibleImagesToWindowSize();
+            //}
+            //Focus();
         }
 
         private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
@@ -290,21 +290,21 @@ namespace PortraitManager
             //    pseudoUniqueName++;
             //}
 
-            if (CheckPortraitExistence(path))
-            {
-                RootFunctions.LayoutEnable(LayoutFinalPage);
-                Focus();
-                LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
-                LabelDirLoc.Text = path;
-            }
-            else
-            {
-                RootFunctions.LayoutEnable(LayoutFinalPage);
-                Focus();
-                LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
-                LabelDirLoc.Text = path;
-                ButtonToMainPageAndFolder.Enabled = false;
-            }
+            //if (CheckPortraitExistence(path))
+            //{
+            //    RootFunctions.LayoutEnable(LayoutFinalPage);
+            //    Focus();
+            //    LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
+            //    LabelDirLoc.Text = path;
+            //}
+            //else
+            //{
+            //    RootFunctions.LayoutEnable(LayoutFinalPage);
+            //    Focus();
+            //    LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
+            //    LabelDirLoc.Text = path;
+            //    ButtonToMainPageAndFolder.Enabled = false;
+            //}
         }
         
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -327,32 +327,32 @@ namespace PortraitManager
         
         private void LabelMedImg_MouseHover(object sender, EventArgs e)
         {
-            LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG2;
+            //LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG2;
         }
         
         private void LabelLrgImg_MouseHover(object sender, EventArgs e)
         {
-            LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG2;
+            //LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG2;
         }
         
         private void LabelSmlImg_MouseHover(object sender, EventArgs e)
         {
-            LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG2;
+            //LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG2;
         }
         
         private void LabelMedImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
+            //LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
         }
         
         private void LabelLrgImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
+            //LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
         }
         
         private void LabelSmlImg_MouseLeave(object sender, EventArgs e)
         {
-            LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
+            //LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
         }
         
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
@@ -367,20 +367,20 @@ namespace PortraitManager
         
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
         {
-            using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
-            {
-                Hint.StartPosition = FormStartPosition.CenterParent;
-                Hint.ShowDialog();
-            }
+            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
+            //{
+            //    Hint.StartPosition = FormStartPosition.CenterParent;
+            //    Hint.ShowDialog();
+            //}
         }
 
         private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
         {
-            using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
-            {
-                Hint.StartPosition = FormStartPosition.CenterParent;
-                Hint.ShowDialog();
-            }
+            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
+            //{
+            //    Hint.StartPosition = FormStartPosition.CenterParent;
+            //    Hint.ShowDialog();
+            //}
         }
 
         private void PictureBoxTitle_Click(object sender, EventArgs e)
@@ -486,21 +486,21 @@ namespace PortraitManager
 
             if (ListGallery.SelectedItems.Count < 1)
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
 
                 return;
             }
             else if (ListGallery.SelectedItems.Count > 1)
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SELECTEDMORE, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SELECTEDMORE, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
             }
 
             ListViewItem item = ListGallery.SelectedItems[0];
@@ -535,38 +535,38 @@ namespace PortraitManager
             GenerateImageSelectionFlagString(0);
             _tunneledNameToPortraitPage = "!NONE!";
 
-            using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_DELETEOLD, CoreSettings.Default.SelectedLang))
-            {
-                Inquiry.StartPosition = FormStartPosition.CenterParent;
+            //using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_DELETEOLD, CoreSettings.Default.SelectedLang))
+            //{
+            //    Inquiry.StartPosition = FormStartPosition.CenterParent;
 
-                if (Inquiry.ShowDialog() == DialogResult.OK)
-                {
-                    ListGallery.Items.RemoveByKey(item.Text);
-                    ImgListGallery.Images.RemoveByKey(item.Text);
+            //    if (Inquiry.ShowDialog() == DialogResult.OK)
+            //    {
+            //        ListGallery.Items.RemoveByKey(item.Text);
+            //        ImgListGallery.Images.RemoveByKey(item.Text);
 
-                    //if (type == "LOCAL")
-                    //{
-                    //    SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-                    //}
-                    //else
-                    //{
-                    //    SystemControl.FileControl.DeleteDirectoryRecursive(path + "\\BACKUP");
-                    //    SystemControl.FileControl.CreateDirectory(path + "\\BACKUP");
-                    //    SystemControl.FileControl.CopyFile(path + LARGE_APPEND, path + "\\BACKUP" + LARGE_APPEND);
-                    //    SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
-                    //    SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
-                    //}
-                    _tunneledNameToPortraitPage = path;
-                    item.Remove();
-                }
-                else
-                {
-                    if (type == "CUSTOM")
-                    {
-                        _tunneledNameToPortraitPage = Path.Combine(path, path.Split('\\').Last().Split('-').Last() + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString());
-                    }
-                }
-            }
+            //        //if (type == "LOCAL")
+            //        //{
+            //        //    SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
+            //        //}
+            //        //else
+            //        //{
+            //        //    SystemControl.FileControl.DeleteDirectoryRecursive(path + "\\BACKUP");
+            //        //    SystemControl.FileControl.CreateDirectory(path + "\\BACKUP");
+            //        //    SystemControl.FileControl.CopyFile(path + LARGE_APPEND, path + "\\BACKUP" + LARGE_APPEND);
+            //        //    SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
+            //        //    SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
+            //        //}
+            //        _tunneledNameToPortraitPage = path;
+            //        item.Remove();
+            //    }
+            //    else
+            //    {
+            //        if (type == "CUSTOM")
+            //        {
+            //            _tunneledNameToPortraitPage = Path.Combine(path, path.Split('\\').Last().Split('-').Last() + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString());
+            //        }
+            //    }
+            //}
 
             ButtonToMainPage3_Click(sender, e);
             RootFunctions.LayoutDisable(LayoutMainPage);
@@ -586,22 +586,22 @@ namespace PortraitManager
 
             if (ListGallery.SelectedItems.Count < 1)
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
                 return;
             }
 
-            using (MyInquiryDialog Message = new MyInquiryDialog(TextVariables.MESG_DELETE + ListGallery.SelectedItems.Count, CoreSettings.Default.SelectedLang))
-            {
-                Message.StartPosition = FormStartPosition.CenterParent;
-                if (Message.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
-            }
+            //using (MyInquiryDialog Message = new MyInquiryDialog(TextVariables.MESG_DELETE + ListGallery.SelectedItems.Count, CoreSettings.Default.SelectedLang))
+            //{
+            //    Message.StartPosition = FormStartPosition.CenterParent;
+            //    if (Message.ShowDialog() != DialogResult.OK)
+            //    {
+            //        return;
+            //    }
+            //}
 
             //foreach (ListViewItem item in ListGallery.SelectedItems)
             //{
@@ -622,11 +622,11 @@ namespace PortraitManager
 
         private void ButtonHintFolder_Click(object sender, EventArgs e)
         {
-            using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
-            {
-                Hint.StartPosition = FormStartPosition.CenterParent;
-                Hint.ShowDialog();
-            }
+            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
+            //{
+            //    Hint.StartPosition = FormStartPosition.CenterParent;
+            //    Hint.ShowDialog();
+            //}
         }
 
         private void ButtonChooseFolder_Click(object sender, EventArgs e)
@@ -646,7 +646,7 @@ namespace PortraitManager
             using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
                 SelectedPath = defaultDir,
-                Description = TextVariables.TEXT_FOLDEROPEN,
+                //Description = TextVariables.TEXT_FOLDEROPEN,
                 ShowNewFolderButton = false,
 
             })
@@ -709,23 +709,23 @@ namespace PortraitManager
                 //}
             }
 
-            if (isRepeat)
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-            }
+            //if (isRepeat)
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //}
 
-            if (imgCount > 0)
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SUCCESS + imgCount, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-            }
+            //if (imgCount > 0)
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SUCCESS + imgCount, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //}
         }
         
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
@@ -740,11 +740,11 @@ namespace PortraitManager
 
             if (ListExtract.SelectedItems.Count < 1)
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTEDEXTRACT, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTEDEXTRACT, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
                 return;
             }
 
@@ -774,20 +774,20 @@ namespace PortraitManager
 
             if (isRepeat)
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
             }
 
             if (imgCount > 0)
             {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SUCCESS + imgCount, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
+                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SUCCESS + imgCount, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //}
             }
         }
         
@@ -805,11 +805,11 @@ namespace PortraitManager
         
         private void ButtonHintExtract_Click(object sender, EventArgs e)
         {
-            using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
-            {
-                Hint.StartPosition = FormStartPosition.CenterParent;
-                Hint.ShowDialog();
-            }
+            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
+            //{
+            //    Hint.StartPosition = FormStartPosition.CenterParent;
+            //    Hint.ShowDialog();
+            //}
         }
         
         private void LabelCopyright_Click(object sender, EventArgs e)
@@ -891,32 +891,32 @@ namespace PortraitManager
 
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
         {
-            ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
-            ButtonValidatePath.BackColor = Color.Black;
-            ButtonValidatePath.ForeColor = Color.White;
-            ButtonValidatePath.Enabled = true;
-            ButtonApplyChange.Text = TextVariables.BUTTON_APPLY;
-            ButtonApplyChange.BackColor = Color.Black;
-            ButtonApplyChange.ForeColor = Color.White;
-            ButtonApplyChange.Enabled = true;
+            //ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
+            //ButtonValidatePath.BackColor = Color.Black;
+            //ButtonValidatePath.ForeColor = Color.White;
+            //ButtonValidatePath.Enabled = true;
+            //ButtonApplyChange.Text = TextVariables.BUTTON_APPLY;
+            //ButtonApplyChange.BackColor = Color.Black;
+            //ButtonApplyChange.ForeColor = Color.White;
+            //ButtonApplyChange.Enabled = true;
         }
 
         private void ButtonValidatePath_Click(object sender, EventArgs e)
         {
-            if (ValidatePortraitPath(TextBoxFullPath.Text))
-            {
-                ButtonValidatePath.Text = TextVariables.BUTTON_OK;
-                ButtonValidatePath.ForeColor = Color.White;
-                ButtonValidatePath.BackColor = Color.LimeGreen;
-                ButtonValidatePath.Enabled = false;
-            }
-            else
-            {
-                ButtonValidatePath.Text = TextVariables.BUTTON_NO;
-                ButtonValidatePath.ForeColor = Color.White;
-                ButtonValidatePath.BackColor = Color.Red;
-                ButtonValidatePath.Enabled = false;
-            }
+            //if (ValidatePortraitPath(TextBoxFullPath.Text))
+            //{
+            //    ButtonValidatePath.Text = TextVariables.BUTTON_OK;
+            //    ButtonValidatePath.ForeColor = Color.White;
+            //    ButtonValidatePath.BackColor = Color.LimeGreen;
+            //    ButtonValidatePath.Enabled = false;
+            //}
+            //else
+            //{
+            //    ButtonValidatePath.Text = TextVariables.BUTTON_NO;
+            //    ButtonValidatePath.ForeColor = Color.White;
+            //    ButtonValidatePath.BackColor = Color.Red;
+            //    ButtonValidatePath.Enabled = false;
+            //}
         }
 
         private void ButtonSelectPath_Click(object sender, EventArgs e)
@@ -931,7 +931,7 @@ namespace PortraitManager
             using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
                 SelectedPath = defaultDir,
-                Description = TextVariables.TEXT_PATHOPEN,
+                //Description = TextVariables.TEXT_PATHOPEN,
                 ShowNewFolderButton = false,
             })
             {
@@ -962,13 +962,13 @@ namespace PortraitManager
                 Focus();
                 CheckWebResourceAndLoad(url);
                 ResizeVisibleImagesToWindowSize();
-                TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+                //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
                 GenerateImageSelectionFlagString(_imageSelectionFlag);
             }
             catch
             {
                 Focus();
-                TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
+                //TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
             }
             Focus();
         }
@@ -977,7 +977,7 @@ namespace PortraitManager
         {
             RootFunctions.LayoutDisable(LayoutURLDialog);
             RootFunctions.LayoutEnable(LayoutFilePage);
-            TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+            //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
             ResizeVisibleImagesToWindowSize();
             _activeMenuIndex = 1;
 
@@ -1034,7 +1034,7 @@ namespace PortraitManager
 
             if (_imageSelectionFlag == 1)
             {
-                ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
+                //ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
             }
             else
             {
@@ -1050,30 +1050,30 @@ namespace PortraitManager
         
         private void ButtonApplyChange_Click(object sender, EventArgs e)
         {
-            if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
-            {
-                if (_gameSelected == 'p')
-                {
-                    CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
-                }
-                else if (_gameSelected == 'w')
-                {
-                    CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
-                }
-                else if (_gameSelected == 'r')
-                {
-                    CoreSettings.Default.ROGUEPath = TextBoxFullPath.Text;
-                }
+            //if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
+            //{
+            //    if (_gameSelected == 'p')
+            //    {
+            //        CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
+            //    }
+            //    else if (_gameSelected == 'w')
+            //    {
+            //        CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
+            //    }
+            //    else if (_gameSelected == 'r')
+            //    {
+            //        CoreSettings.Default.ROGUEPath = TextBoxFullPath.Text;
+            //    }
 
-                AnyButton_Leave(sender, e);
-                ButtonApplyChange.BackColor = Color.LimeGreen;
-                ButtonApplyChange.ForeColor = Color.White;
-                ButtonApplyChange.Enabled = false;
-                ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
-                CoreSettings.Default.Save();
-                AddClickEventsToMainButtons();
-                //ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
-            }
+            //    AnyButton_Leave(sender, e);
+            //    ButtonApplyChange.BackColor = Color.LimeGreen;
+            //    ButtonApplyChange.ForeColor = Color.White;
+            //    ButtonApplyChange.Enabled = false;
+            //    ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
+            //    CoreSettings.Default.Save();
+            //    AddClickEventsToMainButtons();
+            //    //ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
+            //}
         }
         
         private void ButtonLoadNormal_Click(object sender, EventArgs e)
@@ -1160,7 +1160,7 @@ namespace PortraitManager
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
             CoreSettings.Default.SelectedLang = "en-EN";
             CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
+            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
 
             PicBoxEng.Enabled = false;
@@ -1175,7 +1175,7 @@ namespace PortraitManager
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
             CoreSettings.Default.SelectedLang = "ru-RU";
             CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
+            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
 
             PicBoxEng.Enabled = true;
@@ -1190,7 +1190,7 @@ namespace PortraitManager
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
             CoreSettings.Default.SelectedLang = "de-DE";
             CoreSettings.Default.Save();
-            LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
+            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
 
             PicBoxEng.Enabled = true;

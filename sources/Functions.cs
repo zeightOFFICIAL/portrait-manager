@@ -30,7 +30,7 @@ namespace PortraitManager
             _isAnyLoadedToPortraitPage = false;
             ButtonNextImageType.Visible = true;
             ButtonNextImageType.Enabled = true;       
-            ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
+            ////ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
             LblToAdvancedPage.Visible = true;
         }
 
@@ -404,21 +404,21 @@ namespace PortraitManager
 
         public void PathMenuTextInit()
         {
-            LabelStartResetPath.Text = TextVariables.LABEL_RESET;
-            LabelStartSelectPath.Text = TextVariables.LABEL_CHOOSE;
-            LabelPathTitle.Text = TextVariables.TEXT_KINGMAKER;
-            LabelPathExplain.Text = TextVariables.LABEL_PATH_EXPLAIN;
+            //LabelStartResetPath.Text = TextVariables.LABEL_RESET;
+            //LabelStartSelectPath.Text = TextVariables.LABEL_CHOOSE;
+            //LabelPathTitle.Text = TextVariables.TEXT_KINGMAKER;
+            //LabelPathExplain.Text = TextVariables.LABEL_PATH_EXPLAIN;
         }
 
         public void StartMenuTextInit()
         {
-            ButtonStartKing.Text = TextVariables.TEXT_KINGMAKER;
-            ButtonStartPoe.Text = TextVariables.TEXT_PILLARS;
-            ButtonStartPoed.Text = TextVariables.TEXT_DEADFIRE;
-            ButtonStartWotr.Text = TextVariables.TEXT_WOTR;
-            ButtonStartTyr.Text = TextVariables.TEXT_TYR;
-            ButtonStartW3.Text = TextVariables.TEXT_WASTE;
-            ButtonStartRt.Text = TextVariables.TEXT_ROGUE;
+            //ButtonStartKing.Text = TextVariables.TEXT_KINGMAKER;
+            //ButtonStartPoe.Text = TextVariables.TEXT_PILLARS;
+            //ButtonStartPoed.Text = TextVariables.TEXT_DEADFIRE;
+            //ButtonStartWotr.Text = TextVariables.TEXT_WOTR;
+            //ButtonStartTyr.Text = TextVariables.TEXT_TYR;
+            //ButtonStartW3.Text = TextVariables.TEXT_WASTE;
+            //ButtonStartRt.Text = TextVariables.TEXT_ROGUE;
         }
 
         public void FontsInit(PrivateFontCollection fonts, ushort family = 0, int headSize = 19, int underSize = 16, int smallSize = 13)
@@ -540,56 +540,56 @@ namespace PortraitManager
         
         public void TextsInit()
         {
-            ButtonToFilePage.Text = TextVariables.BUTTON_TOFILEPAGE;
-            ButtonToExtractPage.Text = TextVariables.BUTTON_TOEXRACTPAGE;
-            ButtonToGalleryPage.Text = TextVariables.BUTTON_TOGALLERYPAGE;
-            ButtonToSettingsPage.Text = TextVariables.BUTTON_TOSETTINGSPAGE;
-            ButtonExit.Text = TextVariables.BUTTON_EXIT;
-            ButtonKingmaker.Text = TextVariables.KING;
-            ButtonWotR.Text = TextVariables.WOTR;
-            LabelSelectedPath.Text = TextVariables.LABEL_PATH;
-            ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
-            ButtonSelectPath.Text = TextVariables.BUTTON_SELECTPATH;
-            ButtonToMainPage5.Text = TextVariables.BUTTON_BACK;
-            LabelSettings.Text = TextVariables.LABEL_SETTINGS;
-            ButtonApplyChange.Text = TextVariables.BUTTON_APPLY;
-            ButtonLocalPortraitLoad.Text = TextVariables.BUTTON_LOADLOCALPORTRAIT;
-            ButtonWebPortraitLoad.Text = TextVariables.BUTTON_LOADWEBPORTRAIT;
-            ButtonToMainPage.Text = TextVariables.BUTTON_BACK;
-            ButtonToScalePage.Text = TextVariables.BUTTON_TOSCALEPAGE;
-            ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
-            ButtonHintOnFilePage.Text = TextVariables.BUTTON_HINT;
-            ButtonToFilePage2.Text = TextVariables.BUTTON_BACK;
-            ButtonCreatePortrait.Text = TextVariables.BUTTON_TOCREATE;
-            LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
-            LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
-            LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
-            ButtonHintOnScalePage.Text = TextVariables.BUTTON_HINT;
-            ButtonDeletePortait.Text = TextVariables.BUTTON_SELECTEDDELETE;
-            ButtonToMainPage3.Text = TextVariables.BUTTON_BACK;
-            ButtonOpenFolder.Text = TextVariables.BUTTON_GALLERYOPENFOLDER;
-            ButtonChangePortrait.Text = TextVariables.BUTTON_SELECTEDCHANGE;
-            ButtonHintFolder.Text = TextVariables.BUTTON_HINT;
-            LabelURLInfo.Text = TextVariables.LABEL_URLDIALOG;
-            ButtonDenyWeb.Text = TextVariables.BUTTON_CANCEL;
-            ButtonLoadWeb.Text = TextVariables.BUTTON_LOAD;
-            TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
-            ButtonToFilePage3.Text = TextVariables.BUTTON_NEW;
-            ButtonToMainPage4.Text = TextVariables.BUTTON_MENU;
-            ButtonToMainPageAndFolder.Text = TextVariables.BUTTON_FINALOPENFOLDER;
-            ButtonChooseFolder.Text = TextVariables.TEXT_TITLEOPENFOLDER;
-            ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACTALL;
-            ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACTSELECTED;
-            ButtonOpenFolders.Text = TextVariables.BUTTON_EXTRACTOPENFOLDER;
-            ButtonHintExtract.Text = TextVariables.BUTTON_HINT;
-            ButtonToMainPage2.Text = TextVariables.BUTTON_BACK;
-            LabelCopyright.Text = TextVariables.LABEL_COPY;
-            ButtonLoadCustom.Text = TextVariables.BUTTON_SHOWCUSTOM;
-            ButtonLoadCustomArmy.Text = TextVariables.BUTTON_CUSTOMARMY;
-            ButtonLoadCustomNPC.Text = TextVariables.BUTTON_CUSTOMNPC;
-            ButtonLoadNormal.Text = TextVariables.BUTTON_SHOWLOCAL;
-            ButtonRT.Text = TextVariables.ROGUE;
+            //ButtonToFilePage.Text = TextVariables.BUTTON_TOFILEPAGE;
+            //ButtonToExtractPage.Text = TextVariables.BUTTON_TOEXRACTPAGE;
+            //ButtonToGalleryPage.Text = TextVariables.BUTTON_TOGALLERYPAGE;
+            //ButtonToSettingsPage.Text = TextVariables.BUTTON_TOSETTINGSPAGE;
+            //ButtonExit.Text = TextVariables.BUTTON_EXIT;
+            //ButtonKingmaker.Text = TextVariables.KING;
+            //ButtonWotR.Text = TextVariables.WOTR;
+            //LabelSelectedPath.Text = TextVariables.LABEL_PATH;
+            //ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
+            //ButtonSelectPath.Text = TextVariables.BUTTON_SELECTPATH;
+            //ButtonToMainPage5.Text = TextVariables.BUTTON_BACK;
+            //LabelSettings.Text = TextVariables.LABEL_SETTINGS;
+            //ButtonApplyChange.Text = TextVariables.BUTTON_APPLY;
+            //ButtonLocalPortraitLoad.Text = TextVariables.BUTTON_LOADLOCALPORTRAIT;
+            //ButtonWebPortraitLoad.Text = TextVariables.BUTTON_LOADWEBPORTRAIT;
+            //ButtonToMainPage.Text = TextVariables.BUTTON_BACK;
+            //ButtonToScalePage.Text = TextVariables.BUTTON_TOSCALEPAGE;
+            //ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
+            //ButtonHintOnFilePage.Text = TextVariables.BUTTON_HINT;
+            //ButtonToFilePage2.Text = TextVariables.BUTTON_BACK;
+            //ButtonCreatePortrait.Text = TextVariables.BUTTON_TOCREATE;
+            //LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
+            //LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
+            //LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
+            //ButtonHintOnScalePage.Text = TextVariables.BUTTON_HINT;
+            //ButtonDeletePortait.Text = TextVariables.BUTTON_SELECTEDDELETE;
+            //ButtonToMainPage3.Text = TextVariables.BUTTON_BACK;
+            //ButtonOpenFolder.Text = TextVariables.BUTTON_GALLERYOPENFOLDER;
+            //ButtonChangePortrait.Text = TextVariables.BUTTON_SELECTEDCHANGE;
+            //ButtonHintFolder.Text = TextVariables.BUTTON_HINT;
+            //LabelURLInfo.Text = TextVariables.LABEL_URLDIALOG;
+            //ButtonDenyWeb.Text = TextVariables.BUTTON_CANCEL;
+            //ButtonLoadWeb.Text = TextVariables.BUTTON_LOAD;
+            //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
+            //LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
+            //ButtonToFilePage3.Text = TextVariables.BUTTON_NEW;
+            //ButtonToMainPage4.Text = TextVariables.BUTTON_MENU;
+            //ButtonToMainPageAndFolder.Text = TextVariables.BUTTON_FINALOPENFOLDER;
+            //ButtonChooseFolder.Text = TextVariables.TEXT_TITLEOPENFOLDER;
+            //ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACTALL;
+            //ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACTSELECTED;
+            //ButtonOpenFolders.Text = TextVariables.BUTTON_EXTRACTOPENFOLDER;
+            //ButtonHintExtract.Text = TextVariables.BUTTON_HINT;
+            //ButtonToMainPage2.Text = TextVariables.BUTTON_BACK;
+            //LabelCopyright.Text = TextVariables.LABEL_COPY;
+            //ButtonLoadCustom.Text = TextVariables.BUTTON_SHOWCUSTOM;
+            //ButtonLoadCustomArmy.Text = TextVariables.BUTTON_CUSTOMARMY;
+            //ButtonLoadCustomNPC.Text = TextVariables.BUTTON_CUSTOMNPC;
+            //ButtonLoadNormal.Text = TextVariables.BUTTON_SHOWLOCAL;
+            //ButtonRT.Text = TextVariables.ROGUE;
             
         }
         
@@ -940,12 +940,12 @@ namespace PortraitManager
             }
             catch
             {
-                using (forms.MyMessageDialog Message = new forms.MyMessageDialog(TextVariables.MESG_CANNOTLOAD, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                    Focus();
-                }
+                //using (forms.MyMessageDialog Message = new forms.MyMessageDialog(TextVariables.MESG_CANNOTLOAD, CoreSettings.Default.SelectedLang))
+                //{
+                //    Message.StartPosition = FormStartPosition.CenterParent;
+                //    Message.ShowDialog();
+                //    Focus();
+                //}
             }
         }
         

@@ -25,80 +25,6 @@ namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        private static readonly GameTypeClass WRATH_TYPE = new GameTypeClass("Wrath of the Righteous",
-            Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
-            Resources.icon_wotr, Resources.title_wotr,
-            Resources.bg_wotr, Resources.placeholder_wotr,
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits", "Pathfinder Portrait Manager (WoTR)",
-            185, 242, 330, 432, 692, 1024, 1.308108108f, 1.309090909f, 1.479768786f);
-
-        private static readonly GameTypeClass KINGMAKER_TYPE = new GameTypeClass("Kingmaker",
-            Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
-            Resources.icon_path, Resources.title_path,
-            Resources.bg_path, Resources.placeholder_path,
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits", "Pathfinder Portrait Manager (Kingmaker)",
-            185, 242, 330, 432, 692, 1024, 1.308108108f, 1.309090909f, 1.479768786f);
-
-        private static readonly GameTypeClass ROGUE_TYPE = new GameTypeClass("Rogue Trader",
-            Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
-            Resources.icon_rt, Resources.title_rt,
-            Resources.bg_rt, Resources.placeholder_rt,
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits", "Warhammer Portrait Manager (Rogue Trader)",
-            260, 336, 448, 600, 1080, 1480, 1.29230769231f, 1.33928571429f, 1.37037037037f);
-
-        private static readonly GameTypeClass TYRANNY_TYPE = new GameTypeClass("Tyranny",
-            Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
-            Resources.icon_tyr, Resources.title_tyr,
-            Resources.bg_tyr, Resources.placeholder_tyr,
-            "__NONE__", "Tyranny Portrait Manager",
-            76, 96, 0, 0, 210, 330, 1.2631f, 0f, 1.5714f);
-
-        private static readonly GameTypeClass PILLARS_TYPE = new GameTypeClass("Pillars of Eternity",
-            Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
-            Resources.icon_poe, Resources.title_poe,
-            Resources.bg_poe, Resources.placeholder_poe,
-            "__NONE__", "Pillars of Eternity Portrait Manager",
-            76, 96, 0, 0, 210, 330, 1.2631f, 0f, 1.5714f);
-
-        private static readonly GameTypeClass DEADFIRE_TYPE = new GameTypeClass("Deadfire",
-            Color.FromArgb(121, 208, 215), Color.FromArgb(27, 47, 49),
-            Resources.icon_poed, Resources.title_poed,
-            Resources.bg_poed, Resources.placeholder_poed,
-            "__NONE__", "Pillars of Eternity Portrait Manager (Deadfire)",
-            76, 96, 90, 141, 210, 330, 1.2631f, 1.5667f, 1.5714f);
-
-        private static readonly GameTypeClass WASTE_TYPE = new GameTypeClass("Wasteland",
-            Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
-            Resources.icon_waste, Resources.title_waste,
-            Resources.bg_waste, Resources.placeholder_waste,
-            "__NONE__", "Wasteland Portrait Manager (Wasteland 3)",
-            256, 256, 0, 0, 0, 0, 1.0f, 0f, 0f);
-
-        private static readonly Dictionary<char, GameTypeClass> GAME_TYPES = new Dictionary<char, GameTypeClass>
-        {
-            { 'p', KINGMAKER_TYPE },
-            { 'w', WRATH_TYPE },
-            { 'r', ROGUE_TYPE },
-            { 't', TYRANNY_TYPE },
-            { 'e', PILLARS_TYPE },
-            { 'd', DEADFIRE_TYPE },
-            { 'l', WASTE_TYPE }
-        };
-
-        private static readonly Dictionary<char, string> ACTIVE_PATHS = new Dictionary<char, string>
-        {
-            { 'p', CoreSettings.Default.WOTRPath },
-            { 'w', CoreSettings.Default.KINGPath },
-            { 'r', CoreSettings.Default.ROGUEPath },
-            { 't', CoreSettings.Default.TYRANNYPath },
-            { 'e', CoreSettings.Default.PILLARSPath },
-            { 'd', CoreSettings.Default.DEADFIREPath },
-            { 'l', CoreSettings.Default.WASTEPath }
-        };
-
         private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
         private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM.png";
         private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL.png";
@@ -369,9 +295,9 @@ namespace PortraitManager
 
             if (!_isAspectRatioFixed)
             {
-                FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
-                FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
-                FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
+                //FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
+                //FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
+                //FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
                 _isAspectRatioFixed = true;
             }
         }
@@ -452,7 +378,7 @@ namespace PortraitManager
             RestoreFilePageToInit();
             RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePictureBoxImagesToDefault();
-            SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PortraitPlaceholderImage);
+            //SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PortraitPlaceholderImage);
             LoadTempImagesToPicBox(_imageSelectionFlag);
 
             ParentLayoutsDisable();
@@ -507,11 +433,11 @@ namespace PortraitManager
             RootFunctions.LayoutEnable(LayoutGallery);
             Focus();
 
-            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
+            //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    ButtonToMainPage3_Click(sender, e);
+            //    return;
+            //}
 
             if (UseStamps.Default.isFirstGallery == true)
             {
@@ -616,7 +542,7 @@ namespace PortraitManager
             RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutSettingsPage);
 
-            TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
+            //TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
             ButtonToMainPage5.ForeColor = Color.White;
             ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
@@ -793,7 +719,7 @@ namespace PortraitManager
         {
             var font = ButtonStartKing.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_path;
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
             ButtonStartKing.Font = new Font(font.FontFamily, 18);
         }
 
@@ -801,7 +727,7 @@ namespace PortraitManager
         {
             var font = ButtonStartWotr.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
             ButtonStartWotr.Font = new Font(font.FontFamily, 18);
         }
 
@@ -810,7 +736,7 @@ namespace PortraitManager
             var font = ButtonStartRt.Font;
 
             ButtonStartRt.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
         }
 
         private void ButtonStartPoe_MouseEnter(object sender, EventArgs e)
@@ -818,7 +744,7 @@ namespace PortraitManager
             var font = ButtonStartPoe.Font;
 
             ButtonStartPoe.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
         }
 
         private void ButtonStartPoed_MouseEnter(object sender, EventArgs e)
@@ -826,7 +752,7 @@ namespace PortraitManager
             var font = ButtonStartPoed.Font;
 
             ButtonStartPoed.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
         }
 
         private void ButtonStartTyr_MouseEnter(object sender, EventArgs e)
@@ -834,7 +760,7 @@ namespace PortraitManager
             var font = ButtonStartTyr.Font;
 
             ButtonStartTyr.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
         }
 
         private void ButtonStartWaste_MouseEnter(object sender, EventArgs e)
@@ -842,14 +768,14 @@ namespace PortraitManager
             var font = ButtonStartW3.Font;
 
             ButtonStartW3.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
         }
 
         private void PictureBoxStartKing_MouseEnter(object sender, EventArgs e)
         {
             var font = ButtonStartKing.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_path;
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
             ButtonStartKing.Font = new Font(font.FontFamily, 18);
         }
 
@@ -857,7 +783,7 @@ namespace PortraitManager
         {
             var font = ButtonStartWotr.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
             ButtonStartWotr.Font = new Font(font.FontFamily, 18);
         }
 
@@ -866,7 +792,7 @@ namespace PortraitManager
             var font = ButtonStartRt.Font;
 
             ButtonStartRt.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
         }
 
         private void PictureBoxStartPoe_MouseEnter(object sender, EventArgs e)
@@ -874,7 +800,7 @@ namespace PortraitManager
             var font = ButtonStartPoe.Font;
 
             ButtonStartPoe.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
         }
 
         private void PictureBoxStartPoed_MouseEnter(object sender, EventArgs e)
@@ -882,7 +808,7 @@ namespace PortraitManager
             var font = ButtonStartPoed.Font;
 
             ButtonStartPoed.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
         }
 
         private void PictureBoxStartTyr_MouseEnter(object sender, EventArgs e)
@@ -890,7 +816,7 @@ namespace PortraitManager
             var font = ButtonStartTyr.Font;
 
             ButtonStartTyr.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
         }
 
         private void PictureBoxStartWaste_MouseEnter(object sender, EventArgs e)
@@ -898,14 +824,14 @@ namespace PortraitManager
             var font = ButtonStartW3.Font;
 
             ButtonStartW3.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
         }
 
         private void ButtonStartKing_MouseLeave(object sender, EventArgs e)
         {
             var font = ButtonStartKing.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_path;
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
             ButtonStartKing.Font = new Font(font.FontFamily, 13);
         }
 
@@ -913,7 +839,7 @@ namespace PortraitManager
         {
             var font = ButtonStartWotr.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
             ButtonStartWotr.Font = new Font(font.FontFamily, 13);
         }
 
@@ -921,7 +847,7 @@ namespace PortraitManager
         {
             var font = ButtonStartRt.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
             ButtonStartRt.Font = new Font(font.FontFamily, 13);
         }
 
@@ -929,7 +855,7 @@ namespace PortraitManager
         {
             var font = ButtonStartPoe.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
             ButtonStartPoe.Font = new Font(font.FontFamily, 13);
         }
 
@@ -937,7 +863,7 @@ namespace PortraitManager
         {
             var font = ButtonStartPoed.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
             ButtonStartPoed.Font = new Font(font.FontFamily, 13);
         }
 
@@ -945,7 +871,7 @@ namespace PortraitManager
         {
             var font = ButtonStartTyr.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
             ButtonStartTyr.Font = new Font(font.FontFamily, 13);
         }
 
@@ -953,7 +879,7 @@ namespace PortraitManager
         {
             var font = ButtonStartW3.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
             ButtonStartW3.Font = new Font(font.FontFamily, 13);
         }
 
@@ -961,7 +887,7 @@ namespace PortraitManager
         {
             var font = ButtonStartKing.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_path;
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
             ButtonStartKing.Font = new Font(font.FontFamily, 13);
         }
 
@@ -969,7 +895,7 @@ namespace PortraitManager
         {
             var font = ButtonStartWotr.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_wotr;
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
             ButtonStartWotr.Font = new Font(font.FontFamily, 13);
         }
 
@@ -977,7 +903,7 @@ namespace PortraitManager
         {
             var font = ButtonStartRt.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_rt;
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
             ButtonStartRt.Font = new Font(font.FontFamily, 13);
         }
 
@@ -985,7 +911,7 @@ namespace PortraitManager
         {
             var font = ButtonStartPoe.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_poe;
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
             ButtonStartPoe.Font = new Font(font.FontFamily, 13);
         }
 
@@ -993,7 +919,7 @@ namespace PortraitManager
         {
             var font = ButtonStartPoed.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_poed;
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
             ButtonStartPoed.Font = new Font(font.FontFamily, 13);
         }
 
@@ -1001,7 +927,7 @@ namespace PortraitManager
         {
             var font = ButtonStartTyr.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_tyr;
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
             ButtonStartTyr.Font = new Font(font.FontFamily, 13);
         }
 
@@ -1009,7 +935,7 @@ namespace PortraitManager
         {
             var font = ButtonStartW3.Font;
 
-            LayoutStartMenu.BackgroundImage = Resources.start_waste;
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
             ButtonStartW3.Font = new Font(font.FontFamily, 13);
         }
 
@@ -1026,98 +952,98 @@ namespace PortraitManager
         private void ButtonStartKing_Click(object sender, EventArgs e)
         {
             _gameSelected = 'k';
-            LayoutPathPage.BackgroundImage = Resources.path_path;
+            LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStarKing_Click(object sender, EventArgs e)
         {
             _gameSelected = 'k';
-            LayoutPathPage.BackgroundImage = Resources.path_path;
+            LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartWotr_Click(object sender, EventArgs e)
         {
             _gameSelected = 'w';
-            LayoutPathPage.BackgroundImage = Resources.path_wotr;
+            LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
             OpenPathSelectPage();
         }
 
         private void ButtonStartWotr_Click(object sender, EventArgs e)
         {
             _gameSelected = 'w';
-            LayoutPathPage.BackgroundImage = Resources.path_wotr;
+            LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartRt_Click(object sender, EventArgs e)
         {
             _gameSelected = 'r';
-            LayoutPathPage.BackgroundImage = Resources.path_rt;
+            LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             OpenPathSelectPage();
         }
 
         private void ButtonStartRt_Click(object sender, EventArgs e)
         {
             _gameSelected = 'r';
-            LayoutPathPage.BackgroundImage = Resources.path_rt;
+            LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartPoe_Click(object sender, EventArgs e)
         {
             _gameSelected = 'p';
-            LayoutPathPage.BackgroundImage = Resources.path_poe;
+            LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             OpenPathSelectPage();
         }
 
         private void ButtonStartPoe_Click(object sender, EventArgs e)
         {
             _gameSelected = 'p';
-            LayoutPathPage.BackgroundImage = Resources.path_poe;
+            LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartPoed_Click(object sender, EventArgs e)
         {
             _gameSelected = 'd';
-            LayoutPathPage.BackgroundImage = Resources.path_poed;
+            LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             OpenPathSelectPage();
         }
 
         private void ButtonStartPoed_Click(object sender, EventArgs e)
         {
             _gameSelected = 'd';
-            LayoutPathPage.BackgroundImage = Resources.path_poed;
+            LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartTyr_Click(object sender, EventArgs e)
         {
             _gameSelected = 't';
-            LayoutPathPage.BackgroundImage = Resources.path_tyr;
+            LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             OpenPathSelectPage();
         }
 
         private void ButtonStartTyr_Click(object sender, EventArgs e)
         {
             _gameSelected = 't';
-            LayoutPathPage.BackgroundImage = Resources.path_tyr;
+            LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartWaste_Click(object sender, EventArgs e)
         {
             _gameSelected = 'l';
-            LayoutPathPage.BackgroundImage = Resources.path_waste;
+            LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
             OpenPathSelectPage();
         }
 
         private void ButtonStartWaste_Click(object sender, EventArgs e)
         {
             _gameSelected = 'l';
-            LayoutPathPage.BackgroundImage = Resources.path_waste;
+            LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
             OpenPathSelectPage();
         }
 

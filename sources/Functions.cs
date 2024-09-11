@@ -329,38 +329,38 @@ namespace PortraitManager
 
             if (CheckPortraitExistence(path))
             {
-                if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 
-                    GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 
-                    GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
-                    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 
-                    GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
-                {
-                    try
-                    {
-                        using (Image img = new Bitmap(path + "\\Fulllength.png"))
-                        {
-                            ListViewItem item = new ListViewItem
-                            {
-                                Text = path.Split('\\').Last(),
-                                ImageIndex = ListExtract.Items.Count,
-                                Tag = path
-                            };
-                            Invoke((MethodInvoker)delegate
-                            {
-                                ImgListExtract.Images.Add(path, img);
-                                ListExtract.Items.Add(item);
-                                ButtonExtractAll.Enabled = true;
-                                ButtonExtractSelected.Enabled = true;
-                                ButtonOpenFolders.Enabled = true;
-                            });
-                        }
-                    }
-                    catch
-                    {
-                        return;
-                    }
-                }
+                //if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 
+                //    GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
+                //    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 
+                //    GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
+                //    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 
+                //    GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
+                //{
+                //    try
+                //    {
+                //        using (Image img = new Bitmap(path + "\\Fulllength.png"))
+                //        {
+                //            ListViewItem item = new ListViewItem
+                //            {
+                //                Text = path.Split('\\').Last(),
+                //                ImageIndex = ListExtract.Items.Count,
+                //                Tag = path
+                //            };
+                //            Invoke((MethodInvoker)delegate
+                //            {
+                //                ImgListExtract.Images.Add(path, img);
+                //                ListExtract.Items.Add(item);
+                //                ButtonExtractAll.Enabled = true;
+                //                ButtonExtractSelected.Enabled = true;
+                //                ButtonOpenFolders.Enabled = true;
+                //            });
+                //        }
+                //    }
+                //    catch
+                //    {
+                //        return;
+                //    }
+                //}
             }
 
             string[] subDirs = Directory.GetDirectories(path);
@@ -626,105 +626,105 @@ namespace PortraitManager
         
         public void ReplacePictureBoxImagesToDefault()
         {
-            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
-            {
-                ClearPictureBoxImages(placeholder);
-            }
+            //using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
+            //{
+            //    ClearPictureBoxImages(placeholder);
+            //}
         }
         
         public static void CreateAllImagesInTemp(string newImagePath, ushort flag)
         {
-            using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
-            {
-                if (flag == 1)
-                {
-                    SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
-                    SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
-                }
-                else if (flag == 2)
-                {
-                    SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
-                    SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
-                }
-                else if (flag == 100 || flag == 0)
-                {
-                    SystemControl.FileControl.ClearTempImages();
-                    SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
-                }
-            }
+            //using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
+            //{
+            //    if (flag == 1)
+            //    {
+            //        SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
+            //        SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
+            //    }
+            //    else if (flag == 2)
+            //    {
+            //        SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
+            //        SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
+            //    }
+            //    else if (flag == 100 || flag == 0)
+            //    {
+            //        SystemControl.FileControl.ClearTempImages();
+            //        SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
+            //    }
+            //}
         }
         
         public void UpdateColorScheme()
         {
-            Color foreColor = GAME_TYPES[_gameSelected].ControlForeColor;
-            Color backColor = GAME_TYPES[_gameSelected].ControlBackColor;
+            //Color foreColor = GAME_TYPES[_gameSelected].ControlForeColor;
+            //Color backColor = GAME_TYPES[_gameSelected].ControlBackColor;
 
-            Icon = GAME_TYPES[_gameSelected].ApplicationIcon;
-            PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].MenuTitleImage;
-            LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].MenuBackgroundImage;
+            //Icon = GAME_TYPES[_gameSelected].ApplicationIcon;
+            //PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].MenuTitleImage;
+            //LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].MenuBackgroundImage;
 
-            foreach (Control ctrl in Controls)
-            {
-                UpdateObjectColoringInDepth(ctrl, foreColor, backColor);
-            }
+            //foreach (Control ctrl in Controls)
+            //{
+            //    UpdateObjectColoringInDepth(ctrl, foreColor, backColor);
+            //}
 
-            Text = GAME_TYPES[_gameSelected].WindowTitleText;
-            TextBoxFullPath.Clear();
+            //Text = GAME_TYPES[_gameSelected].WindowTitleText;
+            //TextBoxFullPath.Clear();
 
-            if (_gameSelected == 'p')
-            {
-                ButtonLoadNormal.Visible = true;
+            //if (_gameSelected == 'p')
+            //{
+            //    ButtonLoadNormal.Visible = true;
 
-                ButtonKingmaker.Enabled = false;
-                ButtonKingmaker.ForeColor = backColor;
-                ButtonKingmaker.BackColor = foreColor;
+            //    ButtonKingmaker.Enabled = false;
+            //    ButtonKingmaker.ForeColor = backColor;
+            //    ButtonKingmaker.BackColor = foreColor;
 
-                ButtonWotR.Enabled = true;
-                ButtonWotR.ForeColor = Color.White;
-                ButtonWotR.BackColor = Color.Black;
+            //    ButtonWotR.Enabled = true;
+            //    ButtonWotR.ForeColor = Color.White;
+            //    ButtonWotR.BackColor = Color.Black;
 
-                ButtonRT.Enabled = true;
-                ButtonRT.ForeColor = Color.White;
-                ButtonRT.BackColor = Color.Black;
+            //    ButtonRT.Enabled = true;
+            //    ButtonRT.ForeColor = Color.White;
+            //    ButtonRT.BackColor = Color.Black;
 
-                TextBoxFullPath.Text = CoreSettings.Default.KINGPath;
-            }
-            else if (_gameSelected == 'w')
-            {
-                ButtonLoadNormal.Visible = true;
+            //    TextBoxFullPath.Text = CoreSettings.Default.KINGPath;
+            //}
+            //else if (_gameSelected == 'w')
+            //{
+            //    ButtonLoadNormal.Visible = true;
 
-                ButtonKingmaker.Enabled = true;
-                ButtonKingmaker.ForeColor = Color.White;
-                ButtonKingmaker.BackColor = Color.Black;   
+            //    ButtonKingmaker.Enabled = true;
+            //    ButtonKingmaker.ForeColor = Color.White;
+            //    ButtonKingmaker.BackColor = Color.Black;   
                 
-                ButtonWotR.Enabled = false;
-                ButtonWotR.ForeColor = backColor;
-                ButtonWotR.BackColor = foreColor;
+            //    ButtonWotR.Enabled = false;
+            //    ButtonWotR.ForeColor = backColor;
+            //    ButtonWotR.BackColor = foreColor;
 
-                ButtonRT.Enabled = true;
-                ButtonRT.ForeColor = Color.White;
-                ButtonRT.BackColor = Color.Black;
+            //    ButtonRT.Enabled = true;
+            //    ButtonRT.ForeColor = Color.White;
+            //    ButtonRT.BackColor = Color.Black;
 
-                TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
-            }
-            else if (_gameSelected == 'r')
-            {
-                ButtonLoadNormal.Visible = false;
+            //    TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
+            //}
+            //else if (_gameSelected == 'r')
+            //{
+            //    ButtonLoadNormal.Visible = false;
 
-                ButtonKingmaker.Enabled = true;
-                ButtonKingmaker.ForeColor = Color.White;
-                ButtonKingmaker.BackColor = Color.Black;
+            //    ButtonKingmaker.Enabled = true;
+            //    ButtonKingmaker.ForeColor = Color.White;
+            //    ButtonKingmaker.BackColor = Color.Black;
 
-                ButtonWotR.Enabled = true;
-                ButtonWotR.ForeColor = Color.White;
-                ButtonWotR.BackColor = Color.Black;
+            //    ButtonWotR.Enabled = true;
+            //    ButtonWotR.ForeColor = Color.White;
+            //    ButtonWotR.BackColor = Color.Black;
 
-                ButtonRT.Enabled = false;
-                ButtonRT.ForeColor = backColor;
-                ButtonRT.BackColor = foreColor;
+            //    ButtonRT.Enabled = false;
+            //    ButtonRT.ForeColor = backColor;
+            //    ButtonRT.BackColor = foreColor;
                 
-                TextBoxFullPath.Text = CoreSettings.Default.ROGUEPath;
-            }
+            //    TextBoxFullPath.Text = CoreSettings.Default.ROGUEPath;
+            //}
         }
 
         public bool LoadGallery(string path)
@@ -765,37 +765,37 @@ namespace PortraitManager
 
                 if (CheckPortraitExistence(subDir))
                 {
-                    if (SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + LARGE_APPEND,
-                        GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
-                        SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + MEDIUM_APPEND,
-                        GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
-                        SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + SMALL_APPEND,
-                        GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
-                    {
-                        try
-                        {
-                            using (Image img = new Bitmap(subDir + "\\Fulllength.png"))
-                            {
+                    //if (SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + LARGE_APPEND,
+                    //    GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
+                    //    SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + MEDIUM_APPEND,
+                    //    GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
+                    //    SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + SMALL_APPEND,
+                    //    GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
+                    //{
+                    //    try
+                    //    {
+                    //        using (Image img = new Bitmap(subDir + "\\Fulllength.png"))
+                    //        {
 
-                                ListViewItem item = new ListViewItem
-                                {
-                                    Text = subDir.Split('\\').Last(),
-                                    ImageIndex = ImgListGallery.Images.Count,
-                                    Tag = subDir+">LOCAL"
-                                };
-                                Invoke((MethodInvoker)delegate
-                                {
-                                    ImgListGallery.Images.Add(subDir, img);
-                                    ListGallery.Items.Add(item);
-                                });
+                    //            ListViewItem item = new ListViewItem
+                    //            {
+                    //                Text = subDir.Split('\\').Last(),
+                    //                ImageIndex = ImgListGallery.Images.Count,
+                    //                Tag = subDir+">LOCAL"
+                    //            };
+                    //            Invoke((MethodInvoker)delegate
+                    //            {
+                    //                ImgListGallery.Images.Add(subDir, img);
+                    //                ListGallery.Items.Add(item);
+                    //            });
 
-                            }
-                        }
-                        catch
-                        {
-                            return;
-                        }
-                    }
+                    //        }
+                    //    }
+                    //    catch
+                    //    {
+                    //        return;
+                    //    }
+                    //}
                 }
             }
         }
@@ -961,16 +961,16 @@ namespace PortraitManager
         
         public void GeneratePortraits(string path)
         {
-            Directory.CreateDirectory(path);
-            ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMP_LARGE_APPEND,
-                                         path + LARGE_APPEND, GAME_TYPES[_gameSelected].GetLargeAspect(),
-                                         GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight());
-            ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMP_MEDIUM_APPEND,
-                                         path + MEDIUM_APPEND, GAME_TYPES[_gameSelected].GetMediumAspect(),
-                                         GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight());
-            ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
-                                         path + SMALL_APPEND, GAME_TYPES[_gameSelected].GetSmallAspect(),
-                                         GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight());
+            //Directory.CreateDirectory(path);
+            //ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMP_LARGE_APPEND,
+            //                             path + LARGE_APPEND, GAME_TYPES[_gameSelected].GetLargeAspect(),
+            //                             GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight());
+            //ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMP_MEDIUM_APPEND,
+            //                             path + MEDIUM_APPEND, GAME_TYPES[_gameSelected].GetMediumAspect(),
+            //                             GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight());
+            //ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
+            //                             path + SMALL_APPEND, GAME_TYPES[_gameSelected].GetSmallAspect(),
+            //                             GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight());
         }
         
         public void GenerateImageSelectionFlagString(ushort flag = 0)

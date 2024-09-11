@@ -261,15 +261,15 @@ namespace PortraitManager
             bool placeableFilepath = false;
             uint pseudoUniqueName = 0;
 
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
-            {
-                RootFunctions.LayoutEnable(LayoutFinalPage);
-                Focus();
-                LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
-                LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
-                ButtonToMainPageAndFolder.Enabled = false;
-                return;
-            }
+            //if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    RootFunctions.LayoutEnable(LayoutFinalPage);
+            //    Focus();
+            //    LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
+            //    LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
+            //    ButtonToMainPageAndFolder.Enabled = false;
+            //    return;
+            //}
 
             if (_tunneledNameToPortraitPage != "!NONE!")
             {
@@ -279,16 +279,16 @@ namespace PortraitManager
                 placeableFilepath = true;
             }
 
-            while (!placeableFilepath)
-            {
-                path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(pseudoUniqueName);
-                if (!Directory.Exists(path))
-                {
-                    GeneratePortraits(path);
-                    placeableFilepath = true;
-                }
-                pseudoUniqueName++;
-            }
+            //while (!placeableFilepath)
+            //{
+            //    path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(pseudoUniqueName);
+            //    if (!Directory.Exists(path))
+            //    {
+            //        GeneratePortraits(path);
+            //        placeableFilepath = true;
+            //    }
+            //    pseudoUniqueName++;
+            //}
 
             if (CheckPortraitExistence(path))
             {
@@ -402,19 +402,19 @@ namespace PortraitManager
             CoreSettings.Default.Save();
             UpdateColorScheme();
 
-            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                RemoveClickEventsFromMainButtons();
-            }
-            else
-            {
-                AddClickEventsToMainButtons();
-            }
+            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    RemoveClickEventsFromMainButtons();
+            //}
+            //else
+            //{
+            //    AddClickEventsToMainButtons();
+            //}
 
             if (_gameSelected == 'r')
             {
@@ -428,39 +428,39 @@ namespace PortraitManager
                 return;
             }
 
-            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
-                (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                RemoveClickEventsFromCustomPortraitsButtons();
-                CheckBoxVerified.Checked = false;
-                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-                UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = false;
-                ButtonLoadCustomNPC.Visible = false;
-                ButtonLoadCustomArmy.Visible = false;
+            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
+            //    (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    RemoveClickEventsFromCustomPortraitsButtons();
+            //    CheckBoxVerified.Checked = false;
+            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+            //    UseStamps.Default.Save();
+            //    ButtonLoadCustom.Visible = false;
+            //    ButtonLoadCustomNPC.Visible = false;
+            //    ButtonLoadCustomArmy.Visible = false;
 
-            }
-            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) 
-                && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                AddClickEventsToCustomPortraitsButtons();
-                CheckBoxVerified.Checked = true;
-                UseStamps.Default.isAwareNPC = "WorkRevealed";
-                UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = true;
-                ButtonLoadCustomNPC.Visible = true;
-                ButtonLoadCustomArmy.Visible = true;
-            }
+            //}
+            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) 
+            //    && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    AddClickEventsToCustomPortraitsButtons();
+            //    CheckBoxVerified.Checked = true;
+            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
+            //    UseStamps.Default.Save();
+            //    ButtonLoadCustom.Visible = true;
+            //    ButtonLoadCustomNPC.Visible = true;
+            //    ButtonLoadCustomArmy.Visible = true;
+            //}
 
             if (UseStamps.Default.isAwareNPC == "WorkRevealed")
             {
@@ -474,7 +474,7 @@ namespace PortraitManager
         
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
+            //System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
         }
         
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
@@ -504,8 +504,8 @@ namespace PortraitManager
             }
 
             ListViewItem item = ListGallery.SelectedItems[0];
-            using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
-                ClearPictureBoxImages(img);
+            //using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
+            //    ClearPictureBoxImages(img);
             SystemControl.FileControl.ClearTempImages();
             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
 
@@ -544,18 +544,18 @@ namespace PortraitManager
                     ListGallery.Items.RemoveByKey(item.Text);
                     ImgListGallery.Images.RemoveByKey(item.Text);
 
-                    if (type == "LOCAL")
-                    {
-                        SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-                    }
-                    else
-                    {
-                        SystemControl.FileControl.DeleteDirectoryRecursive(path + "\\BACKUP");
-                        SystemControl.FileControl.CreateDirectory(path + "\\BACKUP");
-                        SystemControl.FileControl.CopyFile(path + LARGE_APPEND, path + "\\BACKUP" + LARGE_APPEND);
-                        SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
-                        SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
-                    }
+                    //if (type == "LOCAL")
+                    //{
+                    //    SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
+                    //}
+                    //else
+                    //{
+                    //    SystemControl.FileControl.DeleteDirectoryRecursive(path + "\\BACKUP");
+                    //    SystemControl.FileControl.CreateDirectory(path + "\\BACKUP");
+                    //    SystemControl.FileControl.CopyFile(path + LARGE_APPEND, path + "\\BACKUP" + LARGE_APPEND);
+                    //    SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
+                    //    SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
+                    //}
                     _tunneledNameToPortraitPage = path;
                     item.Remove();
                 }
@@ -603,21 +603,21 @@ namespace PortraitManager
                 }
             }
 
-            foreach (ListViewItem item in ListGallery.SelectedItems)
-            {
-                string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + "\\";
-                ImgListGallery.Images.RemoveByKey(item.Text);
-                item.Remove();
-                SystemControl.FileControl.DeleteDirectoryRecursive(path);
-            }
+            //foreach (ListViewItem item in ListGallery.SelectedItems)
+            //{
+            //    string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + "\\";
+            //    ImgListGallery.Images.RemoveByKey(item.Text);
+            //    item.Remove();
+            //    SystemControl.FileControl.DeleteDirectoryRecursive(path);
+            //}
             _cancellationTokenSource.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
 
-            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
+            //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    ButtonToMainPage3_Click(sender, e);
+            //    return;
+            //}
         }
 
         private void ButtonHintFolder_Click(object sender, EventArgs e)
@@ -687,26 +687,26 @@ namespace PortraitManager
 
             foreach (ListViewItem item in ListExtract.Items)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                //string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                //string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 
-                if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
-                {
-                    SystemControl.FileControl.CreateDirectory(normalPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
-                    imgCount++;
-                }
-                else
-                {
-                    isRepeat = true;
-                    SystemControl.FileControl.CreateDirectory(safePath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
-                    imgCount++;
-                }
+                //if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
+                //{
+                //    SystemControl.FileControl.CreateDirectory(normalPath);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
+                //    imgCount++;
+                //}
+                //else
+                //{
+                //    isRepeat = true;
+                //    SystemControl.FileControl.CreateDirectory(safePath);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
+                //    imgCount++;
+                //}
             }
 
             if (isRepeat)
@@ -750,26 +750,26 @@ namespace PortraitManager
 
             foreach (ListViewItem item in ListExtract.SelectedItems)
             {
-                string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-                string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
+                //string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
+                //string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
                 
-                if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
-                {
-                    SystemControl.FileControl.CreateDirectory(normalPath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
-                    imgCount++;
-                }
-                else
-                {
-                    isRepeat = true;
-                    SystemControl.FileControl.CreateDirectory(safePath);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
-                    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
-                    imgCount++;
-                }
+                //if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
+                //{
+                //    SystemControl.FileControl.CreateDirectory(normalPath);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
+                //    imgCount++;
+                //}
+                //else
+                //{
+                //    isRepeat = true;
+                //    SystemControl.FileControl.CreateDirectory(safePath);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
+                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
+                //    imgCount++;
+                //}
             }
 
             if (isRepeat)
@@ -798,7 +798,7 @@ namespace PortraitManager
                 return;
             }
 
-            System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
+            //System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
             System.Diagnostics.Process.Start(_extractFolderPath);
             ButtonToMainPage2_Click(sender, e);
         }
@@ -842,8 +842,8 @@ namespace PortraitManager
             {
                 if (button != null)
                 {
-                    button.BackColor = GAME_TYPES[_gameSelected].ControlForeColor;
-                    button.ForeColor = GAME_TYPES[_gameSelected].ControlBackColor;
+                    //button.BackColor = GAME_TYPES[_gameSelected].ControlForeColor;
+                    //button.ForeColor = GAME_TYPES[_gameSelected].ControlBackColor;
                 }
             }
         }
@@ -854,8 +854,8 @@ namespace PortraitManager
             {
                 if (button != null)
                 {
-                    button.BackColor = GAME_TYPES[_gameSelected].ControlBackColor;
-                    button.ForeColor = GAME_TYPES[_gameSelected].ControlForeColor;
+                    //button.BackColor = GAME_TYPES[_gameSelected].ControlBackColor;
+                    //button.ForeColor = GAME_TYPES[_gameSelected].ControlForeColor;
                 }
             }
         }
@@ -886,7 +886,7 @@ namespace PortraitManager
 
         private void ButtonRestorePath_Click(object sender, EventArgs e)
         {
-            TextBoxFullPath.Text = GAME_TYPES[_gameSelected].NormalDefaultDirectory;
+            //TextBoxFullPath.Text = GAME_TYPES[_gameSelected].NormalDefaultDirectory;
         }
 
         private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
@@ -1072,7 +1072,7 @@ namespace PortraitManager
                 ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
                 CoreSettings.Default.Save();
                 AddClickEventsToMainButtons();
-                ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
+                //ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
             }
         }
         
@@ -1080,29 +1080,29 @@ namespace PortraitManager
         {
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
+            //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    ButtonToMainPage3_Click(sender, e);
+            //    return;
+            //}
         }
         
         private void ButtonLoadCustom_Click(object sender, EventArgs e)
         {
             string fromPath, fromPath2;
 
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
+            //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            //fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
 
-            if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
-                !LoadGalleryCustom(fromPath, false) ||
-                !LoadGalleryCustom(fromPath2, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
+            //if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
+            //    !LoadGalleryCustom(fromPath, false) ||
+            //    !LoadGalleryCustom(fromPath2, false))
+            //{
+            //    ButtonToMainPage3_Click(sender, e);
+            //    return;
+            //}
         }
 
         private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
@@ -1129,28 +1129,28 @@ namespace PortraitManager
         {
             string fromPath;
 
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
+            //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
             _cancellationTokenSource?.Cancel();
             ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(fromPath, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
+            //if (!LoadGalleryCustom(fromPath, false))
+            //{
+            //    ButtonToMainPage3_Click(sender, e);
+            //    return;
+            //}
         }
         
         private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
         {
             string fromPath;
 
-            fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
-            _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            if (!LoadGalleryCustom(fromPath, false))
-            {
-                ButtonToMainPage3_Click(sender, e);
-                return;
-            }
+            //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
+            //_cancellationTokenSource?.Cancel();
+            //ClearImageListsSync(ListGallery, ImgListGallery);
+            //if (!LoadGalleryCustom(fromPath, false))
+            //{
+            //    ButtonToMainPage3_Click(sender, e);
+            //    return;
+            //}
         }
         
         private void PicBoxEng_Click(object sender, EventArgs e)
@@ -1204,14 +1204,14 @@ namespace PortraitManager
             UpdateColorScheme();
             RemoveClickEventsFromCustomPortraitsButtons();
 
-            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            {
-                RemoveClickEventsFromMainButtons();
-            }
-            else
-            {
-                AddClickEventsToMainButtons();
-            }
+            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    RemoveClickEventsFromMainButtons();
+            //}
+            //else
+            //{
+            //    AddClickEventsToMainButtons();
+            //}
 
             ButtonLoadCustom.Visible = false;
             ButtonLoadCustomNPC.Visible = false;
@@ -1227,45 +1227,45 @@ namespace PortraitManager
             _gameSelected = 'p';
             UpdateColorScheme();
 
-            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            {
-                RemoveClickEventsFromMainButtons();
-            }
-            else
-            {
-                AddClickEventsToMainButtons();
-            }
+            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    RemoveClickEventsFromMainButtons();
+            //}
+            //else
+            //{
+            //    AddClickEventsToMainButtons();
+            //}
 
-            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                RemoveClickEventsFromCustomPortraitsButtons();
-                CheckBoxVerified.Checked = false;
-                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-                UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = false;
-                ButtonLoadCustomNPC.Visible = false;
-                ButtonLoadCustomArmy.Visible = false;
-            }
-            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                AddClickEventsToCustomPortraitsButtons();
-                CheckBoxVerified.Checked = true;
-                UseStamps.Default.isAwareNPC = "WorkRevealed";
-                UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = true;
-                ButtonLoadCustomNPC.Visible = true;
-                ButtonLoadCustomArmy.Visible = true;
-            }
+            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    RemoveClickEventsFromCustomPortraitsButtons();
+            //    CheckBoxVerified.Checked = false;
+            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+            //    UseStamps.Default.Save();
+            //    ButtonLoadCustom.Visible = false;
+            //    ButtonLoadCustomNPC.Visible = false;
+            //    ButtonLoadCustomArmy.Visible = false;
+            //}
+            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    AddClickEventsToCustomPortraitsButtons();
+            //    CheckBoxVerified.Checked = true;
+            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
+            //    UseStamps.Default.Save();
+            //    ButtonLoadCustom.Visible = true;
+            //    ButtonLoadCustomNPC.Visible = true;
+            //    ButtonLoadCustomArmy.Visible = true;
+            //}
 
             if (UseStamps.Default.isAwareNPC == "WorkRevealed")
             {
@@ -1285,45 +1285,45 @@ namespace PortraitManager
             _gameSelected = 'w';
             UpdateColorScheme();
 
-            if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            {
-                RemoveClickEventsFromMainButtons();
-            }
-            else
-            {
-                AddClickEventsToMainButtons();
-            }
+            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
+            //{
+            //    RemoveClickEventsFromMainButtons();
+            //}
+            //else
+            //{
+            //    AddClickEventsToMainButtons();
+            //}
 
-            if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                RemoveClickEventsFromCustomPortraitsButtons();
-                CheckBoxVerified.Checked = false;
-                UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-                UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = false;
-                ButtonLoadCustomNPC.Visible = false;
-                ButtonLoadCustomArmy.Visible = false;
-            }
-            else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            {
-                using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-                {
-                    Message.StartPosition = FormStartPosition.CenterParent;
-                    Message.ShowDialog();
-                }
-                AddClickEventsToCustomPortraitsButtons();
-                CheckBoxVerified.Checked = true;
-                UseStamps.Default.isAwareNPC = "WorkRevealed";
-                UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = true;
-                ButtonLoadCustomNPC.Visible = true;
-                ButtonLoadCustomArmy.Visible = true;
-            }
+            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    RemoveClickEventsFromCustomPortraitsButtons();
+            //    CheckBoxVerified.Checked = false;
+            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
+            //    UseStamps.Default.Save();
+            //    ButtonLoadCustom.Visible = false;
+            //    ButtonLoadCustomNPC.Visible = false;
+            //    ButtonLoadCustomArmy.Visible = false;
+            //}
+            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
+            //{
+            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
+            //    {
+            //        Message.StartPosition = FormStartPosition.CenterParent;
+            //        Message.ShowDialog();
+            //    }
+            //    AddClickEventsToCustomPortraitsButtons();
+            //    CheckBoxVerified.Checked = true;
+            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
+            //    UseStamps.Default.Save();
+            //    ButtonLoadCustom.Visible = true;
+            //    ButtonLoadCustomNPC.Visible = true;
+            //    ButtonLoadCustomArmy.Visible = true;
+            //}
 
             if (UseStamps.Default.isAwareNPC == "WorkRevealed")
             {

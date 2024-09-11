@@ -41,7 +41,7 @@ namespace PortraitManager.sources
                          Image newMenuTitleImage, Image newMenuBackgroundImage, Image newPlaceholderPortrait,
                          Icon newApplicationIcon,
                          Color newForeColor, Color newBackColor,
-                         string newDefaultDirectory, 
+                         string newDefaultDirectory,
                          Dictionary<string, float> newPortraitSpecifics)
         {
             FullGameName = newFullGameName;
@@ -57,106 +57,6 @@ namespace PortraitManager.sources
 
             DefaultDirectory = newDefaultDirectory;
             PortraitSpecifics = newPortraitSpecifics;
-        }
-    }
-
-
-    public class GameTypeClass
-    {
-        public string FullGameName;
-        public string WindowTitleText;
-        public Image MenuTitleImage { get; set; }
-        public Image MenuBackgroundImage { get; set; }
-        public Image PortraitPlaceholderImage { get; set; }
-        public Color ControlForeColor { get; set; }
-        public Color ControlBackColor { get; set; }
-        public Icon ApplicationIcon { get; set; }
-        public string NormalDefaultDirectory { get; set; }
-        public Dictionary<string, int> PortraitNativePixeling { get; set; } 
-        public Dictionary<string, float> PortraitNativeAspect { get; set; }
-        
-        public GameTypeClass(string newGameName, Color newForeColor, Color newBackColor, Icon newIcon,
-                             Image newTitleImage, Image newBackgroundImage, Image newPlaceImage,
-                             string newDefDirectory, string newTitleText,
-                             int newSmallWidth, int newSmallHeight,
-                             int newMediumWidth, int newMediumHeight,
-                             int newLargeWidth, int newLargeHeight,
-                             float newSmallAspect, float newMediumAspect, float newLargeAspect)
-        {
-            FullGameName = newGameName;
-            WindowTitleText = newTitleText;
-
-            ControlForeColor = newForeColor;
-            ControlBackColor = newBackColor;
-            ApplicationIcon = newIcon;
-            MenuTitleImage = newTitleImage;
-            MenuBackgroundImage = newBackgroundImage;
-            PortraitPlaceholderImage = newPlaceImage;            
-
-            NormalDefaultDirectory = newDefDirectory;
-            
-
-            PortraitNativePixeling = new Dictionary<string, int>()
-            {
-                { "SMALL WIDTH", newSmallWidth},
-                { "SMALL HEIGHT", newSmallHeight},
-                { "MEDIUM WIDTH", newMediumWidth},
-                { "MEDIUM HEIGHT", newMediumHeight},
-                { "LARGE WIDTH", newLargeWidth},
-                { "LARGE HEIGHT", newLargeHeight}
-            };
-
-            PortraitNativeAspect = new Dictionary<string, float>()
-            {
-                { "SMALL ASPECT", newSmallAspect},
-                { "MEDIUM ASPECT", newMediumAspect},
-                { "LARGE ASPECT", newLargeAspect},
-            };
-        }
-
-        public int GetSmallWidth()
-        {
-            return PortraitNativePixeling["SMALL WIDTH"];
-        }
-
-        public int GetSmallHeight()
-        {
-            return PortraitNativePixeling["SMALL HEIGHT"];
-        }
-
-        public int GetMediumWidth()
-        {
-            return PortraitNativePixeling["MEDIUM WIDTH"];
-        }
-
-        public int GetMediumHeight()
-        {
-            return PortraitNativePixeling["MEDIUM HEIGHT"];
-        }
-
-        public int GetLargeWidth()
-        {
-            return PortraitNativePixeling["LARGE WIDTH"];
-        }
-
-        public int GetLargeHeight()
-        {
-            return PortraitNativePixeling["LARGE HEIGHT"];
-        }
-    
-        public float GetSmallAspect()
-        {
-            return PortraitNativeAspect["SMALL ASPECT"];
-        }
-
-        public float GetMediumAspect()
-        {
-            return PortraitNativeAspect["MEDIUM ASPECT"];
-        }
-
-        public float GetLargeAspect()
-        {
-            return PortraitNativeAspect["LARGE ASPECT"];
         }
     }
 }

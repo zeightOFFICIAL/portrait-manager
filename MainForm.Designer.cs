@@ -2234,7 +2234,7 @@ namespace PortraitManager
             // LayoutStartMenu
             // 
             this.LayoutStartMenu.BackColor = System.Drawing.Color.Black;
-            this.LayoutStartMenu.BackgroundImage = global::PortraitManager.Properties.Resources.start_path;
+            this.LayoutStartMenu.BackgroundImage = global::PortraitManager.Properties.Resources.path_start_page;
             this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.LayoutStartMenu.ColumnCount = 2;
             this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.23433F));
@@ -2306,7 +2306,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartKing
             // 
-            this.PictureBoxStartKing.BackgroundImage = global::PortraitManager.Properties.Resources.icon_path1;
+            this.PictureBoxStartKing.BackgroundImage = global::PortraitManager.Properties.Resources.path_icon_png;
             this.PictureBoxStartKing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartKing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartKing.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2362,7 +2362,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartWotr
             // 
-            this.PictureBoxStartWotr.BackgroundImage = global::PortraitManager.Properties.Resources.icon_wotr1;
+            this.PictureBoxStartWotr.BackgroundImage = global::PortraitManager.Properties.Resources.wotr_icon_png;
             this.PictureBoxStartWotr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartWotr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartWotr.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2418,7 +2418,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartRt
             // 
-            this.PictureBoxStartRt.BackgroundImage = global::PortraitManager.Properties.Resources.icon_rt1;
+            this.PictureBoxStartRt.BackgroundImage = global::PortraitManager.Properties.Resources.rt_icon_png;
             this.PictureBoxStartRt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartRt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartRt.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2474,7 +2474,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartPoe
             // 
-            this.PictureBoxStartPoe.BackgroundImage = global::PortraitManager.Properties.Resources.icon_poe1;
+            this.PictureBoxStartPoe.BackgroundImage = global::PortraitManager.Properties.Resources.poe_icon_png;
             this.PictureBoxStartPoe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartPoe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartPoe.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2530,7 +2530,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartPoed
             // 
-            this.PictureBoxStartPoed.BackgroundImage = global::PortraitManager.Properties.Resources.icon_poed1;
+            this.PictureBoxStartPoed.BackgroundImage = global::PortraitManager.Properties.Resources.poed_icon_png;
             this.PictureBoxStartPoed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartPoed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartPoed.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2586,7 +2586,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartTyr
             // 
-            this.PictureBoxStartTyr.BackgroundImage = global::PortraitManager.Properties.Resources.icon_tyr1;
+            this.PictureBoxStartTyr.BackgroundImage = global::PortraitManager.Properties.Resources.tyr_icon_png;
             this.PictureBoxStartTyr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartTyr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartTyr.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2642,7 +2642,7 @@ namespace PortraitManager
             // 
             // PictureBoxStartW3
             // 
-            this.PictureBoxStartW3.BackgroundImage = global::PortraitManager.Properties.Resources.icon_waste1;
+            this.PictureBoxStartW3.BackgroundImage = global::PortraitManager.Properties.Resources.waste_icon_png;
             this.PictureBoxStartW3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxStartW3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxStartW3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2688,7 +2688,7 @@ namespace PortraitManager
             // 
             // PictureBoxOpenNM
             // 
-            this.PictureBoxOpenNM.BackgroundImage = global::PortraitManager.Properties.Resources.nm_logo;
+            this.PictureBoxOpenNM.BackgroundImage = global::PortraitManager.Properties.Resources.nm_logo_png;
             this.PictureBoxOpenNM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxOpenNM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxOpenNM.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2701,7 +2701,7 @@ namespace PortraitManager
             // 
             // PictureBoxOpenGitHub
             // 
-            this.PictureBoxOpenGitHub.BackgroundImage = global::PortraitManager.Properties.Resources.github_logo;
+            this.PictureBoxOpenGitHub.BackgroundImage = global::PortraitManager.Properties.Resources.github_logo_png;
             this.PictureBoxOpenGitHub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxOpenGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxOpenGitHub.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2715,7 +2715,7 @@ namespace PortraitManager
             // LayoutPathPage
             // 
             this.LayoutPathPage.BackColor = System.Drawing.Color.Black;
-            this.LayoutPathPage.BackgroundImage = global::PortraitManager.Properties.Resources.path_path;
+            this.LayoutPathPage.BackgroundImage = global::PortraitManager.Properties.Resources.path_folder_page;
             this.LayoutPathPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.LayoutPathPage.ColumnCount = 5;
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));

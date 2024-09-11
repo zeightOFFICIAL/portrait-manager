@@ -83,9 +83,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_path {
+        internal static System.Drawing.Bitmap eng_flag {
             get {
-                object obj = ResourceManager.GetObject("bg_path", resourceCulture);
+                object obj = ResourceManager.GetObject("eng_flag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,99 +93,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_poe {
+        internal static System.Drawing.Bitmap github_logo_png {
             get {
-                object obj = ResourceManager.GetObject("bg_poe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bg_poed {
-            get {
-                object obj = ResourceManager.GetObject("bg_poed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bg_rt {
-            get {
-                object obj = ResourceManager.GetObject("bg_rt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bg_tyr {
-            get {
-                object obj = ResourceManager.GetObject("bg_tyr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bg_waste {
-            get {
-                object obj = ResourceManager.GetObject("bg_waste", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bg_wotr {
-            get {
-                object obj = ResourceManager.GetObject("bg_wotr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap eng {
-            get {
-                object obj = ResourceManager.GetObject("eng", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fra {
-            get {
-                object obj = ResourceManager.GetObject("fra", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ger {
-            get {
-                object obj = ResourceManager.GetObject("ger", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap github_logo {
-            get {
-                object obj = ResourceManager.GetObject("github_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("github_logo_png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -201,21 +111,21 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Icon icon_path {
+        internal static System.Drawing.Bitmap nm_logo_png {
             get {
-                object obj = ResourceManager.GetObject("icon_path", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("nm_logo_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_path1 {
+        internal static System.Drawing.Bitmap path_folder_page {
             get {
-                object obj = ResourceManager.GetObject("icon_path1", resourceCulture);
+                object obj = ResourceManager.GetObject("path_folder_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +133,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon icon_poe {
+        internal static System.Drawing.Icon path_icon_ico {
             get {
-                object obj = ResourceManager.GetObject("icon_poe", resourceCulture);
+                object obj = ResourceManager.GetObject("path_icon_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -233,9 +143,59 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_poe1 {
+        internal static System.Drawing.Bitmap path_icon_png {
             get {
-                object obj = ResourceManager.GetObject("icon_poe1", resourceCulture);
+                object obj = ResourceManager.GetObject("path_icon_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap path_menu_page {
+            get {
+                object obj = ResourceManager.GetObject("path_menu_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap path_placeholder {
+            get {
+                object obj = ResourceManager.GetObject("path_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap path_start_page {
+            get {
+                object obj = ResourceManager.GetObject("path_start_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap path_title {
+            get {
+                object obj = ResourceManager.GetObject("path_title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poe_folder_page {
+            get {
+                object obj = ResourceManager.GetObject("poe_folder_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +203,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon icon_poed {
+        internal static System.Drawing.Icon poe_icon_ico {
             get {
-                object obj = ResourceManager.GetObject("icon_poed", resourceCulture);
+                object obj = ResourceManager.GetObject("poe_icon_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -253,9 +213,59 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_poed1 {
+        internal static System.Drawing.Bitmap poe_icon_png {
             get {
-                object obj = ResourceManager.GetObject("icon_poed1", resourceCulture);
+                object obj = ResourceManager.GetObject("poe_icon_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poe_menu_page {
+            get {
+                object obj = ResourceManager.GetObject("poe_menu_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poe_placeholder {
+            get {
+                object obj = ResourceManager.GetObject("poe_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poe_start_page {
+            get {
+                object obj = ResourceManager.GetObject("poe_start_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poe_title {
+            get {
+                object obj = ResourceManager.GetObject("poe_title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poed_folder_page {
+            get {
+                object obj = ResourceManager.GetObject("poed_folder_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +273,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon icon_rt {
+        internal static System.Drawing.Icon poed_icon_ico {
             get {
-                object obj = ResourceManager.GetObject("icon_rt", resourceCulture);
+                object obj = ResourceManager.GetObject("poed_icon_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -273,9 +283,59 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_rt1 {
+        internal static System.Drawing.Bitmap poed_icon_png {
             get {
-                object obj = ResourceManager.GetObject("icon_rt1", resourceCulture);
+                object obj = ResourceManager.GetObject("poed_icon_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poed_menu_page {
+            get {
+                object obj = ResourceManager.GetObject("poed_menu_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poed_placeholder {
+            get {
+                object obj = ResourceManager.GetObject("poed_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poed_start_page {
+            get {
+                object obj = ResourceManager.GetObject("poed_start_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap poed_title {
+            get {
+                object obj = ResourceManager.GetObject("poed_title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rt_folder_page {
+            get {
+                object obj = ResourceManager.GetObject("rt_folder_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +343,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon icon_tyr {
+        internal static System.Drawing.Icon rt_icon_ico {
             get {
-                object obj = ResourceManager.GetObject("icon_tyr", resourceCulture);
+                object obj = ResourceManager.GetObject("rt_icon_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -293,9 +353,69 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_tyr1 {
+        internal static System.Drawing.Bitmap rt_icon_png {
             get {
-                object obj = ResourceManager.GetObject("icon_tyr1", resourceCulture);
+                object obj = ResourceManager.GetObject("rt_icon_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rt_menu_page {
+            get {
+                object obj = ResourceManager.GetObject("rt_menu_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rt_placeholder {
+            get {
+                object obj = ResourceManager.GetObject("rt_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rt_start_page {
+            get {
+                object obj = ResourceManager.GetObject("rt_start_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rt_title {
+            get {
+                object obj = ResourceManager.GetObject("rt_title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rus_flag {
+            get {
+                object obj = ResourceManager.GetObject("rus_flag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tyr_folder_page {
+            get {
+                object obj = ResourceManager.GetObject("tyr_folder_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +423,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon icon_waste {
+        internal static System.Drawing.Icon tyr_icon_ico {
             get {
-                object obj = ResourceManager.GetObject("icon_waste", resourceCulture);
+                object obj = ResourceManager.GetObject("tyr_icon_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -313,9 +433,59 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_waste1 {
+        internal static System.Drawing.Bitmap tyr_icon_png {
             get {
-                object obj = ResourceManager.GetObject("icon_waste1", resourceCulture);
+                object obj = ResourceManager.GetObject("tyr_icon_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tyr_menu_page {
+            get {
+                object obj = ResourceManager.GetObject("tyr_menu_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tyr_placeholder {
+            get {
+                object obj = ResourceManager.GetObject("tyr_placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tyr_start_page {
+            get {
+                object obj = ResourceManager.GetObject("tyr_start_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tyr_title {
+            get {
+                object obj = ResourceManager.GetObject("tyr_title", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap waste_folder_page {
+            get {
+                object obj = ResourceManager.GetObject("waste_folder_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,9 +493,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon icon_wotr {
+        internal static System.Drawing.Icon waste_icon_ico {
             get {
-                object obj = ResourceManager.GetObject("icon_wotr", resourceCulture);
+                object obj = ResourceManager.GetObject("waste_icon_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -333,9 +503,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_wotr1 {
+        internal static System.Drawing.Bitmap waste_icon_png {
             get {
-                object obj = ResourceManager.GetObject("icon_wotr1", resourceCulture);
+                object obj = ResourceManager.GetObject("waste_icon_png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +513,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap nm_logo {
+        internal static System.Drawing.Bitmap waste_menu_page {
             get {
-                object obj = ResourceManager.GetObject("nm_logo", resourceCulture);
+                object obj = ResourceManager.GetObject("waste_menu_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +523,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_path {
+        internal static System.Drawing.Bitmap waste_placeholder {
             get {
-                object obj = ResourceManager.GetObject("path_path", resourceCulture);
+                object obj = ResourceManager.GetObject("waste_placeholder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +533,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_poe {
+        internal static System.Drawing.Bitmap waste_start_page {
             get {
-                object obj = ResourceManager.GetObject("path_poe", resourceCulture);
+                object obj = ResourceManager.GetObject("waste_start_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,9 +543,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_poed {
+        internal static System.Drawing.Bitmap waste_title {
             get {
-                object obj = ResourceManager.GetObject("path_poed", resourceCulture);
+                object obj = ResourceManager.GetObject("waste_title", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,9 +553,29 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_rt {
+        internal static System.Drawing.Bitmap wotr_folder_page {
             get {
-                object obj = ResourceManager.GetObject("path_rt", resourceCulture);
+                object obj = ResourceManager.GetObject("wotr_folder_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon wotr_icon_ico {
+            get {
+                object obj = ResourceManager.GetObject("wotr_icon_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wotr_icon_png {
+            get {
+                object obj = ResourceManager.GetObject("wotr_icon_png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,9 +583,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_tyr {
+        internal static System.Drawing.Bitmap wotr_menu_page {
             get {
-                object obj = ResourceManager.GetObject("path_tyr", resourceCulture);
+                object obj = ResourceManager.GetObject("wotr_menu_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,9 +593,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_waste {
+        internal static System.Drawing.Bitmap wotr_placeholder {
             get {
-                object obj = ResourceManager.GetObject("path_waste", resourceCulture);
+                object obj = ResourceManager.GetObject("wotr_placeholder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,9 +603,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap path_wotr {
+        internal static System.Drawing.Bitmap wotr_start_page {
             get {
-                object obj = ResourceManager.GetObject("path_wotr", resourceCulture);
+                object obj = ResourceManager.GetObject("wotr_start_page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,219 +613,9 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap placeholder_path {
+        internal static System.Drawing.Bitmap wotr_title {
             get {
-                object obj = ResourceManager.GetObject("placeholder_path", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap placeholder_poe {
-            get {
-                object obj = ResourceManager.GetObject("placeholder_poe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap placeholder_poed {
-            get {
-                object obj = ResourceManager.GetObject("placeholder_poed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap placeholder_rt {
-            get {
-                object obj = ResourceManager.GetObject("placeholder_rt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap placeholder_tyr {
-            get {
-                object obj = ResourceManager.GetObject("placeholder_tyr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap placeholder_waste {
-            get {
-                object obj = ResourceManager.GetObject("placeholder_waste", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap placeholder_wotr {
-            get {
-                object obj = ResourceManager.GetObject("placeholder_wotr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap rus {
-            get {
-                object obj = ResourceManager.GetObject("rus", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_path {
-            get {
-                object obj = ResourceManager.GetObject("start_path", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_poe {
-            get {
-                object obj = ResourceManager.GetObject("start_poe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_poed {
-            get {
-                object obj = ResourceManager.GetObject("start_poed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_rt {
-            get {
-                object obj = ResourceManager.GetObject("start_rt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_tyr {
-            get {
-                object obj = ResourceManager.GetObject("start_tyr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_waste {
-            get {
-                object obj = ResourceManager.GetObject("start_waste", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap start_wotr {
-            get {
-                object obj = ResourceManager.GetObject("start_wotr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_path {
-            get {
-                object obj = ResourceManager.GetObject("title_path", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_poe {
-            get {
-                object obj = ResourceManager.GetObject("title_poe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_poed {
-            get {
-                object obj = ResourceManager.GetObject("title_poed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_rt {
-            get {
-                object obj = ResourceManager.GetObject("title_rt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_tyr {
-            get {
-                object obj = ResourceManager.GetObject("title_tyr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_waste {
-            get {
-                object obj = ResourceManager.GetObject("title_waste", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap title_wotr {
-            get {
-                object obj = ResourceManager.GetObject("title_wotr", resourceCulture);
+                object obj = ResourceManager.GetObject("wotr_title", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

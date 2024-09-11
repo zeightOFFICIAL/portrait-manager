@@ -203,10 +203,52 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
-    <Content Include="icon_path.ico" />
-    <Content Include="icon_rt.ico" />
-    <Content Include="icon_wotr.ico" />
+    <None Include="resources\w\wotr_title.png" />
+    <None Include="resources\w\wotr_start_page.jpg" />
+    <None Include="resources\w\wotr_placeholder.png" />
+    <None Include="resources\w\wotr_menu_page.jpg" />
+    <None Include="resources\w\wotr_icon_png.png" />
+    <None Include="resources\w\wotr_folder_page.jpg" />
+    <None Include="resources\t\tyr_title.png" />
+    <None Include="resources\t\tyr_start_page.jpg" />
+    <None Include="resources\t\tyr_placeholder.png" />
+    <None Include="resources\t\tyr_menu_page.jpg" />
+    <None Include="resources\t\tyr_icon_png.png" />
+    <None Include="resources\t\tyr_folder_page.jpg" />
+    <None Include="resources\r\rt_title.png" />
+    <None Include="resources\r\rt_start_page.jpg" />
+    <None Include="resources\r\rt_placeholder.png" />
+    <None Include="resources\r\rt_menu_page.jpg" />
+    <None Include="resources\r\rt_icon_png.png" />
+    <None Include="resources\r\rt_folder_page.jpg" />
+    <None Include="resources\p\poe_title.png" />
+    <None Include="resources\p\poe_start_page.jpg" />
+    <None Include="resources\p\poe_placeholder.jpeg" />
+    <None Include="resources\p\poe_menu_page.jpg" />
+    <None Include="resources\p\poe_icon_png.png" />
+    <None Include="resources\p\poe_folder_page.jpg" />
+    <None Include="resources\l\waste_title.png" />
+    <None Include="resources\l\waste_start_page.jpg" />
+    <None Include="resources\l\waste_placeholder.png" />
+    <None Include="resources\l\waste_menu_page.jpg" />
+    <None Include="resources\l\waste_icon_png.png" />
+    <None Include="resources\l\waste_folder_page.jpg" />
+    <None Include="resources\k\path_title.png" />
+    <None Include="resources\k\path_start_page.jpg" />
+    <None Include="resources\k\path_placeholder.png" />
+    <None Include="resources\k\path_menu_page.jpg" />
+    <None Include="resources\k\path_icon_png.png" />
+    <None Include="resources\k\path_folder_page.jpg" />
+    <None Include="resources\d\poed_title.png" />
+    <None Include="resources\d\poed_start_page.jpg" />
+    <None Include="resources\d\poed_placeholder.jpeg" />
+    <None Include="resources\d\poed_menu_page.jpg" />
+    <None Include="resources\d\poed_icon_png.png" />
+    <None Include="resources\d\poed_folder_page.jpg" />
+    <None Include="resources\rus_flag.jpg" />
+    <None Include="resources\nm_logo_png.png" />
+    <None Include="resources\github_logo_png.png" />
+    <None Include="resources\eng_flag.jpg" />
     <None Include="resources\rightarrow.png" />
     <None Include="resources\leftarrow.png" />
     <None Include="resources\path_wotr.jpg" />
@@ -239,6 +281,26 @@
     <None Include="resources\title_waste.png" />
     <None Include="resources\icon_waste.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="resources\d\poed_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\k\path_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\l\waste_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\p\poe_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\r\rt_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\t\tyr_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\w\wotr_icon_ico.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

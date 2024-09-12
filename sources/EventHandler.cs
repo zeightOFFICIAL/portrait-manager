@@ -1158,7 +1158,7 @@ namespace PortraitManager
             FontsInit(_fontCollection);
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
-            CoreSettings.Default.SelectedLang = "en-EN";
+            //CoreSettings.Default.SelectedLang = "en-EN";
             CoreSettings.Default.Save();
             //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
@@ -1173,7 +1173,7 @@ namespace PortraitManager
             FontsInit(_fontCollection, 1);
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-            CoreSettings.Default.SelectedLang = "ru-RU";
+            //CoreSettings.Default.SelectedLang = "ru-RU";
             CoreSettings.Default.Save();
             //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
@@ -1188,7 +1188,7 @@ namespace PortraitManager
             FontsInit(_fontCollection);
 
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
-            CoreSettings.Default.SelectedLang = "de-DE";
+            //CoreSettings.Default.SelectedLang = "de-DE";
             CoreSettings.Default.Save();
             //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();

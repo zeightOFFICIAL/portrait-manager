@@ -2,41 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PortraitManager.Properties" GeneratedClassName="CoreSettings">
   <Profiles />
   <Settings>
-    <Setting Name="WOTRPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
-    </Setting>
-    <Setting Name="KINGPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
-    </Setting>
-    <Setting Name="MaxWindowWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="MaxWindowHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="GameType" Type="System.Char" Scope="User">
       <Value Profile="(Default)">-</Value>
-    </Setting>
-    <Setting Name="EnabledCustomNPC" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="SelectedLang" Type="System.String" Scope="User">
-      <Value Profile="(Default)">en-US</Value>
-    </Setting>
-    <Setting Name="ROGUEPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
-    </Setting>
-    <Setting Name="TYRANNYPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
-    </Setting>
-    <Setting Name="PILLARSPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
-    </Setting>
-    <Setting Name="DEADFIREPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
-    </Setting>
-    <Setting Name="WASTEPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">!NOTSET!</Value>
     </Setting>
   </Settings>
 </SettingsFile>

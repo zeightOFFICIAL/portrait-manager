@@ -40,9 +40,8 @@ namespace PortraitManager
         private const string LARGE_APPEND = "\\Fulllength.png";
         private const string MEDIUM_APPEND = "\\Medium.png";
         private const string SMALL_APPEND = "\\Small.png";
-        private static readonly string[] TEMP_APPENDS = { TEMP_LARGE_APPEND, TEMP_MEDIUM_APPEND, TEMP_SMALL_APPEND };
 
-        private static char _gameSelected = CoreSettings.Default.GameType;
+        private static char _gameSelected;
 
         /*
          * 0 - Start page
@@ -84,17 +83,20 @@ namespace PortraitManager
 
         public MainForm()
         {
-            InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.Selectable, false);
+            InitializeComponent();          
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {            
             _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
+            _gameSelected = CoreSettings.Default.GameType;
+            SetClientSizeCore(750, 520);
             CenterToScreen();
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
+            
 
             if (CoreSettings.Default.GameType == '-')
             {
@@ -102,8 +104,35 @@ namespace PortraitManager
                 RootFunctions.LayoutEnable(LayoutStartMenu);
                 _activeMenuIndex = 0;
             }
+            else if (CoreSettings.Default.GameType == 'w')
+            {
 
-            Show();
+            }
+            else if (CoreSettings.Default.GameType == 'r')
+            {
+
+            }
+            else if (CoreSettings.Default.GameType == 'p')
+            {
+
+            }
+            else if (CoreSettings.Default.GameType == 'd')
+            {
+
+            }
+            else if (CoreSettings.Default.GameType == 't')
+            {
+
+            }
+            else if (CoreSettings.Default.GameType == 'l')
+            {
+
+            }
+            else
+            {
+
+            }
+
             Focus();
 
             //if (UseStamps.Default.isFirstAny)
@@ -528,8 +557,8 @@ namespace PortraitManager
             _activeMenuIndex = 0;
 
             CoreSettings.Default.GameType = _gameSelected;
-            CoreSettings.Default.MaxWindowHeight = Height;
-            CoreSettings.Default.MaxWindowWidth = Width;
+            //CoreSettings.Default.MaxWindowHeight = Height;
+            //CoreSettings.Default.MaxWindowWidth = Width;
             CoreSettings.Default.Save();
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -752,7 +781,7 @@ namespace PortraitManager
             var font = ButtonStartPoe.Font;
 
             ButtonStartPoe.Font = new Font(font.FontFamily, 18);
-            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
         }
 
         private void ButtonStartPoed_MouseEnter(object sender, EventArgs e)

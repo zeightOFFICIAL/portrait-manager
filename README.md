@@ -137,9 +137,9 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Added Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3 full support
     * Major graphics overhaul. Completely changed visual representation of the application
     * Major code refactoring
-    * ---
-    * ---
-* 1.3.5.0
+    * Major .exe size changes. (~13mb)
+    * Major performance changes
+* 1.3.5.0 (active)
     * Added Warhammer 40000: Rogue Trader full support. It does not support CustomNPC
     * Re-verified all translations and typings. No linguist is involved, so minor mistakes can be found. I consider nothing crucial, but expect no flawlessness in the matter
     * Minor refactoring, nothing of interest for users. Plus tiny optimization tweaks
@@ -147,8 +147,8 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Added keyboard events and legends for them. Now users are able to navigate the tool using keyboard, including dialogs/modal forms and main form, except settings page
     * Settings page back button, now restarts application
     * Transferred from .NET Framework 4.7.2 to .NET Framework 4.8. Nothing changed for users
-    * Increased program size. It is 2 times bigger now. ~7.5 Mb
-* 1.2.0.0
+    * Increased program size. (~7.5 Mb)
+* 1.2.0.0 (working)
     * Added asynchronous loading of Browse Gallery and Extract Folder. Loading of images on these pages is faster and I/O-free, allowing more smooth and convenient experience
     * Added Custom NPC Portraits support. Added support for portraits created by edvin76's mod. Portraits of both the army and NPCs can be altered using this application
     * Major code refactoring
@@ -157,7 +157,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Currently available localizations: en-US, ru-RU, de-DE, the latter one is translated by AI, so it is flawed
     * Changes in the settings page
     * Added fault tolerance for Extract Folder, so partially incorrect portraits are still processed by a program
-* 1.1.0.0b
+* 1.1.0.0b (deprecated)
     * Minor graphical changes
     * Optimization changes
     * Code refactored
@@ -166,7 +166,7 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Removed dependency on outdated folder chose dialog, swapped to new FolderBrowserDialog
     * Added settings page to set up portrait folder path for each game type and to resize window
     * Added features that allow user to change every portrait separately
-* 1.0.0.2e
+* 1.0.0.2e (deprecated)
     * Create new portrait from image
     * Scale image as you see them fit as portraits
     * Change existing portrait(s)

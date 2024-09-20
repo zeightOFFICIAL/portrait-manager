@@ -1,8 +1,7 @@
-<p align="center">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/55c84625-2b73-48a3-b279-bbee1240dd17" width="100%"/>
+# <p align="center">
+<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/title_img.jpg?raw=true" width="100%" alt="Portrait Manager by zeight"/>
 </p>
 
-# <p align="center"> Portrait Manager by zeight </p>
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</p>
 ###### <p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/a316db5e-a269-48cf-81b4-4c54f13ff2e6" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/3bf58f3f-1260-4faa-852f-03408cc6f21c" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3</p>
 #### <p align="center">Nexus mods link:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120<br>Pillars of Eternity - <br>Pillars of Eternity: Deadfire - <br>Tyranny - <br>Wasteland 3 - </p> 

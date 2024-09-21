@@ -1,5 +1,5 @@
 # <p align="center">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/title_img.jpg?raw=true" width="100%" alt="Portrait Manager by zeight"/>
+<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/title_img.jpg?raw=true" width="100%" alt="Portrait Manager by Zeight"/>
 </p>
 
 ### <p align="center">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</p>

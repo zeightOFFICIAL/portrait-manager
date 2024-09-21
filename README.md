@@ -1,11 +1,23 @@
-# <p align="center">
+---
+<p align="center">
 <img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/title_img.jpg?raw=true" width="100%" alt="Portrait Manager by Zeight"/>
 </p>
 
-### <p align="center">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</p>
-###### <p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/a316db5e-a269-48cf-81b4-4c54f13ff2e6" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager-owlcat/assets/50341618/3bf58f3f-1260-4faa-852f-03408cc6f21c" width="45%"/><br> Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3</p>
+## <p align="center">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</p>
+
+###### <p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/pathfinder_title_img.jpg?raw=true" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/r/warhammer_title_img.jpg?raw=true" width="45%"/><br><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/pathfinder_title_bar.jpg?raw=true" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/r/warhammer_title_bar.jpg?raw=true" width="45%"/></p>
+
+###### <p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/pillars_title_img.jpg?raw=true" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/tyranny_title_img.jpg?raw=true" width="45%"/><br><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/pillars_title_bar.jpg?raw=true" width="45%"/>&#160;&#160;&#160;&#160;<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/tyranny_title_bar.jpg?raw=true" width="45%"/></p>
+
+###### <p align="center"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/l/wasteland_title_img.jpg?raw=true" width="45%"/><br><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/l/wasteland_title_bar.jpg?raw=true" width="45%"/></p>
+
+###### <p align="center">Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3</p>
+
+
 #### <p align="center">Nexus mods link:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120<br>Pillars of Eternity - <br>Pillars of Eternity: Deadfire - <br>Tyranny - <br>Wasteland 3 - </p> 
-#### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2024</p><hr>
+#### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2024</p>
+
+---
 
 ### Description
 Desktop application, management tool for portraits in Owlcat Games products. Currently, including Pathfinder and Warhammer series. A lightweight, user-friendly, simple and mostly optimized tool for creating new portraits and browsing, modifying existing ones. Allows the user to manage portraits more conveniently and quickly. Simplifies the process of copying, pasting, scaling and moving images. The application also allows the user to delete or change existing portraits. Supports Kingmaker and Wrath of the Righteous and Rogue Trader. Requires nothing additional. No dependencies at all, apart from .NET Framework 4.8, which is 99% likely to be already installed. Supports Custom NPC Portraits to edit NPC's and army's images for Pathfinder series. Can be easily expanded to work with future Owlcat Games' projects.

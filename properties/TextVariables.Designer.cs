@@ -61,6 +61,24 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose ⌕.
+        /// </summary>
+        internal static string BUTTON_CHOOSE {
+            get {
+                return ResourceManager.GetString("BUTTON_CHOOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset ↺.
+        /// </summary>
+        internal static string BUTTON_RESET {
+            get {
+                return ResourceManager.GetString("BUTTON_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portrait Manager 
         ///Artemii &quot;Zeight&quot; Saganenko ©2023-2024.
         /// </summary>
@@ -80,7 +98,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deadfire.
+        ///   Looks up a localized string similar to Pillars of Eternity: Deadfire.
         /// </summary>
         internal static string NAME_DEADFIRE {
             get {
@@ -89,7 +107,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pathfinder.
+        ///   Looks up a localized string similar to Pathfinder: Kingmaker.
         /// </summary>
         internal static string NAME_KING {
             get {
@@ -107,7 +125,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rogue Trader.
+        ///   Looks up a localized string similar to Warhammer 40K: Rogue Trader.
         /// </summary>
         internal static string NAME_ROGUE {
             get {
@@ -134,7 +152,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrath of the Righteous.
+        ///   Looks up a localized string similar to Pathfinder: Wrath of the Righteous.
         /// </summary>
         internal static string NAME_WOTR {
             get {

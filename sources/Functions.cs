@@ -1039,6 +1039,9 @@ namespace PortraitManager
             ButtonStartTyr.Text = TextVariables.NAME_TYR;
             ButtonStartW3.Text = TextVariables.NAME_WASTE;
             LabelStartAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
+            LabelPathTitle.Text = TextVariables.NAME_KING;
+            LabelStartSelectPath.Text = TextVariables.BUTTON_CHOOSE;
+            LabelStartResetPath.Text = TextVariables.BUTTON_RESET;
         }
 
         public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int headSize = 19, int underSize = 16, int mediumSize = 13, int smallSize = 9)
@@ -1055,7 +1058,17 @@ namespace PortraitManager
             ButtonStartPoed.Font = bebasNeueMedium;
             ButtonStartTyr.Font = bebasNeueMedium;
             ButtonStartW3.Font = bebasNeueMedium;
+            LabelPathTitle.Font = bebasNeueHead;
+            LabelStartSelectPath.Font = bebasNeueMedium;
+            LabelStartResetPath.Font = bebasNeueMedium;
         }
-    
+
+        private void OpenPathSelectPage()
+        {
+            _activeMenuIndex = 1;
+            ParentLayoutsDisable();
+            LabelStartResetPath_Click(this, new EventArgs());
+            RootFunctions.LayoutEnable(LayoutPathPage);
+        }
     }
 }

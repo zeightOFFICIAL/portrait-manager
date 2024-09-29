@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BUTTON_CHOOSE" xml:space="preserve">
+    <value>Choose ⌕</value>
+  </data>
+  <data name="BUTTON_RESET" xml:space="preserve">
+    <value>Reset ↺</value>
+  </data>
   <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
     <value>Portrait Manager 
 Artemii "Zeight" Saganenko ©2023-2024</value>
@@ -125,16 +131,16 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
     <value>Portrait Manager</value>
   </data>
   <data name="NAME_DEADFIRE" xml:space="preserve">
-    <value>Deadfire</value>
+    <value>Pillars of Eternity: Deadfire</value>
   </data>
   <data name="NAME_KING" xml:space="preserve">
-    <value>Pathfinder</value>
+    <value>Pathfinder: Kingmaker</value>
   </data>
   <data name="NAME_PILLARS" xml:space="preserve">
     <value>Pillars of Eternity</value>
   </data>
   <data name="NAME_ROGUE" xml:space="preserve">
-    <value>Rogue Trader</value>
+    <value>Warhammer 40K: Rogue Trader</value>
   </data>
   <data name="NAME_TYR" xml:space="preserve">
     <value>Tyranny</value>
@@ -143,6 +149,6 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
     <value>Wasteland 3</value>
   </data>
   <data name="NAME_WOTR" xml:space="preserve">
-    <value>Wrath of the Righteous</value>
+    <value>Pathfinder: Wrath of the Righteous</value>
   </data>
 </root>

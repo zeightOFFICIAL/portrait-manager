@@ -12,6 +12,7 @@ using PortraitManager.forms;
 using PortraitManager.Properties;
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -1334,6 +1335,393 @@ namespace PortraitManager
                 CheckBoxVerified.Checked = false;
             }
         }
-    
+
+        private void ButtonStartKing_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartKing.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
+            ButtonStartKing.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartKing.ForeColor = Color.LimeGreen;
+        }
+
+        private void ButtonStartWotr_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartWotr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartWotr.ForeColor = Color.Magenta;
+        }
+
+        private void ButtonStartRt_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartRt.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
+            ButtonStartRt.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartRt.ForeColor = Color.DodgerBlue;
+        }
+
+        private void ButtonStartPoe_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoe.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
+            ButtonStartPoe.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartPoe.ForeColor = Color.Aqua;
+        }
+
+        private void ButtonStartPoed_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoed.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            ButtonStartPoed.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartPoed.ForeColor = Color.MediumSpringGreen;
+        }
+
+        private void ButtonStartTyr_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartTyr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
+            ButtonStartTyr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartTyr.ForeColor = Color.Tomato;
+        }
+
+        private void ButtonStartW3_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartW3.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
+            ButtonStartW3.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartW3.ForeColor = Color.SteelBlue;
+        }
+
+        private void PictureBoxStartKing_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartKing.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
+            ButtonStartKing.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartKing.ForeColor = Color.LimeGreen;
+        }
+
+        private void PictureBoxStartWotr_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartWotr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartWotr.ForeColor = Color.Magenta;
+        }
+
+        private void PictureBoxStartRt_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartRt.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
+            ButtonStartRt.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartRt.ForeColor = Color.DodgerBlue;
+        }
+
+        private void PictureBoxStartPoe_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoe.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
+            ButtonStartPoe.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartPoe.ForeColor = Color.Aqua;
+        }
+
+        private void PictureBoxStartPoed_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoed.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            ButtonStartPoed.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartPoed.ForeColor = Color.MediumSpringGreen;
+        }
+
+        private void PictureBoxStartTyr_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartTyr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
+            ButtonStartTyr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartTyr.ForeColor = Color.Tomato;
+        }
+
+        private void PictureBoxStartW3_MouseEnter(object sender, EventArgs e)
+        {
+            var font = ButtonStartW3.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
+            ButtonStartW3.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
+            ButtonStartW3.ForeColor = Color.SteelBlue;
+        }
+
+        private void ButtonStartKing_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartKing.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
+            ButtonStartKing.Font = new Font(font.FontFamily, 13);
+            ButtonStartKing.ForeColor = Color.White;
+        }
+
+        private void ButtonStartWotr_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartWotr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 13);
+            ButtonStartWotr.ForeColor = Color.White;
+        }
+
+        private void ButtonStartRt_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartRt.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
+            ButtonStartRt.Font = new Font(font.FontFamily, 13);
+            ButtonStartRt.ForeColor = Color.White;
+        }
+
+        private void ButtonStartPoe_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoe.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            ButtonStartPoe.Font = new Font(font.FontFamily, 13);
+            ButtonStartPoe.ForeColor = Color.White;
+        }
+
+        private void ButtonStartPoed_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoed.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            ButtonStartPoed.Font = new Font(font.FontFamily, 13);
+            ButtonStartPoed.ForeColor = Color.White;
+        }
+
+        private void ButtonStartTyr_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartTyr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
+            ButtonStartTyr.Font = new Font(font.FontFamily, 13);
+            ButtonStartTyr.ForeColor = Color.White;
+        }
+
+        private void ButtonStartW3_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartW3.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
+            ButtonStartW3.Font = new Font(font.FontFamily, 13);
+            ButtonStartW3.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartKing_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartKing.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.path_start_page;
+            ButtonStartKing.Font = new Font(font.FontFamily, 13);
+            ButtonStartKing.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartWotr_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartWotr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
+            ButtonStartWotr.Font = new Font(font.FontFamily, 13);
+            ButtonStartWotr.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartRt_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartRt.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
+            ButtonStartRt.Font = new Font(font.FontFamily, 13);
+            ButtonStartRt.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartPoe_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoe.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            ButtonStartPoe.Font = new Font(font.FontFamily, 13);
+            ButtonStartPoe.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartPoed_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartPoed.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            ButtonStartPoed.Font = new Font(font.FontFamily, 13);
+            ButtonStartPoed.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartTyr_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartTyr.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
+            ButtonStartTyr.Font = new Font(font.FontFamily, 13);
+            ButtonStartTyr.ForeColor = Color.White;
+        }
+
+        private void PictureBoxStartW3_MouseLeave(object sender, EventArgs e)
+        {
+            var font = ButtonStartW3.Font;
+
+            LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
+            ButtonStartW3.Font = new Font(font.FontFamily, 13);
+            ButtonStartW3.ForeColor = Color.White;
+        }
+
+        private void ButtonStartKing_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'k';
+            LayoutPathPage.BackgroundImage = Resources.path_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_KING;
+            LabelPathTitle.ForeColor = Color.LimeGreen;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStarKing_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'k';
+            LayoutPathPage.BackgroundImage = Resources.path_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_KING;
+            LabelPathTitle.ForeColor = Color.LimeGreen;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStartWotr_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'w';
+            LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_WOTR;
+            LabelPathTitle.ForeColor = Color.Magenta;
+            OpenPathSelectPage();
+        }
+
+        private void ButtonStartWotr_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'w';
+            LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_WOTR;
+            LabelPathTitle.ForeColor = Color.Magenta;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStartRt_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'r';
+            LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_ROGUE;
+            LabelPathTitle.ForeColor = Color.DodgerBlue;
+            OpenPathSelectPage();
+        }
+
+        private void ButtonStartRt_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'r';
+            LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_ROGUE;
+            LabelPathTitle.ForeColor = Color.DodgerBlue;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStartPoe_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'p';
+            LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_PILLARS;
+            LabelPathTitle.ForeColor = Color.Aqua;
+            OpenPathSelectPage();
+        }
+
+        private void ButtonStartPoe_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'p';
+            LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_PILLARS;
+            LabelPathTitle.ForeColor = Color.Aqua;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStartPoed_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'd';
+            LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_DEADFIRE;
+            LabelPathTitle.ForeColor = Color.MediumSpringGreen;
+            OpenPathSelectPage();
+        }
+
+        private void ButtonStartPoed_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'd';
+            LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_DEADFIRE;
+            LabelPathTitle.ForeColor = Color.MediumSpringGreen;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStartTyr_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 't';
+            LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_TYR;
+            LabelPathTitle.ForeColor = Color.Tomato;
+            OpenPathSelectPage();
+        }
+
+        private void ButtonStartTyr_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 't';
+            LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_TYR;
+            LabelPathTitle.ForeColor = Color.Tomato;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxStartWaste_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'l';
+            LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_WASTE;
+            LabelPathTitle.ForeColor = Color.SteelBlue;
+            OpenPathSelectPage();
+        }
+
+        private void ButtonStartWaste_Click(object sender, EventArgs e)
+        {
+            _gameSelected = 'l';
+            LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
+            LabelPathTitle.Text = TextVariables.NAME_WASTE;
+            LabelPathTitle.ForeColor = Color.SteelBlue;
+            OpenPathSelectPage();
+        }
+
+        private void PictureBoxOpenNexus_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://next.nexusmods.com/profile/zeightOFFICIAL/mods", UseShellExecute = true });
+        }
+
+        private void PictureBoxOpenGithub_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://github.com/zeightOFFICIAL/portrait-manager/", UseShellExecute = true });
+        }
     }
 }

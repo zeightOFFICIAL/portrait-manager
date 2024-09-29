@@ -185,21 +185,22 @@ Compatible with latest Windows OSs, <b>in any case .NET Framework 4.8 is require
     * Extract image(s) from another folder
 
 ### Copyrights
-1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager-pathfinder/blob/master/LICENSE)
-2. All rights for Visual Studio 2022 belongs to Microsoft (https://www.microsoft.com/)
-3. All rights for Pathfinder: Kingmaker belongs to Owlcat Games (https://owlcat.games/)
-4. All rights for Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://owlcat.games/)
-5. All rights for Warhammer 40000: Rogue Trader belongs to Owlcat Games (https://owlcat.games/)
-6. All rights for Pillars of Eternity belongs to Obsidian Entertainment (https://www.obsidian.net/)
-7. All rights for Pillars of Eternity: Deadfire belongs to Obsidian Entertainment (https://www.obsidian.net/)
-8. All rights for Tyranny belongs to Obsidian Entertainment (https://www.obsidian.net/)
-9. All rights for Wasteland 3 belongs to inXile Entertainment (https://www.inxile-entertainment.com/)
-10. Images and icons used in program belongs to Owlcat Games, Obsidian Entertainment, inXile Entertainment
-11. Used font Bebas Neue belongs to its creator Ryoichi Tsunekawa (https://fonts.google.com/specimen/Bebas+Neue, http://dharmatype.com)
-12. Used font Bebas Neue for cyrillic belongs to its creator Ryoichi Tsunekawa and AA (https://fonts-online.ru/fonts/bebas-neue-cyrillic, http://dharmatype.com)
-13. All rights for https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
-14. All rights for https://www.nexusmods.com/warhammer40kroguetrader/mods/21 belongs to Nexus Mods (https://www.nexusmods.com/) and wonszlol (https://www.nexusmods.com/warhammer40kroguetrader/users/1105885)
-15. All rights for https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346 and https://www.nexusmods.com/pathfinderkingmaker/mods/100 (Custom Npc Portraits) belongs to Nexus Mods (https://www.nexusmods.com/) and edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits). Please note, that none of the Assets of Custom Npc Portraits is used, just its result. I am not in cooperation with edvin76, but respect the work. 
+1. Program license: GPL-2.0 license, conditions listed in LICENSE (https://github.com/zeightOFFICIAL/portrait-manager/blob/master/LICENSE)
+2. Visual Studio 2022 belongs to Microsoft (https://visualstudio.microsoft.com/vs/)
+3. Pathfinder: Kingmaker belongs to Owlcat Games (https://kingmaker.owlcat.games/)
+4. Pathfinder: Wrath of the Righteous belongs to Owlcat Games (https://wrath.owlcat.games)
+5. Warhammer 40000: Rogue Trader belongs to Owlcat Games (https://roguetrader.owlcat.games/)
+6. Pillars of Eternity belongs to Obsidian Entertainment (https://www.obsidian.net/games/pillars-of-eternity)
+7. Pillars of Eternity: Deadfire belongs to Obsidian Entertainment (https://www.obsidian.net/games/pillars-of-eternity-ii-deadfire)
+8. Tyranny belongs to Obsidian Entertainment (https://www.obsidian.net/games/tyranny)
+9. Wasteland 3 belongs to inXile Entertainment (https://www.inxile-entertainment.com/games/wasteland-3)
+10. Images and icons used in program belongs to Owlcat Games, Obsidian Entertainment, inXile Entertainment if not stated otherwise
+11. Font Bebas Neue belongs to its creator Ryoichi Tsunekawa (https://fonts.google.com/specimen/Bebas+Neue, https://dharmatype.com/bebas-neue)
+12. Font Bebas Neue for cyrillic belongs to its creator Ryoichi Tsunekawa and AA (https://fonts-online.ru/fonts/bebas-neue-cyrillic, https://dharmatype.com/bebas-neue)
+13. Placeholder portrait image for Pillars of Eternity - Nature Godlike by telthona (https://www.deviantart.com/telthona/art/Nature-Godlike-655455075)
+15. Portrait pack https://www.nexusmods.com/pathfinderkingmaker/mods/92 belongs to Nexus Mods (https://www.nexusmods.com/) and Citrus457 (https://www.nexusmods.com/pathfinderkingmaker/users/60287596)
+16. Portrait pack https://www.nexusmods.com/warhammer40kroguetrader/mods/21 belongs to Nexus Mods (https://www.nexusmods.com/) and wonszlol (https://www.nexusmods.com/warhammer40kroguetrader/users/1105885)
+17. Mod for Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346 and https://www.nexusmods.com/pathfinderkingmaker/mods/100 (Custom Npc Portraits) belongs to Nexus Mods (https://www.nexusmods.com/) and edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits). Please note, that none of the Assets of Custom Npc Portraits is used, just its result. I am not in cooperation with edvin76, but respect the work. If any question arises, contact me by listed email
 
 <b>Inform: if your owner's rights have been violated; if you encounter any errors; if you have suggestions for improving functionality/optimization. I am open to any ideas.
-Disclaimer: This is not a product of Owlcat Games, Obsidian Entertainment or inXile Entertainment, it is developed by a third party which has nothing to do with these listed studios. I am not responsible for any bugs and issues in games caused by software (no warranty). Every/Any image which is used in/processed by this software does not belong to me and does not imply anything. Clients (users) of this software are responsible for selecting a specific image and subsequent use of the processed image. Any image uploaded to this software is not biased, its content is not analyzed aside from its size, no actions are taken to change the image aside from  resizing. This software only allows users to modify images more easily whether they are protected or not, contains mature content or not, used against the copyright (or any other) law or not. Selecting an image and its use is entirely at the discretion of the user. Custom NPC Portrait does not belong to me, but to edvin76, I do not utilize any of the assets.</b>
+Disclaimer: This is not a product of Owlcat Games, Obsidian Entertainment or inXile Entertainment, it is developed by a third party which has nothing to do with these listed companies. I am not responsible for any bugs and issues in games caused by this software (no warranty). Every/Any image which is used in or processed by this software does not belong to me and does not imply anything. Clients (users) of this software are responsible for selecting a specific image and subsequent use of the processed image. Any image uploaded to this software is not biased, its content is not analyzed aside from its size, no actions are taken to change the image aside from resizing. This software only allows users to modify images more easily whether they are protected or not, contains mature content or not, used against the copyright (or any other) law or not. Selecting an image and its use is entirely at the discretion of the user. Custom NPC Portrait does not belong to me, but to edvin76, I do not utilize any of the assets.</b>

@@ -117,4 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
+    <value>Portrait Manager 
+Artemii "Zeight" Saganenko ©2023-2024</value>
+  </data>
+  <data name="MAIN_MENU_TITLE" xml:space="preserve">
+    <value>Portrait Manager</value>
+  </data>
+  <data name="NAME_DEADFIRE" xml:space="preserve">
+    <value>Deadfire</value>
+  </data>
+  <data name="NAME_KING" xml:space="preserve">
+    <value>Pathfinder</value>
+  </data>
+  <data name="NAME_PILLARS" xml:space="preserve">
+    <value>Pillars of Eternity</value>
+  </data>
+  <data name="NAME_ROGUE" xml:space="preserve">
+    <value>Rogue Trader</value>
+  </data>
+  <data name="NAME_TYR" xml:space="preserve">
+    <value>Tyranny</value>
+  </data>
+  <data name="NAME_WASTE" xml:space="preserve">
+    <value>Wasteland 3</value>
+  </data>
+  <data name="NAME_WOTR" xml:space="preserve">
+    <value>Wrath of the Righteous</value>
+  </data>
 </root>

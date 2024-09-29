@@ -1027,5 +1027,35 @@ namespace PortraitManager
                 e.IsInputKey = true;
             }
         }
+    
+        public void LoadText()
+        {
+            Text = TextVariables.MAIN_MENU_TITLE;
+            ButtonStartKing.Text = TextVariables.NAME_KING;
+            ButtonStartWotr.Text = TextVariables.NAME_WOTR;
+            ButtonStartRt.Text = TextVariables.NAME_ROGUE;
+            ButtonStartPoe.Text = TextVariables.NAME_PILLARS;
+            ButtonStartPoed.Text = TextVariables.NAME_DEADFIRE;
+            ButtonStartTyr.Text = TextVariables.NAME_TYR;
+            ButtonStartW3.Text = TextVariables.NAME_WASTE;
+            LabelStartAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
+        }
+
+        public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int headSize = 19, int underSize = 16, int mediumSize = 13, int smallSize = 9)
+        {
+            Font bebasNeueHead = new Font(fonts.Families[familyLang], headSize),
+                 bebasNeueUnder = new Font(fonts.Families[familyLang], underSize),
+                 bebasNeueMedium = new Font(fonts.Families[familyLang], mediumSize),
+                 bebasNeueSmall = new Font(fonts.Families[familyLang], smallSize);
+
+            ButtonStartKing.Font = bebasNeueMedium;
+            ButtonStartWotr.Font = bebasNeueMedium;
+            ButtonStartRt.Font = bebasNeueMedium;
+            ButtonStartPoe.Font = bebasNeueMedium;
+            ButtonStartPoed.Font = bebasNeueMedium;
+            ButtonStartTyr.Font = bebasNeueMedium;
+            ButtonStartW3.Font = bebasNeueMedium;
+        }
+    
     }
 }

@@ -2260,7 +2260,7 @@ namespace PortraitManager
             this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutStartMenu.Size = new System.Drawing.Size(993, 608);
+            this.LayoutStartMenu.Size = new System.Drawing.Size(734, 481);
             this.LayoutStartMenu.TabIndex = 8;
             // 
             // tableLayoutPanel13
@@ -2271,12 +2271,12 @@ namespace PortraitManager
             this.tableLayoutPanel13.Controls.Add(this.ButtonStartKing, 1, 0);
             this.tableLayoutPanel13.Controls.Add(this.PictureBoxStartKing, 0, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(549, 43);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(439, 43);
             this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(130, 3, 3, 3);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(441, 69);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(292, 51);
             this.tableLayoutPanel13.TabIndex = 7;
             // 
             // ButtonStartKing
@@ -2290,11 +2290,12 @@ namespace PortraitManager
             this.ButtonStartKing.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartKing.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.ButtonStartKing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartKing.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartKing.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartKing.Location = new System.Drawing.Point(85, 3);
+            this.ButtonStartKing.Location = new System.Drawing.Point(56, 3);
             this.ButtonStartKing.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartKing.Name = "ButtonStartKing";
-            this.ButtonStartKing.Size = new System.Drawing.Size(353, 63);
+            this.ButtonStartKing.Size = new System.Drawing.Size(233, 45);
             this.ButtonStartKing.TabIndex = 0;
             this.ButtonStartKing.TabStop = false;
             this.ButtonStartKing.Text = "LABEL_KING";
@@ -2314,7 +2315,7 @@ namespace PortraitManager
             this.PictureBoxStartKing.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartKing.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartKing.Name = "PictureBoxStartKing";
-            this.PictureBoxStartKing.Size = new System.Drawing.Size(82, 63);
+            this.PictureBoxStartKing.Size = new System.Drawing.Size(53, 45);
             this.PictureBoxStartKing.TabIndex = 1;
             this.PictureBoxStartKing.TabStop = false;
             this.PictureBoxStartKing.Click += new System.EventHandler(this.PictureBoxStarKing_Click);
@@ -2329,12 +2330,12 @@ namespace PortraitManager
             this.tableLayoutPanel14.Controls.Add(this.ButtonStartWotr, 1, 0);
             this.tableLayoutPanel14.Controls.Add(this.PictureBoxStartWotr, 0, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(534, 118);
-            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(115, 3, 3, 3);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(423, 100);
+            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(114, 3, 3, 3);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(456, 69);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(308, 51);
             this.tableLayoutPanel14.TabIndex = 8;
             // 
             // ButtonStartWotr
@@ -2347,11 +2348,12 @@ namespace PortraitManager
             this.ButtonStartWotr.FlatAppearance.BorderSize = 0;
             this.ButtonStartWotr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartWotr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartWotr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartWotr.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartWotr.Location = new System.Drawing.Point(82, 3);
+            this.ButtonStartWotr.Location = new System.Drawing.Point(55, 3);
             this.ButtonStartWotr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartWotr.Name = "ButtonStartWotr";
-            this.ButtonStartWotr.Size = new System.Drawing.Size(371, 63);
+            this.ButtonStartWotr.Size = new System.Drawing.Size(250, 45);
             this.ButtonStartWotr.TabIndex = 1;
             this.ButtonStartWotr.TabStop = false;
             this.ButtonStartWotr.Text = "LABEL_WOTR";
@@ -2370,7 +2372,7 @@ namespace PortraitManager
             this.PictureBoxStartWotr.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartWotr.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartWotr.Name = "PictureBoxStartWotr";
-            this.PictureBoxStartWotr.Size = new System.Drawing.Size(79, 63);
+            this.PictureBoxStartWotr.Size = new System.Drawing.Size(52, 45);
             this.PictureBoxStartWotr.TabIndex = 2;
             this.PictureBoxStartWotr.TabStop = false;
             this.PictureBoxStartWotr.Click += new System.EventHandler(this.PictureBoxStartWotr_Click);
@@ -2385,12 +2387,12 @@ namespace PortraitManager
             this.tableLayoutPanel15.Controls.Add(this.ButtonStartRt, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.PictureBoxStartRt, 0, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(519, 193);
-            this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(407, 157);
+            this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(98, 3, 3, 3);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(471, 69);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(324, 51);
             this.tableLayoutPanel15.TabIndex = 9;
             // 
             // ButtonStartRt
@@ -2403,11 +2405,12 @@ namespace PortraitManager
             this.ButtonStartRt.FlatAppearance.BorderSize = 0;
             this.ButtonStartRt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartRt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartRt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartRt.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartRt.Location = new System.Drawing.Point(77, 3);
+            this.ButtonStartRt.Location = new System.Drawing.Point(53, 3);
             this.ButtonStartRt.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartRt.Name = "ButtonStartRt";
-            this.ButtonStartRt.Size = new System.Drawing.Size(391, 63);
+            this.ButtonStartRt.Size = new System.Drawing.Size(268, 45);
             this.ButtonStartRt.TabIndex = 2;
             this.ButtonStartRt.TabStop = false;
             this.ButtonStartRt.Text = "LABEL_RT";
@@ -2426,7 +2429,7 @@ namespace PortraitManager
             this.PictureBoxStartRt.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartRt.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartRt.Name = "PictureBoxStartRt";
-            this.PictureBoxStartRt.Size = new System.Drawing.Size(74, 63);
+            this.PictureBoxStartRt.Size = new System.Drawing.Size(50, 45);
             this.PictureBoxStartRt.TabIndex = 3;
             this.PictureBoxStartRt.TabStop = false;
             this.PictureBoxStartRt.Click += new System.EventHandler(this.PictureBoxStartRt_Click);
@@ -2441,12 +2444,12 @@ namespace PortraitManager
             this.tableLayoutPanel16.Controls.Add(this.ButtonStartPoe, 1, 0);
             this.tableLayoutPanel16.Controls.Add(this.PictureBoxStartPoe, 0, 0);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel16.Location = new System.Drawing.Point(504, 268);
-            this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(85, 3, 3, 3);
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(391, 214);
+            this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(82, 3, 3, 3);
             this.tableLayoutPanel16.Name = "tableLayoutPanel16";
             this.tableLayoutPanel16.RowCount = 1;
             this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel16.Size = new System.Drawing.Size(486, 69);
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(340, 51);
             this.tableLayoutPanel16.TabIndex = 10;
             // 
             // ButtonStartPoe
@@ -2459,11 +2462,12 @@ namespace PortraitManager
             this.ButtonStartPoe.FlatAppearance.BorderSize = 0;
             this.ButtonStartPoe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartPoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartPoe.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartPoe.Location = new System.Drawing.Point(80, 3);
+            this.ButtonStartPoe.Location = new System.Drawing.Point(56, 3);
             this.ButtonStartPoe.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoe.Name = "ButtonStartPoe";
-            this.ButtonStartPoe.Size = new System.Drawing.Size(403, 63);
+            this.ButtonStartPoe.Size = new System.Drawing.Size(281, 45);
             this.ButtonStartPoe.TabIndex = 3;
             this.ButtonStartPoe.TabStop = false;
             this.ButtonStartPoe.Text = "LABEL_POE";
@@ -2482,7 +2486,7 @@ namespace PortraitManager
             this.PictureBoxStartPoe.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartPoe.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartPoe.Name = "PictureBoxStartPoe";
-            this.PictureBoxStartPoe.Size = new System.Drawing.Size(77, 63);
+            this.PictureBoxStartPoe.Size = new System.Drawing.Size(53, 45);
             this.PictureBoxStartPoe.TabIndex = 4;
             this.PictureBoxStartPoe.TabStop = false;
             this.PictureBoxStartPoe.Click += new System.EventHandler(this.PictureBoxStartPoe_Click);
@@ -2497,12 +2501,12 @@ namespace PortraitManager
             this.tableLayoutPanel17.Controls.Add(this.ButtonStartPoed, 1, 0);
             this.tableLayoutPanel17.Controls.Add(this.PictureBoxStartPoed, 0, 0);
             this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel17.Location = new System.Drawing.Point(489, 343);
-            this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(70, 3, 3, 3);
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(375, 271);
+            this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(66, 3, 3, 3);
             this.tableLayoutPanel17.Name = "tableLayoutPanel17";
             this.tableLayoutPanel17.RowCount = 1;
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(501, 69);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(356, 51);
             this.tableLayoutPanel17.TabIndex = 11;
             // 
             // ButtonStartPoed
@@ -2515,11 +2519,12 @@ namespace PortraitManager
             this.ButtonStartPoed.FlatAppearance.BorderSize = 0;
             this.ButtonStartPoed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartPoed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartPoed.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartPoed.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartPoed.Location = new System.Drawing.Point(76, 3);
+            this.ButtonStartPoed.Location = new System.Drawing.Point(54, 3);
             this.ButtonStartPoed.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoed.Name = "ButtonStartPoed";
-            this.ButtonStartPoed.Size = new System.Drawing.Size(422, 63);
+            this.ButtonStartPoed.Size = new System.Drawing.Size(299, 45);
             this.ButtonStartPoed.TabIndex = 4;
             this.ButtonStartPoed.TabStop = false;
             this.ButtonStartPoed.Text = "LABEL_POED";
@@ -2538,7 +2543,7 @@ namespace PortraitManager
             this.PictureBoxStartPoed.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartPoed.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartPoed.Name = "PictureBoxStartPoed";
-            this.PictureBoxStartPoed.Size = new System.Drawing.Size(73, 63);
+            this.PictureBoxStartPoed.Size = new System.Drawing.Size(51, 45);
             this.PictureBoxStartPoed.TabIndex = 5;
             this.PictureBoxStartPoed.TabStop = false;
             this.PictureBoxStartPoed.Click += new System.EventHandler(this.PictureBoxStartPoed_Click);
@@ -2553,12 +2558,12 @@ namespace PortraitManager
             this.tableLayoutPanel18.Controls.Add(this.ButtonStartTyr, 1, 0);
             this.tableLayoutPanel18.Controls.Add(this.PictureBoxStartTyr, 0, 0);
             this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel18.Location = new System.Drawing.Point(474, 418);
-            this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(55, 3, 3, 3);
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(359, 328);
+            this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(50, 3, 3, 3);
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(516, 69);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(372, 51);
             this.tableLayoutPanel18.TabIndex = 12;
             // 
             // ButtonStartTyr
@@ -2571,11 +2576,12 @@ namespace PortraitManager
             this.ButtonStartTyr.FlatAppearance.BorderSize = 0;
             this.ButtonStartTyr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartTyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartTyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartTyr.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartTyr.Location = new System.Drawing.Point(81, 3);
+            this.ButtonStartTyr.Location = new System.Drawing.Point(59, 3);
             this.ButtonStartTyr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartTyr.Name = "ButtonStartTyr";
-            this.ButtonStartTyr.Size = new System.Drawing.Size(432, 63);
+            this.ButtonStartTyr.Size = new System.Drawing.Size(310, 45);
             this.ButtonStartTyr.TabIndex = 5;
             this.ButtonStartTyr.TabStop = false;
             this.ButtonStartTyr.Text = "LABEL_TYR";
@@ -2594,7 +2600,7 @@ namespace PortraitManager
             this.PictureBoxStartTyr.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartTyr.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartTyr.Name = "PictureBoxStartTyr";
-            this.PictureBoxStartTyr.Size = new System.Drawing.Size(78, 63);
+            this.PictureBoxStartTyr.Size = new System.Drawing.Size(56, 45);
             this.PictureBoxStartTyr.TabIndex = 6;
             this.PictureBoxStartTyr.TabStop = false;
             this.PictureBoxStartTyr.Click += new System.EventHandler(this.PictureBoxStartTyr_Click);
@@ -2609,12 +2615,12 @@ namespace PortraitManager
             this.tableLayoutPanel19.Controls.Add(this.ButtonStartW3, 1, 0);
             this.tableLayoutPanel19.Controls.Add(this.PictureBoxStartW3, 0, 0);
             this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel19.Location = new System.Drawing.Point(459, 493);
-            this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(40, 3, 3, 3);
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(343, 385);
+            this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(34, 3, 3, 3);
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 1;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(531, 69);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(388, 51);
             this.tableLayoutPanel19.TabIndex = 13;
             // 
             // ButtonStartW3
@@ -2627,11 +2633,12 @@ namespace PortraitManager
             this.ButtonStartW3.FlatAppearance.BorderSize = 0;
             this.ButtonStartW3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStartW3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartW3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ButtonStartW3.ForeColor = System.Drawing.Color.White;
-            this.ButtonStartW3.Location = new System.Drawing.Point(79, 3);
+            this.ButtonStartW3.Location = new System.Drawing.Point(58, 3);
             this.ButtonStartW3.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartW3.Name = "ButtonStartW3";
-            this.ButtonStartW3.Size = new System.Drawing.Size(449, 63);
+            this.ButtonStartW3.Size = new System.Drawing.Size(327, 45);
             this.ButtonStartW3.TabIndex = 6;
             this.ButtonStartW3.TabStop = false;
             this.ButtonStartW3.Text = "LABEL_W3";
@@ -2650,7 +2657,7 @@ namespace PortraitManager
             this.PictureBoxStartW3.Location = new System.Drawing.Point(3, 3);
             this.PictureBoxStartW3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.PictureBoxStartW3.Name = "PictureBoxStartW3";
-            this.PictureBoxStartW3.Size = new System.Drawing.Size(76, 63);
+            this.PictureBoxStartW3.Size = new System.Drawing.Size(55, 45);
             this.PictureBoxStartW3.TabIndex = 7;
             this.PictureBoxStartW3.TabStop = false;
             this.PictureBoxStartW3.Click += new System.EventHandler(this.PictureBoxStartWaste_Click);
@@ -2667,12 +2674,12 @@ namespace PortraitManager
             this.tableLayoutPanel20.Controls.Add(this.PictureBoxOpenNM, 1, 0);
             this.tableLayoutPanel20.Controls.Add(this.PictureBoxOpenGitHub, 2, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(444, 568);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(334, 442);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 1;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(546, 37);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(397, 36);
             this.tableLayoutPanel20.TabIndex = 14;
             // 
             // LabelStartAuthor
@@ -2680,9 +2687,10 @@ namespace PortraitManager
             this.LabelStartAuthor.AutoSize = true;
             this.LabelStartAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelStartAuthor.ForeColor = System.Drawing.Color.White;
-            this.LabelStartAuthor.Location = new System.Drawing.Point(3, 0);
+            this.LabelStartAuthor.Location = new System.Drawing.Point(0, 0);
+            this.LabelStartAuthor.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelStartAuthor.Name = "LabelStartAuthor";
-            this.LabelStartAuthor.Size = new System.Drawing.Size(430, 37);
+            this.LabelStartAuthor.Size = new System.Drawing.Size(314, 36);
             this.LabelStartAuthor.TabIndex = 0;
             this.LabelStartAuthor.Text = "LABEL_AUTHOR";
             this.LabelStartAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2693,9 +2701,9 @@ namespace PortraitManager
             this.PictureBoxOpenNM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxOpenNM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxOpenNM.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxOpenNM.Location = new System.Drawing.Point(439, 3);
+            this.PictureBoxOpenNM.Location = new System.Drawing.Point(320, 3);
             this.PictureBoxOpenNM.Name = "PictureBoxOpenNM";
-            this.PictureBoxOpenNM.Size = new System.Drawing.Size(48, 31);
+            this.PictureBoxOpenNM.Size = new System.Drawing.Size(33, 30);
             this.PictureBoxOpenNM.TabIndex = 1;
             this.PictureBoxOpenNM.TabStop = false;
             this.PictureBoxOpenNM.Click += new System.EventHandler(this.PictureBoxOpenNexus_Click);
@@ -2706,9 +2714,9 @@ namespace PortraitManager
             this.PictureBoxOpenGitHub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PictureBoxOpenGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PictureBoxOpenGitHub.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxOpenGitHub.Location = new System.Drawing.Point(493, 3);
+            this.PictureBoxOpenGitHub.Location = new System.Drawing.Point(359, 3);
             this.PictureBoxOpenGitHub.Name = "PictureBoxOpenGitHub";
-            this.PictureBoxOpenGitHub.Size = new System.Drawing.Size(50, 31);
+            this.PictureBoxOpenGitHub.Size = new System.Drawing.Size(35, 30);
             this.PictureBoxOpenGitHub.TabIndex = 2;
             this.PictureBoxOpenGitHub.TabStop = false;
             this.PictureBoxOpenGitHub.Click += new System.EventHandler(this.PictureBoxOpenGithub_Click);
@@ -2884,7 +2892,7 @@ namespace PortraitManager
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(993, 608);
+            this.ClientSize = new System.Drawing.Size(734, 481);
             this.Controls.Add(this.LayoutStartMenu);
             this.Controls.Add(this.LayoutSettingsPage);
             this.Controls.Add(this.LayoutURLDialog);

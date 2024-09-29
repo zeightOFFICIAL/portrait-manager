@@ -59,5 +59,87 @@ namespace PortraitManager.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait Manager 
+        ///Artemii &quot;Zeight&quot; Saganenko ©2023-2024.
+        /// </summary>
+        internal static string MAIN_MENU_AUTHOR {
+            get {
+                return ResourceManager.GetString("MAIN_MENU_AUTHOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait Manager.
+        /// </summary>
+        internal static string MAIN_MENU_TITLE {
+            get {
+                return ResourceManager.GetString("MAIN_MENU_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadfire.
+        /// </summary>
+        internal static string NAME_DEADFIRE {
+            get {
+                return ResourceManager.GetString("NAME_DEADFIRE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder.
+        /// </summary>
+        internal static string NAME_KING {
+            get {
+                return ResourceManager.GetString("NAME_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity.
+        /// </summary>
+        internal static string NAME_PILLARS {
+            get {
+                return ResourceManager.GetString("NAME_PILLARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rogue Trader.
+        /// </summary>
+        internal static string NAME_ROGUE {
+            get {
+                return ResourceManager.GetString("NAME_ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyranny.
+        /// </summary>
+        internal static string NAME_TYR {
+            get {
+                return ResourceManager.GetString("NAME_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3.
+        /// </summary>
+        internal static string NAME_WASTE {
+            get {
+                return ResourceManager.GetString("NAME_WASTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrath of the Righteous.
+        /// </summary>
+        internal static string NAME_WOTR {
+            get {
+                return ResourceManager.GetString("NAME_WOTR", resourceCulture);
+            }
+        }
     }
 }

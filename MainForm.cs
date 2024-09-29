@@ -27,6 +27,8 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Security.Policy;
 
 
 namespace PortraitManager
@@ -91,18 +93,19 @@ namespace PortraitManager
         private void MainForm_Load(object sender, EventArgs e)
         {            
             _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            _gameSelected = CoreSettings.Default.GameType;
             SetClientSizeCore(750, 520);
             CenterToScreen();
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
-            
+            LoadText();
+            LoadFont(_fontCollection);
+
 
             if (CoreSettings.Default.GameType == '-')
             {
                 _gameSelected = '-';
                 RootFunctions.LayoutEnable(LayoutStartMenu);
-                _activeMenuIndex = 0;
+                _activeMenuIndex = 0;                
             }
             else if (CoreSettings.Default.GameType == 'w')
             {
@@ -126,7 +129,7 @@ namespace PortraitManager
             }
             else if (CoreSettings.Default.GameType == 'l')
             {
-
+               
             }
             else
             {
@@ -978,12 +981,12 @@ namespace PortraitManager
 
         private void PictureBoxOpenNexus_Click(object sender, EventArgs e)
         {
-
+            Process.Start(new ProcessStartInfo { FileName = "https://github.com/zeightOFFICIAL/portrait-manager/", UseShellExecute = true });
         }
 
         private void PictureBoxOpenGithub_Click(object sender, EventArgs e)
         {
-
+            Process.Start(new ProcessStartInfo { FileName = "https://github.com/zeightOFFICIAL/portrait-manager/", UseShellExecute = true });
         }
 
         private void ButtonStartKing_Click(object sender, EventArgs e)

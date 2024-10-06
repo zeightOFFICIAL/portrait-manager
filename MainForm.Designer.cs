@@ -201,6 +201,7 @@ namespace PortraitManager
             this.LabelPathTitle = new System.Windows.Forms.Label();
             this.LabelBackToStart = new System.Windows.Forms.Label();
             this.LabelNextToMain = new System.Windows.Forms.Label();
+            this.LabelChoosePath = new System.Windows.Forms.Label();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -2751,6 +2752,7 @@ namespace PortraitManager
             this.tableLayoutPanel21.Controls.Add(this.LabelPathExplain, 0, 4);
             this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 3);
             this.tableLayoutPanel21.Controls.Add(this.LabelPathTitle, 0, 1);
+            this.tableLayoutPanel21.Controls.Add(this.LabelChoosePath, 0, 2);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
@@ -2844,10 +2846,10 @@ namespace PortraitManager
             this.LabelBackToStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelBackToStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelBackToStart.ForeColor = System.Drawing.Color.White;
-            this.LabelBackToStart.Location = new System.Drawing.Point(25, 190);
-            this.LabelBackToStart.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
+            this.LabelBackToStart.Location = new System.Drawing.Point(25, 215);
+            this.LabelBackToStart.Margin = new System.Windows.Forms.Padding(5, 175, 5, 175);
             this.LabelBackToStart.Name = "LabelBackToStart";
-            this.LabelBackToStart.Size = new System.Drawing.Size(45, 259);
+            this.LabelBackToStart.Size = new System.Drawing.Size(45, 209);
             this.LabelBackToStart.TabIndex = 3;
             this.LabelBackToStart.Text = "◀";
             this.LabelBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2862,16 +2864,29 @@ namespace PortraitManager
             this.LabelNextToMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelNextToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelNextToMain.ForeColor = System.Drawing.Color.White;
-            this.LabelNextToMain.Location = new System.Drawing.Point(470, 190);
-            this.LabelNextToMain.Margin = new System.Windows.Forms.Padding(5, 150, 5, 150);
+            this.LabelNextToMain.Location = new System.Drawing.Point(470, 215);
+            this.LabelNextToMain.Margin = new System.Windows.Forms.Padding(5, 175, 5, 175);
             this.LabelNextToMain.Name = "LabelNextToMain";
-            this.LabelNextToMain.Size = new System.Drawing.Size(45, 259);
+            this.LabelNextToMain.Size = new System.Drawing.Size(45, 209);
             this.LabelNextToMain.TabIndex = 4;
             this.LabelNextToMain.Text = "▶";
             this.LabelNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelNextToMain.Click += new System.EventHandler(this.LabelNextToMain_Click);
             this.LabelNextToMain.MouseEnter += new System.EventHandler(this.LabelNextToMain_MouseEnter);
             this.LabelNextToMain.MouseLeave += new System.EventHandler(this.LabelNextToMain_MouseLeave);
+            // 
+            // LabelChoosePath
+            // 
+            this.LabelChoosePath.AutoSize = true;
+            this.LabelChoosePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelChoosePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelChoosePath.ForeColor = System.Drawing.Color.White;
+            this.LabelChoosePath.Location = new System.Drawing.Point(3, 221);
+            this.LabelChoosePath.Name = "LabelChoosePath";
+            this.LabelChoosePath.Size = new System.Drawing.Size(378, 40);
+            this.LabelChoosePath.TabIndex = 4;
+            this.LabelChoosePath.Text = "LABEL_CHOOSE_PATH_URL";
+            this.LabelChoosePath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -3158,6 +3173,7 @@ namespace PortraitManager
         private System.Windows.Forms.Label LabelStartSelectPath;
         private System.Windows.Forms.Label LabelPathTitle;
         private System.Windows.Forms.Label LabelPathExplain;
+        private System.Windows.Forms.Label LabelChoosePath;
     }
 }
 

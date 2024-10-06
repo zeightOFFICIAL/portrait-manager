@@ -249,37 +249,7 @@
     <None Include="resources\nm_logo_png.png" />
     <None Include="resources\github_logo_png.png" />
     <None Include="resources\eng_flag.jpg" />
-    <None Include="resources\rightarrow.png" />
-    <None Include="resources\leftarrow.png" />
-    <None Include="resources\path_wotr.jpg" />
-    <None Include="resources\path_waste.jpg" />
-    <None Include="resources\path_tyr.jpg" />
-    <None Include="resources\path_rt.jpg" />
-    <None Include="resources\path_poed.jpg" />
-    <None Include="resources\path_poe.jpg" />
-    <None Include="resources\path_path.jpg" />
     <None Include="resources\icon.ico" />
-    <None Include="resources\start_wotr.jpg" />
-    <None Include="resources\start_waste.jpg" />
-    <None Include="resources\start_tyr.jpg" />
-    <None Include="resources\start_rt.jpg" />
-    <None Include="resources\start_poed.jpg" />
-    <None Include="resources\start_poe.jpg" />
-    <None Include="resources\icon_wotr.png" />
-    <None Include="resources\icon_waste.png" />
-    <None Include="resources\icon_tyr.png" />
-    <None Include="resources\icon_rt.png" />
-    <None Include="resources\icon_poed.png" />
-    <None Include="resources\icon_poe.png" />
-    <None Include="resources\icon_path.png" />
-    <None Include="resources\start_path.jpg" />
-    <None Include="resources\title_path.png" />
-    <None Include="resources\nm_logo.png" />
-    <None Include="resources\github_logo.png" />
-    <None Include="resources\placeholder_waste.png" />
-    <None Include="resources\bg_waste.jpg" />
-    <None Include="resources\title_waste.png" />
-    <None Include="resources\icon_waste.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\d\poed_icon_ico.ico" />

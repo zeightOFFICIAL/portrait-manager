@@ -95,12 +95,12 @@ namespace PortraitManager
         {
             if (LayoutScalePage.Enabled == true)
             {
-                using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
-                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
-                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
+                //using (Image img = new Bitmap(TEMP_SMALL_APPEND))
+                //    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
+                //using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+                //    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
+                //using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+                //    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
             }
 
             if (LayoutFilePage.Enabled == true)
@@ -232,33 +232,33 @@ namespace PortraitManager
         
         public void LoadTempImagesToPicBox(ushort selectionFlag)
         {
-            if (selectionFlag == 0 || selectionFlag == 100)
-            {
-                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-            }
-            else if (selectionFlag == 1)
-            {
-                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-            }
-            else if (selectionFlag == 2)
-            {
-                using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-            }
-            else if (selectionFlag == 200)
-            {
-                using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitSml, new Bitmap(img));
-                using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitMed, new Bitmap(img));
-                using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                    ImageControl.Utils.Replace(PicPortraitLrg, new Bitmap(img));
-                DisableAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                DisableAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
-                DisableAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            }
+            //if (selectionFlag == 0 || selectionFlag == 100)
+            //{
+            //    using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+            //        ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
+            //}
+            //else if (selectionFlag == 1)
+            //{
+            //    using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+            //        ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
+            //}
+            //else if (selectionFlag == 2)
+            //{
+            //    using (Image img = new Bitmap(TEMP_SMALL_APPEND))
+            //        ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
+            //}
+            //else if (selectionFlag == 200)
+            //{
+            //    using (Image img = new Bitmap(TEMP_SMALL_APPEND))
+            //        ImageControl.Utils.Replace(PicPortraitSml, new Bitmap(img));
+            //    using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+            //        ImageControl.Utils.Replace(PicPortraitMed, new Bitmap(img));
+            //    using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+            //        ImageControl.Utils.Replace(PicPortraitLrg, new Bitmap(img));
+            //    DisableAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            //    DisableAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            //    DisableAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
+            //}
         }
         
         public static void DisableAutoScroll(Control control, int xMax, int yMax)
@@ -277,42 +277,44 @@ namespace PortraitManager
         
         public static bool CheckPortraitExistence(string path)
         {
-            if (SystemControl.FileControl.Readonly.DirectoryExists(path))
+            //if (SystemControl.FileControl.Readonly.DirectoryExists(path))
 
-                if (SystemControl.FileControl.Readonly.FileExist(path + LARGE_APPEND) &&
-                    SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
-                    SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
+            //    if (SystemControl.FileControl.Readonly.FileExist(path + LARGE_APPEND) &&
+            //        SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
+            //        SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
 
-                    if (SystemControl.FileControl.Readonly.GetFileExtension(path + LARGE_APPEND) == ".png" &&
-                        SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
-                        SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
-                        return true;
+            //        if (SystemControl.FileControl.Readonly.GetFileExtension(path + LARGE_APPEND) == ".png" &&
+            //            SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
+            //            SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
+            //            return true;
 
-                    else
-                        return false;
-                else
-                    return false;
-            else
-                return false;
+            //        else
+            //            return false;
+            //    else
+            //        return false;
+            //else
+            //    return false;
+            return false;
         }
         
         public static bool CheckPortraitExistenceClipped(string path)
         {
-            if (SystemControl.FileControl.Readonly.DirectoryExists(path))
+            //if (SystemControl.FileControl.Readonly.DirectoryExists(path))
 
-                if (SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
-                    SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
+            //    if (SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
+            //        SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
 
-                    if (SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
-                        SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
-                        return true;
+            //        if (SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
+            //            SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
+            //            return true;
 
-                    else
-                        return false;
-                else
-                    return false;
-            else
-                return false;
+            //        else
+            //            return false;
+            //    else
+            //        return false;
+            //else
+            //    return false;
+            return false;
         }
         
         private void RecursiveParsePortraitsDirectoryAsync(string path, CancellationToken cancelToken)
@@ -914,24 +916,24 @@ namespace PortraitManager
 
                         _isAnyLoadedToPortraitPage = true;
 
-                        if (_imageSelectionFlag == 1)
-                        {
-                            SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
-                            webImage.Save(TEMP_MEDIUM_APPEND);
-                        }
-                        else if (_imageSelectionFlag == 2)
-                        {
-                            SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
-                            webImage.Save(TEMP_SMALL_APPEND);
-                        }
-                        else if (_imageSelectionFlag == 100 || _imageSelectionFlag == 0)
-                        {
-                            SystemControl.FileControl.ClearTempImages();
-                            SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning/");
-                            webImage.Save(TEMP_MEDIUM_APPEND);
-                            webImage.Save(TEMP_SMALL_APPEND);
-                            webImage.Save(TEMP_LARGE_APPEND);
-                        }
+                        //if (_imageSelectionFlag == 1)
+                        //{
+                        //    SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
+                        //    webImage.Save(TEMP_MEDIUM_APPEND);
+                        //}
+                        //else if (_imageSelectionFlag == 2)
+                        //{
+                        //    SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
+                        //    webImage.Save(TEMP_SMALL_APPEND);
+                        //}
+                        //else if (_imageSelectionFlag == 100 || _imageSelectionFlag == 0)
+                        //{
+                        //    SystemControl.FileControl.ClearTempImages();
+                        //    SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning/");
+                        //    webImage.Save(TEMP_MEDIUM_APPEND);
+                        //    webImage.Save(TEMP_SMALL_APPEND);
+                        //    webImage.Save(TEMP_LARGE_APPEND);
+                        //}
 
                         LoadTempImagesToPicBox(_imageSelectionFlag);
                         ResizeVisibleImagesToWindowSize();

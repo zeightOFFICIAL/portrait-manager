@@ -2284,7 +2284,7 @@ namespace PortraitManager
             this.ButtonStartKing.BackColor = System.Drawing.Color.Black;
             this.ButtonStartKing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartKing.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartKing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartKing.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartKing.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartKing.FlatAppearance.BorderSize = 0;
             this.ButtonStartKing.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2295,7 +2295,7 @@ namespace PortraitManager
             this.ButtonStartKing.Location = new System.Drawing.Point(91, 3);
             this.ButtonStartKing.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartKing.Name = "ButtonStartKing";
-            this.ButtonStartKing.Size = new System.Drawing.Size(380, 67);
+            this.ButtonStartKing.Size = new System.Drawing.Size(155, 67);
             this.ButtonStartKing.TabIndex = 0;
             this.ButtonStartKing.TabStop = false;
             this.ButtonStartKing.Text = "LABEL_KING";
@@ -2343,7 +2343,7 @@ namespace PortraitManager
             this.ButtonStartWotr.BackColor = System.Drawing.Color.Black;
             this.ButtonStartWotr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartWotr.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartWotr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartWotr.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartWotr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartWotr.FlatAppearance.BorderSize = 0;
             this.ButtonStartWotr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2353,7 +2353,7 @@ namespace PortraitManager
             this.ButtonStartWotr.Location = new System.Drawing.Point(88, 3);
             this.ButtonStartWotr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartWotr.Name = "ButtonStartWotr";
-            this.ButtonStartWotr.Size = new System.Drawing.Size(399, 67);
+            this.ButtonStartWotr.Size = new System.Drawing.Size(235, 67);
             this.ButtonStartWotr.TabIndex = 1;
             this.ButtonStartWotr.TabStop = false;
             this.ButtonStartWotr.Text = "LABEL_WOTR";
@@ -2400,7 +2400,7 @@ namespace PortraitManager
             this.ButtonStartRt.BackColor = System.Drawing.Color.Black;
             this.ButtonStartRt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartRt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartRt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartRt.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartRt.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartRt.FlatAppearance.BorderSize = 0;
             this.ButtonStartRt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2410,7 +2410,7 @@ namespace PortraitManager
             this.ButtonStartRt.Location = new System.Drawing.Point(82, 3);
             this.ButtonStartRt.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartRt.Name = "ButtonStartRt";
-            this.ButtonStartRt.Size = new System.Drawing.Size(421, 67);
+            this.ButtonStartRt.Size = new System.Drawing.Size(205, 67);
             this.ButtonStartRt.TabIndex = 2;
             this.ButtonStartRt.TabStop = false;
             this.ButtonStartRt.Text = "LABEL_RT";
@@ -2457,7 +2457,7 @@ namespace PortraitManager
             this.ButtonStartPoe.BackColor = System.Drawing.Color.Black;
             this.ButtonStartPoe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartPoe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartPoe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartPoe.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartPoe.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartPoe.FlatAppearance.BorderSize = 0;
             this.ButtonStartPoe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2467,7 +2467,7 @@ namespace PortraitManager
             this.ButtonStartPoe.Location = new System.Drawing.Point(86, 3);
             this.ButtonStartPoe.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoe.Name = "ButtonStartPoe";
-            this.ButtonStartPoe.Size = new System.Drawing.Size(433, 67);
+            this.ButtonStartPoe.Size = new System.Drawing.Size(135, 67);
             this.ButtonStartPoe.TabIndex = 3;
             this.ButtonStartPoe.TabStop = false;
             this.ButtonStartPoe.Text = "LABEL_POE";
@@ -2514,7 +2514,7 @@ namespace PortraitManager
             this.ButtonStartPoed.BackColor = System.Drawing.Color.Black;
             this.ButtonStartPoed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartPoed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartPoed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartPoed.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartPoed.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartPoed.FlatAppearance.BorderSize = 0;
             this.ButtonStartPoed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2524,7 +2524,7 @@ namespace PortraitManager
             this.ButtonStartPoed.Location = new System.Drawing.Point(82, 3);
             this.ButtonStartPoed.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartPoed.Name = "ButtonStartPoed";
-            this.ButtonStartPoed.Size = new System.Drawing.Size(453, 67);
+            this.ButtonStartPoed.Size = new System.Drawing.Size(190, 67);
             this.ButtonStartPoed.TabIndex = 4;
             this.ButtonStartPoed.TabStop = false;
             this.ButtonStartPoed.Text = "LABEL_POED";
@@ -2571,7 +2571,7 @@ namespace PortraitManager
             this.ButtonStartTyr.BackColor = System.Drawing.Color.Black;
             this.ButtonStartTyr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartTyr.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartTyr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartTyr.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartTyr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartTyr.FlatAppearance.BorderSize = 0;
             this.ButtonStartTyr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2581,7 +2581,7 @@ namespace PortraitManager
             this.ButtonStartTyr.Location = new System.Drawing.Point(87, 3);
             this.ButtonStartTyr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartTyr.Name = "ButtonStartTyr";
-            this.ButtonStartTyr.Size = new System.Drawing.Size(464, 67);
+            this.ButtonStartTyr.Size = new System.Drawing.Size(70, 67);
             this.ButtonStartTyr.TabIndex = 5;
             this.ButtonStartTyr.TabStop = false;
             this.ButtonStartTyr.Text = "LABEL_TYR";
@@ -2628,7 +2628,7 @@ namespace PortraitManager
             this.ButtonStartW3.BackColor = System.Drawing.Color.Black;
             this.ButtonStartW3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonStartW3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonStartW3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartW3.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonStartW3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonStartW3.FlatAppearance.BorderSize = 0;
             this.ButtonStartW3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
@@ -2638,7 +2638,7 @@ namespace PortraitManager
             this.ButtonStartW3.Location = new System.Drawing.Point(85, 3);
             this.ButtonStartW3.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ButtonStartW3.Name = "ButtonStartW3";
-            this.ButtonStartW3.Size = new System.Drawing.Size(482, 67);
+            this.ButtonStartW3.Size = new System.Drawing.Size(95, 67);
             this.ButtonStartW3.TabIndex = 6;
             this.ButtonStartW3.TabStop = false;
             this.ButtonStartW3.Text = "LABEL_W3";

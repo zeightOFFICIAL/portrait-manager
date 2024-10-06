@@ -21,32 +21,21 @@ using PortraitManager.sources;
 using PortraitManager.Properties;
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Security.Policy;
 
 
 namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        private const string TEMP_LARGE_APPEND = "temp_DoNotDeleteWhileRunning\\FULL.png";
-        private const string TEMP_MEDIUM_APPEND = "temp_DoNotDeleteWhileRunning\\MEDIUM.png";
-        private const string TEMP_SMALL_APPEND = "temp_DoNotDeleteWhileRunning\\SMALL.png";
-
-        private const string LARGE_APPEND = "\\Fulllength.png";
-        private const string MEDIUM_APPEND = "\\Medium.png";
-        private const string SMALL_APPEND = "\\Small.png";
-
         private static char _gameSelected;
 
         /*
-         * 0 - Start page
+         * 100 - Start page (initial page, with no game type active)
          * 1 - Path page
          * 2 - Menu page
          * 3 - File page
@@ -71,7 +60,6 @@ namespace PortraitManager
         private static Point _mousePosition = new Point();      
 
         private static PrivateFontCollection _fontCollection;
-
         private static CancellationTokenSource _cancellationTokenSource;
 
         protected override CreateParams CreateParams
@@ -107,7 +95,7 @@ namespace PortraitManager
             {
                 _gameSelected = '-';
                 RootFunctions.LayoutEnable(LayoutStartMenu);
-                _activeMenuIndex = 0;                
+                _activeMenuIndex = 100;                
             }
             else if (CoreSettings.Default.GameType == 'w')
             {

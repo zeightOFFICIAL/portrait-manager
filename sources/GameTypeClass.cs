@@ -37,6 +37,7 @@ namespace PortraitManager.sources
         public Color BackColor;
 
         private readonly Dictionary<string, float> PortraitSpecifics;
+        private readonly Dictionary<string, string> PathSpecifics;
         public string DefaultDirectory;
 
         public GameType(string newFullGameName, string newShortGameName, string newWindowTitleText,
@@ -65,6 +66,11 @@ namespace PortraitManager.sources
         public float GetPortraitSpecific(string key)
         {
             return PortraitSpecifics[key];
+        }
+
+        public string GetPathSpecific(string key) 
+        {
+            return PathSpecifics[key]; 
         }
 
         public Tuple<Color, Color> GetColorScheme()

@@ -196,15 +196,15 @@ namespace PortraitManager
             float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
             float zoomFactor = PicPortraitLrg.Width * 1.0f / 14;
 
-            if (e.Delta > 0)
-            {
-                ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
-            }
-            else
-            {
-                zoomFactor = -zoomFactor;
-                ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
-            }
+            //if (e.Delta > 0)
+            //{
+            //    ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
+            //}
+            //else
+            //{
+            //    zoomFactor = -zoomFactor;
+            //    ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
+            //}
 
             RootFunctions.HideScrollBar(PanelPortraitLrg);
         }
@@ -215,15 +215,15 @@ namespace PortraitManager
             float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
             float zoomFactor = PicPortraitLrg.Width * 1.0f / 10;
 
-            if (e.Delta > 0)
-            {
-                ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
-            }
-            else
-            {
-                zoomFactor = -zoomFactor;
-                ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
-            }
+            //if (e.Delta > 0)
+            //{
+            //    ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
+            //}
+            //else
+            //{
+            //    zoomFactor = -zoomFactor;
+            //    ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
+            //}
 
             RootFunctions.HideScrollBar(PanelPortraitMed);
         }
@@ -234,15 +234,15 @@ namespace PortraitManager
             float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
             float zoomFactor = PicPortraitLrg.Width * 1.0f / 6;
 
-            if (e.Delta > 0)
-            {
-                ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
-            }
-            else
-            {
-                zoomFactor = -zoomFactor;
-                ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
-            }
+            //if (e.Delta > 0)
+            //{
+            //    ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
+            //}
+            //else
+            //{
+            //    zoomFactor = -zoomFactor;
+            //    ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
+            //}
 
             RootFunctions.HideScrollBar(PanelPortraitSml);
         }
@@ -310,20 +310,20 @@ namespace PortraitManager
         
         private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
+            //using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+            //    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
         }
         
         private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
+            //using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+            //    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
         }
         
         private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
+            //using (Image img = new Bitmap(TEMP_SMALL_APPEND))
+            //    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
         }
         
         private void LabelMedImg_MouseHover(object sender, EventArgs e)
@@ -513,24 +513,24 @@ namespace PortraitManager
             string path = item.Tag.ToString().Split('>')[0];
             string type = item.Tag.ToString().Split('>')[1];
 
-            try
-            {
-                using (Image img = new Bitmap(path + LARGE_APPEND))
-                    img.Save(TEMP_LARGE_APPEND);
-            }
-            catch
-            {
-                using (Image img = new Bitmap(path + MEDIUM_APPEND))
-                {
-                    Bitmap newImg = ImageControl.Direct.Resize(img, 692, 1024);
-                    newImg.Save(TEMP_LARGE_APPEND);
-                }
-            }
+            //try
+            //{
+            //    using (Image img = new Bitmap(path + LARGE_APPEND))
+            //        img.Save(TEMP_LARGE_APPEND);
+            //}
+            //catch
+            //{
+            //    using (Image img = new Bitmap(path + MEDIUM_APPEND))
+            //    {
+            //        Bitmap newImg = ImageControl.Direct.Resize(img, 692, 1024);
+            //        newImg.Save(TEMP_LARGE_APPEND);
+            //    }
+            //}
 
-            using (Image img = new Bitmap(path + MEDIUM_APPEND))
-                img.Save(TEMP_MEDIUM_APPEND);
-            using (Image img = new Bitmap(path + SMALL_APPEND))
-                img.Save(TEMP_SMALL_APPEND);
+            //using (Image img = new Bitmap(path + MEDIUM_APPEND))
+            //    img.Save(TEMP_MEDIUM_APPEND);
+            //using (Image img = new Bitmap(path + SMALL_APPEND))
+            //    img.Save(TEMP_SMALL_APPEND);
 
             LoadTempImagesToPicBox(100);
             GenerateImageSelectionFlagString(0);

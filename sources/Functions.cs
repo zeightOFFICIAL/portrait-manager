@@ -1046,12 +1046,13 @@ namespace PortraitManager
             LabelStartResetPath.Text = TextVariables.BUTTON_RESET;
         }
 
-        public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int headSize = 19, int underSize = 16, int mediumSize = 13, int smallSize = 9)
+        public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int initSize = 9)
         {
-            Font bebasNeueHead = new Font(fonts.Families[familyLang], headSize),
-                 bebasNeueUnder = new Font(fonts.Families[familyLang], underSize),
-                 bebasNeueMedium = new Font(fonts.Families[familyLang], mediumSize),
-                 bebasNeueSmall = new Font(fonts.Families[familyLang], smallSize);
+            Font bebasNeueFullHeader = new Font(fonts.Families[familyLang], initSize + 16),
+                 bebasNeueHead = new Font(fonts.Families[familyLang], initSize + 12),
+                 bebasNeueUnder = new Font(fonts.Families[familyLang], initSize + 8),
+                 bebasNeueMedium = new Font(fonts.Families[familyLang], initSize + 4),
+                 bebasNeueSmall = new Font(fonts.Families[familyLang], initSize);
 
             ButtonStartKing.Font = bebasNeueMedium;
             ButtonStartWotr.Font = bebasNeueMedium;
@@ -1060,7 +1061,7 @@ namespace PortraitManager
             ButtonStartPoed.Font = bebasNeueMedium;
             ButtonStartTyr.Font = bebasNeueMedium;
             ButtonStartW3.Font = bebasNeueMedium;
-            LabelPathTitle.Font = bebasNeueHead;
+            LabelPathTitle.Font = bebasNeueFullHeader;
             LabelStartSelectPath.Font = bebasNeueMedium;
             LabelStartResetPath.Font = bebasNeueMedium;
         }

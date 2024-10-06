@@ -73,10 +73,10 @@ namespace PortraitManager
         }
 
         public MainForm()
-        {
+        {            
+            InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.Selectable, false);
-            InitializeComponent();          
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -822,28 +822,28 @@ namespace PortraitManager
 
         private void LabelStartResetPath_Click(object sender, EventArgs e)
         {
-            TextBoxGameFolder.Text = GameTypes[_gameSelected].DefaultDirectory;
+            //TextBoxGameFolder.Text = GameTypes[_gameSelected].DefaultDirectory;
         }
 
         private void LabelStartSelectPath_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
-            {
-                SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
-                //Description = TextVariables.TEXT_FOLDEROPEN,
-                ShowNewFolderButton = false,
-            })
-            {
-                if (FolderChoose.ShowDialog() == DialogResult.OK)
-                {
-                    TextBoxGameFolder.Text = FolderChoose.SelectedPath;
-                }
-                else
-                {
-                    FolderChoose.Dispose();                    
-                    return;
-                }
-            }
+            //using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
+            //{
+            //    SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
+            //    //Description = TextVariables.TEXT_FOLDEROPEN,
+            //    ShowNewFolderButton = false,
+            //})
+            //{
+            //    if (FolderChoose.ShowDialog() == DialogResult.OK)
+            //    {
+            //        TextBoxGameFolder.Text = FolderChoose.SelectedPath;
+            //    }
+            //    else
+            //    {
+            //        FolderChoose.Dispose();                    
+            //        return;
+            //    }
+            //}
         }
     }
 }

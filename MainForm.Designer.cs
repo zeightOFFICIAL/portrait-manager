@@ -198,7 +198,6 @@ namespace PortraitManager
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.LabelStartResetPath = new System.Windows.Forms.Label();
             this.LabelStartSelectPath = new System.Windows.Forms.Label();
-            this.TextBoxGameFolder = new System.Windows.Forms.TextBox();
             this.LabelPathTitle = new System.Windows.Forms.Label();
             this.LabelBackToStart = new System.Windows.Forms.Label();
             this.LabelNextToMain = new System.Windows.Forms.Label();
@@ -2751,14 +2750,13 @@ namespace PortraitManager
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel21.Controls.Add(this.LabelPathExplain, 0, 4);
             this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 3);
-            this.tableLayoutPanel21.Controls.Add(this.TextBoxGameFolder, 0, 2);
             this.tableLayoutPanel21.Controls.Add(this.LabelPathTitle, 0, 1);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 5;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
@@ -2770,9 +2768,9 @@ namespace PortraitManager
             this.LabelPathExplain.AutoSize = true;
             this.LabelPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelPathExplain.ForeColor = System.Drawing.Color.White;
-            this.LabelPathExplain.Location = new System.Drawing.Point(3, 278);
+            this.LabelPathExplain.Location = new System.Drawing.Point(3, 306);
             this.LabelPathExplain.Name = "LabelPathExplain";
-            this.LabelPathExplain.Size = new System.Drawing.Size(378, 275);
+            this.LabelPathExplain.Size = new System.Drawing.Size(378, 247);
             this.LabelPathExplain.TabIndex = 3;
             this.LabelPathExplain.Text = "LABEL_PATH_EXPLAIN";
             this.LabelPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2785,7 +2783,7 @@ namespace PortraitManager
             this.tableLayoutPanel22.Controls.Add(this.LabelStartResetPath, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.LabelStartSelectPath, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 236);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 264);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -2826,31 +2824,18 @@ namespace PortraitManager
             this.LabelStartSelectPath.MouseEnter += new System.EventHandler(this.LabelSelectPath_MouseEnter);
             this.LabelStartSelectPath.MouseLeave += new System.EventHandler(this.LabelSelectPath_MouseLeave);
             // 
-            // TextBoxGameFolder
-            // 
-            this.TextBoxGameFolder.BackColor = System.Drawing.Color.Black;
-            this.TextBoxGameFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxGameFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxGameFolder.ForeColor = System.Drawing.Color.White;
-            this.TextBoxGameFolder.Location = new System.Drawing.Point(3, 196);
-            this.TextBoxGameFolder.Multiline = true;
-            this.TextBoxGameFolder.Name = "TextBoxGameFolder";
-            this.TextBoxGameFolder.Size = new System.Drawing.Size(378, 34);
-            this.TextBoxGameFolder.TabIndex = 0;
-            this.TextBoxGameFolder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // LabelPathTitle
             // 
             this.LabelPathTitle.AutoSize = true;
             this.LabelPathTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelPathTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelPathTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelPathTitle.Location = new System.Drawing.Point(3, 148);
+            this.LabelPathTitle.Location = new System.Drawing.Point(3, 132);
             this.LabelPathTitle.Name = "LabelPathTitle";
-            this.LabelPathTitle.Size = new System.Drawing.Size(378, 45);
+            this.LabelPathTitle.Size = new System.Drawing.Size(378, 89);
             this.LabelPathTitle.TabIndex = 2;
             this.LabelPathTitle.Text = "LABEL_[GAMETITLE_FULL]";
-            this.LabelPathTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelPathTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // LabelBackToStart
             // 
@@ -3168,7 +3153,6 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
         private System.Windows.Forms.Label LabelBackToStart;
         private System.Windows.Forms.Label LabelNextToMain;
-        private System.Windows.Forms.TextBox TextBoxGameFolder;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
         private System.Windows.Forms.Label LabelStartResetPath;
         private System.Windows.Forms.Label LabelStartSelectPath;

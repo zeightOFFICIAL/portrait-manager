@@ -10,6 +10,7 @@
 
 using PortraitManager.forms;
 using PortraitManager.Properties;
+using PortraitManager.sources;
 
 using System;
 using System.Diagnostics;
@@ -1590,128 +1591,245 @@ namespace PortraitManager
 
         private void ButtonStartKing_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_KING;
-            LabelPathTitle.ForeColor = Color.LimeGreen;
+            LabelSelectPathTitle.Text = TextVariables.NAME_KING;
+            LabelSelectPathTitle.ForeColor = Color.LimeGreen;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStarKing_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_KING;
-            LabelPathTitle.ForeColor = Color.LimeGreen;
+            LabelSelectPathTitle.Text = TextVariables.NAME_KING;
+            LabelSelectPathTitle.ForeColor = Color.LimeGreen;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartWotr_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'w';
             LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_WOTR;
-            LabelPathTitle.ForeColor = Color.Magenta;
+            LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
+            LabelSelectPathTitle.ForeColor = Color.Magenta;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void ButtonStartWotr_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'w';
             LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_WOTR;
-            LabelPathTitle.ForeColor = Color.Magenta;
+            LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
+            LabelSelectPathTitle.ForeColor = Color.Magenta;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartRt_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_ROGUE;
-            LabelPathTitle.ForeColor = Color.DodgerBlue;
+            LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
+            LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void ButtonStartRt_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_ROGUE;
-            LabelPathTitle.ForeColor = Color.DodgerBlue;
+            LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
+            LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartPoe_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_PILLARS;
-            LabelPathTitle.ForeColor = Color.Aqua;
+            LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
+            LabelSelectPathTitle.ForeColor = Color.Aqua;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void ButtonStartPoe_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_PILLARS;
-            LabelPathTitle.ForeColor = Color.Aqua;
+            LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
+            LabelSelectPathTitle.ForeColor = Color.Aqua;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartPoed_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_DEADFIRE;
-            LabelPathTitle.ForeColor = Color.MediumSpringGreen;
+            LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
+            LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void ButtonStartPoed_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_DEADFIRE;
-            LabelPathTitle.ForeColor = Color.MediumSpringGreen;
+            LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
+            LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartTyr_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_TYR;
-            LabelPathTitle.ForeColor = Color.Tomato;
+            LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
+            LabelSelectPathTitle.ForeColor = Color.Tomato;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void ButtonStartTyr_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_TYR;
-            LabelPathTitle.ForeColor = Color.Tomato;
+            LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
+            LabelSelectPathTitle.ForeColor = Color.Tomato;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void PictureBoxStartWaste_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'l';
             LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_WASTE;
-            LabelPathTitle.ForeColor = Color.SteelBlue;
+            LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
+            LabelSelectPathTitle.ForeColor = Color.SteelBlue;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
         private void ButtonStartWaste_Click(object sender, EventArgs e)
         {
+            var font = LabelSelectPathTitle.Font;
+
             _gameSelected = 'l';
             LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
-            LabelPathTitle.Text = TextVariables.NAME_WASTE;
-            LabelPathTitle.ForeColor = Color.SteelBlue;
+            LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
+            LabelSelectPathTitle.ForeColor = Color.SteelBlue;
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
+        }
+
+        private void LabelResetPath_MouseEnter(object sender, EventArgs e)
+        {
+            var font = LabelStartResetPath.Font;
+
+            LabelStartResetPath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
+            LabelStartResetPath.ForeColor = LabelSelectPathTitle.ForeColor;
+        }
+
+        private void LabelResetPath_MouseLeave(object sender, EventArgs e)
+        {
+            var font = LabelStartResetPath.Font;
+
+            LabelStartResetPath.Font = new Font(font.FontFamily, font.Size);
+            LabelStartResetPath.ForeColor = Color.White;
+        }
+
+        private void LabelSelectPath_MouseEnter(object sender, EventArgs e)
+        {
+            var font = LabelStartSelectPath.Font;
+
+            LabelStartSelectPath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
+            LabelStartSelectPath.ForeColor = LabelSelectPathTitle.ForeColor;
+        }
+
+        private void LabelSelectPath_MouseLeave(object sender, EventArgs e)
+        {
+            var font = LabelStartSelectPath.Font;
+
+            LabelStartSelectPath.Font = new Font(font.FontFamily, font.Size);
+            LabelStartSelectPath.ForeColor = Color.White;
+        }
+
+        private void LabelSelectPathTitle_MouseEnter(object sender, EventArgs e)
+        {
+            var font = LabelSelectPathTitle.Font;
+
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
+        }
+
+        private void LabelSelectPathTitle_MouseLeave(object sender, EventArgs e)
+        {
+            var font = LabelSelectPathTitle.Font;
+
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, font.Size, FontStyle.Regular);
+        }
+
+        private void LabelBackToStart_MouseEnter(object sender, EventArgs e)
+        {
+            LabelBackToStart.ForeColor = LabelSelectPathTitle.ForeColor;
+        }
+
+        private void LabelBackToStart_MouseLeave(object sender, EventArgs e)
+        {
+            LabelBackToStart.ForeColor = Color.White;
+        }
+
+        private void LabelNextToMain_MouseEnter(object sender, EventArgs e)
+        {
+            LabelNextToMain.ForeColor = LabelSelectPathTitle.ForeColor;
+        }
+
+        private void LabelNextToMain_MouseLeave(object sender, EventArgs e)
+        {
+            LabelNextToMain.ForeColor = Color.White;
+        }
+
+        private void LabelStartResetPath_Click(object sender, EventArgs e)
+        {
+            LabelSelectPathSelected.Text = GameTypes[_gameSelected].DefaultDirectory;
+            if (LabelSelectPathSelected.Text == "")
+            {
+                LabelSelectPathSelected.Text = " - ";
+            }
         }
 
         private void PictureBoxOpenNexus_Click(object sender, EventArgs e)

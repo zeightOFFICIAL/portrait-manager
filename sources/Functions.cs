@@ -401,7 +401,7 @@ namespace PortraitManager
             LabelStartResetPath.Font = font;
             LabelStartSelectPath.Font = font;
             LabelPathExplain.Font = font;
-            LabelPathTitle.Font = font2;
+            LabelSelectPathTitle.Font = font2;
         }
 
         public void PathMenuTextInit()
@@ -1040,8 +1040,8 @@ namespace PortraitManager
             ButtonStartPoed.Text = TextVariables.NAME_DEADFIRE;
             ButtonStartTyr.Text = TextVariables.NAME_TYR;
             ButtonStartW3.Text = TextVariables.NAME_WASTE;
-            LabelStartAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
-            LabelPathTitle.Text = TextVariables.NAME_KING;
+            LabelAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
+            LabelSelectPathTitle.Text = TextVariables.NAME_KING;
             LabelStartSelectPath.Text = TextVariables.BUTTON_CHOOSE;
             LabelStartResetPath.Text = TextVariables.BUTTON_RESET;
         }
@@ -1061,9 +1061,9 @@ namespace PortraitManager
             ButtonStartPoed.Font = bebasNeueMedium;
             ButtonStartTyr.Font = bebasNeueMedium;
             ButtonStartW3.Font = bebasNeueMedium;
-            LabelPathTitle.Font = bebasNeueFullHeader;
-            LabelStartSelectPath.Font = bebasNeueMedium;
-            LabelStartResetPath.Font = bebasNeueMedium;
+            LabelSelectPathTitle.Font = bebasNeueFullHeader;
+            LabelStartSelectPath.Font = bebasNeueUnder;
+            LabelStartResetPath.Font = bebasNeueUnder;
         }
 
         private void OpenPathSelectPage()

@@ -758,92 +758,34 @@ namespace PortraitManager
 
         }
 
-        private void LabelBackToStart_MouseEnter(object sender, EventArgs e)
-        {
-            var font = LabelBackToStart.Font;
-
-            LabelBackToStart.Font = new Font(font.FontFamily, 41);
-            
-        }
-
-        private void LabelBackToStart_MouseLeave(object sender, EventArgs e)
-        {
-            var font = LabelBackToStart.Font;
-
-            LabelBackToStart.Font = new Font(font.FontFamily, 27);
-        }
-
-        private void LabelNextToMain_MouseEnter(object sender, EventArgs e)
-        {
-            var font = LabelNextToMain.Font;
-
-            LabelNextToMain.Font = new Font(font.FontFamily, 41);
-        }
-
-        private void LabelNextToMain_MouseLeave(object sender, EventArgs e)
-        {
-            var font = LabelNextToMain.Font;
-
-            LabelNextToMain.Font = new Font(font.FontFamily, 27);
-        }
+        
 
         private void LayoutPathPage_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void LabelResetPath_MouseEnter(object sender, EventArgs e)
-        {
-            var font = LabelStartResetPath.Font;
-
-            LabelStartResetPath.Font = new Font(font.FontFamily, 21);
-        }
-
-        private void LabelResetPath_MouseLeave(object sender, EventArgs e)
-        {
-            var font = LabelStartResetPath.Font;
-
-            LabelStartResetPath.Font = new Font(font.FontFamily, 13);
-        }
-
-        private void LabelSelectPath_MouseEnter(object sender, EventArgs e)
-        {
-            var font = LabelStartSelectPath.Font;
-
-            LabelStartSelectPath.Font = new Font(font.FontFamily, 21);
-        }
-
-        private void LabelSelectPath_MouseLeave(object sender, EventArgs e)
-        {
-            var font = LabelStartSelectPath.Font;
-
-            LabelStartSelectPath.Font = new Font(font.FontFamily, 13);
-        }
-
-        private void LabelStartResetPath_Click(object sender, EventArgs e)
-        {
-            //TextBoxGameFolder.Text = GameTypes[_gameSelected].DefaultDirectory;
-        }
-
         private void LabelStartSelectPath_Click(object sender, EventArgs e)
         {
-            //using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
-            //{
-            //    SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
-            //    //Description = TextVariables.TEXT_FOLDEROPEN,
-            //    ShowNewFolderButton = false,
-            //})
-            //{
-            //    if (FolderChoose.ShowDialog() == DialogResult.OK)
-            //    {
-            //        TextBoxGameFolder.Text = FolderChoose.SelectedPath;
-            //    }
-            //    else
-            //    {
-            //        FolderChoose.Dispose();                    
-            //        return;
-            //    }
-            //}
+            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
+            {
+                SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
+                //Description = TextVariables.TEXT_FOLDEROPEN,
+                ShowNewFolderButton = false,
+            })
+            {
+                if (FolderChoose.ShowDialog() == DialogResult.OK)
+                {
+                    LabelSelectPathSelected.Text = FolderChoose.SelectedPath;
+                }
+                else
+                {
+                    FolderChoose.Dispose();
+                    return;
+                }
+            }
         }
+
+
     }
 }

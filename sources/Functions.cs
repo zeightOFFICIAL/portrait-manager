@@ -436,7 +436,7 @@ namespace PortraitManager
             ButtonExit.Font = bebasNeueHead;
             ButtonKingmaker.Font = bebasNeueHead;
             ButtonWotR.Font = bebasNeueHead;
-            LabelSelectedPath.Font = bebasNeueUnder;
+            LabelSelectedPath23.Font = bebasNeueUnder;
             ButtonValidatePath.Font = bebasNeueUnder;
             ButtonSelectPath.Font = bebasNeueUnder;
             ButtonToMainPage5.Font = bebasNeueHead;
@@ -491,7 +491,7 @@ namespace PortraitManager
             ButtonExit.Font = defFont12;
             ButtonKingmaker.Font = defFont12;
             ButtonWotR.Font = defFont12;
-            LabelSelectedPath.Font = defFont12;
+            LabelSelectedPath23.Font = defFont12;
             ButtonValidatePath.Font = defFont12;
             ButtonSelectPath.Font = defFont12;
             ButtonToMainPage5.Font = defFont12;

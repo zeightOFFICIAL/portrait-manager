@@ -165,7 +165,7 @@ namespace PortraitManager
             this.LayoutUnnamed16 = new System.Windows.Forms.TableLayoutPanel();
             this.CheckBoxVerified = new System.Windows.Forms.CheckBox();
             this.LabelLang = new System.Windows.Forms.Label();
-            this.LabelSelectedPath = new System.Windows.Forms.Label();
+            this.LabelSelectedPath23 = new System.Windows.Forms.Label();
             this.LayoutStartMenu = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonStartKing = new System.Windows.Forms.Button();
@@ -199,9 +199,9 @@ namespace PortraitManager
             this.LabelStartResetPath = new System.Windows.Forms.Label();
             this.LabelStartSelectPath = new System.Windows.Forms.Label();
             this.LabelPathTitle = new System.Windows.Forms.Label();
+            this.LabelChoosePath = new System.Windows.Forms.Label();
             this.LabelBackToStart = new System.Windows.Forms.Label();
             this.LabelNextToMain = new System.Windows.Forms.Label();
-            this.LabelChoosePath = new System.Windows.Forms.Label();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -1911,28 +1911,28 @@ namespace PortraitManager
             this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.Controls.Add(this.tableLayoutPanel7, 1, 1);
             this.LayoutSettingsPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutSettingsPage.Location = new System.Drawing.Point(833, 218);
+            this.LayoutSettingsPage.Location = new System.Drawing.Point(611, 218);
             this.LayoutSettingsPage.Name = "LayoutSettingsPage";
             this.LayoutSettingsPage.RowCount = 3;
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
             this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.Size = new System.Drawing.Size(290, 155);
+            this.LayoutSettingsPage.Size = new System.Drawing.Size(512, 314);
             this.LayoutSettingsPage.TabIndex = 7;
             // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.LabelSelectedPath23, 0, 2);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.ButtonToMainPage5, 0, 6);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 4);
             this.tableLayoutPanel7.Controls.Add(this.LabelSettings, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel10, 0, 3);
             this.tableLayoutPanel7.Controls.Add(this.LayoutUnnamed16, 0, 5);
-            this.tableLayoutPanel7.Controls.Add(this.LabelSelectedPath, 0, 2);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(-127, -144);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(-16, -65);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 7;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.21779F));
@@ -2136,8 +2136,8 @@ namespace PortraitManager
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.50185F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.49814F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Controls.Add(this.ButtonRestorePath, 1, 0);
             this.tableLayoutPanel10.Controls.Add(this.TextBoxFullPath, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.ButtonRestorePath, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 207);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -2220,16 +2220,16 @@ namespace PortraitManager
             this.LabelLang.Text = "LangLabel";
             this.LabelLang.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LabelSelectedPath
+            // LabelSelectedPath23
             // 
-            this.LabelSelectedPath.AutoSize = true;
-            this.LabelSelectedPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelSelectedPath.Location = new System.Drawing.Point(3, 151);
-            this.LabelSelectedPath.Name = "LabelSelectedPath";
-            this.LabelSelectedPath.Size = new System.Drawing.Size(538, 53);
-            this.LabelSelectedPath.TabIndex = 2;
-            this.LabelSelectedPath.Text = "SelectedPath";
-            this.LabelSelectedPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectedPath23.AutoSize = true;
+            this.LabelSelectedPath23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectedPath23.Location = new System.Drawing.Point(3, 151);
+            this.LabelSelectedPath23.Name = "LabelSelectedPath23";
+            this.LabelSelectedPath23.Size = new System.Drawing.Size(538, 53);
+            this.LabelSelectedPath23.TabIndex = 2;
+            this.LabelSelectedPath23.Text = "SelectedPath";
+            this.LabelSelectedPath23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LayoutStartMenu
             // 
@@ -2839,6 +2839,19 @@ namespace PortraitManager
             this.LabelPathTitle.Text = "LABEL_[GAMETITLE_FULL]";
             this.LabelPathTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // LabelChoosePath
+            // 
+            this.LabelChoosePath.AutoSize = true;
+            this.LabelChoosePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelChoosePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelChoosePath.ForeColor = System.Drawing.Color.White;
+            this.LabelChoosePath.Location = new System.Drawing.Point(3, 221);
+            this.LabelChoosePath.Name = "LabelChoosePath";
+            this.LabelChoosePath.Size = new System.Drawing.Size(378, 40);
+            this.LabelChoosePath.TabIndex = 4;
+            this.LabelChoosePath.Text = "LABEL_CHOOSE_PATH_URL";
+            this.LabelChoosePath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // LabelBackToStart
             // 
             this.LabelBackToStart.AutoSize = true;
@@ -2875,19 +2888,6 @@ namespace PortraitManager
             this.LabelNextToMain.MouseEnter += new System.EventHandler(this.LabelNextToMain_MouseEnter);
             this.LabelNextToMain.MouseLeave += new System.EventHandler(this.LabelNextToMain_MouseLeave);
             // 
-            // LabelChoosePath
-            // 
-            this.LabelChoosePath.AutoSize = true;
-            this.LabelChoosePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelChoosePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelChoosePath.ForeColor = System.Drawing.Color.White;
-            this.LabelChoosePath.Location = new System.Drawing.Point(3, 221);
-            this.LabelChoosePath.Name = "LabelChoosePath";
-            this.LabelChoosePath.Size = new System.Drawing.Size(378, 40);
-            this.LabelChoosePath.TabIndex = 4;
-            this.LabelChoosePath.Text = "LABEL_CHOOSE_PATH_URL";
-            this.LabelChoosePath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2895,7 +2895,7 @@ namespace PortraitManager
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1050, 639);
-            this.Controls.Add(this.LayoutPathPage);
+            this.Controls.Add(this.LayoutStartMenu);
             this.Controls.Add(this.LayoutSettingsPage);
             this.Controls.Add(this.LayoutURLDialog);
             this.Controls.Add(this.LayoutFinalPage);
@@ -2904,7 +2904,7 @@ namespace PortraitManager
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutScalePage);
             this.Controls.Add(this.LayoutExtractPage);
-            this.Controls.Add(this.LayoutStartMenu);
+            this.Controls.Add(this.LayoutPathPage);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3088,7 +3088,7 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Button ButtonKingmaker;
         private System.Windows.Forms.Button ButtonWotR;
-        private System.Windows.Forms.Label LabelSelectedPath;
+        private System.Windows.Forms.Label LabelSelectedPath23;
         private System.Windows.Forms.TextBox TextBoxFullPath;
         private System.Windows.Forms.Button ButtonToMainPage5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;

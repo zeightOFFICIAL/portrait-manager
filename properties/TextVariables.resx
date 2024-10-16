@@ -151,4 +151,25 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="NAME_WOTR" xml:space="preserve">
     <value>Pathfinder: Wrath of the Righteous</value>
   </data>
+  <data name="TEXT_EXPLAIN_PATH_KING" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_WOTR" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_PILLARS" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_DEADFIRE" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_WASTE" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_ROGUE" xml:space="preserve">
+    <value />
+  </data>
 </root>

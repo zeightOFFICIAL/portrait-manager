@@ -745,15 +745,9 @@ namespace PortraitManager
             }
         }
 
-        private void LabelBackToStart_Click(object sender, EventArgs e)
-        {
-            _gameSelected = '-';
-            ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutStartMenu);
-            _activeMenuIndex = 0;
-        }
+        
 
-        private void LabelNextToMain_Click(object sender, EventArgs e)
+        private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {
 
         }
@@ -765,7 +759,7 @@ namespace PortraitManager
 
         }
 
-        private void LabelStartSelectPath_Click(object sender, EventArgs e)
+        private void LabelSelectPathChoosePath_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
@@ -786,6 +780,6 @@ namespace PortraitManager
             }
         }
 
-
+        
     }
 }

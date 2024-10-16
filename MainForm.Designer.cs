@@ -189,19 +189,19 @@ namespace PortraitManager
             this.ButtonStartW3 = new System.Windows.Forms.Button();
             this.PictureBoxStartW3 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
-            this.LabelAuthor = new System.Windows.Forms.Label();
-            this.PictureBoxOpenNM = new System.Windows.Forms.PictureBox();
-            this.PictureBoxOpenGitHub = new System.Windows.Forms.PictureBox();
+            this.LabelStartAuthor = new System.Windows.Forms.Label();
+            this.PictureBoxStartOpenNM = new System.Windows.Forms.PictureBox();
+            this.PictureBoxStartOpenGitHub = new System.Windows.Forms.PictureBox();
             this.LayoutPathPage = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
-            this.LabelPathExplain = new System.Windows.Forms.Label();
+            this.LabelSelectPathExplain = new System.Windows.Forms.Label();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
-            this.LabelStartResetPath = new System.Windows.Forms.Label();
-            this.LabelStartSelectPath = new System.Windows.Forms.Label();
+            this.LabelSelectPathResetPath = new System.Windows.Forms.Label();
+            this.LabelSelectPathChoosePath = new System.Windows.Forms.Label();
             this.LabelSelectPathTitle = new System.Windows.Forms.Label();
             this.LabelSelectPathSelected = new System.Windows.Forms.Label();
-            this.LabelBackToStart = new System.Windows.Forms.Label();
-            this.LabelNextToMain = new System.Windows.Forms.Label();
+            this.LabelSelectPathBackToStart = new System.Windows.Forms.Label();
+            this.LabelSelectPathNextToMain = new System.Windows.Forms.Label();
             this.LayoutFilePage.SuspendLayout();
             this.LayoutUnnamed1.SuspendLayout();
             this.LayoutUnnamed5.SuspendLayout();
@@ -259,8 +259,8 @@ namespace PortraitManager
             this.tableLayoutPanel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartW3)).BeginInit();
             this.tableLayoutPanel20.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxOpenNM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxOpenGitHub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenNM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenGitHub)).BeginInit();
             this.LayoutPathPage.SuspendLayout();
             this.tableLayoutPanel21.SuspendLayout();
             this.tableLayoutPanel22.SuspendLayout();
@@ -2669,9 +2669,9 @@ namespace PortraitManager
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel20.Controls.Add(this.LabelAuthor, 0, 0);
-            this.tableLayoutPanel20.Controls.Add(this.PictureBoxOpenNM, 1, 0);
-            this.tableLayoutPanel20.Controls.Add(this.PictureBoxOpenGitHub, 2, 0);
+            this.tableLayoutPanel20.Controls.Add(this.LabelStartAuthor, 0, 0);
+            this.tableLayoutPanel20.Controls.Add(this.PictureBoxStartOpenNM, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.PictureBoxStartOpenGitHub, 2, 0);
             this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel20.Location = new System.Drawing.Point(468, 596);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
@@ -2681,44 +2681,44 @@ namespace PortraitManager
             this.tableLayoutPanel20.Size = new System.Drawing.Size(579, 40);
             this.tableLayoutPanel20.TabIndex = 14;
             // 
-            // LabelAuthor
+            // LabelStartAuthor
             // 
-            this.LabelAuthor.AutoSize = true;
-            this.LabelAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelAuthor.ForeColor = System.Drawing.Color.White;
-            this.LabelAuthor.Location = new System.Drawing.Point(0, 0);
-            this.LabelAuthor.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.LabelAuthor.Name = "LabelAuthor";
-            this.LabelAuthor.Size = new System.Drawing.Size(460, 40);
-            this.LabelAuthor.TabIndex = 0;
-            this.LabelAuthor.Text = "LABEL_AUTHOR";
-            this.LabelAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelStartAuthor.AutoSize = true;
+            this.LabelStartAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelStartAuthor.ForeColor = System.Drawing.Color.White;
+            this.LabelStartAuthor.Location = new System.Drawing.Point(0, 0);
+            this.LabelStartAuthor.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelStartAuthor.Name = "LabelStartAuthor";
+            this.LabelStartAuthor.Size = new System.Drawing.Size(460, 40);
+            this.LabelStartAuthor.TabIndex = 0;
+            this.LabelStartAuthor.Text = "LABEL_AUTHOR";
+            this.LabelStartAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // PictureBoxOpenNM
+            // PictureBoxStartOpenNM
             // 
-            this.PictureBoxOpenNM.BackgroundImage = global::PortraitManager.Properties.Resources.nm_logo_png;
-            this.PictureBoxOpenNM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PictureBoxOpenNM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBoxOpenNM.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxOpenNM.Location = new System.Drawing.Point(466, 3);
-            this.PictureBoxOpenNM.Name = "PictureBoxOpenNM";
-            this.PictureBoxOpenNM.Size = new System.Drawing.Size(51, 34);
-            this.PictureBoxOpenNM.TabIndex = 1;
-            this.PictureBoxOpenNM.TabStop = false;
-            this.PictureBoxOpenNM.Click += new System.EventHandler(this.PictureBoxOpenNexus_Click);
+            this.PictureBoxStartOpenNM.BackgroundImage = global::PortraitManager.Properties.Resources.nm_logo_png;
+            this.PictureBoxStartOpenNM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartOpenNM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartOpenNM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartOpenNM.Location = new System.Drawing.Point(466, 3);
+            this.PictureBoxStartOpenNM.Name = "PictureBoxStartOpenNM";
+            this.PictureBoxStartOpenNM.Size = new System.Drawing.Size(51, 34);
+            this.PictureBoxStartOpenNM.TabIndex = 1;
+            this.PictureBoxStartOpenNM.TabStop = false;
+            this.PictureBoxStartOpenNM.Click += new System.EventHandler(this.PictureBoxStartOpenNexus_Click);
             // 
-            // PictureBoxOpenGitHub
+            // PictureBoxStartOpenGitHub
             // 
-            this.PictureBoxOpenGitHub.BackgroundImage = global::PortraitManager.Properties.Resources.github_logo_png;
-            this.PictureBoxOpenGitHub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PictureBoxOpenGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBoxOpenGitHub.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxOpenGitHub.Location = new System.Drawing.Point(523, 3);
-            this.PictureBoxOpenGitHub.Name = "PictureBoxOpenGitHub";
-            this.PictureBoxOpenGitHub.Size = new System.Drawing.Size(53, 34);
-            this.PictureBoxOpenGitHub.TabIndex = 2;
-            this.PictureBoxOpenGitHub.TabStop = false;
-            this.PictureBoxOpenGitHub.Click += new System.EventHandler(this.PictureBoxOpenGithub_Click);
+            this.PictureBoxStartOpenGitHub.BackgroundImage = global::PortraitManager.Properties.Resources.github_logo_png;
+            this.PictureBoxStartOpenGitHub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartOpenGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartOpenGitHub.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartOpenGitHub.Location = new System.Drawing.Point(523, 3);
+            this.PictureBoxStartOpenGitHub.Name = "PictureBoxStartOpenGitHub";
+            this.PictureBoxStartOpenGitHub.Size = new System.Drawing.Size(53, 34);
+            this.PictureBoxStartOpenGitHub.TabIndex = 2;
+            this.PictureBoxStartOpenGitHub.TabStop = false;
+            this.PictureBoxStartOpenGitHub.Click += new System.EventHandler(this.PictureBoxStartOpenGithub_Click);
             // 
             // LayoutPathPage
             // 
@@ -2732,8 +2732,8 @@ namespace PortraitManager
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.LayoutPathPage.Controls.Add(this.tableLayoutPanel21, 2, 1);
-            this.LayoutPathPage.Controls.Add(this.LabelBackToStart, 1, 1);
-            this.LayoutPathPage.Controls.Add(this.LabelNextToMain, 3, 1);
+            this.LayoutPathPage.Controls.Add(this.LabelSelectPathBackToStart, 1, 1);
+            this.LayoutPathPage.Controls.Add(this.LabelSelectPathNextToMain, 3, 1);
             this.LayoutPathPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutPathPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutPathPage.Name = "LayoutPathPage";
@@ -2749,7 +2749,7 @@ namespace PortraitManager
             // 
             this.tableLayoutPanel21.ColumnCount = 1;
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Controls.Add(this.LabelPathExplain, 0, 4);
+            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathExplain, 0, 4);
             this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 3);
             this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathTitle, 0, 1);
             this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathSelected, 0, 2);
@@ -2765,25 +2765,25 @@ namespace PortraitManager
             this.tableLayoutPanel21.Size = new System.Drawing.Size(384, 553);
             this.tableLayoutPanel21.TabIndex = 0;
             // 
-            // LabelPathExplain
+            // LabelSelectPathExplain
             // 
-            this.LabelPathExplain.AutoSize = true;
-            this.LabelPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelPathExplain.ForeColor = System.Drawing.Color.White;
-            this.LabelPathExplain.Location = new System.Drawing.Point(3, 289);
-            this.LabelPathExplain.Name = "LabelPathExplain";
-            this.LabelPathExplain.Size = new System.Drawing.Size(378, 264);
-            this.LabelPathExplain.TabIndex = 3;
-            this.LabelPathExplain.Text = "LABEL_PATH_EXPLAIN";
-            this.LabelPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.LabelSelectPathExplain.AutoSize = true;
+            this.LabelSelectPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathExplain.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathExplain.Location = new System.Drawing.Point(3, 289);
+            this.LabelSelectPathExplain.Name = "LabelSelectPathExplain";
+            this.LabelSelectPathExplain.Size = new System.Drawing.Size(378, 264);
+            this.LabelSelectPathExplain.TabIndex = 3;
+            this.LabelSelectPathExplain.Text = "LABEL_PATH_EXPLAIN";
+            this.LabelSelectPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tableLayoutPanel22
             // 
             this.tableLayoutPanel22.ColumnCount = 2;
             this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel22.Controls.Add(this.LabelStartResetPath, 0, 0);
-            this.tableLayoutPanel22.Controls.Add(this.LabelStartSelectPath, 1, 0);
+            this.tableLayoutPanel22.Controls.Add(this.LabelSelectPathResetPath, 0, 0);
+            this.tableLayoutPanel22.Controls.Add(this.LabelSelectPathChoosePath, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 249);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
@@ -2792,39 +2792,39 @@ namespace PortraitManager
             this.tableLayoutPanel22.Size = new System.Drawing.Size(378, 37);
             this.tableLayoutPanel22.TabIndex = 1;
             // 
-            // LabelStartResetPath
+            // LabelSelectPathResetPath
             // 
-            this.LabelStartResetPath.AutoSize = true;
-            this.LabelStartResetPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LabelStartResetPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelStartResetPath.ForeColor = System.Drawing.Color.White;
-            this.LabelStartResetPath.Location = new System.Drawing.Point(65, 0);
-            this.LabelStartResetPath.Margin = new System.Windows.Forms.Padding(65, 0, 3, 0);
-            this.LabelStartResetPath.Name = "LabelStartResetPath";
-            this.LabelStartResetPath.Size = new System.Drawing.Size(121, 37);
-            this.LabelStartResetPath.TabIndex = 0;
-            this.LabelStartResetPath.Text = "LABEL_RESET";
-            this.LabelStartResetPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelStartResetPath.Click += new System.EventHandler(this.LabelStartResetPath_Click);
-            this.LabelStartResetPath.MouseEnter += new System.EventHandler(this.LabelResetPath_MouseEnter);
-            this.LabelStartResetPath.MouseLeave += new System.EventHandler(this.LabelResetPath_MouseLeave);
+            this.LabelSelectPathResetPath.AutoSize = true;
+            this.LabelSelectPathResetPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathResetPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathResetPath.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathResetPath.Location = new System.Drawing.Point(65, 0);
+            this.LabelSelectPathResetPath.Margin = new System.Windows.Forms.Padding(65, 0, 3, 0);
+            this.LabelSelectPathResetPath.Name = "LabelSelectPathResetPath";
+            this.LabelSelectPathResetPath.Size = new System.Drawing.Size(121, 37);
+            this.LabelSelectPathResetPath.TabIndex = 0;
+            this.LabelSelectPathResetPath.Text = "LABEL_RESET";
+            this.LabelSelectPathResetPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathResetPath.Click += new System.EventHandler(this.LabelSelectPathResetPath_Click);
+            this.LabelSelectPathResetPath.MouseEnter += new System.EventHandler(this.LabelSelectPathResetPath_MouseEnter);
+            this.LabelSelectPathResetPath.MouseLeave += new System.EventHandler(this.LabelSelectPathResetPath_MouseLeave);
             // 
-            // LabelStartSelectPath
+            // LabelSelectPathChoosePath
             // 
-            this.LabelStartSelectPath.AutoSize = true;
-            this.LabelStartSelectPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LabelStartSelectPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelStartSelectPath.ForeColor = System.Drawing.Color.White;
-            this.LabelStartSelectPath.Location = new System.Drawing.Point(192, 0);
-            this.LabelStartSelectPath.Margin = new System.Windows.Forms.Padding(3, 0, 65, 0);
-            this.LabelStartSelectPath.Name = "LabelStartSelectPath";
-            this.LabelStartSelectPath.Size = new System.Drawing.Size(121, 37);
-            this.LabelStartSelectPath.TabIndex = 1;
-            this.LabelStartSelectPath.Text = "LABEL_SELECT";
-            this.LabelStartSelectPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelStartSelectPath.Click += new System.EventHandler(this.LabelStartSelectPath_Click);
-            this.LabelStartSelectPath.MouseEnter += new System.EventHandler(this.LabelSelectPath_MouseEnter);
-            this.LabelStartSelectPath.MouseLeave += new System.EventHandler(this.LabelSelectPath_MouseLeave);
+            this.LabelSelectPathChoosePath.AutoSize = true;
+            this.LabelSelectPathChoosePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathChoosePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathChoosePath.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathChoosePath.Location = new System.Drawing.Point(192, 0);
+            this.LabelSelectPathChoosePath.Margin = new System.Windows.Forms.Padding(3, 0, 65, 0);
+            this.LabelSelectPathChoosePath.Name = "LabelSelectPathChoosePath";
+            this.LabelSelectPathChoosePath.Size = new System.Drawing.Size(121, 37);
+            this.LabelSelectPathChoosePath.TabIndex = 1;
+            this.LabelSelectPathChoosePath.Text = "LABEL_SELECT";
+            this.LabelSelectPathChoosePath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathChoosePath.Click += new System.EventHandler(this.LabelSelectPathChoosePath_Click);
+            this.LabelSelectPathChoosePath.MouseEnter += new System.EventHandler(this.LabelSelectPathChoosePath_MouseEnter);
+            this.LabelSelectPathChoosePath.MouseLeave += new System.EventHandler(this.LabelSelectPathChoosePath_MouseLeave);
             // 
             // LabelSelectPathTitle
             // 
@@ -2853,42 +2853,44 @@ namespace PortraitManager
             this.LabelSelectPathSelected.TabIndex = 4;
             this.LabelSelectPathSelected.Text = "LABEL_PATH_URL_NORMAL";
             this.LabelSelectPathSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathSelected.MouseEnter += new System.EventHandler(this.LabelSelectPathSelected_MouseEnter);
+            this.LabelSelectPathSelected.MouseLeave += new System.EventHandler(this.LabelSelectPathSelected_MouseLeave);
             // 
-            // LabelBackToStart
+            // LabelSelectPathBackToStart
             // 
-            this.LabelBackToStart.AutoSize = true;
-            this.LabelBackToStart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LabelBackToStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelBackToStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelBackToStart.ForeColor = System.Drawing.Color.White;
-            this.LabelBackToStart.Location = new System.Drawing.Point(25, 230);
-            this.LabelBackToStart.Margin = new System.Windows.Forms.Padding(5, 190, 5, 190);
-            this.LabelBackToStart.Name = "LabelBackToStart";
-            this.LabelBackToStart.Size = new System.Drawing.Size(45, 179);
-            this.LabelBackToStart.TabIndex = 3;
-            this.LabelBackToStart.Text = "◀";
-            this.LabelBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelBackToStart.Click += new System.EventHandler(this.LabelBackToStart_Click);
-            this.LabelBackToStart.MouseEnter += new System.EventHandler(this.LabelBackToStart_MouseEnter);
-            this.LabelBackToStart.MouseLeave += new System.EventHandler(this.LabelBackToStart_MouseLeave);
+            this.LabelSelectPathBackToStart.AutoSize = true;
+            this.LabelSelectPathBackToStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathBackToStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathBackToStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathBackToStart.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathBackToStart.Location = new System.Drawing.Point(25, 230);
+            this.LabelSelectPathBackToStart.Margin = new System.Windows.Forms.Padding(5, 190, 5, 190);
+            this.LabelSelectPathBackToStart.Name = "LabelSelectPathBackToStart";
+            this.LabelSelectPathBackToStart.Size = new System.Drawing.Size(45, 179);
+            this.LabelSelectPathBackToStart.TabIndex = 3;
+            this.LabelSelectPathBackToStart.Text = "◀";
+            this.LabelSelectPathBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathBackToStart.Click += new System.EventHandler(this.LabelSelectPathBackToStart_Click);
+            this.LabelSelectPathBackToStart.MouseEnter += new System.EventHandler(this.LabelSelectPathBackToStart_MouseEnter);
+            this.LabelSelectPathBackToStart.MouseLeave += new System.EventHandler(this.LabelSelectPathBackToStart_MouseLeave);
             // 
-            // LabelNextToMain
+            // LabelSelectPathNextToMain
             // 
-            this.LabelNextToMain.AutoSize = true;
-            this.LabelNextToMain.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LabelNextToMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelNextToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelNextToMain.ForeColor = System.Drawing.Color.White;
-            this.LabelNextToMain.Location = new System.Drawing.Point(470, 230);
-            this.LabelNextToMain.Margin = new System.Windows.Forms.Padding(5, 190, 5, 190);
-            this.LabelNextToMain.Name = "LabelNextToMain";
-            this.LabelNextToMain.Size = new System.Drawing.Size(45, 179);
-            this.LabelNextToMain.TabIndex = 4;
-            this.LabelNextToMain.Text = "▶";
-            this.LabelNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelNextToMain.Click += new System.EventHandler(this.LabelNextToMain_Click);
-            this.LabelNextToMain.MouseEnter += new System.EventHandler(this.LabelNextToMain_MouseEnter);
-            this.LabelNextToMain.MouseLeave += new System.EventHandler(this.LabelNextToMain_MouseLeave);
+            this.LabelSelectPathNextToMain.AutoSize = true;
+            this.LabelSelectPathNextToMain.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathNextToMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathNextToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathNextToMain.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathNextToMain.Location = new System.Drawing.Point(470, 230);
+            this.LabelSelectPathNextToMain.Margin = new System.Windows.Forms.Padding(5, 190, 5, 190);
+            this.LabelSelectPathNextToMain.Name = "LabelSelectPathNextToMain";
+            this.LabelSelectPathNextToMain.Size = new System.Drawing.Size(45, 179);
+            this.LabelSelectPathNextToMain.TabIndex = 4;
+            this.LabelSelectPathNextToMain.Text = "▶";
+            this.LabelSelectPathNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathNextToMain.Click += new System.EventHandler(this.LabelSelectPathNextToMain_Click);
+            this.LabelSelectPathNextToMain.MouseEnter += new System.EventHandler(this.LabelSelectPathNextToMain_MouseEnter);
+            this.LabelSelectPathNextToMain.MouseLeave += new System.EventHandler(this.LabelSelectPathNextToMain_MouseLeave);
             // 
             // MainForm
             // 
@@ -3001,8 +3003,8 @@ namespace PortraitManager
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartW3)).EndInit();
             this.tableLayoutPanel20.ResumeLayout(false);
             this.tableLayoutPanel20.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxOpenNM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxOpenGitHub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenNM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenGitHub)).EndInit();
             this.LayoutPathPage.ResumeLayout(false);
             this.LayoutPathPage.PerformLayout();
             this.tableLayoutPanel21.ResumeLayout(false);
@@ -3163,18 +3165,18 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
         private System.Windows.Forms.PictureBox PictureBoxStartW3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
-        private System.Windows.Forms.Label LabelAuthor;
-        private System.Windows.Forms.PictureBox PictureBoxOpenNM;
-        private System.Windows.Forms.PictureBox PictureBoxOpenGitHub;
+        private System.Windows.Forms.Label LabelStartAuthor;
+        private System.Windows.Forms.PictureBox PictureBoxStartOpenNM;
+        private System.Windows.Forms.PictureBox PictureBoxStartOpenGitHub;
         private System.Windows.Forms.TableLayoutPanel LayoutPathPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
-        private System.Windows.Forms.Label LabelBackToStart;
-        private System.Windows.Forms.Label LabelNextToMain;
+        private System.Windows.Forms.Label LabelSelectPathBackToStart;
+        private System.Windows.Forms.Label LabelSelectPathNextToMain;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
-        private System.Windows.Forms.Label LabelStartResetPath;
-        private System.Windows.Forms.Label LabelStartSelectPath;
+        private System.Windows.Forms.Label LabelSelectPathResetPath;
+        private System.Windows.Forms.Label LabelSelectPathChoosePath;
         private System.Windows.Forms.Label LabelSelectPathTitle;
-        private System.Windows.Forms.Label LabelPathExplain;
+        private System.Windows.Forms.Label LabelSelectPathExplain;
         private System.Windows.Forms.Label LabelSelectPathSelected;
     }
 }

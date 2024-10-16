@@ -1596,6 +1596,7 @@ namespace PortraitManager
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1608,6 +1609,7 @@ namespace PortraitManager
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1620,6 +1622,7 @@ namespace PortraitManager
             _gameSelected = 'w';
             LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1632,6 +1635,7 @@ namespace PortraitManager
             _gameSelected = 'w';
             LayoutPathPage.BackgroundImage = Resources.wotr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1644,6 +1648,7 @@ namespace PortraitManager
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1656,6 +1661,7 @@ namespace PortraitManager
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1668,6 +1674,7 @@ namespace PortraitManager
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1680,6 +1687,7 @@ namespace PortraitManager
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1692,6 +1700,7 @@ namespace PortraitManager
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1704,6 +1713,7 @@ namespace PortraitManager
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1716,6 +1726,7 @@ namespace PortraitManager
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1728,6 +1739,7 @@ namespace PortraitManager
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1740,6 +1752,7 @@ namespace PortraitManager
             _gameSelected = 'l';
             LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
@@ -1752,41 +1765,42 @@ namespace PortraitManager
             _gameSelected = 'l';
             LayoutPathPage.BackgroundImage = Resources.waste_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             OpenPathSelectPage();
         }
 
-        private void LabelResetPath_MouseEnter(object sender, EventArgs e)
+        private void LabelSelectPathResetPath_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelStartResetPath.Font;
+            var font = LabelSelectPathResetPath.Font;
 
-            LabelStartResetPath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
-            LabelStartResetPath.ForeColor = LabelSelectPathTitle.ForeColor;
+            LabelSelectPathResetPath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
+            LabelSelectPathResetPath.ForeColor = LabelSelectPathTitle.ForeColor;
         }
 
-        private void LabelResetPath_MouseLeave(object sender, EventArgs e)
+        private void LabelSelectPathResetPath_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelStartResetPath.Font;
+            var font = LabelSelectPathResetPath.Font;
 
-            LabelStartResetPath.Font = new Font(font.FontFamily, font.Size);
-            LabelStartResetPath.ForeColor = Color.White;
+            LabelSelectPathResetPath.Font = new Font(font.FontFamily, font.Size);
+            LabelSelectPathResetPath.ForeColor = Color.White;
         }
 
-        private void LabelSelectPath_MouseEnter(object sender, EventArgs e)
+        private void LabelSelectPathChoosePath_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelStartSelectPath.Font;
+            var font = LabelSelectPathChoosePath.Font;
 
-            LabelStartSelectPath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
-            LabelStartSelectPath.ForeColor = LabelSelectPathTitle.ForeColor;
+            LabelSelectPathChoosePath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
+            LabelSelectPathChoosePath.ForeColor = LabelSelectPathTitle.ForeColor;
         }
 
-        private void LabelSelectPath_MouseLeave(object sender, EventArgs e)
+        private void LabelSelectPathChoosePath_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelStartSelectPath.Font;
+            var font = LabelSelectPathChoosePath.Font;
 
-            LabelStartSelectPath.Font = new Font(font.FontFamily, font.Size);
-            LabelStartSelectPath.ForeColor = Color.White;
+            LabelSelectPathChoosePath.Font = new Font(font.FontFamily, font.Size);
+            LabelSelectPathChoosePath.ForeColor = Color.White;
         }
 
         private void LabelSelectPathTitle_MouseEnter(object sender, EventArgs e)
@@ -1803,27 +1817,27 @@ namespace PortraitManager
             LabelSelectPathTitle.Font = new Font(font.FontFamily, font.Size, FontStyle.Regular);
         }
 
-        private void LabelBackToStart_MouseEnter(object sender, EventArgs e)
+        private void LabelSelectPathBackToStart_MouseEnter(object sender, EventArgs e)
         {
-            LabelBackToStart.ForeColor = LabelSelectPathTitle.ForeColor;
+            LabelSelectPathBackToStart.ForeColor = LabelSelectPathTitle.ForeColor;
         }
 
-        private void LabelBackToStart_MouseLeave(object sender, EventArgs e)
+        private void LabelSelectPathBackToStart_MouseLeave(object sender, EventArgs e)
         {
-            LabelBackToStart.ForeColor = Color.White;
+            LabelSelectPathBackToStart.ForeColor = Color.White;
         }
 
-        private void LabelNextToMain_MouseEnter(object sender, EventArgs e)
+        private void LabelSelectPathNextToMain_MouseEnter(object sender, EventArgs e)
         {
-            LabelNextToMain.ForeColor = LabelSelectPathTitle.ForeColor;
+            LabelSelectPathNextToMain.ForeColor = LabelSelectPathTitle.ForeColor;
         }
 
-        private void LabelNextToMain_MouseLeave(object sender, EventArgs e)
+        private void LabelSelectPathNextToMain_MouseLeave(object sender, EventArgs e)
         {
-            LabelNextToMain.ForeColor = Color.White;
+            LabelSelectPathNextToMain.ForeColor = Color.White;
         }
 
-        private void LabelStartResetPath_Click(object sender, EventArgs e)
+        private void LabelSelectPathResetPath_Click(object sender, EventArgs e)
         {
             LabelSelectPathSelected.Text = GameTypes[_gameSelected].DefaultDirectory;
             if (LabelSelectPathSelected.Text == "")
@@ -1832,12 +1846,30 @@ namespace PortraitManager
             }
         }
 
-        private void PictureBoxOpenNexus_Click(object sender, EventArgs e)
+        private void LabelSelectPathSelected_MouseEnter(object sender, EventArgs e)
+        {
+            LabelSelectPathSelected.ForeColor = Color.DarkGray;
+        }
+
+        private void LabelSelectPathSelected_MouseLeave(object sender, EventArgs e)
+        {
+            LabelSelectPathSelected.ForeColor = Color.White;
+        }
+
+        private void LabelSelectPathBackToStart_Click(object sender, EventArgs e)
+        {
+            _gameSelected = '-';
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutStartMenu);
+            _activeMenuIndex = 0;
+        }
+
+        private void PictureBoxStartOpenNexus_Click(object sender, EventArgs e)
         {
             Process.Start(new ProcessStartInfo { FileName = "https://next.nexusmods.com/profile/zeightOFFICIAL/mods", UseShellExecute = true });
         }
 
-        private void PictureBoxOpenGithub_Click(object sender, EventArgs e)
+        private void PictureBoxStartOpenGithub_Click(object sender, EventArgs e)
         {
             Process.Start(new ProcessStartInfo { FileName = "https://github.com/zeightOFFICIAL/portrait-manager/", UseShellExecute = true });
         }

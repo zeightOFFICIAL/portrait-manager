@@ -398,9 +398,9 @@ namespace PortraitManager
             Font font = new Font(fonts.Families[0], 13),
                 font2 = new Font(fonts.Families[0], 20);
 
-            LabelStartResetPath.Font = font;
-            LabelStartSelectPath.Font = font;
-            LabelPathExplain.Font = font;
+            LabelSelectPathResetPath.Font = font;
+            LabelSelectPathChoosePath.Font = font;
+            LabelSelectPathExplain.Font = font;
             LabelSelectPathTitle.Font = font2;
         }
 
@@ -1040,10 +1040,10 @@ namespace PortraitManager
             ButtonStartPoed.Text = TextVariables.NAME_DEADFIRE;
             ButtonStartTyr.Text = TextVariables.NAME_TYR;
             ButtonStartW3.Text = TextVariables.NAME_WASTE;
-            LabelAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
+            LabelStartAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
-            LabelStartSelectPath.Text = TextVariables.BUTTON_CHOOSE;
-            LabelStartResetPath.Text = TextVariables.BUTTON_RESET;
+            LabelSelectPathChoosePath.Text = TextVariables.BUTTON_CHOOSE;
+            LabelSelectPathResetPath.Text = TextVariables.BUTTON_RESET;
         }
 
         public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int initSize = 9)
@@ -1062,15 +1062,15 @@ namespace PortraitManager
             ButtonStartTyr.Font = bebasNeueMedium;
             ButtonStartW3.Font = bebasNeueMedium;
             LabelSelectPathTitle.Font = bebasNeueFullHeader;
-            LabelStartSelectPath.Font = bebasNeueUnder;
-            LabelStartResetPath.Font = bebasNeueUnder;
+            LabelSelectPathChoosePath.Font = bebasNeueUnder;
+            LabelSelectPathResetPath.Font = bebasNeueUnder;
         }
 
         private void OpenPathSelectPage()
         {
             _activeMenuIndex = 1;
             ParentLayoutsDisable();
-            LabelStartResetPath_Click(this, new EventArgs());
+            LabelSelectPathResetPath_Click(this, new EventArgs());
             RootFunctions.LayoutEnable(LayoutPathPage);
         }
     }

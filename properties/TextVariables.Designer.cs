@@ -159,5 +159,68 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("NAME_WOTR", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_DEADFIRE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_DEADFIRE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_KING {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_PILLARS {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_PILLARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_ROGUE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_TYR {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_WASTE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_WASTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_WOTR {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_WOTR", resourceCulture);
+            }
+        }
     }
 }

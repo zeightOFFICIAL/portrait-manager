@@ -88,8 +88,7 @@ namespace PortraitManager
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
             LoadText();
-            LoadFont(_fontCollection);         
-
+            LoadFont(_fontCollection);     
 
             if (CoreSettings.Default.GameType == '-')
             {

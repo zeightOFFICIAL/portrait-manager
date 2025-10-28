@@ -1337,255 +1337,211 @@ namespace PortraitManager
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private void ButtonStartKing_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartKing.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.path_start_page;
-            ButtonStartKing.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartKing.ForeColor = Color.LimeGreen;
         }
 
         private void ButtonStartWotr_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartWotr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
-            ButtonStartWotr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartWotr.ForeColor = Color.Magenta;
         }
 
         private void ButtonStartRt_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartRt.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
-            ButtonStartRt.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartRt.ForeColor = Color.DodgerBlue;
         }
 
         private void ButtonStartPoe_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartPoe.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
-            ButtonStartPoe.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartPoe.ForeColor = Color.Aqua;
         }
 
         private void ButtonStartPoed_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartPoed.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
-            ButtonStartPoed.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartPoed.ForeColor = Color.MediumSpringGreen;
         }
 
         private void ButtonStartTyr_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartTyr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
-            ButtonStartTyr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartTyr.ForeColor = Color.Tomato;
         }
 
         private void ButtonStartW3_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartW3.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
-            ButtonStartW3.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartW3.ForeColor = Color.SteelBlue;
         }
 
         private void PictureBoxStartKing_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartKing.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.path_start_page;
-            ButtonStartKing.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartKing.ForeColor = Color.LimeGreen;
         }
 
         private void PictureBoxStartWotr_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartWotr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
-            ButtonStartWotr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartWotr.ForeColor = Color.Magenta;
         }
 
         private void PictureBoxStartRt_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartRt.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
-            ButtonStartRt.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartRt.ForeColor = Color.DodgerBlue;
         }
 
         private void PictureBoxStartPoe_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartPoe.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
-            ButtonStartPoe.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartPoe.ForeColor = Color.Aqua;
         }
 
         private void PictureBoxStartPoed_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartPoed.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
-            ButtonStartPoed.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartPoed.ForeColor = Color.MediumSpringGreen;
         }
 
         private void PictureBoxStartTyr_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartTyr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
-            ButtonStartTyr.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartTyr.ForeColor = Color.Tomato;
         }
 
         private void PictureBoxStartW3_MouseEnter(object sender, EventArgs e)
         {
-            var font = ButtonStartW3.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
-            ButtonStartW3.Font = new Font(font.FontFamily, 13, FontStyle.Underline);
             ButtonStartW3.ForeColor = Color.SteelBlue;
         }
 
         private void ButtonStartKing_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartKing.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.path_start_page;
-            ButtonStartKing.Font = new Font(font.FontFamily, 13);
             ButtonStartKing.ForeColor = Color.White;
         }
 
         private void ButtonStartWotr_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartWotr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
-            ButtonStartWotr.Font = new Font(font.FontFamily, 13);
             ButtonStartWotr.ForeColor = Color.White;
         }
 
         private void ButtonStartRt_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartRt.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
-            ButtonStartRt.Font = new Font(font.FontFamily, 13);
             ButtonStartRt.ForeColor = Color.White;
         }
 
         private void ButtonStartPoe_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartPoe.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
-            ButtonStartPoe.Font = new Font(font.FontFamily, 13);
             ButtonStartPoe.ForeColor = Color.White;
         }
 
         private void ButtonStartPoed_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartPoed.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
-            ButtonStartPoed.Font = new Font(font.FontFamily, 13);
             ButtonStartPoed.ForeColor = Color.White;
         }
 
         private void ButtonStartTyr_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartTyr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
-            ButtonStartTyr.Font = new Font(font.FontFamily, 13);
             ButtonStartTyr.ForeColor = Color.White;
         }
 
         private void ButtonStartW3_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartW3.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
-            ButtonStartW3.Font = new Font(font.FontFamily, 13);
             ButtonStartW3.ForeColor = Color.White;
         }
 
         private void PictureBoxStartKing_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartKing.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.path_start_page;
-            ButtonStartKing.Font = new Font(font.FontFamily, 13);
             ButtonStartKing.ForeColor = Color.White;
         }
 
         private void PictureBoxStartWotr_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartWotr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.wotr_start_page;
-            ButtonStartWotr.Font = new Font(font.FontFamily, 13);
             ButtonStartWotr.ForeColor = Color.White;
         }
 
         private void PictureBoxStartRt_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartRt.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.rt_start_page;
-            ButtonStartRt.Font = new Font(font.FontFamily, 13);
             ButtonStartRt.ForeColor = Color.White;
         }
 
         private void PictureBoxStartPoe_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartPoe.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
-            ButtonStartPoe.Font = new Font(font.FontFamily, 13);
             ButtonStartPoe.ForeColor = Color.White;
         }
 
         private void PictureBoxStartPoed_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartPoed.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
-            ButtonStartPoed.Font = new Font(font.FontFamily, 13);
             ButtonStartPoed.ForeColor = Color.White;
         }
 
         private void PictureBoxStartTyr_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartTyr.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.tyr_start_page;
-            ButtonStartTyr.Font = new Font(font.FontFamily, 13);
             ButtonStartTyr.ForeColor = Color.White;
         }
 
         private void PictureBoxStartW3_MouseLeave(object sender, EventArgs e)
         {
-            var font = ButtonStartW3.Font;
-
             LayoutStartMenu.BackgroundImage = Resources.waste_start_page;
-            ButtonStartW3.Font = new Font(font.FontFamily, 13);
             ButtonStartW3.ForeColor = Color.White;
         }
 
@@ -1599,6 +1555,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 201;
             OpenPathSelectPage();
         }
 
@@ -1612,6 +1569,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 201;
             OpenPathSelectPage();
         }
 
@@ -1625,6 +1583,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
+            _activeMenuIndex = 202;
             OpenPathSelectPage();
         }
 
@@ -1638,6 +1597,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
+            _activeMenuIndex = 202;
             OpenPathSelectPage();
         }
 
@@ -1651,6 +1611,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 203;
             OpenPathSelectPage();
         }
 
@@ -1664,6 +1625,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
+            _activeMenuIndex = 203;
             OpenPathSelectPage();
         }
 
@@ -1677,6 +1639,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
+            _activeMenuIndex = 204;
             OpenPathSelectPage();
         }
 
@@ -1690,6 +1653,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 204;
             OpenPathSelectPage();
         }
 
@@ -1703,6 +1667,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 205;
             OpenPathSelectPage();
         }
 
@@ -1716,6 +1681,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 205;
             OpenPathSelectPage();
         }
 
@@ -1729,6 +1695,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 206;
             OpenPathSelectPage();
         }
 
@@ -1742,6 +1709,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 206;
             OpenPathSelectPage();
         }
 
@@ -1755,6 +1723,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 207;
             OpenPathSelectPage();
         }
 
@@ -1768,53 +1737,38 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            _activeMenuIndex = 207;
             OpenPathSelectPage();
         }
 
         private void LabelSelectPathResetPath_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelSelectPathResetPath.Font;
-
-            LabelSelectPathResetPath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
             LabelSelectPathResetPath.ForeColor = LabelSelectPathTitle.ForeColor;
         }
 
         private void LabelSelectPathResetPath_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelSelectPathResetPath.Font;
-
-            LabelSelectPathResetPath.Font = new Font(font.FontFamily, font.Size);
             LabelSelectPathResetPath.ForeColor = Color.White;
         }
 
         private void LabelSelectPathChoosePath_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelSelectPathChoosePath.Font;
-
-            LabelSelectPathChoosePath.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
             LabelSelectPathChoosePath.ForeColor = LabelSelectPathTitle.ForeColor;
         }
 
         private void LabelSelectPathChoosePath_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelSelectPathChoosePath.Font;
-
-            LabelSelectPathChoosePath.Font = new Font(font.FontFamily, font.Size);
             LabelSelectPathChoosePath.ForeColor = Color.White;
         }
 
         private void LabelSelectPathTitle_MouseEnter(object sender, EventArgs e)
         {
-            var font = LabelSelectPathTitle.Font;
-
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, font.Size, FontStyle.Underline);
+            
         }
 
         private void LabelSelectPathTitle_MouseLeave(object sender, EventArgs e)
         {
-            var font = LabelSelectPathTitle.Font;
-
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, font.Size, FontStyle.Regular);
+            
         }
 
         private void LabelSelectPathBackToStart_MouseEnter(object sender, EventArgs e)

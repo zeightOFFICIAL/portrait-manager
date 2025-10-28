@@ -2868,7 +2868,7 @@ namespace PortraitManager
             this.LabelSelectPathBackToStart.Name = "LabelSelectPathBackToStart";
             this.LabelSelectPathBackToStart.Size = new System.Drawing.Size(45, 21);
             this.LabelSelectPathBackToStart.TabIndex = 3;
-            this.LabelSelectPathBackToStart.Text = "◀";
+            this.LabelSelectPathBackToStart.Text = "◅ ";
             this.LabelSelectPathBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelSelectPathBackToStart.Click += new System.EventHandler(this.LabelSelectPathBackToStart_Click);
             this.LabelSelectPathBackToStart.MouseEnter += new System.EventHandler(this.LabelSelectPathBackToStart_MouseEnter);
@@ -2886,7 +2886,7 @@ namespace PortraitManager
             this.LabelSelectPathNextToMain.Name = "LabelSelectPathNextToMain";
             this.LabelSelectPathNextToMain.Size = new System.Drawing.Size(45, 21);
             this.LabelSelectPathNextToMain.TabIndex = 4;
-            this.LabelSelectPathNextToMain.Text = "▶";
+            this.LabelSelectPathNextToMain.Text = "▻";
             this.LabelSelectPathNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelSelectPathNextToMain.Click += new System.EventHandler(this.LabelSelectPathNextToMain_Click);
             this.LabelSelectPathNextToMain.MouseEnter += new System.EventHandler(this.LabelSelectPathNextToMain_MouseEnter);
@@ -2899,7 +2899,7 @@ namespace PortraitManager
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(734, 481);
-            this.Controls.Add(this.LayoutStartMenu);
+            this.Controls.Add(this.LayoutPathPage);
             this.Controls.Add(this.LayoutSettingsPage);
             this.Controls.Add(this.LayoutURLDialog);
             this.Controls.Add(this.LayoutFinalPage);
@@ -2908,7 +2908,7 @@ namespace PortraitManager
             this.Controls.Add(this.LayoutMainPage);
             this.Controls.Add(this.LayoutScalePage);
             this.Controls.Add(this.LayoutExtractPage);
-            this.Controls.Add(this.LayoutPathPage);
+            this.Controls.Add(this.LayoutStartMenu);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

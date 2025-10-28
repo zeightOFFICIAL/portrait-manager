@@ -36,7 +36,18 @@ namespace PortraitManager
 
         /*
          * 100 - Start page (initial page, with no game type active)
-         * 1 - Path page
+         * 150 - Path page
+         * 200 - Main page 
+         * (
+         *      201 - Pathfinder: Kingmaker, 
+         *      202 - Pathfinder: Wotr, 
+         *      203 - Rogue Trader
+         *      204 - Pillars of Eternity
+         *      205 - Pillars of Eternity: Deadfire
+         *      206 - Tyranny
+         *      207 - Wasteland 3
+         * )
+         * 
          * 2 - Menu page
          * 3 - File page
          * 4 - Scale page
@@ -99,33 +110,51 @@ namespace PortraitManager
             else if (CoreSettings.Default.GameType == 'w')
             {
                 _gameSelected = 'w';
+                _activeMenuIndex = 202;
             }
             else if (CoreSettings.Default.GameType == 'r')
             {
                 _gameSelected = 'r';
+                _activeMenuIndex = 203;
             }
             else if (CoreSettings.Default.GameType == 'p')
             {
                 _gameSelected = 'p';
+                _activeMenuIndex = 204;
             }
             else if (CoreSettings.Default.GameType == 'd')
             {
                 _gameSelected = 'd';
+                _activeMenuIndex = 205;
             }
             else if (CoreSettings.Default.GameType == 't')
             {
                 _gameSelected = 't';
+                _activeMenuIndex = 206;
             }
             else if (CoreSettings.Default.GameType == 'l')
             {
                 _gameSelected = 'l';
+                _activeMenuIndex = 207;
             }
             else
             {
                 _gameSelected = 'k';
+                _activeMenuIndex = 201;
             }
 
             Focus();
+
+
+
+
+
+
+
+
+
+
+
 
             //if (UseStamps.Default.isFirstAny)
             //{
@@ -257,6 +286,32 @@ namespace PortraitManager
             Focus();
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         private void LanguageInit()
         {
             if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
@@ -745,6 +800,17 @@ namespace PortraitManager
         }
 
         
+
+
+
+
+
+
+
+
+
+
+
 
         private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {

@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_CHOOSE" xml:space="preserve">
-    <value>Choose ⌕</value>
+    <value>Choose 📁</value>
   </data>
   <data name="BUTTON_RESET" xml:space="preserve">
-    <value>Reset ↺</value>
+    <value>Reset 🔄</value>
   </data>
   <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
-    <value>Portrait Manager 
+    <value>Zeight Portrait Manager 
 Artemii "Zeight" Saganenko ©2023-2024</value>
   </data>
   <data name="MAIN_MENU_TITLE" xml:space="preserve">

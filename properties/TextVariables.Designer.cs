@@ -61,7 +61,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose ⌕.
+        ///   Looks up a localized string similar to Choose 📁.
         /// </summary>
         internal static string BUTTON_CHOOSE {
             get {
@@ -70,7 +70,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset ↺.
+        ///   Looks up a localized string similar to Reset 🔄.
         /// </summary>
         internal static string BUTTON_RESET {
             get {
@@ -79,7 +79,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Portrait Manager 
+        ///   Looks up a localized string similar to Zeight Portrait Manager 
         ///Artemii &quot;Zeight&quot; Saganenko ©2023-2024.
         /// </summary>
         internal static string MAIN_MENU_AUTHOR {

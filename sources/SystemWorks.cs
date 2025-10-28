@@ -24,7 +24,31 @@ namespace SystemControl
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
         private static readonly string[] EXTENSIONS_ALLOWED = { ".jpg", ".jpeg", ".gif", ".bmp", ".png" };
         private const string TYPE_FILTER = "|*.jpg; *.jpeg; *.gif; *.bmp; *.png;| |*.*";
-        
+
+        public static PrivateFontCollection InitCustomFont(byte[] font, byte[] fontSecond)
+        {
+            PrivateFontCollection fontCollection = new PrivateFontCollection();
+
+            byte[] fontData = font;
+            byte[] fontDataSecond = fontSecond;
+            uint dummy = 0;
+            uint dummySecond = 0;
+            IntPtr fontPointer = Marshal.AllocCoTaskMem(fontData.Length);
+            IntPtr fontSecondPointer = Marshal.AllocCoTaskMem(fontDataSecond.Length);
+
+            Marshal.Copy(fontData, 0, fontPointer, fontData.Length);
+            Marshal.Copy(fontDataSecond, 0, fontSecondPointer, fontDataSecond.Length);
+            fontCollection.AddMemoryFont(fontPointer, font.Length);
+            fontCollection.AddMemoryFont(fontSecondPointer, fontSecond.Length);
+            AddFontMemResourceEx(fontPointer, (uint)font.Length, IntPtr.Zero, ref dummy);
+            AddFontMemResourceEx(fontSecondPointer, (uint)fontSecond.Length, IntPtr.Zero, ref dummySecond);
+            Marshal.FreeCoTaskMem(fontPointer);
+            Marshal.FreeCoTaskMem(fontSecondPointer);
+
+            return fontCollection;
+        }
+
+
         public class Readonly
         {
             public static bool DirectoryExists(string path)
@@ -198,28 +222,7 @@ namespace SystemControl
             }
         }
         
-        public static PrivateFontCollection InitCustomFont(byte[] font, byte[] fontSecond)
-        {
-            PrivateFontCollection fontCollection = new PrivateFontCollection();
-
-            byte[] fontData = font;
-            byte[] fontDataSecond = fontSecond;
-            uint dummy = 0;
-            uint dummySecond = 0;
-            IntPtr fontPointer = Marshal.AllocCoTaskMem(fontData.Length);
-            IntPtr fontSecondPointer = Marshal.AllocCoTaskMem(fontDataSecond.Length);
-
-            Marshal.Copy(fontData, 0, fontPointer, fontData.Length);
-            Marshal.Copy(fontDataSecond, 0, fontSecondPointer, fontDataSecond.Length);
-            fontCollection.AddMemoryFont(fontPointer, font.Length);
-            fontCollection.AddMemoryFont(fontSecondPointer, fontSecond.Length);
-            AddFontMemResourceEx(fontPointer, (uint)font.Length, IntPtr.Zero, ref dummy);
-            AddFontMemResourceEx(fontSecondPointer, (uint)fontSecond.Length, IntPtr.Zero, ref dummySecond);
-            Marshal.FreeCoTaskMem(fontPointer);
-            Marshal.FreeCoTaskMem(fontSecondPointer);
-
-            return fontCollection;
-        }
+        
         
         public static bool CopyFile(string fromPath, string toPath)
         {

@@ -808,16 +808,48 @@ namespace PortraitManager
 
 
 
-
-
-
-
         private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {
+            if (_gameSelected == 'k')
+            {
+                string selectedPath = LabelSelectPathSelected.Text;
 
-        }
+                if (string.IsNullOrEmpty(selectedPath) || selectedPath == "-" || selectedPath == " - ")
+                {
+                    LabelSelectPathTitle.Text = "wrong";
+                    return;
+                }
 
-        
+                try
+                {
+                    if (!ValidatePortraitPath(selectedPath))
+                    {
+                        LabelSelectPathTitle.Text = "wrong";
+                        return;
+                    }
+
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\pathfinder kingmaker\\"))
+                    {
+                        LabelSelectPathTitle.Text = "wrong";
+                        return;
+                    }
+
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 'k';
+                    CoreSettings.Default.Save();
+
+                    _activeMenuIndex = 201; 
+                    
+
+                    Focus(); 
+                }
+                catch (Exception)
+                {
+                    LabelSelectPathTitle.Text = "wrong";
+                }
+            }
+        }       
 
         private void LayoutPathPage_Paint(object sender, PaintEventArgs e)
         {

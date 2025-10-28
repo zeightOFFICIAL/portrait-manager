@@ -1555,7 +1555,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 201;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1569,7 +1569,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 201;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1583,7 +1583,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
-            _activeMenuIndex = 202;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1597,7 +1597,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
-            _activeMenuIndex = 202;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1611,7 +1611,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 203;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1625,7 +1625,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
-            _activeMenuIndex = 203;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1639,7 +1639,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
-            _activeMenuIndex = 204;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1653,7 +1653,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 204;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1667,7 +1667,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 205;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1681,7 +1681,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 205;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1695,7 +1695,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 206;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1709,7 +1709,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 206;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1723,7 +1723,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 207;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 
@@ -1737,7 +1737,7 @@ namespace PortraitManager
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
-            _activeMenuIndex = 207;
+            _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
 

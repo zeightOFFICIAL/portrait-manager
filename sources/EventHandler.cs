@@ -571,7 +571,7 @@ namespace PortraitManager
             //}
 
             ButtonToMainPage3_Click(sender, e);
-            RootFunctions.LayoutDisable(LayoutMainPage);
+            //RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutFilePage);
             Focus();
             RestoreFilePageToInit();
@@ -1025,7 +1025,7 @@ namespace PortraitManager
             _isAnyLoadedToPortraitPage = false;
             ParentLayoutsDisable();
             System.Diagnostics.Process.Start(LabelDirLoc.Text);
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            //RootFunctions.LayoutEnable(LayoutMainPage);
             Focus();
             ButtonToMainPageAndFolder.Enabled = true;
         }
@@ -1165,9 +1165,9 @@ namespace PortraitManager
             //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
 
-            PicBoxEng.Enabled = false;
-            PicBoxGer.Enabled = true;
-            PicBoxRus.Enabled = true;
+            //PicBoxEng.Enabled = false;
+            //PicBoxGer.Enabled = true;
+            //PicBoxRus.Enabled = true;
         }
         
         private void PicBoxRus_Click(object sender, EventArgs e)
@@ -1180,9 +1180,9 @@ namespace PortraitManager
             //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
 
-            PicBoxEng.Enabled = true;
-            PicBoxGer.Enabled = true;
-            PicBoxRus.Enabled = false;
+            //PicBoxEng.Enabled = true;
+            //PicBoxGer.Enabled = true;
+            //PicBoxRus.Enabled = false;
         }
         
         private void PicBoxGer_Click(object sender, EventArgs e)
@@ -1195,9 +1195,9 @@ namespace PortraitManager
             //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
             TextsInit();
 
-            PicBoxEng.Enabled = true;
-            PicBoxGer.Enabled = false;
-            PicBoxRus.Enabled = true;
+            //PicBoxEng.Enabled = true;
+            //PicBoxGer.Enabled = false;
+            //PicBoxRus.Enabled = true;
         }
 
         private void ButtonRT_Click(object sender, EventArgs e)
@@ -1552,10 +1552,11 @@ namespace PortraitManager
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXTRACT;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
+            
             OpenPathSelectPage();
         }
 
@@ -1566,7 +1567,7 @@ namespace PortraitManager
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXTRACT;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1608,7 +1609,7 @@ namespace PortraitManager
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_SETTINGS;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1622,7 +1623,7 @@ namespace PortraitManager
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_SETTINGS;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1636,7 +1637,7 @@ namespace PortraitManager
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_BROWSE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1650,7 +1651,7 @@ namespace PortraitManager
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_PILLARS;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_BROWSE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1664,7 +1665,7 @@ namespace PortraitManager
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_CREATE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1678,7 +1679,7 @@ namespace PortraitManager
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_DEADFIRE;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_CREATE;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1692,7 +1693,7 @@ namespace PortraitManager
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXIT;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1706,7 +1707,7 @@ namespace PortraitManager
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
-            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
+            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXIT;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1826,6 +1827,86 @@ namespace PortraitManager
         private void PictureBoxStartOpenGithub_Click(object sender, EventArgs e)
         {
             Process.Start(new ProcessStartInfo { FileName = "https://github.com/zeightOFFICIAL/portrait-manager/", UseShellExecute = true });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void LabelCreatePortrait_MouseEnter(object sender, EventArgs e)
+        {
+            LabelCreatePortrait.Text = "◈" + LabelCreatePortrait.Text;
+            LabelCreatePortrait.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelCreatePortrait_MouseLeave(object sender, EventArgs e)
+        {
+            LabelCreatePortrait.Text = LabelCreatePortrait.Text.Replace("◈", "");
+            LabelCreatePortrait.ForeColor = Color.White;
+        }
+
+        private void LabelExtract_MouseEnter(object sender, EventArgs e)
+        {
+            LabelExtract.Text = "◈" + LabelExtract.Text;
+            LabelExtract.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelExtract_MouseLeave(object sender, EventArgs e)
+        {
+            LabelExtract.Text = LabelExtract.Text.Replace("◈", "");
+            LabelExtract.ForeColor = Color.White;
+        }
+
+        private void LabelBrowse_MouseEnter(object sender, EventArgs e)
+        {
+            LabelBrowse.Text = "◈" + LabelBrowse.Text;
+            LabelBrowse.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelBrowse_MouseLeave(object sender, EventArgs e)
+        {
+            LabelBrowse.Text = LabelBrowse.Text.Replace("◈", "");
+            LabelBrowse.ForeColor = Color.White;
+        }
+
+        private void LabelSettingsPage_MouseEnter(object sender, EventArgs e)
+        {
+            LabelSettingsPage.Text = "◈" + LabelSettingsPage.Text;
+            LabelSettingsPage.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelSettingsPage_MouseLeave(object sender, EventArgs e)
+        {
+            LabelSettingsPage.Text = LabelSettingsPage.Text.Replace("◈", "");
+            LabelSettingsPage.ForeColor = Color.White;
+        }
+
+        private void LabelExit_MouseEnter(object sender, EventArgs e)
+        {
+            LabelExit.Text = "◈" + LabelExit.Text;
+            LabelExit.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelExit_MouseLeave(object sender, EventArgs e)
+        {
+            LabelExit.Text = LabelExit.Text.Replace("◈", "");
+            LabelExit.ForeColor = Color.White;
         }
     }
 }

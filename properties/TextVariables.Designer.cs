@@ -61,6 +61,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse gallery.
+        /// </summary>
+        internal static string BUTTON_BROWSE {
+            get {
+                return ResourceManager.GetString("BUTTON_BROWSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose 📁.
         /// </summary>
         internal static string BUTTON_CHOOSE {
@@ -70,11 +79,47 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create portrait.
+        /// </summary>
+        internal static string BUTTON_CREATE {
+            get {
+                return ResourceManager.GetString("BUTTON_CREATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string BUTTON_EXIT {
+            get {
+                return ResourceManager.GetString("BUTTON_EXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extract folder.
+        /// </summary>
+        internal static string BUTTON_EXTRACT {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset 🔄.
         /// </summary>
         internal static string BUTTON_RESET {
             get {
                 return ResourceManager.GetString("BUTTON_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        internal static string BUTTON_SETTINGS {
+            get {
+                return ResourceManager.GetString("BUTTON_SETTINGS", resourceCulture);
             }
         }
         
@@ -157,51 +202,6 @@ namespace PortraitManager.Properties {
         internal static string NAME_WOTR {
             get {
                 return ResourceManager.GetString("NAME_WOTR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_EXPLAIN_PATH_DEADFIRE {
-            get {
-                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_DEADFIRE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_EXPLAIN_PATH_KING {
-            get {
-                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_KING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_EXPLAIN_PATH_PILLARS {
-            get {
-                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_PILLARS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_EXPLAIN_PATH_ROGUE {
-            get {
-                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_ROGUE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TEXT_EXPLAIN_PATH_TYR {
-            get {
-                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_TYR", resourceCulture);
             }
         }
         

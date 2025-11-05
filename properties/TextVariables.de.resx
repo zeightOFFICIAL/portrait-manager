@@ -151,4 +151,19 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="NAME_WOTR" xml:space="preserve">
     <value>Pathfinder: Wrath of the Righteous</value>
   </data>
+  <data name="BUTTON_EXTRACT" xml:space="preserve">
+    <value>Extract folder</value>
+  </data>
+  <data name="BUTTON_BROWSE" xml:space="preserve">
+    <value>Browse gallery</value>
+  </data>
+  <data name="BUTTON_CREATE" xml:space="preserve">
+    <value>Create portrait</value>
+  </data>
+  <data name="BUTTON_EXIT" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="BUTTON_SETTINGS" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

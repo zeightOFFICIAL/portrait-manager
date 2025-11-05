@@ -26,6 +26,7 @@ using System.Drawing.Text;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using System.Linq;
 
 
 namespace PortraitManager
@@ -98,6 +99,7 @@ namespace PortraitManager
             CenterToScreen();
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutStartMenu);
             LoadText();
             LoadFont(_fontCollection);     
 
@@ -551,7 +553,7 @@ namespace PortraitManager
 
             ReplacePictureBoxImagesToDefault();
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            //RootFunctions.LayoutEnable(LayoutMainPage);
 
             Focus();
         }
@@ -565,7 +567,7 @@ namespace PortraitManager
             ClearImageListsSync(ListExtract, ImgListExtract);
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            //RootFunctions.LayoutEnable(LayoutMainPage);
 
             Focus();
         }
@@ -578,7 +580,7 @@ namespace PortraitManager
             ClearImageListsSync(ListGallery, ImgListGallery);
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            //RootFunctions.LayoutEnable(LayoutMainPage);
 
             Focus();
         }
@@ -594,7 +596,7 @@ namespace PortraitManager
 
             ParentLayoutsDisable();
             RootFunctions.LayoutDisable(LayoutFinalPage);
-            RootFunctions.LayoutEnable(LayoutMainPage);
+            //RootFunctions.LayoutEnable(LayoutMainPage);
 
             Focus();
         }
@@ -623,7 +625,7 @@ namespace PortraitManager
         {
             _activeMenuIndex = 5;
 
-            RootFunctions.LayoutDisable(LayoutMainPage);
+            //RootFunctions.LayoutDisable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutSettingsPage);
 
             //TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
@@ -799,7 +801,7 @@ namespace PortraitManager
             }
         }
 
-        
+
 
 
 
@@ -810,46 +812,251 @@ namespace PortraitManager
 
         private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {
+            string selectedPath = LabelSelectPathSelected.Text;
+            if (string.IsNullOrEmpty(selectedPath) || selectedPath == "-" || selectedPath == " - ")
+            {
+                return;
+            }
             if (_gameSelected == 'k')
             {
-                string selectedPath = LabelSelectPathSelected.Text;
-
-                if (string.IsNullOrEmpty(selectedPath) || selectedPath == "-" || selectedPath == " - ")
-                {
-                    LabelSelectPathTitle.Text = "wrong";
-                    return;
-                }
-
                 try
                 {
                     if (!ValidatePortraitPath(selectedPath))
                     {
-                        LabelSelectPathTitle.Text = "wrong";
                         return;
                     }
-
                     selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
                     if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\pathfinder kingmaker\\"))
                     {
-                        LabelSelectPathTitle.Text = "wrong";
                         return;
                     }
-
+                    if (selectedPath.Contains("portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("portraits", "");
+                    }
                     CoreSettings.Default.GamePath = selectedPath;
                     CoreSettings.Default.GameType = 'k';
                     CoreSettings.Default.Save();
-
-                    _activeMenuIndex = 201; 
-                    
-
-                    Focus(); 
+                    LayoutMainPage.BackgroundImage = Resources.path_menu_page;
+                    _activeMenuIndex = 201;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
                 }
                 catch (Exception)
                 {
-                    LabelSelectPathTitle.Text = "wrong";
+                    return;
                 }
             }
-        }       
+            else if (_gameSelected == 'w')
+            {
+                try
+                {
+                    if (!ValidatePortraitPath(selectedPath))
+                    {
+                        return;
+                    }
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\pathfinder wrath of the righteous\\"))
+                    {
+                        return;
+                    }
+                    if (selectedPath.Contains("portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("portraits", "");
+                    }
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 'w';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.wotr_menu_page;
+                    _activeMenuIndex = 202;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'r')
+            {
+                try
+                {
+                    if (!ValidatePortraitPath(selectedPath))
+                    {
+                        return;
+                    }
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\warhammer 40000 rogue trader\\"))
+                    {
+                        return;
+                    }
+                    if (selectedPath.Contains("portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("portraits", "");
+                    }
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 'r';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.rt_menu_page;
+                    _activeMenuIndex = 203;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'p')
+            {
+                try
+                {
+                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
+                    {
+                        return;
+                    }
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\pillarsofeternity_data\\") || !selectedPath.Contains("\\portraits"))
+                    {
+                        return;
+                    }
+                    if (selectedPath.Contains("portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("portraits", "");
+                    }
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 'p';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.poe_menu_page;
+                    _activeMenuIndex = 204;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'd')
+            {
+                try
+                {
+                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
+                    {
+                        return;
+                    }
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\pillarsofeternityii_data\\") || !selectedPath.Contains("\\portraits"))
+                    {
+                        return;
+                    }
+                    if (selectedPath.Contains("portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("portraits", "");
+                    }
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 'd';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.poed_menu_page;
+                    _activeMenuIndex = 205;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 't')
+            {
+                try
+                {
+                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
+                    {
+                        return;
+                    }
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\tyranny_data\\") || !selectedPath.Contains("\\portraits"))
+                    {
+                        return;
+                    }
+                    if (selectedPath.Contains("portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("portraits", "");
+                    }
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 't';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.tyr_menu_page;
+                    _activeMenuIndex = 206;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'l')
+            {
+                try
+                {
+                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
+                    {
+                        return;
+                    }
+                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
+                    if (!selectedPath.Contains("\\my games\\wasteland3\\") || !selectedPath.Contains("\\custom portraits"))
+                    {
+                        return;
+                    }
+                    if (selectedPath.Contains("custom portraits"))
+                    {
+                        selectedPath = selectedPath.Replace("custom portraits", "");
+                    }
+                    CoreSettings.Default.GamePath = selectedPath;
+                    CoreSettings.Default.GameType = 'l';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.waste_menu_page;
+                    _activeMenuIndex = 207;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void LayoutPathPage_Paint(object sender, PaintEventArgs e)
         {

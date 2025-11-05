@@ -30,9 +30,9 @@ namespace PortraitManager
     public partial class MainForm : Form
     {
         private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
-            Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
+            Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Kingmaker\\Portraits",
+            + "\\Owlcat Games\\Pathfinder Kingmaker\\",
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 185},
@@ -49,7 +49,7 @@ namespace PortraitManager
         private static readonly GameType WOTR_TYPE = new GameType("Pathfinder: Wrath of the Righteous", "Wrath of the Righteous", "Portrait Manager: Owlcat (Wotr)",
             Resources.wotr_title, Resources.wotr_start_page, Resources.wotr_placeholder, Resources.wotr_icon_ico, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\Portraits",
+            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\",
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 185},
@@ -66,7 +66,7 @@ namespace PortraitManager
         private static readonly GameType ROGUE_TYPE = new GameType("Warhammer 40K: Rogue Trader", "Rogue Trader", "Portrait Manager: Owlcat (RT)",
             Resources.rt_title, Resources.rt_start_page, Resources.rt_placeholder, Resources.rt_icon_ico, Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\Portraits",
+            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\",
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 260},

@@ -36,16 +36,16 @@ namespace PortraitManager
 
         public void AddClickEventsToMainButtons()
         {
-            RootFunctions.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
-            RootFunctions.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
-            RootFunctions.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+            //RootFunctions.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
+            //RootFunctions.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
+            //RootFunctions.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
 
         public void RemoveClickEventsFromMainButtons()
         {
-            RootFunctions.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
-            RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
-            RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
+            //RootFunctions.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
+            //RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
+            //RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
         }
 
         public void AddClickEventsToCustomPortraitsButtons()
@@ -429,11 +429,11 @@ namespace PortraitManager
                  bebasNeueUnder = new Font(fonts.Families[family], underSize),
                  bebasNeueSmall = new Font(fonts.Families[family], smallSize);
 
-            ButtonToFilePage.Font = bebasNeueHead;
-            ButtonToExtractPage.Font = bebasNeueHead;
-            ButtonToGalleryPage.Font = bebasNeueHead;
-            ButtonToSettingsPage.Font = bebasNeueHead;
-            ButtonExit.Font = bebasNeueHead;
+            //ButtonToFilePage.Font = bebasNeueHead;
+            //ButtonToExtractPage.Font = bebasNeueHead;
+            //ButtonToGalleryPage.Font = bebasNeueHead;
+            //ButtonToSettingsPage.Font = bebasNeueHead;
+            //ButtonExit.Font = bebasNeueHead;
             ButtonKingmaker.Font = bebasNeueHead;
             ButtonWotR.Font = bebasNeueHead;
             LabelSelectedPath23.Font = bebasNeueUnder;
@@ -484,11 +484,11 @@ namespace PortraitManager
         {
             Font defFont12 = new Font(DefaultFont.FontFamily, defSize);
 
-            ButtonToFilePage.Font = defFont12;
-            ButtonToExtractPage.Font = defFont12;
-            ButtonToGalleryPage.Font = defFont12;
-            ButtonToSettingsPage.Font = defFont12;
-            ButtonExit.Font = defFont12;
+            //ButtonToFilePage.Font = defFont12;
+            //ButtonToExtractPage.Font = defFont12;
+            //ButtonToGalleryPage.Font = defFont12;
+            //ButtonToSettingsPage.Font = defFont12;
+            //ButtonExit.Font = defFont12;
             ButtonKingmaker.Font = defFont12;
             ButtonWotR.Font = defFont12;
             LabelSelectedPath23.Font = defFont12;
@@ -600,19 +600,19 @@ namespace PortraitManager
             if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
                                    || ctrl.Equals(LayoutFinalPage)
                                    || ctrl.Equals(LayoutSettingsPage)
-                                   || ctrl.Equals(LayoutLang)
+                                   //|| ctrl.Equals(LayoutLang)
                                    || ctrl.Equals(LayoutStartMenu))
             {
                 return;
             }
 
-            if (ctrl.Equals(LabelCopyright) || ctrl.Equals(LabelVersion) ||
-                ctrl.Equals(LblPointerToFilePage) ||
-                ctrl.Equals(LblPointerToGalleryPage))
-            {
-                ctrl.ForeColor = a;
-                return;
-            }
+            //if (ctrl.Equals(LabelCopyright) || ctrl.Equals(LabelVersion) ||
+            //    ctrl.Equals(LblPointerToFilePage) ||
+            //    ctrl.Equals(LblPointerToGalleryPage))
+            //{
+            //    ctrl.ForeColor = a;
+            //    return;
+            //}
 
             ctrl.ForeColor = a;
             ctrl.BackColor = b;
@@ -954,7 +954,7 @@ namespace PortraitManager
         public static bool ValidatePortraitPath(string path)
         {
             if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
-                path.Split('\\').Last() == "Portraits")
+                (path.Split('\\').Last() == "Portraits" || SystemControl.FileControl.Readonly.DirectoryExists(path + "Portraits")))
             {
                 return true;
             }
@@ -1044,11 +1044,18 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
             LabelSelectPathChoosePath.Text = TextVariables.BUTTON_CHOOSE;
             LabelSelectPathResetPath.Text = TextVariables.BUTTON_RESET;
+            LabelCreatePortrait.Text = TextVariables.BUTTON_CREATE;
+            LabelExtract.Text = TextVariables.BUTTON_EXTRACT;
+            LabelBrowse.Text = TextVariables.BUTTON_BROWSE;
+            LabelSettingsPage.Text = TextVariables.BUTTON_SETTINGS;
+            LabelExit.Text = TextVariables.BUTTON_EXIT;
         }
 
         public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int initSize = 9)
         {
-            Font bebasNeueFullHeader = new Font(fonts.Families[familyLang], initSize + 16),
+            Font bebasNeueMainPage = new Font(fonts.Families[familyLang], initSize + 35),
+                 bebasNeueMainPage2 = new Font(fonts.Families[familyLang], initSize + 21),
+                 bebasNeueFullHeader = new Font(fonts.Families[familyLang], initSize + 16),
                  bebasNeueHead = new Font(fonts.Families[familyLang], initSize + 12),
                  bebasNeueUnder = new Font(fonts.Families[familyLang], initSize + 8),
                  bebasNeueMedium = new Font(fonts.Families[familyLang], initSize + 4),
@@ -1064,11 +1071,15 @@ namespace PortraitManager
             LabelSelectPathTitle.Font = bebasNeueFullHeader;
             LabelSelectPathChoosePath.Font = bebasNeueUnder;
             LabelSelectPathResetPath.Font = bebasNeueUnder;
+            LabelCreatePortrait.Font = bebasNeueMainPage;
+            LabelExtract.Font = bebasNeueMainPage2;
+            LabelBrowse.Font = bebasNeueMainPage2;
+            LabelSettingsPage.Font = bebasNeueMainPage2;
+            LabelExit.Font = bebasNeueMainPage2;
         }
 
         private void OpenPathSelectPage()
         {
-            _activeMenuIndex = 1;
             ParentLayoutsDisable();
             LabelSelectPathResetPath_Click(this, new EventArgs());
             RootFunctions.LayoutEnable(LayoutPathPage);

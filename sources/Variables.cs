@@ -125,7 +125,7 @@ namespace PortraitManager
         private static readonly GameType WASTE_TYPE = new GameType("Wasteland 3", "Wasteland 3", "Portrait Manager: inXile (W3)",
             Resources.waste_title, Resources.waste_start_page, Resources.waste_placeholder, Resources.waste_icon_ico, Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            + "\\My Games\\Wasteland3",
+            + "\\My Games\\Wasteland3\\",
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 256},

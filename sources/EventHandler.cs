@@ -1,10 +1,18 @@
 ﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games, 
+    Obsidian Entertainment and inXile Entertainment. 
+    Including: 
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous, 
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity, 
+        5. Pillars of Eternity: Deadfire, 
+        6. Tyranny,
+        7. Wasteland 3.
     Copyright (C) 2024 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file.
+    GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
 
@@ -1377,6 +1385,9 @@ namespace PortraitManager
 
 
 
+
+
+
         private void ButtonStartKing_MouseEnter(object sender, EventArgs e)
         {
             LayoutStartMenu.BackgroundImage = Resources.path_start_page;
@@ -1560,7 +1571,7 @@ namespace PortraitManager
             OpenPathSelectPage();
         }
 
-        private void PictureBoxStarKing_Click(object sender, EventArgs e)
+        private void PictureBoxStartKing_Click(object sender, EventArgs e)
         {
             var font = LabelSelectPathTitle.Font;
 
@@ -1829,26 +1840,6 @@ namespace PortraitManager
             Process.Start(new ProcessStartInfo { FileName = "https://github.com/zeightOFFICIAL/portrait-manager/", UseShellExecute = true });
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void LabelCreatePortrait_MouseEnter(object sender, EventArgs e)
         {
             LabelCreatePortrait.Text = "◈" + LabelCreatePortrait.Text;
@@ -1907,6 +1898,19 @@ namespace PortraitManager
         {
             LabelExit.Text = LabelExit.Text.Replace("◈", "");
             LabelExit.ForeColor = Color.White;
+        }
+
+        private void LabelExit_Click(object sender, EventArgs e)
+        {
+            DisposePrimeImages();
+            ClearImageListsSync(ListGallery, ImgListGallery);
+            ClearImageListsSync(ListExtract, ImgListExtract);
+            SystemControl.FileControl.ClearTempImages();
+            CoreSettings.Default.GamePath = "0";
+            CoreSettings.Default.GameType = '-';
+            CoreSettings.Default.Save();
+            Dispose();
+            Application.Exit();
         }
     }
 }

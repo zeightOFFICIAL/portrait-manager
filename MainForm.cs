@@ -27,6 +27,8 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using System.Linq;
+using SystemControl;
+using System.IO;
 
 
 namespace PortraitManager
@@ -93,7 +95,7 @@ namespace PortraitManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {            
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
+            _fontCollection = FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
             _activeMenuIndex = 65535;
             SetClientSizeCore(750, 520);
             CenterToScreen();
@@ -101,7 +103,8 @@ namespace PortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
             LoadText();
-            LoadFont(_fontCollection);     
+            LoadFont(_fontCollection);
+            LabelSelectPathSelected.Text = CoreSettings.Default.GamePath;
 
             if (CoreSettings.Default.GameType == '-')
             {
@@ -113,48 +116,47 @@ namespace PortraitManager
             {
                 _gameSelected = 'w';
                 _activeMenuIndex = 202;
+                LabelSelectPathNextToMain_Click(sender, e);
+
             }
             else if (CoreSettings.Default.GameType == 'r')
             {
                 _gameSelected = 'r';
                 _activeMenuIndex = 203;
+                LabelSelectPathNextToMain_Click(sender, e);
             }
             else if (CoreSettings.Default.GameType == 'p')
             {
                 _gameSelected = 'p';
                 _activeMenuIndex = 204;
+                LabelSelectPathNextToMain_Click(sender, e);
             }
             else if (CoreSettings.Default.GameType == 'd')
             {
                 _gameSelected = 'd';
                 _activeMenuIndex = 205;
+                LabelSelectPathNextToMain_Click(sender, e);
             }
             else if (CoreSettings.Default.GameType == 't')
             {
                 _gameSelected = 't';
                 _activeMenuIndex = 206;
+                LabelSelectPathNextToMain_Click(sender, e);
             }
             else if (CoreSettings.Default.GameType == 'l')
             {
                 _gameSelected = 'l';
                 _activeMenuIndex = 207;
+                LabelSelectPathNextToMain_Click(sender, e);
             }
-            else
+            else 
             {
                 _gameSelected = 'k';
                 _activeMenuIndex = 201;
+                LabelSelectPathNextToMain_Click(sender, e);
             }
 
             Focus();
-
-
-
-
-
-
-
-
-
 
 
 
@@ -641,7 +643,7 @@ namespace PortraitManager
             DisposePrimeImages();
             ClearImageListsSync(ListGallery, ImgListGallery);
             ClearImageListsSync(ListExtract, ImgListExtract);
-            SystemControl.FileControl.ClearTempImages();
+            FileControl.ClearTempImages();
             Dispose();
             Application.Exit();
         }
@@ -813,6 +815,9 @@ namespace PortraitManager
         private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {
             string selectedPath = LabelSelectPathSelected.Text;
+            CoreSettings.Default.GamePath = "0";
+            CoreSettings.Default.GameType = '-';
+            CoreSettings.Default.Save();
             if (string.IsNullOrEmpty(selectedPath) || selectedPath == "-" || selectedPath == " - ")
             {
                 return;
@@ -825,15 +830,26 @@ namespace PortraitManager
                     {
                         return;
                     }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\pathfinder kingmaker\\"))
+                    if (!selectedPath.Contains("Pathfinder Kingmaker"))
                     {
                         return;
                     }
-                    if (selectedPath.Contains("portraits"))
+                    else
                     {
-                        selectedPath = selectedPath.Replace("portraits", "");
+                        selectedPath = selectedPath.Split(new string[] { "\\Pathfinder Kingmaker\\" }, StringSplitOptions.None)[0] + "\\Pathfinder Kingmaker\\";
+                        LabelSelectPathSelected.Text = selectedPath;
+                        if (FileControl.Readonly.DirectoryExists(selectedPath + "Areas"))
+                        {
+                            FileControl.CreateDirectory(selectedPath + "\\Portraits");
+                            FileControl.CreateDirectory(selectedPath + "\\Portraits - Army");
+                            FileControl.CreateDirectory(selectedPath + "\\Portraits - Npc");
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
+                        
                     CoreSettings.Default.GamePath = selectedPath;
                     CoreSettings.Default.GameType = 'k';
                     CoreSettings.Default.Save();
@@ -976,18 +992,27 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
+                    if (!FileControl.Readonly.DirectoryExists(selectedPath))
                     {
                         return;
                     }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\tyranny_data\\") || !selectedPath.Contains("\\portraits"))
+                    if (!selectedPath.Contains("Tyranny"))
                     {
                         return;
                     }
-                    if (selectedPath.Contains("portraits"))
+                    else
                     {
-                        selectedPath = selectedPath.Replace("portraits", "");
+                        selectedPath = selectedPath.Split(new string[] { "\\Tyranny\\" }, StringSplitOptions.None)[0];
+                        LabelSelectPathSelected.Text = selectedPath;
+                        if (FileControl.Readonly.DirectoryExists(selectedPath + "\\Data\\data\\art\\gui\\icons\\abilities"))
+                        {                            
+                            FileControl.CreateDirectory(selectedPath + "Data\\data\\art\\gui\\portraits\\player\\male");
+                            FileControl.CreateDirectory(selectedPath + "Data\\data\\art\\gui\\portraits\\player\\female");
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                     CoreSettings.Default.GamePath = selectedPath;
                     CoreSettings.Default.GameType = 't';
@@ -1007,18 +1032,26 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
+                    if (!FileControl.Readonly.DirectoryExists(selectedPath))
                     {
                         return;
                     }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\my games\\wasteland3\\") || !selectedPath.Contains("\\custom portraits"))
+                    if (!selectedPath.Contains("My Games\\Wasteland3"))
                     {
                         return;
                     }
-                    if (selectedPath.Contains("custom portraits"))
+                    else
                     {
-                        selectedPath = selectedPath.Replace("custom portraits", "");
+                        selectedPath = selectedPath.Split(new string[] { "\\Wasteland3\\" }, StringSplitOptions.None)[0] + "\\Wasteland3\\";
+                        LabelSelectPathSelected.Text = selectedPath;
+                        if (FileControl.Readonly.DirectoryExists(selectedPath + "Save Games"))
+                        {
+                            FileControl.CreateDirectory(selectedPath + "\\Custom Portraits");
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                     CoreSettings.Default.GamePath = selectedPath;
                     CoreSettings.Default.GameType = 'l';

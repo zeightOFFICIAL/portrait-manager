@@ -961,20 +961,37 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
-                    {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                         return;
-                    }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\pillarsofeternityii_data\\") || !selectedPath.Contains("\\portraits"))
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                           !dir.Name.Equals("Pillars of Eternity II Deadfire", StringComparison.OrdinalIgnoreCase) &&
+                           !dir.Name.Equals("Pillars of Eternity II", StringComparison.OrdinalIgnoreCase) &&
+                           !dir.Name.Equals("PillarsOfEternityII", StringComparison.OrdinalIgnoreCase) &&
+                           !dir.Name.Equals("Pillars of Eternity II - Deadfire", StringComparison.OrdinalIgnoreCase))
                     {
+                        dir = dir.Parent;
+                    }
+
+                    if (dir == null)
                         return;
-                    }
-                    if (selectedPath.Contains("portraits"))
-                    {
-                        selectedPath = selectedPath.Replace("portraits", "");
-                    }
-                    CoreSettings.Default.GamePath = selectedPath;
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    
+                    string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternityII_Data", "gui", "portraits");
+                    if (!Directory.Exists(portraitsRoot))
+                        return;
+
+                    string maleDir = Path.Combine(portraitsRoot, "player", "male");
+                    string femaleDir = Path.Combine(portraitsRoot, "player", "female");
+                    Directory.CreateDirectory(maleDir);
+                    Directory.CreateDirectory(femaleDir);
+
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'd';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.poed_menu_page;
@@ -992,29 +1009,28 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!FileControl.Readonly.DirectoryExists(selectedPath))
-                    {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                         return;
-                    }
-                    if (!selectedPath.Contains("Tyranny"))
-                    {
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null && !dir.Name.Equals("Tyranny", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+                    if (dir == null)
                         return;
-                    }
-                    else
-                    {
-                        selectedPath = selectedPath.Split(new string[] { "\\Tyranny\\" }, StringSplitOptions.None)[0];
-                        LabelSelectPathSelected.Text = selectedPath;
-                        if (FileControl.Readonly.DirectoryExists(selectedPath + "\\Data\\data\\art\\gui\\icons\\abilities"))
-                        {                            
-                            FileControl.CreateDirectory(selectedPath + "Data\\data\\art\\gui\\portraits\\player\\male");
-                            FileControl.CreateDirectory(selectedPath + "Data\\data\\art\\gui\\portraits\\player\\female");
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    CoreSettings.Default.GamePath = selectedPath;
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string checkPath = Path.Combine(rootPath, "Data", "data", "art", "gui", "icons", "abilities");
+
+                    if (!Directory.Exists(checkPath))
+                        return;
+
+                    string maleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "male");
+                    string femaleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "female");
+                    Directory.CreateDirectory(maleDir);
+                    Directory.CreateDirectory(femaleDir);
+
+                    LabelSelectPathSelected.Text = rootPath.ToLower();
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 't';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.tyr_menu_page;
@@ -1032,28 +1048,22 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!FileControl.Readonly.DirectoryExists(selectedPath))
-                    {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                         return;
-                    }
-                    if (!selectedPath.Contains("My Games\\Wasteland3"))
-                    {
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null && !dir.Name.Equals("Wasteland3", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+                    if (dir == null)
                         return;
-                    }
-                    else
-                    {
-                        selectedPath = selectedPath.Split(new string[] { "\\Wasteland3\\" }, StringSplitOptions.None)[0] + "\\Wasteland3\\";
-                        LabelSelectPathSelected.Text = selectedPath;
-                        if (FileControl.Readonly.DirectoryExists(selectedPath + "Save Games"))
-                        {
-                            FileControl.CreateDirectory(selectedPath + "\\Custom Portraits");
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    CoreSettings.Default.GamePath = selectedPath;
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+
+                    string customPortraits = Path.Combine(rootPath, "Custom Portraits");
+                    Directory.CreateDirectory(customPortraits);
+
+                    LabelSelectPathSelected.Text = rootPath.ToLower();
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'l';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.waste_menu_page;

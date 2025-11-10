@@ -1805,7 +1805,7 @@ namespace PortraitManager
 
         private void LabelSelectPathResetPath_Click(object sender, EventArgs e)
         {
-            LabelSelectPathSelected.Text = GameTypes[_gameSelected].DefaultDirectory;
+            LabelSelectPathSelected.Text = GameTypes[_gameSelected].DefaultDirectory.ToLower();
             if (LabelSelectPathSelected.Text == "")
             {
                 LabelSelectPathSelected.Text = " - ";

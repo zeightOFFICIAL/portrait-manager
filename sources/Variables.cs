@@ -16,19 +16,187 @@
     License header for this project is listed in Program.cs.
 */
 
+using Microsoft.Win32;
 using PortraitManager.forms;
-using PortraitManager.sources;
 using PortraitManager.Properties;
-
-using System.Windows.Forms;
-using System.Drawing;
+using PortraitManager.sources;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace PortraitManager
 {    
     public partial class MainForm : Form
     {
+        private static string DetectTyrannyInstall()
+        {
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+                {
+                    var steamPath = key?.GetValue("SteamPath") as string;
+                    if (!string.IsNullOrEmpty(steamPath))
+                    {
+                        var steamLibs = new[]
+                        {
+                            Path.Combine(steamPath, "steamapps", "common", "Tyranny"),
+                            Path.Combine(steamPath, "steamapps", "common", "Tyranny - Bastard’s Wound")
+                        };
+
+                        foreach (var path in steamLibs)
+                        {
+                            if (Directory.Exists(Path.Combine(path, "Data", "data", "art", "gui", "icons", "abilities")))
+                                return new DirectoryInfo(path).FullName;
+                        }
+
+                        var vdf = Path.Combine(steamPath, "steamapps", "libraryfolders.vdf");
+                        if (File.Exists(vdf))
+                        {
+                            foreach (var line in File.ReadAllLines(vdf))
+                            {
+                                if (!line.Contains(":\\") && !line.Contains("/")) continue;
+                                var clean = line.Split('"', (char)StringSplitOptions.RemoveEmptyEntries);
+                                foreach (var s in clean)
+                                {
+                                    if (Directory.Exists(Path.Combine(s, "steamapps", "common", "Tyranny")))
+                                    {
+                                        var candidate = Path.Combine(s, "steamapps", "common", "Tyranny");
+                                        if (Directory.Exists(Path.Combine(candidate, "Data", "data", "art", "gui", "icons", "abilities")))
+                                            return new DirectoryInfo(candidate).FullName;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\GOG.com\Games") ??
+                                 Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games"))
+                {
+                    if (key != null)
+                    {
+                        foreach (var subKeyName in key.GetSubKeyNames())
+                        {
+                            using (var subKey = key.OpenSubKey(subKeyName))
+                            {
+                                var path = subKey?.GetValue("path") as string;
+                                if (!string.IsNullOrEmpty(path) &&
+                                    Directory.Exists(Path.Combine(path, "Data", "data", "art", "gui", "icons", "abilities")))
+                                    return new DirectoryInfo(path).FullName;
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                var epicPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    "Epic Games",
+                    "Tyranny"
+                );
+                if (Directory.Exists(Path.Combine(epicPath, "Data", "data", "art", "gui", "icons", "abilities")))
+                    return new DirectoryInfo(epicPath).FullName;
+            }
+            catch { }
+
+            return "";
+        }
+
+        private static string DetectDeadfireInstall()
+        {
+            string Validate(string path)
+            {
+                if (Directory.Exists(Path.Combine(path, "PillarsOfEternityII_Data", "gui", "portraits")))
+                    return new DirectoryInfo(path).FullName;
+                return null;
+            }
+
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+                {
+                    var steamPath = key?.GetValue("SteamPath") as string;
+                    if (!string.IsNullOrEmpty(steamPath))
+                    {
+                        var main = Path.Combine(steamPath, "steamapps", "common", "Pillars of Eternity II");
+                        var valid = Validate(main);
+                        if (valid != null)
+                            return valid;
+
+                        var vdf = Path.Combine(steamPath, "steamapps", "libraryfolders.vdf");
+                        if (File.Exists(vdf))
+                        {
+                            foreach (var line in File.ReadAllLines(vdf))
+                            {
+                                if (!line.Contains(":\\") && !line.Contains("/")) continue;
+                                var clean = line.Split('"', (char)StringSplitOptions.RemoveEmptyEntries);
+                                foreach (var s in clean)
+                                {
+                                    if (Directory.Exists(Path.Combine(s, "steamapps", "common", "Pillars of Eternity II")))
+                                    {
+                                        valid = Validate(Path.Combine(s, "steamapps", "common", "Pillars of Eternity II"));
+                                        if (valid != null)
+                                            return valid;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\GOG.com\Games") ??
+                                 Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games"))
+                {
+                    if (key != null)
+                    {
+                        foreach (var sub in key.GetSubKeyNames())
+                        {
+                            using (var subKey = key.OpenSubKey(sub))
+                            {
+                                var path = subKey?.GetValue("path") as string;
+                                if (!string.IsNullOrEmpty(path))
+                                {
+                                    var valid = Validate(path);
+                                    if (valid != null)
+                                        return valid;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                var epicPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    "Epic Games",
+                    "PillarsOfEternityII"
+                );
+                var valid = Validate(epicPath);
+                if (valid != null)
+                    return valid;
+            }
+            catch { }
+
+            return "";
+        }
+
+
         private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
             Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
@@ -95,7 +263,7 @@ namespace PortraitManager
 
         private static readonly GameType DEADFIRE_TYPE = new GameType("Pillars of Eternity: Deadfire", "Deadfire", "Portrait Manager: Obsidian (PoED)",
             Resources.poed_title, Resources.poed_start_page, Resources.poed_placeholder, Resources.poed_icon_ico, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
-            "",
+            DetectDeadfireInstall().Replace("/","\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 76},
@@ -111,7 +279,7 @@ namespace PortraitManager
 
         private static readonly GameType TYR_TYPE = new GameType("Tyranny", "Tyranny", "Portrait Manager: Obsidian (Tyranny)",
             Resources.tyr_title, Resources.tyr_start_page, Resources.tyr_placeholder, Resources.tyr_icon_ico, Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
-            "",
+            DetectTyrannyInstall().Replace("/","\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 76},
@@ -124,8 +292,7 @@ namespace PortraitManager
 
         private static readonly GameType WASTE_TYPE = new GameType("Wasteland 3", "Wasteland 3", "Portrait Manager: inXile (W3)",
             Resources.waste_title, Resources.waste_start_page, Resources.waste_placeholder, Resources.waste_icon_ico, Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            + "\\My Games\\Wasteland3\\",
+            (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\My Games\\Wasteland3\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 256},

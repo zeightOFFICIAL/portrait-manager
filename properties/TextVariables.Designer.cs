@@ -206,7 +206,61 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Pathfinder: Kingmaker stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. The program automatically detects this path through your Windows user profile. 
+        ///
+        ///- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_KING {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+        ///
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_POE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_POE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity: Deadfire stores its portraits inside the installation folder: &lt;Pillars of Eternity II Installation Folder&gt;\PillarsOfEternityII_Data\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+        ///
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_POED {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_POED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rogue Trader stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Warhammer 40000 Rogue Trader\Portraits\. The program automatically detects this path through your Windows user profile..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_ROGUE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyranny keeps its portrait files directly inside the game’s installation directory, under: &lt;Data&gt;\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder. 
+        ///
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_TYR {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3 stores all custom portraits inside the user’s Documents folder, under: Documents\My Games\Wasteland3\Custom Portraits\. The program automatically detects this folder by using the system’s Documents path.
+        ///If detection fails, you can open the folder manually..
         /// </summary>
         internal static string TEXT_EXPLAIN_PATH_WASTE {
             get {
@@ -215,7 +269,9 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Pathfinder: Wrath of the Righteous stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. The program automatically detects this path through your Windows user profile. 
+        ///
+        ///- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC..
         /// </summary>
         internal static string TEXT_EXPLAIN_PATH_WOTR {
             get {

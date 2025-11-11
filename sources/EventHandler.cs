@@ -1563,9 +1563,9 @@ namespace PortraitManager
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXTRACT;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             
             OpenPathSelectPage();
@@ -1578,9 +1578,9 @@ namespace PortraitManager
             _gameSelected = 'k';
             LayoutPathPage.BackgroundImage = Resources.path_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXTRACT;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1620,9 +1620,9 @@ namespace PortraitManager
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_SETTINGS;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1634,7 +1634,7 @@ namespace PortraitManager
             _gameSelected = 'r';
             LayoutPathPage.BackgroundImage = Resources.rt_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_SETTINGS;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1648,9 +1648,9 @@ namespace PortraitManager
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_BROWSE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1662,9 +1662,9 @@ namespace PortraitManager
             _gameSelected = 'p';
             LayoutPathPage.BackgroundImage = Resources.poe_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_BROWSE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1676,7 +1676,7 @@ namespace PortraitManager
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_CREATE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POED;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1690,7 +1690,7 @@ namespace PortraitManager
             _gameSelected = 'd';
             LayoutPathPage.BackgroundImage = Resources.poed_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_CREATE;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POED;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
             _activeMenuIndex = 150;
@@ -1704,9 +1704,9 @@ namespace PortraitManager
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXIT;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1718,9 +1718,9 @@ namespace PortraitManager
             _gameSelected = 't';
             LayoutPathPage.BackgroundImage = Resources.tyr_folder_page;
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
-            LabelSelectPathExplain.Text = TextVariables.BUTTON_EXIT;
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1734,7 +1734,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1748,7 +1748,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }

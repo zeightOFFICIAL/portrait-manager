@@ -401,16 +401,7 @@ namespace PortraitManager
             ButtonStartRt.Font = font;
         }
 
-        public void PathMenuFontsInit(PrivateFontCollection fonts)
-        {
-            Font font = new Font(fonts.Families[0], 13),
-                font2 = new Font(fonts.Families[0], 20);
-
-            LabelSelectPathResetPath.Font = font;
-            LabelSelectPathChoosePath.Font = font;
-            LabelSelectPathExplain.Font = font;
-            LabelSelectPathTitle.Font = font2;
-        }
+        
 
         public void PathMenuTextInit()
         {

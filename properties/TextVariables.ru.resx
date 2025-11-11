@@ -166,4 +166,20 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="BUTTON_SETTINGS" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TEXT_EXPLAIN_PATH_TYR" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_KING" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_WOTR" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_POE" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_POED" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
 </root>

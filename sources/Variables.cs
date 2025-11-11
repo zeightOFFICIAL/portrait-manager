@@ -196,11 +196,112 @@ namespace PortraitManager
             return "";
         }
 
+        private static string DetectPillarsInstall()
+        {
+
+            string Validate(string path)
+            {
+                if (Directory.Exists(Path.Combine(path, "PillarsOfEternity_Data", "art", "gui", "portraits")))
+                    return new DirectoryInfo(path).FullName;
+                return null;
+            }
+
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+                {
+                    var steamPath = key?.GetValue("SteamPath") as string;
+                    if (!string.IsNullOrEmpty(steamPath))
+                    {
+                        var main = Path.Combine(steamPath, "steamapps", "common", "Pillars of Eternity");
+                        var valid = Validate(main);
+                        if (valid != null)
+                            return valid;
+
+                        var vdf = Path.Combine(steamPath, "steamapps", "libraryfolders.vdf");
+                        if (File.Exists(vdf))
+                        {
+                            foreach (var line in File.ReadAllLines(vdf))
+                            {
+                                if (!line.Contains(":\\") && !line.Contains("/")) continue;
+                                var clean = line.Split('"', (char)StringSplitOptions.RemoveEmptyEntries);
+                                foreach (var s in clean)
+                                {
+                                    var candidate = Path.Combine(s, "steamapps", "common", "Pillars of Eternity");
+                                    valid = Validate(candidate);
+                                    if (valid != null)
+                                        return valid;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\GOG.com\Games") ??
+                                 Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games"))
+                {
+                    if (key != null)
+                    {
+                        foreach (var sub in key.GetSubKeyNames())
+                        {
+                            using (var subKey = key.OpenSubKey(sub))
+                            {
+                                var path = subKey?.GetValue("path") as string;
+                                if (!string.IsNullOrEmpty(path))
+                                {
+                                    var valid = Validate(path);
+                                    if (valid != null)
+                                        return valid;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            try
+            {
+                var epicPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    "Epic Games",
+                    "PillarsOfEternity"
+                );
+                var valid = Validate(epicPath);
+                if (valid != null)
+                    return valid;
+            }
+            catch { }
+
+            return "";
+        }
+        
+        private static string DetectOwlcatInstall(string name)
+        {
+            string localLow = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "..",
+                "LocalLow"
+            );
+            localLow = Path.GetFullPath(localLow);
+
+            string path = Path.Combine(
+                localLow,
+                "Owlcat Games",
+                name
+            );
+
+            return path;
+        }
+        
 
         private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
             Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Kingmaker\\",
+            DetectOwlcatInstall("Pathfinder Kingmaker").Replace("/", "\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 185},
@@ -216,8 +317,7 @@ namespace PortraitManager
 
         private static readonly GameType WOTR_TYPE = new GameType("Pathfinder: Wrath of the Righteous", "Wrath of the Righteous", "Portrait Manager: Owlcat (Wotr)",
             Resources.wotr_title, Resources.wotr_start_page, Resources.wotr_placeholder, Resources.wotr_icon_ico, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Pathfinder Wrath Of The Righteous\\",
+            DetectOwlcatInstall("Pathfinder Wrath Of The Righteous").Replace("/", "\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 185},
@@ -233,8 +333,7 @@ namespace PortraitManager
 
         private static readonly GameType ROGUE_TYPE = new GameType("Warhammer 40K: Rogue Trader", "Rogue Trader", "Portrait Manager: Owlcat (RT)",
             Resources.rt_title, Resources.rt_start_page, Resources.rt_placeholder, Resources.rt_icon_ico, Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow")
-            + "\\Owlcat Games\\Warhammer 40000 Rogue Trader\\",
+            DetectOwlcatInstall("Warhammer 40000 Rogue Trader").Replace("/", "\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 260},
@@ -250,7 +349,7 @@ namespace PortraitManager
 
         private static readonly GameType PILLARS_TYPE = new GameType("Pillars of Eternity", "Pillars of Eternity", "Portrait Manager: Obsidian (PoE)",
             Resources.poe_title, Resources.poe_start_page, Resources.poe_placeholder, Resources.poe_icon_ico, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
-            "",
+            DetectPillarsInstall().Replace("/", "\\"),
             new Dictionary<string, float>
             {
                 { "SMALL_WIDTH", 76},

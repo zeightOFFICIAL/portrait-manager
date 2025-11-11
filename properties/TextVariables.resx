@@ -154,8 +154,8 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="BUTTON_EXTRACT" xml:space="preserve">
     <value>Extract folder</value>
   </data>
-  <data name="TEXT_EXPLAIN_PATH_WOTR" xml:space="preserve">
-    <value />
+  <data name="TEXT_EXPLAIN_PATH_ROGUE" xml:space="preserve">
+    <value>Rogue Trader stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Warhammer 40000 Rogue Trader\Portraits\. The program automatically detects this path through your Windows user profile.</value>
   </data>
   <data name="BUTTON_BROWSE" xml:space="preserve">
     <value>Browse gallery</value>
@@ -167,9 +167,35 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
     <value>Exit</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_WASTE" xml:space="preserve">
-    <value />
+    <value>Wasteland 3 stores all custom portraits inside the user’s Documents folder, under: Documents\My Games\Wasteland3\Custom Portraits\. The program automatically detects this folder by using the system’s Documents path.
+If detection fails, you can open the folder manually.</value>
   </data>
   <data name="BUTTON_SETTINGS" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
+    <value>Tyranny keeps its portrait files directly inside the game’s installation directory, under: &lt;Data&gt;\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder. 
+
+- You can also alter companions and NPC portraits if they exist via Browse Gallery.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_KING" xml:space="preserve">
+    <value>Pathfinder: Kingmaker stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. The program automatically detects this path through your Windows user profile. 
+
+- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_WOTR" xml:space="preserve">
+    <value>Pathfinder: Wrath of the Righteous stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. The program automatically detects this path through your Windows user profile. 
+
+- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_POE" xml:space="preserve">
+    <value>Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+
+- You can also alter companions and NPC portraits if they exist via Browse Gallery.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_POED" xml:space="preserve">
+    <value>Pillars of Eternity: Deadfire stores its portraits inside the installation folder: &lt;Pillars of Eternity II Installation Folder&gt;\PillarsOfEternityII_Data\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+
+- You can also alter companions and NPC portraits if they exist via Browse Gallery.</value>
   </data>
 </root>

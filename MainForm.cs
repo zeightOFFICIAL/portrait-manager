@@ -826,31 +826,26 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!ValidatePortraitPath(selectedPath))
-                    {
+                    if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
                         return;
-                    }
-                    if (!selectedPath.Contains("Pathfinder Kingmaker"))
-                    {
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                            !dir.Name.Equals("Pathfinder Kingmaker", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null)
                         return;
-                    }
-                    else
-                    {
-                        selectedPath = selectedPath.Split(new string[] { "\\Pathfinder Kingmaker\\" }, StringSplitOptions.None)[0] + "\\Pathfinder Kingmaker\\";
-                        LabelSelectPathSelected.Text = selectedPath;
-                        if (FileControl.Readonly.DirectoryExists(selectedPath + "Areas"))
-                        {
-                            FileControl.CreateDirectory(selectedPath + "\\Portraits");
-                            FileControl.CreateDirectory(selectedPath + "\\Portraits - Army");
-                            FileControl.CreateDirectory(selectedPath + "\\Portraits - Npc");
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                        
-                    CoreSettings.Default.GamePath = selectedPath;
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsDir = Path.Combine(rootPath, "Portraits");
+                    if (!Directory.Exists(portraitsDir))
+                        Directory.CreateDirectory(portraitsDir);
+
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'k';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.path_menu_page;
@@ -868,21 +863,26 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!ValidatePortraitPath(selectedPath))
-                    {
+                    if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
                         return;
-                    }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\pathfinder wrath of the righteous\\"))
-                    {
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                            !dir.Name.Equals("Pathfinder Wrath Of The Righteous", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null)
                         return;
-                    }
-                    if (selectedPath.Contains("portraits"))
-                    {
-                        selectedPath = selectedPath.Replace("portraits", "");
-                    }
-                    CoreSettings.Default.GamePath = selectedPath;
-                    CoreSettings.Default.GameType = 'w';
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsDir = Path.Combine(rootPath, "Portraits");
+                    if (!Directory.Exists(portraitsDir))
+                        Directory.CreateDirectory(portraitsDir);
+
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.wotr_menu_page;
                     _activeMenuIndex = 202;
@@ -899,20 +899,26 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!ValidatePortraitPath(selectedPath))
-                    {
+                    if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
                         return;
-                    }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\owlcat games\\") || !selectedPath.Contains("\\warhammer 40000 rogue trader\\"))
-                    {
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                            !dir.Name.Equals("Warhammer 40000 Rogue Trader", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null)
                         return;
-                    }
-                    if (selectedPath.Contains("portraits"))
-                    {
-                        selectedPath = selectedPath.Replace("portraits", "");
-                    }
-                    CoreSettings.Default.GamePath = selectedPath;
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsDir = Path.Combine(rootPath, "Portraits");
+                    if (!Directory.Exists(portraitsDir))
+                        Directory.CreateDirectory(portraitsDir);
+
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'r';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.rt_menu_page;
@@ -930,20 +936,33 @@ namespace PortraitManager
             {
                 try
                 {
-                    if (!SystemControl.FileControl.Readonly.DirectoryExists(selectedPath))
-                    {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                         return;
-                    }
-                    selectedPath = selectedPath.Replace("/", "\\").ToLowerInvariant();
-                    if (!selectedPath.Contains("\\pillarsofeternity_data\\") || !selectedPath.Contains("\\portraits"))
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                           !dir.Name.Equals("Pillars of Eternity", StringComparison.OrdinalIgnoreCase))
                     {
+                        dir = dir.Parent;
+                    }
+
+                    if (dir == null)
                         return;
-                    }
-                    if (selectedPath.Contains("portraits"))
-                    {
-                        selectedPath = selectedPath.Replace("portraits", "");
-                    }
-                    CoreSettings.Default.GamePath = selectedPath;
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits");
+                    if (!Directory.Exists(portraitsRoot))
+                        return;
+
+                    string maleDir = Path.Combine(portraitsRoot, "player", "male");
+                    string femaleDir = Path.Combine(portraitsRoot, "player", "female");
+                    Directory.CreateDirectory(maleDir);
+                    Directory.CreateDirectory(femaleDir);
+
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'p';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.poe_menu_page;
@@ -979,8 +998,7 @@ namespace PortraitManager
                     if (dir == null)
                         return;
 
-                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
-                    
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;                    
                     string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternityII_Data", "gui", "portraits");
                     if (!Directory.Exists(portraitsRoot))
                         return;

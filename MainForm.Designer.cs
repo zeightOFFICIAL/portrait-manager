@@ -182,8 +182,8 @@ namespace PortraitManager
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.LabelSelectPathResetPath = new System.Windows.Forms.Label();
             this.LabelSelectPathChoosePath = new System.Windows.Forms.Label();
-            this.LabelSelectPathTitle = new System.Windows.Forms.Label();
             this.LabelSelectPathSelected = new System.Windows.Forms.Label();
+            this.LabelSelectPathTitle = new System.Windows.Forms.Label();
             this.LabelSelectPathBackToStart = new System.Windows.Forms.Label();
             this.LabelSelectPathNextToMain = new System.Windows.Forms.Label();
             this.LayoutMainPage = new System.Windows.Forms.TableLayoutPanel();
@@ -2481,20 +2481,18 @@ namespace PortraitManager
             // 
             this.tableLayoutPanel21.ColumnCount = 1;
             this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathExplain, 0, 4);
-            this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 3);
-            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathSelected, 0, 2);
+            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathExplain, 0, 3);
+            this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 2);
+            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathSelected, 0, 1);
             this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathTitle, 0, 0);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
-            this.tableLayoutPanel21.RowCount = 5;
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel21.RowCount = 4;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
             this.tableLayoutPanel21.Size = new System.Drawing.Size(374, 680);
             this.tableLayoutPanel21.TabIndex = 0;
             // 
@@ -2503,9 +2501,9 @@ namespace PortraitManager
             this.LabelSelectPathExplain.AutoSize = true;
             this.LabelSelectPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelSelectPathExplain.ForeColor = System.Drawing.Color.White;
-            this.LabelSelectPathExplain.Location = new System.Drawing.Point(3, 321);
+            this.LabelSelectPathExplain.Location = new System.Drawing.Point(3, 319);
             this.LabelSelectPathExplain.Name = "LabelSelectPathExplain";
-            this.LabelSelectPathExplain.Size = new System.Drawing.Size(368, 359);
+            this.LabelSelectPathExplain.Size = new System.Drawing.Size(368, 361);
             this.LabelSelectPathExplain.TabIndex = 3;
             this.LabelSelectPathExplain.Text = "LABEL_PATH_EXPLAIN";
             this.LabelSelectPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2518,11 +2516,11 @@ namespace PortraitManager
             this.tableLayoutPanel22.Controls.Add(this.LabelSelectPathResetPath, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.LabelSelectPathChoosePath, 1, 0);
             this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 281);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 275);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(368, 37);
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(368, 41);
             this.tableLayoutPanel22.TabIndex = 1;
             // 
             // LabelSelectPathResetPath
@@ -2534,7 +2532,7 @@ namespace PortraitManager
             this.LabelSelectPathResetPath.Location = new System.Drawing.Point(65, 0);
             this.LabelSelectPathResetPath.Margin = new System.Windows.Forms.Padding(65, 0, 3, 0);
             this.LabelSelectPathResetPath.Name = "LabelSelectPathResetPath";
-            this.LabelSelectPathResetPath.Size = new System.Drawing.Size(116, 37);
+            this.LabelSelectPathResetPath.Size = new System.Drawing.Size(116, 41);
             this.LabelSelectPathResetPath.TabIndex = 0;
             this.LabelSelectPathResetPath.Text = "LABEL_RESET";
             this.LabelSelectPathResetPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2551,13 +2549,28 @@ namespace PortraitManager
             this.LabelSelectPathChoosePath.Location = new System.Drawing.Point(187, 0);
             this.LabelSelectPathChoosePath.Margin = new System.Windows.Forms.Padding(3, 0, 65, 0);
             this.LabelSelectPathChoosePath.Name = "LabelSelectPathChoosePath";
-            this.LabelSelectPathChoosePath.Size = new System.Drawing.Size(116, 37);
+            this.LabelSelectPathChoosePath.Size = new System.Drawing.Size(116, 41);
             this.LabelSelectPathChoosePath.TabIndex = 1;
             this.LabelSelectPathChoosePath.Text = "LABEL_SELECT";
             this.LabelSelectPathChoosePath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelSelectPathChoosePath.Click += new System.EventHandler(this.LabelSelectPathChoosePath_Click);
             this.LabelSelectPathChoosePath.MouseEnter += new System.EventHandler(this.LabelSelectPathChoosePath_MouseEnter);
             this.LabelSelectPathChoosePath.MouseLeave += new System.EventHandler(this.LabelSelectPathChoosePath_MouseLeave);
+            // 
+            // LabelSelectPathSelected
+            // 
+            this.LabelSelectPathSelected.AutoSize = true;
+            this.LabelSelectPathSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathSelected.ForeColor = System.Drawing.Color.DarkGray;
+            this.LabelSelectPathSelected.Location = new System.Drawing.Point(3, 241);
+            this.LabelSelectPathSelected.Name = "LabelSelectPathSelected";
+            this.LabelSelectPathSelected.Size = new System.Drawing.Size(368, 31);
+            this.LabelSelectPathSelected.TabIndex = 4;
+            this.LabelSelectPathSelected.Text = "LABEL_PATH_URL_NORMAL\r\nLABEL_PATH_URL_NORMAL";
+            this.LabelSelectPathSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathSelected.MouseEnter += new System.EventHandler(this.LabelSelectPathSelected_MouseEnter);
+            this.LabelSelectPathSelected.MouseLeave += new System.EventHandler(this.LabelSelectPathSelected_MouseLeave);
             // 
             // LabelSelectPathTitle
             // 
@@ -2566,8 +2579,8 @@ namespace PortraitManager
             this.LabelSelectPathTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LabelSelectPathTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelSelectPathTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelSelectPathTitle.Location = new System.Drawing.Point(0, 210);
-            this.LabelSelectPathTitle.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.LabelSelectPathTitle.Location = new System.Drawing.Point(0, 211);
+            this.LabelSelectPathTitle.Margin = new System.Windows.Forms.Padding(0);
             this.LabelSelectPathTitle.Name = "LabelSelectPathTitle";
             this.LabelSelectPathTitle.Size = new System.Drawing.Size(374, 29);
             this.LabelSelectPathTitle.TabIndex = 2;
@@ -2575,21 +2588,6 @@ namespace PortraitManager
             this.LabelSelectPathTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelSelectPathTitle.MouseEnter += new System.EventHandler(this.LabelSelectPathTitle_MouseEnter);
             this.LabelSelectPathTitle.MouseLeave += new System.EventHandler(this.LabelSelectPathTitle_MouseLeave);
-            // 
-            // LabelSelectPathSelected
-            // 
-            this.LabelSelectPathSelected.AutoSize = true;
-            this.LabelSelectPathSelected.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelSelectPathSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelSelectPathSelected.ForeColor = System.Drawing.Color.White;
-            this.LabelSelectPathSelected.Location = new System.Drawing.Point(3, 247);
-            this.LabelSelectPathSelected.Name = "LabelSelectPathSelected";
-            this.LabelSelectPathSelected.Size = new System.Drawing.Size(368, 31);
-            this.LabelSelectPathSelected.TabIndex = 4;
-            this.LabelSelectPathSelected.Text = "LABEL_PATH_URL_NORMAL";
-            this.LabelSelectPathSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelSelectPathSelected.MouseEnter += new System.EventHandler(this.LabelSelectPathSelected_MouseEnter);
-            this.LabelSelectPathSelected.MouseLeave += new System.EventHandler(this.LabelSelectPathSelected_MouseLeave);
             // 
             // LabelSelectPathBackToStart
             // 

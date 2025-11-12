@@ -1814,12 +1814,12 @@ namespace PortraitManager
 
         private void LabelSelectPathSelected_MouseEnter(object sender, EventArgs e)
         {
-            LabelSelectPathSelected.ForeColor = Color.DarkGray;
+            LabelSelectPathSelected.ForeColor = Color.White;
         }
-
+        
         private void LabelSelectPathSelected_MouseLeave(object sender, EventArgs e)
         {
-            LabelSelectPathSelected.ForeColor = Color.White;
+            LabelSelectPathSelected.ForeColor = Color.DarkGray;
         }
 
         private void LabelSelectPathBackToStart_Click(object sender, EventArgs e)

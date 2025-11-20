@@ -135,17 +135,17 @@ namespace PortraitManager
 
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDraggingMouse == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
-                                  PicPortraitLrg.Image.Height > PanelPortraitLrg.Height))
-            {
-                PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePosition.X - e.X),
-                                                              -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
-            }
+            //if (_isDraggingMouse == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
+            //                      PicPortraitLrg.Image.Height > PanelPortraitLrg.Height))
+            //{
+            //    PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePosition.X - e.X),
+            //                                                  -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
+            //}
         }
         
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
-            RootFunctions.HideScrollBar(PanelPortraitLrg);
+            //RootFunctions.HideScrollBar(PanelPortraitLrg);
             _isDraggingMouse = 0;
         }
         
@@ -160,17 +160,17 @@ namespace PortraitManager
         
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDraggingMouse == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
-                                  PicPortraitMed.Image.Height > PanelPortraitMed.Height))
-            {
-                PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePosition.X - e.X),
-                                                              -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
-            }
+            //if (_isDraggingMouse == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
+            //PicPortraitMed.Image.Height > PanelPortraitMed.Height))
+            //{
+            //    PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePosition.X - e.X),
+            //                                                  -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
+            //}
         }
 
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
-            RootFunctions.HideScrollBar(PanelPortraitMed);
+            //RootFunctions.HideScrollBar(PanelPortraitMed);
             _isDraggingMouse = 0;
         }
 
@@ -185,25 +185,25 @@ namespace PortraitManager
 
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDraggingMouse == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
-                                  PicPortraitSml.Image.Height > PanelPortraitSml.Height))
-            {
-                PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePosition.X - e.X),
-                                                              -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
-            }
+            //if (_isDraggingMouse == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
+            //                      PicPortraitSml.Image.Height > PanelPortraitSml.Height))
+            //{
+            //    PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePosition.X - e.X),
+            //                                                  -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
+            //}
         }
 
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
-            RootFunctions.HideScrollBar(PanelPortraitSml);
+            //RootFunctions.HideScrollBar(PanelPortraitSml);
             _isDraggingMouse = 0;
         }
         
         private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
         {
-            RootFunctions.HideScrollBar(PanelPortraitLrg);
-            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            float zoomFactor = PicPortraitLrg.Width * 1.0f / 14;
+            //RootFunctions.HideScrollBar(PanelPortraitLrg);
+            //float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            //float zoomFactor = PicPortraitLrg.Width * 1.0f / 14;
 
             //if (e.Delta > 0)
             //{
@@ -215,14 +215,14 @@ namespace PortraitManager
             //    ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
             //}
 
-            RootFunctions.HideScrollBar(PanelPortraitLrg);
+            //RootFunctions.HideScrollBar(PanelPortraitLrg);
         }
 
         private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
         {
-            RootFunctions.HideScrollBar(PanelPortraitMed);
-            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            float zoomFactor = PicPortraitLrg.Width * 1.0f / 10;
+            //RootFunctions.HideScrollBar(PanelPortraitMed);
+            //float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            //float zoomFactor = PicPortraitLrg.Width * 1.0f / 10;
 
             //if (e.Delta > 0)
             //{
@@ -234,14 +234,14 @@ namespace PortraitManager
             //    ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
             //}
 
-            RootFunctions.HideScrollBar(PanelPortraitMed);
+            //RootFunctions.HideScrollBar(PanelPortraitMed);
         }
 
         private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
         {
-            RootFunctions.HideScrollBar(PanelPortraitSml);
-            float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            float zoomFactor = PicPortraitLrg.Width * 1.0f / 6;
+            //RootFunctions.HideScrollBar(PanelPortraitSml);
+            //float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
+            //float zoomFactor = PicPortraitLrg.Width * 1.0f / 6;
 
             //if (e.Delta > 0)
             //{
@@ -253,7 +253,7 @@ namespace PortraitManager
             //    ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
             //}
 
-            RootFunctions.HideScrollBar(PanelPortraitSml);
+            //RootFunctions.HideScrollBar(PanelPortraitSml);
         }
         
         private void MainForm_ResizeEnd(object sender, EventArgs e)
@@ -263,8 +263,8 @@ namespace PortraitManager
 
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
         {
-            ButtonToMainPageAndFolder.Enabled = true;
-            RootFunctions.LayoutDisable(LayoutScalePage);
+            //ButtonToMainPageAndFolder.Enabled = true;
+            //RootFunctions.LayoutDisable(LayoutScalePage);
             _activeMenuIndex = 100;
 
             string path = "";
@@ -368,11 +368,11 @@ namespace PortraitManager
         private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
         {
             _activeMenuIndex = 200;
-            RootFunctions.LayoutDisable(LayoutFilePage);            
-            RootFunctions.LayoutEnable(LayoutURLDialog);
+            //RootFunctions.LayoutDisable(LayoutFilePage);            
+            //RootFunctions.LayoutEnable(LayoutURLDialog);
             Focus();
-            AnyButton_Leave(ButtonDenyWeb, e);
-            AnyButton_Leave(ButtonLoadWeb, e);
+            //AnyButton_Leave(ButtonDenyWeb, e);
+            //AnyButton_Leave(ButtonLoadWeb, e);
         }
         
         private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
@@ -429,12 +429,12 @@ namespace PortraitManager
             if (_gameSelected == 'r')
             {
                 RemoveClickEventsFromCustomPortraitsButtons();
-                CheckBoxVerified.Checked = false;
+                //CheckBoxVerified.Checked = false;
                 UseStamps.Default.isAwareNPC = "NotRevealed";
                 UseStamps.Default.Save();
-                ButtonLoadCustom.Visible = false;
-                ButtonLoadCustomNPC.Visible = false;
-                ButtonLoadCustomArmy.Visible = false;
+                //ButtonLoadCustom.Visible = false;
+                //ButtonLoadCustomNPC.Visible = false;
+                //ButtonLoadCustomArmy.Visible = false;
                 return;
             }
 
@@ -474,11 +474,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isAwareNPC == "WorkRevealed")
             {
-                CheckBoxVerified.Checked = true;
+                //CheckBoxVerified.Checked = true;
             }
             else
             {
-                CheckBoxVerified.Checked = false;
+                //CheckBoxVerified.Checked = false;
             }
         }
         
@@ -489,12 +489,12 @@ namespace PortraitManager
         
         private void ButtonChangePortrait_Click(object sender, EventArgs e)
         {
-            if (ListGallery.Items.Count < 1)
+            //if (ListGallery.Items.Count < 1)
             {
                 return;
             }
 
-            if (ListGallery.SelectedItems.Count < 1)
+            //if (ListGallery.SelectedItems.Count < 1)
             {
                 //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
                 //{
@@ -504,7 +504,7 @@ namespace PortraitManager
 
                 return;
             }
-            else if (ListGallery.SelectedItems.Count > 1)
+            //else if (ListGallery.SelectedItems.Count > 1)
             {
                 //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SELECTEDMORE, CoreSettings.Default.SelectedLang))
                 //{
@@ -513,14 +513,14 @@ namespace PortraitManager
                 //}
             }
 
-            ListViewItem item = ListGallery.SelectedItems[0];
+            //ListViewItem item = ListGallery.SelectedItems[0];
             //using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
             //    ClearPictureBoxImages(img);
             SystemControl.FileControl.ClearTempImages();
             SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
 
-            string path = item.Tag.ToString().Split('>')[0];
-            string type = item.Tag.ToString().Split('>')[1];
+            //string path = item.Tag.ToString().Split('>')[0];
+            //string type = item.Tag.ToString().Split('>')[1];
 
             //try
             //{
@@ -580,7 +580,7 @@ namespace PortraitManager
 
             ButtonToMainPage3_Click(sender, e);
             //RootFunctions.LayoutDisable(LayoutMainPage);
-            RootFunctions.LayoutEnable(LayoutFilePage);
+            //RootFunctions.LayoutEnable(LayoutFilePage);
             Focus();
             RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
@@ -589,12 +589,12 @@ namespace PortraitManager
 
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
         {
-            if (ListGallery.Items.Count < 1)
+            //if (ListGallery.Items.Count < 1)
             {
                 return;
             }
 
-            if (ListGallery.SelectedItems.Count < 1)
+            //if (ListGallery.SelectedItems.Count < 1)
             {
                 //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
                 //{
@@ -621,7 +621,7 @@ namespace PortraitManager
             //    SystemControl.FileControl.DeleteDirectoryRecursive(path);
             //}
             _cancellationTokenSource.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
 
             //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             //{
@@ -643,7 +643,7 @@ namespace PortraitManager
         {
             if (_extractFolderPath != "!NONE!")
             {
-                ClearImageListsSync(ListExtract, ImgListExtract);
+                //ClearImageListsSync(ListExtract, ImgListExtract);
             }
 
             _cancellationTokenSource?.Cancel();
@@ -679,7 +679,7 @@ namespace PortraitManager
                 return;
             }
 
-            ClearImageListsSync(ListExtract, ImgListExtract);
+            //ClearImageListsSync(ListExtract, ImgListExtract);
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = _cancellationTokenSource.Token;
             ExploreDirectory(_extractFolderPath, cancellationToken);
@@ -690,12 +690,12 @@ namespace PortraitManager
             bool isRepeat = false;
             uint imgCount = 0;
 
-            if (ListExtract.Items.Count < 1)
+            //if (ListExtract.Items.Count < 1)
             {
                 return;
             }
 
-            foreach (ListViewItem item in ListExtract.Items)
+            //foreach (ListViewItem item in ListExtract.Items)
             {
                 //string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
                 //string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
@@ -743,12 +743,12 @@ namespace PortraitManager
             bool isRepeat = false;
             uint imgCount = 0;
 
-            if (ListExtract.Items.Count < 1)
+            //if (ListExtract.Items.Count < 1)
             {
                 return;
             }
 
-            if (ListExtract.SelectedItems.Count < 1)
+            //if (ListExtract.SelectedItems.Count < 1)
             {
                 //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTEDEXTRACT, CoreSettings.Default.SelectedLang))
                 //{
@@ -758,7 +758,7 @@ namespace PortraitManager
                 return;
             }
 
-            foreach (ListViewItem item in ListExtract.SelectedItems)
+            //foreach (ListViewItem item in ListExtract.SelectedItems)
             {
                 //string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
                 //string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
@@ -947,7 +947,7 @@ namespace PortraitManager
             {
                 if (FolderChoose.ShowDialog() == DialogResult.OK)
                 {
-                    TextBoxFullPath.Text = FolderChoose.SelectedPath;
+                    //TextBoxFullPath.Text = FolderChoose.SelectedPath;
                 }
                 else
                 {
@@ -958,19 +958,19 @@ namespace PortraitManager
         
         private void ButtonLoadWeb_Click(object sender, EventArgs e)
         {
-            string url = TextBoxURL.Text;
+            //string url = TextBoxURL.Text;
 
             try
             {
-                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                request.Method = "HEAD";
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                response.Close();
-                RootFunctions.LayoutDisable(LayoutURLDialog);
-                RootFunctions.LayoutEnable(LayoutFilePage);
+                //HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                //request.Method = "HEAD";
+                //HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                //response.Close();
+                //RootFunctions.LayoutDisable(LayoutURLDialog);
+                //RootFunctions.LayoutEnable(LayoutFilePage);
                 _activeMenuIndex = 1;
                 Focus();
-                CheckWebResourceAndLoad(url);
+                //CheckWebResourceAndLoad(url);
                 ResizeVisibleImagesToWindowSize();
                 //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
                 GenerateImageSelectionFlagString(_imageSelectionFlag);
@@ -985,8 +985,8 @@ namespace PortraitManager
         
         private void ButtonDenyWeb_Click(object sender, EventArgs e)
         {
-            RootFunctions.LayoutDisable(LayoutURLDialog);
-            RootFunctions.LayoutEnable(LayoutFilePage);
+            //RootFunctions.LayoutDisable(LayoutURLDialog);
+            //RootFunctions.LayoutEnable(LayoutFilePage);
             //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
             ResizeVisibleImagesToWindowSize();
             _activeMenuIndex = 1;
@@ -996,7 +996,7 @@ namespace PortraitManager
         
         private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
         {
-            TextBoxURL.Clear();
+            //TextBoxURL.Clear();
             if (e.Data.GetDataPresent(DataFormats.Text))
             {
                 e.Effect = DragDropEffects.Copy;
@@ -1020,22 +1020,22 @@ namespace PortraitManager
         
         private void TextBoxURL_Enter(object sender, EventArgs e)
         {
-            TextBoxURL.Clear();
+            //TextBoxURL.Clear();
         }
         
         private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
         {
             _activeMenuIndex = 0;
-            ButtonToMainPageAndFolder.BackColor = Color.Black;
-            ButtonToMainPageAndFolder.ForeColor = Color.White;
-            RootFunctions.LayoutDisable(LayoutFinalPage);
+            //ButtonToMainPageAndFolder.BackColor = Color.Black;
+            //ButtonToMainPageAndFolder.ForeColor = Color.White;
+            //RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePictureBoxImagesToDefault();
             _isAnyLoadedToPortraitPage = false;
             ParentLayoutsDisable();
-            System.Diagnostics.Process.Start(LabelDirLoc.Text);
+            //System.Diagnostics.Process.Start(LabelDirLoc.Text);
             //RootFunctions.LayoutEnable(LayoutMainPage);
             Focus();
-            ButtonToMainPageAndFolder.Enabled = true;
+            //ButtonToMainPageAndFolder.Enabled = true;
         }
         
         private void ButtonNextImageType_Click(object sender, EventArgs e)
@@ -1048,9 +1048,9 @@ namespace PortraitManager
             }
             else
             {
-                ButtonNextImageType.Visible = false;
-                ButtonNextImageType.Enabled = false;
-                LblToAdvancedPage.Visible = false;
+                //ButtonNextImageType.Visible = false;
+                //ButtonNextImageType.Enabled = false;
+                //LblToAdvancedPage.Visible = false;
             }
 
             GenerateImageSelectionFlagString(_imageSelectionFlag);
@@ -1089,7 +1089,7 @@ namespace PortraitManager
         private void ButtonLoadNormal_Click(object sender, EventArgs e)
         {
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
             //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
             //{
             //    ButtonToMainPage3_Click(sender, e);
@@ -1104,7 +1104,7 @@ namespace PortraitManager
             //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
             //fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
 
             //if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
             //    !LoadGalleryCustom(fromPath, false) ||
@@ -1123,7 +1123,7 @@ namespace PortraitManager
             }
 
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _cancellationTokenSource.Token;
 
@@ -1141,7 +1141,7 @@ namespace PortraitManager
 
             //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
             //if (!LoadGalleryCustom(fromPath, false))
             //{
             //    ButtonToMainPage3_Click(sender, e);
@@ -1223,10 +1223,10 @@ namespace PortraitManager
             //    AddClickEventsToMainButtons();
             //}
 
-            ButtonLoadCustom.Visible = false;
-            ButtonLoadCustomNPC.Visible = false;
-            ButtonLoadCustomArmy.Visible = false;
-            CheckBoxVerified.Checked = false;
+            //ButtonLoadCustom.Visible = false;
+            //ButtonLoadCustomNPC.Visible = false;
+            //ButtonLoadCustomArmy.Visible = false;
+            //CheckBoxVerified.Checked = false;
 
             CoreSettings.Default.GameType = _gameSelected;
             CoreSettings.Default.Save();
@@ -1279,11 +1279,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isAwareNPC == "WorkRevealed")
             {
-                CheckBoxVerified.Checked = true;
+                //CheckBoxVerified.Checked = true;
             }
             else
             {
-                CheckBoxVerified.Checked = false;
+                //CheckBoxVerified.Checked = false;
             }
 
             CoreSettings.Default.GameType = _gameSelected;
@@ -1337,11 +1337,11 @@ namespace PortraitManager
 
             if (UseStamps.Default.isAwareNPC == "WorkRevealed")
             {
-                CheckBoxVerified.Checked = true;
+                //CheckBoxVerified.Checked = true;
             }
             else
             {
-                CheckBoxVerified.Checked = false;
+                //CheckBoxVerified.Checked = false;
             }
         }
 
@@ -1903,8 +1903,8 @@ namespace PortraitManager
         private void LabelExit_Click(object sender, EventArgs e)
         {
             DisposePrimeImages();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            ClearImageListsSync(ListExtract, ImgListExtract);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListExtract, ImgListExtract);
             SystemControl.FileControl.ClearTempImages();
             CoreSettings.Default.GamePath = "0";
             CoreSettings.Default.GameType = '-';

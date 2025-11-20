@@ -36,10 +36,10 @@ namespace PortraitManager
         {
             _imageSelectionFlag = 0;
             _isAnyLoadedToPortraitPage = false;
-            ButtonNextImageType.Visible = true;
-            ButtonNextImageType.Enabled = true;       
+            //ButtonNextImageType.Visible = true;
+            //ButtonNextImageType.Enabled = true;       
             ////ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
-            LblToAdvancedPage.Visible = true;
+            //LblToAdvancedPage.Visible = true;
         }
 
         public void AddClickEventsToMainButtons()
@@ -58,32 +58,32 @@ namespace PortraitManager
 
         public void AddClickEventsToCustomPortraitsButtons()
         {
-            RootFunctions.AddClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
-            RootFunctions.AddClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
-            RootFunctions.AddClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
+            //RootFunctions.AddClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
+            //RootFunctions.AddClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
+            //RootFunctions.AddClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
         }
 
         public void RemoveClickEventsFromCustomPortraitsButtons()
         {
-            RootFunctions.RemoveClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
-            RootFunctions.RemoveClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
-            RootFunctions.RemoveClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
+            //RootFunctions.RemoveClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
+            //RootFunctions.RemoveClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
+            //RootFunctions.RemoveClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
         }
         
         public void ClearPictureBoxImages(Image replacement)
         {
-            ImageControl.Utils.Replace(PicPortraitTemp, replacement);
-            ImageControl.Utils.Replace(PicPortraitLrg, replacement);
-            ImageControl.Utils.Replace(PicPortraitMed, replacement);
-            ImageControl.Utils.Replace(PicPortraitSml, replacement);
+            //ImageControl.Utils.Replace(PicPortraitTemp, replacement);
+            //ImageControl.Utils.Replace(PicPortraitLrg, replacement);
+            //ImageControl.Utils.Replace(PicPortraitMed, replacement);
+            //ImageControl.Utils.Replace(PicPortraitSml, replacement);
         }
         
         public void DisposePrimeImages()
         {
-            ImageControl.Utils.Dispose(PicPortraitTemp);
-            ImageControl.Utils.Dispose(PicPortraitLrg);
-            ImageControl.Utils.Dispose(PicPortraitMed);
-            ImageControl.Utils.Dispose(PicPortraitSml);
+            //ImageControl.Utils.Dispose(PicPortraitTemp);
+            //ImageControl.Utils.Dispose(PicPortraitLrg);
+            //ImageControl.Utils.Dispose(PicPortraitMed);
+            //ImageControl.Utils.Dispose(PicPortraitSml);
         }
        
         public void ResizeImageToParentControl(Control control, Image image, Control parent)
@@ -101,20 +101,20 @@ namespace PortraitManager
         
         public void ResizeVisibleImagesToWindowSize()
         {
-            if (LayoutScalePage.Enabled == true)
-            {
-                //using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-                //    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
-                //using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-                //    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
-                //using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-                //    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
-            }
+            //if (LayoutScalePage.Enabled == true)
+            //{
+            //    //using (Image img = new Bitmap(TEMP_SMALL_APPEND))
+            //    //    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
+            //    //using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
+            //    //    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
+            //    //using (Image img = new Bitmap(TEMP_LARGE_APPEND))
+            //    //    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
+            //}
 
-            if (LayoutFilePage.Enabled == true)
+            //if (LayoutFilePage.Enabled == true)
             {
-                using (Image img = new Bitmap(PicPortraitTemp.Image))
-                    ResizeImageToParentControl(PicPortraitTemp, img, PanelPortraitTemp);
+                //using (Image img = new Bitmap(PicPortraitTemp.Image))
+                    //ResizeImageToParentControl(PicPortraitTemp, img, PanelPortraitTemp);
             }
         }
 
@@ -137,16 +137,16 @@ namespace PortraitManager
         
         public void ParentLayoutsDisable()
         {
-            RootFunctions.LayoutDisable(LayoutFilePage);
+            //RootFunctions.LayoutDisable(LayoutFilePage);
             RootFunctions.LayoutDisable(LayoutMainPage);
-            RootFunctions.LayoutDisable(LayoutScalePage);
-            RootFunctions.LayoutDisable(LayoutExtractPage);
-            RootFunctions.LayoutDisable(LayoutGallery);
-            RootFunctions.LayoutDisable(LayoutSettingsPage);
+            //RootFunctions.LayoutDisable(LayoutScalePage);
+            //RootFunctions.LayoutDisable(LayoutExtractPage);
+            //RootFunctions.LayoutDisable(LayoutGallery);
+            //RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
             RootFunctions.LayoutDisable(LayoutPathPage);
-            RootFunctions.LayoutDisable(LayoutURLDialog);
-            RootFunctions.LayoutDisable(LayoutFinalPage);
+            //RootFunctions.LayoutDisable(LayoutURLDialog);
+            //RootFunctions.LayoutDisable(LayoutFinalPage);
         }
         
         public void ParentLayoutsSetDockFill()
@@ -331,7 +331,7 @@ namespace PortraitManager
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    ClearImageListsSync(ListExtract, ImgListExtract);
+                    //ClearImageListsSync(ListExtract, ImgListExtract);
                 });
 
                 return;
@@ -433,49 +433,49 @@ namespace PortraitManager
             //ButtonToGalleryPage.Font = bebasNeueHead;
             //ButtonToSettingsPage.Font = bebasNeueHead;
             //ButtonExit.Font = bebasNeueHead;
-            ButtonKingmaker.Font = bebasNeueHead;
-            ButtonWotR.Font = bebasNeueHead;
-            LabelSelectedPath23.Font = bebasNeueUnder;
-            ButtonValidatePath.Font = bebasNeueUnder;
-            ButtonSelectPath.Font = bebasNeueUnder;
-            ButtonToMainPage5.Font = bebasNeueHead;
-            LabelSettings.Font = bebasNeueUnder;
-            ButtonApplyChange.Font = bebasNeueUnder;
-            ButtonLocalPortraitLoad.Font = bebasNeueHead;
-            ButtonWebPortraitLoad.Font = bebasNeueHead;
-            ButtonToMainPage.Font = bebasNeueHead;
-            ButtonToScalePage.Font = bebasNeueHead;
-            ButtonNextImageType.Font = bebasNeueHead;
-            ButtonHintOnFilePage.Font = bebasNeueHead;
-            ButtonToFilePage2.Font = bebasNeueHead;
-            ButtonCreatePortrait.Font = bebasNeueHead;
-            LabelMedImage.Font = bebasNeueHead;
-            LabelLrgImg.Font = bebasNeueHead;
-            LabelSmlImg.Font = bebasNeueHead;
-            ButtonHintOnScalePage.Font = bebasNeueHead;
-            ButtonDeletePortait.Font = bebasNeueHead;
-            ButtonToMainPage3.Font = bebasNeueHead;
-            ButtonOpenFolder.Font = bebasNeueHead;
-            ButtonChangePortrait.Font = bebasNeueHead;
-            ButtonHintFolder.Font = bebasNeueHead;
-            LabelURLInfo.Font = bebasNeueHead;
-            ButtonDenyWeb.Font = bebasNeueHead;
-            ButtonLoadWeb.Font = bebasNeueHead;
-            LabelFinalMesg.Font = bebasNeueHead;
-            ButtonToFilePage3.Font = bebasNeueHead;
-            ButtonToMainPage4.Font = bebasNeueHead;
-            ButtonToMainPageAndFolder.Font = bebasNeueHead;
-            ButtonChooseFolder.Font = bebasNeueHead;
-            ButtonExtractAll.Font = bebasNeueHead;
-            ButtonExtractSelected.Font = bebasNeueHead;
-            ButtonOpenFolders.Font = bebasNeueHead;
-            ButtonHintExtract.Font = bebasNeueHead;
-            ButtonToMainPage2.Font = bebasNeueHead;
-            ButtonLoadCustom.Font = bebasNeueSmall;
-            ButtonLoadNormal.Font = bebasNeueSmall;
-            ButtonLoadCustomArmy.Font = bebasNeueSmall;
-            ButtonLoadCustomNPC.Font = bebasNeueSmall;
-            ButtonRT.Font = bebasNeueHead;
+            //ButtonKingmaker.Font = bebasNeueHead;
+            //ButtonWotR.Font = bebasNeueHead;
+            //LabelSelectedPath23.Font = bebasNeueUnder;
+            //ButtonValidatePath.Font = bebasNeueUnder;
+            //ButtonSelectPath.Font = bebasNeueUnder;
+            //ButtonToMainPage5.Font = bebasNeueHead;
+            //LabelSettings.Font = bebasNeueUnder;
+            //ButtonApplyChange.Font = bebasNeueUnder;
+            //ButtonLocalPortraitLoad.Font = bebasNeueHead;
+            //ButtonWebPortraitLoad.Font = bebasNeueHead;
+            //ButtonToMainPage.Font = bebasNeueHead;
+            //ButtonToScalePage.Font = bebasNeueHead;
+            //ButtonNextImageType.Font = bebasNeueHead;
+            //ButtonHintOnFilePage.Font = bebasNeueHead;
+            //ButtonToFilePage2.Font = bebasNeueHead;
+            //ButtonCreatePortrait.Font = bebasNeueHead;
+            //LabelMedImage.Font = bebasNeueHead;
+            //LabelLrgImg.Font = bebasNeueHead;
+            //LabelSmlImg.Font = bebasNeueHead;
+            //ButtonHintOnScalePage.Font = bebasNeueHead;
+            //ButtonDeletePortait.Font = bebasNeueHead;
+            //ButtonToMainPage3.Font = bebasNeueHead;
+            //ButtonOpenFolder.Font = bebasNeueHead;
+            //ButtonChangePortrait.Font = bebasNeueHead;
+            //ButtonHintFolder.Font = bebasNeueHead;
+            //LabelURLInfo.Font = bebasNeueHead;
+            //ButtonDenyWeb.Font = bebasNeueHead;
+            //ButtonLoadWeb.Font = bebasNeueHead;
+            //LabelFinalMesg.Font = bebasNeueHead;
+            //ButtonToFilePage3.Font = bebasNeueHead;
+            //ButtonToMainPage4.Font = bebasNeueHead;
+            //ButtonToMainPageAndFolder.Font = bebasNeueHead;
+            //ButtonChooseFolder.Font = bebasNeueHead;
+            //ButtonExtractAll.Font = bebasNeueHead;
+            //ButtonExtractSelected.Font = bebasNeueHead;
+            //ButtonOpenFolders.Font = bebasNeueHead;
+            //ButtonHintExtract.Font = bebasNeueHead;
+            //ButtonToMainPage2.Font = bebasNeueHead;
+            //ButtonLoadCustom.Font = bebasNeueSmall;
+            //ButtonLoadNormal.Font = bebasNeueSmall;
+            //ButtonLoadCustomArmy.Font = bebasNeueSmall;
+            //ButtonLoadCustomNPC.Font = bebasNeueSmall;
+            //ButtonRT.Font = bebasNeueHead;
             
         }
         
@@ -488,48 +488,48 @@ namespace PortraitManager
             //ButtonToGalleryPage.Font = defFont12;
             //ButtonToSettingsPage.Font = defFont12;
             //ButtonExit.Font = defFont12;
-            ButtonKingmaker.Font = defFont12;
-            ButtonWotR.Font = defFont12;
-            LabelSelectedPath23.Font = defFont12;
-            ButtonValidatePath.Font = defFont12;
-            ButtonSelectPath.Font = defFont12;
-            ButtonToMainPage5.Font = defFont12;
-            LabelSettings.Font = defFont12;
-            ButtonApplyChange.Font = defFont12;
-            ButtonLocalPortraitLoad.Font = defFont12;
-            ButtonWebPortraitLoad.Font = defFont12;
-            ButtonToMainPage.Font = defFont12;
-            ButtonToScalePage.Font = defFont12;
-            ButtonNextImageType.Font = defFont12;
-            ButtonHintOnFilePage.Font = defFont12;
-            ButtonToFilePage2.Font = defFont12;
-            ButtonCreatePortrait.Font = defFont12;
-            LabelMedImage.Font = defFont12;
-            LabelLrgImg.Font = defFont12;
-            LabelSmlImg.Font = defFont12;
-            ButtonHintOnScalePage.Font = defFont12;
-            ButtonDeletePortait.Font = defFont12;
-            ButtonToMainPage3.Font = defFont12;
-            ButtonOpenFolder.Font = defFont12;
-            ButtonChangePortrait.Font = defFont12;
-            ButtonHintFolder.Font = defFont12;
-            LabelURLInfo.Font = defFont12;
-            ButtonDenyWeb.Font = defFont12;
-            ButtonLoadWeb.Font = defFont12;
-            LabelFinalMesg.Font = defFont12;
-            ButtonToFilePage3.Font = defFont12;
-            ButtonToMainPage4.Font = defFont12;
-            ButtonToMainPageAndFolder.Font = defFont12;
-            ButtonChooseFolder.Font = defFont12;
-            ButtonExtractAll.Font = defFont12;
-            ButtonExtractSelected.Font = defFont12;
-            ButtonOpenFolders.Font = defFont12;
-            ButtonHintExtract.Font = defFont12;
-            ButtonToMainPage2.Font = defFont12;
-            ButtonLoadCustom.Font = defFont12;
-            ButtonLoadNormal.Font = defFont12;
-            ButtonLoadCustomArmy.Font = defFont12;
-            ButtonLoadCustomNPC.Font = defFont12;
+            //ButtonKingmaker.Font = defFont12;
+            //ButtonWotR.Font = defFont12;
+            //LabelSelectedPath23.Font = defFont12;
+            //ButtonValidatePath.Font = defFont12;
+            //ButtonSelectPath.Font = defFont12;
+            //ButtonToMainPage5.Font = defFont12;
+            //LabelSettings.Font = defFont12;
+            //ButtonApplyChange.Font = defFont12;
+            //ButtonLocalPortraitLoad.Font = defFont12;
+            //ButtonWebPortraitLoad.Font = defFont12;
+            //ButtonToMainPage.Font = defFont12;
+            //ButtonToScalePage.Font = defFont12;
+            //ButtonNextImageType.Font = defFont12;
+            //ButtonHintOnFilePage.Font = defFont12;
+            //ButtonToFilePage2.Font = defFont12;
+            //ButtonCreatePortrait.Font = defFont12;
+            //LabelMedImage.Font = defFont12;
+            //LabelLrgImg.Font = defFont12;
+            //LabelSmlImg.Font = defFont12;
+            //ButtonHintOnScalePage.Font = defFont12;
+            //ButtonDeletePortait.Font = defFont12;
+            //ButtonToMainPage3.Font = defFont12;
+            //ButtonOpenFolder.Font = defFont12;
+            //ButtonChangePortrait.Font = defFont12;
+            //ButtonHintFolder.Font = defFont12;
+            //LabelURLInfo.Font = defFont12;
+            //ButtonDenyWeb.Font = defFont12;
+            //ButtonLoadWeb.Font = defFont12;
+            //LabelFinalMesg.Font = defFont12;
+            //ButtonToFilePage3.Font = defFont12;
+            //ButtonToMainPage4.Font = defFont12;
+            //ButtonToMainPageAndFolder.Font = defFont12;
+            //ButtonChooseFolder.Font = defFont12;
+            //ButtonExtractAll.Font = defFont12;
+            //ButtonExtractSelected.Font = defFont12;
+            //ButtonOpenFolders.Font = defFont12;
+            //ButtonHintExtract.Font = defFont12;
+            //ButtonToMainPage2.Font = defFont12;
+            //ButtonLoadCustom.Font = defFont12;
+            //ButtonLoadNormal.Font = defFont12;
+            //ButtonLoadCustomArmy.Font = defFont12;
+            //ButtonLoadCustomNPC.Font = defFont12;
             ButtonStartKing.Font = defFont12;
             ButtonStartPoe.Font = defFont12;
             ButtonStartPoed.Font = defFont12;
@@ -596,11 +596,11 @@ namespace PortraitManager
         
         public void UpdateObjectColoringInDepth(Control ctrl, Color a, Color b)
         {
-            if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
-                                   || ctrl.Equals(LayoutFinalPage)
-                                   || ctrl.Equals(LayoutSettingsPage)
+            //if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
+                                   //|| ctrl.Equals(LayoutFinalPage)
+                                   //|| ctrl.Equals(LayoutSettingsPage)
                                    //|| ctrl.Equals(LayoutLang)
-                                   || ctrl.Equals(LayoutStartMenu))
+                                   //|| ctrl.Equals(LayoutStartMenu))
             {
                 return;
             }
@@ -736,7 +736,7 @@ namespace PortraitManager
             }
 
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
             _cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancelToken = _cancellationTokenSource.Token;
 
@@ -758,7 +758,7 @@ namespace PortraitManager
                 {
                     BeginInvoke((MethodInvoker)delegate
                     {
-                        ClearImageListsSync(ListGallery, ImgListGallery);
+                        //ClearImageListsSync(ListGallery, ImgListGallery);
                     });
 
                     return;
@@ -807,7 +807,7 @@ namespace PortraitManager
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    ClearImageListsSync(ListGallery, ImgListGallery);
+                    //ClearImageListsSync(ListGallery, ImgListGallery);
                 });
 
                 return;
@@ -854,13 +854,13 @@ namespace PortraitManager
                         ListViewItem item = new ListViewItem
                         {
                             Text = name,
-                            ImageIndex = ListGallery.Items.Count,
+                            //ImageIndex = ListGallery.Items.Count,
                             Tag = fromPath + ">CUSTOM"
                         };
                         Invoke((MethodInvoker)delegate
                         {
                             ImgListGallery.Images.Add(fromPath, img);
-                            ListGallery.Items.Add(item);
+                            //ListGallery.Items.Add(item);
                         });
                     }
                 }
@@ -978,19 +978,19 @@ namespace PortraitManager
         {
             if (flag == 0)
             {
-                LabelImageFlag.Text = "◼◼◼";
+                //LabelImageFlag.Text = "◼◼◼";
             }
             else if (flag == 1)
             {
-                LabelImageFlag.Text = "◼◧◻";
+                //LabelImageFlag.Text = "◼◧◻";
             }
             else if (flag == 2)
             {
-                LabelImageFlag.Text = "◼◼◧";
+                //LabelImageFlag.Text = "◼◼◧";
             }
             else if (flag == 100)
             {
-                LabelImageFlag.Text = "◻◻◻";
+                //LabelImageFlag.Text = "◻◻◻";
             }
         }
         

@@ -340,19 +340,19 @@ namespace PortraitManager
             ParentLayoutsSetDockFill();            
             UpdateColorScheme();
 
-            PicPortraitTemp.AllowDrop = true;
-            PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
-            PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
-            PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
+            //PicPortraitTemp.AllowDrop = true;
+            //PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
+            //PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
+            //PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutDisable(LayoutURLDialog);
-            RootFunctions.LayoutDisable(LayoutFinalPage);
+            //RootFunctions.LayoutDisable(LayoutURLDialog);
+            //RootFunctions.LayoutDisable(LayoutFinalPage);
             //RootFunctions.LayoutEnable(LayoutMainPage);
             RootFunctions.LayoutEnable(LayoutStartMenu);
             Focus();
 
-            CheckBoxVerified.AutoCheck = false;
+            //CheckBoxVerified.AutoCheck = false;
         }
         
         private void ButtonToFilePage_Click(object sender, EventArgs e)
@@ -365,7 +365,7 @@ namespace PortraitManager
             LoadTempImagesToPicBox(100);
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutFilePage);
+            //RootFunctions.LayoutEnable(LayoutFilePage);
             Focus();
             ResizeVisibleImagesToWindowSize();
 
@@ -421,7 +421,7 @@ namespace PortraitManager
                 ParentLayoutsDisable();
                 LoadAllTempImagesToPicBox();
 
-                RootFunctions.LayoutEnable(LayoutScalePage);
+                //RootFunctions.LayoutEnable(LayoutScalePage);
                 Focus();
                 ResizeVisibleImagesToWindowSize();
             }
@@ -450,7 +450,7 @@ namespace PortraitManager
             LoadTempImagesToPicBox(_imageSelectionFlag);
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutFilePage);
+            //RootFunctions.LayoutEnable(LayoutFilePage);
             Focus();
             ResizeVisibleImagesToWindowSize();
 
@@ -461,20 +461,20 @@ namespace PortraitManager
         {
             _activeMenuIndex = 1;
 
-            ButtonToFilePage3.BackColor = Color.Black;
-            ButtonToFilePage3.ForeColor = Color.White;
+            //ButtonToFilePage3.BackColor = Color.Black;
+            //ButtonToFilePage3.ForeColor = Color.White;
             RestoreFilePageToInit();
-            RootFunctions.LayoutDisable(LayoutFinalPage);
+            //RootFunctions.LayoutDisable(LayoutFinalPage);
             ReplacePictureBoxImagesToDefault();
             //SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PortraitPlaceholderImage);
             LoadTempImagesToPicBox(_imageSelectionFlag);
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutFilePage);
+            //RootFunctions.LayoutEnable(LayoutFilePage);
             Focus();
             ResizeVisibleImagesToWindowSize();
             GenerateImageSelectionFlagString(100);
-            ButtonToMainPageAndFolder.Enabled = true;
+            //ButtonToMainPageAndFolder.Enabled = true;
         }
         
         private void ButtonExit_Click(object sender, EventArgs e)
@@ -482,8 +482,8 @@ namespace PortraitManager
             _activeMenuIndex = 0;
 
             DisposePrimeImages();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            ClearImageListsSync(ListExtract, ImgListExtract);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListExtract, ImgListExtract);
             SystemControl.FileControl.ClearTempImages();
             Application.Exit();
         }
@@ -493,12 +493,12 @@ namespace PortraitManager
             _activeMenuIndex = 3;
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutExtractPage);
+            //RootFunctions.LayoutEnable(LayoutExtractPage);
             Focus();
 
-            ButtonExtractAll.Enabled = false;
-            ButtonExtractSelected.Enabled = false;
-            ButtonOpenFolders.Enabled = false;
+            //ButtonExtractAll.Enabled = false;
+            //ButtonExtractSelected.Enabled = false;
+            //ButtonOpenFolders.Enabled = false;
 
             if (UseStamps.Default.isFirstExtract == true)
             {
@@ -518,7 +518,7 @@ namespace PortraitManager
             _activeMenuIndex = 4;
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutEnable(LayoutGallery);
+            //RootFunctions.LayoutEnable(LayoutGallery);
             Focus();
 
             //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
@@ -541,11 +541,11 @@ namespace PortraitManager
 
             if (_gameSelected == 'w')
             {
-                ButtonLoadCustomArmy.Visible = true;
+                //ButtonLoadCustomArmy.Visible = true;
             }
             else if (_gameSelected == 'p')
             {
-                ButtonLoadCustomArmy.Visible = false;
+                //ButtonLoadCustomArmy.Visible = false;
             }
         }
         
@@ -566,7 +566,7 @@ namespace PortraitManager
 
             _extractFolderPath = "!NONE!";
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListExtract, ImgListExtract);
+            //ClearImageListsSync(ListExtract, ImgListExtract);
 
             ParentLayoutsDisable();
             //RootFunctions.LayoutEnable(LayoutMainPage);
@@ -579,7 +579,7 @@ namespace PortraitManager
             _activeMenuIndex = 0;
 
             _cancellationTokenSource?.Cancel();
-            ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
 
             ParentLayoutsDisable();
             //RootFunctions.LayoutEnable(LayoutMainPage);
@@ -591,13 +591,13 @@ namespace PortraitManager
         {
             _activeMenuIndex = 0;
 
-            ButtonToMainPage4.BackColor = Color.Black;
-            ButtonToMainPage4.ForeColor = Color.White;
+            //ButtonToMainPage4.BackColor = Color.Black;
+            //ButtonToMainPage4.ForeColor = Color.White;
             RestoreFilePageToInit();
             ReplacePictureBoxImagesToDefault();
 
             ParentLayoutsDisable();
-            RootFunctions.LayoutDisable(LayoutFinalPage);
+            //RootFunctions.LayoutDisable(LayoutFinalPage);
             //RootFunctions.LayoutEnable(LayoutMainPage);
 
             Focus();
@@ -614,9 +614,9 @@ namespace PortraitManager
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             //ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
-            ButtonValidatePath.BackColor = Color.Black;
-            ButtonValidatePath.ForeColor = Color.White;
-            ButtonValidatePath.Enabled = true;
+            //ButtonValidatePath.BackColor = Color.Black;
+            //ButtonValidatePath.ForeColor = Color.White;
+            //ButtonValidatePath.Enabled = true;
             CenterToScreen();
             Application.Restart();
             _isAspectRatioFixed = false;
@@ -628,11 +628,11 @@ namespace PortraitManager
             _activeMenuIndex = 5;
 
             //RootFunctions.LayoutDisable(LayoutMainPage);
-            RootFunctions.LayoutEnable(LayoutSettingsPage);
+            //RootFunctions.LayoutEnable(LayoutSettingsPage);
 
             //TextBoxFullPath.Text = ACTIVE_PATHS[_gameSelected];
-            ButtonToMainPage5.ForeColor = Color.White;
-            ButtonToMainPage5.BackColor = Color.Black;
+            //ButtonToMainPage5.ForeColor = Color.White;
+            //ButtonToMainPage5.BackColor = Color.Black;
             FormBorderStyle = FormBorderStyle.Sizable;
 
             Focus();
@@ -641,8 +641,8 @@ namespace PortraitManager
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
             DisposePrimeImages();
-            ClearImageListsSync(ListGallery, ImgListGallery);
-            ClearImageListsSync(ListExtract, ImgListExtract);
+            //ClearImageListsSync(ListGallery, ImgListGallery);
+            //ClearImageListsSync(ListExtract, ImgListExtract);
             FileControl.ClearTempImages();
             Dispose();
             Application.Exit();

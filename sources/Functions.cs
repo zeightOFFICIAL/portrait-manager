@@ -145,6 +145,7 @@ namespace PortraitManager
             //RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
             RootFunctions.LayoutDisable(LayoutPathPage);
+            RootFunctions.LayoutDisable(LayoutKingCreatePortrait);
             //RootFunctions.LayoutDisable(LayoutURLDialog);
             //RootFunctions.LayoutDisable(LayoutFinalPage);
         }
@@ -1048,6 +1049,9 @@ namespace PortraitManager
             LabelBrowse.Text = TextVariables.BUTTON_BROWSE;
             LabelSettingsPage.Text = TextVariables.BUTTON_SETTINGS;
             LabelExit.Text = TextVariables.BUTTON_EXIT;
+            LabelKingCreatePortraitLarge.Text = TextVariables.BUTTON_KINGCREATEPAGELRG;
+            LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID;
+            LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML;
         }
 
         public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int initSize = 9)
@@ -1075,6 +1079,9 @@ namespace PortraitManager
             LabelBrowse.Font = bebasNeueMainPage2;
             LabelSettingsPage.Font = bebasNeueMainPage2;
             LabelExit.Font = bebasNeueMainPage2;
+            LabelKingCreatePortraitLarge.Font = bebasNeueHead;
+            LabelKingCreatePortraitMedium.Font = bebasNeueHead;
+            LabelKingCreatePortraitSmall.Font = bebasNeueHead;
         }
 
         private void OpenPathSelectPage()

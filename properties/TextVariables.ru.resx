@@ -182,4 +182,13 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="TEXT_EXPLAIN_PATH_POED" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="BUTTON_KINGCREATEPAGELRG" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="BUTTON_KINGCREATEPAGEMID" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
 </root>

@@ -198,4 +198,13 @@ If detection fails, you can open the folder manually.</value>
 
 - You can also alter companions and NPC portraits if they exist via Browse Gallery.</value>
   </data>
+  <data name="BUTTON_KINGCREATEPAGELRG" xml:space="preserve">
+    <value>⍞ Fulllength</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGEMID" xml:space="preserve">
+    <value>⌻ Medium</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML" xml:space="preserve">
+    <value>⌼ Portrait</value>
+  </data>
 </root>

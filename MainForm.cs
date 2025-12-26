@@ -35,12 +35,13 @@ namespace PortraitManager
 {
     public partial class MainForm : Form
     {
+
         private static char _gameSelected;
 
         /*
          * 100 - Start page (initial page, with no game type active)
          * 150 - Path page
-         * 200 - Main page 
+         * 20* - Main page 
          * (
          *      201 - Pathfinder: Kingmaker, 
          *      202 - Pathfinder: Wotr, 
@@ -50,8 +51,17 @@ namespace PortraitManager
          *      206 - Tyranny
          *      207 - Wasteland 3
          * )
+         * 30* - Portrait page
+         * (
+         *      301 - Pathfinder: Kingmaker, 
+         *      302 - Pathfinder: Wotr, 
+         *      303 - Rogue Trader
+         *      304 - Pillars of Eternity
+         *      305 - Pillars of Eternity: Deadfire
+         *      306 - Tyranny
+         *      307 - Wasteland 3
+         * )
          * 
-         * 2 - Menu page
          * 3 - File page
          * 4 - Scale page
          * 5 - Extract page
@@ -60,7 +70,18 @@ namespace PortraitManager
          * 200 - Scale>finish page
          * 65535 - Debug/Error
          */
-        private static ushort _activeMenuIndex;
+        private static ushort _activeIndex = 100;
+
+        /*
+         * 1 - Large
+         * 2 - Medium
+         * 3 - Small
+         * 4 - Large 2
+         * 5 - Medium 2
+         */
+        private static ushort _activeMenuIndex = 0;
+
+
         /* 0 - all loaded
          * 1 - first loaded
          * 2 - first, second loaded
@@ -1145,6 +1166,45 @@ namespace PortraitManager
             }
         }
 
-        
+        private void LabelCreatePortrait_Click(object sender, EventArgs e)
+        {
+            if (_gameSelected == 'k')
+            {
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutKingCreatePortrait);
+                _activeMenuIndex = 301;
+                Focus();
+            }
+        }
+
+        private void LabelKingCreatePortraitLarge_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitLarge.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitLarge_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitLarge.ForeColor = Color.White;
+        }
+
+        private void LabelKingCreatePortraitMedium_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitMedium.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitMedium_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitMedium.ForeColor = Color.White;
+        }
+
+        private void LabelKingCreatePortraitSmall_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitSmall.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitSmall_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitSmall.ForeColor = Color.White;
+        }
     }
 }

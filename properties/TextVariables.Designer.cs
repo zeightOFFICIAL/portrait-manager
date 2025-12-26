@@ -106,6 +106,33 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ⍞ Fulllength.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGELRG {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGELRG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌻ Medium.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGEMID {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGEMID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌼ Portrait.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGESML {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGESML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset 🔄.
         /// </summary>
         internal static string BUTTON_RESET {

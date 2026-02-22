@@ -81,6 +81,15 @@ namespace PortraitManager
          */
         private static ushort _activeMenuIndex = 0;
 
+        private enum KingPortraitGroupSelection
+        {
+            Large,
+            Medium,
+            Small
+        }
+
+        private KingPortraitGroupSelection _activeKingPortraitGroup = KingPortraitGroupSelection.Large;
+
 
         /* 0 - all loaded
          * 1 - first loaded
@@ -178,6 +187,7 @@ namespace PortraitManager
             }
 
             Focus();
+            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
 
 
 
@@ -1175,6 +1185,51 @@ namespace PortraitManager
                 _activeMenuIndex = 301;
                 Focus();
             }
+        }
+
+        private void LabelKingCreatePortraitLarge_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+        }
+
+        private void LabelKingCreatePortraitMedium_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(KingPortraitGroupSelection.Medium);
+        }
+
+        private void LabelKingCreatePortraitSmall_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(KingPortraitGroupSelection.Small);
+        }
+
+        private void SetKingPortraitGroup(KingPortraitGroupSelection selection)
+        {
+            if (LayoutKingPortraitGroupLarge == null ||
+                LayoutKingPortraitGroupMedium == null ||
+                LayoutKingPortraitGroupSmall == null)
+            {
+                return;
+            }
+
+            _activeKingPortraitGroup = selection;
+
+            LayoutKingPortraitGroupLarge.Visible = selection == KingPortraitGroupSelection.Large;
+            LayoutKingPortraitGroupMedium.Visible = selection == KingPortraitGroupSelection.Medium;
+            LayoutKingPortraitGroupSmall.Visible = selection == KingPortraitGroupSelection.Small;
+
+            LayoutKingPortraitGroupLarge.BackColor = selection == KingPortraitGroupSelection.Large ? GameTypes[_gameSelected].BackColor : Color.Transparent;
+            LayoutKingPortraitGroupMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? GameTypes[_gameSelected].BackColor : Color.Transparent;
+            LayoutKingPortraitGroupSmall.BackColor = selection == KingPortraitGroupSelection.Small ? GameTypes[_gameSelected].BackColor : Color.Transparent;
+
+            Color selBack = GameTypes[_gameSelected].BackColor;
+            Color selFore = GameTypes[_gameSelected].ForeColor;
+
+            LabelKingCreatePortraitLarge.BackColor = selection == KingPortraitGroupSelection.Large ? selBack : Color.Transparent;
+            LabelKingCreatePortraitLarge.ForeColor = selection == KingPortraitGroupSelection.Large ? selFore : Color.White;
+            LabelKingCreatePortraitMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? selBack : Color.Transparent;
+            LabelKingCreatePortraitMedium.ForeColor = selection == KingPortraitGroupSelection.Medium ? selFore : Color.White;
+            LabelKingCreatePortraitSmall.BackColor = selection == KingPortraitGroupSelection.Small ? selBack : Color.Transparent;
+            LabelKingCreatePortraitSmall.ForeColor = selection == KingPortraitGroupSelection.Small ? selFore : Color.White;
         }
 
         private void LabelKingCreatePortraitLarge_MouseEnter(object sender, EventArgs e)

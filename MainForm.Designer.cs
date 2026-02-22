@@ -92,6 +92,12 @@ namespace PortraitManager
             this.LabelKingCreatePortraitMedium = new System.Windows.Forms.Label();
             this.LabelKingCreatePortraitSmall = new System.Windows.Forms.Label();
             this.LayoutKingPortraitGroups = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutKingPortraitGroupLarge = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingGroupLargeTitle = new System.Windows.Forms.Label();
+            this.LayoutKingPortraitGroupMedium = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingGroupMediumTitle = new System.Windows.Forms.Label();
+            this.LayoutKingPortraitGroupSmall = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingGroupSmallTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutStartMenu.SuspendLayout();
@@ -119,6 +125,10 @@ namespace PortraitManager
             this.tableLayoutPanel23.SuspendLayout();
             this.LayoutKingCreatePortrait.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.LayoutKingPortraitGroups.SuspendLayout();
+            this.LayoutKingPortraitGroupLarge.SuspendLayout();
+            this.LayoutKingPortraitGroupMedium.SuspendLayout();
+            this.LayoutKingPortraitGroupSmall.SuspendLayout();
             this.SuspendLayout();
             // 
             // ImgListExtract
@@ -945,56 +955,64 @@ namespace PortraitManager
             // LabelKingCreatePortraitLarge
             // 
             this.LabelKingCreatePortraitLarge.AutoSize = true;
+            this.LabelKingCreatePortraitLarge.BackColor = System.Drawing.Color.Transparent;
             this.LabelKingCreatePortraitLarge.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelKingCreatePortraitLarge.ForeColor = System.Drawing.Color.White;
             this.LabelKingCreatePortraitLarge.Location = new System.Drawing.Point(0, 0);
             this.LabelKingCreatePortraitLarge.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelKingCreatePortraitLarge.Name = "LabelKingCreatePortraitLarge";
-            this.LabelKingCreatePortraitLarge.Padding = new System.Windows.Forms.Padding(0, 0, 0, 35);
-            this.LabelKingCreatePortraitLarge.Size = new System.Drawing.Size(94, 48);
+            this.LabelKingCreatePortraitLarge.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitLarge.Size = new System.Drawing.Size(124, 48);
             this.LabelKingCreatePortraitLarge.TabIndex = 0;
             this.LabelKingCreatePortraitLarge.Text = "LABEL_KINGLRG";
             this.LabelKingCreatePortraitLarge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitLarge.Click += new System.EventHandler(this.LabelKingCreatePortraitLarge_Click);
             this.LabelKingCreatePortraitLarge.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitLarge_MouseEnter);
             this.LabelKingCreatePortraitLarge.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitLarge_MouseLeave);
             // 
             // LabelKingCreatePortraitMedium
             // 
             this.LabelKingCreatePortraitMedium.AutoSize = true;
+            this.LabelKingCreatePortraitMedium.BackColor = System.Drawing.Color.Transparent;
             this.LabelKingCreatePortraitMedium.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelKingCreatePortraitMedium.ForeColor = System.Drawing.Color.White;
-            this.LabelKingCreatePortraitMedium.Location = new System.Drawing.Point(100, 0);
+            this.LabelKingCreatePortraitMedium.Location = new System.Drawing.Point(130, 0);
             this.LabelKingCreatePortraitMedium.Name = "LabelKingCreatePortraitMedium";
-            this.LabelKingCreatePortraitMedium.Padding = new System.Windows.Forms.Padding(0, 0, 0, 35);
-            this.LabelKingCreatePortraitMedium.Size = new System.Drawing.Size(92, 48);
+            this.LabelKingCreatePortraitMedium.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitMedium.Size = new System.Drawing.Size(122, 48);
             this.LabelKingCreatePortraitMedium.TabIndex = 1;
             this.LabelKingCreatePortraitMedium.Text = "LABEL_KINGMID";
             this.LabelKingCreatePortraitMedium.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitMedium.Click += new System.EventHandler(this.LabelKingCreatePortraitMedium_Click);
             this.LabelKingCreatePortraitMedium.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitMedium_MouseEnter);
             this.LabelKingCreatePortraitMedium.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitMedium_MouseLeave);
             // 
             // LabelKingCreatePortraitSmall
             // 
             this.LabelKingCreatePortraitSmall.AutoSize = true;
+            this.LabelKingCreatePortraitSmall.BackColor = System.Drawing.Color.Transparent;
             this.LabelKingCreatePortraitSmall.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelKingCreatePortraitSmall.ForeColor = System.Drawing.Color.White;
-            this.LabelKingCreatePortraitSmall.Location = new System.Drawing.Point(198, 0);
+            this.LabelKingCreatePortraitSmall.Location = new System.Drawing.Point(258, 0);
             this.LabelKingCreatePortraitSmall.Name = "LabelKingCreatePortraitSmall";
-            this.LabelKingCreatePortraitSmall.Padding = new System.Windows.Forms.Padding(0, 0, 0, 35);
-            this.LabelKingCreatePortraitSmall.Size = new System.Drawing.Size(94, 48);
+            this.LabelKingCreatePortraitSmall.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitSmall.Size = new System.Drawing.Size(124, 48);
             this.LabelKingCreatePortraitSmall.TabIndex = 2;
             this.LabelKingCreatePortraitSmall.Text = "LABEL_KINGSML";
             this.LabelKingCreatePortraitSmall.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitSmall.Click += new System.EventHandler(this.LabelKingCreatePortraitSmall_Click);
             this.LabelKingCreatePortraitSmall.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitSmall_MouseEnter);
             this.LabelKingCreatePortraitSmall.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitSmall_MouseLeave);
             // 
             // LayoutKingPortraitGroups
             // 
             this.LayoutKingPortraitGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
-            this.LayoutKingPortraitGroups.ColumnCount = 3;
-            this.LayoutKingPortraitGroups.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98F));
-            this.LayoutKingPortraitGroups.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
-            this.LayoutKingPortraitGroups.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
+            this.LayoutKingPortraitGroups.ColumnCount = 1;
+            this.LayoutKingCreatePortrait.SetColumnSpan(this.LayoutKingPortraitGroups, 2);
+            this.LayoutKingPortraitGroups.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupLarge, 0, 0);
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupMedium, 0, 0);
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupSmall, 0, 0);
             this.LayoutKingPortraitGroups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutKingPortraitGroups.Location = new System.Drawing.Point(36, 52);
             this.LayoutKingPortraitGroups.Margin = new System.Windows.Forms.Padding(0);
@@ -1002,8 +1020,86 @@ namespace PortraitManager
             this.LayoutKingPortraitGroups.RowCount = 1;
             this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayoutKingPortraitGroups.Size = new System.Drawing.Size(513, 404);
+            this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingPortraitGroups.Size = new System.Drawing.Size(659, 404);
             this.LayoutKingPortraitGroups.TabIndex = 4;
+            // 
+            // LayoutKingPortraitGroupLarge
+            // 
+            this.LayoutKingPortraitGroupLarge.ColumnCount = 1;
+            this.LayoutKingPortraitGroupLarge.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupLarge.Controls.Add(this.LabelKingGroupLargeTitle, 0, 0);
+            this.LayoutKingPortraitGroupLarge.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupLarge.Location = new System.Drawing.Point(0, 384);
+            this.LayoutKingPortraitGroupLarge.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupLarge.Name = "LayoutKingPortraitGroupLarge";
+            this.LayoutKingPortraitGroupLarge.RowCount = 1;
+            this.LayoutKingPortraitGroupLarge.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupLarge.Size = new System.Drawing.Size(659, 20);
+            this.LayoutKingPortraitGroupLarge.TabIndex = 0;
+            // 
+            // LabelKingGroupLargeTitle
+            // 
+            this.LabelKingGroupLargeTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingGroupLargeTitle.ForeColor = System.Drawing.Color.White;
+            this.LabelKingGroupLargeTitle.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingGroupLargeTitle.Name = "LabelKingGroupLargeTitle";
+            this.LabelKingGroupLargeTitle.Size = new System.Drawing.Size(653, 20);
+            this.LabelKingGroupLargeTitle.TabIndex = 0;
+            this.LabelKingGroupLargeTitle.Text = "Large portrait group layout";
+            this.LabelKingGroupLargeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LayoutKingPortraitGroupMedium
+            // 
+            this.LayoutKingPortraitGroupMedium.ColumnCount = 1;
+            this.LayoutKingPortraitGroupMedium.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupMedium.Controls.Add(this.LabelKingGroupMediumTitle, 0, 0);
+            this.LayoutKingPortraitGroupMedium.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupMedium.Location = new System.Drawing.Point(0, 364);
+            this.LayoutKingPortraitGroupMedium.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupMedium.Name = "LayoutKingPortraitGroupMedium";
+            this.LayoutKingPortraitGroupMedium.RowCount = 1;
+            this.LayoutKingPortraitGroupMedium.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupMedium.Size = new System.Drawing.Size(659, 20);
+            this.LayoutKingPortraitGroupMedium.TabIndex = 1;
+            this.LayoutKingPortraitGroupMedium.Visible = false;
+            // 
+            // LabelKingGroupMediumTitle
+            // 
+            this.LabelKingGroupMediumTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingGroupMediumTitle.ForeColor = System.Drawing.Color.White;
+            this.LabelKingGroupMediumTitle.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingGroupMediumTitle.Name = "LabelKingGroupMediumTitle";
+            this.LabelKingGroupMediumTitle.Size = new System.Drawing.Size(653, 20);
+            this.LabelKingGroupMediumTitle.TabIndex = 0;
+            this.LabelKingGroupMediumTitle.Text = "Medium portrait group layout";
+            this.LabelKingGroupMediumTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LayoutKingPortraitGroupSmall
+            // 
+            this.LayoutKingPortraitGroupSmall.ColumnCount = 1;
+            this.LayoutKingPortraitGroupSmall.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupSmall.Controls.Add(this.LabelKingGroupSmallTitle, 0, 0);
+            this.LayoutKingPortraitGroupSmall.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupSmall.Location = new System.Drawing.Point(0, 0);
+            this.LayoutKingPortraitGroupSmall.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupSmall.Name = "LayoutKingPortraitGroupSmall";
+            this.LayoutKingPortraitGroupSmall.RowCount = 1;
+            this.LayoutKingPortraitGroupSmall.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupSmall.Size = new System.Drawing.Size(659, 364);
+            this.LayoutKingPortraitGroupSmall.TabIndex = 2;
+            this.LayoutKingPortraitGroupSmall.Visible = false;
+            // 
+            // LabelKingGroupSmallTitle
+            // 
+            this.LabelKingGroupSmallTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingGroupSmallTitle.ForeColor = System.Drawing.Color.White;
+            this.LabelKingGroupSmallTitle.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingGroupSmallTitle.Name = "LabelKingGroupSmallTitle";
+            this.LabelKingGroupSmallTitle.Size = new System.Drawing.Size(653, 364);
+            this.LabelKingGroupSmallTitle.TabIndex = 0;
+            this.LabelKingGroupSmallTitle.Text = "Small portrait group layout";
+            this.LabelKingGroupSmallTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
@@ -1101,6 +1197,10 @@ namespace PortraitManager
             this.LayoutKingCreatePortrait.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.LayoutKingPortraitGroups.ResumeLayout(false);
+            this.LayoutKingPortraitGroupLarge.ResumeLayout(false);
+            this.LayoutKingPortraitGroupMedium.ResumeLayout(false);
+            this.LayoutKingPortraitGroupSmall.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1159,6 +1259,13 @@ namespace PortraitManager
         private System.Windows.Forms.Label LabelKingCreatePortraitSmall;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroups;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupLarge;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupMedium;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupSmall;
+        private System.Windows.Forms.Label LabelKingGroupLargeTitle;
+        private System.Windows.Forms.Label LabelKingGroupMediumTitle;
+        private System.Windows.Forms.Label LabelKingGroupSmallTitle;
+        // private System.Windows.Forms.Label LabelKingCreatePortraitActiveGroup; // removed
     }
 }
 

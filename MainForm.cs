@@ -33,8 +33,9 @@ using System.IO;
 
 namespace PortraitManager
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMessageFilter
     {
+        private const int WM_MOUSEWHEEL = 0x020A;
 
         private static char _gameSelected;
 
@@ -101,7 +102,17 @@ namespace PortraitManager
         private static bool _isAspectRatioFixed = false;
 
         private static ushort _isDraggingMouse = 0;
-        private static Point _mousePosition = new Point();      
+        private static Point _mousePosition = new Point();
+        private static Point _pictureDragStart = new Point();
+
+        // Store original images for zoom without quality loss
+        private static Image _originalImageLrg;
+        private static Image _originalImageMed;
+        private static Image _originalImageSml;
+        // Track current zoom level as ratio to original size
+        private static float _zoomLevelLrg = 1.0f;
+        private static float _zoomLevelMed = 1.0f;
+        private static float _zoomLevelSml = 1.0f;
 
         private static PrivateFontCollection _fontCollection;
         private static CancellationTokenSource _cancellationTokenSource;
@@ -121,6 +132,7 @@ namespace PortraitManager
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.Selectable, false);
+            Application.AddMessageFilter(this);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -512,6 +524,7 @@ namespace PortraitManager
         {
             _activeMenuIndex = 0;
 
+            Application.RemoveMessageFilter(this);
             DisposePrimeImages();
             //ClearImageListsSync(ListGallery, ImgListGallery);
             //ClearImageListsSync(ListExtract, ImgListExtract);
@@ -1200,6 +1213,248 @@ namespace PortraitManager
         private void LabelKingCreatePortraitSmall_Click(object sender, EventArgs e)
         {
             SetKingPortraitGroup(KingPortraitGroupSelection.Small);
+        }
+
+        private void ButtonKingAction_Click(object sender, EventArgs e)
+        {
+            // placeholder action for right-side button
+            MessageBox.Show("King action clicked", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ButtonKingSelectWeb_Click(object sender, EventArgs e)
+        {
+            // placeholder: open web selection dialog
+            // sender.Tag contains picture box name currently, but for now do nothing
+        }
+
+        private void ButtonKingSelectLocal_Click(object sender, EventArgs e)
+        {
+            // Open local file dialog and set image with initial fit
+            if (sender is Button btn && btn.Tag is string picName)
+            {
+                PictureBox pic = this.Controls.Find(picName, true).FirstOrDefault() as PictureBox;
+                if (pic == null) return;
+
+                using (OpenFileDialog ofd = new OpenFileDialog()
+                {
+                    Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp",
+                    Multiselect = false
+                })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            using (Image fileImg = Image.FromFile(ofd.FileName))
+                            {
+                                Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+                                StoreOriginalImage(pic, copy);
+                            }
+                            FitImageToPanel(pic);
+                        }
+                        catch
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void StoreOriginalImage(PictureBox pic, Image img)
+        {
+            if (pic.Name == "PicKingLrg")
+            {
+                _originalImageLrg?.Dispose();
+                _originalImageLrg = img;
+                _zoomLevelLrg = 1.0f;
+            }
+            else if (pic.Name == "PicKingMed")
+            {
+                _originalImageMed?.Dispose();
+                _originalImageMed = img;
+                _zoomLevelMed = 1.0f;
+            }
+            else if (pic.Name == "PicKingSml")
+            {
+                _originalImageSml?.Dispose();
+                _originalImageSml = img;
+                _zoomLevelSml = 1.0f;
+            }
+        }
+
+        private Image GetOriginalImage(PictureBox pic)
+        {
+            if (pic.Name == "PicKingLrg") return _originalImageLrg;
+            if (pic.Name == "PicKingMed") return _originalImageMed;
+            if (pic.Name == "PicKingSml") return _originalImageSml;
+            return null;
+        }
+
+        private float GetZoomLevel(PictureBox pic)
+        {
+            if (pic.Name == "PicKingLrg") return _zoomLevelLrg;
+            if (pic.Name == "PicKingMed") return _zoomLevelMed;
+            if (pic.Name == "PicKingSml") return _zoomLevelSml;
+            return 1.0f;
+        }
+
+        private void SetZoomLevel(PictureBox pic, float zoom)
+        {
+            if (pic.Name == "PicKingLrg") _zoomLevelLrg = zoom;
+            else if (pic.Name == "PicKingMed") _zoomLevelMed = zoom;
+            else if (pic.Name == "PicKingSml") _zoomLevelSml = zoom;
+        }
+
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg != WM_MOUSEWHEEL) return false;
+
+            Point cursor = Cursor.Position;
+            Panel targetPanel = null;
+            PictureBox targetPic = null;
+
+            Panel[] panels = { PanelKingLrg, PanelKingMed, PanelKingSml };
+            PictureBox[] pics = { PicKingLrg, PicKingMed, PicKingSml };
+
+            for (int i = 0; i < panels.Length; i++)
+            {
+                if (panels[i] == null || !panels[i].Visible) continue;
+                if (panels[i].RectangleToScreen(panels[i].ClientRectangle).Contains(cursor))
+                {
+                    targetPanel = panels[i];
+                    targetPic = pics[i];
+                    break;
+                }
+            }
+
+            if (targetPanel == null || targetPic == null) return false;
+            if (targetPic.Image == null) return false;
+
+            int delta = (short)((m.WParam.ToInt64() >> 16) & 0xFFFF);
+            Point localPos = targetPic.PointToClient(cursor);
+            ZoomPortrait(targetPic, targetPanel, delta, localPos);
+            return true;
+        }
+
+        private void ZoomPortrait(PictureBox pb, Panel panel, int wheelDelta, Point localPos)
+        {
+            Image original = GetOriginalImage(pb);
+            if (original == null || pb.Image == null) return;
+
+            float currentZoom = GetZoomLevel(pb);
+            float zoomStep = 0.1f;
+            float newZoom = wheelDelta > 0
+                ? currentZoom + zoomStep
+                : currentZoom - zoomStep;
+
+            int panelW = panel.ClientSize.Width;
+            int panelH = panel.ClientSize.Height;
+            if (panelW <= 0 || panelH <= 0) return;
+
+            float imgAspect = (float)original.Width / original.Height;
+            float panelAspect = (float)panelW / panelH;
+            float minZoom = imgAspect > panelAspect
+                ? (float)panelH / original.Height
+                : (float)panelW / original.Width;
+
+            if (newZoom < minZoom) newZoom = minZoom;
+            if (newZoom > 4.0f) newZoom = 4.0f;
+
+            int newW = Math.Max(1, (int)(original.Width * newZoom));
+            int newH = Math.Max(1, (int)(original.Height * newZoom));
+
+            if (newW == pb.Width && newH == pb.Height)
+                return;
+
+            int oldW = pb.Width;
+            int oldH = pb.Height;
+            float relX = oldW <= 0 ? 0.5f : (float)localPos.X / oldW;
+            float relY = oldH <= 0 ? 0.5f : (float)localPos.Y / oldH;
+
+            Bitmap zoomed = ImageControl.Direct.Resize(original, newW, newH);
+            Image old = pb.Image;
+            pb.Image = zoomed;
+            if (old != null && old != original)
+                old.Dispose();
+            SetZoomLevel(pb, newZoom);
+
+            var desired = new Point(
+                pb.Location.X - (int)(relX * newW - localPos.X),
+                pb.Location.Y - (int)(relY * newH - localPos.Y));
+            pb.Location = ClampPictureLocation(pb, panel, desired);
+        }
+
+        private void ButtonKingZoomIn_Click(object sender, EventArgs e)
+        {
+            ZoomFromButton(sender, 120);
+        }
+
+        private void ButtonKingZoomOut_Click(object sender, EventArgs e)
+        {
+            ZoomFromButton(sender, -120);
+        }
+
+        private void ZoomFromButton(object sender, int wheelDelta)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            string picName = button.Tag as string;
+            if (string.IsNullOrEmpty(picName)) return;
+
+            PictureBox pb = null;
+            Panel panel = null;
+
+            if (picName == "PicKingLrg") { pb = PicKingLrg; panel = PanelKingLrg; }
+            else if (picName == "PicKingMed") { pb = PicKingMed; panel = PanelKingMed; }
+            else if (picName == "PicKingSml") { pb = PicKingSml; panel = PanelKingSml; }
+
+            if (pb == null || panel == null || pb.Image == null) return;
+
+            Point center = new Point(pb.Width / 2, pb.Height / 2);
+            ZoomPortrait(pb, panel, wheelDelta, center);
+        }
+
+        private void FitImageToPanel(PictureBox pic)
+        {
+            Image original = GetOriginalImage(pic);
+            if (original == null) return;
+
+            Panel panel = pic.Parent as Panel;
+            if (panel == null) return;
+
+            int panelW = panel.ClientSize.Width;
+            int panelH = panel.ClientSize.Height;
+            if (panelW <= 0 || panelH <= 0) return;
+
+            float imgAspect = (float)original.Width / original.Height;
+            float panelAspect = (float)panelW / panelH;
+
+            int newW, newH;
+            if (imgAspect > panelAspect)
+            {
+                newH = panelH;
+                newW = Math.Max(1, (int)(panelH * imgAspect));
+            }
+            else
+            {
+                newW = panelW;
+                newH = Math.Max(1, (int)(panelW / imgAspect));
+            }
+
+            float zoom = (float)newW / original.Width;
+            SetZoomLevel(pic, zoom);
+
+            Bitmap resized = ImageControl.Direct.Resize(original, newW, newH);
+            Image oldImg = pic.Image;
+            pic.Image = resized;
+            if (oldImg != null && oldImg != original)
+                oldImg.Dispose();
+
+            int x = (panelW - newW) / 2;
+            int y = (panelH - newH) / 2;
+            pic.Location = new Point(x, y);
         }
 
         private void SetKingPortraitGroup(KingPortraitGroupSelection selection)

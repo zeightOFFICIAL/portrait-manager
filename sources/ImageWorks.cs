@@ -27,27 +27,24 @@ namespace ImageControl
     {
         public static Bitmap Resize(Image inImage, int newWidth, int newHeight)
         {
-            using (Bitmap outImage = new Bitmap(newWidth, newHeight))
+            Bitmap outImage = new Bitmap(newWidth, newHeight);
+            outImage.SetResolution(inImage.HorizontalResolution, inImage.VerticalResolution);
+            using (Graphics newRenderer = Graphics.FromImage(outImage))
             {
-                outImage.SetResolution(inImage.HorizontalResolution, inImage.VerticalResolution);
-                using (Graphics newRenderer = Graphics.FromImage(outImage))
-                {
-                    newRenderer.CompositingQuality = CompositingQuality.HighQuality;
-                    newRenderer.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    newRenderer.SmoothingMode = SmoothingMode.HighQuality;
-                    newRenderer.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    newRenderer.DrawImage(inImage, new Rectangle(0, 0, newWidth, newHeight));
-                }
-
-                return new Bitmap(outImage);
+                newRenderer.CompositingQuality = CompositingQuality.HighQuality;
+                newRenderer.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                newRenderer.SmoothingMode = SmoothingMode.HighQuality;
+                newRenderer.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                Rectangle destRect = new Rectangle(0, 0, newWidth, newHeight);
+                Rectangle srcRect = new Rectangle(0, 0, inImage.Width, inImage.Height);
+                newRenderer.DrawImage(inImage, destRect, srcRect, GraphicsUnit.Pixel);
             }
+            return outImage;
         }
         
         public static Bitmap Zoom(Image inImage, int newWidth, int newHeight)
         {
-            using (Bitmap img = new Bitmap(inImage))
-            using (Bitmap outImage = new Bitmap(Resize(img, newWidth, newHeight)))
-                return new Bitmap(outImage);
+            return Resize(inImage, newWidth, newHeight);
         }
         
         public static Bitmap Crop(Image inImage, int xStart, int yStart, int xEnd, int yEnd)

@@ -128,19 +128,28 @@ namespace PortraitManager
         {
             if (e.Button == MouseButtons.Left)
             {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
                 _mousePosition = e.Location;
+                _pictureDragStart = pb.Location;
                 _isDraggingMouse = 1;
             }
         }
 
         private void PicPortraitLrg_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (_isDraggingMouse == 1 && (PicPortraitLrg.Image.Width > PanelPortraitLrg.Width ||
-            //                      PicPortraitLrg.Image.Height > PanelPortraitLrg.Height))
-            //{
-            //    PanelPortraitLrg.AutoScrollPosition = new Point(-PanelPortraitLrg.AutoScrollPosition.X + (_mousePosition.X - e.X),
-            //                                                  -PanelPortraitLrg.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
-            //}
+            if (_isDraggingMouse == 1)
+            {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
+                var panel = GetPortraitPanel(pb);
+                if (panel == null) return;
+
+                int deltaX = e.X - _mousePosition.X;
+                int deltaY = e.Y - _mousePosition.Y;
+                var desired = new Point(pb.Location.X + deltaX, pb.Location.Y + deltaY);
+                pb.Location = ClampPictureLocation(pb, panel, desired);
+            }
         }
         
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
@@ -153,19 +162,28 @@ namespace PortraitManager
         {
             if (e.Button == MouseButtons.Left)
             {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
                 _mousePosition = e.Location;
+                _pictureDragStart = pb.Location;
                 _isDraggingMouse = 2;
             }
         }
         
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (_isDraggingMouse == 2 && (PicPortraitMed.Image.Width > PanelPortraitMed.Width ||
-            //PicPortraitMed.Image.Height > PanelPortraitMed.Height))
-            //{
-            //    PanelPortraitMed.AutoScrollPosition = new Point(-PanelPortraitMed.AutoScrollPosition.X + (_mousePosition.X - e.X),
-            //                                                  -PanelPortraitMed.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
-            //}
+            if (_isDraggingMouse == 2)
+            {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
+                var panel = GetPortraitPanel(pb);
+                if (panel == null) return;
+
+                int deltaX = e.X - _mousePosition.X;
+                int deltaY = e.Y - _mousePosition.Y;
+                var desired = new Point(pb.Location.X + deltaX, pb.Location.Y + deltaY);
+                pb.Location = ClampPictureLocation(pb, panel, desired);
+            }
         }
 
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
@@ -178,19 +196,28 @@ namespace PortraitManager
         {
             if (e.Button == MouseButtons.Left)
             {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
                 _mousePosition = e.Location;
+                _pictureDragStart = pb.Location;
                 _isDraggingMouse = 3;
             }
         }
 
         private void PicPortraitSml_MouseMove(object sender, MouseEventArgs e)
         {
-            //if (_isDraggingMouse == 3 && (PicPortraitSml.Image.Width > PanelPortraitSml.Width ||
-            //                      PicPortraitSml.Image.Height > PanelPortraitSml.Height))
-            //{
-            //    PanelPortraitSml.AutoScrollPosition = new Point(-PanelPortraitSml.AutoScrollPosition.X + (_mousePosition.X - e.X),
-            //                                                  -PanelPortraitSml.AutoScrollPosition.Y + (_mousePosition.Y - e.Y));
-            //}
+            if (_isDraggingMouse == 3)
+            {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
+                var panel = GetPortraitPanel(pb);
+                if (panel == null) return;
+
+                int deltaX = e.X - _mousePosition.X;
+                int deltaY = e.Y - _mousePosition.Y;
+                var desired = new Point(pb.Location.X + deltaX, pb.Location.Y + deltaY);
+                pb.Location = ClampPictureLocation(pb, panel, desired);
+            }
         }
 
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
@@ -199,61 +226,55 @@ namespace PortraitManager
             _isDraggingMouse = 0;
         }
         
-        private void PicPortraitLrg_MouseWheel(object sender, MouseEventArgs e)
+        private Panel GetPortraitPanel(PictureBox pictureBox)
         {
-            //RootFunctions.HideScrollBar(PanelPortraitLrg);
-            //float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            //float zoomFactor = PicPortraitLrg.Width * 1.0f / 14;
+            Control current = pictureBox?.Parent;
+            while (current != null && !(current is Panel))
+            {
+                current = current.Parent;
+            }
 
-            //if (e.Delta > 0)
-            //{
-            //    ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
-            //}
-            //else
-            //{
-            //    zoomFactor = -zoomFactor;
-            //    ImageControl.Wraps.ZoomImage(PicPortraitLrg, PanelPortraitLrg, e, TEMP_LARGE_APPEND, aspectRatio, zoomFactor);
-            //}
-
-            //RootFunctions.HideScrollBar(PanelPortraitLrg);
+            return current as Panel;
         }
 
-        private void PicPortraitMed_MouseWheel(object sender, MouseEventArgs e)
+        private PictureBox GetPortraitPictureBox(object sender)
         {
-            //RootFunctions.HideScrollBar(PanelPortraitMed);
-            //float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            //float zoomFactor = PicPortraitLrg.Width * 1.0f / 10;
+            if (sender is PictureBox pictureBox)
+                return pictureBox;
 
-            //if (e.Delta > 0)
-            //{
-            //    ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
-            //}
-            //else
-            //{
-            //    zoomFactor = -zoomFactor;
-            //    ImageControl.Wraps.ZoomImage(PicPortraitMed, PanelPortraitMed, e, TEMP_MEDIUM_APPEND, aspectRatio, zoomFactor);
-            //}
+            if (sender is Panel panel)
+                return panel.Controls.OfType<PictureBox>().FirstOrDefault();
 
-            //RootFunctions.HideScrollBar(PanelPortraitMed);
+            return null;
         }
 
-        private void PicPortraitSml_MouseWheel(object sender, MouseEventArgs e)
+        private Point ClampPictureLocation(PictureBox pictureBox, Panel panel, Point desired)
         {
-            //RootFunctions.HideScrollBar(PanelPortraitSml);
-            //float aspectRatio = (PicPortraitLrg.Width * 1.0f / PicPortraitLrg.Height * 1.0f);
-            //float zoomFactor = PicPortraitLrg.Width * 1.0f / 6;
+            Rectangle bounds = panel.DisplayRectangle;
 
-            //if (e.Delta > 0)
-            //{
-            //    ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
-            //}
-            //else
-            //{
-            //    zoomFactor = -zoomFactor;
-            //    ImageControl.Wraps.ZoomImage(PicPortraitSml, PanelPortraitSml, e, TEMP_SMALL_APPEND, aspectRatio, zoomFactor);
-            //}
+            int newX;
+            if (pictureBox.Width <= bounds.Width)
+            {
+                newX = bounds.Left + (bounds.Width - pictureBox.Width) / 2;
+            }
+            else
+            {
+                int minX = bounds.Left + (bounds.Width - pictureBox.Width);
+                newX = Math.Max(minX, Math.Min(bounds.Left, desired.X));
+            }
 
-            //RootFunctions.HideScrollBar(PanelPortraitSml);
+            int newY;
+            if (pictureBox.Height <= bounds.Height)
+            {
+                newY = bounds.Top + (bounds.Height - pictureBox.Height) / 2;
+            }
+            else
+            {
+                int minY = bounds.Top + (bounds.Height - pictureBox.Height);
+                newY = Math.Max(minY, Math.Min(bounds.Top, desired.Y));
+            }
+
+            return new Point(newX, newY);
         }
         
         private void MainForm_ResizeEnd(object sender, EventArgs e)

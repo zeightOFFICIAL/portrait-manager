@@ -199,7 +199,10 @@ namespace PortraitManager
             }
 
             Focus();
-            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+                SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+            // ensure placeholders are prepared with custom cover-scaling so one dimension
+            // matches the PictureBox and the other may be larger (center-cropped)
+            ReplacePictureBoxImagesToDefault();
 
 
 
@@ -331,6 +334,93 @@ namespace PortraitManager
             //}
 
             Focus();
+        }
+
+        private void LabelKingCreatePortrait_Paint(object sender, PaintEventArgs e)
+        {
+            var lbl = sender as Label;
+            if (lbl == null) return;
+            // Only draw border for the currently selected label
+            bool isSelected = false;
+            if (lbl.Name == "LabelKingCreatePortraitLarge") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Large;
+            else if (lbl.Name == "LabelKingCreatePortraitMedium") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Medium;
+            else if (lbl.Name == "LabelKingCreatePortraitSmall") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Small;
+            if (!isSelected) return;
+
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { penColor = lbl.ForeColor; }
+            using (var pen = new Pen(penColor))
+            {
+                int w = lbl.ClientSize.Width;
+                int h = lbl.ClientSize.Height;
+                // draw top, left and right only
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0); // top
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1); // left
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1); // right
+            }
+        }
+
+        private void DrawGroupBorder(Control group, PaintEventArgs e, Label label)
+        {
+            if (group == null) return;
+            Color col = Color.White;
+            try { col = GameTypes[_gameSelected].ForeColor; } catch { if (label != null) col = label.ForeColor; }
+            using (var pen = new Pen(col))
+            {
+                int w = group.ClientSize.Width;
+                int h = group.ClientSize.Height;
+                // left, right, bottom
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+                e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
+
+                // top with gap under label (exclude area under the label)
+                int gapStart = -1, gapEnd = -1;
+                if (label != null && label.Visible)
+                {
+                    try
+                    {
+                        var lblScreen = label.PointToScreen(Point.Empty);
+                        var lblInGroup = group.PointToClient(lblScreen);
+                        gapStart = lblInGroup.X;
+                        gapEnd = lblInGroup.X + label.Width;
+                    }
+                    catch { gapStart = -1; gapEnd = -1; }
+                }
+
+                if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
+                {
+                    // draw full top
+                    e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                }
+                else
+                {
+                    // draw left segment up to the left edge of the label
+                    int leftSegEnd = Math.Max(0, gapStart - 1);
+                    if (leftSegEnd > 0)
+                        e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
+
+                    // draw right segment starting after the right edge of the label
+                    int rightSegStart = Math.Min(w - 1, gapEnd + 1);
+                    if (rightSegStart < w - 1)
+                        e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
+                }
+            }
+        }
+
+        private void LayoutKingPortraitGroupLarge_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitLarge);
+        }
+
+        private void LayoutKingPortraitGroupMedium_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitMedium);
+        }
+
+        private void LayoutKingPortraitGroupSmall_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitSmall);
         }
 
         
@@ -1340,13 +1430,38 @@ namespace PortraitManager
         private void ZoomPortrait(PictureBox pb, Panel panel, int wheelDelta, Point localPos)
         {
             Image original = GetOriginalImage(pb);
+            // If no stored original exists, fall back to using the currently displayed image
+            // and store a deep copy as the original so subsequent resizes stay high-quality.
+            if (original == null && pb.Image != null)
+            {
+                try
+                {
+                    var copy = new Bitmap(pb.Image);
+                    StoreOriginalImage(pb, copy);
+                    original = copy;
+                }
+                catch
+                {
+                    return;
+                }
+            }
             if (original == null || pb.Image == null) return;
 
+            // Determine current zoom: prefer tracked zoom level, but compute from displayed
+            // image size when possible so cover-mode images (which may be larger than the
+            // picturebox control) behave correctly.
             float currentZoom = GetZoomLevel(pb);
+            try
+            {
+                if (pb.Image != null && original.Width > 0)
+                {
+                    currentZoom = (float)pb.Image.Width / original.Width;
+                }
+            }
+            catch { }
+
             float zoomStep = 0.1f;
-            float newZoom = wheelDelta > 0
-                ? currentZoom + zoomStep
-                : currentZoom - zoomStep;
+            float newZoom = wheelDelta > 0 ? currentZoom + zoomStep : currentZoom - zoomStep;
 
             int panelW = panel.ClientSize.Width;
             int panelH = panel.ClientSize.Height;
@@ -1375,6 +1490,12 @@ namespace PortraitManager
             Bitmap zoomed = ImageControl.Direct.Resize(original, newW, newH);
             Image old = pb.Image;
             pb.Image = zoomed;
+            // disable docking so we can reposition/resize the PictureBox freely
+            pb.Dock = DockStyle.None;
+            // update control size to reflect new image dimensions so ClampPictureLocation
+            // and other logic that relies on PictureBox.Width/Height behave correctly
+            pb.SizeMode = PictureBoxSizeMode.Normal;
+            pb.Size = new Size(newW, newH);
             if (old != null && old != original)
                 old.Dispose();
             SetZoomLevel(pb, newZoom);
@@ -1449,6 +1570,10 @@ namespace PortraitManager
             Bitmap resized = ImageControl.Direct.Resize(original, newW, newH);
             Image oldImg = pic.Image;
             pic.Image = resized;
+            // disable docking so location/size updates take effect and dragging works
+            pic.Dock = DockStyle.None;
+            pic.SizeMode = PictureBoxSizeMode.Normal;
+            pic.Size = new Size(newW, newH);
             if (oldImg != null && oldImg != original)
                 oldImg.Dispose();
 
@@ -1466,18 +1591,28 @@ namespace PortraitManager
                 return;
             }
 
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType))
+            {
+                // No valid game selected (e.g. sentinel '-'), skip styling updates.
+                _activeKingPortraitGroup = selection;
+                LayoutKingPortraitGroupLarge.Visible = selection == KingPortraitGroupSelection.Large;
+                LayoutKingPortraitGroupMedium.Visible = selection == KingPortraitGroupSelection.Medium;
+                LayoutKingPortraitGroupSmall.Visible = selection == KingPortraitGroupSelection.Small;
+                return;
+            }
+
             _activeKingPortraitGroup = selection;
 
             LayoutKingPortraitGroupLarge.Visible = selection == KingPortraitGroupSelection.Large;
             LayoutKingPortraitGroupMedium.Visible = selection == KingPortraitGroupSelection.Medium;
             LayoutKingPortraitGroupSmall.Visible = selection == KingPortraitGroupSelection.Small;
 
-            LayoutKingPortraitGroupLarge.BackColor = selection == KingPortraitGroupSelection.Large ? GameTypes[_gameSelected].BackColor : Color.Transparent;
-            LayoutKingPortraitGroupMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? GameTypes[_gameSelected].BackColor : Color.Transparent;
-            LayoutKingPortraitGroupSmall.BackColor = selection == KingPortraitGroupSelection.Small ? GameTypes[_gameSelected].BackColor : Color.Transparent;
+            LayoutKingPortraitGroupLarge.BackColor = selection == KingPortraitGroupSelection.Large ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupSmall.BackColor = selection == KingPortraitGroupSelection.Small ? gameType.BackColor : Color.Transparent;
 
-            Color selBack = GameTypes[_gameSelected].BackColor;
-            Color selFore = GameTypes[_gameSelected].ForeColor;
+            Color selBack = gameType.BackColor;
+            Color selFore = gameType.ForeColor;
 
             LabelKingCreatePortraitLarge.BackColor = selection == KingPortraitGroupSelection.Large ? selBack : Color.Transparent;
             LabelKingCreatePortraitLarge.ForeColor = selection == KingPortraitGroupSelection.Large ? selFore : Color.White;
@@ -1485,6 +1620,169 @@ namespace PortraitManager
             LabelKingCreatePortraitMedium.ForeColor = selection == KingPortraitGroupSelection.Medium ? selFore : Color.White;
             LabelKingCreatePortraitSmall.BackColor = selection == KingPortraitGroupSelection.Small ? selBack : Color.Transparent;
             LabelKingCreatePortraitSmall.ForeColor = selection == KingPortraitGroupSelection.Small ? selFore : Color.White;
+            // force repaint to update borders
+            LabelKingCreatePortraitLarge?.Invalidate();
+            LabelKingCreatePortraitMedium?.Invalidate();
+            LabelKingCreatePortraitSmall?.Invalidate();
+            // Update portrait buttons styles to match selected game colors
+            UpdatePortraitButtonsStyle();
+            // Ensure large/medium layouts use small group as reference for size/row styles
+            ApplySmallLayoutReference();
+        }
+
+        private void ApplySmallLayoutReference()
+        {
+            if (LayoutKingPortraitGroupSmall == null) return;
+            try
+            {
+                // Copy overall size so other groups align to small group area
+                var refSize = LayoutKingPortraitGroupSmall.Size;
+                LayoutKingPortraitGroupLarge.Size = refSize;
+                LayoutKingPortraitGroupMedium.Size = refSize;
+
+                // Copy row styles (counts and heights)
+                CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupLarge);
+                CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupMedium);
+
+                // Ensure button panels (which are table layout panels) have the same row styles
+                CopyRowStyles(PanelKingSmlButtons, PanelKingLrgButtons);
+                CopyRowStyles(PanelKingSmlButtons, PanelKingMedButtons);
+
+                // Determine bottom row height in pixels if absolute
+                int bottomHeight = 40; // fallback
+                if (LayoutKingPortraitGroupSmall.RowCount > 0)
+                {
+                    var last = LayoutKingPortraitGroupSmall.RowStyles[LayoutKingPortraitGroupSmall.RowCount - 1];
+                    if (last.SizeType == SizeType.Absolute)
+                        bottomHeight = (int)Math.Max(1, last.Height);
+                }
+
+                // Apply bottom button heights and ensure consistent minimums
+                var zoomButtons = new Button[] {
+                    ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
+                    ButtonKingMedZoomIn, ButtonKingMedZoomOut,
+                    ButtonKingSmlZoomIn, ButtonKingSmlZoomOut
+                };
+                foreach (var zb in zoomButtons)
+                {
+                    if (zb == null) continue;
+                    zb.MinimumSize = new Size(0, bottomHeight);
+                    zb.Height = bottomHeight;
+                    zb.Dock = DockStyle.Fill;
+                }
+
+                // Use existing FontsInit helper to prepare fonts with larger sizes, then apply small font to buttons
+                try { FontsInit(_fontCollection, 0, 24, 18, 16); } catch { }
+                Font btnFont = null;
+                try { btnFont = new Font(_fontCollection.Families[0], 16f); } catch { btnFont = this.Font; }
+
+                var allButtons = new Button[] {
+                    ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
+                    ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
+                    ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut
+                };
+                foreach (var b in allButtons)
+                {
+                    if (b == null) continue;
+                    try { b.Font = btnFont; } catch { }
+                    b.Cursor = Cursors.Hand;
+                }
+            }
+            catch { }
+        }
+
+        private void CopyRowStyles(TableLayoutPanel from, TableLayoutPanel to)
+        {
+            if (from == null || to == null) return;
+            try
+            {
+                to.SuspendLayout();
+                to.RowStyles.Clear();
+                to.RowCount = from.RowCount;
+                for (int i = 0; i < from.RowStyles.Count; i++)
+                {
+                    var rs = from.RowStyles[i];
+                    var ns = new RowStyle(rs.SizeType, rs.Height);
+                    to.RowStyles.Add(ns);
+                }
+            }
+            catch { }
+            finally { try { to.ResumeLayout(); } catch { } }
+        }
+
+        private void UpdatePortraitButtonsStyle()
+        {
+            Color selBack = Color.Black;
+            Color selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+
+            var buttons = new Button[] {
+                ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
+                ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
+                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut
+            };
+
+            foreach (var btn in buttons)
+            {
+                if (btn == null) continue;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.FlatAppearance.BorderColor = selFore;
+                btn.BackColor = selBack;
+                btn.ForeColor = selFore;
+                // make hover change to swapped colors (keep border as fore)
+                btn.FlatAppearance.MouseOverBackColor = selFore;
+                btn.FlatAppearance.MouseDownBackColor = selFore;
+
+                // set text from resources when possible
+                try
+                {
+                    if (btn.Name != null && btn.Name.IndexOf("Web", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        var s = TextVariables.ResourceManager.GetString("BUTTON_SELECT_WEB", TextVariables.Culture);
+                        if (!string.IsNullOrEmpty(s)) btn.Text = s;
+                    }
+                    else if (btn.Name != null && btn.Name.IndexOf("Local", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        var s = TextVariables.ResourceManager.GetString("BUTTON_SELECT_LOCAL", TextVariables.Culture);
+                        if (!string.IsNullOrEmpty(s)) btn.Text = s;
+                    }
+                    // leave zoom button text as is ("+" / "−")
+                }
+                catch { }
+
+                // detach then attach to avoid duplicate handlers
+                btn.MouseEnter -= PortraitButton_MouseEnter;
+                btn.MouseLeave -= PortraitButton_MouseLeave;
+                btn.MouseEnter += PortraitButton_MouseEnter;
+                btn.MouseLeave += PortraitButton_MouseLeave;
+            }
+        }
+
+        private void PortraitButton_MouseEnter(object sender, EventArgs e)
+        {
+            if (!(sender is Button btn)) return;
+            Color selBack = Color.Black;
+            Color selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+
+            // swap fore and back on hover, keep border as fore
+            btn.BackColor = selFore;
+            btn.ForeColor = selBack;
+            btn.FlatAppearance.BorderColor = selFore;
+        }
+
+        private void PortraitButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (!(sender is Button btn)) return;
+            Color selBack = Color.Black;
+            Color selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+
+            // restore original colors
+            btn.BackColor = selBack;
+            btn.ForeColor = selFore;
+            btn.FlatAppearance.BorderColor = selFore;
         }
 
         private void LabelKingCreatePortraitLarge_MouseEnter(object sender, EventArgs e)
@@ -1494,7 +1792,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitLarge_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitLarge.ForeColor = Color.White;
+            LabelKingCreatePortraitLarge.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Large ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
 
         private void LabelKingCreatePortraitMedium_MouseEnter(object sender, EventArgs e)
@@ -1504,7 +1802,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitMedium_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitMedium.ForeColor = Color.White;
+            LabelKingCreatePortraitMedium.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Medium ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
 
         private void LabelKingCreatePortraitSmall_MouseEnter(object sender, EventArgs e)
@@ -1514,7 +1812,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitSmall_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitSmall.ForeColor = Color.White;
+            LabelKingCreatePortraitSmall.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Small ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
     }
 }

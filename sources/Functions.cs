@@ -628,10 +628,101 @@ namespace PortraitManager
         
         public void ReplacePictureBoxImagesToDefault()
         {
-            //using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
-            //{
-            //    ClearPictureBoxImages(placeholder);
-            //}
+            // Apply "cover" scaling to portrait picture boxes so one dimension matches the
+            // PictureBox and the other is >= PictureBox (can be cropped). This centers the
+            // image and allows later zoom/pan logic to operate on the original image.
+            try
+            {
+                // Large
+                if (PicKingLrg != null && PicKingLrg.Image != null)
+                {
+                    // preserve original copy for zoom operations
+                    if (_originalImageLrg == null)
+                        _originalImageLrg = new Bitmap(PicKingLrg.Image);
+
+                    var scaled = ResizeImageCover(_originalImageLrg, PicKingLrg.Width, PicKingLrg.Height);
+                    // use Normal mode and set control size to match rendered image so drag/zoom
+                    // logic (which uses PictureBox.Width/Height as image size) stays correct
+                    PicKingLrg.Dock = DockStyle.None;
+                    PicKingLrg.SizeMode = PictureBoxSizeMode.Normal;
+                    PicKingLrg.Size = new Size(scaled.Width, scaled.Height);
+                    // dispose previous displayed image if it is not the original reference
+                    if (PicKingLrg.Image != null && !object.ReferenceEquals(PicKingLrg.Image, _originalImageLrg))
+                    {
+                        try { PicKingLrg.Image.Dispose(); } catch { }
+                    }
+                    PicKingLrg.Image = scaled;
+                }
+
+                // Medium
+                if (PicKingMed != null && PicKingMed.Image != null)
+                {
+                    if (_originalImageMed == null)
+                        _originalImageMed = new Bitmap(PicKingMed.Image);
+
+                    var scaled = ResizeImageCover(_originalImageMed, PicKingMed.Width, PicKingMed.Height);
+                    PicKingMed.Dock = DockStyle.None;
+                    PicKingMed.SizeMode = PictureBoxSizeMode.Normal;
+                    PicKingMed.Size = new Size(scaled.Width, scaled.Height);
+                    if (PicKingMed.Image != null && !object.ReferenceEquals(PicKingMed.Image, _originalImageMed))
+                    {
+                        try { PicKingMed.Image.Dispose(); } catch { }
+                    }
+                    PicKingMed.Image = scaled;
+                }
+
+                // Small
+                if (PicKingSml != null && PicKingSml.Image != null)
+                {
+                    if (_originalImageSml == null)
+                        _originalImageSml = new Bitmap(PicKingSml.Image);
+
+                    var scaled = ResizeImageCover(_originalImageSml, PicKingSml.Width, PicKingSml.Height);
+                    PicKingSml.Dock = DockStyle.None;
+                    PicKingSml.SizeMode = PictureBoxSizeMode.Normal;
+                    PicKingSml.Size = new Size(scaled.Width, scaled.Height);
+                    if (PicKingSml.Image != null && !object.ReferenceEquals(PicKingSml.Image, _originalImageSml))
+                    {
+                        try { PicKingSml.Image.Dispose(); } catch { }
+                    }
+                    PicKingSml.Image = scaled;
+                }
+            }
+            catch
+            {
+                // silently ignore failures during UI default replacement
+            }
+        }
+
+        private Image ResizeImageCover(Image src, int boxWidth, int boxHeight)
+        {
+            if (src == null || boxWidth <= 0 || boxHeight <= 0)
+                return src == null ? null : new Bitmap(src);
+
+            float scaleX = (float)boxWidth / src.Width;
+            float scaleY = (float)boxHeight / src.Height;
+            // cover: pick the larger scale so the image fills the box and overflows one axis
+            float scale = Math.Max(scaleX, scaleY);
+
+            // Make offset by 1px smaller in each dimension to avoid exact-edge cases
+            int newW = Math.Max(1, (int)Math.Ceiling(src.Width * scale) - 1);
+            int newH = Math.Max(1, (int)Math.Ceiling(src.Height * scale) - 1);
+
+            Bitmap dest = new Bitmap(newW, newH);
+            dest.SetResolution(src.HorizontalResolution, src.VerticalResolution);
+
+            using (Graphics g = Graphics.FromImage(dest))
+            {
+                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+
+                g.Clear(Color.Transparent);
+                g.DrawImage(src, 0, 0, newW, newH);
+            }
+
+            return dest;
         }
         
         public static void CreateAllImagesInTemp(string newImagePath, ushort flag)

@@ -207,4 +207,10 @@ If detection fails, you can open the folder manually.</value>
   <data name="BUTTON_KINGCREATEPAGESML" xml:space="preserve">
     <value>⌼ Portrait</value>
   </data>
+  <data name="BUTTON_SELECT_WEB" xml:space="preserve">
+    <value>Select web</value>
+  </data>
+  <data name="BUTTON_SELECT_LOCAL" xml:space="preserve">
+    <value>Select local</value>
+  </data>
 </root>

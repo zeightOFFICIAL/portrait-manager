@@ -4,10 +4,10 @@
     Obsidian Entertainment and inXile Entertainment. 
     Including: 
         1. Pathfinder: Kingmaker,
-        2. Pathfinder: Wrath of the Righteous, 
+        2. Pathfinder: Wrath of the Righteous,
         3. Warhammer 40000: Rogue Trader,
-        4. Pillars of Eternity, 
-        5. Pillars of Eternity: Deadfire, 
+        4. Pillars of Eternity,
+        5. Pillars of Eternity: Deadfire,
         6. Tyranny,
         7. Wasteland 3.
     Copyright (C) 2024 Artemii "Zeight" Saganenko.

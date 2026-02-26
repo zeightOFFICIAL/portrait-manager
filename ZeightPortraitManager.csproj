@@ -102,6 +102,12 @@
     <Compile Include="forms\MyMessageDialog.Designer.cs">
       <DependentUpon>MyMessageDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\MyWebDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyWebDialog.Designer.cs">
+      <DependentUpon>MyWebDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\MyMessageDialog.resx">
       <DependentUpon>MyMessageDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyWebDialog.resx">
+      <DependentUpon>MyWebDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

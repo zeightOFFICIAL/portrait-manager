@@ -89,6 +89,59 @@ namespace PortraitManager
             Small
         }
 
+        // Open modal dialog to enter image URL and load image from web
+        private void ButtonKingSelectWebModal_Click(object sender, EventArgs e)
+        {
+            if (!(sender is System.Windows.Forms.Button btn)) return;
+
+            using (forms.MyWebDialog dlg = new forms.MyWebDialog("Enter image URL", Thread.CurrentThread.CurrentUICulture.ToString()))
+            {
+                dlg.StartPosition = FormStartPosition.CenterParent;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    var img = dlg.DownloadedImage;
+                    if (img == null) return;
+
+                    string tag = btn.Tag as string;
+                    if (tag == "PicKingLrg")
+                    {
+                        PicKingLrg.Image = img;
+                        _originalImageLrg = (Image)img.Clone();
+                        _zoomLevelLrg = 1.0f;
+                        // resize to fit parent panel like placeholder (allow ResizeImageToParentControl to run)
+                        _allowAutoResize = true;
+                        ResizeImageToParentControl(PicKingLrg, _originalImageLrg, PanelKingLrg);
+                        _allowAutoResize = false;
+                        // reset location and scrolling
+                        PanelKingLrg.AutoScroll = false;
+                        PicKingLrg.Location = new Point(0, 0);
+                    }
+                    else if (tag == "PicKingMed")
+                    {
+                        PicKingMed.Image = img;
+                        _originalImageMed = (Image)img.Clone();
+                        _zoomLevelMed = 1.0f;
+                        _allowAutoResize = true;
+                        ResizeImageToParentControl(PicKingMed, _originalImageMed, PanelKingMed);
+                        _allowAutoResize = false;
+                        PanelKingMed.AutoScroll = false;
+                        PicKingMed.Location = new Point(0, 0);
+                    }
+                    else if (tag == "PicKingSml")
+                    {
+                        PicKingSml.Image = img;
+                        _originalImageSml = (Image)img.Clone();
+                        _zoomLevelSml = 1.0f;
+                        _allowAutoResize = true;
+                        ResizeImageToParentControl(PicKingSml, _originalImageSml, PanelKingSml);
+                        _allowAutoResize = false;
+                        PanelKingSml.AutoScroll = false;
+                        PicKingSml.Location = new Point(0, 0);
+                    }
+                }
+            }
+        }
+
         private KingPortraitGroupSelection _activeKingPortraitGroup = KingPortraitGroupSelection.Large;
 
 
@@ -109,6 +162,8 @@ namespace PortraitManager
         private static Image _originalImageLrg;
         private static Image _originalImageMed;
         private static Image _originalImageSml;
+        // Control automatic resize calls (only when loading placeholders or new images)
+        private bool _allowAutoResize = false;
         // Track current zoom level as ratio to original size
         private static float _zoomLevelLrg = 1.0f;
         private static float _zoomLevelMed = 1.0f;
@@ -202,7 +257,9 @@ namespace PortraitManager
                 SetKingPortraitGroup(KingPortraitGroupSelection.Large);
             // ensure placeholders are prepared with custom cover-scaling so one dimension
             // matches the PictureBox and the other may be larger (center-cropped)
+            _allowAutoResize = true;
             ReplacePictureBoxImagesToDefault();
+            _allowAutoResize = false;
 
 
 
@@ -686,8 +743,9 @@ namespace PortraitManager
         private void ButtonToMainPage_Click(object sender, EventArgs e)
         {
             _activeMenuIndex = 0;
-
+            _allowAutoResize = true;
             ReplacePictureBoxImagesToDefault();
+            _allowAutoResize = false;
             ParentLayoutsDisable();
             //RootFunctions.LayoutEnable(LayoutMainPage);
 
@@ -1307,8 +1365,36 @@ namespace PortraitManager
 
         private void ButtonKingAction_Click(object sender, EventArgs e)
         {
-            // placeholder action for right-side button
-            MessageBox.Show("King action clicked", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Create portrait using existing create flow then return to Pathfinder main page
+            try
+            {
+                // attempt to run create portrait flow
+                ButtonCreatePortrait_Click(sender, e);
+            }
+            catch { }
+
+            // Ensure UI returns to Pathfinder main page (not the generic start page)
+            try
+            {
+                _activeMenuIndex = 201;
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutMainPage);
+                Focus();
+            }
+            catch { }
+        }
+
+        private void ButtonKingBackToPathfinder_Click(object sender, EventArgs e)
+        {
+            // Explicit button to return user to Pathfinder main page
+            try
+            {
+                _activeMenuIndex = 201;
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutMainPage);
+                Focus();
+            }
+            catch { }
         }
 
         private void ButtonKingSelectWeb_Click(object sender, EventArgs e)
@@ -1628,6 +1714,70 @@ namespace PortraitManager
             UpdatePortraitButtonsStyle();
             // Ensure large/medium layouts use small group as reference for size/row styles
             ApplySmallLayoutReference();
+            // Reset displayed images into default cover state and fit-to-panel only
+            // when automatic resize is explicitly allowed. This prevents group
+            // changes (label clicks) from forcing a zoom-out. Callers that intend
+            // to perform a reset (placeholder load, loading a new image) should
+            // set `_allowAutoResize = true` before calling SetKingPortraitGroup
+            // or calling the resize helpers directly.
+            if (_allowAutoResize)
+            {
+                try
+                {
+                    ReplacePictureBoxImagesToDefault();
+                    if (selection == KingPortraitGroupSelection.Medium)
+                    {
+                        FitPictureToPanel(PicKingMed, PanelKingMed);
+                    }
+                    else if (selection == KingPortraitGroupSelection.Small)
+                    {
+                        FitPictureToPanel(PicKingSml, PanelKingSml);
+                    }
+                    else
+                    {
+                        // also ensure large has consistent zoom state
+                        FitPictureToPanel(PicKingLrg, PanelKingLrg);
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void FitPictureToPanel(PictureBox pb, Panel panel)
+        {
+            if (pb == null || panel == null || pb.Image == null) return;
+
+            // Determine original image stored or use current image as fallback
+            Image original = GetOriginalImage(pb);
+            if (original == null)
+            {
+                try { original = new Bitmap(pb.Image); }
+                catch { return; }
+            }
+
+            int panelW = panel.ClientSize.Width;
+            int panelH = panel.ClientSize.Height;
+            if (panelW <= 0 || panelH <= 0) return;
+
+            float imgAspect = (float)original.Width / original.Height;
+            float panelAspect = (float)panelW / panelH;
+            float minZoom = imgAspect > panelAspect
+                ? (float)panelH / original.Height
+                : (float)panelW / original.Width;
+
+            int newW = Math.Max(1, (int)(original.Width * minZoom));
+            int newH = Math.Max(1, (int)(original.Height * minZoom));
+
+            Bitmap fitted = ImageControl.Direct.Resize(original, newW, newH);
+            // dispose previous displayed image if it is not the original reference
+            try { if (pb.Image != null && !object.ReferenceEquals(pb.Image, original)) pb.Image.Dispose(); } catch { }
+            pb.Image = fitted;
+            pb.Dock = DockStyle.None;
+            pb.SizeMode = PictureBoxSizeMode.Normal;
+            pb.Size = new Size(newW, newH);
+            SetZoomLevel(pb, minZoom);
+            // center the picture inside the panel
+            pb.Location = new Point((panelW - pb.Width) / 2, (panelH - pb.Height) / 2);
         }
 
         private void ApplySmallLayoutReference()

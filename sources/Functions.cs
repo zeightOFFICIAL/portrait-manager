@@ -88,6 +88,11 @@ namespace PortraitManager
        
         public void ResizeImageToParentControl(Control control, Image image, Control parent)
         {
+            // Only allow automatic resizing when explicitly enabled (to avoid resizing on group changes)
+            if (!_allowAutoResize)
+            {
+                return;
+            }
             float aspect = control.Height * 1.0f / control.Width * 1.0f;
             Tuple<int, int> newSize = CalculateNewSize(parent, aspect);
 

@@ -1424,7 +1424,7 @@ namespace PortraitManager
             this.ButtonKingAction.Size = new System.Drawing.Size(140, 48);
             this.ButtonKingAction.TabIndex = 0;
             this.ButtonKingAction.Text = "ACTION";
-            this.ButtonKingAction.Click += new System.EventHandler(this.ButtonKingAction_Click);
+            this.ButtonKingAction.Click += new System.EventHandler(this.ButtonKingAction_Create_Click);
             // 
             // ButtonKingBackToPathfinder
             // 

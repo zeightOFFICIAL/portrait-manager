@@ -70,8 +70,193 @@ namespace PortraitManager
                 LoadTempImagesToPicBox(_imageSelectionFlag);
                 ResizeVisibleImagesToWindowSize();
             }
+
         }
-        
+
+        private void ButtonKingAction_Create_Click(object sender, EventArgs e)
+        {
+            string basePath = CoreSettings.Default.GamePath;
+            if (string.IsNullOrWhiteSpace(basePath) || !Directory.Exists(basePath))
+            {
+                MessageBox.Show("Game portraits path is not set or does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // ensure we create inside 'Portraits' folder (if basePath already points to portraits, use it)
+            string portraitsRoot = basePath;
+            try
+            {
+                string last = new DirectoryInfo(basePath).Name;
+                if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
+                {
+                    portraitsRoot = Path.Combine(basePath, "Portraits");
+                }
+                Directory.CreateDirectory(portraitsRoot);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // create unique folder inside portraits root
+            string uniqueName = "Portrait - " + Guid.NewGuid().ToString("N");
+            string outDir = Path.Combine(portraitsRoot, uniqueName);
+            try
+            {
+                Directory.CreateDirectory(outDir);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // determine target sizes by game type (fallbacks if specific types not available)
+            int smlW, smlH, medW, medH, lrgW, lrgH;
+            char gtype = CoreSettings.Default.GameType;
+            if (gtype == 'r') // Rogue Trader
+            {
+                smlW = 260; smlH = 336;
+                medW = 448; medH = 600;
+                lrgW = 1080; lrgH = 1480;
+            }
+            else // default: Pathfinder (Kingmaker / WotR)
+            {
+                smlW = 185; smlH = 242;
+                medW = 330; medH = 432;
+                lrgW = 692; lrgH = 1024;
+            }
+
+            try
+            {
+                // Large -> Fulllength.png
+                Image origL = _originalImageLrg ?? PicKingLrg.Image;
+                if (origL != null)
+                {
+                    CropAndSaveDirect(origL, PicKingLrg, PanelKingLrg, lrgW, lrgH, Path.Combine(outDir, "Fulllength.png"));
+                }
+
+                // Medium -> Medium.png
+                Image origM = _originalImageMed ?? PicKingMed.Image;
+                if (origM != null)
+                {
+                    CropAndSaveDirect(origM, PicKingMed, PanelKingMed, medW, medH, Path.Combine(outDir, "Medium.png"));
+                }
+
+                // Small -> Small.png
+                Image origS = _originalImageSml ?? PicKingSml.Image;
+                if (origS != null)
+                {
+                    CropAndSaveDirect(origS, PicKingSml, PanelKingSml, smlW, smlH, Path.Combine(outDir, "Small.png"));
+                }
+            }
+            catch
+            {
+                // silent on errors during creation per user preference
+            }
+        }
+
+        // Perform a single crop from the original image to the required aspect then resize directly to target size
+        private void CropAndSaveDirect(Image original, PictureBox pb, Panel panel, int targetW, int targetH, string outPath)
+        {
+            if (original == null || pb == null || panel == null) return;
+
+            int origW = original.Width;
+            int origH = original.Height;
+
+            // determine rendered image size inside PictureBox (SizeMode = Zoom)
+            int ctrlW = pb.Width;
+            int ctrlH = pb.Height;
+            float imageAspect = (float)origW / origH;
+            float controlAspect = (float)ctrlW / ctrlH;
+
+            float renderedW, renderedH;
+            if (imageAspect > controlAspect)
+            {
+                renderedW = ctrlW;
+                renderedH = ctrlW / imageAspect;
+            }
+            else
+            {
+                renderedH = ctrlH;
+                renderedW = ctrlH * imageAspect;
+            }
+
+            float scale = renderedW / origW;
+            if (scale <= 0) scale = 1f;
+
+            float offsetX = pb.Location.X;
+            float offsetY = pb.Location.Y;
+
+            // visible rectangle in rendered coordinates
+            float visX = -offsetX + Math.Max(0, (ctrlW - renderedW) / 2f);
+            float visY = -offsetY + Math.Max(0, (ctrlH - renderedH) / 2f);
+            float visW = panel.ClientSize.Width;
+            float visH = panel.ClientSize.Height;
+
+            // map visible rectangle to original image coordinates
+            float srcX = visX / scale;
+            float srcY = visY / scale;
+            float srcW = visW / scale;
+            float srcH = visH / scale;
+
+            // clamp
+            if (srcX < 0) srcX = 0;
+            if (srcY < 0) srcY = 0;
+            if (srcW <= 0) srcW = origW;
+            if (srcH <= 0) srcH = origH;
+            if (srcX + srcW > origW) srcW = origW - srcX;
+            if (srcY + srcH > origH) srcH = origH - srcY;
+
+            if (srcW <= 0 || srcH <= 0) return;
+
+            // adjust crop to match target aspect ratio (crop, not stretch)
+            float targetAspect = (float)targetW / targetH;
+            float srcAspect = srcW / srcH;
+
+            float finalSrcW = srcW;
+            float finalSrcH = srcH;
+            float finalSrcX = srcX;
+            float finalSrcY = srcY;
+
+            if (srcAspect > targetAspect)
+            {
+                // source is wider than target -> reduce width
+                finalSrcW = srcH * targetAspect;
+                finalSrcX = srcX + (srcW - finalSrcW) / 2f;
+            }
+            else if (srcAspect < targetAspect)
+            {
+                // source is taller than target -> reduce height
+                finalSrcH = srcW / targetAspect;
+                finalSrcY = srcY + (srcH - finalSrcH) / 2f;
+            }
+
+            // clamp final rect to image bounds
+            if (finalSrcX < 0) finalSrcX = 0;
+            if (finalSrcY < 0) finalSrcY = 0;
+            if (finalSrcX + finalSrcW > origW) finalSrcW = origW - finalSrcX;
+            if (finalSrcY + finalSrcH > origH) finalSrcH = origH - finalSrcY;
+
+            using (Bitmap outBmp = new Bitmap(targetW, targetH))
+            {
+                using (Graphics g = Graphics.FromImage(outBmp))
+                {
+                    g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    g.Clear(Color.Transparent);
+
+                    RectangleF srcRect = new RectangleF(finalSrcX, finalSrcY, finalSrcW, finalSrcH);
+                    Rectangle destRect = new Rectangle(0, 0, targetW, targetH);
+                    g.DrawImage(original, destRect, srcRect, GraphicsUnit.Pixel);
+                }
+
+                outBmp.Save(outPath, System.Drawing.Imaging.ImageFormat.Png);
+            }
+        }
+
         private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))

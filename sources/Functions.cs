@@ -1148,6 +1148,9 @@ namespace PortraitManager
             LabelKingCreatePortraitLarge.Text = TextVariables.BUTTON_KINGCREATEPAGELRG;
             LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID;
             LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML;
+            ButtonKingCreateNewPortrait.Text = "Create >";
+            ButtonKingCreateAndKeep.Text = "Create ↩";
+            ButtonKingBackToPathfinder.Text = "< Back";
         }
 
         public void LoadFont(PrivateFontCollection fonts, ushort familyLang = 0, int initSize = 9)
@@ -1178,6 +1181,9 @@ namespace PortraitManager
             LabelKingCreatePortraitLarge.Font = bebasNeueHead;
             LabelKingCreatePortraitMedium.Font = bebasNeueHead;
             LabelKingCreatePortraitSmall.Font = bebasNeueHead;
+            ButtonKingCreateNewPortrait.Font = bebasNeueHead;
+            ButtonKingCreateAndKeep.Font = bebasNeueHead;
+            ButtonKingBackToPathfinder.Font = bebasNeueHead;
         }
 
         private void OpenPathSelectPage()

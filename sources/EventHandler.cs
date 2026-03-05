@@ -75,6 +75,8 @@ namespace PortraitManager
 
         private void ButtonKingAction_Create_Click(object sender, EventArgs e)
         {
+            bool keepOnLayout = object.ReferenceEquals(sender, ButtonKingCreateAndKeep);
+
             string basePath = CoreSettings.Default.GamePath;
             if (string.IsNullOrWhiteSpace(basePath) || !Directory.Exists(basePath))
             {
@@ -149,10 +151,177 @@ namespace PortraitManager
                 {
                     CropAndSaveDirect(origS, PicKingSml, PanelKingSml, smlW, smlH, Path.Combine(outDir, "Small.png"));
                 }
+
+                if (ValidateCreatedPortrait(outDir))
+                {
+                    ShowCreatePortraitToast(outDir);
+
+                    if (keepOnLayout)
+                    {
+                        RestoreKingPortraitEditorsToPlaceholder();
+                    }
+                    else
+                    {
+                        _activeMenuIndex = 201;
+                        ParentLayoutsDisable();
+                        RootFunctions.LayoutEnable(LayoutMainPage);
+                        PrepareKingCreatePortraitStyleState();
+                        Focus();
+                    }
+                }
             }
             catch
             {
                 // silent on errors during creation per user preference
+            }
+        }
+
+        private void ButtonKingAction_CreateAndKeep_Click(object sender, EventArgs e)
+        {
+            ButtonKingAction_Create_Click(ButtonKingCreateAndKeep, e);
+        }
+
+        private bool ValidateCreatedPortrait(string outDir)
+        {
+            if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+                return false;
+
+            return File.Exists(Path.Combine(outDir, "Fulllength.png")) &&
+                   File.Exists(Path.Combine(outDir, "Medium.png")) &&
+                   File.Exists(Path.Combine(outDir, "Small.png"));
+        }
+
+        private void ShowCreatePortraitToast(string outDir)
+        {
+            if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
+                return;
+
+            string portraitName = Path.GetFileName(outDir);
+            string compactPath = CompactPathForToast(outDir);
+
+            var toast = new Panel
+            {
+                BackColor = Color.FromArgb(28, 28, 28),
+                BorderStyle = BorderStyle.FixedSingle,
+                Size = new Size(340, 76),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Right
+            };
+
+            var title = new Label
+            {
+                AutoSize = false,
+                Size = new Size(328, 16),
+                Location = new Point(6, 6),
+                ForeColor = Color.White,
+                Text = "Portrait created successfully"
+            };
+
+            var name = new Label
+            {
+                AutoSize = false,
+                Size = new Size(328, 16),
+                Location = new Point(6, 24),
+                ForeColor = Color.Gainsboro,
+                Text = "Name: " + portraitName
+            };
+
+            var path = new Label
+            {
+                AutoSize = false,
+                Size = new Size(328, 16),
+                Location = new Point(6, 40),
+                ForeColor = Color.Gainsboro,
+                AutoEllipsis = true,
+                Text = "Path: " + compactPath
+            };
+
+            var link = new LinkLabel
+            {
+                AutoSize = true,
+                Location = new Point(6, 56),
+                LinkColor = Color.DeepSkyBlue,
+                ActiveLinkColor = Color.White,
+                VisitedLinkColor = Color.DeepSkyBlue,
+                Text = "Open folder"
+            };
+            link.LinkClicked += (s, e) =>
+            {
+                try
+                {
+                    Process.Start("explorer.exe", outDir);
+                }
+                catch { }
+            };
+
+            toast.Controls.Add(title);
+            toast.Controls.Add(name);
+            toast.Controls.Add(path);
+            toast.Controls.Add(link);
+            toast.Location = new Point(ClientSize.Width - toast.Width - 12, ClientSize.Height - toast.Height - 12);
+
+            Controls.Add(toast);
+            toast.BringToFront();
+
+            var hideTimer = new System.Windows.Forms.Timer { Interval = 5000 };
+            hideTimer.Tick += (s, e) =>
+            {
+                hideTimer.Stop();
+                hideTimer.Dispose();
+                if (!toast.IsDisposed)
+                {
+                    Controls.Remove(toast);
+                    toast.Dispose();
+                }
+            };
+            hideTimer.Start();
+        }
+
+        private string CompactPathForToast(string fullPath)
+        {
+            if (string.IsNullOrWhiteSpace(fullPath)) return fullPath;
+
+            string normalized = fullPath.Replace('\\', '/');
+            string[] anchors = {
+                "/LocalLow/Owlcat",
+                "/My Games/",
+                "/Portraits/",
+                "/PillarsOfEternity",
+                "/Data/data/art/gui/portraits"
+            };
+
+            foreach (var anchor in anchors)
+            {
+                int idx = normalized.IndexOf(anchor, StringComparison.OrdinalIgnoreCase);
+                if (idx >= 0)
+                {
+                    return normalized.Substring(idx);
+                }
+            }
+
+            if (normalized.Length > 56)
+                return "..." + normalized.Substring(normalized.Length - 56);
+
+            return normalized;
+        }
+
+        private void RestoreKingPortraitEditorsToPlaceholder()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType) || gameType.PlaceholderPortrait == null)
+                return;
+
+            try
+            {
+                StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
+                StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
+                StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
+
+                FitImageToPanel(PicKingLrg);
+                ResetPortraitToOriginalDisplay(PicKingMed);
+                ResetPortraitToOriginalDisplay(PicKingSml);
+                Focus();
+            }
+            catch
+            {
             }
         }
 

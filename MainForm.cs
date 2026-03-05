@@ -480,6 +480,11 @@ namespace PortraitManager
             DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitSmall);
         }
 
+        private void LayoutKingRight_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, null);
+        }
+
         
         
         
@@ -1044,6 +1049,7 @@ namespace PortraitManager
                     _activeMenuIndex = 201;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1344,8 +1350,53 @@ namespace PortraitManager
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutKingCreatePortrait);
                 _activeMenuIndex = 301;
+                PrepareKingCreatePortraitView();
                 Focus();
             }
+        }
+
+        private void PrepareKingCreatePortraitStyleState()
+        {
+            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+            LayoutKingPortraitGroupLarge.Invalidate();
+            LayoutKingPortraitGroupMedium.Invalidate();
+            LayoutKingPortraitGroupSmall.Invalidate();
+            LayoutKingRight.Invalidate();
+        }
+
+        private void PrepareKingCreatePortraitView()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType) || gameType.PlaceholderPortrait == null)
+                return;
+
+            StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
+
+            FitPictureToPanel(PicKingLrg, PanelKingLrg);
+            ResetPortraitToOriginalDisplay(PicKingMed);
+            ResetPortraitToOriginalDisplay(PicKingSml);
+        }
+
+        private void ResetPortraitToOriginalDisplay(PictureBox pic)
+        {
+            if (pic == null) return;
+
+            Image original = GetOriginalImage(pic);
+            if (original == null) return;
+
+            try
+            {
+                if (pic.Image != null && !object.ReferenceEquals(pic.Image, original))
+                    pic.Image.Dispose();
+            }
+            catch { }
+
+            pic.Dock = DockStyle.Fill;
+            pic.SizeMode = PictureBoxSizeMode.Zoom;
+            pic.Location = new Point(0, 0);
+            pic.Image = new Bitmap(original);
+            SetZoomLevel(pic, 1.0f);
         }
 
         private void LabelKingCreatePortraitLarge_Click(object sender, EventArgs e)
@@ -1392,6 +1443,7 @@ namespace PortraitManager
                 _activeMenuIndex = 201;
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutMainPage);
+                PrepareKingCreatePortraitStyleState();
                 Focus();
             }
             catch { }
@@ -1586,6 +1638,12 @@ namespace PortraitManager
                 old.Dispose();
             SetZoomLevel(pb, newZoom);
 
+            if (pb == PicKingLrg && wheelDelta < 0 && Math.Abs(newZoom - minZoom) < 0.0001f)
+            {
+                pb.Location = new Point((panelW - newW) / 2, (panelH - newH) / 2);
+                return;
+            }
+
             var desired = new Point(
                 pb.Location.X - (int)(relX * newW - localPos.X),
                 pb.Location.Y - (int)(relY * newH - localPos.Y));
@@ -1696,6 +1754,8 @@ namespace PortraitManager
             LayoutKingPortraitGroupLarge.BackColor = selection == KingPortraitGroupSelection.Large ? gameType.BackColor : Color.Transparent;
             LayoutKingPortraitGroupMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? gameType.BackColor : Color.Transparent;
             LayoutKingPortraitGroupSmall.BackColor = selection == KingPortraitGroupSelection.Small ? gameType.BackColor : Color.Transparent;
+            LayoutKingRight.BackColor = gameType.BackColor;
+            LayoutKingRight.ForeColor = gameType.ForeColor;
 
             Color selBack = gameType.BackColor;
             Color selFore = gameType.ForeColor;
@@ -1869,7 +1929,8 @@ namespace PortraitManager
             var buttons = new Button[] {
                 ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
                 ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
-                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut
+                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut,
+                ButtonKingCreateNewPortrait, ButtonKingCreateAndKeep, ButtonKingBackToPathfinder
             };
 
             foreach (var btn in buttons)
@@ -1883,6 +1944,7 @@ namespace PortraitManager
                 // make hover change to swapped colors (keep border as fore)
                 btn.FlatAppearance.MouseOverBackColor = selFore;
                 btn.FlatAppearance.MouseDownBackColor = selFore;
+                btn.TabStop = false;
 
                 // set text from resources when possible
                 try
@@ -1904,9 +1966,16 @@ namespace PortraitManager
                 // detach then attach to avoid duplicate handlers
                 btn.MouseEnter -= PortraitButton_MouseEnter;
                 btn.MouseLeave -= PortraitButton_MouseLeave;
+                btn.GotFocus -= PortraitButton_GotFocus;
                 btn.MouseEnter += PortraitButton_MouseEnter;
                 btn.MouseLeave += PortraitButton_MouseLeave;
+                btn.GotFocus += PortraitButton_GotFocus;
             }
+        }
+
+        private void PortraitButton_GotFocus(object sender, EventArgs e)
+        {
+            ActiveControl = null;
         }
 
         private void PortraitButton_MouseEnter(object sender, EventArgs e)

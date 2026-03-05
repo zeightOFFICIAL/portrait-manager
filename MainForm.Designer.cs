@@ -96,28 +96,29 @@ namespace PortraitManager
             this.PanelKingLrg = new System.Windows.Forms.Panel();
             this.PicKingLrg = new System.Windows.Forms.PictureBox();
             this.PanelKingLrgButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonKingLrgWeb = new System.Windows.Forms.Button();
             this.ButtonKingLrgLocal = new System.Windows.Forms.Button();
+            this.ButtonKingLrgWeb = new System.Windows.Forms.Button();
             this.ButtonKingLrgZoomIn = new System.Windows.Forms.Button();
             this.ButtonKingLrgZoomOut = new System.Windows.Forms.Button();
             this.LayoutKingPortraitGroupMedium = new System.Windows.Forms.TableLayoutPanel();
             this.PanelKingMed = new System.Windows.Forms.Panel();
             this.PicKingMed = new System.Windows.Forms.PictureBox();
             this.PanelKingMedButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonKingMedWeb = new System.Windows.Forms.Button();
             this.ButtonKingMedLocal = new System.Windows.Forms.Button();
+            this.ButtonKingMedWeb = new System.Windows.Forms.Button();
             this.ButtonKingMedZoomIn = new System.Windows.Forms.Button();
             this.ButtonKingMedZoomOut = new System.Windows.Forms.Button();
             this.LayoutKingPortraitGroupSmall = new System.Windows.Forms.TableLayoutPanel();
             this.PanelKingSml = new System.Windows.Forms.Panel();
             this.PicKingSml = new System.Windows.Forms.PictureBox();
             this.PanelKingSmlButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonKingSmlWeb = new System.Windows.Forms.Button();
             this.ButtonKingSmlLocal = new System.Windows.Forms.Button();
+            this.ButtonKingSmlWeb = new System.Windows.Forms.Button();
             this.ButtonKingSmlZoomIn = new System.Windows.Forms.Button();
             this.ButtonKingSmlZoomOut = new System.Windows.Forms.Button();
             this.LayoutKingRight = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonKingAction = new System.Windows.Forms.Button();
+            this.ButtonKingCreateNewPortrait = new System.Windows.Forms.Button();
+            this.ButtonKingCreateAndKeep = new System.Windows.Forms.Button();
             this.ButtonKingBackToPathfinder = new System.Windows.Forms.Button();
             this.LabelKingGroupLargeTitle = new System.Windows.Forms.Label();
             this.LabelKingGroupMediumTitle = new System.Windows.Forms.Label();
@@ -1126,18 +1127,6 @@ namespace PortraitManager
             this.PanelKingLrgButtons.Size = new System.Drawing.Size(197, 14);
             this.PanelKingLrgButtons.TabIndex = 1;
             // 
-            // ButtonKingLrgWeb
-            // 
-            this.PanelKingLrgButtons.SetColumnSpan(this.ButtonKingLrgWeb, 2);
-            this.ButtonKingLrgWeb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonKingLrgWeb.Location = new System.Drawing.Point(3, 72);
-            this.ButtonKingLrgWeb.Name = "ButtonKingLrgWeb";
-            this.ButtonKingLrgWeb.Size = new System.Drawing.Size(168, 44);
-            this.ButtonKingLrgWeb.TabIndex = 0;
-            this.ButtonKingLrgWeb.Tag = "PicKingLrg";
-            this.ButtonKingLrgWeb.Text = "SELECT_WEB";
-            this.ButtonKingLrgWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
-            // 
             // ButtonKingLrgLocal
             // 
             this.PanelKingLrgButtons.SetColumnSpan(this.ButtonKingLrgLocal, 2);
@@ -1149,6 +1138,18 @@ namespace PortraitManager
             this.ButtonKingLrgLocal.Tag = "PicKingLrg";
             this.ButtonKingLrgLocal.Text = "SELECT_LOCAL";
             this.ButtonKingLrgLocal.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingLrgWeb
+            // 
+            this.PanelKingLrgButtons.SetColumnSpan(this.ButtonKingLrgWeb, 2);
+            this.ButtonKingLrgWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingLrgWeb.Location = new System.Drawing.Point(3, 72);
+            this.ButtonKingLrgWeb.Name = "ButtonKingLrgWeb";
+            this.ButtonKingLrgWeb.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingLrgWeb.TabIndex = 0;
+            this.ButtonKingLrgWeb.Tag = "PicKingLrg";
+            this.ButtonKingLrgWeb.Text = "SELECT_WEB";
+            this.ButtonKingLrgWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
             // 
             // ButtonKingLrgZoomIn
             // 
@@ -1239,18 +1240,6 @@ namespace PortraitManager
             this.PanelKingMedButtons.Size = new System.Drawing.Size(197, 14);
             this.PanelKingMedButtons.TabIndex = 1;
             // 
-            // ButtonKingMedWeb
-            // 
-            this.PanelKingMedButtons.SetColumnSpan(this.ButtonKingMedWeb, 2);
-            this.ButtonKingMedWeb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonKingMedWeb.Location = new System.Drawing.Point(3, 72);
-            this.ButtonKingMedWeb.Name = "ButtonKingMedWeb";
-            this.ButtonKingMedWeb.Size = new System.Drawing.Size(168, 44);
-            this.ButtonKingMedWeb.TabIndex = 0;
-            this.ButtonKingMedWeb.Tag = "PicKingMed";
-            this.ButtonKingMedWeb.Text = "SELECT_WEB";
-            this.ButtonKingMedWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
-            // 
             // ButtonKingMedLocal
             // 
             this.PanelKingMedButtons.SetColumnSpan(this.ButtonKingMedLocal, 2);
@@ -1262,6 +1251,18 @@ namespace PortraitManager
             this.ButtonKingMedLocal.Tag = "PicKingMed";
             this.ButtonKingMedLocal.Text = "SELECT_LOCAL";
             this.ButtonKingMedLocal.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingMedWeb
+            // 
+            this.PanelKingMedButtons.SetColumnSpan(this.ButtonKingMedWeb, 2);
+            this.ButtonKingMedWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingMedWeb.Location = new System.Drawing.Point(3, 72);
+            this.ButtonKingMedWeb.Name = "ButtonKingMedWeb";
+            this.ButtonKingMedWeb.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingMedWeb.TabIndex = 0;
+            this.ButtonKingMedWeb.Tag = "PicKingMed";
+            this.ButtonKingMedWeb.Text = "SELECT_WEB";
+            this.ButtonKingMedWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
             // 
             // ButtonKingMedZoomIn
             // 
@@ -1352,18 +1353,6 @@ namespace PortraitManager
             this.PanelKingSmlButtons.Size = new System.Drawing.Size(197, 358);
             this.PanelKingSmlButtons.TabIndex = 1;
             // 
-            // ButtonKingSmlWeb
-            // 
-            this.PanelKingSmlButtons.SetColumnSpan(this.ButtonKingSmlWeb, 2);
-            this.ButtonKingSmlWeb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonKingSmlWeb.Location = new System.Drawing.Point(3, 72);
-            this.ButtonKingSmlWeb.Name = "ButtonKingSmlWeb";
-            this.ButtonKingSmlWeb.Size = new System.Drawing.Size(168, 44);
-            this.ButtonKingSmlWeb.TabIndex = 0;
-            this.ButtonKingSmlWeb.Tag = "PicKingSml";
-            this.ButtonKingSmlWeb.Text = "SELECT_WEB";
-            this.ButtonKingSmlWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
-            // 
             // ButtonKingSmlLocal
             // 
             this.PanelKingSmlButtons.SetColumnSpan(this.ButtonKingSmlLocal, 2);
@@ -1375,6 +1364,18 @@ namespace PortraitManager
             this.ButtonKingSmlLocal.Tag = "PicKingSml";
             this.ButtonKingSmlLocal.Text = "SELECT_LOCAL";
             this.ButtonKingSmlLocal.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingSmlWeb
+            // 
+            this.PanelKingSmlButtons.SetColumnSpan(this.ButtonKingSmlWeb, 2);
+            this.ButtonKingSmlWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSmlWeb.Location = new System.Drawing.Point(3, 72);
+            this.ButtonKingSmlWeb.Name = "ButtonKingSmlWeb";
+            this.ButtonKingSmlWeb.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingSmlWeb.TabIndex = 0;
+            this.ButtonKingSmlWeb.Tag = "PicKingSml";
+            this.ButtonKingSmlWeb.Text = "SELECT_WEB";
+            this.ButtonKingSmlWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
             // 
             // ButtonKingSmlZoomIn
             // 
@@ -1404,36 +1405,56 @@ namespace PortraitManager
             // 
             this.LayoutKingRight.ColumnCount = 1;
             this.LayoutKingRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutKingRight.Controls.Add(this.ButtonKingAction, 0, 0);
-            this.LayoutKingRight.Controls.Add(this.ButtonKingBackToPathfinder, 0, 1);
+            this.LayoutKingRight.Controls.Add(this.ButtonKingCreateNewPortrait, 0, 0);
+            this.LayoutKingRight.Controls.Add(this.ButtonKingCreateAndKeep, 0, 1);
+            this.LayoutKingRight.Controls.Add(this.ButtonKingBackToPathfinder, 0, 2);
             this.LayoutKingRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutKingRight.Location = new System.Drawing.Point(549, 52);
-            this.LayoutKingRight.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingRight.Location = new System.Drawing.Point(557, 52);
+            this.LayoutKingRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutKingRight.Name = "LayoutKingRight";
-            this.LayoutKingRight.RowCount = 2;
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.LayoutKingRight.Size = new System.Drawing.Size(146, 404);
+            this.LayoutKingRight.RowCount = 3;
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingRight.Size = new System.Drawing.Size(138, 404);
             this.LayoutKingRight.TabIndex = 5;
+            this.LayoutKingRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingRight_Paint);
             // 
-            // ButtonKingAction
+            // ButtonKingCreateNewPortrait
             // 
-            this.ButtonKingAction.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonKingAction.Location = new System.Drawing.Point(3, 3);
-            this.ButtonKingAction.Name = "ButtonKingAction";
-            this.ButtonKingAction.Size = new System.Drawing.Size(140, 48);
-            this.ButtonKingAction.TabIndex = 0;
-            this.ButtonKingAction.Text = "ACTION";
-            this.ButtonKingAction.Click += new System.EventHandler(this.ButtonKingAction_Create_Click);
+            this.ButtonKingCreateNewPortrait.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonKingCreateNewPortrait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingCreateNewPortrait.Location = new System.Drawing.Point(0, 0);
+            this.ButtonKingCreateNewPortrait.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonKingCreateNewPortrait.Name = "ButtonKingCreateNewPortrait";
+            this.ButtonKingCreateNewPortrait.Size = new System.Drawing.Size(138, 134);
+            this.ButtonKingCreateNewPortrait.TabIndex = 0;
+            this.ButtonKingCreateNewPortrait.Text = "";
+            this.ButtonKingCreateNewPortrait.Click += new System.EventHandler(this.ButtonKingAction_Create_Click);
+            // 
+            // ButtonKingCreateAndKeep
+            // 
+            this.ButtonKingCreateAndKeep.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonKingCreateAndKeep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingCreateAndKeep.Location = new System.Drawing.Point(0, 134);
+            this.ButtonKingCreateAndKeep.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonKingCreateAndKeep.Name = "ButtonKingCreateAndKeep";
+            this.ButtonKingCreateAndKeep.Size = new System.Drawing.Size(138, 134);
+            this.ButtonKingCreateAndKeep.TabIndex = 2;
+            this.ButtonKingCreateAndKeep.Text = "";
+            this.ButtonKingCreateAndKeep.Click += new System.EventHandler(this.ButtonKingAction_CreateAndKeep_Click);
             // 
             // ButtonKingBackToPathfinder
             // 
-            this.ButtonKingBackToPathfinder.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonKingBackToPathfinder.Location = new System.Drawing.Point(3, 63);
+            this.ButtonKingBackToPathfinder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonKingBackToPathfinder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingBackToPathfinder.Location = new System.Drawing.Point(0, 268);
+            this.ButtonKingBackToPathfinder.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonKingBackToPathfinder.Name = "ButtonKingBackToPathfinder";
-            this.ButtonKingBackToPathfinder.Size = new System.Drawing.Size(140, 48);
+            this.ButtonKingBackToPathfinder.Size = new System.Drawing.Size(138, 136);
             this.ButtonKingBackToPathfinder.TabIndex = 1;
-            this.ButtonKingBackToPathfinder.Text = "BACK_TO_PATHFINDER";
+            this.ButtonKingBackToPathfinder.Text = "";
             this.ButtonKingBackToPathfinder.Click += new System.EventHandler(this.ButtonKingBackToPathfinder_Click);
             // 
             // LabelKingGroupLargeTitle
@@ -1629,7 +1650,8 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupMedium;
         private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupSmall;
         private System.Windows.Forms.TableLayoutPanel LayoutKingRight;
-        private System.Windows.Forms.Button ButtonKingAction;
+        private System.Windows.Forms.Button ButtonKingCreateNewPortrait;
+        private System.Windows.Forms.Button ButtonKingCreateAndKeep;
         private System.Windows.Forms.Button ButtonKingBackToPathfinder;
         private System.Windows.Forms.Label LabelKingGroupLargeTitle;
         private System.Windows.Forms.Label LabelKingGroupMediumTitle;

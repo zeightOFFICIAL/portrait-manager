@@ -168,6 +168,12 @@ namespace PortraitManager
         private static float _zoomLevelLrg = 1.0f;
         private static float _zoomLevelMed = 1.0f;
         private static float _zoomLevelSml = 1.0f;
+        // Track first-time visible initialization for create portrait groups.
+        // Medium/small can have incorrect panel size while hidden, so fit them
+        // when they become visible for the first time.
+        private bool _kingGroupLrgInitialized;
+        private bool _kingGroupMedInitialized;
+        private bool _kingGroupSmlInitialized;
 
         private static PrivateFontCollection _fontCollection;
         private static CancellationTokenSource _cancellationTokenSource;
@@ -1373,9 +1379,33 @@ namespace PortraitManager
             StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
             StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
 
-            FitPictureToPanel(PicKingLrg, PanelKingLrg);
-            ResetPortraitToOriginalDisplay(PicKingMed);
-            ResetPortraitToOriginalDisplay(PicKingSml);
+            _kingGroupLrgInitialized = false;
+            _kingGroupMedInitialized = false;
+            _kingGroupSmlInitialized = false;
+
+            EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
+        }
+
+        private void EnsureKingGroupInitialized(KingPortraitGroupSelection selection)
+        {
+            if (selection == KingPortraitGroupSelection.Large)
+            {
+                if (_kingGroupLrgInitialized) return;
+                FitPictureToPanel(PicKingLrg, PanelKingLrg);
+                _kingGroupLrgInitialized = true;
+            }
+            else if (selection == KingPortraitGroupSelection.Medium)
+            {
+                if (_kingGroupMedInitialized) return;
+                FitPictureToPanel(PicKingMed, PanelKingMed);
+                _kingGroupMedInitialized = true;
+            }
+            else
+            {
+                if (_kingGroupSmlInitialized) return;
+                FitPictureToPanel(PicKingSml, PanelKingSml);
+                _kingGroupSmlInitialized = true;
+            }
         }
 
         private void ResetPortraitToOriginalDisplay(PictureBox pic)
@@ -1770,6 +1800,7 @@ namespace PortraitManager
             LabelKingCreatePortraitLarge?.Invalidate();
             LabelKingCreatePortraitMedium?.Invalidate();
             LabelKingCreatePortraitSmall?.Invalidate();
+            EnsureKingGroupInitialized(selection);
             // Update portrait buttons styles to match selected game colors
             UpdatePortraitButtonsStyle();
             // Ensure large/medium layouts use small group as reference for size/row styles

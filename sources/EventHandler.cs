@@ -101,8 +101,16 @@ namespace PortraitManager
                 return;
             }
             // create unique folder inside portraits root
-            string uniqueName = "Portrait - " + Guid.NewGuid().ToString("N");
+            string baseName = "portraitmanager_" + DateTime.Now.ToString("ss_dd_MM", CultureInfo.InvariantCulture);
+            string uniqueName = baseName;
+            int suffix = 1;
             string outDir = Path.Combine(portraitsRoot, uniqueName);
+            while (Directory.Exists(outDir))
+            {
+                uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                outDir = Path.Combine(portraitsRoot, uniqueName);
+                suffix++;
+            }
             try
             {
                 Directory.CreateDirectory(outDir);
@@ -197,48 +205,47 @@ namespace PortraitManager
                 return;
 
             string portraitName = Path.GetFileName(outDir);
-            string compactPath = CompactPathForToast(outDir);
 
             var toast = new Panel
             {
-                BackColor = Color.FromArgb(28, 28, 28),
+                BackColor = Color.FromArgb(24, 24, 24),
                 BorderStyle = BorderStyle.FixedSingle,
-                Size = new Size(340, 76),
+                Size = new Size(360, 94),
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right
             };
 
             var title = new Label
             {
                 AutoSize = false,
-                Size = new Size(328, 16),
-                Location = new Point(6, 6),
-                ForeColor = Color.White,
-                Text = "Portrait created successfully"
+                Size = new Size(346, 20),
+                Location = new Point(8, 6),
+                ForeColor = Color.FromArgb(130, 230, 130),
+                Font = new Font(Font, FontStyle.Bold),
+                Text = "✓ Portrait created"
             };
 
             var name = new Label
             {
                 AutoSize = false,
-                Size = new Size(328, 16),
-                Location = new Point(6, 24),
+                Size = new Size(346, 18),
+                Location = new Point(8, 30),
                 ForeColor = Color.Gainsboro,
                 Text = "Name: " + portraitName
             };
 
-            var path = new Label
+            var info = new Label
             {
                 AutoSize = false,
-                Size = new Size(328, 16),
-                Location = new Point(6, 40),
-                ForeColor = Color.Gainsboro,
-                AutoEllipsis = true,
-                Text = "Path: " + compactPath
+                Size = new Size(346, 16),
+                Location = new Point(8, 50),
+                ForeColor = Color.Silver,
+                Text = "Saved to game portraits folder"
             };
 
             var link = new LinkLabel
             {
                 AutoSize = true,
-                Location = new Point(6, 56),
+                Location = new Point(8, 68),
                 LinkColor = Color.DeepSkyBlue,
                 ActiveLinkColor = Color.White,
                 VisitedLinkColor = Color.DeepSkyBlue,
@@ -255,7 +262,7 @@ namespace PortraitManager
 
             toast.Controls.Add(title);
             toast.Controls.Add(name);
-            toast.Controls.Add(path);
+            toast.Controls.Add(info);
             toast.Controls.Add(link);
             toast.Location = new Point(ClientSize.Width - toast.Width - 12, ClientSize.Height - toast.Height - 12);
 

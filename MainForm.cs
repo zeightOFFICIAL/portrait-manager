@@ -94,7 +94,7 @@ namespace PortraitManager
         {
             if (!(sender is System.Windows.Forms.Button btn)) return;
 
-            using (forms.MyWebDialog dlg = new forms.MyWebDialog("Enter image URL", Thread.CurrentThread.CurrentUICulture.ToString()))
+            using (forms.MyWebDialog dlg = new forms.MyWebDialog(Thread.CurrentThread.CurrentUICulture.ToString()))
             {
                 dlg.StartPosition = FormStartPosition.CenterParent;
                 if (dlg.ShowDialog(this) == DialogResult.OK)
@@ -105,39 +105,23 @@ namespace PortraitManager
                     string tag = btn.Tag as string;
                     if (tag == "PicKingLrg")
                     {
-                        PicKingLrg.Image = img;
-                        _originalImageLrg = (Image)img.Clone();
-                        _zoomLevelLrg = 1.0f;
-                        // resize to fit parent panel like placeholder (allow ResizeImageToParentControl to run)
-                        _allowAutoResize = true;
-                        ResizeImageToParentControl(PicKingLrg, _originalImageLrg, PanelKingLrg);
-                        _allowAutoResize = false;
-                        // reset location and scrolling
-                        PanelKingLrg.AutoScroll = false;
-                        PicKingLrg.Location = new Point(0, 0);
+                        StoreOriginalImage(PicKingLrg, new Bitmap(img));
+                        FitImageToPanel(PicKingLrg);
+                        _kingGroupLrgInitialized = true;
                     }
                     else if (tag == "PicKingMed")
                     {
-                        PicKingMed.Image = img;
-                        _originalImageMed = (Image)img.Clone();
-                        _zoomLevelMed = 1.0f;
-                        _allowAutoResize = true;
-                        ResizeImageToParentControl(PicKingMed, _originalImageMed, PanelKingMed);
-                        _allowAutoResize = false;
-                        PanelKingMed.AutoScroll = false;
-                        PicKingMed.Location = new Point(0, 0);
+                        StoreOriginalImage(PicKingMed, new Bitmap(img));
+                        FitImageToPanel(PicKingMed);
+                        _kingGroupMedInitialized = true;
                     }
                     else if (tag == "PicKingSml")
                     {
-                        PicKingSml.Image = img;
-                        _originalImageSml = (Image)img.Clone();
-                        _zoomLevelSml = 1.0f;
-                        _allowAutoResize = true;
-                        ResizeImageToParentControl(PicKingSml, _originalImageSml, PanelKingSml);
-                        _allowAutoResize = false;
-                        PanelKingSml.AutoScroll = false;
-                        PicKingSml.Location = new Point(0, 0);
+                        StoreOriginalImage(PicKingSml, new Bitmap(img));
+                        FitImageToPanel(PicKingSml);
+                        _kingGroupSmlInitialized = true;
                     }
+                    img.Dispose();
                 }
             }
         }
@@ -1383,7 +1367,22 @@ namespace PortraitManager
             _kingGroupMedInitialized = false;
             _kingGroupSmlInitialized = false;
 
+            // Enable drag-and-drop onto each portrait PictureBox (file or URL text)
+            WirePortraitDragDrop(PicKingLrg);
+            WirePortraitDragDrop(PicKingMed);
+            WirePortraitDragDrop(PicKingSml);
+
             EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
+        }
+
+        private void WirePortraitDragDrop(PictureBox pic)
+        {
+            if (pic == null) return;
+            pic.AllowDrop = true;
+            pic.DragEnter -= PicKing_DragEnter;
+            pic.DragDrop  -= PicKing_DragDrop;
+            pic.DragEnter += PicKing_DragEnter;
+            pic.DragDrop  += PicKing_DragDrop;
         }
 
         private void EnsureKingGroupInitialized(KingPortraitGroupSelection selection)

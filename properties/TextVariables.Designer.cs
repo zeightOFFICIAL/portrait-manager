@@ -305,5 +305,59 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("TEXT_EXPLAIN_PATH_WOTR", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select web.
+        /// </summary>
+        internal static string BUTTON_SELECT_WEB {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_WEB", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select local.
+        /// </summary>
+        internal static string BUTTON_SELECT_LOCAL {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_LOCAL", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load image from web.
+        /// </summary>
+        internal static string WEBDIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Paste a direct image URL (ending in .png, .jpg, etc.) and press Load.
+        /// </summary>
+        internal static string WEBDIALOG_HINT {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_HINT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        internal static string WEBDIALOG_BUTTON_LOAD {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_BUTTON_LOAD", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string WEBDIALOG_BUTTON_CANCEL {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_BUTTON_CANCEL", resourceCulture);
+            }
+        }
     }
 }

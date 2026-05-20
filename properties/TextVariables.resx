@@ -213,4 +213,16 @@ If detection fails, you can open the folder manually.</value>
   <data name="BUTTON_SELECT_LOCAL" xml:space="preserve">
     <value>Select local</value>
   </data>
+  <data name="WEBDIALOG_TITLE" xml:space="preserve">
+    <value>Load image from web</value>
+  </data>
+  <data name="WEBDIALOG_HINT" xml:space="preserve">
+    <value>Paste or drag a web image address into the box below, then press Load. Any image link that opens in your browser will work.</value>
+  </data>
+  <data name="WEBDIALOG_BUTTON_LOAD" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="WEBDIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

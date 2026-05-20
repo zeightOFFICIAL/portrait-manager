@@ -27,73 +27,58 @@ namespace PortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {
-        private readonly Font _fontLarge, _fontMedium;
         private readonly PrivateFontCollection _fontCollection;
 
         public MyMessageDialog(string message, string locale)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(
+                Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
 
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
-            {
-                _fontLarge = new Font(_fontCollection.Families[1], 17);
-                _fontMedium = new Font(_fontCollection.Families[1], 15);
-            }
-            else
-            {
-                _fontLarge = new Font(_fontCollection.Families[0], 17);
-                _fontMedium = new Font(_fontCollection.Families[0], 15);
-            }
+            try { Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale); }
+            catch { }
 
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
-            Focus();
 
-            //ButtonClose.Text = TextVariables.BUTTON_OK;
-            ButtonClose.Font = _fontLarge;
+            // Title label: Bebas Neue, message body and button: generic font for readability
+            try
+            {
+                bool ru = Thread.CurrentThread.CurrentUICulture.Equals(
+                    CultureInfo.GetCultureInfo("ru-RU"));
+                var family = ru ? _fontCollection.Families[1] : _fontCollection.Families[0];
+                ButtonClose.Font = new Font(family, 16f);
+            }
+            catch { }
+
+            LabelMesg.Font = new Font(SystemFonts.DefaultFont.FontFamily, 10f);
             LabelMesg.Text = message;
-            LabelMesg.Font = _fontMedium;
+
+            ButtonClose.Text = "OK";
+
+            Focus();
         }
 
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _fontLarge.Dispose();
-            _fontMedium.Dispose();
             Dispose();
         }
 
         private void ButtonClose_MouseEnter(object sender, System.EventArgs e)
         {
-            if (sender is Button button)
-            {
-                if (button != null)
-                {
-                    button.BackColor = Color.White;
-                    button.ForeColor = Color.Black;
-                }
-            }
+            if (sender is Button btn) { btn.BackColor = Color.White; btn.ForeColor = Color.Black; }
         }
 
         private void ButtonClose_MouseLeave(object sender, System.EventArgs e)
         {
-            if (sender is Button button)
-            {
-                if (button != null && button.Enabled == true)
-                {
-                    button.BackColor = Color.Black;
-                    button.ForeColor = Color.White;
-                }
-            }
+            if (sender is Button btn && btn.Enabled) { btn.BackColor = Color.Black; btn.ForeColor = Color.White; }
         }
 
         private void MyMessageDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.E)
-            {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
                 Close();
-            }
         }
     }
 }
+

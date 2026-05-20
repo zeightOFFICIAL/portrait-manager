@@ -189,6 +189,114 @@ namespace PortraitManager
             ButtonKingAction_Create_Click(ButtonKingCreateAndKeep, e);
         }
 
+        // ── Portrait page drag-and-drop ──────────────────────────────────────
+
+        // Shared DragEnter: accept image files and plain-text URLs
+        private void PicKing_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                if (files != null && files.Length > 0)
+                {
+                    string ext = Path.GetExtension(files[0]).ToLowerInvariant();
+                    if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" ||
+                        ext == ".bmp" || ext == ".gif" || ext == ".webp")
+                    {
+                        e.Effect = DragDropEffects.Copy;
+                        return;
+                    }
+                }
+            }
+            if (e.Data.GetDataPresent(DataFormats.Text) ||
+                e.Data.GetDataPresent(DataFormats.UnicodeText))
+            {
+                e.Effect = DragDropEffects.Copy;
+                return;
+            }
+            e.Effect = DragDropEffects.None;
+        }
+
+        // Shared DragDrop: load from file path or web URL
+        private void PicKing_DragDrop(object sender, DragEventArgs e)
+        {
+            var pic = sender as PictureBox;
+            if (pic == null) return;
+
+            // ── file drop ────────────────────────────────────────────────────
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                if (files != null && files.Length > 0 && File.Exists(files[0]))
+                {
+                    try
+                    {
+                        using (Image fileImg = Image.FromFile(files[0]))
+                        {
+                            StoreOriginalImage(pic, new Bitmap(fileImg));
+                        }
+                        FitImageToPanel(pic);
+                        MarkGroupInitialized(pic);
+                    }
+                    catch { }
+                }
+                return;
+            }
+
+            // ── URL text drop ─────────────────────────────────────────────────
+            string url = e.Data.GetData(DataFormats.UnicodeText) as string
+                      ?? e.Data.GetData(DataFormats.Text) as string;
+            if (string.IsNullOrWhiteSpace(url)) return;
+            url = url.Trim();
+
+            // injection guard: http/https only, no whitespace/control chars
+            if ((!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+                 !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase)) ||
+                url.Length > 2048)
+                return;
+            foreach (char c in url)
+                if (char.IsControl(c) || char.IsWhiteSpace(c)) return;
+
+            try
+            {
+                Image downloaded = null;
+                using (var wc = new System.Net.WebClient())
+                {
+                    byte[] data = wc.DownloadData(url);
+                    using (var ms = new System.IO.MemoryStream(data))
+                    using (var tmp = Image.FromStream(ms))
+                    {
+                        downloaded = new Bitmap(tmp);
+                    }
+                }
+                StoreOriginalImage(pic, downloaded);
+                FitImageToPanel(pic);
+                MarkGroupInitialized(pic);
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    using (var dlg = new forms.MyMessageDialog(
+                        "Could not load the image from that address.\n\n" + ex.Message,
+                        Thread.CurrentThread.CurrentUICulture.ToString()))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void MarkGroupInitialized(PictureBox pic)
+        {
+            if (pic == null) return;
+            if (pic.Name == "PicKingLrg") _kingGroupLrgInitialized = true;
+            else if (pic.Name == "PicKingMed") _kingGroupMedInitialized = true;
+            else if (pic.Name == "PicKingSml") _kingGroupSmlInitialized = true;
+        }
+
         private bool ValidateCreatedPortrait(string outDir)
         {
             if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
@@ -255,7 +363,8 @@ namespace PortraitManager
             {
                 try
                 {
-                    Process.Start("explorer.exe", outDir);
+                    // Quote the path so explorer handles directories with spaces correctly.
+                    Process.Start("explorer.exe", "\"" + outDir + "\"");
                 }
                 catch { }
             };

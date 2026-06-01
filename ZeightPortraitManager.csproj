@@ -186,6 +186,7 @@
     <EmbeddedResource Include="Properties\TextVariables.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextVariables.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

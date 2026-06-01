@@ -204,6 +204,7 @@ namespace PortraitManager
                         ext == ".bmp" || ext == ".gif" || ext == ".webp")
                     {
                         e.Effect = DragDropEffects.Copy;
+                        ApplyDropTargetTint(sender as Control);
                         return;
                     }
                 }
@@ -212,16 +213,88 @@ namespace PortraitManager
                 e.Data.GetDataPresent(DataFormats.UnicodeText))
             {
                 e.Effect = DragDropEffects.Copy;
+                ApplyDropTargetTint(sender as Control);
                 return;
             }
             e.Effect = DragDropEffects.None;
         }
 
+        // Shared DragLeave: remove drop-target visual
+        private void PicKing_DragLeave(object sender, EventArgs e)
+        {
+            if (sender is Control ctrl && ctrl.ClientRectangle.Contains(ctrl.PointToClient(Cursor.Position)))
+                return;
+            RemoveDropTargetTint(sender as Control);
+        }
+
+        // Overlay a semi-transparent highlight on the parent panel while dragging
+        private void ApplyDropTargetTint(Control source)
+        {
+            var pic = GetPortraitPictureBox(source);
+            if (pic == null) return;
+            var panel = GetPortraitPanel(pic);
+            if (panel == null) return;
+            const string overlayTag = "_drop_overlay";
+
+            var overlay = panel.Controls.OfType<Panel>()
+                .FirstOrDefault(p => p.Tag is string t && t == overlayTag);
+
+            if (overlay == null)
+            {
+                overlay = new Panel
+                {
+                    BackColor = Color.FromArgb(140, 0, 0, 0),
+                    Dock = DockStyle.Fill,
+                    Tag = overlayTag
+                };
+
+                var icon = new Label
+                {
+                    Text = "⬇",
+                    Font = new Font(Font.FontFamily, 42, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    BackColor = Color.Transparent,
+                    AutoSize = true
+                };
+                overlay.Controls.Add(icon);
+                overlay.Layout += (s, le) =>
+                {
+                    icon.Location = new Point(
+                        (overlay.Width - icon.Width) / 2,
+                        (overlay.Height - icon.Height) / 2);
+                };
+
+                overlay.AllowDrop = true;
+                overlay.DragEnter += PicKing_DragEnter;
+                overlay.DragLeave += PicKing_DragLeave;
+                overlay.DragDrop += PicKing_DragDrop;
+
+                panel.Controls.Add(overlay);
+            }
+
+            overlay.Visible = true;
+            overlay.BringToFront();
+        }
+
+        private void RemoveDropTargetTint(Control source)
+        {
+            var pic = GetPortraitPictureBox(source);
+            if (pic == null) return;
+            var panel = GetPortraitPanel(pic);
+            if (panel == null) return;
+            const string overlayTag = "_drop_overlay";
+            var overlay = panel.Controls.OfType<Panel>()
+                .FirstOrDefault(p => p.Tag is string t && t == overlayTag);
+            if (overlay != null)
+                overlay.Visible = false;
+        }
+
         // Shared DragDrop: load from file path or web URL
         private void PicKing_DragDrop(object sender, DragEventArgs e)
         {
-            var pic = sender as PictureBox;
+            var pic = GetPortraitPictureBox(sender);
             if (pic == null) return;
+            RemoveDropTargetTint(sender as Control);
 
             // ── file drop ────────────────────────────────────────────────────
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -713,7 +786,14 @@ namespace PortraitManager
                 return pictureBox;
 
             if (sender is Panel panel)
-                return panel.Controls.OfType<PictureBox>().FirstOrDefault();
+            {
+                var fromPanel = panel.Controls.OfType<PictureBox>().FirstOrDefault();
+                if (fromPanel != null)
+                    return fromPanel;
+
+                if (panel.Parent is Panel parentPanel)
+                    return parentPanel.Controls.OfType<PictureBox>().FirstOrDefault();
+            }
 
             return null;
         }

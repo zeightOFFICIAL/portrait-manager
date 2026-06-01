@@ -208,10 +208,25 @@ If detection fails, you can open the folder manually.</value>
     <value>⌼ Portrait</value>
   </data>
   <data name="BUTTON_SELECT_WEB" xml:space="preserve">
-    <value>Select web</value>
+    <value>Select Web 🌐</value>
   </data>
   <data name="BUTTON_SELECT_LOCAL" xml:space="preserve">
-    <value>Select local</value>
+    <value>Select Local 📁</value>
+  </data>
+  <data name="HINT_KING_LRG" xml:space="preserve">
+    <value>Fulllength (692×1024) — used on the character paper-doll and level-up screen.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_KING_MED" xml:space="preserve">
+    <value>Medium (330×432) — used in the party bar and character screen. 
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_KING_SML" xml:space="preserve">
+    <value>Portrait / Small (185×242) — used in dialogues and the companion list. 
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_KING_ZOOM" xml:space="preserve">
+    <value>Use + and − to zoom the image in or out if the mouse wheel does not work.</value>
   </data>
   <data name="WEBDIALOG_TITLE" xml:space="preserve">
     <value>Load image from web</value>

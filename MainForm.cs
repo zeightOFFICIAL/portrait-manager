@@ -1381,8 +1381,10 @@ namespace PortraitManager
             pic.AllowDrop = true;
             pic.DragEnter -= PicKing_DragEnter;
             pic.DragDrop  -= PicKing_DragDrop;
+            pic.DragLeave -= PicKing_DragLeave;
             pic.DragEnter += PicKing_DragEnter;
             pic.DragDrop  += PicKing_DragDrop;
+            pic.DragLeave += PicKing_DragLeave;
         }
 
         private void EnsureKingGroupInitialized(KingPortraitGroupSelection selection)
@@ -1956,6 +1958,36 @@ namespace PortraitManager
             Color selFore = Color.White;
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
 
+            Font hintFont = this.Font;
+            try
+            {
+                if (_fontCollection != null && _fontCollection.Families != null && _fontCollection.Families.Length > 0)
+                    hintFont = new Font(_fontCollection.Families[0], 10f);
+            }
+            catch { }
+
+            // Style hint labels above the Local/Web buttons
+            var hintLabels = new (System.Windows.Forms.Label lbl, string key)[]
+            {
+                (LabelKingLrgHint, "HINT_KING_LRG"),
+                (LabelKingMedHint, "HINT_KING_MED"),
+                (LabelKingSmlHint, "HINT_KING_SML"),
+            };
+            foreach (var (lbl, key) in hintLabels)
+            {
+                if (lbl == null) continue;
+                lbl.BackColor = selBack;
+                lbl.ForeColor = selFore;
+                lbl.TextAlign = ContentAlignment.TopLeft;
+                lbl.Font = hintFont;
+                try
+                {
+                    var s = TextVariables.ResourceManager.GetString(key, TextVariables.Culture);
+                    if (!string.IsNullOrEmpty(s)) lbl.Text = s;
+                }
+                catch { }
+            }
+
             var buttons = new Button[] {
                 ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
                 ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
@@ -2001,6 +2033,23 @@ namespace PortraitManager
                 btn.MouseLeave += PortraitButton_MouseLeave;
                 btn.GotFocus += PortraitButton_GotFocus;
             }
+
+            try
+            {
+                var zoomInButtons = new Button[] { ButtonKingLrgZoomIn, ButtonKingMedZoomIn, ButtonKingSmlZoomIn };
+                var zoomOutButtons = new Button[] { ButtonKingLrgZoomOut, ButtonKingMedZoomOut, ButtonKingSmlZoomOut };
+                foreach (var zb in zoomInButtons)
+                {
+                    if (zb == null) continue;
+                    zb.Text = "🔍+";
+                }
+                foreach (var zb in zoomOutButtons)
+                {
+                    if (zb == null) continue;
+                    zb.Text = "🔍−";
+                }
+            }
+            catch { }
         }
 
         private void PortraitButton_GotFocus(object sender, EventArgs e)

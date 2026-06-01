@@ -19,7 +19,7 @@ namespace PortraitManager.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class TextVariables {
@@ -142,11 +142,68 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Local 📁.
+        /// </summary>
+        internal static string BUTTON_SELECT_LOCAL {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_LOCAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Web 🌐.
+        /// </summary>
+        internal static string BUTTON_SELECT_WEB {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_WEB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string BUTTON_SETTINGS {
             get {
                 return ResourceManager.GetString("BUTTON_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fulllength (692×1024) — used on the character paper-doll and level-up screen.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_KING_LRG {
+            get {
+                return ResourceManager.GetString("HINT_KING_LRG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium (330×432) — used in the party bar and character screen. 
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_KING_MED {
+            get {
+                return ResourceManager.GetString("HINT_KING_MED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait / Small (185×242) — used in dialogues and the companion list. 
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_KING_SML {
+            get {
+                return ResourceManager.GetString("HINT_KING_SML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use + and − to zoom the image in or out if the mouse wheel does not work..
+        /// </summary>
+        internal static string HINT_KING_ZOOM {
+            get {
+                return ResourceManager.GetString("HINT_KING_ZOOM", resourceCulture);
             }
         }
         
@@ -305,43 +362,16 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("TEXT_EXPLAIN_PATH_WOTR", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Select web.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string BUTTON_SELECT_WEB {
+        internal static string WEBDIALOG_BUTTON_CANCEL {
             get {
-                return ResourceManager.GetString("BUTTON_SELECT_WEB", resourceCulture);
+                return ResourceManager.GetString("WEBDIALOG_BUTTON_CANCEL", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select local.
-        /// </summary>
-        internal static string BUTTON_SELECT_LOCAL {
-            get {
-                return ResourceManager.GetString("BUTTON_SELECT_LOCAL", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Load image from web.
-        /// </summary>
-        internal static string WEBDIALOG_TITLE {
-            get {
-                return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Paste a direct image URL (ending in .png, .jpg, etc.) and press Load.
-        /// </summary>
-        internal static string WEBDIALOG_HINT {
-            get {
-                return ResourceManager.GetString("WEBDIALOG_HINT", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Load.
         /// </summary>
@@ -350,13 +380,22 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("WEBDIALOG_BUTTON_LOAD", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Paste or drag a web image address into the box below, then press Load. Any image link that opens in your browser will work..
         /// </summary>
-        internal static string WEBDIALOG_BUTTON_CANCEL {
+        internal static string WEBDIALOG_HINT {
             get {
-                return ResourceManager.GetString("WEBDIALOG_BUTTON_CANCEL", resourceCulture);
+                return ResourceManager.GetString("WEBDIALOG_HINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load image from web.
+        /// </summary>
+        internal static string WEBDIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
             }
         }
     }

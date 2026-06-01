@@ -43,14 +43,11 @@ namespace PortraitManager.forms
                     CultureInfo.GetCultureInfo("ru-RU"));
                 var family = ru ? _fontCollection.Families[1] : _fontCollection.Families[0];
                 LabelTitle.Font    = new Font(family, 18f);
+                LabelHint.Font     = new Font(family, 12f);
                 TextBoxURL.Font    = new Font(family, 14f);
                 ButtonOK.Font      = new Font(family, 14f);
                 ButtonCancel.Font  = new Font(family, 14f);
             }
-            catch { }
-
-            // LabelHint uses the default system font for maximum readability — intentionally not Bebas Neue.
-            try { LabelHint.Font = new Font(SystemFonts.DefaultFont.FontFamily, 10f); }
             catch { }
         }
 
@@ -114,14 +111,14 @@ namespace PortraitManager.forms
 
             if (string.IsNullOrWhiteSpace(url))
             {
-                ShowError("Please enter a web address before pressing Load.");
+                ShowError("Please enter a web image address before pressing Load.");
                 return;
             }
 
             if (!IsUrlSafe(url))
             {
-                ShowError("The address you entered does not look like a valid web link.\n\n" +
-                          "Make sure it starts with http:// or https:// and contains no spaces.");
+                ShowError("The address you entered does not look like a valid image link.\n\n" +
+                          "Make sure it starts with http:// or https://, contains no spaces, and points directly to an image file.");
                 return;
             }
 
@@ -147,7 +144,7 @@ namespace PortraitManager.forms
                 if (ex is System.Net.WebException we && we.Response == null)
                     reason = "The server could not be reached. Check your internet connection or the link.";
 
-                ShowError("The image could not be loaded.\n\n" + reason);
+                ShowError("The image could not be loaded from that address.\n\n" + reason);
             }
         }
 

@@ -436,8 +436,11 @@ namespace PortraitManager
             {
                 try
                 {
-                    // Quote the path so explorer handles directories with spaces correctly.
-                    Process.Start("explorer.exe", "\"" + outDir + "\"");
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = outDir,
+                        UseShellExecute = true
+                    });
                 }
                 catch { }
             };

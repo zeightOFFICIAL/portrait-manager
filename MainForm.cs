@@ -1372,7 +1372,11 @@ namespace PortraitManager
             WirePortraitDragDrop(PicKingMed);
             WirePortraitDragDrop(PicKingSml);
 
-            EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
+            BeginInvoke((MethodInvoker)delegate
+            {
+                ApplyKingPortraitPanelAspect();
+                EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
+            });
         }
 
         private void WirePortraitDragDrop(PictureBox pic)
@@ -1853,12 +1857,12 @@ namespace PortraitManager
 
             float imgAspect = (float)original.Width / original.Height;
             float panelAspect = (float)panelW / panelH;
-            float minZoom = imgAspect > panelAspect
+            float coverZoom = imgAspect > panelAspect
                 ? (float)panelH / original.Height
                 : (float)panelW / original.Width;
 
-            int newW = Math.Max(1, (int)(original.Width * minZoom));
-            int newH = Math.Max(1, (int)(original.Height * minZoom));
+            int newW = Math.Max(1, (int)(original.Width * coverZoom));
+            int newH = Math.Max(1, (int)(original.Height * coverZoom));
 
             Bitmap fitted = ImageControl.Direct.Resize(original, newW, newH);
             // dispose previous displayed image if it is not the original reference
@@ -1867,9 +1871,56 @@ namespace PortraitManager
             pb.Dock = DockStyle.None;
             pb.SizeMode = PictureBoxSizeMode.Normal;
             pb.Size = new Size(newW, newH);
-            SetZoomLevel(pb, minZoom);
+            SetZoomLevel(pb, coverZoom);
             // center the picture inside the panel
             pb.Location = new Point((panelW - pb.Width) / 2, (panelH - pb.Height) / 2);
+        }
+
+        private void ApplyKingPortraitPanelAspect()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
+
+            float lrgAspect;
+            float medAspect;
+            float smlAspect;
+
+            if (_gameSelected == 'r')
+            {
+                lrgAspect = 1080f / 1480f;
+                medAspect = 448f / 600f;
+                smlAspect = 260f / 336f;
+            }
+            else
+            {
+                lrgAspect = 692f / 1024f;
+                medAspect = 330f / 432f;
+                smlAspect = 185f / 242f;
+            }
+
+            ApplyPanelAspect(LayoutKingPortraitGroupLarge, PanelKingLrg, lrgAspect);
+            ApplyPanelAspect(LayoutKingPortraitGroupMedium, PanelKingMed, medAspect);
+            ApplyPanelAspect(LayoutKingPortraitGroupSmall, PanelKingSml, smlAspect);
+        }
+
+        private void ApplyPanelAspect(TableLayoutPanel layout, Panel panel, float aspect)
+        {
+            if (layout == null || panel == null) return;
+            if (panel.Height <= 0) return;
+
+            int desiredWidth = Math.Max(1, (int)Math.Round(panel.Height * aspect));
+            var margin = panel.Margin;
+            int columnWidth = desiredWidth + margin.Left + margin.Right;
+
+            if (layout.ColumnStyles.Count < 2) return;
+
+            layout.ColumnStyles[0].SizeType = SizeType.Absolute;
+            layout.ColumnStyles[0].Width = columnWidth;
+            layout.ColumnStyles[1].SizeType = SizeType.Percent;
+            layout.ColumnStyles[1].Width = 100f;
+
+            panel.MinimumSize = new Size(desiredWidth, 0);
+            panel.MaximumSize = new Size(desiredWidth, 0);
+            panel.Width = desiredWidth;
         }
 
         private void ApplySmallLayoutReference()

@@ -53,7 +53,7 @@ namespace PortraitManager.forms
             this.PanelTextBorder.BackColor = System.Drawing.Color.White;
             this.PanelTextBorder.Location = new System.Drawing.Point(16, 90);
             this.PanelTextBorder.Name = "PanelTextBorder";
-            this.PanelTextBorder.Padding = new System.Windows.Forms.Padding(1);
+            this.PanelTextBorder.Padding = new System.Windows.Forms.Padding(1, 1, 1, 0);
             this.PanelTextBorder.Size = new System.Drawing.Size(718, 30);
             this.PanelTextBorder.TabIndex = 2;
             this.PanelTextBorder.Controls.Add(this.TextBoxURL);

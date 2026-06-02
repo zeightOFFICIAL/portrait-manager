@@ -30,7 +30,6 @@ namespace PortraitManager.forms
             TextBoxURL.Select();
         }
 
-        // Legacy overload kept for existing call sites that pass a message string.
         public MyWebDialog(string message, string locale) : this(locale) { }
 
         public string URL => TextBoxURL?.Text?.Trim();
@@ -59,25 +58,19 @@ namespace PortraitManager.forms
             try { ButtonCancel.Text = TextVariables.WEBDIALOG_BUTTON_CANCEL; } catch { }
         }
 
-        // ── injection / validation ────────────────────────────────────────────
-
         private static bool IsUrlSafe(string url)
         {
             if (string.IsNullOrWhiteSpace(url)) return false;
             if (url.Length > 2048) return false;
-            // only http / https schemes
             if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
                 !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
                 return false;
-            // no whitespace, no control characters
             foreach (char c in url)
             {
                 if (char.IsControl(c) || char.IsWhiteSpace(c)) return false;
             }
             return true;
         }
-
-        // ── drag-and-drop into the URL TextBox ────────────────────────────────
 
         private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
         {
@@ -103,22 +96,20 @@ namespace PortraitManager.forms
             }
         }
 
-        // ── fetch & load ──────────────────────────────────────────────────────
-
         private void ButtonOK_Click(object sender, EventArgs e)
         {
             string url = TextBoxURL?.Text?.Trim();
 
             if (string.IsNullOrWhiteSpace(url))
             {
-                ShowError("Please enter a web image address before pressing Load.");
+                ShowError("Please enter a web address before pressing Load.");
                 return;
             }
 
             if (!IsUrlSafe(url))
             {
-                ShowError("The address you entered does not look like a valid image link.\n\n" +
-                          "Make sure it starts with http:// or https://, contains no spaces, and points directly to an image file.");
+                ShowError("The address you entered does not look like a valid web link.\n\n" +
+                          "Make sure it starts with http:// or https:// and contains no spaces.");
                 return;
             }
 
@@ -140,11 +131,10 @@ namespace PortraitManager.forms
             catch (Exception ex)
             {
                 string reason = ex.Message;
-                // strip technical stack noise for common cases
                 if (ex is System.Net.WebException we && we.Response == null)
                     reason = "The server could not be reached. Check your internet connection or the link.";
 
-                ShowError("The image could not be loaded from that address.\n\n" + reason);
+                ShowError("The image could not be loaded.\n\n" + reason);
             }
         }
 
@@ -163,9 +153,6 @@ namespace PortraitManager.forms
                 MessageBox.Show(this, message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // ── hover styling ─────────────────────────────────────────────────────
-
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             if (sender is Button btn) { btn.BackColor = Color.White; btn.ForeColor = Color.Black; }
@@ -175,8 +162,6 @@ namespace PortraitManager.forms
         {
             if (sender is Button btn && btn.Enabled) { btn.BackColor = Color.Black; btn.ForeColor = Color.White; }
         }
-
-        // ── keyboard ─────────────────────────────────────────────────────────
 
         private void MyWebDialog_KeyDown(object sender, KeyEventArgs e)
         {

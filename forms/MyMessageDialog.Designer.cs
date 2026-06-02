@@ -31,7 +31,6 @@ namespace PortraitManager.forms
             // 
             // LabelMesg
             // 
-            this.LabelMesg.AutoSize = false;
             this.LabelMesg.BackColor = System.Drawing.Color.Transparent;
             this.LabelMesg.ForeColor = System.Drawing.Color.White;
             this.LabelMesg.Location = new System.Drawing.Point(20, 16);
@@ -47,9 +46,8 @@ namespace PortraitManager.forms
             this.ButtonClose.BackColor = System.Drawing.Color.Black;
             this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.ButtonClose.FlatAppearance.BorderSize = 1;
+            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.ForeColor = System.Drawing.Color.White;
             this.ButtonClose.Location = new System.Drawing.Point(164, 116);
             this.ButtonClose.Name = "ButtonClose";
@@ -66,8 +64,7 @@ namespace PortraitManager.forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            // Keep designer defaults; runtime sizing is adjusted to match owner width.
-            this.ClientSize = new System.Drawing.Size(488, 168);
+            this.ClientSize = new System.Drawing.Size(520, 168);
             this.ControlBox = false;
             this.Controls.Add(this.LabelMesg);
             this.Controls.Add(this.ButtonClose);
@@ -83,6 +80,7 @@ namespace PortraitManager.forms
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyMessageDialog_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyMessageDialog_KeyDown);
             this.ResumeLayout(false);
+
         }
 
         #endregion

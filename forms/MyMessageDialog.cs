@@ -41,26 +41,6 @@ namespace PortraitManager.forms
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
 
-            // Apply Bebas Neue across the dialog for a consistent look
-            try
-            {
-                bool ru = Thread.CurrentThread.CurrentUICulture.Equals(
-                    CultureInfo.GetCultureInfo("ru-RU"));
-                var family = ru ? _fontCollection.Families[1] : _fontCollection.Families[0];
-                ButtonClose.Font = new Font(family, 16f);
-                LabelMesg.Font = new Font(family, 12f);
-            }
-            catch { }
-            LabelMesg.Text = message;
-
-            ButtonClose.Text = "OK";
-
-            Focus();
-        }
-
-        protected override void OnShown(System.EventArgs e)
-        {
-            base.OnShown(e);
             try
             {
                 if (Owner != null)
@@ -68,12 +48,23 @@ namespace PortraitManager.forms
                     Width = Owner.Width;
                     Left = Owner.Left;
                 }
-                else
-                {
-                    Width = 750;
-                }
             }
             catch { }
+
+            try
+            {
+                bool ru = Thread.CurrentThread.CurrentUICulture.Equals(
+                    CultureInfo.GetCultureInfo("ru-RU"));
+                var family = ru ? _fontCollection.Families[1] : _fontCollection.Families[0];
+                ButtonClose.Font = new Font(family, 16f);
+            }
+            catch { }
+
+            LabelMesg.Font = new Font(SystemFonts.DefaultFont.FontFamily, 10f);
+            LabelMesg.Text = message;
+            ButtonClose.Text = "OK";
+
+            Focus();
         }
 
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)

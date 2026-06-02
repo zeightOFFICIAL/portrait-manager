@@ -89,7 +89,6 @@ namespace PortraitManager
             Small
         }
 
-        // Open modal dialog to enter image URL and load image from web
         private void ButtonKingSelectWebModal_Click(object sender, EventArgs e)
         {
             if (!(sender is System.Windows.Forms.Button btn)) return;
@@ -142,19 +141,13 @@ namespace PortraitManager
         private static Point _mousePosition = new Point();
         private static Point _pictureDragStart = new Point();
 
-        // Store original images for zoom without quality loss
         private static Image _originalImageLrg;
         private static Image _originalImageMed;
         private static Image _originalImageSml;
-        // Control automatic resize calls (only when loading placeholders or new images)
         private bool _allowAutoResize = false;
-        // Track current zoom level as ratio to original size
         private static float _zoomLevelLrg = 1.0f;
         private static float _zoomLevelMed = 1.0f;
         private static float _zoomLevelSml = 1.0f;
-        // Track first-time visible initialization for create portrait groups.
-        // Medium/small can have incorrect panel size while hidden, so fit them
-        // when they become visible for the first time.
         private bool _kingGroupLrgInitialized;
         private bool _kingGroupMedInitialized;
         private bool _kingGroupSmlInitialized;
@@ -244,9 +237,7 @@ namespace PortraitManager
             }
 
             Focus();
-                SetKingPortraitGroup(KingPortraitGroupSelection.Large);
-            // ensure placeholders are prepared with custom cover-scaling so one dimension
-            // matches the PictureBox and the other may be larger (center-cropped)
+            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
             _allowAutoResize = true;
             ReplacePictureBoxImagesToDefault();
             _allowAutoResize = false;
@@ -387,7 +378,6 @@ namespace PortraitManager
         {
             var lbl = sender as Label;
             if (lbl == null) return;
-            // Only draw border for the currently selected label
             bool isSelected = false;
             if (lbl.Name == "LabelKingCreatePortraitLarge") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Large;
             else if (lbl.Name == "LabelKingCreatePortraitMedium") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Medium;
@@ -400,7 +390,6 @@ namespace PortraitManager
             {
                 int w = lbl.ClientSize.Width;
                 int h = lbl.ClientSize.Height;
-                // draw top, left and right only
                 e.Graphics.DrawLine(pen, 0, 0, w - 1, 0); // top
                 e.Graphics.DrawLine(pen, 0, 0, 0, h - 1); // left
                 e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1); // right
@@ -416,12 +405,10 @@ namespace PortraitManager
             {
                 int w = group.ClientSize.Width;
                 int h = group.ClientSize.Height;
-                // left, right, bottom
                 e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
                 e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
                 e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
 
-                // top with gap under label (exclude area under the label)
                 int gapStart = -1, gapEnd = -1;
                 if (label != null && label.Visible)
                 {
@@ -437,17 +424,14 @@ namespace PortraitManager
 
                 if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
                 {
-                    // draw full top
                     e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
                 }
                 else
                 {
-                    // draw left segment up to the left edge of the label
                     int leftSegEnd = Math.Max(0, gapStart - 1);
                     if (leftSegEnd > 0)
                         e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
 
-                    // draw right segment starting after the right edge of the label
                     int rightSegStart = Math.Min(w - 1, gapEnd + 1);
                     if (rightSegStart < w - 1)
                         e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
@@ -1372,11 +1356,7 @@ namespace PortraitManager
             WirePortraitDragDrop(PicKingMed);
             WirePortraitDragDrop(PicKingSml);
 
-            BeginInvoke((MethodInvoker)delegate
-            {
-                ApplyKingPortraitPanelAspect();
-                EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
-            });
+            EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
         }
 
         private void WirePortraitDragDrop(PictureBox pic)
@@ -1857,12 +1837,12 @@ namespace PortraitManager
 
             float imgAspect = (float)original.Width / original.Height;
             float panelAspect = (float)panelW / panelH;
-            float coverZoom = imgAspect > panelAspect
+            float minZoom = imgAspect > panelAspect
                 ? (float)panelH / original.Height
                 : (float)panelW / original.Width;
 
-            int newW = Math.Max(1, (int)(original.Width * coverZoom));
-            int newH = Math.Max(1, (int)(original.Height * coverZoom));
+            int newW = Math.Max(1, (int)(original.Width * minZoom));
+            int newH = Math.Max(1, (int)(original.Height * minZoom));
 
             Bitmap fitted = ImageControl.Direct.Resize(original, newW, newH);
             // dispose previous displayed image if it is not the original reference
@@ -1871,56 +1851,9 @@ namespace PortraitManager
             pb.Dock = DockStyle.None;
             pb.SizeMode = PictureBoxSizeMode.Normal;
             pb.Size = new Size(newW, newH);
-            SetZoomLevel(pb, coverZoom);
+            SetZoomLevel(pb, minZoom);
             // center the picture inside the panel
             pb.Location = new Point((panelW - pb.Width) / 2, (panelH - pb.Height) / 2);
-        }
-
-        private void ApplyKingPortraitPanelAspect()
-        {
-            if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
-
-            float lrgAspect;
-            float medAspect;
-            float smlAspect;
-
-            if (_gameSelected == 'r')
-            {
-                lrgAspect = 1080f / 1480f;
-                medAspect = 448f / 600f;
-                smlAspect = 260f / 336f;
-            }
-            else
-            {
-                lrgAspect = 692f / 1024f;
-                medAspect = 330f / 432f;
-                smlAspect = 185f / 242f;
-            }
-
-            ApplyPanelAspect(LayoutKingPortraitGroupLarge, PanelKingLrg, lrgAspect);
-            ApplyPanelAspect(LayoutKingPortraitGroupMedium, PanelKingMed, medAspect);
-            ApplyPanelAspect(LayoutKingPortraitGroupSmall, PanelKingSml, smlAspect);
-        }
-
-        private void ApplyPanelAspect(TableLayoutPanel layout, Panel panel, float aspect)
-        {
-            if (layout == null || panel == null) return;
-            if (panel.Height <= 0) return;
-
-            int desiredWidth = Math.Max(1, (int)Math.Round(panel.Height * aspect));
-            var margin = panel.Margin;
-            int columnWidth = desiredWidth + margin.Left + margin.Right;
-
-            if (layout.ColumnStyles.Count < 2) return;
-
-            layout.ColumnStyles[0].SizeType = SizeType.Absolute;
-            layout.ColumnStyles[0].Width = columnWidth;
-            layout.ColumnStyles[1].SizeType = SizeType.Percent;
-            layout.ColumnStyles[1].Width = 100f;
-
-            panel.MinimumSize = new Size(desiredWidth, 0);
-            panel.MaximumSize = new Size(desiredWidth, 0);
-            panel.Width = desiredWidth;
         }
 
         private void ApplySmallLayoutReference()
@@ -2054,12 +1987,10 @@ namespace PortraitManager
                 btn.FlatAppearance.BorderColor = selFore;
                 btn.BackColor = selBack;
                 btn.ForeColor = selFore;
-                // make hover change to swapped colors (keep border as fore)
                 btn.FlatAppearance.MouseOverBackColor = selFore;
                 btn.FlatAppearance.MouseDownBackColor = selFore;
                 btn.TabStop = false;
 
-                // set text from resources when possible
                 try
                 {
                     if (btn.Name != null && btn.Name.IndexOf("Web", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -2072,11 +2003,9 @@ namespace PortraitManager
                         var s = TextVariables.ResourceManager.GetString("BUTTON_SELECT_LOCAL", TextVariables.Culture);
                         if (!string.IsNullOrEmpty(s)) btn.Text = s;
                     }
-                    // leave zoom button text as is ("+" / "−")
                 }
                 catch { }
 
-                // detach then attach to avoid duplicate handlers
                 btn.MouseEnter -= PortraitButton_MouseEnter;
                 btn.MouseLeave -= PortraitButton_MouseLeave;
                 btn.GotFocus -= PortraitButton_GotFocus;

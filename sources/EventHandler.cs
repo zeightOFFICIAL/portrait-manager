@@ -507,9 +507,13 @@ namespace PortraitManager
                 StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
                 StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
 
+                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large); } catch { }
+                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium); } catch { }
+                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small); } catch { }
+
                 FitImageToPanel(PicKingLrg);
-                ResetPortraitToOriginalDisplay(PicKingMed);
-                ResetPortraitToOriginalDisplay(PicKingSml);
+                FitImageToPanel(PicKingMed);
+                FitImageToPanel(PicKingSml);
                 Focus();
             }
             catch
@@ -832,6 +836,7 @@ namespace PortraitManager
         
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
+            try { AdjustActivePortraitPanelAspect(_activeKingPortraitGroup); } catch { }
             ResizeVisibleImagesToWindowSize();
         }
 

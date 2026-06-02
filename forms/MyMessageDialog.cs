@@ -17,6 +17,7 @@
 */
 
 using PortraitManager.Properties;
+using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
@@ -40,16 +41,7 @@ namespace PortraitManager.forms
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
-
-            try
-            {
-                if (Owner != null)
-                {
-                    Width = Owner.Width;
-                    Left = Owner.Left;
-                }
-            }
-            catch { }
+            Shown += MyMessageDialog_Shown;
 
             try
             {
@@ -86,6 +78,26 @@ namespace PortraitManager.forms
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
                 Close();
+        }
+
+        private void MyMessageDialog_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                Form anchor = Owner;
+                while (anchor != null && anchor.Owner != null)
+                {
+                    anchor = anchor.Owner;
+                }
+
+                if (anchor != null)
+                {
+                    // Match visible client-area width exactly to avoid any perceived overhang.
+                    Width = anchor.ClientSize.Width;
+                    Left = anchor.PointToScreen(System.Drawing.Point.Empty).X;
+                }
+            }
+            catch { }
         }
     }
 }

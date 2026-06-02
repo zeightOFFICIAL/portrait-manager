@@ -1356,7 +1356,61 @@ namespace PortraitManager
             WirePortraitDragDrop(PicKingMed);
             WirePortraitDragDrop(PicKingSml);
 
+            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large);
             EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
+        }
+
+        private float GetPortraitSpecificOrDefault(GameType gameType, string key, float fallback)
+        {
+            if (gameType == null) return fallback;
+            try { return gameType.GetPortraitSpecific(key); }
+            catch { return fallback; }
+        }
+
+        private void AdjustPortraitPanelAspect(Panel panel, float ar, float staticHeight)
+        {
+            if (panel == null) return;
+
+            panel.SuspendLayout();
+            try
+            {
+                panel.AutoSize = false;
+                panel.Dock = DockStyle.None;
+                panel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                int newWidth = (int)Math.Round(staticHeight / ar);
+                panel.Size = new Size(newWidth, (int)staticHeight);
+            }
+            finally
+            {
+                panel.ResumeLayout();
+            }
+        }
+
+        private void AdjustActivePortraitPanelAspect(KingPortraitGroupSelection selection)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
+
+            if (selection == KingPortraitGroupSelection.Large)
+            {
+                AdjustPortraitPanelAspect(
+                    PanelKingLrg,
+                    GetPortraitSpecificOrDefault(gameType, "LARGE_AR", 1.3f),
+                    380f);
+            }
+            else if (selection == KingPortraitGroupSelection.Medium)
+            {
+                AdjustPortraitPanelAspect(
+                    PanelKingMed,
+                    GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
+                    380f);
+            }
+            else
+            {
+                AdjustPortraitPanelAspect(
+                    PanelKingSml,
+                    GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
+                    380f);
+            }
         }
 
         private void WirePortraitDragDrop(PictureBox pic)
@@ -1785,6 +1839,7 @@ namespace PortraitManager
             LabelKingCreatePortraitLarge?.Invalidate();
             LabelKingCreatePortraitMedium?.Invalidate();
             LabelKingCreatePortraitSmall?.Invalidate();
+            AdjustActivePortraitPanelAspect(selection);
             EnsureKingGroupInitialized(selection);
             // Update portrait buttons styles to match selected game colors
             UpdatePortraitButtonsStyle();

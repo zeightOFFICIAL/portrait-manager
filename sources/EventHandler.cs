@@ -236,7 +236,7 @@ namespace PortraitManager
                     }
                     else
                     {
-                        _activeMenuIndex = 201;
+                        _activeMenuIndex = GetMainMenuIndexForCurrentGame();
 
                         ParentLayoutsDisable();
                         RootFunctions.LayoutEnable(LayoutMainPage);

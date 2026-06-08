@@ -1055,11 +1055,13 @@ namespace PortraitManager
 
                     LabelSelectPathSelected.Text = rootPath;
                     CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'w';
                     CoreSettings.Default.Save();
                     LayoutMainPage.BackgroundImage = Resources.wotr_menu_page;
                     _activeMenuIndex = 202;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1097,6 +1099,7 @@ namespace PortraitManager
                     _activeMenuIndex = 203;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1319,14 +1322,29 @@ namespace PortraitManager
 
         private void LabelCreatePortrait_Click(object sender, EventArgs e)
         {
-            if (_gameSelected == 'k')
+            if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
             {
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutKingCreatePortrait);
-                _activeMenuIndex = 301;
+                _activeMenuIndex = GetCreatePortraitMenuIndexForCurrentGame();
+
                 PrepareKingCreatePortraitView();
                 Focus();
             }
+        }
+
+        private ushort GetMainMenuIndexForCurrentGame()
+        {
+            if (_gameSelected == 'w') return 202;
+            if (_gameSelected == 'r') return 203;
+            return 201;
+        }
+
+        private ushort GetCreatePortraitMenuIndexForCurrentGame()
+        {
+            if (_gameSelected == 'w') return 302;
+            if (_gameSelected == 'r') return 303;
+            return 301;
         }
 
         private void PrepareKingCreatePortraitStyleState()
@@ -1496,7 +1514,7 @@ namespace PortraitManager
             // Ensure UI returns to Pathfinder main page (not the generic start page)
             try
             {
-                _activeMenuIndex = 201;
+                _activeMenuIndex = GetMainMenuIndexForCurrentGame();
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutMainPage);
                 Focus();
@@ -1506,10 +1524,10 @@ namespace PortraitManager
 
         private void ButtonKingBackToPathfinder_Click(object sender, EventArgs e)
         {
-            // Explicit button to return user to Pathfinder main page
+            // Explicit button to return user to the selected game's main page
             try
             {
-                _activeMenuIndex = 201;
+                _activeMenuIndex = GetMainMenuIndexForCurrentGame();
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutMainPage);
                 PrepareKingCreatePortraitStyleState();

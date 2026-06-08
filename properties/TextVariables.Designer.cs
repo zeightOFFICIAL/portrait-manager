@@ -208,6 +208,56 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full portrait (210×330) — used on the character screen and paper-doll.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_PILLARS_LRG {
+            get {
+                return ResourceManager.GetString("HINT_PILLARS_LRG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait / Small (76×96) — used in dialogues and the companion list.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_PILLARS_SML {
+            get {
+                return ResourceManager.GetString("HINT_PILLARS_SML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fulllength (1080×1480) — used on the character paper-doll and level-up screen.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_RT_LRG {
+            get {
+                return ResourceManager.GetString("HINT_RT_LRG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medium (448×600) — used in the party bar and character screen.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_RT_MED {
+            get {
+                return ResourceManager.GetString("HINT_RT_MED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait / Small (260×336) — used in dialogues and the companion list.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_RT_SML {
+            get {
+                return ResourceManager.GetString("HINT_RT_SML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zeight Portrait Manager 
         ///Artemii &quot;Zeight&quot; Saganenko ©2023-2024.
         /// </summary>

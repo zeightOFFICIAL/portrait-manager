@@ -1,4 +1,4 @@
-﻿/*    
+/*    
     Zeight Portrait Manager
     Desktop application for managing in-game portraits for games from Owlcat Games, 
     Obsidian Entertainment and inXile Entertainment. 
@@ -372,6 +372,7 @@ namespace PortraitManager
             //}
 
             Focus();
+            ApplyGameWindowStyle();
         }
 
         private void LabelKingCreatePortrait_Paint(object sender, PaintEventArgs e)
@@ -1144,6 +1145,7 @@ namespace PortraitManager
                     _activeMenuIndex = 204;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1191,6 +1193,7 @@ namespace PortraitManager
                     _activeMenuIndex = 205;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1219,6 +1222,8 @@ namespace PortraitManager
 
                     string maleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "male");
                     string femaleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "female");
+                    Console.WriteLine(maleDir);
+                    Console.WriteLine(femaleDir);
                     Directory.CreateDirectory(maleDir);
                     Directory.CreateDirectory(femaleDir);
 
@@ -1230,6 +1235,7 @@ namespace PortraitManager
                     _activeMenuIndex = 206;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1263,6 +1269,7 @@ namespace PortraitManager
                     _activeMenuIndex = 207;
                     ParentLayoutsDisable();
                     RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
                     Focus();
                 }
                 catch (Exception)
@@ -1270,6 +1277,7 @@ namespace PortraitManager
                     return;
                 }
             }
+            ApplyGameWindowStyle();
         }
 
 
@@ -1322,13 +1330,15 @@ namespace PortraitManager
 
         private void LabelCreatePortrait_Click(object sender, EventArgs e)
         {
-            if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+            if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' ||
+                _gameSelected == 'p' || _gameSelected == 't' || _gameSelected == 'd' || _gameSelected == 'l')
             {
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutKingCreatePortrait);
                 _activeMenuIndex = GetCreatePortraitMenuIndexForCurrentGame();
 
                 PrepareKingCreatePortraitView();
+                PrepareKingCreatePortraitStyleState();
                 Focus();
             }
         }
@@ -1337,6 +1347,10 @@ namespace PortraitManager
         {
             if (_gameSelected == 'w') return 202;
             if (_gameSelected == 'r') return 203;
+            if (_gameSelected == 'p') return 204;
+            if (_gameSelected == 'd') return 205;
+            if (_gameSelected == 't') return 206;
+            if (_gameSelected == 'l') return 207;
             return 201;
         }
 
@@ -1344,6 +1358,10 @@ namespace PortraitManager
         {
             if (_gameSelected == 'w') return 302;
             if (_gameSelected == 'r') return 303;
+            if (_gameSelected == 'p') return 304;
+            if (_gameSelected == 'd') return 305;
+            if (_gameSelected == 't') return 306;
+            if (_gameSelected == 'l') return 307;
             return 301;
         }
 
@@ -1362,17 +1380,27 @@ namespace PortraitManager
                 return;
 
             StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
-            StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
             StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
 
             _kingGroupLrgInitialized = false;
-            _kingGroupMedInitialized = false;
             _kingGroupSmlInitialized = false;
+
+            if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
+            {
+                StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
+                _kingGroupMedInitialized = false;
+            }
+            else
+            {
+                _kingGroupMedInitialized = true; // mark as initialized so EnsureKingGroup skips it
+            }
 
             // Enable drag-and-drop onto each portrait PictureBox (file or URL text)
             WirePortraitDragDrop(PicKingLrg);
-            WirePortraitDragDrop(PicKingMed);
             WirePortraitDragDrop(PicKingSml);
+            if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH"))
+                WirePortraitDragDrop(PicKingMed);
 
             AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large);
             EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
@@ -1410,6 +1438,7 @@ namespace PortraitManager
 
             if (selection == KingPortraitGroupSelection.Large)
             {
+                if (!HasPortraitSpecific(gameType, "LARGE_WIDTH")) return;
                 AdjustPortraitPanelAspect(
                     PanelKingLrg,
                     GetPortraitSpecificOrDefault(gameType, "LARGE_AR", 1.3f),
@@ -1417,6 +1446,7 @@ namespace PortraitManager
             }
             else if (selection == KingPortraitGroupSelection.Medium)
             {
+                if (!HasPortraitSpecific(gameType, "MEDIUM_WIDTH")) return;
                 AdjustPortraitPanelAspect(
                     PanelKingMed,
                     GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
@@ -1424,6 +1454,7 @@ namespace PortraitManager
             }
             else
             {
+                if (!HasPortraitSpecific(gameType, "SMALL_WIDTH")) return;
                 AdjustPortraitPanelAspect(
                     PanelKingSml,
                     GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
@@ -1619,6 +1650,31 @@ namespace PortraitManager
             if (pic.Name == "PicKingLrg") _zoomLevelLrg = zoom;
             else if (pic.Name == "PicKingMed") _zoomLevelMed = zoom;
             else if (pic.Name == "PicKingSml") _zoomLevelSml = zoom;
+        }
+
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+        private const int DWMWA_CAPTION_COLOR = 35;
+        private const int DWMWA_TEXT_COLOR = 36;
+
+        private void ApplyGameWindowStyle()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
+
+            try
+            {
+                int useDark = 1;
+                DwmSetWindowAttribute(Handle, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useDark, sizeof(int));
+
+                int captionColor = System.Drawing.ColorTranslator.ToWin32(gameType.BackColor);
+                DwmSetWindowAttribute(Handle, DWMWA_CAPTION_COLOR, ref captionColor, sizeof(int));
+
+                int textColor = System.Drawing.ColorTranslator.ToWin32(gameType.ForeColor);
+                DwmSetWindowAttribute(Handle, DWMWA_TEXT_COLOR, ref textColor, sizeof(int));
+            }
+            catch { }
         }
 
         public bool PreFilterMessage(ref Message m)
@@ -1829,14 +1885,24 @@ namespace PortraitManager
                 LayoutKingPortraitGroupLarge.Visible = selection == KingPortraitGroupSelection.Large;
                 LayoutKingPortraitGroupMedium.Visible = selection == KingPortraitGroupSelection.Medium;
                 LayoutKingPortraitGroupSmall.Visible = selection == KingPortraitGroupSelection.Small;
+                LabelKingCreatePortraitLarge.Visible = true;
+                LabelKingCreatePortraitMedium.Visible = true;
+                LabelKingCreatePortraitSmall.Visible = true;
                 return;
             }
 
             _activeKingPortraitGroup = selection;
 
-            LayoutKingPortraitGroupLarge.Visible = selection == KingPortraitGroupSelection.Large;
-            LayoutKingPortraitGroupMedium.Visible = selection == KingPortraitGroupSelection.Medium;
-            LayoutKingPortraitGroupSmall.Visible = selection == KingPortraitGroupSelection.Small;
+            bool hasMedium = HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                             HasPortraitSpecific(gameType, "MEDIUM_HEIGHT");
+            bool hasLarge = HasPortraitSpecific(gameType, "LARGE_WIDTH") &&
+                            HasPortraitSpecific(gameType, "LARGE_HEIGHT");
+            bool hasSmall = HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
+                            HasPortraitSpecific(gameType, "SMALL_HEIGHT");
+
+            LayoutKingPortraitGroupLarge.Visible = hasLarge && selection == KingPortraitGroupSelection.Large;
+            LayoutKingPortraitGroupMedium.Visible = hasMedium && selection == KingPortraitGroupSelection.Medium;
+            LayoutKingPortraitGroupSmall.Visible = hasSmall && selection == KingPortraitGroupSelection.Small;
 
             LayoutKingPortraitGroupLarge.BackColor = selection == KingPortraitGroupSelection.Large ? gameType.BackColor : Color.Transparent;
             LayoutKingPortraitGroupMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? gameType.BackColor : Color.Transparent;
@@ -1847,12 +1913,15 @@ namespace PortraitManager
             Color selBack = gameType.BackColor;
             Color selFore = gameType.ForeColor;
 
-            LabelKingCreatePortraitLarge.BackColor = selection == KingPortraitGroupSelection.Large ? selBack : Color.Transparent;
-            LabelKingCreatePortraitLarge.ForeColor = selection == KingPortraitGroupSelection.Large ? selFore : Color.White;
-            LabelKingCreatePortraitMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? selBack : Color.Transparent;
-            LabelKingCreatePortraitMedium.ForeColor = selection == KingPortraitGroupSelection.Medium ? selFore : Color.White;
-            LabelKingCreatePortraitSmall.BackColor = selection == KingPortraitGroupSelection.Small ? selBack : Color.Transparent;
-            LabelKingCreatePortraitSmall.ForeColor = selection == KingPortraitGroupSelection.Small ? selFore : Color.White;
+            LabelKingCreatePortraitLarge.Visible = hasLarge;
+            LabelKingCreatePortraitLarge.BackColor = hasLarge && selection == KingPortraitGroupSelection.Large ? selBack : Color.Transparent;
+            LabelKingCreatePortraitLarge.ForeColor = hasLarge && selection == KingPortraitGroupSelection.Large ? selFore : Color.White;
+            LabelKingCreatePortraitMedium.Visible = hasMedium;
+            LabelKingCreatePortraitMedium.BackColor = hasMedium && selection == KingPortraitGroupSelection.Medium ? selBack : Color.Transparent;
+            LabelKingCreatePortraitMedium.ForeColor = hasMedium && selection == KingPortraitGroupSelection.Medium ? selFore : Color.White;
+            LabelKingCreatePortraitSmall.Visible = hasSmall;
+            LabelKingCreatePortraitSmall.BackColor = hasSmall && selection == KingPortraitGroupSelection.Small ? selBack : Color.Transparent;
+            LabelKingCreatePortraitSmall.ForeColor = hasSmall && selection == KingPortraitGroupSelection.Small ? selFore : Color.White;
             // force repaint to update borders
             LabelKingCreatePortraitLarge?.Invalidate();
             LabelKingCreatePortraitMedium?.Invalidate();
@@ -1937,15 +2006,18 @@ namespace PortraitManager
                 // Copy overall size so other groups align to small group area
                 var refSize = LayoutKingPortraitGroupSmall.Size;
                 LayoutKingPortraitGroupLarge.Size = refSize;
-                LayoutKingPortraitGroupMedium.Size = refSize;
+                if (LayoutKingPortraitGroupMedium != null)
+                    LayoutKingPortraitGroupMedium.Size = refSize;
 
                 // Copy row styles (counts and heights)
                 CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupLarge);
-                CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupMedium);
+                if (LayoutKingPortraitGroupMedium != null)
+                    CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupMedium);
 
                 // Ensure button panels (which are table layout panels) have the same row styles
                 CopyRowStyles(PanelKingSmlButtons, PanelKingLrgButtons);
-                CopyRowStyles(PanelKingSmlButtons, PanelKingMedButtons);
+                if (PanelKingMedButtons != null)
+                    CopyRowStyles(PanelKingSmlButtons, PanelKingMedButtons);
 
                 // Determine bottom row height in pixels if absolute
                 int bottomHeight = 40; // fallback
@@ -2023,12 +2095,38 @@ namespace PortraitManager
             }
             catch { }
 
-            // Style hint labels above the Local/Web buttons
+            // Style hint labels above the Local/Web buttons — pick resource keys per game
+            string lrgKey, medKey, smlKey;
+            if (_gameSelected == 'r')
+            {
+                lrgKey = "HINT_RT_LRG";
+                medKey = "HINT_RT_MED";
+                smlKey = "HINT_RT_SML";
+            }
+            else if (_gameSelected == 'p' || _gameSelected == 't' || _gameSelected == 'd')
+            {
+                lrgKey = "HINT_PILLARS_LRG";
+                medKey = null; // no medium for these games
+                smlKey = "HINT_PILLARS_SML";
+            }
+            else if (_gameSelected == 'l')
+            {
+                lrgKey = null; // no large for Wasteland 3
+                medKey = null;
+                smlKey = "HINT_PILLARS_SML"; // generic small hint
+            }
+            else
+            {
+                lrgKey = "HINT_KING_LRG";
+                medKey = "HINT_KING_MED";
+                smlKey = "HINT_KING_SML";
+            }
+
             var hintLabels = new (System.Windows.Forms.Label lbl, string key)[]
             {
-                (LabelKingLrgHint, "HINT_KING_LRG"),
-                (LabelKingMedHint, "HINT_KING_MED"),
-                (LabelKingSmlHint, "HINT_KING_SML"),
+                (LabelKingLrgHint, lrgKey),
+                (LabelKingMedHint, medKey),
+                (LabelKingSmlHint, smlKey),
             };
             foreach (var (lbl, key) in hintLabels)
             {

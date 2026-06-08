@@ -228,6 +228,26 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="HINT_KING_ZOOM" xml:space="preserve">
     <value>Use + and − to zoom the image in or out if the mouse wheel does not work.</value>
   </data>
+  <data name="HINT_RT_LRG" xml:space="preserve">
+    <value>Fulllength (1080×1480) — used on the character paper-doll and level-up screen.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_RT_MED" xml:space="preserve">
+    <value>Medium (448×600) — used in the party bar and character screen.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_RT_SML" xml:space="preserve">
+    <value>Portrait / Small (260×336) — used in dialogues and the companion list.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_PILLARS_LRG" xml:space="preserve">
+    <value>Full portrait (210×330) — used on the character screen and paper-doll.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_PILLARS_SML" xml:space="preserve">
+    <value>Portrait / Small (76×96) — used in dialogues and the companion list.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
   <data name="WEBDIALOG_TITLE" xml:space="preserve">
     <value>Load image from web</value>
   </data>

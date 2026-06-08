@@ -209,4 +209,19 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="HINT_KING_ZOOM" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="HINT_RT_LRG" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="HINT_RT_MED" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="HINT_RT_SML" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="HINT_PILLARS_LRG" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="HINT_PILLARS_SML" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
 </root>

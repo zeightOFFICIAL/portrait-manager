@@ -201,7 +201,7 @@ namespace PortraitManager
 
             string Validate(string path)
             {
-                if (Directory.Exists(Path.Combine(path, "PillarsOfEternity_Data", "art", "gui", "portraits")))
+                if (Directory.Exists(Path.Combine(path, "PillarsOfEternity_Data", "data", "art", "gui", "portraits")))
                     return new DirectoryInfo(path).FullName;
                 return null;
             }

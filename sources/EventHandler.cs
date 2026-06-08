@@ -114,119 +114,147 @@ namespace PortraitManager
                 return;
             }
 
-            string portraitsRoot = basePath;
+            bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
+            bool isWasteland = _gameSelected == 'l';
+            bool useUid = _gameSelected == 'p' || _gameSelected == 't'; // UID naming for PoE, Tyranny
+            string uid = useUid ? "portraitmanager" + DateTime.Now.ToString("ssddMM", CultureInfo.InvariantCulture) : null;
+            string femaleDir = null;
 
-            try
+            string outDir;
+
+            if (isObsidian)
             {
-                string last = new DirectoryInfo(basePath).Name;
+                // Obsidian games: fixed game-expected path — write directly to player/male
+                if (_gameSelected == 'p')
+                    outDir = Path.Combine(basePath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits", "player", "male");
+                else if (_gameSelected == 'd')
+                    outDir = Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits", "player", "male");
+                else
+                    outDir = Path.Combine(basePath, "Data", "data", "art", "gui", "portraits", "player", "male");
 
-                if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
+                try { Directory.CreateDirectory(outDir); }
+                catch (Exception ex)
                 {
-                    portraitsRoot = Path.Combine(basePath, "Portraits");
+                    MessageBox.Show("Failed to create portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                Directory.CreateDirectory(portraitsRoot);
+                // For PoE and Tyranny, also create the female directory for copies
+                if (useUid)
+                {
+                    femaleDir = outDir.Replace("\\male", "\\female");
+                    try { Directory.CreateDirectory(femaleDir); }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to create female portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
             }
-            catch (Exception ex)
+            else if (isWasteland)
             {
-                MessageBox.Show(
-                    "Failed to create portraits root folder: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                return;
+                // Wasteland 3: fixed path — write directly to Custom Portraits
+                outDir = Path.Combine(basePath, "Custom Portraits");
+                try { Directory.CreateDirectory(outDir); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to create portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
-
-            string baseName =
-                "portraitmanager_" +
-                DateTime.Now.ToString("ss_dd_MM", CultureInfo.InvariantCulture);
-
-            string uniqueName = baseName;
-            int suffix = 1;
-
-            string outDir = Path.Combine(portraitsRoot, uniqueName);
-
-            while (Directory.Exists(outDir))
+            else
             {
-                uniqueName =
-                    baseName + "_" +
-                    suffix.ToString(CultureInfo.InvariantCulture);
+                // Owlcat games: timestamp-named subfolder under Portraits
+                string portraitsRoot = basePath;
+                try
+                {
+                    string last = new DirectoryInfo(basePath).Name;
+                    if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
+                        portraitsRoot = Path.Combine(basePath, "Portraits");
+                    Directory.CreateDirectory(portraitsRoot);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
+                string baseName = "portraitmanager_" + DateTime.Now.ToString("ss_dd_MM", CultureInfo.InvariantCulture);
+                string uniqueName = baseName;
+                int suffix = 1;
                 outDir = Path.Combine(portraitsRoot, uniqueName);
+                while (Directory.Exists(outDir))
+                {
+                    uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                    outDir = Path.Combine(portraitsRoot, uniqueName);
+                    suffix++;
+                }
 
-                suffix++;
+                try { Directory.CreateDirectory(outDir); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             try
             {
-                Directory.CreateDirectory(outDir);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Failed to create portrait folder: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                bool isObsidianOrWaste = isObsidian || isWasteland;
 
-                return;
-            }
+                string FileName(string sizeSuffix)
+                {
+                    if (uid != null) return uid + "_" + sizeSuffix + ".png";
+                    if (isObsidianOrWaste) return "player_male_" + sizeSuffix + ".png";
+                    if (sizeSuffix == "med") return "Medium.png";
+                    if (sizeSuffix == "sml") return "Small.png";
+                    return "Fulllength.png";
+                }
 
-            try
-            {
+                void SaveAndCopy(Image orig, PictureBox pb, Panel panel, int w, int h, string sizeSuffix)
+                {
+                    if (orig == null) return;
+                    string fileName = FileName(sizeSuffix);
+                    string savePath = Path.Combine(outDir, fileName);
+                    CropAndSaveDirect(orig, pb, panel, w, h, savePath);
+                    if (femaleDir != null)
+                        File.Copy(savePath, Path.Combine(femaleDir, fileName), overwrite: true);
+                }
+
                 if (HasPortraitSpecific(gameType, "LARGE_WIDTH") &&
                     HasPortraitSpecific(gameType, "LARGE_HEIGHT"))
                 {
-                    Image origL = _originalImageLrg ?? PicKingLrg.Image;
-
-                    if (origL != null)
-                    {
-                        CropAndSaveDirect(
-                            origL,
-                            PicKingLrg,
-                            PanelKingLrg,
-                            (int)gameType.GetPortraitSpecific("LARGE_WIDTH"),
-                            (int)gameType.GetPortraitSpecific("LARGE_HEIGHT"),
-                            Path.Combine(outDir, "Fulllength.png"));
-                    }
+                    SaveAndCopy(
+                        _originalImageLrg ?? PicKingLrg.Image,
+                        PicKingLrg, PanelKingLrg,
+                        (int)gameType.GetPortraitSpecific("LARGE_WIDTH"),
+                        (int)gameType.GetPortraitSpecific("LARGE_HEIGHT"),
+                        "lg");
                 }
 
                 if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
                     HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
                 {
-                    Image origM = _originalImageMed ?? PicKingMed.Image;
-
-                    if (origM != null)
-                    {
-                        CropAndSaveDirect(
-                            origM,
-                            PicKingMed,
-                            PanelKingMed,
-                            (int)gameType.GetPortraitSpecific("MEDIUM_WIDTH"),
-                            (int)gameType.GetPortraitSpecific("MEDIUM_HEIGHT"),
-                            Path.Combine(outDir, "Medium.png"));
-                    }
+                    SaveAndCopy(
+                        _originalImageMed ?? PicKingMed.Image,
+                        PicKingMed, PanelKingMed,
+                        (int)gameType.GetPortraitSpecific("MEDIUM_WIDTH"),
+                        (int)gameType.GetPortraitSpecific("MEDIUM_HEIGHT"),
+                        "med");
                 }
 
                 if (HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
                     HasPortraitSpecific(gameType, "SMALL_HEIGHT"))
                 {
-                    Image origS = _originalImageSml ?? PicKingSml.Image;
-
-                    if (origS != null)
-                    {
-                        CropAndSaveDirect(
-                            origS,
-                            PicKingSml,
-                            PanelKingSml,
-                            (int)gameType.GetPortraitSpecific("SMALL_WIDTH"),
-                            (int)gameType.GetPortraitSpecific("SMALL_HEIGHT"),
-                            Path.Combine(outDir, "Small.png"));
-                    }
+                    SaveAndCopy(
+                        _originalImageSml ?? PicKingSml.Image,
+                        PicKingSml, PanelKingSml,
+                        (int)gameType.GetPortraitSpecific("SMALL_WIDTH"),
+                        (int)gameType.GetPortraitSpecific("SMALL_HEIGHT"),
+                        "sml");
                 }
 
-                if (ValidateCreatedPortrait(outDir))
+                if (ValidateCreatedPortrait(outDir, uid, femaleDir))
                 {
                     ShowCreatePortraitToast(outDir);
 
@@ -443,14 +471,57 @@ namespace PortraitManager
             else if (pic.Name == "PicKingSml") _kingGroupSmlInitialized = true;
         }
 
-        private bool ValidateCreatedPortrait(string outDir)
+        private bool ValidateCreatedPortrait(string outDir, string uid = null, string femaleDir = null)
         {
             if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
                 return false;
 
-            return File.Exists(Path.Combine(outDir, "Fulllength.png")) &&
-                   File.Exists(Path.Combine(outDir, "Medium.png")) &&
-                   File.Exists(Path.Combine(outDir, "Small.png"));
+            if (!GameTypes.TryGetValue(CoreSettings.Default.GameType, out var gameType))
+                return false;
+
+            bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
+            bool isWasteland = _gameSelected == 'l';
+            bool obsidianNaming = isObsidian || isWasteland;
+
+            string FileName(string sizeSuffix)
+            {
+                if (uid != null) return uid + "_" + sizeSuffix + ".png";
+                if (obsidianNaming) return "player_male_" + sizeSuffix + ".png";
+                if (sizeSuffix == "med") return "Medium.png";
+                if (sizeSuffix == "sml") return "Small.png";
+                return "Fulllength.png";
+            }
+
+            bool valid = true;
+
+            if (HasPortraitSpecific(gameType, "LARGE_WIDTH") &&
+                HasPortraitSpecific(gameType, "LARGE_HEIGHT"))
+            {
+                string name = FileName("lg");
+                valid &= File.Exists(Path.Combine(outDir, name));
+                if (femaleDir != null)
+                    valid &= File.Exists(Path.Combine(femaleDir, name));
+            }
+
+            if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
+            {
+                string name = FileName("med");
+                valid &= File.Exists(Path.Combine(outDir, name));
+                if (femaleDir != null)
+                    valid &= File.Exists(Path.Combine(femaleDir, name));
+            }
+
+            if (HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
+                HasPortraitSpecific(gameType, "SMALL_HEIGHT"))
+            {
+                string name = FileName("sml");
+                valid &= File.Exists(Path.Combine(outDir, name));
+                if (femaleDir != null)
+                    valid &= File.Exists(Path.Combine(femaleDir, name));
+            }
+
+            return valid;
         }
 
         private void ShowCreatePortraitToast(string outDir)
@@ -577,16 +648,22 @@ namespace PortraitManager
             try
             {
                 StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
-                StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
                 StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
 
                 try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large); } catch { }
-                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium); } catch { }
                 try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small); } catch { }
 
                 FitImageToPanel(PicKingLrg);
-                FitImageToPanel(PicKingMed);
                 FitImageToPanel(PicKingSml);
+
+                if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                    HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
+                {
+                    StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
+                    try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium); } catch { }
+                    FitImageToPanel(PicKingMed);
+                }
+
                 Focus();
             }
             catch
@@ -682,11 +759,39 @@ namespace PortraitManager
             if (srcRect.Bottom > imgH)
                 srcRect.Height = imgH - srcRect.Y;
 
-            int cropW = Math.Max(1, (int)Math.Round(srcRect.Width));
-            int cropH = Math.Max(1, (int)Math.Round(srcRect.Height));
+            // Adjust source rectangle to exactly match target aspect ratio
+            // so the final resize is lossless (no stretch)
+            float targetAr = (float)targetW / targetH;
+            float srcAr = srcRect.Width / srcRect.Height;
+
+            if (Math.Abs(targetAr - srcAr) > 0.001f)
+            {
+                if (srcAr > targetAr)
+                {
+                    // crop is wider than target — reduce width from center
+                    float newW = srcRect.Height * targetAr;
+                    float excess = srcRect.Width - newW;
+                    srcRect.X += excess / 2f;
+                    srcRect.Width = newW;
+                }
+                else
+                {
+                    // crop is taller than target — reduce height from center
+                    float newH = srcRect.Width / targetAr;
+                    float excess = srcRect.Height - newH;
+                    srcRect.Y += excess / 2f;
+                    srcRect.Height = newH;
+                }
+            }
+
+            // Clamp after adjustment
+            if (srcRect.X < 0) srcRect.X = 0;
+            if (srcRect.Y < 0) srcRect.Y = 0;
+            if (srcRect.Right > imgW) srcRect.Width = imgW - srcRect.X;
+            if (srcRect.Bottom > imgH) srcRect.Height = imgH - srcRect.Y;
 
             using (Bitmap output =
-                new Bitmap(cropW, cropH))
+                new Bitmap(targetW, targetH))
             {
                 using (Graphics g =
                     Graphics.FromImage(output))
@@ -705,7 +810,7 @@ namespace PortraitManager
 
                     g.DrawImage(
                         original,
-                        new Rectangle(0, 0, cropW, cropH),
+                        new Rectangle(0, 0, targetW, targetH),
                         srcRect,
                         GraphicsUnit.Pixel);
                 }

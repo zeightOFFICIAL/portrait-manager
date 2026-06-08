@@ -682,8 +682,11 @@ namespace PortraitManager
             if (srcRect.Bottom > imgH)
                 srcRect.Height = imgH - srcRect.Y;
 
+            int cropW = Math.Max(1, (int)Math.Round(srcRect.Width));
+            int cropH = Math.Max(1, (int)Math.Round(srcRect.Height));
+
             using (Bitmap output =
-                new Bitmap(targetW, targetH))
+                new Bitmap(cropW, cropH))
             {
                 using (Graphics g =
                     Graphics.FromImage(output))
@@ -702,7 +705,7 @@ namespace PortraitManager
 
                     g.DrawImage(
                         original,
-                        new Rectangle(0, 0, targetW, targetH),
+                        new Rectangle(0, 0, cropW, cropH),
                         srcRect,
                         GraphicsUnit.Pixel);
                 }

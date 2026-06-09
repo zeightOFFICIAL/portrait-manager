@@ -24,10 +24,27 @@ namespace PortraitManager.forms
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
+            Shown += MyWebDialog_Shown;
 
             ApplyFont();
             ApplyTexts();
             TextBoxURL.Select();
+        }
+
+        private void MyWebDialog_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                Form anchor = Owner;
+                while (anchor != null && anchor.Owner != null)
+                    anchor = anchor.Owner;
+                if (anchor != null)
+                {
+                    Width = anchor.ClientSize.Width;
+                    Left = anchor.PointToScreen(System.Drawing.Point.Empty).X;
+                }
+            }
+            catch { }
         }
 
         public MyWebDialog(string message, string locale) : this(locale) { }

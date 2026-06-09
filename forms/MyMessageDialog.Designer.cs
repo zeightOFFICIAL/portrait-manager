@@ -25,17 +25,38 @@ namespace PortraitManager.forms
 
         private void InitializeComponent()
         {
+            this.LayoutRoot = new System.Windows.Forms.TableLayoutPanel();
             this.LabelMesg = new System.Windows.Forms.Label();
             this.ButtonClose = new System.Windows.Forms.Button();
+            this.LayoutRoot.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // LayoutRoot
+            // 
+            this.LayoutRoot.ColumnCount = 3;
+            this.LayoutRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.LayoutRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutRoot.Controls.Add(this.LabelMesg, 1, 0);
+            this.LayoutRoot.Controls.Add(this.ButtonClose, 1, 1);
+            this.LayoutRoot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutRoot.Location = new System.Drawing.Point(0, 0);
+            this.LayoutRoot.Name = "LayoutRoot";
+            this.LayoutRoot.Padding = new System.Windows.Forms.Padding(20);
+            this.LayoutRoot.RowCount = 2;
+            this.LayoutRoot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutRoot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.LayoutRoot.Size = new System.Drawing.Size(520, 180);
+            this.LayoutRoot.TabIndex = 0;
             // 
             // LabelMesg
             // 
             this.LabelMesg.BackColor = System.Drawing.Color.Transparent;
+            this.LabelMesg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LabelMesg.ForeColor = System.Drawing.Color.White;
-            this.LabelMesg.Location = new System.Drawing.Point(20, 16);
+            this.LabelMesg.Location = new System.Drawing.Point(23, 20);
             this.LabelMesg.Name = "LabelMesg";
-            this.LabelMesg.Size = new System.Drawing.Size(448, 84);
+            this.LabelMesg.Size = new System.Drawing.Size(474, 101);
             this.LabelMesg.TabIndex = 0;
             this.LabelMesg.Text = "Message";
             this.LabelMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -43,13 +64,15 @@ namespace PortraitManager.forms
             // 
             // ButtonClose
             // 
+            this.ButtonClose.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ButtonClose.BackColor = System.Drawing.Color.Black;
             this.ButtonClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ButtonClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.ForeColor = System.Drawing.Color.White;
-            this.ButtonClose.Location = new System.Drawing.Point(164, 116);
+            this.ButtonClose.Location = new System.Drawing.Point(180, 126);
+            this.ButtonClose.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(160, 34);
             this.ButtonClose.TabIndex = 1;
@@ -63,11 +86,10 @@ namespace PortraitManager.forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(520, 168);
+            this.BackColor = System.Drawing.Color.FromArgb(60, 60, 60);
+            this.ClientSize = new System.Drawing.Size(520, 180);
             this.ControlBox = false;
-            this.Controls.Add(this.LabelMesg);
-            this.Controls.Add(this.ButtonClose);
+            this.Controls.Add(this.LayoutRoot);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
@@ -79,12 +101,15 @@ namespace PortraitManager.forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyMessageDialog_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyMessageDialog_KeyDown);
+            this.LayoutRoot.ResumeLayout(false);
+            this.LayoutRoot.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.TableLayoutPanel LayoutRoot;
         private System.Windows.Forms.Label LabelMesg;
         private System.Windows.Forms.Button ButtonClose;
     }

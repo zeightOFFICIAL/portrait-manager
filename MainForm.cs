@@ -1656,6 +1656,7 @@ namespace PortraitManager
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
 
         private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+        private const int DWMWA_BORDER_COLOR = 34;
         private const int DWMWA_CAPTION_COLOR = 35;
         private const int DWMWA_TEXT_COLOR = 36;
 
@@ -1667,6 +1668,9 @@ namespace PortraitManager
             {
                 int useDark = 1;
                 DwmSetWindowAttribute(Handle, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useDark, sizeof(int));
+
+                int borderColor = System.Drawing.ColorTranslator.ToWin32(gameType.ForeColor);
+                DwmSetWindowAttribute(Handle, DWMWA_BORDER_COLOR, ref borderColor, sizeof(int));
 
                 int captionColor = System.Drawing.ColorTranslator.ToWin32(gameType.BackColor);
                 DwmSetWindowAttribute(Handle, DWMWA_CAPTION_COLOR, ref captionColor, sizeof(int));
@@ -2147,7 +2151,7 @@ namespace PortraitManager
                 ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
                 ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
                 ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut,
-                ButtonKingCreateNewPortrait, ButtonKingCreateAndKeep, ButtonKingBackToPathfinder
+                ButtonKingCreateNewPortrait, ButtonKingBackToPathfinder
             };
 
             foreach (var btn in buttons)

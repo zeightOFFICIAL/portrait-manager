@@ -88,7 +88,7 @@ namespace PortraitManager
 
         private void ButtonKingAction_Create_Click(object sender, EventArgs e)
         {
-            bool keepOnLayout = object.ReferenceEquals(sender, ButtonKingCreateAndKeep);
+            bool keepOnLayout = false;
 
             string basePath = CoreSettings.Default.GamePath;
 
@@ -285,11 +285,6 @@ namespace PortraitManager
             }
         }
 
-        private void ButtonKingAction_CreateAndKeep_Click(object sender, EventArgs e)
-        {
-            ButtonKingAction_Create_Click(ButtonKingCreateAndKeep, e);
-        }
-
         // ── Portrait page drag-and-drop ──────────────────────────────────────
 
         // Shared DragEnter: accept image files and plain-text URLs
@@ -431,13 +426,40 @@ namespace PortraitManager
             foreach (char c in url)
                 if (char.IsControl(c) || char.IsWhiteSpace(c)) return;
 
+            // quick check: look at the path segment for image extensions
+            try
+            {
+                var uri = new Uri(url);
+                string path = uri.AbsolutePath;
+                string ext = System.IO.Path.GetExtension(path).ToLowerInvariant();
+                string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
+                if (!ext.Contains("") && Array.IndexOf(imageExts, ext) < 0)
+                {
+                    using (var dlg = new forms.MyMessageDialog(
+                        "That link does not point to a supported image file.\n\n" +
+                        "Supported formats: PNG, JPG, GIF, BMP, WebP.",
+                        Thread.CurrentThread.CurrentUICulture.ToString()))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
+                    return;
+                }
+            }
+            catch { }
+
             try
             {
                 Image downloaded = null;
-                using (var wc = new System.Net.WebClient())
+                var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+                request.Timeout = 5000;
+                request.ReadWriteTimeout = 5000;
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream())
+                using (var ms = new System.IO.MemoryStream())
                 {
-                    byte[] data = wc.DownloadData(url);
-                    using (var ms = new System.IO.MemoryStream(data))
+                    stream.CopyTo(ms);
+                    ms.Position = 0;
                     using (var tmp = Image.FromStream(ms))
                     {
                         downloaded = new Bitmap(tmp);
@@ -679,139 +701,55 @@ namespace PortraitManager
             int targetH,
             string outPath)
         {
-            if (original == null)
-                return;
+            if (original == null) return;
 
             int imgW = original.Width;
             int imgH = original.Height;
 
-            Rectangle panelRectOnPb =
-                pb.RectangleToClient(
-                    panel.RectangleToScreen(panel.ClientRectangle));
+            // The panel viewport, mapped into picture-box coordinates.
+            // The panel is already sized to the target portrait aspect ratio,
+            // so whatever the user sees through the panel IS the crop.
+            Rectangle visible = pb.RectangleToClient(
+                panel.RectangleToScreen(panel.ClientRectangle));
 
-            Rectangle imageRect;
+            if (visible.Width <= 0 || visible.Height <= 0) return;
 
-            float imageRatio = (float)imgW / imgH;
-            float boxRatio = (float)pb.ClientSize.Width / pb.ClientSize.Height;
+            // Map from displayed pixels (picture-box client size) back to
+            // original image pixels.  The displayed bitmap always preserves
+            // the original aspect ratio.
+            float scaleX = (float)imgW / pb.ClientSize.Width;
+            float scaleY = (float)imgH / pb.ClientSize.Height;
 
-            if (imageRatio > boxRatio)
+            float srcX = visible.X * scaleX;
+            float srcY = visible.Y * scaleY;
+            float srcW = visible.Width * scaleX;
+            float srcH = visible.Height * scaleY;
+
+            // Clamp to image bounds
+            if (srcX < 0) { srcW += srcX; srcX = 0; }
+            if (srcY < 0) { srcH += srcY; srcY = 0; }
+            if (srcX + srcW > imgW) srcW = imgW - srcX;
+            if (srcY + srcH > imgH) srcH = imgH - srcY;
+
+            if (srcW <= 0 || srcH <= 0) return;
+
+            using (Bitmap output = new Bitmap(targetW, targetH))
             {
-                int renderedHeight =
-                    (int)Math.Round(pb.ClientSize.Width / imageRatio);
-
-                int y =
-                    (pb.ClientSize.Height - renderedHeight) / 2;
-
-                imageRect =
-                    new Rectangle(
-                        0,
-                        y,
-                        pb.ClientSize.Width,
-                        renderedHeight);
-            }
-            else
-            {
-                int renderedWidth =
-                    (int)Math.Round(pb.ClientSize.Height * imageRatio);
-
-                int x =
-                    (pb.ClientSize.Width - renderedWidth) / 2;
-
-                imageRect =
-                    new Rectangle(
-                        x,
-                        0,
-                        renderedWidth,
-                        pb.ClientSize.Height);
-            }
-
-            Rectangle visibleImageRect =
-                Rectangle.Intersect(
-                    panelRectOnPb,
-                    imageRect);
-
-            if (visibleImageRect.Width <= 0 ||
-                visibleImageRect.Height <= 0)
-                return;
-
-            float scaleX =
-                (float)imgW / imageRect.Width;
-
-            float scaleY =
-                (float)imgH / imageRect.Height;
-
-            RectangleF srcRect =
-                new RectangleF(
-                    (visibleImageRect.X - imageRect.X) * scaleX,
-                    (visibleImageRect.Y - imageRect.Y) * scaleY,
-                    visibleImageRect.Width * scaleX,
-                    visibleImageRect.Height * scaleY);
-
-            if (srcRect.X < 0)
-                srcRect.X = 0;
-
-            if (srcRect.Y < 0)
-                srcRect.Y = 0;
-
-            if (srcRect.Right > imgW)
-                srcRect.Width = imgW - srcRect.X;
-
-            if (srcRect.Bottom > imgH)
-                srcRect.Height = imgH - srcRect.Y;
-
-            // Adjust source rectangle to exactly match target aspect ratio
-            // so the final resize is lossless (no stretch)
-            float targetAr = (float)targetW / targetH;
-            float srcAr = srcRect.Width / srcRect.Height;
-
-            if (Math.Abs(targetAr - srcAr) > 0.001f)
-            {
-                if (srcAr > targetAr)
-                {
-                    // crop is wider than target — reduce width from center
-                    float newW = srcRect.Height * targetAr;
-                    float excess = srcRect.Width - newW;
-                    srcRect.X += excess / 2f;
-                    srcRect.Width = newW;
-                }
-                else
-                {
-                    // crop is taller than target — reduce height from center
-                    float newH = srcRect.Width / targetAr;
-                    float excess = srcRect.Height - newH;
-                    srcRect.Y += excess / 2f;
-                    srcRect.Height = newH;
-                }
-            }
-
-            // Clamp after adjustment
-            if (srcRect.X < 0) srcRect.X = 0;
-            if (srcRect.Y < 0) srcRect.Y = 0;
-            if (srcRect.Right > imgW) srcRect.Width = imgW - srcRect.X;
-            if (srcRect.Bottom > imgH) srcRect.Height = imgH - srcRect.Y;
-
-            using (Bitmap output =
-                new Bitmap(targetW, targetH))
-            {
-                using (Graphics g =
-                    Graphics.FromImage(output))
+                using (Graphics g = Graphics.FromImage(output))
                 {
                     g.CompositingQuality =
                         System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-
                     g.InterpolationMode =
                         System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-
                     g.SmoothingMode =
                         System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
                     g.PixelOffsetMode =
                         System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
 
                     g.DrawImage(
                         original,
                         new Rectangle(0, 0, targetW, targetH),
-                        srcRect,
+                        new RectangleF(srcX, srcY, srcW, srcH),
                         GraphicsUnit.Pixel);
                 }
 

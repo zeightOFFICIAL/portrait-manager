@@ -121,7 +121,6 @@ namespace PortraitManager
             this.ButtonKingSmlZoomOut = new System.Windows.Forms.Button();
             this.LayoutKingRight = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonKingCreateNewPortrait = new System.Windows.Forms.Button();
-            this.ButtonKingCreateAndKeep = new System.Windows.Forms.Button();
             this.ButtonKingBackToPathfinder = new System.Windows.Forms.Button();
             this.LabelKingGroupLargeTitle = new System.Windows.Forms.Label();
             this.LabelKingGroupMediumTitle = new System.Windows.Forms.Label();
@@ -1445,17 +1444,14 @@ namespace PortraitManager
             this.LayoutKingRight.ColumnCount = 1;
             this.LayoutKingRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutKingRight.Controls.Add(this.ButtonKingCreateNewPortrait, 0, 0);
-            this.LayoutKingRight.Controls.Add(this.ButtonKingCreateAndKeep, 0, 1);
-            this.LayoutKingRight.Controls.Add(this.ButtonKingBackToPathfinder, 0, 2);
+            this.LayoutKingRight.Controls.Add(this.ButtonKingBackToPathfinder, 0, 1);
             this.LayoutKingRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutKingRight.Location = new System.Drawing.Point(557, 52);
             this.LayoutKingRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutKingRight.Name = "LayoutKingRight";
-            this.LayoutKingRight.RowCount = 3;
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingRight.RowCount = 2;
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.LayoutKingRight.Size = new System.Drawing.Size(138, 404);
             this.LayoutKingRight.TabIndex = 5;
             this.LayoutKingRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingRight_Paint);
@@ -1470,17 +1466,6 @@ namespace PortraitManager
             this.ButtonKingCreateNewPortrait.Size = new System.Drawing.Size(138, 134);
             this.ButtonKingCreateNewPortrait.TabIndex = 0;
             this.ButtonKingCreateNewPortrait.Click += new System.EventHandler(this.ButtonKingAction_Create_Click);
-            // 
-            // ButtonKingCreateAndKeep
-            // 
-            this.ButtonKingCreateAndKeep.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonKingCreateAndKeep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonKingCreateAndKeep.Location = new System.Drawing.Point(0, 134);
-            this.ButtonKingCreateAndKeep.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonKingCreateAndKeep.Name = "ButtonKingCreateAndKeep";
-            this.ButtonKingCreateAndKeep.Size = new System.Drawing.Size(138, 134);
-            this.ButtonKingCreateAndKeep.TabIndex = 2;
-            this.ButtonKingCreateAndKeep.Click += new System.EventHandler(this.ButtonKingAction_CreateAndKeep_Click);
             // 
             // ButtonKingBackToPathfinder
             // 
@@ -1687,7 +1672,6 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupSmall;
         private System.Windows.Forms.TableLayoutPanel LayoutKingRight;
         private System.Windows.Forms.Button ButtonKingCreateNewPortrait;
-        private System.Windows.Forms.Button ButtonKingCreateAndKeep;
         private System.Windows.Forms.Button ButtonKingBackToPathfinder;
         private System.Windows.Forms.Label LabelKingGroupLargeTitle;
         private System.Windows.Forms.Label LabelKingGroupMediumTitle;

@@ -16,6 +16,7 @@
     License header for this project is listed in Program.cs.
 */
 using PortraitManager.Properties;
+using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
@@ -46,6 +47,7 @@ namespace PortraitManager.forms
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
+            Shown += MyInquiryDialog_Shown;
             Focus();
 
             LabelInquiryMesg.Font = _font;
@@ -54,6 +56,22 @@ namespace PortraitManager.forms
             //ButtonOK.Text = TextVariables.BUTTON_YES;
             ButtonCancel.Font = _font;
             //ButtonCancel.Text = TextVariables.BUTTON_NO;
+        }
+
+        private void MyInquiryDialog_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                Form anchor = Owner;
+                while (anchor != null && anchor.Owner != null)
+                    anchor = anchor.Owner;
+                if (anchor != null)
+                {
+                    Width = anchor.ClientSize.Width;
+                    Left = anchor.PointToScreen(System.Drawing.Point.Empty).X;
+                }
+            }
+            catch { }
         }
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)

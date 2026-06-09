@@ -48,11 +48,12 @@ namespace PortraitManager.forms
                 bool ru = Thread.CurrentThread.CurrentUICulture.Equals(
                     CultureInfo.GetCultureInfo("ru-RU"));
                 var family = ru ? _fontCollection.Families[1] : _fontCollection.Families[0];
+
+                LabelMesg.Font = new Font(family, 14f);
                 ButtonClose.Font = new Font(family, 16f);
             }
             catch { }
 
-            LabelMesg.Font = new Font(SystemFonts.DefaultFont.FontFamily, 10f);
             LabelMesg.Text = message;
             ButtonClose.Text = "OK";
 

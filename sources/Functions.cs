@@ -1149,7 +1149,6 @@ namespace PortraitManager
             LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID;
             LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML;
             ButtonKingCreateNewPortrait.Text = "Create >";
-            ButtonKingCreateAndKeep.Text = "Create ↩";
             ButtonKingBackToPathfinder.Text = "< Back";
         }
 
@@ -1182,7 +1181,6 @@ namespace PortraitManager
             LabelKingCreatePortraitMedium.Font = bebasNeueHead;
             LabelKingCreatePortraitSmall.Font = bebasNeueHead;
             ButtonKingCreateNewPortrait.Font = bebasNeueHead;
-            ButtonKingCreateAndKeep.Font = bebasNeueHead;
             ButtonKingBackToPathfinder.Font = bebasNeueHead;
         }
 

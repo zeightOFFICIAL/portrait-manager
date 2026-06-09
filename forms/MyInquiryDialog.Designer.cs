@@ -149,7 +149,7 @@ namespace PortraitManager.forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(60, 60, 60);
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(734, 274);
+            this.ClientSize = new System.Drawing.Size(734, 294);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.Color.White;

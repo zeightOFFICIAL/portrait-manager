@@ -1368,6 +1368,8 @@ namespace PortraitManager
         private void PrepareKingCreatePortraitStyleState()
         {
             SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium);
+            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small);
             LayoutKingPortraitGroupLarge.Invalidate();
             LayoutKingPortraitGroupMedium.Invalidate();
             LayoutKingPortraitGroupSmall.Invalidate();
@@ -1422,7 +1424,7 @@ namespace PortraitManager
             {
                 panel.AutoSize = false;
                 panel.Dock = DockStyle.None;
-                panel.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                panel.Anchor = AnchorStyles.None;
                 int newWidth = (int)Math.Round(staticHeight / ar);
                 panel.Size = new Size(newWidth, (int)staticHeight);
             }
@@ -1442,7 +1444,7 @@ namespace PortraitManager
                 AdjustPortraitPanelAspect(
                     PanelKingLrg,
                     GetPortraitSpecificOrDefault(gameType, "LARGE_AR", 1.3f),
-                    380f);
+                    360f);
             }
             else if (selection == KingPortraitGroupSelection.Medium)
             {
@@ -1450,7 +1452,7 @@ namespace PortraitManager
                 AdjustPortraitPanelAspect(
                     PanelKingMed,
                     GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
-                    380f);
+                    360f);
             }
             else
             {
@@ -1458,7 +1460,7 @@ namespace PortraitManager
                 AdjustPortraitPanelAspect(
                     PanelKingSml,
                     GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
-                    380f);
+                    360f);
             }
         }
 

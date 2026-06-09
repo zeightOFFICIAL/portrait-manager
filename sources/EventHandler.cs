@@ -707,16 +707,12 @@ namespace PortraitManager
             int imgH = original.Height;
 
             // The panel viewport, mapped into picture-box coordinates.
-            // The panel is already sized to the target portrait aspect ratio,
-            // so whatever the user sees through the panel IS the crop.
             Rectangle visible = pb.RectangleToClient(
                 panel.RectangleToScreen(panel.ClientRectangle));
 
             if (visible.Width <= 0 || visible.Height <= 0) return;
 
-            // Map from displayed pixels (picture-box client size) back to
-            // original image pixels.  The displayed bitmap always preserves
-            // the original aspect ratio.
+            // Map from displayed pixels back to original image pixels.
             float scaleX = (float)imgW / pb.ClientSize.Width;
             float scaleY = (float)imgH / pb.ClientSize.Height;
 
@@ -733,9 +729,14 @@ namespace PortraitManager
 
             if (srcW <= 0 || srcH <= 0) return;
 
-            using (Bitmap output = new Bitmap(targetW, targetH))
+            int cropW = (int)Math.Round(srcW);
+            int cropH = (int)Math.Round(srcH);
+            if (cropW <= 0 || cropH <= 0) return;
+
+            // Step 1 — crop the visible area from the original
+            using (Bitmap cropped = new Bitmap(cropW, cropH))
             {
-                using (Graphics g = Graphics.FromImage(output))
+                using (Graphics g = Graphics.FromImage(cropped))
                 {
                     g.CompositingQuality =
                         System.Drawing.Drawing2D.CompositingQuality.HighQuality;
@@ -745,17 +746,45 @@ namespace PortraitManager
                         System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     g.PixelOffsetMode =
                         System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-
-                    g.DrawImage(
-                        original,
-                        new Rectangle(0, 0, targetW, targetH),
+                    g.DrawImage(original,
+                        new Rectangle(0, 0, cropW, cropH),
                         new RectangleF(srcX, srcY, srcW, srcH),
                         GraphicsUnit.Pixel);
                 }
 
-                output.Save(
-                    outPath,
-                    System.Drawing.Imaging.ImageFormat.Png);
+                // Step 2 — uniform-resize to target dimensions (no stretching)
+                using (Bitmap output = new Bitmap(targetW, targetH))
+                {
+                    using (Graphics g = Graphics.FromImage(output))
+                    {
+                        g.CompositingQuality =
+                            System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                        g.InterpolationMode =
+                            System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.SmoothingMode =
+                            System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                        g.PixelOffsetMode =
+                            System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                        g.Clear(Color.Black);
+
+                        float scale = Math.Min(
+                            (float)targetW / cropW,
+                            (float)targetH / cropH);
+                        int destW = (int)Math.Round(cropW * scale);
+                        int destH = (int)Math.Round(cropH * scale);
+                        int destX = (targetW - destW) / 2;
+                        int destY = (targetH - destH) / 2;
+
+                        g.DrawImage(cropped,
+                            new Rectangle(destX, destY, destW, destH),
+                            new Rectangle(0, 0, cropW, cropH),
+                            GraphicsUnit.Pixel);
+                    }
+
+                    output.Save(
+                        outPath,
+                        System.Drawing.Imaging.ImageFormat.Png);
+                }
             }
         }
 

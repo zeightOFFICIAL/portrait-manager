@@ -116,7 +116,7 @@ namespace PortraitManager.forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(60, 60, 60);
-            this.ClientSize = new System.Drawing.Size(750, 190);
+            this.ClientSize = new System.Drawing.Size(750, 210);
             this.ControlBox = false;
             this.Controls.Add(this.LabelTitle);
             this.Controls.Add(this.LabelHint);

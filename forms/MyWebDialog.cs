@@ -29,6 +29,20 @@ namespace PortraitManager.forms
             ApplyFont();
             ApplyTexts();
             TextBoxURL.Select();
+
+            // add a subtle drag-drop hint below the buttons
+            var tipLabel = new Label
+            {
+                Text = "Tip: you can also drop an image file directly onto the portrait panel.",
+                ForeColor = Color.Gray,
+                BackColor = Color.Transparent,
+                AutoSize = false,
+                Size = new Size(ClientSize.Width - 32, 20),
+                Location = new Point(16, ClientSize.Height - 26),
+                TextAlign = ContentAlignment.MiddleLeft,
+                Font = SystemFonts.MessageBoxFont
+            };
+            Controls.Add(tipLabel);
         }
 
         private void MyWebDialog_Shown(object sender, EventArgs e)
@@ -140,7 +154,8 @@ namespace PortraitManager.forms
                 if (!ext.Contains("") && Array.IndexOf(imageExts, ext) < 0)
                 {
                     ShowError("That link does not point to a supported image file.\n\n" +
-                              "Supported formats: PNG, JPG, GIF, BMP, WebP.");
+                              "Supported formats: PNG, JPG, GIF, BMP, WebP.\n\n" +
+                              "Tip: you can drop an image directly onto the portrait panel instead.");
                     return;
                 }
             }
@@ -148,18 +163,21 @@ namespace PortraitManager.forms
 
             try
             {
-                var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
-                request.Timeout = 5000;
-                request.ReadWriteTimeout = 5000;
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var ms = new System.IO.MemoryStream())
+                using (var wc = new System.Net.WebClient())
                 {
-                    stream.CopyTo(ms);
-                    ms.Position = 0;
-                    using (var tmp = Image.FromStream(ms))
+                    wc.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
+                    var task = System.Threading.Tasks.Task.Run(() => wc.DownloadData(url));
+                    if (!task.Wait(5000))
                     {
-                        DownloadedImage = new Bitmap(tmp);
+                        wc.CancelAsync();
+                        ShowError("The server did not respond in time.\n\n" +
+                                  "Tip: you can drop an image directly onto the portrait panel instead.");
+                        return;
+                    }
+                    byte[] data = task.Result;
+                    using (var ms = new System.IO.MemoryStream(data))
+                    {
+                        DownloadedImage = new Bitmap(ms);
                     }
                 }
 
@@ -172,7 +190,8 @@ namespace PortraitManager.forms
                 if (ex is System.Net.WebException we && we.Response == null)
                     reason = "The server could not be reached. Check your internet connection or the link.";
 
-                ShowError("The image could not be loaded.\n\n" + reason);
+                ShowError("The image could not be loaded.\n\n" + reason + "\n\n" +
+                          "Tip: you can drop an image directly onto the portrait panel instead.");
             }
         }
 

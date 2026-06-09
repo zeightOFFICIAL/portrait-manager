@@ -1086,7 +1086,7 @@ namespace PortraitManager
             // 
             this.PanelKingLrg.Controls.Add(this.PicKingLrg);
             this.PanelKingLrg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingLrg.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingLrg.Location = new System.Drawing.Point(0, 0);
             this.PanelKingLrg.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingLrg.Name = "PanelKingLrg";
             this.PanelKingLrg.Size = new System.Drawing.Size(260, 1);
@@ -1211,7 +1211,7 @@ namespace PortraitManager
             // 
             this.PanelKingMed.Controls.Add(this.PicKingMed);
             this.PanelKingMed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingMed.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingMed.Location = new System.Drawing.Point(0, 0);
             this.PanelKingMed.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingMed.Name = "PanelKingMed";
             this.PanelKingMed.Size = new System.Drawing.Size(260, 1);
@@ -1336,7 +1336,7 @@ namespace PortraitManager
             // 
             this.PanelKingSml.Controls.Add(this.PicKingSml);
             this.PanelKingSml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingSml.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingSml.Location = new System.Drawing.Point(0, 0);
             this.PanelKingSml.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingSml.Name = "PanelKingSml";
             this.PanelKingSml.Size = new System.Drawing.Size(260, 314);

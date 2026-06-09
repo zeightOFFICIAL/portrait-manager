@@ -56,7 +56,7 @@ namespace PortraitManager.forms
             this.LabelMesg.ForeColor = System.Drawing.Color.White;
             this.LabelMesg.Location = new System.Drawing.Point(23, 20);
             this.LabelMesg.Name = "LabelMesg";
-            this.LabelMesg.Size = new System.Drawing.Size(474, 101);
+            this.LabelMesg.Size = new System.Drawing.Size(474, 121);
             this.LabelMesg.TabIndex = 0;
             this.LabelMesg.Text = "Message";
             this.LabelMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -87,7 +87,7 @@ namespace PortraitManager.forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(60, 60, 60);
-            this.ClientSize = new System.Drawing.Size(520, 180);
+            this.ClientSize = new System.Drawing.Size(520, 200);
             this.ControlBox = false;
             this.Controls.Add(this.LayoutRoot);
             this.ForeColor = System.Drawing.Color.White;

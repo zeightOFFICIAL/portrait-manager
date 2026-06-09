@@ -1179,7 +1179,7 @@ namespace PortraitManager
                     string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternityII_Data", "gui", "portraits");
                     if (!Directory.Exists(portraitsRoot))
                         return;
-
+                    Console.WriteLine(portraitsRoot);
                     string maleDir = Path.Combine(portraitsRoot, "player", "male");
                     string femaleDir = Path.Combine(portraitsRoot, "player", "female");
                     Directory.CreateDirectory(maleDir);
@@ -1387,8 +1387,10 @@ namespace PortraitManager
             _kingGroupLrgInitialized = false;
             _kingGroupSmlInitialized = false;
 
-            if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
-                HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
+            bool hasMed = HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                          HasPortraitSpecific(gameType, "MEDIUM_HEIGHT");
+
+            if (hasMed)
             {
                 StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
                 _kingGroupMedInitialized = false;
@@ -1401,7 +1403,7 @@ namespace PortraitManager
             // Enable drag-and-drop onto each portrait PictureBox (file or URL text)
             WirePortraitDragDrop(PicKingLrg);
             WirePortraitDragDrop(PicKingSml);
-            if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH"))
+            if (hasMed)
                 WirePortraitDragDrop(PicKingMed);
 
             AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large);
@@ -1448,11 +1450,13 @@ namespace PortraitManager
             }
             else if (selection == KingPortraitGroupSelection.Medium)
             {
-                if (!HasPortraitSpecific(gameType, "MEDIUM_WIDTH")) return;
-                AdjustPortraitPanelAspect(
-                    PanelKingMed,
-                    GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
-                    360f);
+                if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH"))
+                {
+                    AdjustPortraitPanelAspect(
+                        PanelKingMed,
+                        GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
+                        360f);
+                }
             }
             else
             {
@@ -2109,10 +2113,16 @@ namespace PortraitManager
                 medKey = "HINT_RT_MED";
                 smlKey = "HINT_RT_SML";
             }
-            else if (_gameSelected == 'p' || _gameSelected == 't' || _gameSelected == 'd')
+            else if (_gameSelected == 'p' || _gameSelected == 't')
             {
                 lrgKey = "HINT_PILLARS_LRG";
                 medKey = null; // no medium for these games
+                smlKey = "HINT_PILLARS_SML";
+            }
+            else if (_gameSelected == 'd')
+            {
+                lrgKey = "HINT_PILLARS_LRG";
+                medKey = null; // Deadfire has no medium portrait
                 smlKey = "HINT_PILLARS_SML";
             }
             else if (_gameSelected == 'l')
@@ -2269,5 +2279,6 @@ namespace PortraitManager
         {
             LabelKingCreatePortraitSmall.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Small ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
+
     }
 }

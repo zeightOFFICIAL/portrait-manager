@@ -547,44 +547,19 @@ namespace PortraitManager
         
         public void TextsInit()
         {
-            //ButtonToFilePage.Text = TextVariables.BUTTON_TOFILEPAGE;
-            //ButtonToExtractPage.Text = TextVariables.BUTTON_TOEXRACTPAGE;
-            //ButtonToGalleryPage.Text = TextVariables.BUTTON_TOGALLERYPAGE;
-            //ButtonToSettingsPage.Text = TextVariables.BUTTON_TOSETTINGSPAGE;
-            //ButtonExit.Text = TextVariables.BUTTON_EXIT;
-            //ButtonKingmaker.Text = TextVariables.KING;
-            //ButtonWotR.Text = TextVariables.WOTR;
-            //LabelSelectedPath.Text = TextVariables.LABEL_PATH;
-            //ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
-            //ButtonSelectPath.Text = TextVariables.BUTTON_SELECTPATH;
-            //ButtonToMainPage5.Text = TextVariables.BUTTON_BACK;
-            //LabelSettings.Text = TextVariables.LABEL_SETTINGS;
-            //ButtonApplyChange.Text = TextVariables.BUTTON_APPLY;
-            //ButtonLocalPortraitLoad.Text = TextVariables.BUTTON_LOADLOCALPORTRAIT;
-            //ButtonWebPortraitLoad.Text = TextVariables.BUTTON_LOADWEBPORTRAIT;
-            //ButtonToMainPage.Text = TextVariables.BUTTON_BACK;
-            //ButtonToScalePage.Text = TextVariables.BUTTON_TOSCALEPAGE;
-            //ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
-            //ButtonHintOnFilePage.Text = TextVariables.BUTTON_HINT;
-            //ButtonToFilePage2.Text = TextVariables.BUTTON_BACK;
-            //ButtonCreatePortrait.Text = TextVariables.BUTTON_TOCREATE;
-            //LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
-            //LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
-            //LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
-            //ButtonHintOnScalePage.Text = TextVariables.BUTTON_HINT;
-            //ButtonDeletePortait.Text = TextVariables.BUTTON_SELECTEDDELETE;
-            //ButtonToMainPage3.Text = TextVariables.BUTTON_BACK;
-            //ButtonOpenFolder.Text = TextVariables.BUTTON_GALLERYOPENFOLDER;
-            //ButtonChangePortrait.Text = TextVariables.BUTTON_SELECTEDCHANGE;
-            //ButtonHintFolder.Text = TextVariables.BUTTON_HINT;
-            //LabelURLInfo.Text = TextVariables.LABEL_URLDIALOG;
-            //ButtonDenyWeb.Text = TextVariables.BUTTON_CANCEL;
-            //ButtonLoadWeb.Text = TextVariables.BUTTON_LOAD;
-            //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            //LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
-            //ButtonToFilePage3.Text = TextVariables.BUTTON_NEW;
-            //ButtonToMainPage4.Text = TextVariables.BUTTON_MENU;
-            //ButtonToMainPageAndFolder.Text = TextVariables.BUTTON_FINALOPENFOLDER;
+            // Set portrait label texts per game
+            if (_gameSelected == 'd')
+            {
+                LabelKingCreatePortraitLarge.Text = "Full";
+                LabelKingCreatePortraitMedium.Text = "Full";
+                LabelKingCreatePortraitSmall.Text = "Sml";
+            }
+            else
+            {
+                LabelKingCreatePortraitLarge.Text = TextVariables.BUTTON_KINGCREATEPAGELRG;
+                LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID;
+                LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML;
+            }
             //ButtonChooseFolder.Text = TextVariables.TEXT_TITLEOPENFOLDER;
             //ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACTALL;
             //ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACTSELECTED;

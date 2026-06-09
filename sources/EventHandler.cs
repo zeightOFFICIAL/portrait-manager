@@ -116,7 +116,7 @@ namespace PortraitManager
 
             bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
             bool isWasteland = _gameSelected == 'l';
-            bool useUid = _gameSelected == 'p' || _gameSelected == 't'; // UID naming for PoE, Tyranny
+            bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't'; // UID naming for PoE, Deadfire, Tyranny
             string uid = useUid ? "portraitmanager" + DateTime.Now.ToString("ssddMM", CultureInfo.InvariantCulture) : null;
             string femaleDir = null;
 
@@ -207,7 +207,7 @@ namespace PortraitManager
                     if (uid != null) return uid + "_" + sizeSuffix + ".png";
                     if (isObsidianOrWaste) return "player_male_" + sizeSuffix + ".png";
                     if (sizeSuffix == "med") return "Medium.png";
-                    if (sizeSuffix == "sml") return "Small.png";
+                    if (sizeSuffix == "sm" || sizeSuffix == "sml") return "Small.png";
                     return "Fulllength.png";
                 }
 
@@ -251,7 +251,7 @@ namespace PortraitManager
                         PicKingSml, PanelKingSml,
                         (int)gameType.GetPortraitSpecific("SMALL_WIDTH"),
                         (int)gameType.GetPortraitSpecific("SMALL_HEIGHT"),
-                        "sml");
+                        "sm");
                 }
 
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
@@ -510,7 +510,7 @@ namespace PortraitManager
                 if (uid != null) return uid + "_" + sizeSuffix + ".png";
                 if (obsidianNaming) return "player_male_" + sizeSuffix + ".png";
                 if (sizeSuffix == "med") return "Medium.png";
-                if (sizeSuffix == "sml") return "Small.png";
+                if (sizeSuffix == "sm" || sizeSuffix == "sml") return "Small.png";
                 return "Fulllength.png";
             }
 
@@ -537,7 +537,7 @@ namespace PortraitManager
             if (HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
                 HasPortraitSpecific(gameType, "SMALL_HEIGHT"))
             {
-                string name = FileName("sml");
+                string name = FileName("sm");
                 valid &= File.Exists(Path.Combine(outDir, name));
                 if (femaleDir != null)
                     valid &= File.Exists(Path.Combine(femaleDir, name));

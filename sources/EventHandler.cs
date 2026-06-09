@@ -130,7 +130,7 @@ namespace PortraitManager
                 else if (_gameSelected == 'd')
                     outDir = Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits", "player", "male");
                 else
-                    outDir = Path.Combine(basePath, "Data", "data", "art", "gui", "portraits", "player", "male");
+                    outDir = Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
 
                 try { Directory.CreateDirectory(outDir); }
                 catch (Exception ex)

@@ -382,7 +382,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tyranny keeps its portrait files directly inside the game’s installation directory, under: &lt;Data&gt;\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder. 
+        ///   Looks up a localized string similar to Tyranny keeps its portrait files directly inside the game’s installation directory, under: Tyranny_Data\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder. 
         ///
         ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
         /// </summary>

@@ -130,12 +130,33 @@ namespace PortraitManager.forms
                 return;
             }
 
+            // quick check: look at the path segment for image extensions
             try
             {
-                using (var wc = new System.Net.WebClient())
+                var uri = new Uri(url);
+                string path = uri.AbsolutePath;
+                string ext = System.IO.Path.GetExtension(path).ToLowerInvariant();
+                string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
+                if (!ext.Contains("") && Array.IndexOf(imageExts, ext) < 0)
                 {
-                    byte[] data = wc.DownloadData(url);
-                    using (var ms = new System.IO.MemoryStream(data))
+                    ShowError("That link does not point to a supported image file.\n\n" +
+                              "Supported formats: PNG, JPG, GIF, BMP, WebP.");
+                    return;
+                }
+            }
+            catch { }
+
+            try
+            {
+                var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+                request.Timeout = 5000;
+                request.ReadWriteTimeout = 5000;
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream())
+                using (var ms = new System.IO.MemoryStream())
+                {
+                    stream.CopyTo(ms);
+                    ms.Position = 0;
                     using (var tmp = Image.FromStream(ms))
                     {
                         DownloadedImage = new Bitmap(tmp);

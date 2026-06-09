@@ -116,7 +116,7 @@ namespace PortraitManager
 
             bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
             bool isWasteland = _gameSelected == 'l';
-            bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't'; // UID naming for PoE, Deadfire, Tyranny
+            bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't' || _gameSelected == 'l'; // UID naming for PoE, Deadfire, Tyranny, Wasteland 3
             string uid = useUid ? "portraitmanager" + DateTime.Now.ToString("ssddMM", CultureInfo.InvariantCulture) : null;
             string femaleDir = null;
 
@@ -139,8 +139,8 @@ namespace PortraitManager
                     return;
                 }
 
-                // For PoE and Tyranny, also create the female directory for copies
-                if (useUid)
+                // For PoE, Tyranny, and Deadfire, also create the female directory for copies
+                if (useUid && !isWasteland)
                 {
                     femaleDir = outDir.Replace("\\male", "\\female");
                     try { Directory.CreateDirectory(femaleDir); }

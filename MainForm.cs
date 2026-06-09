@@ -1901,14 +1901,27 @@ namespace PortraitManager
                 return;
             }
 
-            _activeKingPortraitGroup = selection;
-
             bool hasMedium = HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
                              HasPortraitSpecific(gameType, "MEDIUM_HEIGHT");
             bool hasLarge = HasPortraitSpecific(gameType, "LARGE_WIDTH") &&
                             HasPortraitSpecific(gameType, "LARGE_HEIGHT");
             bool hasSmall = HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
                             HasPortraitSpecific(gameType, "SMALL_HEIGHT");
+
+            // Fall back to first available group if requested selection has no dimensions
+            bool selectionAvailable =
+                (selection == KingPortraitGroupSelection.Large && hasLarge) ||
+                (selection == KingPortraitGroupSelection.Medium && hasMedium) ||
+                (selection == KingPortraitGroupSelection.Small && hasSmall);
+
+            if (!selectionAvailable)
+            {
+                if (hasSmall) selection = KingPortraitGroupSelection.Small;
+                else if (hasMedium) selection = KingPortraitGroupSelection.Medium;
+                else if (hasLarge) selection = KingPortraitGroupSelection.Large;
+            }
+
+            _activeKingPortraitGroup = selection;
 
             LayoutKingPortraitGroupLarge.Visible = hasLarge && selection == KingPortraitGroupSelection.Large;
             LayoutKingPortraitGroupMedium.Visible = hasMedium && selection == KingPortraitGroupSelection.Medium;

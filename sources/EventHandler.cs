@@ -204,7 +204,11 @@ namespace PortraitManager
 
                 string FileName(string sizeSuffix)
                 {
-                    if (uid != null) return uid + "_" + sizeSuffix + ".png";
+                    if (uid != null)
+                    {
+                        if (isWasteland) return uid + ".png";
+                        return uid + "_" + sizeSuffix + ".png";
+                    }
                     if (isObsidianOrWaste) return "player_male_" + sizeSuffix + ".png";
                     if (sizeSuffix == "med") return "Medium.png";
                     if (sizeSuffix == "sm" || sizeSuffix == "sml") return "Small.png";
@@ -507,7 +511,11 @@ namespace PortraitManager
 
             string FileName(string sizeSuffix)
             {
-                if (uid != null) return uid + "_" + sizeSuffix + ".png";
+                if (uid != null)
+                {
+                    if (isWasteland) return uid + ".png";
+                    return uid + "_" + sizeSuffix + ".png";
+                }
                 if (obsidianNaming) return "player_male_" + sizeSuffix + ".png";
                 if (sizeSuffix == "med") return "Medium.png";
                 if (sizeSuffix == "sm" || sizeSuffix == "sml") return "Small.png";

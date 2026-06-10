@@ -1461,10 +1461,11 @@ namespace PortraitManager
             else
             {
                 if (!HasPortraitSpecific(gameType, "SMALL_WIDTH")) return;
+                float smlHeight = (_gameSelected == 'l') ? 256f : 360f;
                 AdjustPortraitPanelAspect(
                     PanelKingSml,
                     GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
-                    360f);
+                    smlHeight);
             }
         }
 
@@ -1953,6 +1954,10 @@ namespace PortraitManager
             EnsureKingGroupInitialized(selection);
             // Update portrait buttons styles to match selected game colors
             UpdatePortraitButtonsStyle();
+
+            // Reset Small label margin to default left alignment
+            LabelKingCreatePortraitSmall.Margin = new Padding(0, 0, 3, 0);
+
             // Ensure large/medium layouts use small group as reference for size/row styles
             ApplySmallLayoutReference();
             // Reset displayed images into default cover state and fit-to-panel only
@@ -2142,7 +2147,7 @@ namespace PortraitManager
             {
                 lrgKey = null; // no large for Wasteland 3
                 medKey = null;
-                smlKey = "HINT_PILLARS_SML"; // generic small hint
+                smlKey = null; // set directly below
             }
             else
             {
@@ -2170,6 +2175,12 @@ namespace PortraitManager
                     if (!string.IsNullOrEmpty(s)) lbl.Text = s;
                 }
                 catch { }
+            }
+
+            // Wasteland 3: only Small exists at 256×256
+            if (_gameSelected == 'l' && LabelKingSmlHint != null)
+            {
+                LabelKingSmlHint.Text = "Portrait (256×256) — used for character portraits.\nChoose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.";
             }
 
             var buttons = new Button[] {

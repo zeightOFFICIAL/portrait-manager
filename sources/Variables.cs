@@ -367,13 +367,16 @@ namespace PortraitManager
             {
                 { "SMALL_WIDTH", 76},
                 { "SMALL_HEIGHT", 96},
-                { "LARGE_CONVO_WIDTH", 90},
-                { "LARGE_CONVO_HEIGHT", 141},
+                { "MEDIUM_WIDTH", 90},
+                { "MEDIUM_HEIGHT", 141},
                 { "LARGE_WIDTH", 210},
                 { "LARGE_HEIGHT", 330},
                 { "SMALL_AR", 1.2631f},
-                { "LARGE_CONVO_AR", 1.5667f},
-                { "LARGE_AR", 1.5714f}
+                { "MEDIUM_AR", 1.5667f},
+                { "LARGE_AR", 1.5714f},
+                { "SML2_WIDTH", 76},
+                { "SML2_HEIGHT", 96},
+                { "SML2_AR", 1.2631f}
             });
 
         private static readonly GameType TYR_TYPE = new GameType("Tyranny", "Tyranny", "Portrait Manager: Obsidian (Tyranny)",

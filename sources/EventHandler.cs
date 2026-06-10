@@ -239,12 +239,13 @@ namespace PortraitManager
                 if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
                     HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
                 {
+                    string medSuffix = (_gameSelected == 'd') ? "convo" : "med";
                     SaveAndCopy(
                         _originalImageMed ?? PicKingMed.Image,
                         PicKingMed, PanelKingMed,
                         (int)gameType.GetPortraitSpecific("MEDIUM_WIDTH"),
                         (int)gameType.GetPortraitSpecific("MEDIUM_HEIGHT"),
-                        "med");
+                        medSuffix);
                 }
 
                 if (HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
@@ -256,6 +257,17 @@ namespace PortraitManager
                         (int)gameType.GetPortraitSpecific("SMALL_WIDTH"),
                         (int)gameType.GetPortraitSpecific("SMALL_HEIGHT"),
                         "sm");
+                }
+
+                if (HasPortraitSpecific(gameType, "SML2_WIDTH") &&
+                    HasPortraitSpecific(gameType, "SML2_HEIGHT"))
+                {
+                    SaveAndCopy(
+                        _originalImageSml2 ?? PicKingSml2.Image,
+                        PicKingSml2, PanelKingSml2,
+                        (int)gameType.GetPortraitSpecific("SML2_WIDTH"),
+                        (int)gameType.GetPortraitSpecific("SML2_HEIGHT"),
+                        "si");
                 }
 
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
@@ -495,6 +507,7 @@ namespace PortraitManager
             if (pic.Name == "PicKingLrg") _kingGroupLrgInitialized = true;
             else if (pic.Name == "PicKingMed") _kingGroupMedInitialized = true;
             else if (pic.Name == "PicKingSml") _kingGroupSmlInitialized = true;
+            else if (pic.Name == "PicKingSml2") _kingGroupSml2Initialized = true;
         }
 
         private bool ValidateCreatedPortrait(string outDir, string uid = null, string femaleDir = null)
@@ -522,6 +535,11 @@ namespace PortraitManager
                 return "Fulllength.png";
             }
 
+            string MedSuffix()
+            {
+                return (_gameSelected == 'd') ? "convo" : "med";
+            }
+
             bool valid = true;
 
             if (HasPortraitSpecific(gameType, "LARGE_WIDTH") &&
@@ -536,7 +554,7 @@ namespace PortraitManager
             if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
                 HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
             {
-                string name = FileName("med");
+                string name = FileName(MedSuffix());
                 valid &= File.Exists(Path.Combine(outDir, name));
                 if (femaleDir != null)
                     valid &= File.Exists(Path.Combine(femaleDir, name));
@@ -546,6 +564,15 @@ namespace PortraitManager
                 HasPortraitSpecific(gameType, "SMALL_HEIGHT"))
             {
                 string name = FileName("sm");
+                valid &= File.Exists(Path.Combine(outDir, name));
+                if (femaleDir != null)
+                    valid &= File.Exists(Path.Combine(femaleDir, name));
+            }
+
+            if (HasPortraitSpecific(gameType, "SML2_WIDTH") &&
+                HasPortraitSpecific(gameType, "SML2_HEIGHT"))
+            {
+                string name = FileName("si");
                 valid &= File.Exists(Path.Combine(outDir, name));
                 if (femaleDir != null)
                     valid &= File.Exists(Path.Combine(femaleDir, name));
@@ -677,22 +704,25 @@ namespace PortraitManager
 
             try
             {
-                StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
-                StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingSml2, new Bitmap(gameType.PlaceholderPortrait));
 
-                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large); } catch { }
-                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small); } catch { }
+            try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large); } catch { }
+            try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small); } catch { }
+            try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Sml2); } catch { }
 
-                FitImageToPanel(PicKingLrg);
-                FitImageToPanel(PicKingSml);
+            FitImageToPanel(PicKingLrg);
+            FitImageToPanel(PicKingSml);
+            FitImageToPanel(PicKingSml2);
 
-                if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
-                    HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
-                {
-                    StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
-                    try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium); } catch { }
-                    FitImageToPanel(PicKingMed);
-                }
+            if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
+            {
+                StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
+                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium); } catch { }
+                FitImageToPanel(PicKingMed);
+            }
 
                 Focus();
             }
@@ -913,6 +943,39 @@ namespace PortraitManager
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
             //RootFunctions.HideScrollBar(PanelPortraitMed);
+            _isDraggingMouse = 0;
+        }
+
+        private void PicPortraitSml2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
+                _mousePosition = e.Location;
+                _pictureDragStart = pb.Location;
+                _isDraggingMouse = 3;
+            }
+        }
+
+        private void PicPortraitSml2_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_isDraggingMouse == 3)
+            {
+                var pb = sender as PictureBox;
+                if (pb == null) return;
+                var panel = GetPortraitPanel(pb);
+                if (panel == null) return;
+
+                int deltaX = e.X - _mousePosition.X;
+                int deltaY = e.Y - _mousePosition.Y;
+                var desired = new Point(pb.Location.X + deltaX, pb.Location.Y + deltaY);
+                pb.Location = ClampPictureLocation(pb, panel, desired);
+            }
+        }
+
+        private void PicPortraitSml2_MouseUp(object sender, MouseEventArgs e)
+        {
             _isDraggingMouse = 0;
         }
 

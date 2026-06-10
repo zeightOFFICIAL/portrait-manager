@@ -133,6 +133,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ▣ Sm2.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGESML2 {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGESML2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset 🔄.
         /// </summary>
         internal static string BUTTON_RESET {
@@ -218,12 +227,32 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full2 / Conversation (90×141) — used in conversation screens.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_PILLARS_MED {
+            get {
+                return ResourceManager.GetString("HINT_PILLARS_MED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portrait / Small (76×96) — used in dialogues and the companion list.
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_PILLARS_SML {
             get {
                 return ResourceManager.GetString("HINT_PILLARS_SML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait 2 (76×96) — used in additional interface elements.
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
+        /// </summary>
+        internal static string HINT_PILLARS_SML2 {
+            get {
+                return ResourceManager.GetString("HINT_PILLARS_SML2", resourceCulture);
             }
         }
         

@@ -550,9 +550,10 @@ namespace PortraitManager
             // Set portrait label texts per game
             if (_gameSelected == 'd')
             {
-                LabelKingCreatePortraitLarge.Text = "Full";
-                LabelKingCreatePortraitMedium.Text = "Full";
-                LabelKingCreatePortraitSmall.Text = "Sml";
+                LabelKingCreatePortraitLarge.Text = "⍞ Full";
+                LabelKingCreatePortraitMedium.Text = "⌻ Full²";
+                LabelKingCreatePortraitSmall.Text = "⌼ Sml";
+                LabelKingCreatePortraitSml2.Text = "⌼ Sml²";
             }
             else
             {
@@ -667,6 +668,23 @@ namespace PortraitManager
                     }
                     PicKingSml.Image = scaled;
                 }
+
+                // Sml2
+                if (PicKingSml2 != null && PicKingSml2.Image != null)
+                {
+                    if (_originalImageSml2 == null)
+                        _originalImageSml2 = new Bitmap(PicKingSml2.Image);
+
+                    var scaled = ResizeImageCover(_originalImageSml2, PicKingSml2.Width, PicKingSml2.Height);
+                    PicKingSml2.Dock = DockStyle.None;
+                    PicKingSml2.SizeMode = PictureBoxSizeMode.Normal;
+                    PicKingSml2.Size = new Size(scaled.Width, scaled.Height);
+                    if (PicKingSml2.Image != null && !object.ReferenceEquals(PicKingSml2.Image, _originalImageSml2))
+                    {
+                        try { PicKingSml2.Image.Dispose(); } catch { }
+                    }
+                    PicKingSml2.Image = scaled;
+                }
             }
             catch
             {
@@ -684,9 +702,8 @@ namespace PortraitManager
             // cover: pick the larger scale so the image fills the box and overflows one axis
             float scale = Math.Max(scaleX, scaleY);
 
-            // Make offset by 1px smaller in each dimension to avoid exact-edge cases
-            int newW = Math.Max(1, (int)Math.Ceiling(src.Width * scale) - 1);
-            int newH = Math.Max(1, (int)Math.Ceiling(src.Height * scale) - 1);
+            int newW = Math.Max(1, (int)Math.Ceiling(src.Width * scale));
+            int newH = Math.Max(1, (int)Math.Ceiling(src.Height * scale));
 
             Bitmap dest = new Bitmap(newW, newH);
             dest.SetResolution(src.HorizontalResolution, src.VerticalResolution);
@@ -1123,6 +1140,7 @@ namespace PortraitManager
             LabelKingCreatePortraitLarge.Text = TextVariables.BUTTON_KINGCREATEPAGELRG;
             LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID;
             LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML;
+            LabelKingCreatePortraitSml2.Text = TextVariables.BUTTON_KINGCREATEPAGESML2;
             ButtonKingCreateNewPortrait.Text = "Create >";
             ButtonKingBackToPathfinder.Text = "< Back";
         }
@@ -1155,6 +1173,7 @@ namespace PortraitManager
             LabelKingCreatePortraitLarge.Font = bebasNeueHead;
             LabelKingCreatePortraitMedium.Font = bebasNeueHead;
             LabelKingCreatePortraitSmall.Font = bebasNeueHead;
+            LabelKingCreatePortraitSml2.Font = bebasNeueHead;
             ButtonKingCreateNewPortrait.Font = bebasNeueHead;
             ButtonKingBackToPathfinder.Font = bebasNeueHead;
         }

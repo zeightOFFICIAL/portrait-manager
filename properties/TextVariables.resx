@@ -207,6 +207,9 @@ If detection fails, you can open the folder manually.</value>
   <data name="BUTTON_KINGCREATEPAGESML" xml:space="preserve">
     <value>⌼ Portrait</value>
   </data>
+  <data name="BUTTON_KINGCREATEPAGESML2" xml:space="preserve">
+    <value>▣ Sm2</value>
+  </data>
   <data name="BUTTON_SELECT_WEB" xml:space="preserve">
     <value>Select Web 🌐</value>
   </data>
@@ -246,6 +249,14 @@ Choose a local image from your computer or select a web image from the internet.
   </data>
   <data name="HINT_PILLARS_SML" xml:space="preserve">
     <value>Portrait / Small (76×96) — used in dialogues and the companion list.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_PILLARS_MED" xml:space="preserve">
+    <value>Full2 / Conversation (90×141) — used in conversation screens.
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="HINT_PILLARS_SML2" xml:space="preserve">
+    <value>Portrait 2 (76×96) — used in additional interface elements.
 Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
   </data>
   <data name="WEBDIALOG_TITLE" xml:space="preserve">

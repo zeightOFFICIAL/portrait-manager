@@ -220,7 +220,10 @@ namespace PortraitManager
                     if (orig == null) return;
                     string fileName = FileName(sizeSuffix);
                     string savePath = Path.Combine(outDir, fileName);
-                    CropAndSaveDirect(orig, pb, panel, w, h, savePath);
+                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+                        CropAndSaveDirectFill(orig, pb, panel, w, h, savePath);
+                    else
+                        CropAndSaveDirectUniform(orig, pb, panel, w, h, savePath);
                     if (femaleDir != null)
                         File.Copy(savePath, Path.Combine(femaleDir, fileName), overwrite: true);
                 }
@@ -467,20 +470,60 @@ namespace PortraitManager
             try
             {
                 Image downloaded = null;
-                var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
-                request.Timeout = 5000;
-                request.ReadWriteTimeout = 5000;
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var ms = new System.IO.MemoryStream())
+                string currentUrl = url;
+                int redirects = 0;
+                byte[] imageData = null;
+
+                while (redirects < 10)
                 {
-                    stream.CopyTo(ms);
-                    ms.Position = 0;
-                    using (var tmp = Image.FromStream(ms))
+                    var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(currentUrl);
+                    request.Timeout = 5000;
+                    request.ReadWriteTimeout = 5000;
+                    request.AllowAutoRedirect = false;
+                    request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
+
+                    using (var response = (System.Net.HttpWebResponse)request.GetResponse())
                     {
-                        downloaded = new Bitmap(tmp);
+                        int code = (int)response.StatusCode;
+
+                        if (code >= 300 && code < 400 && code != 304)
+                        {
+                            string location = response.Headers["Location"];
+                            if (string.IsNullOrWhiteSpace(location)) break;
+
+                            currentUrl = new Uri(new Uri(currentUrl), location).AbsoluteUri;
+                            redirects++;
+                            continue;
+                        }
+
+                        string contentType = response.ContentType ?? "";
+                        if (!contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) &&
+                            !contentType.StartsWith("application/octet-stream", StringComparison.OrdinalIgnoreCase) &&
+                            !string.IsNullOrEmpty(contentType) && !contentType.Contains("binary"))
+                        {
+                            return;
+                        }
+
+                        using (var stream = response.GetResponseStream())
+                        using (var ms = new System.IO.MemoryStream())
+                        {
+                            stream.CopyTo(ms);
+                            imageData = ms.ToArray();
+                        }
+                        break;
                     }
                 }
+
+                if (imageData == null || imageData.Length == 0) return;
+
+                using (var ms = new System.IO.MemoryStream(imageData))
+                using (var tmp = Image.FromStream(ms))
+                {
+                    downloaded = new Bitmap(tmp);
+                }
+
+                if (downloaded == null) return;
+
                 StoreOriginalImage(pic, downloaded);
                 FitImageToPanel(pic);
                 MarkGroupInitialized(pic);
@@ -490,7 +533,7 @@ namespace PortraitManager
                 try
                 {
                     using (var dlg = new forms.MyMessageDialog(
-                        "Could not load the image from that address.\n\n" + ex.Message,
+                        "Could not load the image from that address. " + ex.Message,
                         Thread.CurrentThread.CurrentUICulture.ToString()))
                     {
                         dlg.StartPosition = FormStartPosition.CenterParent;
@@ -731,7 +774,96 @@ namespace PortraitManager
             }
         }
 
-        private void CropAndSaveDirect(
+        private void CropAndSaveDirectFill(
+            Image original,
+            PictureBox pb,
+            Panel panel,
+            int targetW,
+            int targetH,
+            string outPath)
+        {
+            if (original == null) return;
+
+            int imgW = original.Width;
+            int imgH = original.Height;
+
+            Rectangle visible = pb.RectangleToClient(
+                panel.RectangleToScreen(panel.ClientRectangle));
+
+            if (visible.Width <= 0 || visible.Height <= 0) return;
+
+            float scaleX = (float)imgW / pb.ClientSize.Width;
+            float scaleY = (float)imgH / pb.ClientSize.Height;
+
+            // Center of the visible area in original image coordinates
+            float centerX = (visible.X + visible.Width / 2f) * scaleX;
+            float centerY = (visible.Y + visible.Height / 2f) * scaleY;
+
+            // Initial crop from the visible area
+            int cropW = (int)Math.Round(visible.Width * scaleX);
+            int cropH = (int)Math.Round(visible.Height * scaleY);
+            if (cropW <= 0 || cropH <= 0) return;
+
+            // Force the crop rectangle to have exactly the target aspect ratio
+            // so the final resize is a pure uniform scale with no distortion
+            float targetAR = (float)targetW / targetH;
+            if (cropW * targetH > cropH * targetW)
+                cropW = (int)Math.Round(cropH * targetAR);
+            else if (cropW * targetH < cropH * targetW)
+                cropH = (int)Math.Round(cropW / targetAR);
+
+            // Center the crop on the user's view, clamped to image bounds
+            int cropX = Math.Max(0, Math.Min(imgW - cropW,
+                (int)Math.Round(centerX - cropW / 2f)));
+            int cropY = Math.Max(0, Math.Min(imgH - cropH,
+                (int)Math.Round(centerY - cropH / 2f)));
+
+            using (Bitmap cropped = new Bitmap(cropW, cropH))
+            {
+                using (Graphics g = Graphics.FromImage(cropped))
+                {
+                    g.CompositingQuality =
+                        System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                    g.InterpolationMode =
+                        System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.SmoothingMode =
+                        System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    g.PixelOffsetMode =
+                        System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    g.DrawImage(original,
+                        new Rectangle(0, 0, cropW, cropH),
+                        new RectangleF(cropX, cropY, cropW, cropH),
+                        GraphicsUnit.Pixel);
+                }
+
+                // Pure uniform resize — AR already matches exactly
+                using (Bitmap output = new Bitmap(targetW, targetH))
+                {
+                    using (Graphics g = Graphics.FromImage(output))
+                    {
+                        g.CompositingQuality =
+                            System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                        g.InterpolationMode =
+                            System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.SmoothingMode =
+                            System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                        g.PixelOffsetMode =
+                            System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+
+                        g.DrawImage(cropped,
+                            new Rectangle(0, 0, targetW, targetH),
+                            new Rectangle(0, 0, cropW, cropH),
+                            GraphicsUnit.Pixel);
+                    }
+
+                    output.Save(
+                        outPath,
+                        System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
+        }
+
+        private void CropAndSaveDirectUniform(
             Image original,
             PictureBox pb,
             Panel panel,

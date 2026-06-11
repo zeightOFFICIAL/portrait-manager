@@ -139,8 +139,7 @@ namespace PortraitManager.forms
 
             if (!IsUrlSafe(url))
             {
-                ShowError("The address you entered does not look like a valid web link.\n\n" +
-                          "Make sure it starts with http:// or https:// and contains no spaces.");
+                ShowError("The address you entered does not look like a valid web link. Make sure it starts with http:// or https:// and contains no spaces.");
                 return;
             }
 
@@ -151,11 +150,9 @@ namespace PortraitManager.forms
                 string path = uri.AbsolutePath;
                 string ext = System.IO.Path.GetExtension(path).ToLowerInvariant();
                 string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
-                if (!ext.Contains("") && Array.IndexOf(imageExts, ext) < 0)
+                if (ext.Length > 0 && Array.IndexOf(imageExts, ext) < 0)
                 {
-                    ShowError("That link does not point to a supported image file.\n\n" +
-                              "Supported formats: PNG, JPG, GIF, BMP, WebP.\n\n" +
-                              "Tip: you can drop an image directly onto the portrait panel instead.");
+                    ShowError("That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP, WebP.");
                     return;
                 }
             }
@@ -163,22 +160,61 @@ namespace PortraitManager.forms
 
             try
             {
-                using (var wc = new System.Net.WebClient())
+                string currentUrl = url;
+                int redirects = 0;
+                byte[] imageData = null;
+
+                while (redirects < 10)
                 {
-                    wc.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
-                    var task = System.Threading.Tasks.Task.Run(() => wc.DownloadData(url));
-                    if (!task.Wait(5000))
+                    var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(currentUrl);
+                    request.Timeout = 5000;
+                    request.ReadWriteTimeout = 5000;
+                    request.AllowAutoRedirect = false;
+                    request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36";
+
+                    using (var response = (System.Net.HttpWebResponse)request.GetResponse())
                     {
-                        wc.CancelAsync();
-                        ShowError("The server did not respond in time.\n\n" +
-                                  "Tip: you can drop an image directly onto the portrait panel instead.");
-                        return;
+                        int code = (int)response.StatusCode;
+
+                        if (code >= 300 && code < 400 && code != 304)
+                        {
+                            string location = response.Headers["Location"];
+                            if (string.IsNullOrWhiteSpace(location)) break;
+
+                            currentUrl = new Uri(new Uri(currentUrl), location).AbsoluteUri;
+                            redirects++;
+                            continue;
+                        }
+
+                        string contentType = response.ContentType ?? "";
+                        if (!contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase) &&
+                            !contentType.StartsWith("application/octet-stream", StringComparison.OrdinalIgnoreCase) &&
+                            !string.IsNullOrEmpty(contentType) && !contentType.Contains("binary"))
+                        {
+                            ShowError("The server did not return an image. Make sure the link points directly to an image file.\nTry dragging the image from your browser onto a portrait slot instead.");
+                            return;
+                        }
+
+                        using (var stream = response.GetResponseStream())
+                        using (var ms = new System.IO.MemoryStream())
+                        {
+                            stream.CopyTo(ms);
+                            imageData = ms.ToArray();
+                        }
+                        break;
                     }
-                    byte[] data = task.Result;
-                    using (var ms = new System.IO.MemoryStream(data))
-                    {
-                        DownloadedImage = new Bitmap(ms);
-                    }
+                }
+
+                if (imageData == null || imageData.Length == 0)
+                {
+                    ShowError("The image could not be loaded. The server did not return any data.\nTry dragging the image from your browser onto a portrait slot instead.");
+                    return;
+                }
+
+                using (var ms = new System.IO.MemoryStream(imageData))
+                using (var tmp = Image.FromStream(ms))
+                {
+                    DownloadedImage = new Bitmap(tmp);
                 }
 
                 DialogResult = DialogResult.OK;
@@ -186,12 +222,7 @@ namespace PortraitManager.forms
             }
             catch (Exception ex)
             {
-                string reason = ex.Message;
-                if (ex is System.Net.WebException we && we.Response == null)
-                    reason = "The server could not be reached. Check your internet connection or the link.";
-
-                ShowError("The image could not be loaded.\n\n" + reason + "\n\n" +
-                          "Tip: you can drop an image directly onto the portrait panel instead.");
+                ShowError("The image could not be loaded. " + ex.Message + "\nTry dragging the image from your browser onto a portrait slot instead.");
             }
         }
 

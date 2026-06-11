@@ -24,12 +24,11 @@ using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 using System.Linq;
 using SystemControl;
 using System.IO;
-
+using System.Threading;
 
 namespace PortraitManager
 {
@@ -94,7 +93,7 @@ namespace PortraitManager
         {
             if (!(sender is System.Windows.Forms.Button btn)) return;
 
-            using (forms.MyWebDialog dlg = new forms.MyWebDialog(Thread.CurrentThread.CurrentUICulture.ToString()))
+            using (forms.MyWebDialog dlg = new forms.MyWebDialog())
             {
                 dlg.StartPosition = FormStartPosition.CenterParent;
                 if (dlg.ShowDialog(this) == DialogResult.OK)
@@ -165,6 +164,80 @@ namespace PortraitManager
         private static PrivateFontCollection _fontCollection;
         private static CancellationTokenSource _cancellationTokenSource;
 
+        private void FontInit()
+        {
+            _fontCollection = FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+
+            Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
+                 bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
+                 bebasNeueFullHeader = new Font(_fontCollection.Families[0], 25),
+                 bebasNeueHead = new Font(_fontCollection.Families[0], 21),
+                 bebasNeueUnder = new Font(_fontCollection.Families[0], 17),
+                 bebasNeueMedium = new Font(_fontCollection.Families[0], 13),
+                 bebasNeueSmall = new Font(_fontCollection.Families[0], 9);
+
+            ButtonStartKing.Font = bebasNeueMedium;
+            ButtonStartWotr.Font = bebasNeueMedium;
+            ButtonStartRt.Font = bebasNeueMedium;
+            ButtonStartPoe.Font = bebasNeueMedium;
+            ButtonStartPoed.Font = bebasNeueMedium;
+            ButtonStartTyr.Font = bebasNeueMedium;
+            ButtonStartW3.Font = bebasNeueMedium;
+            LabelSelectPathTitle.Font = bebasNeueFullHeader;
+            LabelSelectPathChoosePath.Font = bebasNeueUnder;
+            LabelSelectPathResetPath.Font = bebasNeueUnder;
+            LabelCreatePortrait.Font = bebasNeueMainPage;
+            LabelExtract.Font = bebasNeueMainPage2;
+            LabelBrowse.Font = bebasNeueMainPage2;
+            LabelSettingsPage.Font = bebasNeueMainPage2;
+            LabelExit.Font = bebasNeueMainPage2;
+            LabelKingCreatePortraitLarge.Font = bebasNeueHead;
+            LabelKingCreatePortraitMedium.Font = bebasNeueHead;
+            LabelKingCreatePortraitSmall.Font = bebasNeueHead;
+            LabelKingCreatePortraitSml2.Font = bebasNeueHead;
+            ButtonKingCreateNewPortrait.Font = bebasNeueHead;
+            ButtonKingBackToPathfinder.Font = bebasNeueHead;
+        }
+
+        private void TextInit()
+        {
+            Text = TextVariables.MAIN_MENU_TITLE;
+            ButtonStartKing.Text = TextVariables.NAME_KING;
+            ButtonStartWotr.Text = TextVariables.NAME_WOTR;
+            ButtonStartRt.Text = TextVariables.NAME_ROGUE;
+            ButtonStartPoe.Text = TextVariables.NAME_PILLARS;
+            ButtonStartPoed.Text = TextVariables.NAME_DEADFIRE;
+            ButtonStartTyr.Text = TextVariables.NAME_TYR;
+            ButtonStartW3.Text = TextVariables.NAME_WASTE;
+            LabelStartAuthor.Text = TextVariables.MAIN_MENU_AUTHOR;
+            LabelSelectPathTitle.Text = TextVariables.NAME_KING;
+            LabelSelectPathChoosePath.Text = TextVariables.BUTTON_CHOOSE;
+            LabelSelectPathResetPath.Text = TextVariables.BUTTON_RESET;
+            LabelCreatePortrait.Text = TextVariables.BUTTON_CREATE;
+            LabelExtract.Text = TextVariables.BUTTON_EXTRACT;
+            LabelBrowse.Text = TextVariables.BUTTON_BROWSE;
+            LabelSettingsPage.Text = TextVariables.BUTTON_SETTINGS;
+            LabelExit.Text = TextVariables.BUTTON_EXIT;
+
+            if (_gameSelected == 'd')
+            {
+                LabelKingCreatePortraitLarge.Text = "⍞ Full";
+                LabelKingCreatePortraitMedium.Text = "⌻ Full²";
+                LabelKingCreatePortraitSmall.Text = "⌼ Sml";
+                LabelKingCreatePortraitSml2.Text = "⌼ Sml²";
+            }
+            else
+            {
+                LabelKingCreatePortraitLarge.Text = TextVariables.BUTTON_KINGCREATEPAGELRG;
+                LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID;
+                LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML;
+                LabelKingCreatePortraitSml2.Text = TextVariables.BUTTON_KINGCREATEPAGESML2;
+            }
+
+            ButtonKingCreateNewPortrait.Text = "Create >";
+            ButtonKingBackToPathfinder.Text = "< Back";
+        }
+
         protected override CreateParams CreateParams
         {
             get
@@ -185,15 +258,14 @@ namespace PortraitManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {            
-            _fontCollection = FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
+            FontInit();
+            TextInit();
             _activeMenuIndex = 65535;
             SetClientSizeCore(750, 520);
             CenterToScreen();
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
-            LoadText();
-            LoadFont(_fontCollection);
             LabelSelectPathSelected.Text = CoreSettings.Default.GamePath;
 
             if (CoreSettings.Default.GameType == '-')
@@ -247,7 +319,6 @@ namespace PortraitManager
             }
 
             Focus();
-            TextsInit();
             SetKingPortraitGroup(KingPortraitGroupSelection.Large);
             _allowAutoResize = true;
             ReplacePictureBoxImagesToDefault();
@@ -295,7 +366,6 @@ namespace PortraitManager
 
 
             //FormInit();
-            //LanguageInit();
             //CenterToScreen();
 
 
@@ -503,21 +573,6 @@ namespace PortraitManager
         
         
         
-        private void LanguageInit()
-        {
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
-            {
-                FontsInit(_fontCollection, 1);
-            }
-            else
-            {
-                FontsInit(_fontCollection);
-            }
-
-            TextsInit();
-            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();
-        }
-        
         private void FormInit()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -556,17 +611,7 @@ namespace PortraitManager
             Focus();
             ResizeVisibleImagesToWindowSize();
 
-            if (UseStamps.Default.isFirstPortrait == true)
-            {
-                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
-                //{
-                //    Hint.StartPosition = FormStartPosition.CenterParent;
-                //    Hint.ShowDialog();
-                //}
 
-                UseStamps.Default.isFirstPortrait = false;
-                UseStamps.Default.Save();
-            }
 
             if (!_isAspectRatioFixed)
             {
@@ -615,17 +660,7 @@ namespace PortraitManager
 
             GenerateImageSelectionFlagString(0);
 
-            if (UseStamps.Default.isFirstScaling)
-            {
-                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
-                //{
-                //    Hint.StartPosition = FormStartPosition.CenterParent;
-                //    Hint.ShowDialog();
-                //}
 
-                UseStamps.Default.isFirstScaling = false;
-                UseStamps.Default.Save();
-            }
         }
         
         private void ButtonToFilePage2_Click(object sender, EventArgs e)
@@ -688,17 +723,7 @@ namespace PortraitManager
             //ButtonExtractSelected.Enabled = false;
             //ButtonOpenFolders.Enabled = false;
 
-            if (UseStamps.Default.isFirstExtract == true)
-            {
-                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
-                //{
-                //    Hint.StartPosition = FormStartPosition.CenterParent;
-                //    Hint.ShowDialog();
-                //}
 
-                UseStamps.Default.isFirstExtract = false;
-                UseStamps.Default.Save();
-            }
         }
         
         private void ButtonToGalleryPage_Click(object sender, EventArgs e)
@@ -715,17 +740,7 @@ namespace PortraitManager
             //    return;
             //}
 
-            if (UseStamps.Default.isFirstGallery == true)
-            {
-                //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
-                //{
-                //    Hint.StartPosition = FormStartPosition.CenterParent;
-                //    Hint.ShowDialog();
-                //}
 
-                UseStamps.Default.isFirstGallery = false;
-                UseStamps.Default.Save();
-            }
 
             if (_gameSelected == 'w')
             {
@@ -1356,7 +1371,7 @@ namespace PortraitManager
 
                 PrepareKingCreatePortraitView();
                 PrepareKingCreatePortraitStyleState();
-                TextsInit();
+                TextInit();
                 Focus();
             }
         }
@@ -1803,7 +1818,7 @@ namespace PortraitManager
             }
             catch { }
 
-            float zoomStep = 0.1f;
+            float zoomStep = 0.08f;
             float newZoom = wheelDelta > 0 ? currentZoom + zoomStep : currentZoom - zoomStep;
 
             int panelW = panel.ClientSize.Width;
@@ -2146,8 +2161,6 @@ namespace PortraitManager
                     zb.Dock = DockStyle.Fill;
                 }
 
-                // Use existing FontsInit helper to prepare fonts with larger sizes, then apply small font to buttons
-                try { FontsInit(_fontCollection, 0, 24, 18, 16); } catch { }
                 Font btnFont = null;
                 try { btnFont = new Font(_fontCollection.Families[0], 16f); } catch { btnFont = this.Font; }
 
@@ -2254,8 +2267,17 @@ namespace PortraitManager
                 lbl.Font = hintFont;
                 try
                 {
-                    var s = TextVariables.ResourceManager.GetString(key, TextVariables.Culture);
-                    if (!string.IsNullOrEmpty(s)) lbl.Text = s;
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        var prop = typeof(TextVariables).GetProperty(key,
+                            System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static |
+                            System.Reflection.BindingFlags.NonPublic);
+                        if (prop != null)
+                        {
+                            var val = prop.GetValue(null) as string;
+                            if (!string.IsNullOrEmpty(val)) lbl.Text = val;
+                        }
+                    }
                 }
                 catch { }
             }
@@ -2263,7 +2285,7 @@ namespace PortraitManager
             // Wasteland 3: only Small exists at 256×256
             if (_gameSelected == 'l' && LabelKingSmlHint != null)
             {
-                LabelKingSmlHint.Text = "Portrait (256×256) — used for character portraits.\nChoose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.";
+                LabelKingSmlHint.Text = "Portrait (256×256) — used for character portraits.\n\nChoose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.";
             }
 
             var buttons = new Button[] {
@@ -2289,15 +2311,9 @@ namespace PortraitManager
                 try
                 {
                     if (btn.Name != null && btn.Name.IndexOf("Web", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        var s = TextVariables.ResourceManager.GetString("BUTTON_SELECT_WEB", TextVariables.Culture);
-                        if (!string.IsNullOrEmpty(s)) btn.Text = s;
-                    }
+                        btn.Text = TextVariables.BUTTON_SELECT_WEB;
                     else if (btn.Name != null && btn.Name.IndexOf("Local", StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        var s = TextVariables.ResourceManager.GetString("BUTTON_SELECT_LOCAL", TextVariables.Culture);
-                        if (!string.IsNullOrEmpty(s)) btn.Text = s;
-                    }
+                        btn.Text = TextVariables.BUTTON_SELECT_LOCAL;
                 }
                 catch { }
 

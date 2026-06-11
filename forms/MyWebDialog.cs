@@ -2,8 +2,6 @@ using PortraitManager.Properties;
 using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace PortraitManager.forms
@@ -13,13 +11,9 @@ namespace PortraitManager.forms
         private readonly PrivateFontCollection _fontCollection;
         public Image DownloadedImage { get; private set; }
 
-        public MyWebDialog(string locale)
+        public MyWebDialog()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(
-                Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-
-            try { Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale); }
-            catch { }
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
 
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
@@ -61,7 +55,7 @@ namespace PortraitManager.forms
             catch { }
         }
 
-        public MyWebDialog(string message, string locale) : this(locale) { }
+        public MyWebDialog(string message) : this() { }
 
         public string URL => TextBoxURL?.Text?.Trim();
 
@@ -69,9 +63,7 @@ namespace PortraitManager.forms
         {
             try
             {
-                bool ru = Thread.CurrentThread.CurrentUICulture.Equals(
-                    CultureInfo.GetCultureInfo("ru-RU"));
-                var family = ru ? _fontCollection.Families[1] : _fontCollection.Families[0];
+                var family = _fontCollection.Families[0];
                 LabelTitle.Font    = new Font(family, 18f);
                 LabelHint.Font     = new Font(family, 12f);
                 TextBoxURL.Font    = new Font(family, 14f);
@@ -230,7 +222,7 @@ namespace PortraitManager.forms
         {
             try
             {
-                using (var dlg = new MyMessageDialog(message, Thread.CurrentThread.CurrentUICulture.ToString()))
+                using (var dlg = new MyMessageDialog(message))
                 {
                     dlg.StartPosition = FormStartPosition.CenterParent;
                     dlg.ShowDialog(this);

@@ -27,9 +27,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace PortraitManager
 {
@@ -275,7 +275,7 @@ namespace PortraitManager
 
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
                 {
-                    ShowCreatePortraitToast(outDir);
+                    ShowCreatePortraitToast(outDir, uid);
 
                     if (keepOnLayout)
                     {
@@ -456,8 +456,7 @@ namespace PortraitManager
                 {
                     using (var dlg = new forms.MyMessageDialog(
                         "That link does not point to a supported image file.\n\n" +
-                        "Supported formats: PNG, JPG, GIF, BMP, WebP.",
-                        Thread.CurrentThread.CurrentUICulture.ToString()))
+                        "Supported formats: PNG, JPG, GIF, BMP, WebP."))
                     {
                         dlg.StartPosition = FormStartPosition.CenterParent;
                         dlg.ShowDialog(this);
@@ -533,8 +532,7 @@ namespace PortraitManager
                 try
                 {
                     using (var dlg = new forms.MyMessageDialog(
-                        "Could not load the image from that address. " + ex.Message,
-                        Thread.CurrentThread.CurrentUICulture.ToString()))
+                        "Could not load the image from that address. " + ex.Message))
                     {
                         dlg.StartPosition = FormStartPosition.CenterParent;
                         dlg.ShowDialog(this);
@@ -624,12 +622,12 @@ namespace PortraitManager
             return valid;
         }
 
-        private void ShowCreatePortraitToast(string outDir)
+        private void ShowCreatePortraitToast(string outDir, string uid = null)
         {
             if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
                 return;
 
-            string portraitName = Path.GetFileName(outDir);
+            string portraitName = uid ?? Path.GetFileName(outDir);
 
             var toast = new Panel
             {
@@ -1378,8 +1376,6 @@ namespace PortraitManager
             {
                 RemoveClickEventsFromCustomPortraitsButtons();
                 //CheckBoxVerified.Checked = false;
-                UseStamps.Default.isAwareNPC = "NotRevealed";
-                UseStamps.Default.Save();
                 //ButtonLoadCustom.Visible = false;
                 //ButtonLoadCustomNPC.Visible = false;
                 //ButtonLoadCustomArmy.Visible = false;
@@ -1420,14 +1416,6 @@ namespace PortraitManager
             //    ButtonLoadCustomArmy.Visible = true;
             //}
 
-            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
-            {
-                //CheckBoxVerified.Checked = true;
-            }
-            else
-            {
-                //CheckBoxVerified.Checked = false;
-            }
         }
         
         private void ButtonOpenFolder_Click(object sender, EventArgs e)
@@ -2111,50 +2099,7 @@ namespace PortraitManager
             //}
         }
         
-        private void PicBoxEng_Click(object sender, EventArgs e)
-        {
-            FontsInit(_fontCollection);
 
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-EN");
-            //CoreSettings.Default.SelectedLang = "en-EN";
-            CoreSettings.Default.Save();
-            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
-            TextsInit();
-
-            //PicBoxEng.Enabled = false;
-            //PicBoxGer.Enabled = true;
-            //PicBoxRus.Enabled = true;
-        }
-        
-        private void PicBoxRus_Click(object sender, EventArgs e)
-        {
-            FontsInit(_fontCollection, 1);
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-            //CoreSettings.Default.SelectedLang = "ru-RU";
-            CoreSettings.Default.Save();
-            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
-            TextsInit();
-
-            //PicBoxEng.Enabled = true;
-            //PicBoxGer.Enabled = true;
-            //PicBoxRus.Enabled = false;
-        }
-        
-        private void PicBoxGer_Click(object sender, EventArgs e)
-        {
-            FontsInit(_fontCollection);
-
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
-            //CoreSettings.Default.SelectedLang = "de-DE";
-            CoreSettings.Default.Save();
-            //LabelLang.Text = TextVariables.LABEL_LANG + " " + Thread.CurrentThread.CurrentUICulture.ToString();            
-            TextsInit();
-
-            //PicBoxEng.Enabled = true;
-            //PicBoxGer.Enabled = false;
-            //PicBoxRus.Enabled = true;
-        }
 
         private void ButtonRT_Click(object sender, EventArgs e)
         {
@@ -2225,15 +2170,6 @@ namespace PortraitManager
             //    ButtonLoadCustomArmy.Visible = true;
             //}
 
-            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
-            {
-                //CheckBoxVerified.Checked = true;
-            }
-            else
-            {
-                //CheckBoxVerified.Checked = false;
-            }
-
             CoreSettings.Default.GameType = _gameSelected;
             CoreSettings.Default.Save();
         }
@@ -2283,14 +2219,6 @@ namespace PortraitManager
             //    ButtonLoadCustomArmy.Visible = true;
             //}
 
-            if (UseStamps.Default.isAwareNPC == "WorkRevealed")
-            {
-                //CheckBoxVerified.Checked = true;
-            }
-            else
-            {
-                //CheckBoxVerified.Checked = false;
-            }
         }
 
 

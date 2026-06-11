@@ -19,8 +19,6 @@ using PortraitManager.Properties;
 using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace PortraitManager.forms
@@ -30,19 +28,10 @@ namespace PortraitManager.forms
         private readonly Font _font;
         private readonly PrivateFontCollection _fontCollection;
 
-        public MyInquiryDialog(string message, string locale)
+        public MyInquiryDialog(string message)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
-
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
-            {
-                _font = new Font(_fontCollection.Families[1], 17);
-            }
-            else
-            {
-                _font = new Font(_fontCollection.Families[0], 17);
-            }
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _font = new Font(_fontCollection.Families[0], 17);
 
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);

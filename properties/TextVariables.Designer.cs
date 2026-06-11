@@ -179,6 +179,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Fulllength (692×1024) — used on the character paper-doll and level-up screen.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_KING_LRG {
@@ -189,6 +190,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Medium (330×432) — used in the party bar and character screen. 
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_KING_MED {
@@ -199,6 +201,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Portrait / Small (185×242) — used in dialogues and the companion list. 
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_KING_SML {
@@ -218,6 +221,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Full portrait (210×330) — used on the character screen and paper-doll.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_PILLARS_LRG {
@@ -228,6 +232,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Full2 / Conversation (90×141) — used in conversation screens.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_PILLARS_MED {
@@ -238,6 +243,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Portrait / Small (76×96) — used in dialogues and the companion list.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_PILLARS_SML {
@@ -248,6 +254,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Portrait 2 (76×96) — used in additional interface elements.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_PILLARS_SML2 {
@@ -258,6 +265,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Fulllength (1080×1480) — used on the character paper-doll and level-up screen.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_RT_LRG {
@@ -268,6 +276,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Medium (448×600) — used in the party bar and character screen.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_RT_MED {
@@ -278,6 +287,7 @@ namespace PortraitManager.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Portrait / Small (260×336) — used in dialogues and the companion list.
+        ///
         ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
         internal static string HINT_RT_SML {

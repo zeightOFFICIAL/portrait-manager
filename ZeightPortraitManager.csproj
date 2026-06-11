@@ -127,25 +127,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\TextVariables.de.Designer.cs">
-      <DependentUpon>TextVariables.de.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Properties\TextVariables.ru.Designer.cs">
-      <DependentUpon>TextVariables.ru.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Properties\TextVariables.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TextVariables.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\UseStamps.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>UseStamps.settings</DependentUpon>
     </Compile>
     <Compile Include="sources\EventHandler.cs">
       <SubType>Form</SubType>
@@ -176,14 +161,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\TextVariables.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TextVariables.de.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\TextVariables.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TextVariables.ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\TextVariables.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TextVariables.Designer.cs</LastGenOutput>
@@ -207,10 +184,6 @@
     <None Include="Properties\CoreSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>CoreSettings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Properties\UseStamps.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>UseStamps.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

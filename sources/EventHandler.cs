@@ -220,7 +220,7 @@ namespace PortraitManager
                     if (orig == null) return;
                     string fileName = FileName(sizeSuffix);
                     string savePath = Path.Combine(outDir, fileName);
-                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd')
                         CropAndSaveDirectFill(orig, pb, panel, w, h, savePath);
                     else
                         CropAndSaveDirectUniform(orig, pb, panel, w, h, savePath);

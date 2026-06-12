@@ -1621,122 +1621,6 @@ namespace PortraitManager
             ExploreDirectory(_extractFolderPath, cancellationToken);
         }
         
-        private void ButtonExtractAll_Click(object sender, EventArgs e)
-        {
-            bool isRepeat = false;
-            uint imgCount = 0;
-
-            //if (ListExtract.Items.Count < 1)
-            {
-                return;
-            }
-
-            //foreach (ListViewItem item in ListExtract.Items)
-            {
-                //string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-                //string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
-                
-                //if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
-                //{
-                //    SystemControl.FileControl.CreateDirectory(normalPath);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
-                //    imgCount++;
-                //}
-                //else
-                //{
-                //    isRepeat = true;
-                //    SystemControl.FileControl.CreateDirectory(safePath);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
-                //    imgCount++;
-                //}
-            }
-
-            //if (isRepeat)
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //}
-
-            //if (imgCount > 0)
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SUCCESS + imgCount, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //}
-        }
-        
-        private void ButtonExtractSelected_Click(object sender, EventArgs e)
-        {
-            bool isRepeat = false;
-            uint imgCount = 0;
-
-            //if (ListExtract.Items.Count < 1)
-            {
-                return;
-            }
-
-            //if (ListExtract.SelectedItems.Count < 1)
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTEDEXTRACT, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-                return;
-            }
-
-            //foreach (ListViewItem item in ListExtract.SelectedItems)
-            {
-                //string normalPath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text;
-                //string safePath = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString();
-                
-                //if (!SystemControl.FileControl.Readonly.DirectoryExists(normalPath))
-                //{
-                //    SystemControl.FileControl.CreateDirectory(normalPath);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, normalPath + LARGE_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, normalPath + MEDIUM_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, normalPath + SMALL_APPEND);
-                //    imgCount++;
-                //}
-                //else
-                //{
-                //    isRepeat = true;
-                //    SystemControl.FileControl.CreateDirectory(safePath);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + LARGE_APPEND, safePath + LARGE_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + MEDIUM_APPEND, safePath + MEDIUM_APPEND);
-                //    SystemControl.FileControl.CopyFile(ImgListExtract.Images.Keys[item.Index] + SMALL_APPEND, safePath + SMALL_APPEND);
-                //    imgCount++;
-                //}
-            }
-
-            if (isRepeat)
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_REPEATFOLDER, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-            }
-
-            if (imgCount > 0)
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SUCCESS + imgCount, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-            }
-        }
-        
         private void ButtonOpenFolders_Click(object sender, EventArgs e)
         {
             if (_extractFolderPath == "!NONE!")
@@ -2787,6 +2671,96 @@ namespace PortraitManager
             CoreSettings.Default.Save();
             Dispose();
             Application.Exit();
+        }
+
+        private void ButtonExtractBack_Click(object sender, EventArgs e)
+        {
+            _activeMenuIndex = GetMainMenuIndexForCurrentGame();
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
+        }
+
+        private void ButtonExtractAll_MouseEnter(object sender, EventArgs e)
+        {
+            Color back;
+            try { back = GameTypes[_gameSelected].BackColor; } catch { back = Color.Black; }
+            ButtonExtractAll.ForeColor = back;
+        }
+
+        private void ButtonExtractAll_MouseLeave(object sender, EventArgs e)
+        {
+            Color fore;
+            try { fore = GameTypes[_gameSelected].ForeColor; } catch { fore = Color.White; }
+            ButtonExtractAll.ForeColor = fore;
+        }
+
+        private void ButtonExtractSelected_MouseEnter(object sender, EventArgs e)
+        {
+            Color back;
+            try { back = GameTypes[_gameSelected].BackColor; } catch { back = Color.Black; }
+            ButtonExtractSelected.ForeColor = back;
+        }
+
+        private void ButtonExtractSelected_MouseLeave(object sender, EventArgs e)
+        {
+            Color fore;
+            try { fore = GameTypes[_gameSelected].ForeColor; } catch { fore = Color.White; }
+            ButtonExtractSelected.ForeColor = fore;
+        }
+
+        private void ButtonExtractBack_MouseEnter(object sender, EventArgs e)
+        {
+            Color back;
+            try { back = GameTypes[_gameSelected].BackColor; } catch { back = Color.Black; }
+            ButtonExtractBack.ForeColor = back;
+        }
+
+        private void ButtonExtractBack_MouseLeave(object sender, EventArgs e)
+        {
+            Color fore;
+            try { fore = GameTypes[_gameSelected].ForeColor; } catch { fore = Color.White; }
+            ButtonExtractBack.ForeColor = fore;
+        }
+
+        private void PanelExtractOverlay_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "Select portrait archive";
+                ofd.Filter = "ZIP archives (*.zip)|*.zip|All files (*.*)|*.*";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    LoadArchiveThumbnails(ofd.FileName);
+                }
+            }
+        }
+
+        private void ButtonExtractAll_Click(object sender, EventArgs e)
+        {
+            if (_archiveEntries == null || _archiveEntries.Count == 0) return;
+            ExtractPortraitsFromArchive(null);
+        }
+
+        private void ButtonExtractSelected_Click(object sender, EventArgs e)
+        {
+            var selected = FlowLayoutPanelExtract.Controls.OfType<CheckBox>()
+                .Where(cb => cb.Checked)
+                .Select(cb => cb.Tag as string)
+                .Where(t => t != null)
+                .ToList();
+
+            if (selected.Count == 0)
+            {
+                using (var msg = new MyMessageDialog(TextVariables.MESG_EXTRACT_NOSELECTION))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return;
+            }
+
+            ExtractPortraitsFromArchive(selected);
         }
     }
 }

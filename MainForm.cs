@@ -21,21 +21,21 @@ using PortraitManager.sources;
 using PortraitManager.Properties;
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
-using System.Windows.Forms;
-using System.Linq;
-using SystemControl;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
+using SystemControl;
 
 namespace PortraitManager
 {
     public partial class MainForm : Form, IMessageFilter
     {
         private const int WM_MOUSEWHEEL = 0x020A;
-
         private static char _gameSelected;
 
         /*
@@ -133,7 +133,6 @@ namespace PortraitManager
 
         private KingPortraitGroupSelection _activeKingPortraitGroup = KingPortraitGroupSelection.Large;
 
-
         /* 0 - all loaded
          * 1 - first loaded
          * 2 - first, second loaded
@@ -163,6 +162,10 @@ namespace PortraitManager
 
         private static PrivateFontCollection _fontCollection;
         private static CancellationTokenSource _cancellationTokenSource;
+
+        private string _selectedArchivePath;
+        private List<Tuple<string, Image>> _archiveEntries;
+        private bool _overlayHovered;
 
         private void FontInit()
         {
@@ -197,6 +200,9 @@ namespace PortraitManager
             LabelKingCreatePortraitSml2.Font = bebasNeueHead;
             ButtonKingCreateNewPortrait.Font = bebasNeueHead;
             ButtonKingBackToPathfinder.Font = bebasNeueHead;
+            ButtonExtractAll.Font = bebasNeueHead;
+            ButtonExtractSelected.Font = bebasNeueHead;
+            ButtonExtractBack.Font = bebasNeueHead;
         }
 
         private void TextInit()
@@ -236,6 +242,9 @@ namespace PortraitManager
 
             ButtonKingCreateNewPortrait.Text = "Create >";
             ButtonKingBackToPathfinder.Text = "< Back";
+            ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
+            ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACT_SELECTED;
+            ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
         }
 
         protected override CreateParams CreateParams
@@ -323,134 +332,6 @@ namespace PortraitManager
             _allowAutoResize = true;
             ReplacePictureBoxImagesToDefault();
             _allowAutoResize = false;
-
-
-
-            //if (UseStamps.Default.isFirstAny)
-            //{
-            //    var currentUICulture = CultureInfo.CurrentUICulture.ToString();
-            //    if (currentUICulture == "en-US" ||
-            //        currentUICulture == "ru-RU" ||
-            //        currentUICulture == "de-DE"
-            //        )
-            //    {
-            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
-            //    }
-            //    else
-            //    {
-            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-            //    }
-
-            //    CoreSettings.Default.KINGPath = KINGMAKER_TYPE.NormalDefaultDirectory;
-            //    CoreSettings.Default.WOTRPath = WRATH_TYPE.NormalDefaultDirectory;
-            //    CoreSettings.Default.ROGUEPath = ROGUE_TYPE.NormalDefaultDirectory;
-            //    CoreSettings.Default.MaxWindowHeight = Size.Height;
-            //    CoreSettings.Default.MaxWindowWidth = Size.Width;
-            //    CoreSettings.Default.SelectedLang = Thread.CurrentThread.CurrentUICulture.ToString();
-            //    CoreSettings.Default.Save();
-
-            //    UseStamps.Default.isFirstAny = false;
-            //    UseStamps.Default.Save();
-            //}
-            //else
-            //{
-            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(CoreSettings.Default.SelectedLang);
-            //}
-
-            //ACTIVE_PATHS['w'] = CoreSettings.Default.WOTRPath;
-            //ACTIVE_PATHS['p'] = CoreSettings.Default.KINGPath;
-            //ACTIVE_PATHS['r'] = CoreSettings.Default.ROGUEPath;
-            //Width = CoreSettings.Default.MaxWindowWidth;
-            //Height = CoreSettings.Default.MaxWindowHeight;
-
-
-
-            //FormInit();
-            //CenterToScreen();
-
-
-            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterScreen;
-            //        Message.ShowDialog();
-            //    }
-
-            //    RemoveClickEventsFromMainButtons();
-            //}
-            //else if (UseStamps.Default.isFirstAny)
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //}
-
-            //if (_gameSelected == 'r')
-            //{
-            //    RemoveClickEventsFromCustomPortraitsButtons();
-
-            //    UseStamps.Default.isAwareNPC = "NotRevealed";
-            //    UseStamps.Default.Save();
-
-            //    CheckBoxVerified.Checked = false;
-            //    ButtonLoadCustom.Visible = false;
-            //    ButtonLoadCustomNPC.Visible = false;
-            //    ButtonLoadCustomArmy.Visible = false;
-
-            //    Focus();
-            //    return;
-            //}
-
-            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
-            //    (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterScreen;
-            //        Message.ShowDialog();
-            //    }
-
-            //    RemoveClickEventsFromCustomPortraitsButtons();
-
-            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-            //    UseStamps.Default.Save();
-
-            //    CheckBoxVerified.Checked = false;
-            //    ButtonLoadCustom.Visible = false;
-            //    ButtonLoadCustomNPC.Visible = false;
-            //    ButtonLoadCustomArmy.Visible = false;
-            //}
-            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
-            //    (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterScreen;
-            //        Message.ShowDialog();
-            //    }
-
-            //    AddClickEventsToCustomPortraitsButtons();
-
-            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
-            //    UseStamps.Default.Save();
-
-            //    CheckBoxVerified.Checked = true;
-            //    ButtonLoadCustom.Visible = true;
-            //    ButtonLoadCustomNPC.Visible = true;
-            //    ButtonLoadCustomArmy.Visible = true;
-            //}
-
-            //if (UseStamps.Default.isAwareNPC == "WorkRevealed")
-            //{
-            //    CheckBoxVerified.Checked = true;
-            //}
-            //else
-            //{
-            //    CheckBoxVerified.Checked = false;
-            //}
 
             Focus();
             ApplyGameWindowStyle();
@@ -546,56 +427,6 @@ namespace PortraitManager
         {
             DrawGroupBorder(sender as Control, e, null);
         }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        private void FormInit()
-        {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.Selectable, false);
-            
-            CenterToScreen();
-            ParentLayoutsSetDockFill();            
-            UpdateColorScheme();
-
-            //PicPortraitTemp.AllowDrop = true;
-            //PicPortraitLrg.MouseWheel += PicPortraitLrg_MouseWheel;
-            //PicPortraitMed.MouseWheel += PicPortraitMed_MouseWheel;
-            //PicPortraitSml.MouseWheel += PicPortraitSml_MouseWheel;
-
-            ParentLayoutsDisable();
-            //RootFunctions.LayoutDisable(LayoutURLDialog);
-            //RootFunctions.LayoutDisable(LayoutFinalPage);
-            //RootFunctions.LayoutEnable(LayoutMainPage);
-            RootFunctions.LayoutEnable(LayoutStartMenu);
-            Focus();
-
-            //CheckBoxVerified.AutoCheck = false;
-        }
         
         private void ButtonToFilePage_Click(object sender, EventArgs e)
         {
@@ -610,8 +441,6 @@ namespace PortraitManager
             //RootFunctions.LayoutEnable(LayoutFilePage);
             Focus();
             ResizeVisibleImagesToWindowSize();
-
-
 
             if (!_isAspectRatioFixed)
             {
@@ -711,6 +540,43 @@ namespace PortraitManager
             Application.Exit();
         }
         
+        private void LabelExtract_Click(object sender, EventArgs e)
+        {
+            _activeMenuIndex = 5;
+
+            Color gameBack, gameFore;
+            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
+
+            FlowLayoutPanelExtract.BackColor = gameBack;
+            PanelExtractOverlay.BackColor = gameBack;
+            LayoutExtractRight.BackColor = gameBack;
+            LayoutExtractRight.ForeColor = gameFore;
+            _overlayHovered = false;
+
+            foreach (var btn in new[] { ButtonExtractAll, ButtonExtractSelected, ButtonExtractBack })
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.FlatAppearance.BorderColor = gameFore;
+                btn.BackColor = gameBack;
+                btn.ForeColor = gameFore;
+                btn.FlatAppearance.MouseOverBackColor = gameFore;
+                btn.FlatAppearance.MouseDownBackColor = gameFore;
+                btn.TabStop = false;
+            }
+
+            _selectedArchivePath = null;
+            _archiveEntries = null;
+            FlowLayoutPanelExtract.Controls.Clear();
+            FlowLayoutPanelExtract.Visible = false;
+            PanelExtractOverlay.Visible = true;
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutExtractPage);
+            Focus();
+        }
+
         private void ButtonToExtract_Click(object sender, EventArgs e)
         {
             _activeMenuIndex = 3;
@@ -854,149 +720,7 @@ namespace PortraitManager
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (_activeMenuIndex == 0)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case '1':
-            //            ButtonToFilePage_Click(sender, e);
-            //            break;
-            //        case '2':
-            //            ButtonToExtract_Click(sender, e);
-            //            break;
-            //        case '3':
-            //            ButtonToGalleryPage_Click(sender, e);
-            //            break;
-            //        case '\t':
-            //            PictureBoxTitle_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonExit_Click(sender, e);
-            //            break;
-            //    }
-            //}
-            //else if (_activeMenuIndex == 1)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case '1':
-            //            ButtonLocalPortraitLoad_Click(sender, e);
-            //            break;
-            //        case 'l':
-            //            ButtonLocalPortraitLoad_Click(sender, e);
-            //            break;
-            //        case '2':
-            //            ButtonWebPortraitLoad_Click(sender, e);
-            //            break;
-            //        case 'w':
-            //            ButtonWebPortraitLoad_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonToMainPage_Click(sender, e);
-            //            break;
-            //        case 'q':
-            //            ButtonToMainPage_Click(sender, e);
-            //            break;
-            //        case 'r':
-            //            ButtonToScalePage_Click(sender, e);
-            //            break;
-            //        case 'e':
-            //            ButtonNextImageType_Click(sender, e);
-            //            break;
-            //    }
-            //}
-            //else if (_activeMenuIndex == 2)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case 'q':
-            //            ButtonToFilePage2_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonToFilePage2_Click(sender, e);
-            //            break;
-            //        case 'e':
-            //            ButtonCreatePortrait_Click(sender, e);
-            //            break;
-            //        case 'r':
-            //            ResizeVisibleImagesToWindowSize();
-            //            break;
-
-            //    }
-            //}
-            //else if (_activeMenuIndex == 100)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case '1':
-            //            ButtonToMainPage4_Click(sender, e);
-            //            break;
-            //        case '2':
-            //            ButtonToFilePage3_Click(sender, e);
-            //            break;
-            //        case '3':
-            //            ButtonToMainPageAndFolder_Click(sender, e);
-            //            break;
-            //        case 'q':
-            //            ButtonToMainPage4_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonToMainPage4_Click(sender, e);
-            //            break;
-            //    }
-            //}
-            //else if (_activeMenuIndex == 4)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case 'o':
-            //            ButtonOpenFolder_Click(sender, e);
-            //            break;
-            //        case 'q':
-            //            ButtonToMainPage3_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonToMainPage3_Click(sender, e);
-            //            break;
-            //    }
-            //}
-            //else if (_activeMenuIndex == 3)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case 'e':
-            //            ButtonChooseFolder_Click(sender, e);
-            //            break;
-            //        case 'r':
-            //            ButtonExtractAll_Click(sender, e);
-            //            break;
-            //        case 'o':
-            //            ButtonOpenFolders_Click(sender, e);
-            //            break;
-            //        case 'q':
-            //            ButtonToMainPage2_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonToMainPage2_Click(sender, e);
-            //            break;
-            //    }
-            //}
-            //else if (_activeMenuIndex == 200)
-            //{
-            //    switch (e.KeyChar)
-            //    {
-            //        case 'q':
-            //            ButtonDenyWeb_Click(sender, e);
-            //            break;
-            //        case '\b':
-            //            ButtonDenyWeb_Click(sender, e);
-            //            break;
-            //        case 'e':
-            //            ButtonLoadWeb_Click(sender, e);
-            //            break;
-
-            //    }
-            //}
+            
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -1006,16 +730,6 @@ namespace PortraitManager
                 e.Handled = true;
             }
         }
-
-
-
-
-
-
-
-
-
-
         private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {
             string selectedPath = LabelSelectPathSelected.Text;
@@ -1312,31 +1026,76 @@ namespace PortraitManager
             ApplyGameWindowStyle();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void LayoutPathPage_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void FlowLayoutPanelExtract_Paint(object sender, PaintEventArgs e)
+        {
+            Color foreColor;
+            try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
+            ControlPaint.DrawBorder(e.Graphics, ((FlowLayoutPanel)sender).ClientRectangle,
+                foreColor, ButtonBorderStyle.Solid);
+        }
+
+        private void PanelExtractOverlay_Paint(object sender, PaintEventArgs e)
+        {
+            Panel panel = (Panel)sender;
+            Rectangle rect = panel.ClientRectangle;
+
+            Color gameFore, gameBack;
+            try { gameFore = GameTypes[_gameSelected].ForeColor; gameBack = GameTypes[_gameSelected].BackColor; }
+            catch { gameFore = Color.White; gameBack = Color.FromArgb(12, 12, 12); }
+
+            ControlPaint.DrawBorder(e.Graphics, rect, gameFore, ButtonBorderStyle.Solid);
+
+            string title = TextVariables.BUTTON_SELECT_ARCHIVE;
+            string folderIcon = "\U0001F4C1";
+            string hint = ".zip, .rar, .7z, folder";
+
+            using (Font titleFont = new Font(_fontCollection.Families[0], 22))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 11))
+            {
+                string titleLine = title + "\n" + folderIcon;
+                TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+
+                Size titleSize = TextRenderer.MeasureText(e.Graphics, titleLine, titleFont,
+                    new Size(rect.Width, 0), tf);
+                Size hintSize = TextRenderer.MeasureText(e.Graphics, hint, hintFont,
+                    new Size(rect.Width, 0), tf);
+
+                int totalHeight = titleSize.Height + 16 + hintSize.Height;
+                int yStart = (rect.Height - totalHeight) / 2;
+
+                Color titleColor = _overlayHovered ? gameFore : Color.White;
+
+                Rectangle titleRect = new Rectangle(0, yStart, rect.Width, titleSize.Height);
+                TextRenderer.DrawText(e.Graphics, titleLine, titleFont, titleRect, titleColor, tf);
+
+                Rectangle hintRect = new Rectangle(0, yStart + titleSize.Height + 16, rect.Width, hintSize.Height);
+                TextRenderer.DrawText(e.Graphics, hint, hintFont, hintRect, Color.Gray, tf);
+            }
+        }
+
+        private void PanelExtractOverlay_MouseEnter(object sender, EventArgs e)
+        {
+            _overlayHovered = true;
+            ((Panel)sender).Invalidate();
+        }
+
+        private void PanelExtractOverlay_MouseLeave(object sender, EventArgs e)
+        {
+            _overlayHovered = false;
+            ((Panel)sender).Invalidate();
+        }
+
+        private void LayoutExtractRight_Paint(object sender, PaintEventArgs e)
+        {
+            Color foreColor;
+            try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
+            ControlPaint.DrawBorder(e.Graphics, ((TableLayoutPanel)sender).ClientRectangle,
+                foreColor, ButtonBorderStyle.Solid);
         }
 
         private void LabelSelectPathChoosePath_Click(object sender, EventArgs e)

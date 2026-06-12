@@ -138,6 +138,14 @@ namespace PortraitManager
             this.LabelKingGroupSml2Title = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.FlowLayoutPanelExtract = new System.Windows.Forms.FlowLayoutPanel();
+            this.PanelExtractOverlay = new System.Windows.Forms.Panel();
+
+            this.ButtonExtractAll = new System.Windows.Forms.Button();
+            this.ButtonExtractSelected = new System.Windows.Forms.Button();
+            this.ButtonExtractBack = new System.Windows.Forms.Button();
+            this.LayoutExtractRight = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -161,6 +169,9 @@ namespace PortraitManager
             this.tableLayoutPanel22.SuspendLayout();
             this.LayoutMainPage.SuspendLayout();
             this.tableLayoutPanel23.SuspendLayout();
+            this.LayoutExtractPage.SuspendLayout();
+            this.FlowLayoutPanelExtract.SuspendLayout();
+            this.PanelExtractOverlay.SuspendLayout();
             this.LayoutKingCreatePortrait.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.LayoutKingPortraitGroups.SuspendLayout();
@@ -928,6 +939,7 @@ namespace PortraitManager
             this.LabelExtract.Size = new System.Drawing.Size(108, 13);
             this.LabelExtract.TabIndex = 1;
             this.LabelExtract.Text = "BUTTON_EXTRACT";
+            this.LabelExtract.Click += new System.EventHandler(this.LabelExtract_Click);
             this.LabelExtract.MouseEnter += new System.EventHandler(this.LabelExtract_MouseEnter);
             this.LabelExtract.MouseLeave += new System.EventHandler(this.LabelExtract_MouseLeave);
             // 
@@ -1067,10 +1079,10 @@ namespace PortraitManager
             this.LabelKingCreatePortraitSml2.BackColor = System.Drawing.Color.Transparent;
             this.LabelKingCreatePortraitSml2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LabelKingCreatePortraitSml2.ForeColor = System.Drawing.Color.White;
-            this.LabelKingCreatePortraitSml2.Location = new System.Drawing.Point(388, 0);
+            this.LabelKingCreatePortraitSml2.Location = new System.Drawing.Point(3, 48);
             this.LabelKingCreatePortraitSml2.Name = "LabelKingCreatePortraitSml2";
             this.LabelKingCreatePortraitSml2.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
-            this.LabelKingCreatePortraitSml2.Size = new System.Drawing.Size(124, 48);
+            this.LabelKingCreatePortraitSml2.Size = new System.Drawing.Size(130, 48);
             this.LabelKingCreatePortraitSml2.TabIndex = 3;
             this.LabelKingCreatePortraitSml2.Text = "LABEL_KINGSML2";
             this.LabelKingCreatePortraitSml2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1096,6 +1108,7 @@ namespace PortraitManager
             this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutKingPortraitGroups.Size = new System.Drawing.Size(513, 404);
             this.LayoutKingPortraitGroups.TabIndex = 4;
             // 
@@ -1107,7 +1120,7 @@ namespace PortraitManager
             this.LayoutKingPortraitGroupLarge.Controls.Add(this.PanelKingLrg, 0, 0);
             this.LayoutKingPortraitGroupLarge.Controls.Add(this.PanelKingLrgButtons, 1, 0);
             this.LayoutKingPortraitGroupLarge.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutKingPortraitGroupLarge.Location = new System.Drawing.Point(0, 384);
+            this.LayoutKingPortraitGroupLarge.Location = new System.Drawing.Point(0, 364);
             this.LayoutKingPortraitGroupLarge.Margin = new System.Windows.Forms.Padding(0);
             this.LayoutKingPortraitGroupLarge.Name = "LayoutKingPortraitGroupLarge";
             this.LayoutKingPortraitGroupLarge.RowCount = 1;
@@ -1121,7 +1134,7 @@ namespace PortraitManager
             // 
             this.PanelKingLrg.Controls.Add(this.PicKingLrg);
             this.PanelKingLrg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingLrg.Location = new System.Drawing.Point(0, 0);
+            this.PanelKingLrg.Location = new System.Drawing.Point(25, 25);
             this.PanelKingLrg.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingLrg.Name = "PanelKingLrg";
             this.PanelKingLrg.Size = new System.Drawing.Size(260, 1);
@@ -1232,7 +1245,7 @@ namespace PortraitManager
             this.LayoutKingPortraitGroupMedium.Controls.Add(this.PanelKingMed, 0, 0);
             this.LayoutKingPortraitGroupMedium.Controls.Add(this.PanelKingMedButtons, 1, 0);
             this.LayoutKingPortraitGroupMedium.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutKingPortraitGroupMedium.Location = new System.Drawing.Point(0, 364);
+            this.LayoutKingPortraitGroupMedium.Location = new System.Drawing.Point(0, 384);
             this.LayoutKingPortraitGroupMedium.Margin = new System.Windows.Forms.Padding(0);
             this.LayoutKingPortraitGroupMedium.Name = "LayoutKingPortraitGroupMedium";
             this.LayoutKingPortraitGroupMedium.RowCount = 1;
@@ -1246,7 +1259,7 @@ namespace PortraitManager
             // 
             this.PanelKingMed.Controls.Add(this.PicKingMed);
             this.PanelKingMed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingMed.Location = new System.Drawing.Point(0, 0);
+            this.PanelKingMed.Location = new System.Drawing.Point(25, 25);
             this.PanelKingMed.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingMed.Name = "PanelKingMed";
             this.PanelKingMed.Size = new System.Drawing.Size(260, 1);
@@ -1362,7 +1375,7 @@ namespace PortraitManager
             this.LayoutKingPortraitGroupSmall.Name = "LayoutKingPortraitGroupSmall";
             this.LayoutKingPortraitGroupSmall.RowCount = 1;
             this.LayoutKingPortraitGroupSmall.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutKingPortraitGroupSmall.Size = new System.Drawing.Size(513, 364);
+            this.LayoutKingPortraitGroupSmall.Size = new System.Drawing.Size(513, 344);
             this.LayoutKingPortraitGroupSmall.TabIndex = 2;
             this.LayoutKingPortraitGroupSmall.Visible = false;
             this.LayoutKingPortraitGroupSmall.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingPortraitGroupSmall_Paint);
@@ -1371,10 +1384,10 @@ namespace PortraitManager
             // 
             this.PanelKingSml.Controls.Add(this.PicKingSml);
             this.PanelKingSml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingSml.Location = new System.Drawing.Point(0, 0);
+            this.PanelKingSml.Location = new System.Drawing.Point(25, 25);
             this.PanelKingSml.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingSml.Name = "PanelKingSml";
-            this.PanelKingSml.Size = new System.Drawing.Size(260, 314);
+            this.PanelKingSml.Size = new System.Drawing.Size(260, 294);
             this.PanelKingSml.TabIndex = 0;
             // 
             // PicKingSml
@@ -1384,7 +1397,7 @@ namespace PortraitManager
             this.PicKingSml.Image = global::PortraitManager.Properties.Resources.path_placeholder;
             this.PicKingSml.Location = new System.Drawing.Point(0, 0);
             this.PicKingSml.Name = "PicKingSml";
-            this.PicKingSml.Size = new System.Drawing.Size(260, 314);
+            this.PicKingSml.Size = new System.Drawing.Size(260, 294);
             this.PicKingSml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicKingSml.TabIndex = 0;
             this.PicKingSml.TabStop = false;
@@ -1412,7 +1425,7 @@ namespace PortraitManager
             this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.PanelKingSmlButtons.Size = new System.Drawing.Size(197, 358);
+            this.PanelKingSmlButtons.Size = new System.Drawing.Size(197, 338);
             this.PanelKingSmlButtons.TabIndex = 1;
             // 
             // LabelKingSmlHint
@@ -1482,12 +1495,12 @@ namespace PortraitManager
             this.LayoutKingPortraitGroupSml2.Controls.Add(this.PanelKingSml2, 0, 0);
             this.LayoutKingPortraitGroupSml2.Controls.Add(this.PanelKingSml2Buttons, 1, 0);
             this.LayoutKingPortraitGroupSml2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutKingPortraitGroupSml2.Location = new System.Drawing.Point(0, 0);
+            this.LayoutKingPortraitGroupSml2.Location = new System.Drawing.Point(0, 344);
             this.LayoutKingPortraitGroupSml2.Margin = new System.Windows.Forms.Padding(0);
             this.LayoutKingPortraitGroupSml2.Name = "LayoutKingPortraitGroupSml2";
             this.LayoutKingPortraitGroupSml2.RowCount = 1;
             this.LayoutKingPortraitGroupSml2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutKingPortraitGroupSml2.Size = new System.Drawing.Size(513, 364);
+            this.LayoutKingPortraitGroupSml2.Size = new System.Drawing.Size(513, 20);
             this.LayoutKingPortraitGroupSml2.TabIndex = 3;
             this.LayoutKingPortraitGroupSml2.Visible = false;
             this.LayoutKingPortraitGroupSml2.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingPortraitGroupSml2_Paint);
@@ -1496,10 +1509,10 @@ namespace PortraitManager
             // 
             this.PanelKingSml2.Controls.Add(this.PicKingSml2);
             this.PanelKingSml2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelKingSml2.Location = new System.Drawing.Point(0, 0);
+            this.PanelKingSml2.Location = new System.Drawing.Point(25, 25);
             this.PanelKingSml2.Margin = new System.Windows.Forms.Padding(25);
             this.PanelKingSml2.Name = "PanelKingSml2";
-            this.PanelKingSml2.Size = new System.Drawing.Size(260, 314);
+            this.PanelKingSml2.Size = new System.Drawing.Size(260, 1);
             this.PanelKingSml2.TabIndex = 0;
             // 
             // PicKingSml2
@@ -1509,7 +1522,7 @@ namespace PortraitManager
             this.PicKingSml2.Image = global::PortraitManager.Properties.Resources.path_placeholder;
             this.PicKingSml2.Location = new System.Drawing.Point(0, 0);
             this.PicKingSml2.Name = "PicKingSml2";
-            this.PicKingSml2.Size = new System.Drawing.Size(260, 314);
+            this.PicKingSml2.Size = new System.Drawing.Size(260, 1);
             this.PicKingSml2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicKingSml2.TabIndex = 0;
             this.PicKingSml2.TabStop = false;
@@ -1537,7 +1550,7 @@ namespace PortraitManager
             this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.PanelKingSml2Buttons.Size = new System.Drawing.Size(197, 358);
+            this.PanelKingSml2Buttons.Size = new System.Drawing.Size(197, 14);
             this.PanelKingSml2Buttons.TabIndex = 1;
             // 
             // LabelKingSml2Hint
@@ -1623,7 +1636,7 @@ namespace PortraitManager
             this.ButtonKingCreateNewPortrait.Location = new System.Drawing.Point(0, 0);
             this.ButtonKingCreateNewPortrait.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonKingCreateNewPortrait.Name = "ButtonKingCreateNewPortrait";
-            this.ButtonKingCreateNewPortrait.Size = new System.Drawing.Size(138, 134);
+            this.ButtonKingCreateNewPortrait.Size = new System.Drawing.Size(138, 202);
             this.ButtonKingCreateNewPortrait.TabIndex = 0;
             this.ButtonKingCreateNewPortrait.Click += new System.EventHandler(this.ButtonKingAction_Create_Click);
             // 
@@ -1631,10 +1644,10 @@ namespace PortraitManager
             // 
             this.ButtonKingBackToPathfinder.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonKingBackToPathfinder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonKingBackToPathfinder.Location = new System.Drawing.Point(0, 268);
+            this.ButtonKingBackToPathfinder.Location = new System.Drawing.Point(0, 202);
             this.ButtonKingBackToPathfinder.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonKingBackToPathfinder.Name = "ButtonKingBackToPathfinder";
-            this.ButtonKingBackToPathfinder.Size = new System.Drawing.Size(138, 136);
+            this.ButtonKingBackToPathfinder.Size = new System.Drawing.Size(138, 202);
             this.ButtonKingBackToPathfinder.TabIndex = 1;
             this.ButtonKingBackToPathfinder.Click += new System.EventHandler(this.ButtonKingBackToPathfinder_Click);
             // 
@@ -1700,6 +1713,119 @@ namespace PortraitManager
             this.tableLayoutPanel2.Size = new System.Drawing.Size(200, 100);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
+            // LayoutExtractPage
+            // 
+            this.LayoutExtractPage.BackColor = System.Drawing.Color.Black;
+            this.LayoutExtractPage.ColumnCount = 4;
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.Controls.Add(this.FlowLayoutPanelExtract, 1, 1);
+            this.LayoutExtractPage.Controls.Add(this.PanelExtractOverlay, 1, 1);
+            this.LayoutExtractPage.Controls.Add(this.LayoutExtractRight, 2, 1);
+            this.LayoutExtractPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutExtractPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutExtractPage.Name = "LayoutExtractPage";
+            this.LayoutExtractPage.RowCount = 3;
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.Size = new System.Drawing.Size(734, 481);
+            this.LayoutExtractPage.TabIndex = 14;
+            this.LayoutExtractPage.Visible = false;
+            this.LayoutExtractPage.Enabled = false;
+            // 
+            // FlowLayoutPanelExtract
+            // 
+            this.FlowLayoutPanelExtract.AutoScroll = true;
+            this.FlowLayoutPanelExtract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.FlowLayoutPanelExtract.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanelExtract.Location = new System.Drawing.Point(39, 27);
+            this.FlowLayoutPanelExtract.Margin = new System.Windows.Forms.Padding(0);
+            this.FlowLayoutPanelExtract.Name = "FlowLayoutPanelExtract";
+            this.FlowLayoutPanelExtract.Size = new System.Drawing.Size(507, 427);
+            this.FlowLayoutPanelExtract.TabIndex = 2;
+            this.FlowLayoutPanelExtract.Paint += new System.Windows.Forms.PaintEventHandler(this.FlowLayoutPanelExtract_Paint);
+            // 
+            // PanelExtractOverlay
+            // 
+            this.PanelExtractOverlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.PanelExtractOverlay.Click += new System.EventHandler(this.PanelExtractOverlay_Click);
+            this.PanelExtractOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PanelExtractOverlay.MouseEnter += new System.EventHandler(this.PanelExtractOverlay_MouseEnter);
+            this.PanelExtractOverlay.MouseLeave += new System.EventHandler(this.PanelExtractOverlay_MouseLeave);
+            this.PanelExtractOverlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelExtractOverlay.Location = new System.Drawing.Point(39, 27);
+            this.PanelExtractOverlay.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelExtractOverlay.Name = "PanelExtractOverlay";
+            this.PanelExtractOverlay.Size = new System.Drawing.Size(507, 427);
+            this.PanelExtractOverlay.TabIndex = 5;
+            this.PanelExtractOverlay.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelExtractOverlay_Paint);
+            // 
+            // LayoutExtractRight
+            // 
+            this.LayoutExtractRight.ColumnCount = 1;
+            this.LayoutExtractRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractAll, 0, 0);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractSelected, 0, 1);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractBack, 0, 2);
+            this.LayoutExtractRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutExtractRight.Name = "LayoutExtractRight";
+            this.LayoutExtractRight.RowCount = 3;
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.LayoutExtractRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.LayoutExtractRight.Size = new System.Drawing.Size(140, 421);
+            this.LayoutExtractRight.TabIndex = 6;
+            this.LayoutExtractRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutExtractRight_Paint);
+            // 
+            // ButtonExtractAll
+            // 
+            this.ButtonExtractAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractAll.Location = new System.Drawing.Point(0, 0);
+            this.ButtonExtractAll.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractAll.Name = "ButtonExtractAll";
+            this.ButtonExtractAll.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractAll.TabIndex = 0;
+            this.ButtonExtractAll.Text = "BUTTON_EXTRACT_ALL";
+            this.ButtonExtractAll.Click += new System.EventHandler(this.ButtonExtractAll_Click);
+            this.ButtonExtractAll.MouseEnter += new System.EventHandler(this.ButtonExtractAll_MouseEnter);
+            this.ButtonExtractAll.MouseLeave += new System.EventHandler(this.ButtonExtractAll_MouseLeave);
+            // 
+            // ButtonExtractSelected
+            // 
+            this.ButtonExtractSelected.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractSelected.Location = new System.Drawing.Point(0, 140);
+            this.ButtonExtractSelected.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractSelected.Name = "ButtonExtractSelected";
+            this.ButtonExtractSelected.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractSelected.TabIndex = 1;
+            this.ButtonExtractSelected.Text = "BUTTON_EXTRACT_SELECTED";
+            this.ButtonExtractSelected.Click += new System.EventHandler(this.ButtonExtractSelected_Click);
+            this.ButtonExtractSelected.MouseEnter += new System.EventHandler(this.ButtonExtractSelected_MouseEnter);
+            this.ButtonExtractSelected.MouseLeave += new System.EventHandler(this.ButtonExtractSelected_MouseLeave);
+            // 
+            // ButtonExtractBack
+            // 
+            this.ButtonExtractBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractBack.Location = new System.Drawing.Point(0, 280);
+            this.ButtonExtractBack.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractBack.Name = "ButtonExtractBack";
+            this.ButtonExtractBack.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractBack.TabIndex = 2;
+            this.ButtonExtractBack.Text = "BUTTON_EXTRACT_BACK";
+            this.ButtonExtractBack.Click += new System.EventHandler(this.ButtonExtractBack_Click);
+            this.ButtonExtractBack.MouseEnter += new System.EventHandler(this.ButtonExtractBack_MouseEnter);
+            this.ButtonExtractBack.MouseLeave += new System.EventHandler(this.ButtonExtractBack_MouseLeave);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1707,6 +1833,7 @@ namespace PortraitManager
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(734, 481);
+            this.Controls.Add(this.LayoutExtractPage);
             this.Controls.Add(this.LayoutKingCreatePortrait);
             this.Controls.Add(this.LayoutStartMenu);
             this.Controls.Add(this.LayoutMainPage);
@@ -1759,6 +1886,10 @@ namespace PortraitManager
             this.LayoutMainPage.ResumeLayout(false);
             this.tableLayoutPanel23.ResumeLayout(false);
             this.tableLayoutPanel23.PerformLayout();
+            this.PanelExtractOverlay.ResumeLayout(false);
+            this.FlowLayoutPanelExtract.ResumeLayout(false);
+            this.LayoutExtractPage.ResumeLayout(false);
+            this.LayoutExtractPage.PerformLayout();
             this.LayoutKingCreatePortrait.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
@@ -1886,6 +2017,14 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonKingSml2ZoomIn;
         private System.Windows.Forms.Button ButtonKingSml2ZoomOut;
         private System.Windows.Forms.Label LabelKingSml2Hint;
+
+        private System.Windows.Forms.TableLayoutPanel LayoutExtractPage;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelExtract;
+        private System.Windows.Forms.Panel PanelExtractOverlay;
+        private System.Windows.Forms.Button ButtonExtractAll;
+        private System.Windows.Forms.Button ButtonExtractSelected;
+        private System.Windows.Forms.Button ButtonExtractBack;
+        private System.Windows.Forms.TableLayoutPanel LayoutExtractRight;
     }
 }
 

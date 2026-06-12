@@ -124,12 +124,6 @@
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eng_flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\eng_flag.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="github_logo_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\github_logo_png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="nm_logo_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\nm_logo_png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -205,9 +199,6 @@
   <data name="rt_title" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\r\rt_title.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rus_flag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\rus_flag.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="tyr_folder_page" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\t\tyr_folder_page.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -282,5 +273,8 @@
   </data>
   <data name="wotr_icon_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\w\wotr_icon_ico.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="github_logo_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\github_logo_png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -281,4 +281,28 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="WEBDIALOG_BUTTON_CANCEL" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="EXTRACT_PAGE_TITLE" xml:space="preserve">
+    <value>Extract portraits</value>
+  </data>
+  <data name="BUTTON_SELECT_ARCHIVE" xml:space="preserve">
+    <value>Select archive</value>
+  </data>
+  <data name="BUTTON_EXTRACT_ALL" xml:space="preserve">
+    <value>Extract everything ▉ </value>
+  </data>
+  <data name="BUTTON_EXTRACT_SELECTED" xml:space="preserve">
+    <value>Extract selected ▞ </value>
+  </data>
+  <data name="BUTTON_EXTRACT_BACK" xml:space="preserve">
+    <value>&lt; Back</value>
+  </data>
+  <data name="MESG_EXTRACT_SUCCESS" xml:space="preserve">
+    <value>Extracted {0} portrait(s) successfully.</value>
+  </data>
+  <data name="MESG_EXTRACT_NOSELECTION" xml:space="preserve">
+    <value>No portraits selected.</value>
+  </data>
+  <data name="MESG_EXTRACT_DUPFOLDER" xml:space="preserve">
+    <value>Some folders already exist. Portraits were saved with unique names.</value>
+  </data>
 </root>

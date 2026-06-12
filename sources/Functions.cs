@@ -16,12 +16,15 @@
     License header for this project is listed in Program.cs.
 */
 
+using PortraitManager.forms;
 using PortraitManager.Properties;
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -145,7 +148,7 @@ namespace PortraitManager
             //RootFunctions.LayoutDisable(LayoutFilePage);
             RootFunctions.LayoutDisable(LayoutMainPage);
             //RootFunctions.LayoutDisable(LayoutScalePage);
-            //RootFunctions.LayoutDisable(LayoutExtractPage);
+            RootFunctions.LayoutDisable(LayoutExtractPage);
             //RootFunctions.LayoutDisable(LayoutGallery);
             //RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
@@ -945,6 +948,223 @@ namespace PortraitManager
             ParentLayoutsDisable();
             LabelSelectPathResetPath_Click(this, new EventArgs());
             RootFunctions.LayoutEnable(LayoutPathPage);
+        }
+
+        private Image LoadImageFromBytes(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            using (Image temp = Image.FromStream(ms))
+            {
+                return new Bitmap(temp);
+            }
+        }
+
+        private byte[] ReadEntryBytes(ZipArchiveEntry entry)
+        {
+            using (var stream = entry.Open())
+            using (MemoryStream ms = new MemoryStream())
+            {
+                stream.CopyTo(ms);
+                return ms.ToArray();
+            }
+        }
+
+        private bool IsImageFile(string name)
+        {
+            string ext = Path.GetExtension(name);
+            return ext.Equals(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                   ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                   ext.Equals(".png", StringComparison.OrdinalIgnoreCase) ||
+                   ext.Equals(".bmp", StringComparison.OrdinalIgnoreCase) ||
+                   ext.Equals(".gif", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static Size FitSize(Size original, int maxSize)
+        {
+            double ratio = Math.Min((double)maxSize / original.Width, (double)maxSize / original.Height);
+            if (ratio >= 1.0) return original;
+            return new Size((int)(original.Width * ratio), (int)(original.Height * ratio));
+        }
+
+        private void AddArchiveThumbnail(string folderKey, Image image)
+        {
+            Bitmap memImage = new Bitmap(image);
+
+            _archiveEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
+
+            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 140);
+            int cbWidth = Math.Max(thumbSize.Width + 20, 145);
+            int cbHeight = thumbSize.Height + 50;
+
+            Color gameBack, gameFore;
+            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
+
+            CheckBox cb = new CheckBox
+            {
+                Text = Path.GetFileName(folderKey),
+                Tag = folderKey,
+                Checked = false,
+                ForeColor = Color.White,
+                BackColor = gameBack,
+                FlatStyle = FlatStyle.Flat,
+                Size = new Size(cbWidth, cbHeight),
+                TextAlign = ContentAlignment.BottomCenter,
+                Padding = new Padding(8, 8, 8, 4),
+                ImageAlign = ContentAlignment.TopCenter
+            };
+
+            cb.Font = new Font(_fontCollection.Families[0], 13);
+
+            cb.FlatAppearance.BorderColor = gameFore;
+            cb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
+            cb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
+
+            cb.MouseEnter += (s, args) => { cb.ForeColor = gameFore; };
+            cb.MouseLeave += (s, args) => { cb.ForeColor = Color.White; };
+
+            Image thumb = new Bitmap(memImage, thumbSize);
+            cb.Image = thumb;
+            cb.Appearance = Appearance.Normal;
+            cb.CheckAlign = ContentAlignment.TopRight;
+
+            FlowLayoutPanelExtract.Controls.Add(cb);
+        }
+
+        private void LoadArchiveThumbnails(string archivePath)
+        {
+            _selectedArchivePath = archivePath;
+            _archiveEntries = new List<Tuple<string, Image>>();
+
+            FlowLayoutPanelExtract.Controls.Clear();
+            FlowLayoutPanelExtract.Visible = false;
+            PanelExtractOverlay.Visible = true;
+
+            try
+            {
+                string ext = Path.GetExtension(archivePath).ToLowerInvariant();
+
+                if (ext == ".zip")
+                {
+                    using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                    {
+                        var imageEntries = archive.Entries
+                            .Where(e => !e.FullName.EndsWith("/"))
+                            .GroupBy(e => Path.GetDirectoryName(e.FullName).Replace("\\", "/"))
+                            .ToList();
+
+                        foreach (var group in imageEntries)
+                        {
+                            var imgFiles = group.Where(e => IsImageFile(e.Name)).ToList();
+                            if (imgFiles.Count == 0) continue;
+
+                            var firstImg = imgFiles.First();
+                            try
+                            {
+                                byte[] data = ReadEntryBytes(firstImg);
+                                Image img = LoadImageFromBytes(data);
+                                AddArchiveThumbnail(group.Key, img);
+                                img.Dispose();
+                            }
+                            catch { }
+                        }
+                    }
+                }
+
+                if (_archiveEntries.Count > 0)
+                {
+                    PanelExtractOverlay.Visible = false;
+                    FlowLayoutPanelExtract.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                using (var msg = new MyMessageDialog("Failed to load archive: " + ex.Message))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+            }
+        }
+
+        private void ExtractPortraitsFromArchive(List<string> selectedKeys)
+        {
+            if (string.IsNullOrEmpty(_selectedArchivePath) || _archiveEntries == null)
+                return;
+
+            string portraitsDir = CoreSettings.Default.GamePath;
+            if (string.IsNullOrEmpty(portraitsDir) || portraitsDir == "0")
+            {
+                using (var msg = new MyMessageDialog("Game path not set. Please configure the game path first."))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return;
+            }
+
+            string extractDir = Path.Combine(portraitsDir, "Portraits");
+            Directory.CreateDirectory(extractDir);
+
+            string tempDir = Path.Combine(Path.GetTempPath(), "PortraitManager_Extract_" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(tempDir);
+
+            int count = 0;
+            string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
+
+            try
+            {
+                if (ext == ".zip")
+                {
+                    using (ZipArchive archive = ZipFile.OpenRead(_selectedArchivePath))
+                    {
+                        var folders = archive.Entries
+                            .Where(e => !e.FullName.EndsWith("/"))
+                            .GroupBy(e => Path.GetDirectoryName(e.FullName).Replace("\\", "/"))
+                            .ToList();
+
+                        foreach (var folder in folders)
+                        {
+                            string folderName = Path.GetFileName(folder.Key);
+                            if (selectedKeys != null && !selectedKeys.Contains(folder.Key))
+                                continue;
+
+                            string targetFolder = Path.Combine(extractDir, folderName);
+                            Directory.CreateDirectory(targetFolder);
+
+                            foreach (var entry in folder)
+                            {
+                                string fileName = Path.GetFileName(entry.Name);
+                                if (!string.IsNullOrEmpty(fileName))
+                                {
+                                    string destPath = Path.Combine(targetFolder, fileName);
+                                    entry.ExtractToFile(destPath, overwrite: true);
+                                }
+                            }
+                            count++;
+                        }
+                    }
+                }
+
+                string msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                using (var msg = new MyMessageDialog(msgText))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+            }
+            finally
+            {
+                try { Directory.Delete(tempDir, true); } catch { }
+            }
         }
     }
 }

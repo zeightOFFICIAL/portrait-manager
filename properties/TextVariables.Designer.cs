@@ -106,6 +106,33 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extract everything ▉ .
+        /// </summary>
+        internal static string BUTTON_EXTRACT_ALL {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACT_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; Back.
+        /// </summary>
+        internal static string BUTTON_EXTRACT_BACK {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACT_BACK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extract selected ▞ .
+        /// </summary>
+        internal static string BUTTON_EXTRACT_SELECTED {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACT_SELECTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ⍞ Fulllength.
         /// </summary>
         internal static string BUTTON_KINGCREATEPAGELRG {
@@ -151,6 +178,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select archive.
+        /// </summary>
+        internal static string BUTTON_SELECT_ARCHIVE {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_ARCHIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Local 📁.
         /// </summary>
         internal static string BUTTON_SELECT_LOCAL {
@@ -174,6 +210,15 @@ namespace PortraitManager.Properties {
         internal static string BUTTON_SETTINGS {
             get {
                 return ResourceManager.GetString("BUTTON_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extract portraits.
+        /// </summary>
+        internal static string EXTRACT_PAGE_TITLE {
+            get {
+                return ResourceManager.GetString("EXTRACT_PAGE_TITLE", resourceCulture);
             }
         }
         
@@ -312,6 +357,33 @@ namespace PortraitManager.Properties {
         internal static string MAIN_MENU_TITLE {
             get {
                 return ResourceManager.GetString("MAIN_MENU_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some folders already exist. Portraits were saved with unique names..
+        /// </summary>
+        internal static string MESG_EXTRACT_DUPFOLDER {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_DUPFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No portraits selected..
+        /// </summary>
+        internal static string MESG_EXTRACT_NOSELECTION {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_NOSELECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait(s) successfully..
+        /// </summary>
+        internal static string MESG_EXTRACT_SUCCESS {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_SUCCESS", resourceCulture);
             }
         }
         

@@ -73,16 +73,6 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap eng_flag {
-            get {
-                object obj = ResourceManager.GetObject("eng_flag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap github_logo_png {
             get {
                 object obj = ResourceManager.GetObject("github_logo_png", resourceCulture);
@@ -386,16 +376,6 @@ namespace PortraitManager.Properties {
         internal static System.Drawing.Bitmap rt_title {
             get {
                 object obj = ResourceManager.GetObject("rt_title", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap rus_flag {
-            get {
-                object obj = ResourceManager.GetObject("rus_flag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -2725,13 +2725,31 @@ namespace PortraitManager
 
         private void PanelExtractOverlay_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+        }
+
+        private void PanelExtractOverlay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
             {
-                ofd.Title = "Select portrait archive";
-                ofd.Filter = "ZIP archives (*.zip)|*.zip|All files (*.*)|*.*";
-                if (ofd.ShowDialog() == DialogResult.OK)
+                using (FolderBrowserDialog fbd = new FolderBrowserDialog())
                 {
-                    LoadArchiveThumbnails(ofd.FileName);
+                    fbd.Description = "Select portrait pack folder";
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadArchiveThumbnails(fbd.SelectedPath);
+                    }
+                }
+            }
+            else
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog())
+                {
+                    ofd.Title = "Select portrait archive";
+                    ofd.Filter = "Archive files (*.zip;*.7z;*.rar)|*.zip;*.7z;*.rar|All files (*.*)|*.*";
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadArchiveThumbnails(ofd.FileName);
+                    }
                 }
             }
         }
@@ -2739,7 +2757,8 @@ namespace PortraitManager
         private void ButtonExtractAll_Click(object sender, EventArgs e)
         {
             if (_archiveEntries == null || _archiveEntries.Count == 0) return;
-            ExtractPortraitsFromArchive(null);
+            if (ExtractPortraitsFromArchive(null))
+                NavigateToMainPage();
         }
 
         private void ButtonExtractSelected_Click(object sender, EventArgs e)
@@ -2760,7 +2779,8 @@ namespace PortraitManager
                 return;
             }
 
-            ExtractPortraitsFromArchive(selected);
+            if (ExtractPortraitsFromArchive(selected))
+                NavigateToMainPage();
         }
     }
 }

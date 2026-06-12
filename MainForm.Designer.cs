@@ -140,6 +140,7 @@ namespace PortraitManager
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.FlowLayoutPanelExtract = new System.Windows.Forms.FlowLayoutPanel();
             this.PanelExtractOverlay = new System.Windows.Forms.Panel();
+            this.PanelExtractContainer = new System.Windows.Forms.Panel();
 
             this.ButtonExtractAll = new System.Windows.Forms.Button();
             this.ButtonExtractSelected = new System.Windows.Forms.Button();
@@ -170,6 +171,7 @@ namespace PortraitManager
             this.LayoutMainPage.SuspendLayout();
             this.tableLayoutPanel23.SuspendLayout();
             this.LayoutExtractPage.SuspendLayout();
+            this.PanelExtractContainer.SuspendLayout();
             this.FlowLayoutPanelExtract.SuspendLayout();
             this.PanelExtractOverlay.SuspendLayout();
             this.LayoutKingCreatePortrait.SuspendLayout();
@@ -1718,11 +1720,10 @@ namespace PortraitManager
             this.LayoutExtractPage.BackColor = System.Drawing.Color.Black;
             this.LayoutExtractPage.ColumnCount = 4;
             this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
             this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.LayoutExtractPage.Controls.Add(this.FlowLayoutPanelExtract, 1, 1);
-            this.LayoutExtractPage.Controls.Add(this.PanelExtractOverlay, 1, 1);
+            this.LayoutExtractPage.Controls.Add(this.PanelExtractContainer, 1, 1);
             this.LayoutExtractPage.Controls.Add(this.LayoutExtractRight, 2, 1);
             this.LayoutExtractPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutExtractPage.Location = new System.Drawing.Point(0, 0);
@@ -1736,30 +1737,44 @@ namespace PortraitManager
             this.LayoutExtractPage.Visible = false;
             this.LayoutExtractPage.Enabled = false;
             // 
+            // PanelExtractContainer
+            // 
+            this.PanelExtractContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.PanelExtractContainer.Controls.Add(this.FlowLayoutPanelExtract);
+            this.PanelExtractContainer.Controls.Add(this.PanelExtractOverlay);
+            this.PanelExtractContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelExtractContainer.Location = new System.Drawing.Point(39, 27);
+            this.PanelExtractContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelExtractContainer.Name = "PanelExtractContainer";
+            this.PanelExtractContainer.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelExtractContainer.Size = new System.Drawing.Size(499, 427);
+            this.PanelExtractContainer.TabIndex = 2;
+            this.PanelExtractContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelExtractContainer_Paint);
+            // 
             // FlowLayoutPanelExtract
             // 
             this.FlowLayoutPanelExtract.AutoScroll = true;
-            this.FlowLayoutPanelExtract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.FlowLayoutPanelExtract.BackColor = System.Drawing.Color.Transparent;
             this.FlowLayoutPanelExtract.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FlowLayoutPanelExtract.Location = new System.Drawing.Point(39, 27);
+            this.FlowLayoutPanelExtract.Location = new System.Drawing.Point(0, 0);
             this.FlowLayoutPanelExtract.Margin = new System.Windows.Forms.Padding(0);
             this.FlowLayoutPanelExtract.Name = "FlowLayoutPanelExtract";
-            this.FlowLayoutPanelExtract.Size = new System.Drawing.Size(507, 427);
-            this.FlowLayoutPanelExtract.TabIndex = 2;
-            this.FlowLayoutPanelExtract.Paint += new System.Windows.Forms.PaintEventHandler(this.FlowLayoutPanelExtract_Paint);
+            this.FlowLayoutPanelExtract.Size = new System.Drawing.Size(479, 407);
+            this.FlowLayoutPanelExtract.TabIndex = 3;
             // 
             // PanelExtractOverlay
             // 
-            this.PanelExtractOverlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.PanelExtractOverlay.BackColor = System.Drawing.Color.Transparent;
             this.PanelExtractOverlay.Click += new System.EventHandler(this.PanelExtractOverlay_Click);
+            this.PanelExtractOverlay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PanelExtractOverlay_MouseClick);
             this.PanelExtractOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PanelExtractOverlay.MouseEnter += new System.EventHandler(this.PanelExtractOverlay_MouseEnter);
             this.PanelExtractOverlay.MouseLeave += new System.EventHandler(this.PanelExtractOverlay_MouseLeave);
             this.PanelExtractOverlay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelExtractOverlay.Location = new System.Drawing.Point(39, 27);
+            this.PanelExtractOverlay.Location = new System.Drawing.Point(0, 0);
             this.PanelExtractOverlay.Margin = new System.Windows.Forms.Padding(0);
             this.PanelExtractOverlay.Name = "PanelExtractOverlay";
-            this.PanelExtractOverlay.Size = new System.Drawing.Size(507, 427);
+            this.PanelExtractOverlay.Size = new System.Drawing.Size(499, 427);
             this.PanelExtractOverlay.TabIndex = 5;
             this.PanelExtractOverlay.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelExtractOverlay_Paint);
             // 
@@ -1888,6 +1903,7 @@ namespace PortraitManager
             this.tableLayoutPanel23.PerformLayout();
             this.PanelExtractOverlay.ResumeLayout(false);
             this.FlowLayoutPanelExtract.ResumeLayout(false);
+            this.PanelExtractContainer.ResumeLayout(false);
             this.LayoutExtractPage.ResumeLayout(false);
             this.LayoutExtractPage.PerformLayout();
             this.LayoutKingCreatePortrait.ResumeLayout(false);
@@ -2021,6 +2037,7 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel LayoutExtractPage;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelExtract;
         private System.Windows.Forms.Panel PanelExtractOverlay;
+        private System.Windows.Forms.Panel PanelExtractContainer;
         private System.Windows.Forms.Button ButtonExtractAll;
         private System.Windows.Forms.Button ButtonExtractSelected;
         private System.Windows.Forms.Button ButtonExtractBack;

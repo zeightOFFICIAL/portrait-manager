@@ -166,6 +166,7 @@ namespace PortraitManager
         private string _selectedArchivePath;
         private List<Tuple<string, Image>> _archiveEntries;
         private bool _overlayHovered;
+        private string _shellTempDir;
 
         private void FontInit()
         {
@@ -548,7 +549,7 @@ namespace PortraitManager
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
-            FlowLayoutPanelExtract.BackColor = gameBack;
+            PanelExtractContainer.BackColor = gameBack;
             PanelExtractOverlay.BackColor = gameBack;
             LayoutExtractRight.BackColor = gameBack;
             LayoutExtractRight.ForeColor = gameFore;
@@ -566,8 +567,16 @@ namespace PortraitManager
                 btn.TabStop = false;
             }
 
+            ButtonExtractAll.Visible = false;
+            ButtonExtractSelected.Visible = false;
+            ButtonExtractBack.Visible = true;
+            LayoutExtractRight.RowStyles[0].Height = 0;
+            LayoutExtractRight.RowStyles[1].Height = 0;
+            LayoutExtractRight.RowStyles[2].Height = 100;
+
             _selectedArchivePath = null;
             _archiveEntries = null;
+            CleanupShellTempDir();
             FlowLayoutPanelExtract.Controls.Clear();
             FlowLayoutPanelExtract.Visible = false;
             PanelExtractOverlay.Visible = true;
@@ -1031,11 +1040,11 @@ namespace PortraitManager
 
         }
 
-        private void FlowLayoutPanelExtract_Paint(object sender, PaintEventArgs e)
+        private void PanelExtractContainer_Paint(object sender, PaintEventArgs e)
         {
             Color foreColor;
             try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
-            ControlPaint.DrawBorder(e.Graphics, ((FlowLayoutPanel)sender).ClientRectangle,
+            ControlPaint.DrawBorder(e.Graphics, ((Panel)sender).ClientRectangle,
                 foreColor, ButtonBorderStyle.Solid);
         }
 
@@ -1047,8 +1056,6 @@ namespace PortraitManager
             Color gameFore, gameBack;
             try { gameFore = GameTypes[_gameSelected].ForeColor; gameBack = GameTypes[_gameSelected].BackColor; }
             catch { gameFore = Color.White; gameBack = Color.FromArgb(12, 12, 12); }
-
-            ControlPaint.DrawBorder(e.Graphics, rect, gameFore, ButtonBorderStyle.Solid);
 
             string title = TextVariables.BUTTON_SELECT_ARCHIVE;
             string folderIcon = "\U0001F4C1";
@@ -1376,6 +1383,18 @@ namespace PortraitManager
             catch { }
         }
 
+        private void NavigateToMainPage()
+        {
+            try
+            {
+                _activeMenuIndex = GetMainMenuIndexForCurrentGame();
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutMainPage);
+                Focus();
+            }
+            catch { }
+        }
+
         private void ButtonKingBackToPathfinder_Click(object sender, EventArgs e)
         {
             // Explicit button to return user to the selected game's main page
@@ -1486,6 +1505,9 @@ namespace PortraitManager
 
         [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
         private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern int ShowScrollBar(IntPtr hWnd, int wBar, bool bShow);
 
         private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
         private const int DWMWA_BORDER_COLOR = 34;

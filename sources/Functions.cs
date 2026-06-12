@@ -1040,6 +1040,8 @@ namespace PortraitManager
             FlowLayoutPanelExtract.Visible = false;
             PanelExtractOverlay.Visible = true;
 
+            CleanupShellTempDir();
+
             try
             {
                 string ext = Path.GetExtension(archivePath).ToLowerInvariant();
@@ -1070,11 +1072,31 @@ namespace PortraitManager
                         }
                     }
                 }
+                else if (ext == ".7z" || ext == ".rar")
+                {
+                    _shellTempDir = Path.Combine(Path.GetTempPath(), "PortraitManager_Extract_" + Guid.NewGuid().ToString("N"));
+                    Directory.CreateDirectory(_shellTempDir);
+                    ExtractArchiveViaShell(archivePath, _shellTempDir);
+                    LoadFolderThumbnails(_shellTempDir);
+                }
+                else
+                {
+                    LoadFolderThumbnails(archivePath);
+                }
 
                 if (_archiveEntries.Count > 0)
                 {
                     PanelExtractOverlay.Visible = false;
                     FlowLayoutPanelExtract.Visible = true;
+                    ButtonExtractAll.Visible = true;
+                    ButtonExtractSelected.Visible = true;
+                    LayoutExtractRight.RowStyles[0].Height = 33.33F;
+                    LayoutExtractRight.RowStyles[1].Height = 33.33F;
+                    LayoutExtractRight.RowStyles[2].Height = 33.34F;
+                    BeginInvoke(new Action(() =>
+                    {
+                        ShowScrollBar(FlowLayoutPanelExtract.Handle, 3, false);
+                    }));
                 }
             }
             catch (Exception ex)
@@ -1087,10 +1109,47 @@ namespace PortraitManager
             }
         }
 
-        private void ExtractPortraitsFromArchive(List<string> selectedKeys)
+        private void ExtractArchiveViaShell(string archivePath, string destDir)
+        {
+            Type shellAppType = Type.GetTypeFromProgID("Shell.Application");
+            dynamic shell = Activator.CreateInstance(shellAppType);
+            dynamic src = shell.NameSpace(archivePath);
+            dynamic dest = shell.NameSpace(destDir);
+            dest.CopyHere(src.Items(), 20);
+        }
+
+        private void LoadFolderThumbnails(string folderPath)
+        {
+            foreach (var subDir in Directory.GetDirectories(folderPath))
+            {
+                var imgFiles = Directory.GetFiles(subDir)
+                    .Where(f => IsImageFile(f))
+                    .ToList();
+                if (imgFiles.Count == 0) continue;
+
+                try
+                {
+                    Image img = Image.FromFile(imgFiles[0]);
+                    AddArchiveThumbnail(subDir, img);
+                    img.Dispose();
+                }
+                catch { }
+            }
+        }
+
+        private void CleanupShellTempDir()
+        {
+            if (!string.IsNullOrEmpty(_shellTempDir))
+            {
+                try { Directory.Delete(_shellTempDir, true); } catch { }
+                _shellTempDir = null;
+            }
+        }
+
+        private bool ExtractPortraitsFromArchive(List<string> selectedKeys)
         {
             if (string.IsNullOrEmpty(_selectedArchivePath) || _archiveEntries == null)
-                return;
+                return false;
 
             string portraitsDir = CoreSettings.Default.GamePath;
             if (string.IsNullOrEmpty(portraitsDir) || portraitsDir == "0")
@@ -1100,14 +1159,11 @@ namespace PortraitManager
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog();
                 }
-                return;
+                return false;
             }
 
             string extractDir = Path.Combine(portraitsDir, "Portraits");
             Directory.CreateDirectory(extractDir);
-
-            string tempDir = Path.Combine(Path.GetTempPath(), "PortraitManager_Extract_" + Guid.NewGuid().ToString("N"));
-            Directory.CreateDirectory(tempDir);
 
             int count = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
@@ -1145,6 +1201,54 @@ namespace PortraitManager
                         }
                     }
                 }
+                else if (ext == ".7z" || ext == ".rar")
+                {
+                    if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
+                    {
+                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        {
+                            msg.StartPosition = FormStartPosition.CenterParent;
+                            msg.ShowDialog();
+                        }
+                        return false;
+                    }
+
+                    foreach (var folder in Directory.GetDirectories(_shellTempDir))
+                    {
+                        string folderName = Path.GetFileName(folder);
+                        if (selectedKeys != null && !selectedKeys.Contains(folder))
+                            continue;
+
+                        string targetFolder = Path.Combine(extractDir, folderName);
+                        Directory.CreateDirectory(targetFolder);
+
+                        foreach (var file in Directory.GetFiles(folder))
+                        {
+                            string destPath = Path.Combine(targetFolder, Path.GetFileName(file));
+                            File.Copy(file, destPath, overwrite: true);
+                        }
+                        count++;
+                    }
+                }
+                else
+                {
+                    foreach (var folder in Directory.GetDirectories(_selectedArchivePath))
+                    {
+                        string folderName = Path.GetFileName(folder);
+                        if (selectedKeys != null && !selectedKeys.Contains(folder))
+                            continue;
+
+                        string targetFolder = Path.Combine(extractDir, folderName);
+                        Directory.CreateDirectory(targetFolder);
+
+                        foreach (var file in Directory.GetFiles(folder).Where(f => IsImageFile(f)))
+                        {
+                            string destPath = Path.Combine(targetFolder, Path.GetFileName(file));
+                            File.Copy(file, destPath, overwrite: true);
+                        }
+                        count++;
+                    }
+                }
 
                 string msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
                 using (var msg = new MyMessageDialog(msgText))
@@ -1152,6 +1256,7 @@ namespace PortraitManager
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog();
                 }
+                return count > 0;
             }
             catch (Exception ex)
             {
@@ -1160,10 +1265,7 @@ namespace PortraitManager
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog();
                 }
-            }
-            finally
-            {
-                try { Directory.Delete(tempDir, true); } catch { }
+                return false;
             }
         }
     }

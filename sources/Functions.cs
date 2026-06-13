@@ -1033,7 +1033,7 @@ namespace PortraitManager
 
         private bool IsValidPortraitSize(Size imageSize)
         {
-            if (_gameSelected != 'k' && _gameSelected != 'w' && _gameSelected != 'r')
+            if (_gameSelected != 'k' && _gameSelected != 'w' && _gameSelected != 'r' && _gameSelected != 't' && _gameSelected != 'l' && _gameSelected != 'p' && _gameSelected != 'd')
                 return true;
 
             try
@@ -1090,7 +1090,63 @@ namespace PortraitManager
                                         : baseName;
                                     byte[] data = ReadEntryBytes(entry);
                                     Image img = LoadImageFromBytes(data);
-                                    AddArchiveThumbnail(key, img);
+                                    if (IsValidPortraitSize(img.Size))
+                                    {
+                                        AddArchiveThumbnail(key, img);
+                                    }
+                                    img.Dispose();
+                                }
+                                catch { }
+                            }
+                        }
+                    }
+                    else if (_gameSelected == 'l')
+                    {
+                        using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                        {
+                            var imgEntries = archive.Entries
+                                .Where(e => !e.FullName.EndsWith("/") && IsImageFile(e.Name))
+                                .ToList();
+
+                            foreach (var entry in imgEntries)
+                            {
+                                try
+                                {
+                                    string key = Path.GetFileNameWithoutExtension(entry.Name);
+                                    byte[] data = ReadEntryBytes(entry);
+                                    Image img = LoadImageFromBytes(data);
+                                    if (IsValidPortraitSize(img.Size))
+                                    {
+                                        AddArchiveThumbnail(key, img);
+                                    }
+                                    img.Dispose();
+                                }
+                                catch { }
+                            }
+                        }
+                    }
+                    else if (_gameSelected == 'p' || _gameSelected == 'd')
+                    {
+                        using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                        {
+                            var lgEntries = archive.Entries
+                                .Where(e => e.Name.EndsWith("_lg.png", StringComparison.OrdinalIgnoreCase))
+                                .ToList();
+
+                            foreach (var entry in lgEntries)
+                            {
+                                try
+                                {
+                                    string baseName = Path.GetFileNameWithoutExtension(entry.Name);
+                                    string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                                        ? baseName.Substring(0, baseName.Length - 3)
+                                        : baseName;
+                                    byte[] data = ReadEntryBytes(entry);
+                                    Image img = LoadImageFromBytes(data);
+                                    if (IsValidPortraitSize(img.Size))
+                                    {
+                                        AddArchiveThumbnail(key, img);
+                                    }
                                     img.Dispose();
                                 }
                                 catch { }
@@ -1188,7 +1244,53 @@ namespace PortraitManager
                             ? baseName.Substring(0, baseName.Length - 3)
                             : baseName;
                         Image img = Image.FromFile(file);
-                        AddArchiveThumbnail(key, img);
+                        if (IsValidPortraitSize(img.Size))
+                        {
+                            AddArchiveThumbnail(key, img);
+                        }
+                        img.Dispose();
+                    }
+                    catch { }
+                }
+
+                foreach (var subDir in Directory.GetDirectories(folderPath))
+                    LoadFolderThumbnails(subDir, depth + 1);
+            }
+            else if (_gameSelected == 'l')
+            {
+                foreach (var file in Directory.GetFiles(folderPath).Where(f => IsImageFile(f)))
+                {
+                    try
+                    {
+                        string key = Path.GetFileNameWithoutExtension(file);
+                        Image img = Image.FromFile(file);
+                        if (IsValidPortraitSize(img.Size))
+                        {
+                            AddArchiveThumbnail(key, img);
+                        }
+                        img.Dispose();
+                    }
+                    catch { }
+                }
+
+                foreach (var subDir in Directory.GetDirectories(folderPath))
+                    LoadFolderThumbnails(subDir, depth + 1);
+            }
+            else if (_gameSelected == 'p' || _gameSelected == 'd')
+            {
+                foreach (var file in Directory.GetFiles(folderPath, "*_lg.png"))
+                {
+                    try
+                    {
+                        string baseName = Path.GetFileNameWithoutExtension(file);
+                        string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                            ? baseName.Substring(0, baseName.Length - 3)
+                            : baseName;
+                        Image img = Image.FromFile(file);
+                        if (IsValidPortraitSize(img.Size))
+                        {
+                            AddArchiveThumbnail(key, img);
+                        }
                         img.Dispose();
                     }
                     catch { }
@@ -1253,6 +1355,7 @@ namespace PortraitManager
             Directory.CreateDirectory(femaleDir);
 
             int count = 0;
+            int conflictCount = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
 
             try
@@ -1276,17 +1379,22 @@ namespace PortraitManager
                             if (keys != null && !keys.Contains(key))
                                 continue;
 
-                            string smName = key + "_sm.png";
-                            var smEntry = entries.FirstOrDefault(e =>
-                                e.Name.Equals(smName, StringComparison.OrdinalIgnoreCase));
+                            string suffix = File.Exists(Path.Combine(maleDir, lgEntry.Name))
+                                ? DateTime.Now.ToString("_ssddMM") : "";
+                            if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+                            string lgName = key + suffix + "_lg.png";
+                            string smName = key + suffix + "_sm.png";
 
-                            lgEntry.ExtractToFile(Path.Combine(maleDir, lgEntry.Name), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, lgEntry.Name), Path.Combine(femaleDir, lgEntry.Name), overwrite: true);
+                            var smEntry = entries.FirstOrDefault(e =>
+                                e.Name.Equals(key + "_sm.png", StringComparison.OrdinalIgnoreCase));
+
+                            lgEntry.ExtractToFile(Path.Combine(maleDir, lgName), overwrite: true);
+                            File.Copy(Path.Combine(maleDir, lgName), Path.Combine(femaleDir, lgName), overwrite: true);
 
                             if (smEntry != null)
                             {
-                                smEntry.ExtractToFile(Path.Combine(maleDir, smEntry.Name), overwrite: true);
-                                File.Copy(Path.Combine(maleDir, smEntry.Name), Path.Combine(femaleDir, smEntry.Name), overwrite: true);
+                                smEntry.ExtractToFile(Path.Combine(maleDir, smName), overwrite: true);
+                                File.Copy(Path.Combine(maleDir, smName), Path.Combine(femaleDir, smName), overwrite: true);
                             }
                             count++;
                         }
@@ -1315,16 +1423,22 @@ namespace PortraitManager
                         if (keys != null && !keys.Contains(key))
                             continue;
 
+                        string suffix = File.Exists(Path.Combine(maleDir, key + "_lg.png"))
+                            ? DateTime.Now.ToString("_ssddMM") : "";
+                        if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+                        string lgName = key + suffix + "_lg.png";
+                        string smName = key + suffix + "_sm.png";
+
                         string dir = Path.GetDirectoryName(lgFile);
                         string smFile = Path.Combine(dir, key + "_sm.png");
 
-                        File.Copy(lgFile, Path.Combine(maleDir, Path.GetFileName(lgFile)), overwrite: true);
-                        File.Copy(Path.Combine(maleDir, Path.GetFileName(lgFile)), Path.Combine(femaleDir, Path.GetFileName(lgFile)), overwrite: true);
+                        File.Copy(lgFile, Path.Combine(maleDir, lgName), overwrite: true);
+                        File.Copy(Path.Combine(maleDir, lgName), Path.Combine(femaleDir, lgName), overwrite: true);
 
                         if (File.Exists(smFile))
                         {
-                            File.Copy(smFile, Path.Combine(maleDir, key + "_sm.png"), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, key + "_sm.png"), Path.Combine(femaleDir, key + "_sm.png"), overwrite: true);
+                            File.Copy(smFile, Path.Combine(maleDir, smName), overwrite: true);
+                            File.Copy(Path.Combine(maleDir, smName), Path.Combine(femaleDir, smName), overwrite: true);
                         }
                         count++;
                     }
@@ -1342,22 +1456,287 @@ namespace PortraitManager
                         if (keys != null && !keys.Contains(key))
                             continue;
 
+                        string suffix = File.Exists(Path.Combine(maleDir, key + "_lg.png"))
+                            ? DateTime.Now.ToString("_ssddMM") : "";
+                        if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+                        string lgName = key + suffix + "_lg.png";
+                        string smName = key + suffix + "_sm.png";
+
                         string dir = Path.GetDirectoryName(lgFile);
                         string smFile = Path.Combine(dir, key + "_sm.png");
 
-                        File.Copy(lgFile, Path.Combine(maleDir, Path.GetFileName(lgFile)), overwrite: true);
-                        File.Copy(Path.Combine(maleDir, Path.GetFileName(lgFile)), Path.Combine(femaleDir, Path.GetFileName(lgFile)), overwrite: true);
+                        File.Copy(lgFile, Path.Combine(maleDir, lgName), overwrite: true);
+                        File.Copy(Path.Combine(maleDir, lgName), Path.Combine(femaleDir, lgName), overwrite: true);
 
                         if (File.Exists(smFile))
                         {
-                            File.Copy(smFile, Path.Combine(maleDir, key + "_sm.png"), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, key + "_sm.png"), Path.Combine(femaleDir, key + "_sm.png"), overwrite: true);
+                            File.Copy(smFile, Path.Combine(maleDir, smName), overwrite: true);
+                            File.Copy(Path.Combine(maleDir, smName), Path.Combine(femaleDir, smName), overwrite: true);
                         }
                         count++;
                     }
                 }
 
-                string msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                string msgText = conflictCount > 0
+                    ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
+                    : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                using (var msg = new MyMessageDialog(msgText))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return false;
+            }
+        }
+
+        private bool ExtractWastelandPortraits(List<string> selectedKeys, string gamePath)
+        {
+            string outDir = Path.Combine(gamePath, "Custom Portraits");
+            Directory.CreateDirectory(outDir);
+
+            int count = 0;
+            int conflictCount = 0;
+            string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
+
+            try
+            {
+                HashSet<string> keys = selectedKeys == null ? null : new HashSet<string>(selectedKeys);
+
+                if (ext == ".zip")
+                {
+                    using (ZipArchive archive = ZipFile.OpenRead(_selectedArchivePath))
+                    {
+                        var imgEntries = archive.Entries
+                            .Where(e => !e.FullName.EndsWith("/") && IsImageFile(e.Name))
+                            .ToList();
+
+                        foreach (var entry in imgEntries)
+                        {
+                            string key = Path.GetFileNameWithoutExtension(entry.Name);
+
+                            if (keys != null && !keys.Contains(key))
+                                continue;
+
+                            string fileExt = Path.GetExtension(entry.Name);
+                            string destFile = Path.Combine(outDir, entry.Name);
+                            string suffix = File.Exists(destFile)
+                                ? DateTime.Now.ToString("_ssddMM") : "";
+                            if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+
+                            string finalName = key + suffix + fileExt;
+                            entry.ExtractToFile(Path.Combine(outDir, finalName), overwrite: true);
+                            count++;
+                        }
+                    }
+                }
+                else if (ext == ".7z" || ext == ".rar")
+                {
+                    if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
+                    {
+                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        {
+                            msg.StartPosition = FormStartPosition.CenterParent;
+                            msg.ShowDialog();
+                        }
+                        return false;
+                    }
+
+                    var imgFiles = Directory.GetFiles(_shellTempDir, "*", SearchOption.AllDirectories).Where(f => IsImageFile(f)).ToList();
+                    foreach (var file in imgFiles)
+                    {
+                        string key = Path.GetFileNameWithoutExtension(file);
+
+                        if (keys != null && !keys.Contains(key))
+                            continue;
+
+                        string fileExt = Path.GetExtension(file);
+                        string destFile = Path.Combine(outDir, key + fileExt);
+                        string suffix = File.Exists(destFile)
+                            ? DateTime.Now.ToString("_ssddMM") : "";
+                        if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+
+                        string finalName = key + suffix + fileExt;
+                        File.Copy(file, Path.Combine(outDir, finalName), overwrite: true);
+                        count++;
+                    }
+                }
+                else
+                {
+                    var imgFiles = Directory.GetFiles(_selectedArchivePath, "*", SearchOption.AllDirectories).Where(f => IsImageFile(f)).ToList();
+                    foreach (var file in imgFiles)
+                    {
+                        string key = Path.GetFileNameWithoutExtension(file);
+
+                        if (keys != null && !keys.Contains(key))
+                            continue;
+
+                        string fileExt = Path.GetExtension(file);
+                        string destFile = Path.Combine(outDir, key + fileExt);
+                        string suffix = File.Exists(destFile)
+                            ? DateTime.Now.ToString("_ssddMM") : "";
+                        if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+
+                        string finalName = key + suffix + fileExt;
+                        File.Copy(file, Path.Combine(outDir, finalName), overwrite: true);
+                        count++;
+                    }
+                }
+
+                string msgText = conflictCount > 0
+                    ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
+                    : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                using (var msg = new MyMessageDialog(msgText))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return false;
+            }
+        }
+
+        private bool ExtractObsidianPortraits(List<string> selectedKeys, string gamePath, string dataSubPath, string[] sizeSuffixes)
+        {
+            string maleDir = Path.Combine(gamePath, dataSubPath, "male");
+            string femaleDir = Path.Combine(gamePath, dataSubPath, "female");
+            Directory.CreateDirectory(maleDir);
+            Directory.CreateDirectory(femaleDir);
+
+            int count = 0;
+            int conflictCount = 0;
+            string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
+
+            try
+            {
+                HashSet<string> keys = selectedKeys == null ? null : new HashSet<string>(selectedKeys);
+
+                if (ext == ".zip")
+                {
+                    using (ZipArchive archive = ZipFile.OpenRead(_selectedArchivePath))
+                    {
+                        var lgEntries = archive.Entries
+                            .Where(e => e.Name.EndsWith("_lg.png", StringComparison.OrdinalIgnoreCase)).ToList();
+
+                        foreach (var lgEntry in lgEntries)
+                        {
+                            string baseName = Path.GetFileNameWithoutExtension(lgEntry.Name);
+                            string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                                ? baseName.Substring(0, baseName.Length - 3)
+                                : baseName;
+
+                            if (keys != null && !keys.Contains(key))
+                                continue;
+
+                            string suffix = File.Exists(Path.Combine(maleDir, key + "_lg.png"))
+                                ? DateTime.Now.ToString("_ssddMM") : "";
+                            if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+
+                            foreach (var sz in sizeSuffixes)
+                            {
+                                var entry = archive.Entries.FirstOrDefault(e =>
+                                    e.Name.Equals(key + "_" + sz + ".png", StringComparison.OrdinalIgnoreCase) &&
+                                    !e.FullName.EndsWith("/"));
+                                if (entry == null) continue;
+
+                                string finalName = key + suffix + "_" + sz + ".png";
+                                entry.ExtractToFile(Path.Combine(maleDir, finalName), overwrite: true);
+                                File.Copy(Path.Combine(maleDir, finalName), Path.Combine(femaleDir, finalName), overwrite: true);
+                            }
+                            count++;
+                        }
+                    }
+                }
+                else if (ext == ".7z" || ext == ".rar")
+                {
+                    if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
+                    {
+                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        {
+                            msg.StartPosition = FormStartPosition.CenterParent;
+                            msg.ShowDialog();
+                        }
+                        return false;
+                    }
+
+                    var lgFiles = Directory.GetFiles(_shellTempDir, "*_lg.png", SearchOption.AllDirectories);
+                    foreach (var lgFile in lgFiles)
+                    {
+                        string baseName = Path.GetFileNameWithoutExtension(lgFile);
+                        string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                            ? baseName.Substring(0, baseName.Length - 3)
+                            : baseName;
+
+                        if (keys != null && !keys.Contains(key))
+                            continue;
+
+                        string suffix = File.Exists(Path.Combine(maleDir, key + "_lg.png"))
+                            ? DateTime.Now.ToString("_ssddMM") : "";
+                        if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+
+                        string dir = Path.GetDirectoryName(lgFile);
+                        foreach (var sz in sizeSuffixes)
+                        {
+                            string srcFile = Path.Combine(dir, key + "_" + sz + ".png");
+                            if (!File.Exists(srcFile)) continue;
+
+                            string finalName = key + suffix + "_" + sz + ".png";
+                            File.Copy(srcFile, Path.Combine(maleDir, finalName), overwrite: true);
+                            File.Copy(Path.Combine(maleDir, finalName), Path.Combine(femaleDir, finalName), overwrite: true);
+                        }
+                        count++;
+                    }
+                }
+                else
+                {
+                    var lgFiles = Directory.GetFiles(_selectedArchivePath, "*_lg.png", SearchOption.AllDirectories);
+                    foreach (var lgFile in lgFiles)
+                    {
+                        string baseName = Path.GetFileNameWithoutExtension(lgFile);
+                        string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                            ? baseName.Substring(0, baseName.Length - 3)
+                            : baseName;
+
+                        if (keys != null && !keys.Contains(key))
+                            continue;
+
+                        string suffix = File.Exists(Path.Combine(maleDir, key + "_lg.png"))
+                            ? DateTime.Now.ToString("_ssddMM") : "";
+                        if (!string.IsNullOrEmpty(suffix)) conflictCount++;
+
+                        string dir = Path.GetDirectoryName(lgFile);
+                        foreach (var sz in sizeSuffixes)
+                        {
+                            string srcFile = Path.Combine(dir, key + "_" + sz + ".png");
+                            if (!File.Exists(srcFile)) continue;
+
+                            string finalName = key + suffix + "_" + sz + ".png";
+                            File.Copy(srcFile, Path.Combine(maleDir, finalName), overwrite: true);
+                            File.Copy(Path.Combine(maleDir, finalName), Path.Combine(femaleDir, finalName), overwrite: true);
+                        }
+                        count++;
+                    }
+                }
+
+                string msgText = conflictCount > 0
+                    ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
+                    : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
@@ -1397,6 +1776,17 @@ namespace PortraitManager
 
             if (_gameSelected == 't')
                 return ExtractTyrannyPortraits(selectedKeys, portraitsDir);
+
+            if (_gameSelected == 'l')
+                return ExtractWastelandPortraits(selectedKeys, portraitsDir);
+
+            if (_gameSelected == 'p')
+                return ExtractObsidianPortraits(selectedKeys, portraitsDir,
+                    @"PillarsOfEternity_Data\data\art\gui\portraits\player", new[] { "lg", "sm" });
+
+            if (_gameSelected == 'd')
+                return ExtractObsidianPortraits(selectedKeys, portraitsDir,
+                    @"PillarsOfEternityII_Data\gui\portraits\player", new[] { "lg", "sm", "si", "convo" });
 
             int count = 0;
             int conflictCount = 0;

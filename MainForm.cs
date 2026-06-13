@@ -70,7 +70,6 @@ namespace PortraitManager
          * 200 - Scale>finish page
          * 65535 - Debug/Error
          */
-        private static ushort _activeIndex = 100;
 
         /*
          * 1 - Large
@@ -742,9 +741,6 @@ namespace PortraitManager
         private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
         {
             string selectedPath = LabelSelectPathSelected.Text;
-            CoreSettings.Default.GamePath = "0";
-            CoreSettings.Default.GameType = '-';
-            CoreSettings.Default.Save();
             if (string.IsNullOrEmpty(selectedPath) || selectedPath == "-" || selectedPath == " - ")
             {
                 return;
@@ -754,7 +750,10 @@ namespace PortraitManager
                 try
                 {
                     if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
@@ -764,13 +763,19 @@ namespace PortraitManager
                         dir = dir.Parent;
 
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
                     string portraitsDir = Path.Combine(rootPath, "Portraits");
                     if (!Directory.Exists(portraitsDir))
                         Directory.CreateDirectory(portraitsDir);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath;
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'k';
@@ -792,7 +797,10 @@ namespace PortraitManager
                 try
                 {
                     if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
@@ -802,13 +810,19 @@ namespace PortraitManager
                         dir = dir.Parent;
 
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
                     string portraitsDir = Path.Combine(rootPath, "Portraits");
                     if (!Directory.Exists(portraitsDir))
                         Directory.CreateDirectory(portraitsDir);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath;
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'w';
@@ -830,7 +844,10 @@ namespace PortraitManager
                 try
                 {
                     if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
@@ -840,13 +857,19 @@ namespace PortraitManager
                         dir = dir.Parent;
 
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
                     string portraitsDir = Path.Combine(rootPath, "Portraits");
                     if (!Directory.Exists(portraitsDir))
                         Directory.CreateDirectory(portraitsDir);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath;
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'r';
@@ -868,7 +891,10 @@ namespace PortraitManager
                 try
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
@@ -880,18 +906,27 @@ namespace PortraitManager
                     }
 
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
                     string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits");
                     if (!Directory.Exists(portraitsRoot))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string maleDir = Path.Combine(portraitsRoot, "player", "male");
                     string femaleDir = Path.Combine(portraitsRoot, "player", "female");
                     Directory.CreateDirectory(maleDir);
                     Directory.CreateDirectory(femaleDir);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath;
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'p';
@@ -913,7 +948,10 @@ namespace PortraitManager
                 try
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
@@ -928,18 +966,26 @@ namespace PortraitManager
                     }
 
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;                    
                     string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternityII_Data", "gui", "portraits");
                     if (!Directory.Exists(portraitsRoot))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
-                    Console.WriteLine(portraitsRoot);
+                    }
                     string maleDir = Path.Combine(portraitsRoot, "player", "male");
                     string femaleDir = Path.Combine(portraitsRoot, "player", "female");
                     Directory.CreateDirectory(maleDir);
                     Directory.CreateDirectory(femaleDir);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath;
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'd';
@@ -961,27 +1007,37 @@ namespace PortraitManager
                 try
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null && !dir.Name.Equals("Tyranny", StringComparison.OrdinalIgnoreCase))
                         dir = dir.Parent;
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
-                    string checkPath = Path.Combine(rootPath, "Data", "data", "art", "gui", "icons", "abilities");
+                    string checkPath = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "icons", "abilities");
 
                     if (!Directory.Exists(checkPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
-                    string maleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "male");
-                    string femaleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "female");
-                    Console.WriteLine(maleDir);
-                    Console.WriteLine(femaleDir);
+                    string maleDir = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
+                    string femaleDir = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "female");
                     Directory.CreateDirectory(maleDir);
                     Directory.CreateDirectory(femaleDir);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath.ToLower();
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 't';
@@ -1003,19 +1059,28 @@ namespace PortraitManager
                 try
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null && !dir.Name.Equals("Wasteland3", StringComparison.OrdinalIgnoreCase))
                         dir = dir.Parent;
                     if (dir == null)
+                    {
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
                         return;
+                    }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
 
                     string customPortraits = Path.Combine(rootPath, "Custom Portraits");
                     Directory.CreateDirectory(customPortraits);
 
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
                     LabelSelectPathSelected.Text = rootPath.ToLower();
                     CoreSettings.Default.GamePath = rootPath;
                     CoreSettings.Default.GameType = 'l';
@@ -1457,7 +1522,7 @@ namespace PortraitManager
 
                 using (OpenFileDialog ofd = new OpenFileDialog()
                 {
-                    Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp",
+                    Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.webp",
                     Multiselect = false
                 })
                 {
@@ -1471,6 +1536,7 @@ namespace PortraitManager
                                 StoreOriginalImage(pic, copy);
                             }
                             FitImageToPanel(pic);
+                            MarkGroupInitialized(pic);
                         }
                         catch
                         {

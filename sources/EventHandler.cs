@@ -142,7 +142,7 @@ namespace PortraitManager
                 // For PoE, Tyranny, and Deadfire, also create the female directory for copies
                 if (useUid && !isWasteland)
                 {
-                    femaleDir = outDir.Replace("\\male", "\\female");
+                    femaleDir = Path.Combine(Path.GetDirectoryName(outDir), "female");
                     try { Directory.CreateDirectory(femaleDir); }
                     catch (Exception ex)
                     {
@@ -220,7 +220,7 @@ namespace PortraitManager
                     if (orig == null) return;
                     string fileName = FileName(sizeSuffix);
                     string savePath = Path.Combine(outDir, fileName);
-                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd')
+                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 'l')
                         CropAndSaveDirectFill(orig, pb, panel, w, h, savePath);
                     else
                         CropAndSaveDirectUniform(orig, pb, panel, w, h, savePath);

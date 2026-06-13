@@ -1031,6 +1031,30 @@ namespace PortraitManager
             FlowLayoutPanelExtract.Controls.Add(cb);
         }
 
+        private bool IsValidPortraitSize(Size imageSize)
+        {
+            if (_gameSelected != 'k' && _gameSelected != 'w' && _gameSelected != 'r')
+                return true;
+
+            try
+            {
+                var gt = GameTypes[_gameSelected];
+                var expected = new List<Size>();
+                try { expected.Add(new Size((int)gt.GetPortraitSpecific("SMALL_WIDTH"), (int)gt.GetPortraitSpecific("SMALL_HEIGHT"))); } catch { }
+                try { expected.Add(new Size((int)gt.GetPortraitSpecific("MEDIUM_WIDTH"), (int)gt.GetPortraitSpecific("MEDIUM_HEIGHT"))); } catch { }
+                try { expected.Add(new Size((int)gt.GetPortraitSpecific("LARGE_WIDTH"), (int)gt.GetPortraitSpecific("LARGE_HEIGHT"))); } catch { }
+
+                foreach (var exp in expected)
+                {
+                    if (Math.Abs(imageSize.Width - exp.Width) <= 2 &&
+                        Math.Abs(imageSize.Height - exp.Height) <= 3)
+                        return true;
+                }
+                return false;
+            }
+            catch { return true; }
+        }
+
         private void LoadArchiveThumbnails(string archivePath)
         {
             _selectedArchivePath = archivePath;
@@ -1092,7 +1116,10 @@ namespace PortraitManager
                                 {
                                     byte[] data = ReadEntryBytes(firstImg);
                                     Image img = LoadImageFromBytes(data);
-                                    AddArchiveThumbnail(group.Key, img);
+                                    if (IsValidPortraitSize(img.Size))
+                                    {
+                                        AddArchiveThumbnail(group.Key, img);
+                                    }
                                     img.Dispose();
                                 }
                                 catch { }
@@ -1180,7 +1207,10 @@ namespace PortraitManager
                         try
                         {
                             Image img = Image.FromFile(imgFiles[0]);
-                            AddArchiveThumbnail(subDir, img);
+                            if (IsValidPortraitSize(img.Size))
+                            {
+                                AddArchiveThumbnail(subDir, img);
+                            }
                             img.Dispose();
                         }
                         catch { }

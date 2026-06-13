@@ -1059,10 +1059,12 @@ namespace PortraitManager
 
             string title = TextVariables.BUTTON_SELECT_ARCHIVE;
             string folderIcon = "\U0001F4C1";
-            string hint = ".zip, .rar, .7z, folder";
+            string hint = TextVariables.EXTRACT_HINT_OVERLAY;
+            string hintSub = TextVariables.EXTRACT_HINT_SUB;
 
             using (Font titleFont = new Font(_fontCollection.Families[0], 22))
-            using (Font hintFont = new Font(_fontCollection.Families[0], 11))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 12))
+            using (Font hintSubFont = new Font(_fontCollection.Families[0], 9))
             {
                 string titleLine = title + "\n" + folderIcon;
                 TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
@@ -1071,8 +1073,10 @@ namespace PortraitManager
                     new Size(rect.Width, 0), tf);
                 Size hintSize = TextRenderer.MeasureText(e.Graphics, hint, hintFont,
                     new Size(rect.Width, 0), tf);
+                Size hintSubSize = TextRenderer.MeasureText(e.Graphics, hintSub, hintSubFont,
+                    new Size(rect.Width, 0), tf);
 
-                int totalHeight = titleSize.Height + 16 + hintSize.Height;
+                int totalHeight = titleSize.Height + 16 + hintSize.Height + 6 + hintSubSize.Height;
                 int yStart = (rect.Height - totalHeight) / 2;
 
                 Color titleColor = _overlayHovered ? gameFore : Color.White;
@@ -1082,6 +1086,10 @@ namespace PortraitManager
 
                 Rectangle hintRect = new Rectangle(0, yStart + titleSize.Height + 16, rect.Width, hintSize.Height);
                 TextRenderer.DrawText(e.Graphics, hint, hintFont, hintRect, Color.Gray, tf);
+
+                Rectangle hintSubRect = new Rectangle(0, yStart + titleSize.Height + 16 + hintSize.Height + 6,
+                    rect.Width, hintSubSize.Height);
+                TextRenderer.DrawText(e.Graphics, hintSub, hintSubFont, hintSubRect, Color.Gray, tf);
             }
         }
 
@@ -1095,6 +1103,30 @@ namespace PortraitManager
         {
             _overlayHovered = false;
             ((Panel)sender).Invalidate();
+        }
+
+        private void PanelExtractContainer_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void PanelExtractContainer_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files == null || files.Length == 0) return;
+
+            string path = files[0];
+            if (Directory.Exists(path))
+            {
+                LoadArchiveThumbnails(path);
+            }
+            else
+            {
+                string ext = Path.GetExtension(path).ToLowerInvariant();
+                if (ext == ".zip" || ext == ".7z" || ext == ".rar")
+                    LoadArchiveThumbnails(path);
+            }
         }
 
         private void LayoutExtractRight_Paint(object sender, PaintEventArgs e)

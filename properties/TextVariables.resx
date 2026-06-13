@@ -285,7 +285,7 @@ Choose a local image from your computer or select a web image from the internet.
     <value>Extract portraits</value>
   </data>
   <data name="BUTTON_SELECT_ARCHIVE" xml:space="preserve">
-    <value>Select archive</value>
+    <value>Select portrait pack</value>
   </data>
   <data name="BUTTON_EXTRACT_ALL" xml:space="preserve">
     <value>Extract everything ▉ </value>
@@ -304,5 +304,11 @@ Choose a local image from your computer or select a web image from the internet.
   </data>
   <data name="MESG_EXTRACT_DUPFOLDER" xml:space="preserve">
     <value>Some folders already exist. Portraits were saved with unique names.</value>
+  </data>
+  <data name="EXTRACT_HINT_OVERLAY" xml:space="preserve">
+    <value>archive  LMC 🖱️ RMC  folder</value>
+  </data>
+  <data name="EXTRACT_HINT_SUB" xml:space="preserve">
+    <value>.zip, .rar, .7z, folder  ·  LMB, RMB or drag-n-drop</value>
   </data>
 </root>

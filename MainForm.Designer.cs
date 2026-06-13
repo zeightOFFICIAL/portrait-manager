@@ -1749,6 +1749,9 @@ namespace PortraitManager
             this.PanelExtractContainer.Padding = new System.Windows.Forms.Padding(10);
             this.PanelExtractContainer.Size = new System.Drawing.Size(499, 427);
             this.PanelExtractContainer.TabIndex = 2;
+            this.PanelExtractContainer.AllowDrop = true;
+            this.PanelExtractContainer.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragDrop);
+            this.PanelExtractContainer.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragEnter);
             this.PanelExtractContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelExtractContainer_Paint);
             // 
             // FlowLayoutPanelExtract

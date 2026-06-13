@@ -388,6 +388,24 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to archive  LMC  •  RMC  folder.
+        /// </summary>
+        internal static string EXTRACT_HINT_OVERLAY {
+            get {
+                return ResourceManager.GetString("EXTRACT_HINT_OVERLAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .zip, .rar, .7z, folder  ·  LMB, RMB or drag-n-drop.
+        /// </summary>
+        internal static string EXTRACT_HINT_SUB {
+            get {
+                return ResourceManager.GetString("EXTRACT_HINT_SUB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pillars of Eternity: Deadfire.
         /// </summary>
         internal static string NAME_DEADFIRE {

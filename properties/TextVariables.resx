@@ -305,6 +305,9 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="MESG_EXTRACT_DUPFOLDER" xml:space="preserve">
     <value>Some folders already exist. Portraits were saved with unique names.</value>
   </data>
+  <data name="MESG_EXTRACT_CONFLICT" xml:space="preserve">
+    <value>Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix.</value>
+  </data>
   <data name="EXTRACT_HINT_OVERLAY" xml:space="preserve">
     <value>archive  LMC 🖱️ RMC  folder</value>
   </data>

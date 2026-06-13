@@ -388,6 +388,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix..
+        /// </summary>
+        internal static string MESG_EXTRACT_CONFLICT {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_CONFLICT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to archive  LMC  •  RMC  folder.
         /// </summary>
         internal static string EXTRACT_HINT_OVERLAY {

@@ -78,15 +78,21 @@ namespace PortraitManager.forms
             {
                 Form anchor = Owner;
                 while (anchor != null && anchor.Owner != null)
-                {
                     anchor = anchor.Owner;
+
+                if (anchor == null)
+                {
+                    foreach (Form f in Application.OpenForms)
+                    {
+                        anchor = f;
+                        break;
+                    }
                 }
 
                 if (anchor != null)
                 {
-                    // Match visible client-area width exactly to avoid any perceived overhang.
                     Width = anchor.ClientSize.Width;
-                    Left = anchor.PointToScreen(System.Drawing.Point.Empty).X;
+                    Left = anchor.PointToScreen(Point.Empty).X;
                 }
             }
             catch { }

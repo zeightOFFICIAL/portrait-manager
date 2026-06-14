@@ -589,6 +589,7 @@ namespace PortraitManager
             CleanupShellTempDir();
             FlowLayoutPanelExtract.Visible = false;
             PanelExtractOverlay.Visible = true;
+            FlowLayoutPanelExtractBottom.Visible = false;
 
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
@@ -1473,6 +1474,18 @@ namespace PortraitManager
                 foreColor, ButtonBorderStyle.Solid);
         }
 
+        private void UpdateExtractCounter()
+        {
+            int total = 0;
+            int selected = 0;
+            if (_archiveEntries != null)
+            {
+                total = _archiveEntries.Count;
+                selected = FlowLayoutPanelExtract.Controls.OfType<CheckBox>().Count(cb => cb.Checked);
+            }
+            LabelExtractCounter.Text = "Total: " + total + " | Selected: " + selected;
+        }
+
         private void LabelSelectPathChoosePath_Click(object sender, EventArgs e)
         {
             using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
@@ -2030,6 +2043,23 @@ namespace PortraitManager
             ZoomFromButton(sender, -120);
         }
 
+        private void ButtonKingZoomReset_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+            string picName = button.Tag as string;
+            if (string.IsNullOrEmpty(picName)) return;
+
+            PictureBox pb = null;
+            if (picName == "PicKingLrg") pb = PicKingLrg;
+            else if (picName == "PicKingMed") pb = PicKingMed;
+            else if (picName == "PicKingSml") pb = PicKingSml;
+            else if (picName == "PicKingSml2") pb = PicKingSml2;
+
+            if (pb == null || pb.Image == null) return;
+            FitImageToPanel(pb);
+        }
+
         private void ZoomFromButton(object sender, int wheelDelta)
         {
             var button = sender as Button;
@@ -2298,10 +2328,10 @@ namespace PortraitManager
 
                 // Apply bottom button heights and ensure consistent minimums
                 var zoomButtons = new Button[] {
-                    ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
-                    ButtonKingMedZoomIn, ButtonKingMedZoomOut,
-                    ButtonKingSmlZoomIn, ButtonKingSmlZoomOut,
-                    ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut
+                    ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                    ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                    ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                    ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
                 };
                 foreach (var zb in zoomButtons)
                 {
@@ -2315,16 +2345,30 @@ namespace PortraitManager
                 try { btnFont = new Font(_fontCollection.Families[0], 16f); } catch { btnFont = this.Font; }
 
                 var allButtons = new Button[] {
-                    ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
-                    ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
-                    ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut,
-                    ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut
+                    ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                    ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                    ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                    ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
                 };
                 foreach (var b in allButtons)
                 {
                     if (b == null) continue;
                     try { b.Font = btnFont; } catch { }
                     b.Cursor = Cursors.Hand;
+                }
+
+                Font zoomFont = null;
+                try { zoomFont = new Font(_fontCollection.Families[0], 11f); } catch { zoomFont = this.Font; }
+                var zoomRowButtons = new Button[] {
+                    ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                    ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                    ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                    ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
+                };
+                foreach (var zb in zoomRowButtons)
+                {
+                    if (zb == null) continue;
+                    try { zb.Font = zoomFont; } catch { }
                 }
             }
             catch { }
@@ -2439,10 +2483,10 @@ namespace PortraitManager
             }
 
             var buttons = new Button[] {
-                ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut,
-                ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut,
-                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut,
-                ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut,
+                ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset,
                 ButtonKingCreateNewPortrait, ButtonKingBackToPathfinder
             };
 
@@ -2488,6 +2532,12 @@ namespace PortraitManager
                 {
                     if (zb == null) continue;
                     zb.Text = "🔍−";
+                }
+                var zoomResetButtons = new Button[] { ButtonKingLrgZoomReset, ButtonKingMedZoomReset, ButtonKingSmlZoomReset, ButtonKingSml2ZoomReset };
+                foreach (var zb in zoomResetButtons)
+                {
+                    if (zb == null) continue;
+                    zb.Text = "\u21ba";
                 }
             }
             catch { }

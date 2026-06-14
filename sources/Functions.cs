@@ -976,7 +976,8 @@ namespace PortraitManager
                    ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                    ext.Equals(".png", StringComparison.OrdinalIgnoreCase) ||
                    ext.Equals(".bmp", StringComparison.OrdinalIgnoreCase) ||
-                   ext.Equals(".gif", StringComparison.OrdinalIgnoreCase);
+                   ext.Equals(".gif", StringComparison.OrdinalIgnoreCase) ||
+                   ext.Equals(".webp", StringComparison.OrdinalIgnoreCase);
         }
 
         private static Size FitSize(Size original, int maxSize)
@@ -1016,17 +1017,22 @@ namespace PortraitManager
 
             cb.Font = new Font(_fontCollection.Families[0], 13);
 
-            cb.FlatAppearance.BorderColor = gameFore;
+            cb.FlatAppearance.BorderSize = 3;
+            cb.FlatAppearance.BorderColor = gameBack;
             cb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
             cb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
 
             cb.MouseEnter += (s, args) => { cb.ForeColor = gameFore; };
             cb.MouseLeave += (s, args) => { cb.ForeColor = Color.White; };
+            cb.CheckedChanged += (s, args) =>
+            {
+                cb.FlatAppearance.BorderColor = cb.Checked ? gameFore : gameBack;
+                UpdateExtractCounter();
+            };
 
             Image thumb = new Bitmap(memImage, thumbSize);
             cb.Image = thumb;
-            cb.Appearance = Appearance.Normal;
-            cb.CheckAlign = ContentAlignment.TopRight;
+            cb.Appearance = Appearance.Button;
 
             FlowLayoutPanelExtract.Controls.Add(cb);
         }
@@ -1072,6 +1078,7 @@ namespace PortraitManager
                 }
             }
             FlowLayoutPanelExtract.Controls.Clear();
+            UpdateExtractCounter();
         }
 
         private void ClearGalleryEntries()
@@ -1101,65 +1108,61 @@ namespace PortraitManager
             _galleryEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
 
             Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 140);
-            int pWidth = Math.Max(thumbSize.Width + 20, 145);
-            int pHeight = thumbSize.Height + 60;
+            int cbWidth = Math.Max(thumbSize.Width + 20, 145);
+            int cbHeight = thumbSize.Height + 60;
 
             Color gameBack, gameFore;
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
-            Bitmap thumb = new Bitmap(memImage, thumbSize);
-
-            Panel panel = new Panel
-            {
-                Size = new Size(pWidth, pHeight),
-                BackColor = Color.Transparent,
-                Tag = folderKey,
-                Cursor = Cursors.Hand,
-                Margin = new Padding(4),
-                BackgroundImage = thumb,
-                BackgroundImageLayout = ImageLayout.Center,
-            };
-
-            Label lbl = new Label
+            CheckBox cb = new CheckBox
             {
                 Text = Path.GetFileName(folderKey),
-                Dock = DockStyle.Bottom,
-                TextAlign = ContentAlignment.MiddleCenter,
+                Tag = folderKey,
+                Checked = false,
                 ForeColor = Color.White,
-                BackColor = Color.Transparent,
-                Height = 36,
-                Font = new Font(_fontCollection.Families[0], 10),
+                BackColor = gameBack,
+                FlatStyle = FlatStyle.Flat,
+                Size = new Size(cbWidth, cbHeight),
+                TextAlign = ContentAlignment.BottomCenter,
+                Padding = new Padding(8, 8, 8, 4),
+                ImageAlign = ContentAlignment.TopCenter,
+                Appearance = Appearance.Button,
                 Cursor = Cursors.Hand,
             };
-            panel.Controls.Add(lbl);
 
-            EventHandler clickHandler = (s, args) =>
+            cb.Font = new Font(_fontCollection.Families[0], 12);
+
+            cb.FlatAppearance.BorderSize = 3;
+            cb.FlatAppearance.BorderColor = gameBack;
+            cb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
+            cb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
+
+            cb.MouseEnter += (s, args) => { cb.ForeColor = gameFore; };
+            cb.MouseLeave += (s, args) => { cb.ForeColor = Color.White; };
+            cb.CheckedChanged += (s, args) =>
             {
-                if (_selectedGalleryEntry == (string)panel.Tag)
+                if (cb.Checked)
                 {
-                    _selectedGalleryEntry = null;
+                    foreach (Control c2 in FlowLayoutPanelGallery.Controls)
+                    {
+                        if (c2 is CheckBox other && other != cb)
+                            other.Checked = false;
+                    }
+                    _selectedGalleryEntry = folderKey;
                 }
                 else
                 {
-                    _selectedGalleryEntry = (string)panel.Tag;
+                    _selectedGalleryEntry = null;
                 }
-                foreach (Control c2 in FlowLayoutPanelGallery.Controls)
-                    c2.Invalidate();
+                cb.FlatAppearance.BorderColor = cb.Checked ? gameFore : gameBack;
                 UpdateGalleryRightPanel();
             };
-            panel.Click += clickHandler;
-            lbl.Click += clickHandler;
 
-            panel.Paint += (s, args) =>
-            {
-                if (_selectedGalleryEntry != (string)panel.Tag) return;
-                Rectangle r = new Rectangle(0, 0, panel.Width - 1, panel.Height - 1);
-                using (var pen = new Pen(gameFore, 2))
-                    args.Graphics.DrawRectangle(pen, r);
-            };
+            Image thumb = new Bitmap(memImage, thumbSize);
+            cb.Image = thumb;
 
-            FlowLayoutPanelGallery.Controls.Add(panel);
+            FlowLayoutPanelGallery.Controls.Add(cb);
         }
 
         private string FindBestGalleryImage(string folderPath)
@@ -1360,6 +1363,14 @@ namespace PortraitManager
                                 var imgFiles = group.Where(e => IsImageFile(e.Name)).ToList();
                                 if (imgFiles.Count == 0) continue;
 
+                                var fileNames = imgFiles
+                                    .Select(e => Path.GetFileName(e.Name))
+                                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                                if (!fileNames.Contains("Fulllength.png") ||
+                                    !fileNames.Contains("Medium.png") ||
+                                    !fileNames.Contains("Small.png"))
+                                    continue;
+
                                 var firstImg = imgFiles.First();
                                 try
                                 {
@@ -1391,10 +1402,13 @@ namespace PortraitManager
                     LoadFolderThumbnails(archivePath);
                 }
 
+                UpdateExtractCounter();
+
                 if (_archiveEntries.Count > 0)
                 {
                     PanelExtractOverlay.Visible = false;
                     FlowLayoutPanelExtract.Visible = true;
+                    FlowLayoutPanelExtractBottom.Visible = true;
                     ButtonExtractAll.Visible = true;
                     ButtonExtractSelected.Visible = true;
                     LayoutExtractRight.RowStyles[0].Height = 33.33F;
@@ -1523,21 +1537,41 @@ namespace PortraitManager
             }
             else
             {
+                bool HasRequiredFiles(string dir)
+                {
+                    var names = Directory.GetFiles(dir)
+                        .Select(Path.GetFileName)
+                        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                    return names.Contains("Fulllength.png") &&
+                           names.Contains("Medium.png") &&
+                           names.Contains("Small.png");
+                }
+
+                void TryAddPack(string dir)
+                {
+                    var imgFiles = Directory.GetFiles(dir).Where(f => IsImageFile(f)).ToList();
+                    if (imgFiles.Count == 0) return;
+                    string bestFile = imgFiles.FirstOrDefault(f =>
+                        Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
+                        ?? imgFiles[0];
+                    try
+                    {
+                        Image img = Image.FromFile(bestFile);
+                        if (IsValidPortraitSize(img.Size))
+                            AddArchiveThumbnail(dir, img);
+                        img.Dispose();
+                    }
+                    catch { }
+                }
+
+                if (HasRequiredFiles(folderPath))
+                    TryAddPack(folderPath);
+
                 foreach (var subDir in Directory.GetDirectories(folderPath))
                 {
-                    var imgFiles = Directory.GetFiles(subDir).Where(f => IsImageFile(f)).ToList();
-                    if (imgFiles.Count > 0)
+                    if (HasRequiredFiles(subDir))
                     {
-                        try
-                        {
-                            Image img = Image.FromFile(imgFiles[0]);
-                            if (IsValidPortraitSize(img.Size))
-                            {
-                                AddArchiveThumbnail(subDir, img);
-                            }
-                            img.Dispose();
-                        }
-                        catch { }
+                        TryAddPack(subDir);
                     }
                     else
                     {

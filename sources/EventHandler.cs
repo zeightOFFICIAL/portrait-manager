@@ -2731,10 +2731,6 @@ namespace PortraitManager
             ButtonExtractBack.ForeColor = fore;
         }
 
-        private void PanelExtractOverlay_Click(object sender, EventArgs e)
-        {
-        }
-
         private void PanelExtractOverlay_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -2789,6 +2785,26 @@ namespace PortraitManager
 
             if (ExtractPortraitsFromArchive(selected))
                 NavigateToMainPage();
+        }
+
+        private void LabelExtractClearSelection_Click(object sender, EventArgs e)
+        {
+            foreach (Control c in FlowLayoutPanelExtract.Controls)
+            {
+                if (c is CheckBox cb)
+                    cb.Checked = false;
+            }
+        }
+
+        private void LabelExtractClearSelection_MouseEnter(object sender, EventArgs e)
+        {
+            try { LabelExtractClearSelection.ForeColor = GameTypes[_gameSelected].ForeColor; }
+            catch { LabelExtractClearSelection.ForeColor = Color.White; }
+        }
+
+        private void LabelExtractClearSelection_MouseLeave(object sender, EventArgs e)
+        {
+            LabelExtractClearSelection.ForeColor = Color.White;
         }
     }
 }

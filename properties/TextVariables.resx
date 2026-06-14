@@ -320,4 +320,10 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="BUTTON_GALLERY_BACK" xml:space="preserve">
     <value>&lt; Back</value>
   </data>
+  <data name="BUTTON_GALLERY_CLONE" xml:space="preserve">
+    <value>CLONE &gt;</value>
+  </data>
+  <data name="BUTTON_GALLERY_CHANGE" xml:space="preserve">
+    <value>CHANGE &gt;</value>
+  </data>
 </root>

@@ -1102,7 +1102,7 @@ namespace PortraitManager
 
             Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 140);
             int pWidth = Math.Max(thumbSize.Width + 20, 145);
-            int pHeight = thumbSize.Height + 50;
+            int pHeight = thumbSize.Height + 60;
 
             Color gameBack, gameFore;
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
@@ -1128,8 +1128,8 @@ namespace PortraitManager
                 TextAlign = ContentAlignment.MiddleCenter,
                 ForeColor = Color.White,
                 BackColor = Color.Transparent,
-                Height = 24,
-                Font = new Font(_fontCollection.Families[0], 11),
+                Height = 36,
+                Font = new Font(_fontCollection.Families[0], 10),
                 Cursor = Cursors.Hand,
             };
             panel.Controls.Add(lbl);
@@ -1160,6 +1160,22 @@ namespace PortraitManager
             };
 
             FlowLayoutPanelGallery.Controls.Add(panel);
+        }
+
+        private string FindBestGalleryImage(string folderPath)
+        {
+            if (!Directory.Exists(folderPath)) return null;
+            string[] files;
+            try { files = Directory.GetFiles(folderPath, "*.png"); }
+            catch { return null; }
+            if (files.Length == 0) return null;
+            if (files.Any(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase)))
+                return files.First(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase));
+            if (files.Any(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase)))
+                return files.First(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase));
+            if (files.Any(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase)))
+                return files.First(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase));
+            return files[0];
         }
 
         private void LoadGalleryImages()

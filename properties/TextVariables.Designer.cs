@@ -151,6 +151,24 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CHANGE &gt;.
+        /// </summary>
+        internal static string BUTTON_GALLERY_CHANGE {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERY_CHANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLONE &gt;.
+        /// </summary>
+        internal static string BUTTON_GALLERY_CLONE {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERY_CLONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ⍞ Fulllength.
         /// </summary>
         internal static string BUTTON_KINGCREATEPAGELRG {

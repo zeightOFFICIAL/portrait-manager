@@ -154,6 +154,8 @@ namespace PortraitManager
             this.FlowLayoutPanelGallery = new System.Windows.Forms.FlowLayoutPanel();
             this.LayoutGalleryRight = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonGalleryBack = new System.Windows.Forms.Button();
+            this.ButtonGalleryClone = new System.Windows.Forms.Button();
+            this.ButtonGalleryChange = new System.Windows.Forms.Button();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -1936,7 +1938,9 @@ namespace PortraitManager
             // 
             this.LayoutGalleryRight.ColumnCount = 1;
             this.LayoutGalleryRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 0);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 0);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 1);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 2);
             this.LayoutGalleryRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutGalleryRight.Location = new System.Drawing.Point(546, 55);
             this.LayoutGalleryRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -1963,6 +1967,36 @@ namespace PortraitManager
             this.ButtonGalleryBack.Click += new System.EventHandler(this.ButtonGalleryBack_Click);
             this.ButtonGalleryBack.MouseEnter += new System.EventHandler(this.ButtonGalleryBack_MouseEnter);
             this.ButtonGalleryBack.MouseLeave += new System.EventHandler(this.ButtonGalleryBack_MouseLeave);
+            // 
+            // ButtonGalleryClone
+            // 
+            this.ButtonGalleryClone.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryClone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryClone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryClone.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryClone.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryClone.Name = "ButtonGalleryClone";
+            this.ButtonGalleryClone.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryClone.TabIndex = 1;
+            this.ButtonGalleryClone.Text = "BUTTON_GALLERY_CLONE";
+            this.ButtonGalleryClone.Click += new System.EventHandler(this.ButtonGalleryClone_Click);
+            this.ButtonGalleryClone.MouseEnter += new System.EventHandler(this.ButtonGalleryClone_MouseEnter);
+            this.ButtonGalleryClone.MouseLeave += new System.EventHandler(this.ButtonGalleryClone_MouseLeave);
+            // 
+            // ButtonGalleryChange
+            // 
+            this.ButtonGalleryChange.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryChange.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryChange.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryChange.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryChange.Name = "ButtonGalleryChange";
+            this.ButtonGalleryChange.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryChange.TabIndex = 2;
+            this.ButtonGalleryChange.Text = "BUTTON_GALLERY_CHANGE";
+            this.ButtonGalleryChange.Click += new System.EventHandler(this.ButtonGalleryChange_Click);
+            this.ButtonGalleryChange.MouseEnter += new System.EventHandler(this.ButtonGalleryChange_MouseEnter);
+            this.ButtonGalleryChange.MouseLeave += new System.EventHandler(this.ButtonGalleryChange_MouseLeave);
             // 
             // MainForm
             // 
@@ -2179,6 +2213,8 @@ namespace PortraitManager
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelGallery;
         private System.Windows.Forms.TableLayoutPanel LayoutGalleryRight;
         private System.Windows.Forms.Button ButtonGalleryBack;
+        private System.Windows.Forms.Button ButtonGalleryClone;
+        private System.Windows.Forms.Button ButtonGalleryChange;
     }
 }
 

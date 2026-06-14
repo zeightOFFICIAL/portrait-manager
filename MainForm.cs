@@ -168,6 +168,7 @@ namespace PortraitManager
         private string _shellTempDir;
         private List<Tuple<string, Image>> _galleryEntries;
         private string _selectedGalleryEntry;
+        private string _overrideGallerySaveDir;
 
         private void FontInit()
         {
@@ -207,6 +208,8 @@ namespace PortraitManager
             ButtonExtractBack.Font = bebasNeueHead;
             LabelGalleryTab.Font = bebasNeueHead;
             ButtonGalleryBack.Font = bebasNeueHead;
+            ButtonGalleryClone.Font = bebasNeueHead;
+            ButtonGalleryChange.Font = bebasNeueHead;
         }
 
         private void TextInit()
@@ -251,6 +254,8 @@ namespace PortraitManager
             ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
             LabelGalleryTab.Text = TextVariables.BUTTON_GALLERY;
             ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
+            ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
+            ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
         }
 
         protected override CreateParams CreateParams
@@ -615,6 +620,24 @@ namespace PortraitManager
             ButtonGalleryBack.FlatAppearance.MouseDownBackColor = gameFore;
             ButtonGalleryBack.TabStop = false;
 
+            ButtonGalleryClone.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryClone.FlatAppearance.BorderSize = 1;
+            ButtonGalleryClone.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryClone.BackColor = gameBack;
+            ButtonGalleryClone.ForeColor = gameFore;
+            ButtonGalleryClone.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryClone.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryClone.TabStop = false;
+
+            ButtonGalleryChange.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryChange.FlatAppearance.BorderSize = 1;
+            ButtonGalleryChange.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryChange.BackColor = gameBack;
+            ButtonGalleryChange.ForeColor = gameFore;
+            ButtonGalleryChange.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryChange.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryChange.TabStop = false;
+
             ClearGalleryEntries();
             LoadGalleryImages();
             UpdateGalleryRightPanel();
@@ -622,6 +645,58 @@ namespace PortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutGalleryPage);
             Focus();
+        }
+
+        private void LoadGalleryImageIntoCreatePage(string folderPath)
+        {
+            string bestFile = FindBestGalleryImage(folderPath);
+            if (bestFile == null) return;
+
+            try
+            {
+                using (Image fileImg = Image.FromFile(bestFile))
+                {
+                    Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+
+                    StoreOriginalImage(PicKingLrg, new Bitmap(copy));
+                    FitImageToPanel(PicKingLrg);
+                    MarkGroupInitialized(PicKingLrg);
+
+                    if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
+                        HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
+                        HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
+                    {
+                        StoreOriginalImage(PicKingMed, new Bitmap(copy));
+                        FitImageToPanel(PicKingMed);
+                        MarkGroupInitialized(PicKingMed);
+                    }
+
+                    StoreOriginalImage(PicKingSml, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml);
+                    MarkGroupInitialized(PicKingSml);
+
+                    StoreOriginalImage(PicKingSml2, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml2);
+                    MarkGroupInitialized(PicKingSml2);
+                }
+            }
+            catch { }
+        }
+
+        private void ButtonGalleryClone_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+            _overrideGallerySaveDir = null;
+            LabelCreatePortrait_Click(sender, e);
+            LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
+        }
+
+        private void ButtonGalleryChange_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+            _overrideGallerySaveDir = _selectedGalleryEntry;
+            LabelCreatePortrait_Click(sender, e);
+            LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
         }
 
         private void ButtonGalleryBack_Click(object sender, EventArgs e)
@@ -714,12 +789,18 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry))
             {
-                LayoutGalleryRight.RowStyles[0].Height = 100;
+                ButtonGalleryClone.Visible = false;
+                ButtonGalleryChange.Visible = false;
+                ButtonGalleryBack.Visible = true;
+                LayoutGalleryRight.RowStyles[0].Height = 0;
                 LayoutGalleryRight.RowStyles[1].Height = 0;
-                LayoutGalleryRight.RowStyles[2].Height = 0;
+                LayoutGalleryRight.RowStyles[2].Height = 100;
             }
             else
             {
+                ButtonGalleryClone.Visible = true;
+                ButtonGalleryChange.Visible = true;
+                ButtonGalleryBack.Visible = true;
                 LayoutGalleryRight.RowStyles[0].Height = 33.33F;
                 LayoutGalleryRight.RowStyles[1].Height = 33.33F;
                 LayoutGalleryRight.RowStyles[2].Height = 33.34F;
@@ -740,6 +821,38 @@ namespace PortraitManager
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
             ButtonGalleryBack.BackColor = selBack;
             ButtonGalleryBack.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryClone_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryClone.BackColor = selFore;
+            ButtonGalleryClone.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryClone_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryClone.BackColor = selBack;
+            ButtonGalleryClone.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryChange_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryChange.BackColor = selFore;
+            ButtonGalleryChange.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryChange_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryChange.BackColor = selBack;
+            ButtonGalleryChange.ForeColor = selFore;
         }
 
         private void ButtonToExtract_Click(object sender, EventArgs e)

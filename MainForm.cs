@@ -574,9 +574,8 @@ namespace PortraitManager
             LayoutExtractRight.RowStyles[2].Height = 100;
 
             _selectedArchivePath = null;
-            _archiveEntries = null;
+            ClearArchiveEntries();
             CleanupShellTempDir();
-            FlowLayoutPanelExtract.Controls.Clear();
             FlowLayoutPanelExtract.Visible = false;
             PanelExtractOverlay.Visible = true;
 

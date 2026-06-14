@@ -1055,12 +1055,31 @@ namespace PortraitManager
             catch { return true; }
         }
 
+        private void ClearArchiveEntries()
+        {
+            if (_archiveEntries != null)
+            {
+                foreach (var entry in _archiveEntries)
+                    entry.Item2?.Dispose();
+                _archiveEntries = null;
+            }
+            foreach (Control c in FlowLayoutPanelExtract.Controls)
+            {
+                if (c is CheckBox cb && cb.Image != null)
+                {
+                    cb.Image.Dispose();
+                    cb.Image = null;
+                }
+            }
+            FlowLayoutPanelExtract.Controls.Clear();
+        }
+
         private void LoadArchiveThumbnails(string archivePath)
         {
             _selectedArchivePath = archivePath;
+            ClearArchiveEntries();
             _archiveEntries = new List<Tuple<string, Image>>();
 
-            FlowLayoutPanelExtract.Controls.Clear();
             FlowLayoutPanelExtract.Visible = false;
             PanelExtractOverlay.Visible = true;
 
@@ -1174,7 +1193,10 @@ namespace PortraitManager
                                     Image img = LoadImageFromBytes(data);
                                     if (IsValidPortraitSize(img.Size))
                                     {
-                                        AddArchiveThumbnail(group.Key, img);
+                                        string key = string.IsNullOrEmpty(group.Key)
+                                            ? Path.GetFileNameWithoutExtension(archivePath) + "_flat"
+                                            : group.Key;
+                                        AddArchiveThumbnail(key, img);
                                     }
                                     img.Dispose();
                                 }
@@ -1223,10 +1245,36 @@ namespace PortraitManager
         private void ExtractArchiveViaShell(string archivePath, string destDir)
         {
             Type shellAppType = Type.GetTypeFromProgID("Shell.Application");
+            if (shellAppType == null)
+                throw new InvalidOperationException("Shell.Application COM type is not available on this system.");
+
             dynamic shell = Activator.CreateInstance(shellAppType);
             dynamic src = shell.NameSpace(archivePath);
+            if (src == null)
+                throw new InvalidOperationException(
+                    $"Cannot open archive: {Path.GetFileName(archivePath)}. " +
+                    $"Ensure a shell extension handler (e.g., 7-Zip, WinRAR) is installed for .{Path.GetExtension(archivePath)} files.");
+
             dynamic dest = shell.NameSpace(destDir);
             dest.CopyHere(src.Items(), 20);
+
+            System.Threading.Thread.Sleep(200);
+            int tries = 0;
+            while (tries < 10)
+            {
+                try
+                {
+                    var files = Directory.GetFiles(destDir, "*", SearchOption.AllDirectories);
+                    if (files.Length > 0) return;
+                }
+                catch { }
+                System.Threading.Thread.Sleep(300);
+                tries++;
+            }
+
+            throw new InvalidOperationException(
+                $"Archive extraction produced no files. " +
+                $"Verify that a shell extension for .{Path.GetExtension(archivePath)} is installed and working.");
         }
 
         private void LoadFolderThumbnails(string folderPath, int depth = 0)
@@ -1775,21 +1823,38 @@ namespace PortraitManager
             Directory.CreateDirectory(extractDir);
 
             if (_gameSelected == 't')
-                return ExtractTyrannyPortraits(selectedKeys, portraitsDir);
+            {
+                bool result = ExtractTyrannyPortraits(selectedKeys, portraitsDir);
+                CleanupShellTempDir();
+                return result;
+            }
 
             if (_gameSelected == 'l')
-                return ExtractWastelandPortraits(selectedKeys, portraitsDir);
+            {
+                bool result = ExtractWastelandPortraits(selectedKeys, portraitsDir);
+                CleanupShellTempDir();
+                return result;
+            }
 
             if (_gameSelected == 'p')
-                return ExtractObsidianPortraits(selectedKeys, portraitsDir,
+            {
+                bool result = ExtractObsidianPortraits(selectedKeys, portraitsDir,
                     @"PillarsOfEternity_Data\data\art\gui\portraits\player", new[] { "lg", "sm" });
+                CleanupShellTempDir();
+                return result;
+            }
 
             if (_gameSelected == 'd')
-                return ExtractObsidianPortraits(selectedKeys, portraitsDir,
+            {
+                bool result = ExtractObsidianPortraits(selectedKeys, portraitsDir,
                     @"PillarsOfEternityII_Data\gui\portraits\player", new[] { "lg", "sm", "si", "convo" });
+                CleanupShellTempDir();
+                return result;
+            }
 
             int count = 0;
             int conflictCount = 0;
+            int skippedCount = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
 
             try
@@ -1805,13 +1870,28 @@ namespace PortraitManager
 
                         foreach (var folder in folders)
                         {
-                            string folderName = Path.GetFileName(folder.Key);
-                            if (selectedKeys != null && !selectedKeys.Contains(folder.Key))
+                            string rawKey = string.IsNullOrEmpty(folder.Key)
+                                ? Path.GetFileNameWithoutExtension(_selectedArchivePath) + "_flat"
+                                : folder.Key;
+                            string folderName = Path.GetFileName(rawKey);
+                            if (selectedKeys != null && !selectedKeys.Contains(rawKey))
                                 continue;
 
                             string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
                             Directory.CreateDirectory(targetFolder);
                             if (conflicted) conflictCount++;
+
+                            var fileNames = folder
+                                .Select(e => Path.GetFileName(e.Name))
+                                .Where(n => !string.IsNullOrEmpty(n))
+                                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                            if (!fileNames.Contains("Fulllength.png") ||
+                                !fileNames.Contains("Medium.png") ||
+                                !fileNames.Contains("Small.png"))
+                            {
+                                skippedCount++;
+                                continue;
+                            }
 
                             foreach (var entry in folder)
                             {
@@ -1844,6 +1924,15 @@ namespace PortraitManager
                         if (selectedKeys != null && !selectedKeys.Contains(folder))
                             continue;
 
+                        var files = Directory.GetFiles(folder).Select(Path.GetFileName).ToHashSet(StringComparer.OrdinalIgnoreCase);
+                        if (!files.Contains("Fulllength.png") ||
+                            !files.Contains("Medium.png") ||
+                            !files.Contains("Small.png"))
+                        {
+                            skippedCount++;
+                            continue;
+                        }
+
                         string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
                         Directory.CreateDirectory(targetFolder);
                         if (conflicted) conflictCount++;
@@ -1864,6 +1953,15 @@ namespace PortraitManager
                         if (selectedKeys != null && !selectedKeys.Contains(folder))
                             continue;
 
+                        var files = Directory.GetFiles(folder).Select(Path.GetFileName).ToHashSet(StringComparer.OrdinalIgnoreCase);
+                        if (!files.Contains("Fulllength.png") ||
+                            !files.Contains("Medium.png") ||
+                            !files.Contains("Small.png"))
+                        {
+                            skippedCount++;
+                            continue;
+                        }
+
                         string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
                         Directory.CreateDirectory(targetFolder);
                         if (conflicted) conflictCount++;
@@ -1877,9 +1975,12 @@ namespace PortraitManager
                     }
                 }
 
-                string msgText = conflictCount > 0
+                string conflictMsg = conflictCount > 0
                     ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
                     : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                string msgText = skippedCount > 0
+                    ? conflictMsg + $"\nSkipped {skippedCount} incomplete set(s) (missing Fulllength.png, Medium.png, or Small.png)."
+                    : conflictMsg;
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
@@ -1895,6 +1996,10 @@ namespace PortraitManager
                     msg.ShowDialog();
                 }
                 return false;
+            }
+            finally
+            {
+                CleanupShellTempDir();
             }
         }
     }

@@ -166,6 +166,8 @@ namespace PortraitManager
         private List<Tuple<string, Image>> _archiveEntries;
         private bool _overlayHovered;
         private string _shellTempDir;
+        private List<Tuple<string, Image>> _galleryEntries;
+        private string _selectedGalleryEntry;
 
         private void FontInit()
         {
@@ -203,6 +205,8 @@ namespace PortraitManager
             ButtonExtractAll.Font = bebasNeueHead;
             ButtonExtractSelected.Font = bebasNeueHead;
             ButtonExtractBack.Font = bebasNeueHead;
+            LabelGalleryTab.Font = bebasNeueHead;
+            ButtonGalleryBack.Font = bebasNeueHead;
         }
 
         private void TextInit()
@@ -245,6 +249,8 @@ namespace PortraitManager
             ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
             ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACT_SELECTED;
             ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
+            LabelGalleryTab.Text = TextVariables.BUTTON_GALLERY;
+            ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
         }
 
         protected override CreateParams CreateParams
@@ -582,6 +588,158 @@ namespace PortraitManager
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutExtractPage);
             Focus();
+        }
+
+        private void LabelBrowse_Click(object sender, EventArgs e)
+        {
+            if (_gameSelected != 'k') return;
+
+            _activeMenuIndex = 6;
+            _selectedGalleryEntry = null;
+
+            Color gameBack, gameFore;
+            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
+
+            LabelGalleryTab.BackColor = gameBack;
+            LabelGalleryTab.ForeColor = gameFore;
+            PanelGalleryContainer.BackColor = gameBack;
+            FlowLayoutPanelGallery.BackColor = gameBack;
+
+            ButtonGalleryBack.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryBack.FlatAppearance.BorderSize = 1;
+            ButtonGalleryBack.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryBack.BackColor = gameBack;
+            ButtonGalleryBack.ForeColor = gameFore;
+            ButtonGalleryBack.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryBack.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryBack.TabStop = false;
+
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutGalleryPage);
+            Focus();
+        }
+
+        private void ButtonGalleryBack_Click(object sender, EventArgs e)
+        {
+            _activeMenuIndex = GetMainMenuIndexForCurrentGame();
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
+        }
+
+        private void LabelGalleryTab_Paint(object sender, PaintEventArgs e)
+        {
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryTab.ClientSize.Width;
+                int h = LabelGalleryTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryTab.ForeColor = gt.ForeColor;
+        }
+
+        private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
+        {
+            Color col = Color.White;
+            try { col = GameTypes[_gameSelected].ForeColor; } catch { }
+            Panel group = (Panel)sender;
+            using (var pen = new Pen(col))
+            {
+                int w = group.ClientSize.Width;
+                int h = group.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+                e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
+
+                int gapStart = -1, gapEnd = -1;
+                if (LabelGalleryTab.Visible)
+                {
+                    try
+                    {
+                        var lblScreen = LabelGalleryTab.PointToScreen(Point.Empty);
+                        var lblInGroup = group.PointToClient(lblScreen);
+                        gapStart = lblInGroup.X;
+                        gapEnd = lblInGroup.X + LabelGalleryTab.Width;
+                    }
+                    catch { }
+                }
+
+                if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
+                {
+                    e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                }
+                else
+                {
+                    int leftSegEnd = Math.Max(0, gapStart - 1);
+                    if (leftSegEnd > 0)
+                        e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
+
+                    int rightSegStart = Math.Min(w - 1, gapEnd + 1);
+                    if (rightSegStart < w - 1)
+                        e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
+                }
+            }
+        }
+
+        private void LayoutGalleryRight_Paint(object sender, PaintEventArgs e)
+        {
+            Color foreColor;
+            try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
+            ControlPaint.DrawBorder(e.Graphics, ((TableLayoutPanel)sender).ClientRectangle,
+                foreColor, ButtonBorderStyle.Solid);
+        }
+
+        private void UpdateGalleryRightPanel()
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry))
+            {
+                LayoutGalleryRight.RowStyles[0].Height = 100;
+                LayoutGalleryRight.RowStyles[1].Height = 0;
+                LayoutGalleryRight.RowStyles[2].Height = 0;
+            }
+            else
+            {
+                LayoutGalleryRight.RowStyles[0].Height = 33.33F;
+                LayoutGalleryRight.RowStyles[1].Height = 33.33F;
+                LayoutGalleryRight.RowStyles[2].Height = 33.34F;
+            }
+        }
+
+        private void ButtonGalleryBack_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryBack.BackColor = selFore;
+            ButtonGalleryBack.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryBack_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryBack.BackColor = selBack;
+            ButtonGalleryBack.ForeColor = selFore;
         }
 
         private void ButtonToExtract_Click(object sender, EventArgs e)
@@ -1096,6 +1254,7 @@ namespace PortraitManager
                     return;
                 }
             }
+            LabelBrowse.Visible = _gameSelected == 'k';
             ApplyGameWindowStyle();
         }
 

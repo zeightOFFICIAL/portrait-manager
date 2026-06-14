@@ -133,6 +133,24 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gallery.
+        /// </summary>
+        internal static string BUTTON_GALLERY {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; Back.
+        /// </summary>
+        internal static string BUTTON_GALLERY_BACK {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERY_BACK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ⍞ Fulllength.
         /// </summary>
         internal static string BUTTON_KINGCREATEPAGELRG {
@@ -178,7 +196,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select archive.
+        ///   Looks up a localized string similar to Select portrait pack.
         /// </summary>
         internal static string BUTTON_SELECT_ARCHIVE {
             get {
@@ -210,6 +228,24 @@ namespace PortraitManager.Properties {
         internal static string BUTTON_SETTINGS {
             get {
                 return ResourceManager.GetString("BUTTON_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to archive  LMC 🖱️ RMC  folder.
+        /// </summary>
+        internal static string EXTRACT_HINT_OVERLAY {
+            get {
+                return ResourceManager.GetString("EXTRACT_HINT_OVERLAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .zip, .rar, .7z, folder  ·  LMB, RMB or drag-n-drop.
+        /// </summary>
+        internal static string EXTRACT_HINT_SUB {
+            get {
+                return ResourceManager.GetString("EXTRACT_HINT_SUB", resourceCulture);
             }
         }
         
@@ -361,6 +397,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix..
+        /// </summary>
+        internal static string MESG_EXTRACT_CONFLICT {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_CONFLICT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some folders already exist. Portraits were saved with unique names..
         /// </summary>
         internal static string MESG_EXTRACT_DUPFOLDER {
@@ -384,33 +429,6 @@ namespace PortraitManager.Properties {
         internal static string MESG_EXTRACT_SUCCESS {
             get {
                 return ResourceManager.GetString("MESG_EXTRACT_SUCCESS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix..
-        /// </summary>
-        internal static string MESG_EXTRACT_CONFLICT {
-            get {
-                return ResourceManager.GetString("MESG_EXTRACT_CONFLICT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to archive  LMC  •  RMC  folder.
-        /// </summary>
-        internal static string EXTRACT_HINT_OVERLAY {
-            get {
-                return ResourceManager.GetString("EXTRACT_HINT_OVERLAY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .zip, .rar, .7z, folder  ·  LMB, RMB or drag-n-drop.
-        /// </summary>
-        internal static string EXTRACT_HINT_SUB {
-            get {
-                return ResourceManager.GetString("EXTRACT_HINT_SUB", resourceCulture);
             }
         }
         

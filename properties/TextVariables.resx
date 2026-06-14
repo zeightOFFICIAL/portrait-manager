@@ -314,4 +314,10 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="EXTRACT_HINT_SUB" xml:space="preserve">
     <value>.zip, .rar, .7z, folder  ·  LMB, RMB or drag-n-drop</value>
   </data>
+  <data name="BUTTON_GALLERY" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="BUTTON_GALLERY_BACK" xml:space="preserve">
+    <value>&lt; Back</value>
+  </data>
 </root>

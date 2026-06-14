@@ -149,7 +149,7 @@ namespace PortraitManager
             RootFunctions.LayoutDisable(LayoutMainPage);
             //RootFunctions.LayoutDisable(LayoutScalePage);
             RootFunctions.LayoutDisable(LayoutExtractPage);
-            //RootFunctions.LayoutDisable(LayoutGallery);
+            RootFunctions.LayoutDisable(LayoutGalleryPage);
             //RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
             RootFunctions.LayoutDisable(LayoutPathPage);
@@ -1072,6 +1072,164 @@ namespace PortraitManager
                 }
             }
             FlowLayoutPanelExtract.Controls.Clear();
+        }
+
+        private void ClearGalleryEntries()
+        {
+            _selectedGalleryEntry = null;
+            if (_galleryEntries != null)
+            {
+                foreach (var entry in _galleryEntries)
+                    entry.Item2?.Dispose();
+                _galleryEntries = null;
+            }
+            foreach (Control c in FlowLayoutPanelGallery.Controls)
+            {
+                if (c is Panel p)
+                {
+                    p.BackgroundImage?.Dispose();
+                    p.BackgroundImage = null;
+                }
+            }
+            FlowLayoutPanelGallery.Controls.Clear();
+        }
+
+        private void AddGalleryThumbnail(string folderKey, Image image)
+        {
+            Bitmap memImage = new Bitmap(image);
+
+            _galleryEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
+
+            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 140);
+            int pWidth = Math.Max(thumbSize.Width + 20, 145);
+            int pHeight = thumbSize.Height + 50;
+
+            Color gameBack, gameFore;
+            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
+
+            Bitmap thumb = new Bitmap(memImage, thumbSize);
+
+            Panel panel = new Panel
+            {
+                Size = new Size(pWidth, pHeight),
+                BackColor = Color.Transparent,
+                Tag = folderKey,
+                Cursor = Cursors.Hand,
+                Margin = new Padding(4),
+                BackgroundImage = thumb,
+                BackgroundImageLayout = ImageLayout.Center,
+            };
+
+            Label lbl = new Label
+            {
+                Text = Path.GetFileName(folderKey),
+                Dock = DockStyle.Bottom,
+                TextAlign = ContentAlignment.MiddleCenter,
+                ForeColor = Color.White,
+                BackColor = Color.Transparent,
+                Height = 24,
+                Font = new Font(_fontCollection.Families[0], 11),
+                Cursor = Cursors.Hand,
+            };
+            panel.Controls.Add(lbl);
+
+            EventHandler clickHandler = (s, args) =>
+            {
+                if (_selectedGalleryEntry == (string)panel.Tag)
+                {
+                    _selectedGalleryEntry = null;
+                }
+                else
+                {
+                    _selectedGalleryEntry = (string)panel.Tag;
+                }
+                foreach (Control c2 in FlowLayoutPanelGallery.Controls)
+                    c2.Invalidate();
+                UpdateGalleryRightPanel();
+            };
+            panel.Click += clickHandler;
+            lbl.Click += clickHandler;
+
+            panel.Paint += (s, args) =>
+            {
+                if (_selectedGalleryEntry != (string)panel.Tag) return;
+                Rectangle r = new Rectangle(0, 0, panel.Width - 1, panel.Height - 1);
+                using (var pen = new Pen(gameFore, 2))
+                    args.Graphics.DrawRectangle(pen, r);
+            };
+
+            FlowLayoutPanelGallery.Controls.Add(panel);
+        }
+
+        private void LoadGalleryImages()
+        {
+            ClearGalleryEntries();
+            _galleryEntries = new List<Tuple<string, Image>>();
+
+            string gamePath = CoreSettings.Default.GamePath;
+            if (string.IsNullOrEmpty(gamePath) || !Directory.Exists(gamePath))
+                return;
+
+            string portraitsDir;
+            if (_gameSelected == 'k')
+            {
+                portraitsDir = Path.Combine(gamePath, "Portraits");
+            }
+            else
+            {
+                return;
+            }
+
+            if (!Directory.Exists(portraitsDir))
+                return;
+
+            string[] subDirs;
+            try { subDirs = Directory.GetDirectories(portraitsDir); }
+            catch { return; }
+
+            foreach (string subDir in subDirs)
+            {
+                if (Directory.Exists(subDir))
+                {
+                    string[] files;
+                    try { files = Directory.GetFiles(subDir, "*.png"); }
+                    catch { continue; }
+
+                    if (files.Length == 0) continue;
+
+                    string bestFile = null;
+                    if (files.Any(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase)))
+                        bestFile = files.First(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase));
+                    else if (files.Any(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase)))
+                        bestFile = files.First(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase));
+                    else if (files.Any(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase)))
+                        bestFile = files.First(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase));
+                    else
+                        bestFile = files[0];
+
+                    try
+                    {
+                        using (Image img = Image.FromFile(bestFile))
+                        {
+                            if (IsValidPortraitSize(img.Size))
+                            {
+                                AddGalleryThumbnail(subDir, img);
+                            }
+                        }
+                    }
+                    catch { }
+                }
+            }
+
+            if (_galleryEntries.Count > 0)
+            {
+                FlowLayoutPanelGallery.Visible = true;
+                BeginInvoke(new Action(() =>
+                {
+                    ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                }));
+            }
         }
 
         private void LoadArchiveThumbnails(string archivePath)

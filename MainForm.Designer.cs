@@ -147,6 +147,13 @@ namespace PortraitManager
             this.ButtonExtractBack = new System.Windows.Forms.Button();
             this.LayoutExtractRight = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutGalleryPage = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanelGalleryTabs = new System.Windows.Forms.FlowLayoutPanel();
+            this.LabelGalleryTab = new System.Windows.Forms.Label();
+            this.PanelGalleryContainer = new System.Windows.Forms.Panel();
+            this.FlowLayoutPanelGallery = new System.Windows.Forms.FlowLayoutPanel();
+            this.LayoutGalleryRight = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonGalleryBack = new System.Windows.Forms.Button();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -194,6 +201,9 @@ namespace PortraitManager
             ((System.ComponentModel.ISupportInitialize)(this.PicKingSml2)).BeginInit();
             this.PanelKingSml2Buttons.SuspendLayout();
             this.LayoutKingRight.SuspendLayout();
+            this.LayoutGalleryPage.SuspendLayout();
+            this.flowLayoutPanelGalleryTabs.SuspendLayout();
+            this.PanelGalleryContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // ImgListExtract
@@ -955,6 +965,7 @@ namespace PortraitManager
             this.LabelBrowse.Size = new System.Drawing.Size(106, 13);
             this.LabelBrowse.TabIndex = 2;
             this.LabelBrowse.Text = "BUTTON_BROWSE";
+            this.LabelBrowse.Click += new System.EventHandler(this.LabelBrowse_Click);
             this.LabelBrowse.MouseEnter += new System.EventHandler(this.LabelBrowse_MouseEnter);
             this.LabelBrowse.MouseLeave += new System.EventHandler(this.LabelBrowse_MouseLeave);
             // 
@@ -1844,6 +1855,115 @@ namespace PortraitManager
             this.ButtonExtractBack.MouseEnter += new System.EventHandler(this.ButtonExtractBack_MouseEnter);
             this.ButtonExtractBack.MouseLeave += new System.EventHandler(this.ButtonExtractBack_MouseLeave);
             // 
+            // 
+            // LayoutGalleryPage
+            // 
+            this.LayoutGalleryPage.BackColor = System.Drawing.Color.Black;
+            this.LayoutGalleryPage.ColumnCount = 4;
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutGalleryPage.Controls.Add(this.flowLayoutPanelGalleryTabs, 1, 1);
+            this.LayoutGalleryPage.Controls.Add(this.PanelGalleryContainer, 1, 2);
+            this.LayoutGalleryPage.Controls.Add(this.LayoutGalleryRight, 2, 2);
+            this.LayoutGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutGalleryPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutGalleryPage.Name = "LayoutGalleryPage";
+            this.LayoutGalleryPage.RowCount = 4;
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84F));
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutGalleryPage.Size = new System.Drawing.Size(734, 481);
+            this.LayoutGalleryPage.TabIndex = 15;
+            this.LayoutGalleryPage.Visible = false;
+            this.LayoutGalleryPage.Enabled = false;
+            // 
+            // flowLayoutPanelGalleryTabs
+            // 
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryTab);
+            this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelGalleryTabs.Location = new System.Drawing.Point(36, 9);
+            this.flowLayoutPanelGalleryTabs.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanelGalleryTabs.Name = "flowLayoutPanelGalleryTabs";
+            this.flowLayoutPanelGalleryTabs.Size = new System.Drawing.Size(499, 43);
+            this.flowLayoutPanelGalleryTabs.TabIndex = 0;
+            // 
+            // LabelGalleryTab
+            // 
+            this.LabelGalleryTab.AutoSize = true;
+            this.LabelGalleryTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryTab.Name = "LabelGalleryTab";
+            this.LabelGalleryTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 5);
+            this.LabelGalleryTab.Size = new System.Drawing.Size(113, 48);
+            this.LabelGalleryTab.TabIndex = 0;
+            this.LabelGalleryTab.Text = "LABEL_GALLERY";
+            this.LabelGalleryTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryTab_Paint);
+            this.LabelGalleryTab.MouseEnter += new System.EventHandler(this.LabelGalleryTab_MouseEnter);
+            this.LabelGalleryTab.MouseLeave += new System.EventHandler(this.LabelGalleryTab_MouseLeave);
+            // 
+            // PanelGalleryContainer
+            // 
+            this.PanelGalleryContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.PanelGalleryContainer.Controls.Add(this.FlowLayoutPanelGallery);
+            this.PanelGalleryContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelGalleryContainer.Location = new System.Drawing.Point(39, 55);
+            this.PanelGalleryContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelGalleryContainer.Name = "PanelGalleryContainer";
+            this.PanelGalleryContainer.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelGalleryContainer.Size = new System.Drawing.Size(499, 404);
+            this.PanelGalleryContainer.TabIndex = 2;
+            this.PanelGalleryContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelGalleryContainer_Paint);
+            // 
+            // FlowLayoutPanelGallery
+            // 
+            this.FlowLayoutPanelGallery.AutoScroll = true;
+            this.FlowLayoutPanelGallery.BackColor = System.Drawing.Color.Transparent;
+            this.FlowLayoutPanelGallery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanelGallery.Location = new System.Drawing.Point(0, 0);
+            this.FlowLayoutPanelGallery.Margin = new System.Windows.Forms.Padding(0);
+            this.FlowLayoutPanelGallery.Name = "FlowLayoutPanelGallery";
+            this.FlowLayoutPanelGallery.Size = new System.Drawing.Size(479, 384);
+            this.FlowLayoutPanelGallery.TabIndex = 3;
+            // 
+            // LayoutGalleryRight
+            // 
+            this.LayoutGalleryRight.ColumnCount = 1;
+            this.LayoutGalleryRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 0);
+            this.LayoutGalleryRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutGalleryRight.Location = new System.Drawing.Point(546, 55);
+            this.LayoutGalleryRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.LayoutGalleryRight.Name = "LayoutGalleryRight";
+            this.LayoutGalleryRight.RowCount = 3;
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.LayoutGalleryRight.Size = new System.Drawing.Size(140, 404);
+            this.LayoutGalleryRight.TabIndex = 6;
+            this.LayoutGalleryRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutGalleryRight_Paint);
+            // 
+            // ButtonGalleryBack
+            // 
+            this.ButtonGalleryBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryBack.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryBack.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryBack.Name = "ButtonGalleryBack";
+            this.ButtonGalleryBack.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryBack.TabIndex = 0;
+            this.ButtonGalleryBack.Text = "BUTTON_GALLERY_BACK";
+            this.ButtonGalleryBack.Click += new System.EventHandler(this.ButtonGalleryBack_Click);
+            this.ButtonGalleryBack.MouseEnter += new System.EventHandler(this.ButtonGalleryBack_MouseEnter);
+            this.ButtonGalleryBack.MouseLeave += new System.EventHandler(this.ButtonGalleryBack_MouseLeave);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1851,6 +1971,7 @@ namespace PortraitManager
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(734, 481);
+            this.Controls.Add(this.LayoutGalleryPage);
             this.Controls.Add(this.LayoutExtractPage);
             this.Controls.Add(this.LayoutKingCreatePortrait);
             this.Controls.Add(this.LayoutStartMenu);
@@ -1930,6 +2051,12 @@ namespace PortraitManager
             ((System.ComponentModel.ISupportInitialize)(this.PicKingSml2)).EndInit();
             this.PanelKingSml2Buttons.ResumeLayout(false);
             this.LayoutKingRight.ResumeLayout(false);
+            this.FlowLayoutPanelGallery.ResumeLayout(false);
+            this.PanelGalleryContainer.ResumeLayout(false);
+            this.flowLayoutPanelGalleryTabs.ResumeLayout(false);
+            this.flowLayoutPanelGalleryTabs.PerformLayout();
+            this.LayoutGalleryPage.ResumeLayout(false);
+            this.LayoutGalleryPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2045,6 +2172,13 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonExtractSelected;
         private System.Windows.Forms.Button ButtonExtractBack;
         private System.Windows.Forms.TableLayoutPanel LayoutExtractRight;
+        private System.Windows.Forms.TableLayoutPanel LayoutGalleryPage;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGalleryTabs;
+        private System.Windows.Forms.Label LabelGalleryTab;
+        private System.Windows.Forms.Panel PanelGalleryContainer;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelGallery;
+        private System.Windows.Forms.TableLayoutPanel LayoutGalleryRight;
+        private System.Windows.Forms.Button ButtonGalleryBack;
     }
 }
 

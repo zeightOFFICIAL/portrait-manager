@@ -2402,7 +2402,7 @@ namespace PortraitManager
                 }
 
                 Font zoomFont = null;
-                try { zoomFont = new Font(_fontCollection.Families[0], 11f); } catch { zoomFont = this.Font; }
+                try { zoomFont = new Font(_fontCollection.Families[0], 14.85f); } catch { zoomFont = this.Font; }
                 var zoomRowButtons = new Button[] {
                     ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
                     ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,

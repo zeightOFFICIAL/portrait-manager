@@ -1622,7 +1622,7 @@ namespace PortraitManager
 
         private void LoadFolderThumbnails(string folderPath, int depth = 0)
         {
-            if (depth > 5) return;
+            if (depth > 50) return;
 
             if (_gameSelected == 't')
             {

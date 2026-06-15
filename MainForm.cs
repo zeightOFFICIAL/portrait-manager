@@ -659,6 +659,12 @@ namespace PortraitManager
 
         private void LoadGalleryImageIntoCreatePage(string folderPath)
         {
+            if (_gameSelected == 'd')
+            {
+                LoadDeadfireGalleryIntoCreatePage(folderPath);
+                return;
+            }
+
             string bestFile = FindBestGalleryImage(folderPath);
             if (bestFile == null) return;
 
@@ -686,6 +692,49 @@ namespace PortraitManager
                     MarkGroupInitialized(PicKingSml);
 
                     StoreOriginalImage(PicKingSml2, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml2);
+                    MarkGroupInitialized(PicKingSml2);
+                }
+            }
+            catch { }
+        }
+
+        private void LoadDeadfireGalleryIntoCreatePage(string folderPath)
+        {
+            string dir = Path.GetDirectoryName(folderPath);
+            string prefix = Path.GetFileName(folderPath);
+
+            try
+            {
+                string convoPath = Path.Combine(dir, prefix + "_convo.png");
+                if (File.Exists(convoPath))
+                {
+                    using (Image convoImg = Image.FromFile(convoPath))
+                    {
+                        Bitmap convoCopy = ImageControl.Direct.Resize(convoImg, convoImg.Width, convoImg.Height);
+                        StoreOriginalImage(PicKingMed, convoCopy);
+                        FitImageToPanel(PicKingMed);
+                        MarkGroupInitialized(PicKingMed);
+                    }
+                }
+
+                string lgPath = Path.Combine(dir, prefix + "_lg.png");
+                string bestFile = File.Exists(lgPath) ? lgPath : FindBestGalleryImage(folderPath);
+                if (bestFile == null || !File.Exists(bestFile)) return;
+
+                using (Image lgImg = Image.FromFile(bestFile))
+                {
+                    Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+
+                    StoreOriginalImage(PicKingLrg, new Bitmap(lgCopy));
+                    FitImageToPanel(PicKingLrg);
+                    MarkGroupInitialized(PicKingLrg);
+
+                    StoreOriginalImage(PicKingSml, new Bitmap(lgCopy));
+                    FitImageToPanel(PicKingSml);
+                    MarkGroupInitialized(PicKingSml);
+
+                    StoreOriginalImage(PicKingSml2, new Bitmap(lgCopy));
                     FitImageToPanel(PicKingSml2);
                     MarkGroupInitialized(PicKingSml2);
                 }

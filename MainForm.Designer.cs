@@ -1196,10 +1196,10 @@ namespace PortraitManager
             this.PanelKingLrgButtons.Location = new System.Drawing.Point(313, 3);
             this.PanelKingLrgButtons.Name = "PanelKingLrgButtons";
             this.PanelKingLrgButtons.RowCount = 5;
-            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 146F));
             this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.PanelKingLrgButtons.Size = new System.Drawing.Size(197, 14);
             this.PanelKingLrgButtons.TabIndex = 1;
@@ -1211,7 +1211,7 @@ namespace PortraitManager
             this.LabelKingLrgHint.Location = new System.Drawing.Point(3, 0);
             this.LabelKingLrgHint.Name = "LabelKingLrgHint";
             this.LabelKingLrgHint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
-            this.LabelKingLrgHint.Size = new System.Drawing.Size(168, 110);
+            this.LabelKingLrgHint.Size = new System.Drawing.Size(168, 130);
             this.LabelKingLrgHint.TabIndex = 10;
             this.LabelKingLrgHint.Text = "HINT_KING_LRG";
             // 
@@ -1269,7 +1269,7 @@ namespace PortraitManager
             this.ButtonKingLrgZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingLrgZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingLrgZoomReset.Name = "ButtonKingLrgZoomReset";
-            this.ButtonKingLrgZoomReset.Size = new System.Drawing.Size(34, 12);
+            this.ButtonKingLrgZoomReset.Size = new System.Drawing.Size(81, 12);
             this.ButtonKingLrgZoomReset.TabIndex = 4;
             this.ButtonKingLrgZoomReset.Tag = "PicKingLrg";
             this.ButtonKingLrgZoomReset.Text = "\u21ba";
@@ -1335,10 +1335,10 @@ namespace PortraitManager
             this.PanelKingMedButtons.Location = new System.Drawing.Point(313, 3);
             this.PanelKingMedButtons.Name = "PanelKingMedButtons";
             this.PanelKingMedButtons.RowCount = 5;
-            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 146F));
             this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.PanelKingMedButtons.Size = new System.Drawing.Size(197, 14);
             this.PanelKingMedButtons.TabIndex = 1;
@@ -1350,7 +1350,7 @@ namespace PortraitManager
             this.LabelKingMedHint.Location = new System.Drawing.Point(3, 0);
             this.LabelKingMedHint.Name = "LabelKingMedHint";
             this.LabelKingMedHint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
-            this.LabelKingMedHint.Size = new System.Drawing.Size(168, 110);
+            this.LabelKingMedHint.Size = new System.Drawing.Size(168, 130);
             this.LabelKingMedHint.TabIndex = 10;
             this.LabelKingMedHint.Text = "HINT_KING_MED";
             // 
@@ -1408,7 +1408,7 @@ namespace PortraitManager
             this.ButtonKingMedZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingMedZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingMedZoomReset.Name = "ButtonKingMedZoomReset";
-            this.ButtonKingMedZoomReset.Size = new System.Drawing.Size(34, 12);
+            this.ButtonKingMedZoomReset.Size = new System.Drawing.Size(81, 12);
             this.ButtonKingMedZoomReset.TabIndex = 4;
             this.ButtonKingMedZoomReset.Tag = "PicKingMed";
             this.ButtonKingMedZoomReset.Text = "\u21ba";
@@ -1474,12 +1474,12 @@ namespace PortraitManager
             this.PanelKingSmlButtons.Location = new System.Drawing.Point(313, 3);
             this.PanelKingSmlButtons.Name = "PanelKingSmlButtons";
             this.PanelKingSmlButtons.RowCount = 5;
-            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 190F));
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
             this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.PanelKingSmlButtons.Size = new System.Drawing.Size(197, 338);
+            this.PanelKingSmlButtons.Size = new System.Drawing.Size(197, 364);
             this.PanelKingSmlButtons.TabIndex = 1;
             // 
             // LabelKingSmlHint
@@ -1489,7 +1489,7 @@ namespace PortraitManager
             this.LabelKingSmlHint.Location = new System.Drawing.Point(3, 0);
             this.LabelKingSmlHint.Name = "LabelKingSmlHint";
             this.LabelKingSmlHint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
-            this.LabelKingSmlHint.Size = new System.Drawing.Size(168, 190);
+            this.LabelKingSmlHint.Size = new System.Drawing.Size(168, 210);
             this.LabelKingSmlHint.TabIndex = 10;
             this.LabelKingSmlHint.Text = "HINT_KING_SML";
             // 
@@ -1547,7 +1547,7 @@ namespace PortraitManager
             this.ButtonKingSmlZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingSmlZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSmlZoomReset.Name = "ButtonKingSmlZoomReset";
-            this.ButtonKingSmlZoomReset.Size = new System.Drawing.Size(34, 12);
+            this.ButtonKingSmlZoomReset.Size = new System.Drawing.Size(81, 12);
             this.ButtonKingSmlZoomReset.TabIndex = 4;
             this.ButtonKingSmlZoomReset.Tag = "PicKingSml";
             this.ButtonKingSmlZoomReset.Text = "\u21ba";
@@ -1613,10 +1613,10 @@ namespace PortraitManager
             this.PanelKingSml2Buttons.Location = new System.Drawing.Point(313, 3);
             this.PanelKingSml2Buttons.Name = "PanelKingSml2Buttons";
             this.PanelKingSml2Buttons.RowCount = 5;
-            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 190F));
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
             this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.PanelKingSml2Buttons.Size = new System.Drawing.Size(197, 14);
             this.PanelKingSml2Buttons.TabIndex = 1;
@@ -1628,7 +1628,7 @@ namespace PortraitManager
             this.LabelKingSml2Hint.Location = new System.Drawing.Point(3, 0);
             this.LabelKingSml2Hint.Name = "LabelKingSml2Hint";
             this.LabelKingSml2Hint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
-            this.LabelKingSml2Hint.Size = new System.Drawing.Size(168, 190);
+            this.LabelKingSml2Hint.Size = new System.Drawing.Size(168, 210);
             this.LabelKingSml2Hint.TabIndex = 10;
             this.LabelKingSml2Hint.Text = "HINT_KING_SML2";
             // 
@@ -1686,7 +1686,7 @@ namespace PortraitManager
             this.ButtonKingSml2ZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingSml2ZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSml2ZoomReset.Name = "ButtonKingSml2ZoomReset";
-            this.ButtonKingSml2ZoomReset.Size = new System.Drawing.Size(34, 12);
+            this.ButtonKingSml2ZoomReset.Size = new System.Drawing.Size(81, 12);
             this.ButtonKingSml2ZoomReset.TabIndex = 4;
             this.ButtonKingSml2ZoomReset.Tag = "PicKingSml2";
             this.ButtonKingSml2ZoomReset.Text = "\u21ba";

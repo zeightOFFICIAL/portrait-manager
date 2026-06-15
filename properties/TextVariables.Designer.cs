@@ -124,6 +124,24 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open folder 📁.
+        /// </summary>
+        internal static string BUTTON_EXTRACT_OPENFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACT_OPENFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open folders 📁.
+        /// </summary>
+        internal static string BUTTON_EXTRACT_OPENFOLDERS {
+            get {
+                return ResourceManager.GetString("BUTTON_EXTRACT_OPENFOLDERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extract selected ▞ .
         /// </summary>
         internal static string BUTTON_EXTRACT_SELECTED {

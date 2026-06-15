@@ -2737,6 +2737,67 @@ namespace PortraitManager
             ButtonExtractBack.ForeColor = fore;
         }
 
+        private void ButtonExtractShowFolder_Click(object sender, EventArgs e)
+        {
+            string gameDir = GetGameDirectory();
+
+            if (_archiveEntries != null && _archiveEntries.Count > 0)
+            {
+                string archiveDir = Path.GetDirectoryName(_selectedArchivePath);
+                bool any = false;
+
+                if (!string.IsNullOrEmpty(archiveDir))
+                {
+                    try { Directory.CreateDirectory(archiveDir); } catch { }
+                    Process.Start("explorer.exe", archiveDir);
+                    any = true;
+                }
+
+                if (!string.IsNullOrEmpty(gameDir))
+                {
+                    Process.Start("explorer.exe", gameDir);
+                    any = true;
+                }
+
+                if (!any)
+                {
+                    using (var msg = new MyMessageDialog("Could not determine the folder location."))
+                    {
+                        msg.StartPosition = FormStartPosition.CenterParent;
+                        msg.ShowDialog();
+                    }
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(gameDir))
+                {
+                    using (var msg = new MyMessageDialog("Could not determine the game directory."))
+                    {
+                        msg.StartPosition = FormStartPosition.CenterParent;
+                        msg.ShowDialog();
+                    }
+                    return;
+                }
+
+                Process.Start("explorer.exe", gameDir);
+            }
+        }
+
+        private void ButtonExtractShowFolder_MouseEnter(object sender, EventArgs e)
+        {
+            Color back;
+            try { back = GameTypes[_gameSelected].BackColor; } catch { back = Color.Black; }
+            ButtonExtractShowFolder.ForeColor = back;
+        }
+
+        private void ButtonExtractShowFolder_MouseLeave(object sender, EventArgs e)
+        {
+            Color fore;
+            try { fore = GameTypes[_gameSelected].ForeColor; } catch { fore = Color.White; }
+            ButtonExtractShowFolder.ForeColor = fore;
+        }
+
         private void PanelExtractOverlay_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)

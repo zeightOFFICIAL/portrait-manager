@@ -211,6 +211,7 @@ namespace PortraitManager
             ButtonExtractAll.Font = bebasNeueHead;
             ButtonExtractSelected.Font = bebasNeueHead;
             ButtonExtractBack.Font = bebasNeueHead;
+            ButtonExtractShowFolder.Font = bebasNeueHead;
             LabelGalleryTab.Font = bebasNeueHead;
             ButtonGalleryBack.Font = bebasNeueHead;
             ButtonGalleryClone.Font = bebasNeueHead;
@@ -295,6 +296,7 @@ namespace PortraitManager
             ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
             ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACT_SELECTED;
             ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
+            ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
             LabelGalleryTab.Text = TextVariables.BUTTON_GALLERY;
             ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
@@ -645,7 +647,7 @@ namespace PortraitManager
             LayoutExtractRight.ForeColor = gameFore;
             _overlayHovered = false;
 
-            foreach (var btn in new[] { ButtonExtractAll, ButtonExtractSelected, ButtonExtractBack })
+            foreach (var btn in new[] { ButtonExtractAll, ButtonExtractSelected, ButtonExtractShowFolder, ButtonExtractBack })
             {
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 1;
@@ -659,10 +661,13 @@ namespace PortraitManager
 
             ButtonExtractAll.Visible = false;
             ButtonExtractSelected.Visible = false;
+            ButtonExtractShowFolder.Visible = true;
+            ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
             ButtonExtractBack.Visible = true;
             LayoutExtractRight.RowStyles[0].Height = 0;
             LayoutExtractRight.RowStyles[1].Height = 0;
-            LayoutExtractRight.RowStyles[2].Height = 100;
+            LayoutExtractRight.RowStyles[2].Height = 50;
+            LayoutExtractRight.RowStyles[3].Height = 50;
 
             _selectedArchivePath = null;
             ClearArchiveEntries();

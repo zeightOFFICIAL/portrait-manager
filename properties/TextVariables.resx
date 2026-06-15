@@ -296,6 +296,12 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="BUTTON_EXTRACT_BACK" xml:space="preserve">
     <value>&lt; Back</value>
   </data>
+  <data name="BUTTON_EXTRACT_OPENFOLDER" xml:space="preserve">
+    <value>Open folder 📁</value>
+  </data>
+  <data name="BUTTON_EXTRACT_OPENFOLDERS" xml:space="preserve">
+    <value>Open folders 📁</value>
+  </data>
   <data name="MESG_EXTRACT_SUCCESS" xml:space="preserve">
     <value>Extracted {0} portrait(s) successfully.</value>
   </data>

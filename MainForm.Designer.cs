@@ -149,6 +149,7 @@ namespace PortraitManager
             this.ButtonExtractAll = new System.Windows.Forms.Button();
             this.ButtonExtractSelected = new System.Windows.Forms.Button();
             this.ButtonExtractBack = new System.Windows.Forms.Button();
+            this.ButtonExtractShowFolder = new System.Windows.Forms.Button();
             this.LayoutExtractRight = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
             this.LayoutGalleryPage = new System.Windows.Forms.TableLayoutPanel();
@@ -1866,13 +1867,15 @@ namespace PortraitManager
             this.LayoutExtractRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutExtractRight.Controls.Add(this.ButtonExtractAll, 0, 0);
             this.LayoutExtractRight.Controls.Add(this.ButtonExtractSelected, 0, 1);
-            this.LayoutExtractRight.Controls.Add(this.ButtonExtractBack, 0, 2);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractShowFolder, 0, 2);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractBack, 0, 3);
             this.LayoutExtractRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutExtractRight.Name = "LayoutExtractRight";
-            this.LayoutExtractRight.RowCount = 3;
-            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.LayoutExtractRight.RowCount = 4;
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.LayoutExtractRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutExtractRight.Size = new System.Drawing.Size(140, 421);
             this.LayoutExtractRight.TabIndex = 6;
@@ -1922,6 +1925,21 @@ namespace PortraitManager
             this.ButtonExtractBack.Click += new System.EventHandler(this.ButtonExtractBack_Click);
             this.ButtonExtractBack.MouseEnter += new System.EventHandler(this.ButtonExtractBack_MouseEnter);
             this.ButtonExtractBack.MouseLeave += new System.EventHandler(this.ButtonExtractBack_MouseLeave);
+            // 
+            // ButtonExtractShowFolder
+            // 
+            this.ButtonExtractShowFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractShowFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractShowFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractShowFolder.Location = new System.Drawing.Point(0, 420);
+            this.ButtonExtractShowFolder.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractShowFolder.Name = "ButtonExtractShowFolder";
+            this.ButtonExtractShowFolder.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractShowFolder.TabIndex = 8;
+            this.ButtonExtractShowFolder.Text = "BUTTON_EXTRACT_OPENFOLDER";
+            this.ButtonExtractShowFolder.Click += new System.EventHandler(this.ButtonExtractShowFolder_Click);
+            this.ButtonExtractShowFolder.MouseEnter += new System.EventHandler(this.ButtonExtractShowFolder_MouseEnter);
+            this.ButtonExtractShowFolder.MouseLeave += new System.EventHandler(this.ButtonExtractShowFolder_MouseLeave);
             // 
             // LabelExtractCounter
             // 
@@ -2337,6 +2355,7 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonExtractAll;
         private System.Windows.Forms.Button ButtonExtractSelected;
         private System.Windows.Forms.Button ButtonExtractBack;
+        private System.Windows.Forms.Button ButtonExtractShowFolder;
         private System.Windows.Forms.TableLayoutPanel LayoutExtractRight;
         private System.Windows.Forms.Label LabelExtractCounter;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelExtractBottom;

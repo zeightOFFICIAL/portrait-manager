@@ -1082,6 +1082,37 @@ namespace PortraitManager
             UpdateExtractCounter();
         }
 
+        private string GetGameDirectory()
+        {
+            string basePath = CoreSettings.Default.GamePath;
+            if (string.IsNullOrEmpty(basePath) || basePath == "0")
+                return null;
+            basePath = basePath.TrimEnd(Path.DirectorySeparatorChar);
+
+            string path;
+            switch (_gameSelected)
+            {
+                case 'p':
+                    path = Path.Combine(basePath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits", "player", "male");
+                    break;
+                case 'd':
+                    path = Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits", "player", "male");
+                    break;
+                case 't':
+                    path = Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
+                    break;
+                case 'l':
+                    path = Path.Combine(basePath, "Custom Portraits");
+                    break;
+                default:
+                    path = Path.Combine(basePath, "Portraits");
+                    break;
+            }
+
+            try { Directory.CreateDirectory(path); } catch { }
+            return path;
+        }
+
         private void ClearGalleryEntries()
         {
             _selectedGalleryEntry = null;
@@ -1558,9 +1589,12 @@ namespace PortraitManager
                     FlowLayoutPanelExtractBottom.Visible = true;
                     ButtonExtractAll.Visible = true;
                     ButtonExtractSelected.Visible = true;
-                    LayoutExtractRight.RowStyles[0].Height = 33.33F;
-                    LayoutExtractRight.RowStyles[1].Height = 33.33F;
-                    LayoutExtractRight.RowStyles[2].Height = 33.34F;
+                    ButtonExtractShowFolder.Visible = true;
+                    ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDERS;
+                    LayoutExtractRight.RowStyles[0].Height = 25F;
+                    LayoutExtractRight.RowStyles[1].Height = 25F;
+                    LayoutExtractRight.RowStyles[2].Height = 25F;
+                    LayoutExtractRight.RowStyles[3].Height = 25F;
                     BeginInvoke(new Action(() =>
                     {
                         ShowScrollBar(FlowLayoutPanelExtract.Handle, 3, false);

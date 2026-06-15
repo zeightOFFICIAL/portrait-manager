@@ -990,6 +990,7 @@ namespace PortraitManager
             this.LabelSettingsPage.Size = new System.Drawing.Size(112, 13);
             this.LabelSettingsPage.TabIndex = 3;
             this.LabelSettingsPage.Text = "BUTTON_SETTINGS";
+            this.LabelSettingsPage.Click += new System.EventHandler(this.LabelSettingsPage_Click);
             this.LabelSettingsPage.MouseEnter += new System.EventHandler(this.LabelSettingsPage_MouseEnter);
             this.LabelSettingsPage.MouseLeave += new System.EventHandler(this.LabelSettingsPage_MouseLeave);
             // 

@@ -8,26 +8,23 @@ namespace PortraitManager.forms
 {
     public partial class MyWebDialog : Form
     {
-        private readonly PrivateFontCollection _fontCollection;
+        private PrivateFontCollection _fontCollection;
         public Image DownloadedImage { get; private set; }
 
         public MyWebDialog()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
             Shown += MyWebDialog_Shown;
 
-            ApplyFont();
-            ApplyTexts();
+            FontInit();
+            TextInit();
             TextBoxURL.Select();
 
             // add a subtle drag-drop hint below the buttons
             var tipLabel = new Label
             {
-                Text = "Tip: you can also drop an image file directly onto the portrait panel.",
                 ForeColor = Color.Gray,
                 BackColor = Color.Transparent,
                 AutoSize = false,
@@ -36,6 +33,7 @@ namespace PortraitManager.forms
                 TextAlign = ContentAlignment.MiddleLeft,
                 Font = SystemFonts.MessageBoxFont
             };
+            tipLabel.Text = TextVariables.WEBDIALOG_TIP;
             Controls.Add(tipLabel);
         }
 
@@ -59,8 +57,10 @@ namespace PortraitManager.forms
 
         public string URL => TextBoxURL?.Text?.Trim();
 
-        private void ApplyFont()
+        private void FontInit()
         {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+
             try
             {
                 var family = _fontCollection.Families[0];
@@ -73,12 +73,12 @@ namespace PortraitManager.forms
             catch { }
         }
 
-        private void ApplyTexts()
+        private void TextInit()
         {
-            try { LabelTitle.Text   = TextVariables.WEBDIALOG_TITLE;         } catch { }
-            try { LabelHint.Text    = TextVariables.WEBDIALOG_HINT;          } catch { }
-            try { ButtonOK.Text     = TextVariables.WEBDIALOG_BUTTON_LOAD;   } catch { }
-            try { ButtonCancel.Text = TextVariables.WEBDIALOG_BUTTON_CANCEL; } catch { }
+            LabelTitle.Text   = TextVariables.WEBDIALOG_TITLE;
+            LabelHint.Text    = TextVariables.WEBDIALOG_HINT;
+            ButtonOK.Text     = TextVariables.WEBDIALOG_BUTTON_LOAD;
+            ButtonCancel.Text = TextVariables.WEBDIALOG_BUTTON_CANCEL;
         }
 
         private static bool IsUrlSafe(string url)

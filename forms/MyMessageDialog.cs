@@ -26,29 +26,33 @@ namespace PortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {
-        private readonly PrivateFontCollection _fontCollection;
+        private PrivateFontCollection _fontCollection;
 
         public MyMessageDialog(string message)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
             Shown += MyMessageDialog_Shown;
 
-            try
-            {
-                var family = _fontCollection.Families[0];
-                LabelMesg.Font = new Font(family, 14f);
-                ButtonClose.Font = new Font(family, 16f);
-            }
-            catch { }
-
+            FontInit();
+            TextInit();
             LabelMesg.Text = message;
-            ButtonClose.Text = "OK";
 
             Focus();
+        }
+
+        private void FontInit()
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            var family = _fontCollection.Families[0];
+            LabelMesg.Font = new Font(family, 14f);
+            ButtonClose.Font = new Font(family, 16f);
+        }
+
+        private void TextInit()
+        {
+            ButtonClose.Text = TextVariables.DIALOG_BUTTON_CLOSE;
         }
 
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)

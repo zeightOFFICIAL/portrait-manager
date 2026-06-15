@@ -171,7 +171,7 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
 If detection fails, you can open the folder manually.</value>
   </data>
   <data name="BUTTON_SETTINGS" xml:space="preserve">
-    <value>Settings</value>
+    <value>Change game</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
     <value>Tyranny keeps its portrait files directly inside the game’s installation directory, under: Tyranny_Data\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder. 
@@ -331,5 +331,17 @@ Choose a local image from your computer or select a web image from the internet.
   </data>
   <data name="BUTTON_GALLERY_DELETE" xml:space="preserve">
     <value>DELETE ✕</value>
+  </data>
+  <data name="DIALOG_BUTTON_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DIALOG_BUTTON_CLOSE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WEBDIALOG_TIP" xml:space="preserve">
+    <value>Tip: you can also drop an image file directly onto the portrait panel.</value>
   </data>
 </root>

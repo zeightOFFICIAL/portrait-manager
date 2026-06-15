@@ -2353,32 +2353,45 @@ namespace PortraitManager
                 }
                 else
                 {
-                    foreach (var folder in Directory.GetDirectories(_selectedArchivePath))
+                    void RecursiveExtractFolder(string folder)
                     {
-                        string folderName = Path.GetFileName(folder);
-                        if (selectedKeys != null && !selectedKeys.Contains(folder))
-                            continue;
-
-                        var files = Directory.GetFiles(folder).Select(Path.GetFileName).ToHashSet(StringComparer.OrdinalIgnoreCase);
-                        if (!files.Contains("Fulllength.png") ||
-                            !files.Contains("Medium.png") ||
-                            !files.Contains("Small.png"))
+                        bool hasRequired;
+                        try
                         {
-                            skippedCount++;
-                            continue;
+                            var files = Directory.GetFiles(folder).Select(Path.GetFileName).ToHashSet(StringComparer.OrdinalIgnoreCase);
+                            hasRequired = files.Contains("Fulllength.png") &&
+                                          files.Contains("Medium.png") &&
+                                          files.Contains("Small.png");
+                        }
+                        catch
+                        {
+                            hasRequired = false;
                         }
 
-                        string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
-                        Directory.CreateDirectory(targetFolder);
-                        if (conflicted) conflictCount++;
-
-                        foreach (var file in Directory.GetFiles(folder).Where(f => IsImageFile(f)))
+                        if (hasRequired)
                         {
-                            string destPath = Path.Combine(targetFolder, Path.GetFileName(file));
-                            File.Copy(file, destPath, overwrite: true);
+                            if (selectedKeys != null && !selectedKeys.Contains(folder))
+                                return;
+
+                            string folderName = Path.GetFileName(folder);
+                            string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
+                            Directory.CreateDirectory(targetFolder);
+                            if (conflicted) conflictCount++;
+
+                            foreach (var file in Directory.GetFiles(folder).Where(f => IsImageFile(f)))
+                            {
+                                string destPath = Path.Combine(targetFolder, Path.GetFileName(file));
+                                File.Copy(file, destPath, overwrite: true);
+                            }
+                            count++;
+                            return;
                         }
-                        count++;
+
+                        foreach (var subDir in Directory.GetDirectories(folder))
+                            RecursiveExtractFolder(subDir);
                     }
+
+                    RecursiveExtractFolder(_selectedArchivePath);
                 }
 
                 string conflictMsg = conflictCount > 0

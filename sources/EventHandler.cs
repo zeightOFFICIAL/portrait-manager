@@ -2645,6 +2645,16 @@ namespace PortraitManager
             LabelBrowse.ForeColor = Color.White;
         }
 
+        private void LabelSettingsPage_Click(object sender, EventArgs e)
+        {
+            _gameSelected = '-';
+            CoreSettings.Default.GameType = '-';
+            CoreSettings.Default.Save();
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutStartMenu);
+            _activeMenuIndex = 0;
+        }
+
         private void LabelSettingsPage_MouseEnter(object sender, EventArgs e)
         {
             LabelSettingsPage.Text = "◈" + LabelSettingsPage.Text;
@@ -2672,12 +2682,7 @@ namespace PortraitManager
         private void LabelExit_Click(object sender, EventArgs e)
         {
             DisposePrimeImages();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            //ClearImageListsSync(ListExtract, ImgListExtract);
             SystemControl.FileControl.ClearTempImages();
-            CoreSettings.Default.GamePath = "0";
-            CoreSettings.Default.GameType = '-';
-            CoreSettings.Default.Save();
             Dispose();
             Application.Exit();
         }

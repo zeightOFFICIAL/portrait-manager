@@ -250,11 +250,38 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to Change game.
         /// </summary>
         internal static string BUTTON_SETTINGS {
             get {
                 return ResourceManager.GetString("BUTTON_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string DIALOG_BUTTON_CANCEL {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string DIALOG_BUTTON_CLOSE {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_CLOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string DIALOG_BUTTON_OK {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_OK", resourceCulture);
             }
         }
         
@@ -629,6 +656,15 @@ namespace PortraitManager.Properties {
         internal static string WEBDIALOG_HINT {
             get {
                 return ResourceManager.GetString("WEBDIALOG_HINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tip: you can also drop an image file directly onto the portrait panel..
+        /// </summary>
+        internal static string WEBDIALOG_TIP {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_TIP", resourceCulture);
             }
         }
         

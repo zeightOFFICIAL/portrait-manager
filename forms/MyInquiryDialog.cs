@@ -25,26 +25,34 @@ namespace PortraitManager.forms
 {
     public partial class MyInquiryDialog : Form
     {
-        private readonly Font _font;
-        private readonly PrivateFontCollection _fontCollection;
+        private PrivateFontCollection _fontCollection;
 
         public MyInquiryDialog(string message)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-            _font = new Font(_fontCollection.Families[0], 17);
-
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
             Shown += MyInquiryDialog_Shown;
-            Focus();
 
-            LabelInquiryMesg.Font = _font;
+            FontInit();
+            TextInit();
             LabelInquiryMesg.Text = message;
-            ButtonOK.Font = _font;
-            //ButtonOK.Text = TextVariables.BUTTON_YES;
-            ButtonCancel.Font = _font;
-            //ButtonCancel.Text = TextVariables.BUTTON_NO;
+            Focus();
+        }
+
+        private void FontInit()
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            var family = _fontCollection.Families[0];
+            LabelInquiryMesg.Font = new Font(family, 17);
+            ButtonOK.Font = new Font(family, 17);
+            ButtonCancel.Font = new Font(family, 17);
+        }
+
+        private void TextInit()
+        {
+            ButtonOK.Text = TextVariables.DIALOG_BUTTON_OK;
+            ButtonCancel.Text = TextVariables.DIALOG_BUTTON_CANCEL;
         }
 
         private void MyInquiryDialog_Shown(object sender, EventArgs e)
@@ -65,7 +73,6 @@ namespace PortraitManager.forms
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _font.Dispose();
             Dispose();
         }
 

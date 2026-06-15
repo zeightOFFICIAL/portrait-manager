@@ -177,9 +177,14 @@ namespace PortraitManager
             Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
                  bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
                  bebasNeueFullHeader = new Font(_fontCollection.Families[0], 25),
+                 bebasNeue22 = new Font(_fontCollection.Families[0], 22),
                  bebasNeueHead = new Font(_fontCollection.Families[0], 21),
                  bebasNeueUnder = new Font(_fontCollection.Families[0], 17),
+                 bebasNeueButton16 = new Font(_fontCollection.Families[0], 16f),
+                 bebasNeueZoom = new Font(_fontCollection.Families[0], 14.85f),
                  bebasNeueMedium = new Font(_fontCollection.Families[0], 13),
+                 bebasNeue12 = new Font(_fontCollection.Families[0], 12),
+                 bebasNeue10 = new Font(_fontCollection.Families[0], 10f),
                  bebasNeueSmall = new Font(_fontCollection.Families[0], 9);
 
             ButtonStartKing.Font = bebasNeueMedium;
@@ -211,6 +216,43 @@ namespace PortraitManager
             ButtonGalleryClone.Font = bebasNeueHead;
             ButtonGalleryChange.Font = bebasNeueHead;
             ButtonGalleryDelete.Font = bebasNeueHead;
+
+            Font btnFont16 = bebasNeueButton16;
+            Font btnFontZoom = bebasNeueZoom;
+
+            var allPortraitButtons = new Button[] {
+                ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
+            };
+            foreach (var b in allPortraitButtons)
+            {
+                if (b == null) continue;
+                b.Font = btnFont16;
+            }
+
+            var zoomButtons = new Button[] {
+                ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
+            };
+            foreach (var zb in zoomButtons)
+            {
+                if (zb == null) continue;
+                zb.Font = btnFontZoom;
+            }
+
+            Font hintFont = bebasNeue10;
+            var hintLabels = new Label[] {
+                LabelKingLrgHint, LabelKingMedHint, LabelKingSmlHint, LabelKingSml2Hint
+            };
+            foreach (var lbl in hintLabels)
+            {
+                if (lbl == null) continue;
+                lbl.Font = hintFont;
+            }
         }
 
         private void TextInit()
@@ -258,6 +300,42 @@ namespace PortraitManager
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
             ButtonGalleryDelete.Text = TextVariables.BUTTON_GALLERY_DELETE;
+
+            LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
+
+            var webLocalButtons = new Button[] {
+                ButtonKingLrgWeb, ButtonKingLrgLocal,
+                ButtonKingMedWeb, ButtonKingMedLocal,
+                ButtonKingSmlWeb, ButtonKingSmlLocal,
+                ButtonKingSml2Web, ButtonKingSml2Local
+            };
+            foreach (var btn in webLocalButtons)
+            {
+                if (btn == null) continue;
+                if (btn.Name != null && btn.Name.IndexOf("Web", StringComparison.OrdinalIgnoreCase) >= 0)
+                    btn.Text = TextVariables.BUTTON_SELECT_WEB;
+                else if (btn.Name != null && btn.Name.IndexOf("Local", StringComparison.OrdinalIgnoreCase) >= 0)
+                    btn.Text = TextVariables.BUTTON_SELECT_LOCAL;
+            }
+
+            var zoomInButtons = new Button[] { ButtonKingLrgZoomIn, ButtonKingMedZoomIn, ButtonKingSmlZoomIn, ButtonKingSml2ZoomIn };
+            foreach (var zb in zoomInButtons)
+            {
+                if (zb == null) continue;
+                zb.Text = "\U0001F50D+";
+            }
+            var zoomOutButtons = new Button[] { ButtonKingLrgZoomOut, ButtonKingMedZoomOut, ButtonKingSmlZoomOut, ButtonKingSml2ZoomOut };
+            foreach (var zb in zoomOutButtons)
+            {
+                if (zb == null) continue;
+                zb.Text = "\U0001F50D\u2212";
+            }
+            var zoomResetButtons = new Button[] { ButtonKingLrgZoomReset, ButtonKingMedZoomReset, ButtonKingSmlZoomReset, ButtonKingSml2ZoomReset };
+            foreach (var zb in zoomResetButtons)
+            {
+                if (zb == null) continue;
+                zb.Text = "\u21ba";
+            }
         }
 
         protected override CreateParams CreateParams
@@ -2434,34 +2512,16 @@ namespace PortraitManager
                     zb.Dock = DockStyle.Fill;
                 }
 
-                Font btnFont = null;
-                try { btnFont = new Font(_fontCollection.Families[0], 16f); } catch { btnFont = this.Font; }
-
-                var allButtons = new Button[] {
+                var handCursorButtons = new Button[] {
                     ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
                     ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
                     ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
                     ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
                 };
-                foreach (var b in allButtons)
+                foreach (var b in handCursorButtons)
                 {
                     if (b == null) continue;
-                    try { b.Font = btnFont; } catch { }
                     b.Cursor = Cursors.Hand;
-                }
-
-                Font zoomFont = null;
-                try { zoomFont = new Font(_fontCollection.Families[0], 14.85f); } catch { zoomFont = this.Font; }
-                var zoomRowButtons = new Button[] {
-                    ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
-                    ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
-                    ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
-                    ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
-                };
-                foreach (var zb in zoomRowButtons)
-                {
-                    if (zb == null) continue;
-                    try { zb.Font = zoomFont; } catch { }
                 }
             }
             catch { }
@@ -2491,14 +2551,6 @@ namespace PortraitManager
             Color selBack = Color.Black;
             Color selFore = Color.White;
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
-
-            Font hintFont = this.Font;
-            try
-            {
-                if (_fontCollection != null && _fontCollection.Families != null && _fontCollection.Families.Length > 0)
-                    hintFont = new Font(_fontCollection.Families[0], 10f);
-            }
-            catch { }
 
             // Style hint labels above the Local/Web buttons — pick resource keys per game
             string lrgKey, medKey, smlKey, sml2Key;
@@ -2551,7 +2603,6 @@ namespace PortraitManager
                 lbl.BackColor = selBack;
                 lbl.ForeColor = selFore;
                 lbl.TextAlign = ContentAlignment.TopLeft;
-                lbl.Font = hintFont;
                 try
                 {
                     if (!string.IsNullOrEmpty(key))
@@ -2595,15 +2646,6 @@ namespace PortraitManager
                 btn.FlatAppearance.MouseDownBackColor = selFore;
                 btn.TabStop = false;
 
-                try
-                {
-                    if (btn.Name != null && btn.Name.IndexOf("Web", StringComparison.OrdinalIgnoreCase) >= 0)
-                        btn.Text = TextVariables.BUTTON_SELECT_WEB;
-                    else if (btn.Name != null && btn.Name.IndexOf("Local", StringComparison.OrdinalIgnoreCase) >= 0)
-                        btn.Text = TextVariables.BUTTON_SELECT_LOCAL;
-                }
-                catch { }
-
                 btn.MouseEnter -= PortraitButton_MouseEnter;
                 btn.MouseLeave -= PortraitButton_MouseLeave;
                 btn.GotFocus -= PortraitButton_GotFocus;
@@ -2612,28 +2654,6 @@ namespace PortraitManager
                 btn.GotFocus += PortraitButton_GotFocus;
             }
 
-            try
-            {
-                var zoomInButtons = new Button[] { ButtonKingLrgZoomIn, ButtonKingMedZoomIn, ButtonKingSmlZoomIn, ButtonKingSml2ZoomIn };
-                var zoomOutButtons = new Button[] { ButtonKingLrgZoomOut, ButtonKingMedZoomOut, ButtonKingSmlZoomOut, ButtonKingSml2ZoomOut };
-                foreach (var zb in zoomInButtons)
-                {
-                    if (zb == null) continue;
-                    zb.Text = "🔍+";
-                }
-                foreach (var zb in zoomOutButtons)
-                {
-                    if (zb == null) continue;
-                    zb.Text = "🔍−";
-                }
-                var zoomResetButtons = new Button[] { ButtonKingLrgZoomReset, ButtonKingMedZoomReset, ButtonKingSmlZoomReset, ButtonKingSml2ZoomReset };
-                foreach (var zb in zoomResetButtons)
-                {
-                    if (zb == null) continue;
-                    zb.Text = "\u21ba";
-                }
-            }
-            catch { }
         }
 
         private void PortraitButton_GotFocus(object sender, EventArgs e)

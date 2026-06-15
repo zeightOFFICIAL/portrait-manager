@@ -308,6 +308,9 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="MESG_EXTRACT_CONFLICT" xml:space="preserve">
     <value>Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix.</value>
   </data>
+  <data name="MESG_EXTRACT_PARTIAL" xml:space="preserve">
+    <value>Extracted {0} portrait set(s). {1} set(s) are missing one or more portrait sizes.</value>
+  </data>
   <data name="EXTRACT_HINT_OVERLAY" xml:space="preserve">
     <value>archive  LMC 🖱️ RMC  folder</value>
   </data>
@@ -325,5 +328,8 @@ Choose a local image from your computer or select a web image from the internet.
   </data>
   <data name="BUTTON_GALLERY_CHANGE" xml:space="preserve">
     <value>CHANGE &gt;</value>
+  </data>
+  <data name="BUTTON_GALLERY_DELETE" xml:space="preserve">
+    <value>DELETE ✕</value>
   </data>
 </root>

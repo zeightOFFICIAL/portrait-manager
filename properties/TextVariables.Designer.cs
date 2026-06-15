@@ -169,6 +169,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE ✕.
+        /// </summary>
+        internal static string BUTTON_GALLERY_DELETE {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERY_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ⍞ Fulllength.
         /// </summary>
         internal static string BUTTON_KINGCREATEPAGELRG {
@@ -438,6 +447,15 @@ namespace PortraitManager.Properties {
         internal static string MESG_EXTRACT_NOSELECTION {
             get {
                 return ResourceManager.GetString("MESG_EXTRACT_NOSELECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} set(s) are missing one or more portrait sizes..
+        /// </summary>
+        internal static string MESG_EXTRACT_PARTIAL {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_PARTIAL", resourceCulture);
             }
         }
         

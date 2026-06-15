@@ -163,6 +163,7 @@ namespace PortraitManager
             this.ButtonGalleryBack = new System.Windows.Forms.Button();
             this.ButtonGalleryClone = new System.Windows.Forms.Button();
             this.ButtonGalleryChange = new System.Windows.Forms.Button();
+            this.ButtonGalleryDelete = new System.Windows.Forms.Button();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -2048,15 +2049,17 @@ namespace PortraitManager
             this.LayoutGalleryRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 0);
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 1);
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 2);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryDelete, 0, 2);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 3);
             this.LayoutGalleryRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutGalleryRight.Location = new System.Drawing.Point(546, 55);
             this.LayoutGalleryRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutGalleryRight.Name = "LayoutGalleryRight";
-            this.LayoutGalleryRight.RowCount = 3;
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.LayoutGalleryRight.RowCount = 4;
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.LayoutGalleryRight.Size = new System.Drawing.Size(140, 404);
             this.LayoutGalleryRight.TabIndex = 6;
             this.LayoutGalleryRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutGalleryRight_Paint);
@@ -2105,6 +2108,21 @@ namespace PortraitManager
             this.ButtonGalleryChange.Click += new System.EventHandler(this.ButtonGalleryChange_Click);
             this.ButtonGalleryChange.MouseEnter += new System.EventHandler(this.ButtonGalleryChange_MouseEnter);
             this.ButtonGalleryChange.MouseLeave += new System.EventHandler(this.ButtonGalleryChange_MouseLeave);
+            // 
+            // ButtonGalleryDelete
+            // 
+            this.ButtonGalleryDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryDelete.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryDelete.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryDelete.Name = "ButtonGalleryDelete";
+            this.ButtonGalleryDelete.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryDelete.TabIndex = 3;
+            this.ButtonGalleryDelete.Text = "BUTTON_GALLERY_DELETE";
+            this.ButtonGalleryDelete.Click += new System.EventHandler(this.ButtonGalleryDelete_Click);
+            this.ButtonGalleryDelete.MouseEnter += new System.EventHandler(this.ButtonGalleryDelete_MouseEnter);
+            this.ButtonGalleryDelete.MouseLeave += new System.EventHandler(this.ButtonGalleryDelete_MouseLeave);
             // 
             // MainForm
             // 
@@ -2331,6 +2349,7 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonGalleryBack;
         private System.Windows.Forms.Button ButtonGalleryClone;
         private System.Windows.Forms.Button ButtonGalleryChange;
+        private System.Windows.Forms.Button ButtonGalleryDelete;
     }
 }
 

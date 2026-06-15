@@ -210,6 +210,7 @@ namespace PortraitManager
             ButtonGalleryBack.Font = bebasNeueHead;
             ButtonGalleryClone.Font = bebasNeueHead;
             ButtonGalleryChange.Font = bebasNeueHead;
+            ButtonGalleryDelete.Font = bebasNeueHead;
         }
 
         private void TextInit()
@@ -256,6 +257,7 @@ namespace PortraitManager
             ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
+            ButtonGalleryDelete.Text = TextVariables.BUTTON_GALLERY_DELETE;
         }
 
         protected override CreateParams CreateParams
@@ -598,8 +600,6 @@ namespace PortraitManager
 
         private void LabelBrowse_Click(object sender, EventArgs e)
         {
-            if (_gameSelected != 'k') return;
-
             _activeMenuIndex = 6;
             _selectedGalleryEntry = null;
 
@@ -638,6 +638,15 @@ namespace PortraitManager
             ButtonGalleryChange.FlatAppearance.MouseOverBackColor = gameFore;
             ButtonGalleryChange.FlatAppearance.MouseDownBackColor = gameFore;
             ButtonGalleryChange.TabStop = false;
+
+            ButtonGalleryDelete.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryDelete.FlatAppearance.BorderSize = 1;
+            ButtonGalleryDelete.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryDelete.BackColor = gameBack;
+            ButtonGalleryDelete.ForeColor = gameFore;
+            ButtonGalleryDelete.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryDelete.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryDelete.TabStop = false;
 
             ClearGalleryEntries();
             LoadGalleryImages();
@@ -790,21 +799,25 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry))
             {
+                ButtonGalleryDelete.Visible = false;
                 ButtonGalleryClone.Visible = false;
                 ButtonGalleryChange.Visible = false;
                 ButtonGalleryBack.Visible = true;
                 LayoutGalleryRight.RowStyles[0].Height = 0;
                 LayoutGalleryRight.RowStyles[1].Height = 0;
-                LayoutGalleryRight.RowStyles[2].Height = 100;
+                LayoutGalleryRight.RowStyles[2].Height = 0;
+                LayoutGalleryRight.RowStyles[3].Height = 100;
             }
             else
             {
+                ButtonGalleryDelete.Visible = true;
                 ButtonGalleryClone.Visible = true;
                 ButtonGalleryChange.Visible = true;
                 ButtonGalleryBack.Visible = true;
-                LayoutGalleryRight.RowStyles[0].Height = 33.33F;
-                LayoutGalleryRight.RowStyles[1].Height = 33.33F;
-                LayoutGalleryRight.RowStyles[2].Height = 33.34F;
+                LayoutGalleryRight.RowStyles[0].Height = 25;
+                LayoutGalleryRight.RowStyles[1].Height = 25;
+                LayoutGalleryRight.RowStyles[2].Height = 25;
+                LayoutGalleryRight.RowStyles[3].Height = 25;
             }
         }
 
@@ -854,6 +867,37 @@ namespace PortraitManager
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
             ButtonGalleryChange.BackColor = selBack;
             ButtonGalleryChange.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryDelete_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+            using (var dlg = new forms.MyInquiryDialog("Delete this portrait set?"))
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    DeleteGalleryPortraitSet(_selectedGalleryEntry);
+                    _selectedGalleryEntry = null;
+                    UpdateGalleryRightPanel();
+                    LoadGalleryImages();
+                }
+            }
+        }
+
+        private void ButtonGalleryDelete_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryDelete.BackColor = selFore;
+            ButtonGalleryDelete.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryDelete_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryDelete.BackColor = selBack;
+            ButtonGalleryDelete.ForeColor = selFore;
         }
 
         private void ButtonToExtract_Click(object sender, EventArgs e)
@@ -1368,7 +1412,7 @@ namespace PortraitManager
                     return;
                 }
             }
-            LabelBrowse.Visible = _gameSelected == 'k';
+            LabelBrowse.Visible = true;
             ApplyGameWindowStyle();
         }
 

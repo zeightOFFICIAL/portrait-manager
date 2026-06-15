@@ -164,46 +164,47 @@ namespace PortraitManager
             }
             else
             {
-                if (!string.IsNullOrEmpty(_overrideGallerySaveDir))
+                // Owlcat games: timestamp-named subfolder under Portraits
+                string portraitsRoot = basePath;
+                try
                 {
-                    outDir = _overrideGallerySaveDir;
-                    _overrideGallerySaveDir = null;
+                    string last = new DirectoryInfo(basePath).Name;
+                    if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
+                        portraitsRoot = Path.Combine(basePath, "Portraits");
+                    Directory.CreateDirectory(portraitsRoot);
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Owlcat games: timestamp-named subfolder under Portraits
-                    string portraitsRoot = basePath;
-                    try
-                    {
-                        string last = new DirectoryInfo(basePath).Name;
-                        if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
-                            portraitsRoot = Path.Combine(basePath, "Portraits");
-                        Directory.CreateDirectory(portraitsRoot);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    string baseName = "portraitmanager_" + DateTime.Now.ToString("ss_dd_MM", CultureInfo.InvariantCulture);
-                    string uniqueName = baseName;
-                    int suffix = 1;
+                string baseName = "portraitmanager_" + DateTime.Now.ToString("ss_dd_MM", CultureInfo.InvariantCulture);
+                string uniqueName = baseName;
+                int suffix = 1;
+                outDir = Path.Combine(portraitsRoot, uniqueName);
+                while (Directory.Exists(outDir))
+                {
+                    uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
                     outDir = Path.Combine(portraitsRoot, uniqueName);
-                    while (Directory.Exists(outDir))
-                    {
-                        uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
-                        outDir = Path.Combine(portraitsRoot, uniqueName);
-                        suffix++;
-                    }
-
-                    try { Directory.CreateDirectory(outDir); }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    suffix++;
                 }
+
+                try { Directory.CreateDirectory(outDir); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(_overrideGallerySaveDir))
+            {
+                if (isObsidian || isWasteland)
+                    uid = Path.GetFileName(_overrideGallerySaveDir);
+                else
+                    outDir = _overrideGallerySaveDir;
+                _overrideGallerySaveDir = null;
             }
 
             try

@@ -1124,10 +1124,10 @@ namespace PortraitManager
             }
             foreach (Control c in FlowLayoutPanelGallery.Controls)
             {
-                if (c is Panel p)
+                if (c is CheckBox cb && cb.Image != null)
                 {
-                    p.BackgroundImage?.Dispose();
-                    p.BackgroundImage = null;
+                    cb.Image.Dispose();
+                    cb.Image = null;
                 }
             }
             FlowLayoutPanelGallery.Controls.Clear();
@@ -1261,12 +1261,22 @@ namespace PortraitManager
                 {
                     string dir = Path.GetDirectoryName(path);
                     string prefix = Path.GetFileName(path);
-                    string[] suffixes = { "_lg", "_med", "_sm", "_convo" };
+                    string[] suffixes = { "_lg", "_sm", "_si", "_convo" };
                     foreach (string suf in suffixes)
                     {
                         string filePath = Path.Combine(dir, prefix + suf + ".png");
                         if (File.Exists(filePath))
                             File.Delete(filePath);
+                    }
+                    string femaleDir = Path.Combine(dir, "female");
+                    if (Directory.Exists(femaleDir))
+                    {
+                        foreach (string suf in suffixes)
+                        {
+                            string filePath = Path.Combine(femaleDir, prefix + suf + ".png");
+                            if (File.Exists(filePath))
+                                File.Delete(filePath);
+                        }
                     }
                 }
             }

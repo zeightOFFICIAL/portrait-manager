@@ -1184,9 +1184,9 @@ namespace PortraitManager
             // PanelKingLrgButtons
             // 
             this.PanelKingLrgButtons.ColumnCount = 3;
-            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.PanelKingLrgButtons.Controls.Add(this.LabelKingLrgHint, 0, 0);
             this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgLocal, 0, 1);
             this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgWeb, 0, 2);
@@ -1243,7 +1243,7 @@ namespace PortraitManager
             // 
             // ButtonKingLrgZoomIn
             // 
-            this.ButtonKingLrgZoomIn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingLrgZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingLrgZoomIn.Location = new System.Drawing.Point(3, 353);
             this.ButtonKingLrgZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingLrgZoomIn.Name = "ButtonKingLrgZoomIn";
@@ -1255,7 +1255,7 @@ namespace PortraitManager
             // 
             // ButtonKingLrgZoomOut
             // 
-            this.ButtonKingLrgZoomOut.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingLrgZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingLrgZoomOut.Location = new System.Drawing.Point(90, 353);
             this.ButtonKingLrgZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingLrgZoomOut.Name = "ButtonKingLrgZoomOut";
@@ -1267,7 +1267,7 @@ namespace PortraitManager
             // 
             // ButtonKingLrgZoomReset
             // 
-            this.ButtonKingLrgZoomReset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingLrgZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingLrgZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingLrgZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingLrgZoomReset.Name = "ButtonKingLrgZoomReset";
@@ -1323,9 +1323,9 @@ namespace PortraitManager
             // PanelKingMedButtons
             // 
             this.PanelKingMedButtons.ColumnCount = 3;
-            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.PanelKingMedButtons.Controls.Add(this.LabelKingMedHint, 0, 0);
             this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedLocal, 0, 1);
             this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedWeb, 0, 2);
@@ -1382,7 +1382,7 @@ namespace PortraitManager
             // 
             // ButtonKingMedZoomIn
             // 
-            this.ButtonKingMedZoomIn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingMedZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingMedZoomIn.Location = new System.Drawing.Point(3, 353);
             this.ButtonKingMedZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingMedZoomIn.Name = "ButtonKingMedZoomIn";
@@ -1394,7 +1394,7 @@ namespace PortraitManager
             // 
             // ButtonKingMedZoomOut
             // 
-            this.ButtonKingMedZoomOut.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingMedZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingMedZoomOut.Location = new System.Drawing.Point(90, 353);
             this.ButtonKingMedZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingMedZoomOut.Name = "ButtonKingMedZoomOut";
@@ -1406,7 +1406,7 @@ namespace PortraitManager
             // 
             // ButtonKingMedZoomReset
             // 
-            this.ButtonKingMedZoomReset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingMedZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingMedZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingMedZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingMedZoomReset.Name = "ButtonKingMedZoomReset";
@@ -1462,9 +1462,9 @@ namespace PortraitManager
             // PanelKingSmlButtons
             // 
             this.PanelKingSmlButtons.ColumnCount = 3;
-            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.PanelKingSmlButtons.Controls.Add(this.LabelKingSmlHint, 0, 0);
             this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlLocal, 0, 1);
             this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlWeb, 0, 2);
@@ -1521,7 +1521,7 @@ namespace PortraitManager
             // 
             // ButtonKingSmlZoomIn
             // 
-            this.ButtonKingSmlZoomIn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingSmlZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingSmlZoomIn.Location = new System.Drawing.Point(3, 353);
             this.ButtonKingSmlZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSmlZoomIn.Name = "ButtonKingSmlZoomIn";
@@ -1533,7 +1533,7 @@ namespace PortraitManager
             // 
             // ButtonKingSmlZoomOut
             // 
-            this.ButtonKingSmlZoomOut.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingSmlZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingSmlZoomOut.Location = new System.Drawing.Point(90, 353);
             this.ButtonKingSmlZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSmlZoomOut.Name = "ButtonKingSmlZoomOut";
@@ -1545,7 +1545,7 @@ namespace PortraitManager
             // 
             // ButtonKingSmlZoomReset
             // 
-            this.ButtonKingSmlZoomReset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingSmlZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingSmlZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingSmlZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSmlZoomReset.Name = "ButtonKingSmlZoomReset";
@@ -1601,9 +1601,9 @@ namespace PortraitManager
             // PanelKingSml2Buttons
             // 
             this.PanelKingSml2Buttons.ColumnCount = 3;
-            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
-            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.PanelKingSml2Buttons.Controls.Add(this.LabelKingSml2Hint, 0, 0);
             this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2Local, 0, 1);
             this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2Web, 0, 2);
@@ -1660,7 +1660,7 @@ namespace PortraitManager
             // 
             // ButtonKingSml2ZoomIn
             // 
-            this.ButtonKingSml2ZoomIn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingSml2ZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingSml2ZoomIn.Location = new System.Drawing.Point(3, 353);
             this.ButtonKingSml2ZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSml2ZoomIn.Name = "ButtonKingSml2ZoomIn";
@@ -1672,7 +1672,7 @@ namespace PortraitManager
             // 
             // ButtonKingSml2ZoomOut
             // 
-            this.ButtonKingSml2ZoomOut.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingSml2ZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingSml2ZoomOut.Location = new System.Drawing.Point(90, 353);
             this.ButtonKingSml2ZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSml2ZoomOut.Name = "ButtonKingSml2ZoomOut";
@@ -1684,7 +1684,7 @@ namespace PortraitManager
             // 
             // ButtonKingSml2ZoomReset
             // 
-            this.ButtonKingSml2ZoomReset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonKingSml2ZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ButtonKingSml2ZoomReset.Location = new System.Drawing.Point(177, 353);
             this.ButtonKingSml2ZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
             this.ButtonKingSml2ZoomReset.Name = "ButtonKingSml2ZoomReset";
@@ -1705,8 +1705,8 @@ namespace PortraitManager
             this.LayoutKingRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutKingRight.Name = "LayoutKingRight";
             this.LayoutKingRight.RowCount = 2;
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.LayoutKingRight.Size = new System.Drawing.Size(138, 404);
             this.LayoutKingRight.TabIndex = 5;
             this.LayoutKingRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingRight_Paint);

@@ -117,10 +117,10 @@ namespace PortraitManager
             bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
             bool isWasteland = _gameSelected == 'l';
             bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't' || _gameSelected == 'l'; // UID naming for PoE, Deadfire, Tyranny, Wasteland 3
-            string uid = useUid ? "portraitmanager" + DateTime.Now.ToString("ssddMM", CultureInfo.InvariantCulture) : null;
+            string uid = useUid ? "portraitmanager_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture) : null;
             string femaleDir = null;
 
-            string outDir;
+            string outDir = null;
 
             if (isObsidian)
             {
@@ -165,36 +165,39 @@ namespace PortraitManager
             else
             {
                 // Owlcat games: timestamp-named subfolder under Portraits
-                string portraitsRoot = basePath;
-                try
+                if (string.IsNullOrEmpty(_overrideGallerySaveDir))
                 {
-                    string last = new DirectoryInfo(basePath).Name;
-                    if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
-                        portraitsRoot = Path.Combine(basePath, "Portraits");
-                    Directory.CreateDirectory(portraitsRoot);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    string portraitsRoot = basePath;
+                    try
+                    {
+                        string last = new DirectoryInfo(basePath).Name;
+                        if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
+                            portraitsRoot = Path.Combine(basePath, "Portraits");
+                        Directory.CreateDirectory(portraitsRoot);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                string baseName = "portraitmanager_" + DateTime.Now.ToString("ss_dd_MM", CultureInfo.InvariantCulture);
-                string uniqueName = baseName;
-                int suffix = 1;
-                outDir = Path.Combine(portraitsRoot, uniqueName);
-                while (Directory.Exists(outDir))
-                {
-                    uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                    string baseName = "portraitmanager_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                    string uniqueName = baseName;
+                    int suffix = 1;
                     outDir = Path.Combine(portraitsRoot, uniqueName);
-                    suffix++;
-                }
+                    while (Directory.Exists(outDir))
+                    {
+                        uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                        outDir = Path.Combine(portraitsRoot, uniqueName);
+                        suffix++;
+                    }
 
-                try { Directory.CreateDirectory(outDir); }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    try { Directory.CreateDirectory(outDir); }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
 

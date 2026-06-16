@@ -777,6 +777,8 @@ namespace PortraitManager
                     StoreOriginalImage(PicKingSml2, new Bitmap(copy));
                     FitImageToPanel(PicKingSml2);
                     MarkGroupInitialized(PicKingSml2);
+
+                    copy.Dispose();
                 }
             }
             catch { }
@@ -820,6 +822,8 @@ namespace PortraitManager
                     StoreOriginalImage(PicKingSml2, new Bitmap(lgCopy));
                     FitImageToPanel(PicKingSml2);
                     MarkGroupInitialized(PicKingSml2);
+
+                    lgCopy.Dispose();
                 }
             }
             catch { }
@@ -1957,6 +1961,7 @@ namespace PortraitManager
             // Explicit button to return user to the selected game's main page
             try
             {
+                _overrideGallerySaveDir = null;
                 _activeMenuIndex = GetMainMenuIndexForCurrentGame();
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutMainPage);

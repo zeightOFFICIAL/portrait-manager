@@ -291,7 +291,7 @@ namespace PortraitManager
                 LabelKingCreatePortraitSml2.Text = TextVariables.BUTTON_KINGCREATEPAGESML2;
             }
 
-            ButtonKingCreateNewPortrait.Text = "Create >";
+            ButtonKingCreateNewPortrait.Text = "Create +";
             ButtonKingBackToPathfinder.Text = "< Back";
             ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
             ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACT_SELECTED;
@@ -666,8 +666,8 @@ namespace PortraitManager
             ButtonExtractBack.Visible = true;
             LayoutExtractRight.RowStyles[0].Height = 0;
             LayoutExtractRight.RowStyles[1].Height = 0;
-            LayoutExtractRight.RowStyles[2].Height = 50;
-            LayoutExtractRight.RowStyles[3].Height = 50;
+            LayoutExtractRight.RowStyles[2].Height = 70;
+            LayoutExtractRight.RowStyles[3].Height = 30;
 
             _selectedArchivePath = null;
             ClearArchiveEntries();

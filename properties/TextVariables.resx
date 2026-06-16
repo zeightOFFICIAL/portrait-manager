@@ -297,7 +297,7 @@ Choose a local image from your computer or select a web image from the internet.
     <value>&lt; Back</value>
   </data>
   <data name="BUTTON_EXTRACT_OPENFOLDER" xml:space="preserve">
-    <value>Open folder 📁</value>
+    <value>Open game folder 📁</value>
   </data>
   <data name="BUTTON_EXTRACT_OPENFOLDERS" xml:space="preserve">
     <value>Open folders 📁</value>

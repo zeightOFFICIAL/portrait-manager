@@ -156,8 +156,9 @@ namespace PortraitManager
             this.flowLayoutPanelGalleryTabs = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelGalleryTab = new System.Windows.Forms.Label();
             this.LabelExtractCounter = new System.Windows.Forms.Label();
-            this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.FlowLayoutPanel();
+            this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.TableLayoutPanel();
             this.LabelExtractClearSelection = new System.Windows.Forms.Label();
+            this.LabelExtractClose = new System.Windows.Forms.Label();
             this.PanelGalleryContainer = new System.Windows.Forms.Panel();
             this.FlowLayoutPanelGallery = new System.Windows.Forms.FlowLayoutPanel();
             this.LayoutGalleryRight = new System.Windows.Forms.TableLayoutPanel();
@@ -1705,8 +1706,8 @@ namespace PortraitManager
             this.LayoutKingRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutKingRight.Name = "LayoutKingRight";
             this.LayoutKingRight.RowCount = 2;
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29F));
             this.LayoutKingRight.Size = new System.Drawing.Size(138, 404);
             this.LayoutKingRight.TabIndex = 5;
             this.LayoutKingRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingRight_Paint);
@@ -1957,17 +1958,22 @@ namespace PortraitManager
             // FlowLayoutPanelExtractBottom
             // 
             this.FlowLayoutPanelExtractBottom.BackColor = System.Drawing.Color.Transparent;
-            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractCounter);
-            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractClearSelection);
+            this.FlowLayoutPanelExtractBottom.ColumnCount = 3;
+            this.FlowLayoutPanelExtractBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.FlowLayoutPanelExtractBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.FlowLayoutPanelExtractBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractCounter, 0, 0);
+            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractClearSelection, 1, 0);
+            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractClose, 2, 0);
             this.FlowLayoutPanelExtractBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FlowLayoutPanelExtractBottom.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
             this.FlowLayoutPanelExtractBottom.Location = new System.Drawing.Point(39, 459);
             this.FlowLayoutPanelExtractBottom.Margin = new System.Windows.Forms.Padding(0);
             this.FlowLayoutPanelExtractBottom.Name = "FlowLayoutPanelExtractBottom";
             this.FlowLayoutPanelExtractBottom.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.FlowLayoutPanelExtractBottom.RowCount = 1;
+            this.FlowLayoutPanelExtractBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.FlowLayoutPanelExtractBottom.Size = new System.Drawing.Size(499, 24);
             this.FlowLayoutPanelExtractBottom.TabIndex = 8;
-            this.FlowLayoutPanelExtractBottom.WrapContents = false;
             // 
             // LabelExtractClearSelection
             // 
@@ -1980,11 +1986,28 @@ namespace PortraitManager
             this.LabelExtractClearSelection.Name = "LabelExtractClearSelection";
             this.LabelExtractClearSelection.Size = new System.Drawing.Size(12, 13);
             this.LabelExtractClearSelection.TabIndex = 9;
-            this.LabelExtractClearSelection.Text = "Clear";
+            this.LabelExtractClearSelection.Text = "Clear selection";
             this.LabelExtractClearSelection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LabelExtractClearSelection.Click += new System.EventHandler(this.LabelExtractClearSelection_Click);
             this.LabelExtractClearSelection.MouseEnter += new System.EventHandler(this.LabelExtractClearSelection_MouseEnter);
             this.LabelExtractClearSelection.MouseLeave += new System.EventHandler(this.LabelExtractClearSelection_MouseLeave);
+            // 
+            // LabelExtractClose
+            // 
+            this.LabelExtractClose.AutoSize = true;
+            this.LabelExtractClose.BackColor = System.Drawing.Color.Transparent;
+            this.LabelExtractClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelExtractClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelExtractClose.ForeColor = System.Drawing.Color.White;
+            this.LabelExtractClose.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.LabelExtractClose.Name = "LabelExtractClose";
+            this.LabelExtractClose.Size = new System.Drawing.Size(36, 13);
+            this.LabelExtractClose.TabIndex = 10;
+            this.LabelExtractClose.Text = "Close folder";
+            this.LabelExtractClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LabelExtractClose.Click += new System.EventHandler(this.LabelExtractClose_Click);
+            this.LabelExtractClose.MouseEnter += new System.EventHandler(this.LabelExtractClose_MouseEnter);
+            this.LabelExtractClose.MouseLeave += new System.EventHandler(this.LabelExtractClose_MouseLeave);
             // 
             // LayoutGalleryPage
             // 
@@ -2358,8 +2381,9 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonExtractShowFolder;
         private System.Windows.Forms.TableLayoutPanel LayoutExtractRight;
         private System.Windows.Forms.Label LabelExtractCounter;
-        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelExtractBottom;
+        private System.Windows.Forms.TableLayoutPanel FlowLayoutPanelExtractBottom;
         private System.Windows.Forms.Label LabelExtractClearSelection;
+        private System.Windows.Forms.Label LabelExtractClose;
         private System.Windows.Forms.TableLayoutPanel LayoutGalleryPage;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGalleryTabs;
         private System.Windows.Forms.Label LabelGalleryTab;

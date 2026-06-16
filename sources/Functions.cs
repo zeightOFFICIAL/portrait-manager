@@ -1601,10 +1601,10 @@ namespace PortraitManager
                     ButtonExtractSelected.Visible = true;
                     ButtonExtractShowFolder.Visible = true;
                     ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDERS;
-                    LayoutExtractRight.RowStyles[0].Height = 25F;
-                    LayoutExtractRight.RowStyles[1].Height = 25F;
-                    LayoutExtractRight.RowStyles[2].Height = 25F;
-                    LayoutExtractRight.RowStyles[3].Height = 25F;
+                    LayoutExtractRight.RowStyles[0].Height = 28.57F;
+                    LayoutExtractRight.RowStyles[1].Height = 28.57F;
+                    LayoutExtractRight.RowStyles[2].Height = 28.57F;
+                    LayoutExtractRight.RowStyles[3].Height = 14.29F;
                     BeginInvoke(new Action(() =>
                     {
                         ShowScrollBar(FlowLayoutPanelExtract.Handle, 3, false);

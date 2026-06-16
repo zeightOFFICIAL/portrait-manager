@@ -2876,5 +2876,37 @@ namespace PortraitManager
         {
             LabelExtractClearSelection.ForeColor = Color.White;
         }
+
+        private void LabelExtractClose_Click(object sender, EventArgs e)
+        {
+            _selectedArchivePath = null;
+            ClearArchiveEntries();
+            CleanupShellTempDir();
+            FlowLayoutPanelExtract.Visible = false;
+            PanelExtractOverlay.Visible = true;
+            FlowLayoutPanelExtractBottom.Visible = false;
+            ButtonExtractAll.Visible = false;
+            ButtonExtractSelected.Visible = false;
+            ButtonExtractShowFolder.Visible = true;
+            ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
+            ButtonExtractBack.Visible = true;
+            LayoutExtractRight.RowStyles[0].Height = 0;
+            LayoutExtractRight.RowStyles[1].Height = 0;
+            LayoutExtractRight.RowStyles[2].Height = 70;
+            LayoutExtractRight.RowStyles[3].Height = 30;
+            _overlayHovered = false;
+            Focus();
+        }
+
+        private void LabelExtractClose_MouseEnter(object sender, EventArgs e)
+        {
+            try { LabelExtractClose.ForeColor = GameTypes[_gameSelected].ForeColor; }
+            catch { LabelExtractClose.ForeColor = Color.White; }
+        }
+
+        private void LabelExtractClose_MouseLeave(object sender, EventArgs e)
+        {
+            LabelExtractClose.ForeColor = Color.White;
+        }
     }
 }

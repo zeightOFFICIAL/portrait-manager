@@ -167,6 +167,7 @@ namespace PortraitManager
             this.ButtonGalleryClone = new System.Windows.Forms.Button();
             this.ButtonGalleryChange = new System.Windows.Forms.Button();
             this.ButtonGalleryDelete = new System.Windows.Forms.Button();
+            this.ButtonGalleryShowFolder = new System.Windows.Forms.Button();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -2115,16 +2116,18 @@ namespace PortraitManager
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 0);
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 1);
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryDelete, 0, 2);
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 3);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryShowFolder, 0, 3);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 4);
             this.LayoutGalleryRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutGalleryRight.Location = new System.Drawing.Point(546, 55);
             this.LayoutGalleryRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutGalleryRight.Name = "LayoutGalleryRight";
-            this.LayoutGalleryRight.RowCount = 4;
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutGalleryRight.RowCount = 5;
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.LayoutGalleryRight.Size = new System.Drawing.Size(140, 404);
             this.LayoutGalleryRight.TabIndex = 6;
             this.LayoutGalleryRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutGalleryRight_Paint);
@@ -2188,6 +2191,21 @@ namespace PortraitManager
             this.ButtonGalleryDelete.Click += new System.EventHandler(this.ButtonGalleryDelete_Click);
             this.ButtonGalleryDelete.MouseEnter += new System.EventHandler(this.ButtonGalleryDelete_MouseEnter);
             this.ButtonGalleryDelete.MouseLeave += new System.EventHandler(this.ButtonGalleryDelete_MouseLeave);
+            // 
+            // ButtonGalleryShowFolder
+            // 
+            this.ButtonGalleryShowFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryShowFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryShowFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryShowFolder.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryShowFolder.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryShowFolder.Name = "ButtonGalleryShowFolder";
+            this.ButtonGalleryShowFolder.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryShowFolder.TabIndex = 4;
+            this.ButtonGalleryShowFolder.Text = "FOLDER \U0001F4C1";
+            this.ButtonGalleryShowFolder.Click += new System.EventHandler(this.ButtonGalleryShowFolder_Click);
+            this.ButtonGalleryShowFolder.MouseEnter += new System.EventHandler(this.ButtonGalleryShowFolder_MouseEnter);
+            this.ButtonGalleryShowFolder.MouseLeave += new System.EventHandler(this.ButtonGalleryShowFolder_MouseLeave);
             // 
             // MainForm
             // 
@@ -2418,6 +2436,7 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonGalleryClone;
         private System.Windows.Forms.Button ButtonGalleryChange;
         private System.Windows.Forms.Button ButtonGalleryDelete;
+        private System.Windows.Forms.Button ButtonGalleryShowFolder;
     }
 }
 

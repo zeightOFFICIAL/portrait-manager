@@ -22,6 +22,7 @@ using PortraitManager.Properties;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Globalization;
@@ -217,6 +218,7 @@ namespace PortraitManager
             ButtonGalleryClone.Font = bebasNeueHead;
             ButtonGalleryChange.Font = bebasNeueHead;
             ButtonGalleryDelete.Font = bebasNeueHead;
+            ButtonGalleryShowFolder.Font = bebasNeueHead;
 
             Font btnFont16 = bebasNeueButton16;
             Font btnFontZoom = bebasNeueZoom;
@@ -302,6 +304,7 @@ namespace PortraitManager
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
             ButtonGalleryDelete.Text = TextVariables.BUTTON_GALLERY_DELETE;
+            ButtonGalleryShowFolder.Text = "FOLDER \U0001F4C1";
 
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
 
@@ -731,6 +734,15 @@ namespace PortraitManager
             ButtonGalleryDelete.FlatAppearance.MouseDownBackColor = gameFore;
             ButtonGalleryDelete.TabStop = false;
 
+            ButtonGalleryShowFolder.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryShowFolder.FlatAppearance.BorderSize = 1;
+            ButtonGalleryShowFolder.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryShowFolder.BackColor = gameBack;
+            ButtonGalleryShowFolder.ForeColor = gameFore;
+            ButtonGalleryShowFolder.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryShowFolder.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryShowFolder.TabStop = false;
+
             _cancellationTokenSource?.Cancel();
             ClearGalleryEntries();
             LoadGalleryImages();
@@ -940,22 +952,26 @@ namespace PortraitManager
                 ButtonGalleryDelete.Visible = false;
                 ButtonGalleryClone.Visible = false;
                 ButtonGalleryChange.Visible = false;
+                ButtonGalleryShowFolder.Visible = true;
                 ButtonGalleryBack.Visible = true;
                 LayoutGalleryRight.RowStyles[0].Height = 0;
                 LayoutGalleryRight.RowStyles[1].Height = 0;
                 LayoutGalleryRight.RowStyles[2].Height = 0;
-                LayoutGalleryRight.RowStyles[3].Height = 100;
+                LayoutGalleryRight.RowStyles[3].Height = 50;
+                LayoutGalleryRight.RowStyles[4].Height = 50;
             }
             else
             {
                 ButtonGalleryDelete.Visible = true;
                 ButtonGalleryClone.Visible = true;
                 ButtonGalleryChange.Visible = true;
+                ButtonGalleryShowFolder.Visible = true;
                 ButtonGalleryBack.Visible = true;
-                LayoutGalleryRight.RowStyles[0].Height = 25;
-                LayoutGalleryRight.RowStyles[1].Height = 25;
-                LayoutGalleryRight.RowStyles[2].Height = 25;
-                LayoutGalleryRight.RowStyles[3].Height = 25;
+                LayoutGalleryRight.RowStyles[0].Height = 22;
+                LayoutGalleryRight.RowStyles[1].Height = 22;
+                LayoutGalleryRight.RowStyles[2].Height = 22;
+                LayoutGalleryRight.RowStyles[3].Height = 22;
+                LayoutGalleryRight.RowStyles[4].Height = 12;
             }
         }
 
@@ -1037,6 +1053,37 @@ namespace PortraitManager
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
             ButtonGalleryDelete.BackColor = selBack;
             ButtonGalleryDelete.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryShowFolder_Click(object sender, EventArgs e)
+        {
+            string gameDir = GetGameDirectory();
+            if (string.IsNullOrEmpty(gameDir))
+            {
+                using (var msg = new forms.MyMessageDialog("Could not determine the game directory."))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return;
+            }
+            Process.Start("explorer.exe", gameDir);
+        }
+
+        private void ButtonGalleryShowFolder_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryShowFolder.BackColor = selFore;
+            ButtonGalleryShowFolder.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryShowFolder_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryShowFolder.BackColor = selBack;
+            ButtonGalleryShowFolder.ForeColor = selFore;
         }
 
         private void ButtonToExtract_Click(object sender, EventArgs e)

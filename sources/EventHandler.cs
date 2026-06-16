@@ -2908,5 +2908,14 @@ namespace PortraitManager
         {
             LabelExtractClose.ForeColor = Color.White;
         }
+
+        private void LabelMainPageFooter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string target = e.Link.LinkData as string;
+            if (target == "github")
+                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager");
+            else if (target == "nexus")
+                System.Diagnostics.Process.Start("https://next.nexusmods.com/profile/zeightOFFICIAL/mods");
+        }
     }
 }

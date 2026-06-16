@@ -86,6 +86,7 @@ namespace PortraitManager
             this.LabelBrowse = new System.Windows.Forms.Label();
             this.LabelSettingsPage = new System.Windows.Forms.Label();
             this.LabelExit = new System.Windows.Forms.Label();
+            this.LabelMainPageFooter = new System.Windows.Forms.LinkLabel();
             this.LayoutKingCreatePortrait = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelKingCreatePortraitLarge = new System.Windows.Forms.Label();
@@ -926,6 +927,7 @@ namespace PortraitManager
             this.tableLayoutPanel23.Controls.Add(this.LabelBrowse, 0, 3);
             this.tableLayoutPanel23.Controls.Add(this.LabelSettingsPage, 0, 4);
             this.tableLayoutPanel23.Controls.Add(this.LabelExit, 0, 5);
+            this.tableLayoutPanel23.Controls.Add(this.LabelMainPageFooter, 0, 6);
             this.tableLayoutPanel23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel23.Location = new System.Drawing.Point(15, 41);
             this.tableLayoutPanel23.Name = "tableLayoutPanel23";
@@ -1009,6 +1011,27 @@ namespace PortraitManager
             this.LabelExit.Click += new System.EventHandler(this.LabelExit_Click);
             this.LabelExit.MouseEnter += new System.EventHandler(this.LabelExit_MouseEnter);
             this.LabelExit.MouseLeave += new System.EventHandler(this.LabelExit_MouseLeave);
+            // 
+            // LabelMainPageFooter
+            // 
+            this.LabelMainPageFooter.ActiveLinkColor = System.Drawing.Color.White;
+            this.LabelMainPageFooter.AutoSize = false;
+            this.LabelMainPageFooter.BackColor = System.Drawing.Color.Transparent;
+            this.LabelMainPageFooter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelMainPageFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMainPageFooter.ForeColor = System.Drawing.Color.Gray;
+            this.LabelMainPageFooter.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.LabelMainPageFooter.LinkColor = System.Drawing.Color.Gray;
+            this.LabelMainPageFooter.Links.Add(38, 6, "github");
+            this.LabelMainPageFooter.Links.Add(47, 10, "nexus");
+            this.LabelMainPageFooter.Name = "LabelMainPageFooter";
+            this.LabelMainPageFooter.Size = new System.Drawing.Size(657, 75);
+            this.LabelMainPageFooter.TabIndex = 5;
+            this.LabelMainPageFooter.TabStop = true;
+            this.LabelMainPageFooter.Text = "Portrait Manager v1.5 © 2024 Zeight | GitHub | Nexus Mods";
+            this.LabelMainPageFooter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.LabelMainPageFooter.VisitedLinkColor = System.Drawing.Color.Gray;
+            this.LabelMainPageFooter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LabelMainPageFooter_LinkClicked);
             // 
             // LayoutKingCreatePortrait
             // 
@@ -2310,6 +2333,7 @@ namespace PortraitManager
         private System.Windows.Forms.Label LabelBrowse;
         private System.Windows.Forms.Label LabelSettingsPage;
         private System.Windows.Forms.Label LabelExit;
+        private System.Windows.Forms.LinkLabel LabelMainPageFooter;
         private System.Windows.Forms.TableLayoutPanel LayoutKingCreatePortrait;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

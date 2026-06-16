@@ -731,6 +731,7 @@ namespace PortraitManager
             ButtonGalleryDelete.FlatAppearance.MouseDownBackColor = gameFore;
             ButtonGalleryDelete.TabStop = false;
 
+            _cancellationTokenSource?.Cancel();
             ClearGalleryEntries();
             LoadGalleryImages();
             UpdateGalleryRightPanel();
@@ -847,6 +848,7 @@ namespace PortraitManager
 
         private void ButtonGalleryBack_Click(object sender, EventArgs e)
         {
+            _cancellationTokenSource?.Cancel();
             _activeMenuIndex = GetMainMenuIndexForCurrentGame();
 
             ParentLayoutsDisable();
@@ -1012,6 +1014,7 @@ namespace PortraitManager
             {
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
+                    _cancellationTokenSource?.Cancel();
                     DeleteGalleryPortraitSet(_selectedGalleryEntry);
                     _selectedGalleryEntry = null;
                     UpdateGalleryRightPanel();

@@ -1039,12 +1039,17 @@ namespace PortraitManager
 
         private bool IsValidPortraitSize(Size imageSize)
         {
-            if (_gameSelected != 'k' && _gameSelected != 'w' && _gameSelected != 'r' && _gameSelected != 't' && _gameSelected != 'l' && _gameSelected != 'p' && _gameSelected != 'd')
+            return IsValidPortraitSize(imageSize, _gameSelected);
+        }
+
+        private bool IsValidPortraitSize(Size imageSize, char gameSelected)
+        {
+            if (gameSelected != 'k' && gameSelected != 'w' && gameSelected != 'r' && gameSelected != 't' && gameSelected != 'l' && gameSelected != 'p' && gameSelected != 'd')
                 return true;
 
             try
             {
-                var gt = GameTypes[_gameSelected];
+                var gt = GameTypes[gameSelected];
                 var expected = new List<Size>();
                 try { expected.Add(new Size((int)gt.GetPortraitSpecific("SMALL_WIDTH"), (int)gt.GetPortraitSpecific("SMALL_HEIGHT"))); } catch { }
                 try { expected.Add(new Size((int)gt.GetPortraitSpecific("MEDIUM_WIDTH"), (int)gt.GetPortraitSpecific("MEDIUM_HEIGHT"))); } catch { }
@@ -1287,6 +1292,7 @@ namespace PortraitManager
         {
             ClearGalleryEntries();
             _galleryEntries = new List<Tuple<string, Image>>();
+            FlowLayoutPanelGallery.Visible = true;
 
             string gamePath = CoreSettings.Default.GamePath;
             if (string.IsNullOrEmpty(gamePath) || !Directory.Exists(gamePath))
@@ -1327,26 +1333,30 @@ namespace PortraitManager
             if (!Directory.Exists(portraitsDir))
                 return;
 
-            if (flatFile)
-            {
-                LoadFlatGallery(portraitsDir);
-            }
-            else
-            {
-                LoadSubfolderGallery(portraitsDir);
-            }
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource = new CancellationTokenSource();
+            var token = _cancellationTokenSource.Token;
 
-            if (_galleryEntries.Count > 0)
+            string capturedPortraitsDir = portraitsDir;
+            bool capturedFlatFile = flatFile;
+            char capturedGame = _gameSelected;
+
+            Task.Run(() =>
             {
-                FlowLayoutPanelGallery.Visible = true;
+                if (capturedFlatFile)
+                    LoadFlatGalleryGradual(capturedPortraitsDir, capturedGame, token);
+                else
+                    LoadSubfolderGalleryGradual(capturedPortraitsDir, capturedGame, token);
+
                 BeginInvoke(new Action(() =>
                 {
-                    ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                    if (_galleryEntries.Count > 0)
+                        ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
                 }));
-            }
+            }, token);
         }
 
-        private void LoadSubfolderGallery(string portraitsDir)
+        private void LoadSubfolderGalleryGradual(string portraitsDir, char gameSelected, CancellationToken token)
         {
             string[] subDirs;
             try { subDirs = Directory.GetDirectories(portraitsDir); }
@@ -1354,6 +1364,7 @@ namespace PortraitManager
 
             foreach (string subDir in subDirs)
             {
+                if (token.IsCancellationRequested) return;
                 if (!Directory.Exists(subDir)) continue;
                 string[] files;
                 try { files = Directory.GetFiles(subDir, "*.png"); }
@@ -1374,15 +1385,28 @@ namespace PortraitManager
                 {
                     using (Image img = Image.FromFile(bestFile))
                     {
-                        if (IsValidPortraitSize(img.Size))
-                            AddGalleryThumbnail(subDir, img);
+                        if (token.IsCancellationRequested) return;
+                        if (IsValidPortraitSize(img.Size, gameSelected))
+                        {
+                            Bitmap memImage = new Bitmap(img);
+                            string capturedKey = subDir;
+                            BeginInvoke(new Action(() =>
+                            {
+                                if (token.IsCancellationRequested)
+                                {
+                                    memImage.Dispose();
+                                    return;
+                                }
+                                AddGalleryThumbnail(capturedKey, memImage);
+                            }));
+                        }
                     }
                 }
                 catch { }
             }
         }
 
-        private void LoadFlatGallery(string portraitsDir)
+        private void LoadFlatGalleryGradual(string portraitsDir, char gameSelected, CancellationToken token)
         {
             string[] files;
             try { files = Directory.GetFiles(portraitsDir, "*.png"); }
@@ -1393,6 +1417,7 @@ namespace PortraitManager
 
             foreach (string file in files)
             {
+                if (token.IsCancellationRequested) return;
                 string name = Path.GetFileNameWithoutExtension(file);
                 string prefix = name;
 
@@ -1425,12 +1450,26 @@ namespace PortraitManager
 
             foreach (var kvp in groupBest)
             {
+                if (token.IsCancellationRequested) return;
                 try
                 {
                     using (Image img = Image.FromFile(kvp.Value))
                     {
-                        if (IsValidPortraitSize(img.Size))
-                            AddGalleryThumbnail(Path.Combine(portraitsDir, kvp.Key), img);
+                        if (token.IsCancellationRequested) return;
+                        if (IsValidPortraitSize(img.Size, gameSelected))
+                        {
+                            Bitmap memImage = new Bitmap(img);
+                            string capturedKey = Path.Combine(portraitsDir, kvp.Key);
+                            BeginInvoke(new Action(() =>
+                            {
+                                if (token.IsCancellationRequested)
+                                {
+                                    memImage.Dispose();
+                                    return;
+                                }
+                                AddGalleryThumbnail(capturedKey, memImage);
+                            }));
+                        }
                     }
                 }
                 catch { }

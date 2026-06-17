@@ -170,6 +170,7 @@ namespace PortraitManager
         private List<Tuple<string, Image>> _galleryEntries;
         private string _selectedGalleryEntry;
         private string _overrideGallerySaveDir;
+        private bool _suppressGalleryCheckEvents;
 
         private void FontInit()
         {
@@ -965,13 +966,13 @@ namespace PortraitManager
                 ButtonGalleryDelete.Visible = true;
                 ButtonGalleryClone.Visible = true;
                 ButtonGalleryChange.Visible = true;
-                ButtonGalleryShowFolder.Visible = true;
+                ButtonGalleryShowFolder.Visible = false;
                 ButtonGalleryBack.Visible = true;
-                LayoutGalleryRight.RowStyles[0].Height = 22;
-                LayoutGalleryRight.RowStyles[1].Height = 22;
-                LayoutGalleryRight.RowStyles[2].Height = 22;
-                LayoutGalleryRight.RowStyles[3].Height = 22;
-                LayoutGalleryRight.RowStyles[4].Height = 12;
+                LayoutGalleryRight.RowStyles[0].Height = 29;
+                LayoutGalleryRight.RowStyles[1].Height = 29;
+                LayoutGalleryRight.RowStyles[2].Height = 28;
+                LayoutGalleryRight.RowStyles[3].Height = 0;
+                LayoutGalleryRight.RowStyles[4].Height = 14;
             }
         }
 

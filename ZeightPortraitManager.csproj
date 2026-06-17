@@ -85,6 +85,10 @@
   <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SharpCompress, Version=0.38.0.0, Culture=neutral, PublicKeyToken=be6306fb8e755753, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />

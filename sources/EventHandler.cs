@@ -1096,13 +1096,13 @@ namespace PortraitManager
                 if (pb == null) return;
                 _mousePosition = e.Location;
                 _pictureDragStart = pb.Location;
-                _isDraggingMouse = 3;
+                _isDraggingMouse = 4;
             }
         }
 
         private void PicPortraitSml2_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDraggingMouse == 3)
+            if (_isDraggingMouse == 4)
             {
                 var pb = sender as PictureBox;
                 if (pb == null) return;

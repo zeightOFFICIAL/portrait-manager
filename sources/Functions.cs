@@ -18,6 +18,8 @@
 
 using PortraitManager.forms;
 using PortraitManager.Properties;
+using SharpCompress.Archives;
+using SharpCompress.Common;
 
 using System;
 using System.Collections.Generic;
@@ -987,7 +989,7 @@ namespace PortraitManager
             return new Size((int)(original.Width * ratio), (int)(original.Height * ratio));
         }
 
-        private void AddArchiveThumbnail(string folderKey, Image image)
+        private void AddArchiveThumbnail(string folderKey, Image image, bool complete = true)
         {
             Bitmap memImage = new Bitmap(image);
 
@@ -1001,9 +1003,12 @@ namespace PortraitManager
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
+            string displayText = complete ? Path.GetFileName(folderKey) : Path.GetFileName(folderKey) + " (partial)";
+            Color borderColor = complete ? gameBack : Color.FromArgb(230, 180, 40);
+
             CheckBox cb = new CheckBox
             {
-                Text = Path.GetFileName(folderKey),
+                Text = displayText,
                 Tag = folderKey,
                 Checked = false,
                 ForeColor = Color.White,
@@ -1018,7 +1023,7 @@ namespace PortraitManager
             cb.Font = new Font(_fontCollection.Families[0], 13);
 
             cb.FlatAppearance.BorderSize = 3;
-            cb.FlatAppearance.BorderColor = gameBack;
+            cb.FlatAppearance.BorderColor = borderColor;
             cb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
             cb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
 
@@ -1026,7 +1031,7 @@ namespace PortraitManager
             cb.MouseLeave += (s, args) => { cb.ForeColor = Color.White; };
             cb.CheckedChanged += (s, args) =>
             {
-                cb.FlatAppearance.BorderColor = cb.Checked ? gameFore : gameBack;
+                cb.FlatAppearance.BorderColor = cb.Checked ? gameFore : borderColor;
                 UpdateExtractCounter();
             };
 
@@ -1065,6 +1070,25 @@ namespace PortraitManager
                 return false;
             }
             catch { return true; }
+        }
+
+        private void ValidatePortraitSize(string filePath, ref bool hadInvalid)
+        {
+            try
+            {
+                using (var bmp = new Bitmap(filePath))
+                {
+                    if (!IsValidPortraitSize(bmp.Size))
+                    {
+                        File.Delete(filePath);
+                        hadInvalid = true;
+                    }
+                }
+            }
+            catch
+            {
+                hadInvalid = true;
+            }
         }
 
         private void ClearArchiveEntries()
@@ -1179,13 +1203,16 @@ namespace PortraitManager
             cb.MouseLeave += (s, args) => { cb.ForeColor = Color.White; };
             cb.CheckedChanged += (s, args) =>
             {
+                if (_suppressGalleryCheckEvents) return;
                 if (cb.Checked)
                 {
+                    _suppressGalleryCheckEvents = true;
                     foreach (Control c2 in FlowLayoutPanelGallery.Controls)
                     {
                         if (c2 is CheckBox other && other != cb)
                             other.Checked = false;
                     }
+                    _suppressGalleryCheckEvents = false;
                     _selectedGalleryEntry = folderKey;
                 }
                 else
@@ -1273,7 +1300,7 @@ namespace PortraitManager
                         if (File.Exists(filePath))
                             File.Delete(filePath);
                     }
-                    string femaleDir = Path.Combine(dir, "female");
+                    string femaleDir = Path.Combine(Path.GetDirectoryName(dir), "female");
                     if (Directory.Exists(femaleDir))
                     {
                         foreach (string suf in suffixes)
@@ -1386,20 +1413,18 @@ namespace PortraitManager
                     using (Image img = Image.FromFile(bestFile))
                     {
                         if (token.IsCancellationRequested) return;
-                        if (IsValidPortraitSize(img.Size, gameSelected))
+                        Bitmap memImage = new Bitmap(img);
+                        string capturedKey = subDir;
+                        BeginInvoke(new Action(() =>
                         {
-                            Bitmap memImage = new Bitmap(img);
-                            string capturedKey = subDir;
-                            BeginInvoke(new Action(() =>
+                            if (token.IsCancellationRequested)
                             {
-                                if (token.IsCancellationRequested)
-                                {
-                                    memImage.Dispose();
-                                    return;
-                                }
-                                AddGalleryThumbnail(capturedKey, memImage);
-                            }));
-                        }
+                                memImage.Dispose();
+                                return;
+                            }
+                            AddGalleryThumbnail(capturedKey, memImage);
+                            memImage.Dispose();
+                        }));
                     }
                 }
                 catch { }
@@ -1413,7 +1438,7 @@ namespace PortraitManager
             catch { return; }
 
             var groupBest = new Dictionary<string, string>();
-            string[] sizePriority = { "_convo", "_sm", "_med", "_lg" };
+            string[] sizePriority = { "_convo", "_sm", "_si", "_med", "_lg" };
 
             foreach (string file in files)
             {
@@ -1456,20 +1481,18 @@ namespace PortraitManager
                     using (Image img = Image.FromFile(kvp.Value))
                     {
                         if (token.IsCancellationRequested) return;
-                        if (IsValidPortraitSize(img.Size, gameSelected))
+                        Bitmap memImage = new Bitmap(img);
+                        string capturedKey = Path.Combine(portraitsDir, kvp.Key);
+                        BeginInvoke(new Action(() =>
                         {
-                            Bitmap memImage = new Bitmap(img);
-                            string capturedKey = Path.Combine(portraitsDir, kvp.Key);
-                            BeginInvoke(new Action(() =>
+                            if (token.IsCancellationRequested)
                             {
-                                if (token.IsCancellationRequested)
-                                {
-                                    memImage.Dispose();
-                                    return;
-                                }
-                                AddGalleryThumbnail(capturedKey, memImage);
-                            }));
-                        }
+                                memImage.Dispose();
+                                return;
+                            }
+                            AddGalleryThumbnail(capturedKey, memImage);
+                            memImage.Dispose();
+                        }));
                     }
                 }
                 catch { }
@@ -1487,180 +1510,234 @@ namespace PortraitManager
 
             CleanupShellTempDir();
 
-            try
+            Task.Run(() =>
             {
-                string ext = Path.GetExtension(archivePath).ToLowerInvariant();
-
-                if (ext == ".zip")
+                try
                 {
-                    if (_gameSelected == 't')
-                    {
-                        using (ZipArchive archive = ZipFile.OpenRead(archivePath))
-                        {
-                            var lgEntries = archive.Entries
-                                .Where(e => e.Name.EndsWith("_lg.png", StringComparison.OrdinalIgnoreCase))
-                                .ToList();
+                    string ext = Path.GetExtension(archivePath).ToLowerInvariant();
 
-                            foreach (var entry in lgEntries)
+                    if (ext == ".zip")
+                    {
+                        if (_gameSelected == 't')
+                        {
+                            using (ZipArchive archive = ZipFile.OpenRead(archivePath))
                             {
-                                try
+                                var lgEntries = archive.Entries
+                                    .Where(e => e.Name.EndsWith("_lg.png", StringComparison.OrdinalIgnoreCase))
+                                    .ToList();
+
+                                foreach (var entry in lgEntries)
                                 {
-                                    string baseName = Path.GetFileNameWithoutExtension(entry.Name);
-                                    string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
-                                        ? baseName.Substring(0, baseName.Length - 3)
-                                        : baseName;
-                                    byte[] data = ReadEntryBytes(entry);
-                                    Image img = LoadImageFromBytes(data);
-                                    if (IsValidPortraitSize(img.Size))
+                                    try
                                     {
-                                        AddArchiveThumbnail(key, img);
+                                        string baseName = Path.GetFileNameWithoutExtension(entry.Name);
+                                        string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                                            ? baseName.Substring(0, baseName.Length - 3)
+                                            : baseName;
+                                        byte[] data = ReadEntryBytes(entry);
+                                        Image img = LoadImageFromBytes(data);
+                                        if (IsValidPortraitSize(img.Size))
+                                        {
+                                            BeginInvoke(new Action(() =>
+                                            {
+                                                AddArchiveThumbnail(key, img);
+                                                img.Dispose();
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            img.Dispose();
+                                        }
                                     }
-                                    img.Dispose();
+                                    catch { }
                                 }
-                                catch { }
                             }
                         }
+                        else if (_gameSelected == 'l')
+                        {
+                            using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                            {
+                                var imgEntries = archive.Entries
+                                    .Where(e => !e.FullName.EndsWith("/") && IsImageFile(e.Name))
+                                    .ToList();
+
+                                foreach (var entry in imgEntries)
+                                {
+                                    try
+                                    {
+                                        string key = Path.GetFileNameWithoutExtension(entry.Name);
+                                        byte[] data = ReadEntryBytes(entry);
+                                        Image img = LoadImageFromBytes(data);
+                                        if (IsValidPortraitSize(img.Size))
+                                        {
+                                            BeginInvoke(new Action(() =>
+                                            {
+                                                AddArchiveThumbnail(key, img);
+                                                img.Dispose();
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            img.Dispose();
+                                        }
+                                    }
+                                    catch { }
+                                }
+                            }
+                        }
+                        else if (_gameSelected == 'p' || _gameSelected == 'd')
+                        {
+                            using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                            {
+                                var allEntries = archive.Entries.ToList();
+                                var lgEntries = allEntries
+                                    .Where(e => e.Name.EndsWith("_lg.png", StringComparison.OrdinalIgnoreCase))
+                                    .ToList();
+
+                                foreach (var entry in lgEntries)
+                                {
+                                    try
+                                    {
+                                        string baseName = Path.GetFileNameWithoutExtension(entry.Name);
+                                        string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
+                                            ? baseName.Substring(0, baseName.Length - 3)
+                                            : baseName;
+                                        bool hasAllCompanions;
+                                        if (_gameSelected == 'd')
+                                            hasAllCompanions = allEntries.Any(e => e.Name.Equals(key + "_sm.png", StringComparison.OrdinalIgnoreCase)) &&
+                                                               allEntries.Any(e => e.Name.Equals(key + "_si.png", StringComparison.OrdinalIgnoreCase)) &&
+                                                               allEntries.Any(e => e.Name.Equals(key + "_convo.png", StringComparison.OrdinalIgnoreCase));
+                                        else
+                                            hasAllCompanions = allEntries.Any(e => e.Name.Equals(key + "_sm.png", StringComparison.OrdinalIgnoreCase));
+
+                                        byte[] data = ReadEntryBytes(entry);
+                                        Image img = LoadImageFromBytes(data);
+                                        if (IsValidPortraitSize(img.Size))
+                                        {
+                                            BeginInvoke(new Action(() =>
+                                            {
+                                                AddArchiveThumbnail(key, img, hasAllCompanions);
+                                                img.Dispose();
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            img.Dispose();
+                                        }
+                                    }
+                                    catch { }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                            {
+                                var imageEntries = archive.Entries
+                                    .Where(e => !e.FullName.EndsWith("/"))
+                                    .GroupBy(e => Path.GetDirectoryName(e.FullName).Replace("\\", "/"))
+                                    .ToList();
+
+                                foreach (var group in imageEntries)
+                                {
+                                    var imgFiles = group.Where(e => IsImageFile(e.Name)).ToList();
+                                    if (imgFiles.Count == 0) continue;
+
+                                    var fileNames = imgFiles
+                                        .Select(e => Path.GetFileName(e.Name))
+                                        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                                    if (!fileNames.Contains("Fulllength.png") ||
+                                        !fileNames.Contains("Medium.png") ||
+                                        !fileNames.Contains("Small.png"))
+                                        continue;
+
+                                    var firstImg = imgFiles.FirstOrDefault(f =>
+                                        Path.GetFileName(f.Name).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
+                                        ?? imgFiles.First();
+                                    try
+                                    {
+                                        byte[] data = ReadEntryBytes(firstImg);
+                                        Image img = LoadImageFromBytes(data);
+                                        if (IsValidPortraitSize(img.Size))
+                                        {
+                                            string key = string.IsNullOrEmpty(group.Key)
+                                                ? Path.GetFileNameWithoutExtension(archivePath) + "_flat"
+                                                : group.Key;
+                                            BeginInvoke(new Action(() =>
+                                            {
+                                                AddArchiveThumbnail(key, img);
+                                                img.Dispose();
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            img.Dispose();
+                                        }
+                                    }
+                                    catch { }
+                                }
+                            }
+                        }
+
+                        BeginInvoke(new Action(CompleteExtractLoad));
                     }
-                    else if (_gameSelected == 'l')
+                    else if (ext == ".7z" || ext == ".rar")
                     {
-                        using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                        string tempDir = Path.Combine(Path.GetTempPath(), "PortraitManager_Extract_" + Guid.NewGuid().ToString("N"));
+                        Directory.CreateDirectory(tempDir);
+                        ExtractArchive(archivePath, tempDir);
+                        BeginInvoke(new Action(() =>
                         {
-                            var imgEntries = archive.Entries
-                                .Where(e => !e.FullName.EndsWith("/") && IsImageFile(e.Name))
-                                .ToList();
-
-                            foreach (var entry in imgEntries)
-                            {
-                                try
-                                {
-                                    string key = Path.GetFileNameWithoutExtension(entry.Name);
-                                    byte[] data = ReadEntryBytes(entry);
-                                    Image img = LoadImageFromBytes(data);
-                                    if (IsValidPortraitSize(img.Size))
-                                    {
-                                        AddArchiveThumbnail(key, img);
-                                    }
-                                    img.Dispose();
-                                }
-                                catch { }
-                            }
-                        }
-                    }
-                    else if (_gameSelected == 'p' || _gameSelected == 'd')
-                    {
-                        using (ZipArchive archive = ZipFile.OpenRead(archivePath))
-                        {
-                            var lgEntries = archive.Entries
-                                .Where(e => e.Name.EndsWith("_lg.png", StringComparison.OrdinalIgnoreCase))
-                                .ToList();
-
-                            foreach (var entry in lgEntries)
-                            {
-                                try
-                                {
-                                    string baseName = Path.GetFileNameWithoutExtension(entry.Name);
-                                    string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
-                                        ? baseName.Substring(0, baseName.Length - 3)
-                                        : baseName;
-                                    byte[] data = ReadEntryBytes(entry);
-                                    Image img = LoadImageFromBytes(data);
-                                    if (IsValidPortraitSize(img.Size))
-                                    {
-                                        AddArchiveThumbnail(key, img);
-                                    }
-                                    img.Dispose();
-                                }
-                                catch { }
-                            }
-                        }
+                            _shellTempDir = tempDir;
+                            LoadFolderThumbnails(tempDir);
+                            CompleteExtractLoad();
+                        }));
                     }
                     else
                     {
-                        using (ZipArchive archive = ZipFile.OpenRead(archivePath))
+                        BeginInvoke(new Action(() =>
                         {
-                            var imageEntries = archive.Entries
-                                .Where(e => !e.FullName.EndsWith("/"))
-                                .GroupBy(e => Path.GetDirectoryName(e.FullName).Replace("\\", "/"))
-                                .ToList();
-
-                            foreach (var group in imageEntries)
-                            {
-                                var imgFiles = group.Where(e => IsImageFile(e.Name)).ToList();
-                                if (imgFiles.Count == 0) continue;
-
-                                var fileNames = imgFiles
-                                    .Select(e => Path.GetFileName(e.Name))
-                                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
-                                if (!fileNames.Contains("Fulllength.png") ||
-                                    !fileNames.Contains("Medium.png") ||
-                                    !fileNames.Contains("Small.png"))
-                                    continue;
-
-                                var firstImg = imgFiles.FirstOrDefault(f =>
-                                    Path.GetFileName(f.Name).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
-                                    ?? imgFiles.First();
-                                try
-                                {
-                                    byte[] data = ReadEntryBytes(firstImg);
-                                    Image img = LoadImageFromBytes(data);
-                                    if (IsValidPortraitSize(img.Size))
-                                    {
-                                        string key = string.IsNullOrEmpty(group.Key)
-                                            ? Path.GetFileNameWithoutExtension(archivePath) + "_flat"
-                                            : group.Key;
-                                        AddArchiveThumbnail(key, img);
-                                    }
-                                    img.Dispose();
-                                }
-                                catch { }
-                            }
-                        }
+                            LoadFolderThumbnails(archivePath);
+                            CompleteExtractLoad();
+                        }));
                     }
                 }
-                else if (ext == ".7z" || ext == ".rar")
+                catch (Exception ex)
                 {
-                    _shellTempDir = Path.Combine(Path.GetTempPath(), "PortraitManager_Extract_" + Guid.NewGuid().ToString("N"));
-                    Directory.CreateDirectory(_shellTempDir);
-                    ExtractArchiveViaShell(archivePath, _shellTempDir);
-                    LoadFolderThumbnails(_shellTempDir);
-                }
-                else
-                {
-                    LoadFolderThumbnails(archivePath);
-                }
-
-                UpdateExtractCounter();
-
-                if (_archiveEntries.Count > 0)
-                {
-                    PanelExtractOverlay.Visible = false;
-                    FlowLayoutPanelExtract.Visible = true;
-                    FlowLayoutPanelExtractBottom.Visible = true;
-                    ButtonExtractAll.Visible = true;
-                    ButtonExtractSelected.Visible = true;
-                    ButtonExtractShowFolder.Visible = true;
-                    ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDERS;
-                    LayoutExtractRight.RowStyles[0].Height = 28.57F;
-                    LayoutExtractRight.RowStyles[1].Height = 28.57F;
-                    LayoutExtractRight.RowStyles[2].Height = 28.57F;
-                    LayoutExtractRight.RowStyles[3].Height = 14.29F;
                     BeginInvoke(new Action(() =>
                     {
-                        ShowScrollBar(FlowLayoutPanelExtract.Handle, 3, false);
+                        using (var msg = new MyMessageDialog("Failed to load archive: " + ex.Message))
+                        {
+                            msg.StartPosition = FormStartPosition.CenterParent;
+                            msg.ShowDialog();
+                        }
                     }));
                 }
-                else
-                {
-                    using (var msg = new MyMessageDialog("No portraits matching the expected dimensions for the selected game were found in the archive.\nMake sure you have the correct game selected."))
-                    {
-                        msg.StartPosition = FormStartPosition.CenterParent;
-                        msg.ShowDialog();
-                    }
-                }
-            }
-            catch (Exception ex)
+            });
+        }
+
+        private void CompleteExtractLoad()
+        {
+            UpdateExtractCounter();
+
+            if (_archiveEntries.Count > 0)
             {
-                using (var msg = new MyMessageDialog("Failed to load archive: " + ex.Message))
+                PanelExtractOverlay.Visible = false;
+                FlowLayoutPanelExtract.Visible = true;
+                FlowLayoutPanelExtractBottom.Visible = true;
+                ButtonExtractAll.Visible = true;
+                ButtonExtractSelected.Visible = true;
+                ButtonExtractShowFolder.Visible = true;
+                ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDERS;
+                LayoutExtractRight.RowStyles[0].Height = 28.57F;
+                LayoutExtractRight.RowStyles[1].Height = 28.57F;
+                LayoutExtractRight.RowStyles[2].Height = 28.57F;
+                LayoutExtractRight.RowStyles[3].Height = 14.29F;
+                ShowScrollBar(FlowLayoutPanelExtract.Handle, 3, false);
+            }
+            else
+            {
+                using (var msg = new MyMessageDialog("No portraits matching the expected dimensions for the selected game were found in the archive.\nMake sure you have the correct game selected."))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog();
@@ -1668,39 +1745,17 @@ namespace PortraitManager
             }
         }
 
-        private void ExtractArchiveViaShell(string archivePath, string destDir)
+        private void ExtractArchive(string archivePath, string destDir)
         {
-            Type shellAppType = Type.GetTypeFromProgID("Shell.Application");
-            if (shellAppType == null)
-                throw new InvalidOperationException("Shell.Application COM type is not available on this system.");
-
-            dynamic shell = Activator.CreateInstance(shellAppType);
-            dynamic src = shell.NameSpace(archivePath);
-            if (src == null)
-                throw new InvalidOperationException(
-                    $"Cannot open archive: {Path.GetFileName(archivePath)}. " +
-                    $"Ensure a shell extension handler (e.g., 7-Zip, WinRAR) is installed for .{Path.GetExtension(archivePath)} files.");
-
-            dynamic dest = shell.NameSpace(destDir);
-            dest.CopyHere(src.Items(), 20);
-
-            System.Threading.Thread.Sleep(200);
-            int tries = 0;
-            while (tries < 10)
+            using (var archive = ArchiveFactory.Open(archivePath))
             {
-                try
-                {
-                    var files = Directory.GetFiles(destDir, "*", SearchOption.AllDirectories);
-                    if (files.Length > 0) return;
-                }
-                catch { }
-                System.Threading.Thread.Sleep(300);
-                tries++;
+                foreach (var entry in archive.Entries.Where(e => !e.IsDirectory))
+                    entry.WriteToDirectory(destDir, new ExtractionOptions
+                    {
+                        ExtractFullPath = true,
+                        Overwrite = true
+                    });
             }
-
-            throw new InvalidOperationException(
-                $"Archive extraction produced no files. " +
-                $"Verify that a shell extension for .{Path.GetExtension(archivePath)} is installed and working.");
         }
 
         private void LoadFolderThumbnails(string folderPath, int depth = 0)
@@ -1760,10 +1815,19 @@ namespace PortraitManager
                         string key = baseName.EndsWith("_lg", StringComparison.OrdinalIgnoreCase)
                             ? baseName.Substring(0, baseName.Length - 3)
                             : baseName;
+                        string dir = Path.GetDirectoryName(file);
+                        bool hasAllCompanions;
+                        if (_gameSelected == 'd')
+                            hasAllCompanions = File.Exists(Path.Combine(dir, key + "_sm.png")) &&
+                                               File.Exists(Path.Combine(dir, key + "_si.png")) &&
+                                               File.Exists(Path.Combine(dir, key + "_convo.png"));
+                        else
+                            hasAllCompanions = File.Exists(Path.Combine(dir, key + "_sm.png"));
+
                         Image img = Image.FromFile(file);
                         if (IsValidPortraitSize(img.Size))
                         {
-                            AddArchiveThumbnail(key, img);
+                            AddArchiveThumbnail(key, img, hasAllCompanions);
                         }
                         img.Dispose();
                     }
@@ -2337,6 +2401,7 @@ namespace PortraitManager
             int count = 0;
             int conflictCount = 0;
             int skippedCount = 0;
+            int sizeInvalidCount = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
 
             try
@@ -2375,14 +2440,19 @@ namespace PortraitManager
                                 continue;
                             }
 
-                            foreach (var entry in folder)
+                            bool hadInvalid = false;
+                            foreach (var entry in folder.Where(e => !string.IsNullOrEmpty(Path.GetFileName(e.Name)) && IsImageFile(e.Name)))
                             {
                                 string fileName = Path.GetFileName(entry.Name);
-                                if (!string.IsNullOrEmpty(fileName))
-                                {
-                                    string destPath = Path.Combine(targetFolder, fileName);
-                                    entry.ExtractToFile(destPath, overwrite: true);
-                                }
+                                string destPath = Path.Combine(targetFolder, fileName);
+                                entry.ExtractToFile(destPath, overwrite: true);
+                                ValidatePortraitSize(destPath, ref hadInvalid);
+                            }
+                            if (hadInvalid)
+                            {
+                                try { Directory.Delete(targetFolder, true); } catch { }
+                                sizeInvalidCount++;
+                                continue;
                             }
                             count++;
                         }
@@ -2418,10 +2488,18 @@ namespace PortraitManager
                                 Directory.CreateDirectory(targetFolder);
                                 if (conflicted) conflictCount++;
 
+                                bool hadInvalid = false;
                                 foreach (var file in Directory.GetFiles(dir))
                                 {
                                     string destPath = Path.Combine(targetFolder, Path.GetFileName(file));
                                     File.Copy(file, destPath, overwrite: true);
+                                    ValidatePortraitSize(destPath, ref hadInvalid);
+                                }
+                                if (hadInvalid)
+                                {
+                                    try { Directory.Delete(targetFolder, true); } catch { }
+                                    sizeInvalidCount++;
+                                    return;
                                 }
                                 count++;
                             }
@@ -2461,10 +2539,18 @@ namespace PortraitManager
                             Directory.CreateDirectory(targetFolder);
                             if (conflicted) conflictCount++;
 
+                            bool hadInvalid = false;
                             foreach (var file in Directory.GetFiles(folder).Where(f => IsImageFile(f)))
                             {
                                 string destPath = Path.Combine(targetFolder, Path.GetFileName(file));
                                 File.Copy(file, destPath, overwrite: true);
+                                ValidatePortraitSize(destPath, ref hadInvalid);
+                            }
+                            if (hadInvalid)
+                            {
+                                try { Directory.Delete(targetFolder, true); } catch { }
+                                sizeInvalidCount++;
+                                return;
                             }
                             count++;
                             return;
@@ -2480,9 +2566,11 @@ namespace PortraitManager
                 string conflictMsg = conflictCount > 0
                     ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
                     : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
-                string msgText = skippedCount > 0
-                    ? conflictMsg + $"\nSkipped {skippedCount} incomplete set(s) (missing Fulllength.png, Medium.png, or Small.png)."
-                    : conflictMsg;
+                string msgText = conflictMsg;
+                if (skippedCount > 0)
+                    msgText += $"\nSkipped {skippedCount} incomplete set(s) (missing Fulllength.png, Medium.png, or Small.png).";
+                if (sizeInvalidCount > 0)
+                    msgText += $"\nSkipped {sizeInvalidCount} set(s) with invalid portrait dimensions.";
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;

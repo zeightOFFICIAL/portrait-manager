@@ -30,7 +30,6 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using SystemControl;
 
 namespace PortraitManager
 {
@@ -38,50 +37,9 @@ namespace PortraitManager
     {
         private const int WM_MOUSEWHEEL = 0x020A;
         private static char _gameSelected;
-
-        /*
-         * 100 - Start page (initial page, with no game type active)
-         * 150 - Path page
-         * 20* - Main page 
-         * (
-         *      201 - Pathfinder: Kingmaker, 
-         *      202 - Pathfinder: Wotr, 
-         *      203 - Rogue Trader
-         *      204 - Pillars of Eternity
-         *      205 - Pillars of Eternity: Deadfire
-         *      206 - Tyranny
-         *      207 - Wasteland 3
-         * )
-         * 30* - Portrait page
-         * (
-         *      301 - Pathfinder: Kingmaker, 
-         *      302 - Pathfinder: Wotr, 
-         *      303 - Rogue Trader
-         *      304 - Pillars of Eternity
-         *      305 - Pillars of Eternity: Deadfire
-         *      306 - Tyranny
-         *      307 - Wasteland 3
-         * )
-         * 
-         * 3 - File page
-         * 4 - Scale page
-         * 5 - Extract page
-         * 6 - Gallery page
-         * 100 - File>web page
-         * 200 - Scale>finish page
-         * 65535 - Debug/Error
-         */
-
-        /*
-         * 1 - Large
-         * 2 - Medium
-         * 3 - Small
-         * 4 - Large 2
-         * 5 - Medium 2
-         */
         private static ushort _activeMenuIndex = 0;
 
-        private enum KingPortraitGroupSelection
+        private enum PortraitGroupSelection
         {
             Large,
             Medium,
@@ -106,38 +64,33 @@ namespace PortraitManager
                     {
                         StoreOriginalImage(PicKingLrg, new Bitmap(img));
                         FitImageToPanel(PicKingLrg);
-                        _kingGroupLrgInitialized = true;
+                        _groupLrgInitialized = true;
                     }
                     else if (tag == "PicKingMed")
                     {
                         StoreOriginalImage(PicKingMed, new Bitmap(img));
                         FitImageToPanel(PicKingMed);
-                        _kingGroupMedInitialized = true;
+                        _groupMedInitialized = true;
                     }
                     else if (tag == "PicKingSml")
                     {
                         StoreOriginalImage(PicKingSml, new Bitmap(img));
                         FitImageToPanel(PicKingSml);
-                        _kingGroupSmlInitialized = true;
+                        _groupSmlInitialized = true;
                     }
                     else if (tag == "PicKingSml2")
                     {
                         StoreOriginalImage(PicKingSml2, new Bitmap(img));
                         FitImageToPanel(PicKingSml2);
-                        _kingGroupSml2Initialized = true;
+                        _groupSml2Initialized = true;
                     }
                     img.Dispose();
                 }
             }
         }
 
-        private KingPortraitGroupSelection _activeKingPortraitGroup = KingPortraitGroupSelection.Large;
+        private PortraitGroupSelection _activeKingPortraitGroup = PortraitGroupSelection.Large;
 
-        /* 0 - all loaded
-         * 1 - first loaded
-         * 2 - first, second loaded
-         * 100 - not loaded
-         */
         private static ushort _imageSelectionFlag = 0;
         private static bool _isAnyLoadedToPortraitPage = false;
         private static bool _isAspectRatioFixed = false;
@@ -155,10 +108,10 @@ namespace PortraitManager
         private static float _zoomLevelMed = 1.0f;
         private static float _zoomLevelSml = 1.0f;
         private static float _zoomLevelSml2 = 1.0f;
-        private bool _kingGroupLrgInitialized;
-        private bool _kingGroupMedInitialized;
-        private bool _kingGroupSmlInitialized;
-        private bool _kingGroupSml2Initialized;
+        private bool _groupLrgInitialized;
+        private bool _groupMedInitialized;
+        private bool _groupSmlInitialized;
+        private bool _groupSml2Initialized;
 
         private static PrivateFontCollection _fontCollection;
         private static CancellationTokenSource _cancellationTokenSource;
@@ -174,7 +127,7 @@ namespace PortraitManager
 
         private void FontInit()
         {
-            _fontCollection = FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
 
             Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
                  bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
@@ -425,7 +378,7 @@ namespace PortraitManager
             }
 
             Focus();
-            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+            SetKingPortraitGroup(PortraitGroupSelection.Large);
             _allowAutoResize = true;
             ReplacePictureBoxImagesToDefault();
             _allowAutoResize = false;
@@ -436,13 +389,12 @@ namespace PortraitManager
 
         private void LabelKingCreatePortrait_Paint(object sender, PaintEventArgs e)
         {
-            var lbl = sender as Label;
-            if (lbl == null) return;
+            if (!(sender is Label lbl)) return;
             bool isSelected = false;
-            if (lbl.Name == "LabelKingCreatePortraitLarge") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Large;
-            else if (lbl.Name == "LabelKingCreatePortraitMedium") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Medium;
-            else if (lbl.Name == "LabelKingCreatePortraitSmall") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Small;
-            else if (lbl.Name == "LabelKingCreatePortraitSml2") isSelected = _activeKingPortraitGroup == KingPortraitGroupSelection.Sml2;
+            if (lbl.Name == "LabelKingCreatePortraitLarge") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Large;
+            else if (lbl.Name == "LabelKingCreatePortraitMedium") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Medium;
+            else if (lbl.Name == "LabelKingCreatePortraitSmall") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Small;
+            else if (lbl.Name == "LabelKingCreatePortraitSml2") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Sml2;
             if (!isSelected) return;
 
             Color penColor = Color.White;
@@ -451,9 +403,9 @@ namespace PortraitManager
             {
                 int w = lbl.ClientSize.Width;
                 int h = lbl.ClientSize.Height;
-                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0); // top
-                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1); // left
-                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1); // right
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
             }
         }
 
@@ -524,119 +476,7 @@ namespace PortraitManager
         {
             DrawGroupBorder(sender as Control, e, null);
         }
-        
-        private void ButtonToFilePage_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 1;
-
-            RestoreFilePageToInit();
-            CreateAllImagesInTemp("!DEFAULT!", 100);
-            GenerateImageSelectionFlagString(100);
-            LoadTempImagesToPicBox(100);
-
-            ParentLayoutsDisable();
-            //RootFunctions.LayoutEnable(LayoutFilePage);
-            Focus();
-            ResizeVisibleImagesToWindowSize();
-
-            if (!_isAspectRatioFixed)
-            {
-                //FixPicBoxAspectRatio(PanelPortraitLrg, GAME_TYPES[_gameSelected].GetLargeAspect());
-                //FixPicBoxAspectRatio(PanelPortraitMed, GAME_TYPES[_gameSelected].GetMediumAspect());
-                //FixPicBoxAspectRatio(PanelPortraitSml, GAME_TYPES[_gameSelected].GetSmallAspect());
-                _isAspectRatioFixed = true;
-            }
-        }
-
-        private void ButtonToScalePage_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 2;
-
-            if (!_isAnyLoadedToPortraitPage)
-            {
-                //using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_NOIMAGECHOSEN, CoreSettings.Default.SelectedLang))
-                //{
-                //    Inquiry.StartPosition = FormStartPosition.CenterParent;
-                //    Inquiry.Width = Width - 16;
-                //    if (Inquiry.ShowDialog() == DialogResult.OK)
-                //    {
-                //        ParentLayoutsDisable();
-                //        LoadAllTempImagesToPicBox();
-
-                //        RootFunctions.LayoutEnable(LayoutScalePage);
-                //        Focus();
-                //        ResizeVisibleImagesToWindowSize();
-                //    }
-                //    else
-                //    {
-                //        _activeMenuIndex = 1;
-                //        return;
-                //    }
-                //}
-            }
-            else
-            {
-                ParentLayoutsDisable();
-                LoadAllTempImagesToPicBox();
-
-                //RootFunctions.LayoutEnable(LayoutScalePage);
-                Focus();
-                ResizeVisibleImagesToWindowSize();
-            }
-
-            GenerateImageSelectionFlagString(0);
-
-
-        }
-        
-        private void ButtonToFilePage2_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 1;
-
-            RestoreFilePageToInit();
-            _isAnyLoadedToPortraitPage = true;
-            LoadTempImagesToPicBox(_imageSelectionFlag);
-
-            ParentLayoutsDisable();
-            //RootFunctions.LayoutEnable(LayoutFilePage);
-            Focus();
-            ResizeVisibleImagesToWindowSize();
-
-            Focus();
-        }
-
-        private void ButtonToFilePage3_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 1;
-
-            //ButtonToFilePage3.BackColor = Color.Black;
-            //ButtonToFilePage3.ForeColor = Color.White;
-            RestoreFilePageToInit();
-            //RootFunctions.LayoutDisable(LayoutFinalPage);
-            ReplacePictureBoxImagesToDefault();
-            //SystemControl.FileControl.CreateTempImages("!DEFAULT!", TEMP_APPENDS, GAME_TYPES[_gameSelected].PortraitPlaceholderImage);
-            LoadTempImagesToPicBox(_imageSelectionFlag);
-
-            ParentLayoutsDisable();
-            //RootFunctions.LayoutEnable(LayoutFilePage);
-            Focus();
-            ResizeVisibleImagesToWindowSize();
-            GenerateImageSelectionFlagString(100);
-            //ButtonToMainPageAndFolder.Enabled = true;
-        }
-        
-        private void ButtonExit_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 0;
-
-            Application.RemoveMessageFilter(this);
-            DisposePrimeImages();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            //ClearImageListsSync(ListExtract, ImgListExtract);
-            SystemControl.FileControl.ClearTempImages();
-            Application.Exit();
-        }
-        
+                
         private void LabelExtract_Click(object sender, EventArgs e)
         {
             _activeMenuIndex = 5;
@@ -1220,10 +1060,9 @@ namespace PortraitManager
 
         private void MainForm_Closed(object sender, FormClosedEventArgs e)
         {
-            DisposePrimeImages();
             //ClearImageListsSync(ListGallery, ImgListGallery);
             //ClearImageListsSync(ListExtract, ImgListExtract);
-            FileControl.ClearTempImages();
+            SystemControl.FileControl.ClearTempImages();
             Dispose();
             Application.Exit();
         }
@@ -1778,10 +1617,10 @@ namespace PortraitManager
 
         private void PrepareKingCreatePortraitStyleState()
         {
-            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
-            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium);
-            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small);
-            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Sml2);
+            SetKingPortraitGroup(PortraitGroupSelection.Large);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Medium);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Small);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Sml2);
             LayoutKingPortraitGroupLarge.Invalidate();
             LayoutKingPortraitGroupMedium.Invalidate();
             LayoutKingPortraitGroupSmall.Invalidate();
@@ -1798,9 +1637,9 @@ namespace PortraitManager
             StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
             StoreOriginalImage(PicKingSml2, new Bitmap(gameType.PlaceholderPortrait));
 
-            _kingGroupLrgInitialized = false;
-            _kingGroupSmlInitialized = false;
-            _kingGroupSml2Initialized = false;
+            _groupLrgInitialized = false;
+            _groupSmlInitialized = false;
+            _groupSml2Initialized = false;
 
             bool hasMed = HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
                           HasPortraitSpecific(gameType, "MEDIUM_HEIGHT");
@@ -1808,11 +1647,11 @@ namespace PortraitManager
             if (hasMed)
             {
                 StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
-                _kingGroupMedInitialized = false;
+                _groupMedInitialized = false;
             }
             else
             {
-                _kingGroupMedInitialized = true; // mark as initialized so EnsureKingGroup skips it
+                _groupMedInitialized = true; // mark as initialized so EnsureKingGroup skips it
             }
 
             // Enable drag-and-drop onto each portrait PictureBox (file or URL text)
@@ -1822,8 +1661,8 @@ namespace PortraitManager
             if (hasMed)
                 WirePortraitDragDrop(PicKingMed);
 
-            AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large);
-            EnsureKingGroupInitialized(KingPortraitGroupSelection.Large);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Large);
+            EnsureKingGroupInitialized(PortraitGroupSelection.Large);
         }
 
         private float GetPortraitSpecificOrDefault(GameType gameType, string key, float fallback)
@@ -1852,11 +1691,11 @@ namespace PortraitManager
             }
         }
 
-        private void AdjustActivePortraitPanelAspect(KingPortraitGroupSelection selection)
+        private void AdjustActivePortraitPanelAspect(PortraitGroupSelection selection)
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
 
-            if (selection == KingPortraitGroupSelection.Large)
+            if (selection == PortraitGroupSelection.Large)
             {
                 if (!HasPortraitSpecific(gameType, "LARGE_WIDTH")) return;
                 AdjustPortraitPanelAspect(
@@ -1864,7 +1703,7 @@ namespace PortraitManager
                     GetPortraitSpecificOrDefault(gameType, "LARGE_AR", 1.3f),
                     360f);
             }
-            else if (selection == KingPortraitGroupSelection.Medium)
+            else if (selection == PortraitGroupSelection.Medium)
             {
                 if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH"))
                 {
@@ -1874,7 +1713,7 @@ namespace PortraitManager
                         360f);
                 }
             }
-            else if (selection == KingPortraitGroupSelection.Small)
+            else if (selection == PortraitGroupSelection.Small)
             {
                 if (!HasPortraitSpecific(gameType, "SMALL_WIDTH")) return;
                 float smlHeight = (_gameSelected == 'l') ? 256f : 360f;
@@ -1883,7 +1722,7 @@ namespace PortraitManager
                     GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
                     smlHeight);
             }
-            else if (selection == KingPortraitGroupSelection.Sml2)
+            else if (selection == PortraitGroupSelection.Sml2)
             {
                 if (!HasPortraitSpecific(gameType, "SML2_WIDTH")) return;
                 AdjustPortraitPanelAspect(
@@ -1905,31 +1744,31 @@ namespace PortraitManager
             pic.DragLeave += PicKing_DragLeave;
         }
 
-        private void EnsureKingGroupInitialized(KingPortraitGroupSelection selection)
+        private void EnsureKingGroupInitialized(PortraitGroupSelection selection)
         {
-            if (selection == KingPortraitGroupSelection.Large)
+            if (selection == PortraitGroupSelection.Large)
             {
-                if (_kingGroupLrgInitialized) return;
+                if (_groupLrgInitialized) return;
                 FitPictureToPanel(PicKingLrg, PanelKingLrg);
-                _kingGroupLrgInitialized = true;
+                _groupLrgInitialized = true;
             }
-            else if (selection == KingPortraitGroupSelection.Medium)
+            else if (selection == PortraitGroupSelection.Medium)
             {
-                if (_kingGroupMedInitialized) return;
+                if (_groupMedInitialized) return;
                 FitPictureToPanel(PicKingMed, PanelKingMed);
-                _kingGroupMedInitialized = true;
+                _groupMedInitialized = true;
             }
-            else if (selection == KingPortraitGroupSelection.Small)
+            else if (selection == PortraitGroupSelection.Small)
             {
-                if (_kingGroupSmlInitialized) return;
+                if (_groupSmlInitialized) return;
                 FitPictureToPanel(PicKingSml, PanelKingSml);
-                _kingGroupSmlInitialized = true;
+                _groupSmlInitialized = true;
             }
-            else if (selection == KingPortraitGroupSelection.Sml2)
+            else if (selection == PortraitGroupSelection.Sml2)
             {
-                if (_kingGroupSml2Initialized) return;
+                if (_groupSml2Initialized) return;
                 FitPictureToPanel(PicKingSml2, PanelKingSml2);
-                _kingGroupSml2Initialized = true;
+                _groupSml2Initialized = true;
             }
         }
 
@@ -1956,22 +1795,22 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitLarge_Click(object sender, EventArgs e)
         {
-            SetKingPortraitGroup(KingPortraitGroupSelection.Large);
+            SetKingPortraitGroup(PortraitGroupSelection.Large);
         }
 
         private void LabelKingCreatePortraitMedium_Click(object sender, EventArgs e)
         {
-            SetKingPortraitGroup(KingPortraitGroupSelection.Medium);
+            SetKingPortraitGroup(PortraitGroupSelection.Medium);
         }
 
         private void LabelKingCreatePortraitSmall_Click(object sender, EventArgs e)
         {
-            SetKingPortraitGroup(KingPortraitGroupSelection.Small);
+            SetKingPortraitGroup(PortraitGroupSelection.Small);
         }
 
         private void LabelKingCreatePortraitSml2_Click(object sender, EventArgs e)
         {
-            SetKingPortraitGroup(KingPortraitGroupSelection.Sml2);
+            SetKingPortraitGroup(PortraitGroupSelection.Sml2);
         }
 
         private void ButtonKingAction_Click(object sender, EventArgs e)
@@ -2359,7 +2198,7 @@ namespace PortraitManager
             pic.Location = new Point(x, y);
         }
 
-        private void SetKingPortraitGroup(KingPortraitGroupSelection selection)
+        private void SetKingPortraitGroup(PortraitGroupSelection selection)
         {
             if (LayoutKingPortraitGroupLarge == null ||
                 LayoutKingPortraitGroupMedium == null ||
@@ -2373,10 +2212,10 @@ namespace PortraitManager
             {
                 // No valid game selected (e.g. sentinel '-'), skip styling updates.
                 _activeKingPortraitGroup = selection;
-                LayoutKingPortraitGroupLarge.Visible = selection == KingPortraitGroupSelection.Large;
-                LayoutKingPortraitGroupMedium.Visible = selection == KingPortraitGroupSelection.Medium;
-                LayoutKingPortraitGroupSmall.Visible = selection == KingPortraitGroupSelection.Small;
-                LayoutKingPortraitGroupSml2.Visible = selection == KingPortraitGroupSelection.Sml2;
+                LayoutKingPortraitGroupLarge.Visible = selection == PortraitGroupSelection.Large;
+                LayoutKingPortraitGroupMedium.Visible = selection == PortraitGroupSelection.Medium;
+                LayoutKingPortraitGroupSmall.Visible = selection == PortraitGroupSelection.Small;
+                LayoutKingPortraitGroupSml2.Visible = selection == PortraitGroupSelection.Sml2;
                 LabelKingCreatePortraitLarge.Visible = true;
                 LabelKingCreatePortraitMedium.Visible = true;
                 LabelKingCreatePortraitSmall.Visible = true;
@@ -2395,30 +2234,30 @@ namespace PortraitManager
 
             // Fall back to first available group if requested selection has no dimensions
             bool selectionAvailable =
-                (selection == KingPortraitGroupSelection.Large && hasLarge) ||
-                (selection == KingPortraitGroupSelection.Medium && hasMedium) ||
-                (selection == KingPortraitGroupSelection.Small && hasSmall) ||
-                (selection == KingPortraitGroupSelection.Sml2 && hasSml2);
+                (selection == PortraitGroupSelection.Large && hasLarge) ||
+                (selection == PortraitGroupSelection.Medium && hasMedium) ||
+                (selection == PortraitGroupSelection.Small && hasSmall) ||
+                (selection == PortraitGroupSelection.Sml2 && hasSml2);
 
             if (!selectionAvailable)
             {
-                if (hasSmall) selection = KingPortraitGroupSelection.Small;
-                else if (hasSml2) selection = KingPortraitGroupSelection.Sml2;
-                else if (hasMedium) selection = KingPortraitGroupSelection.Medium;
-                else if (hasLarge) selection = KingPortraitGroupSelection.Large;
+                if (hasSmall) selection = PortraitGroupSelection.Small;
+                else if (hasSml2) selection = PortraitGroupSelection.Sml2;
+                else if (hasMedium) selection = PortraitGroupSelection.Medium;
+                else if (hasLarge) selection = PortraitGroupSelection.Large;
             }
 
             _activeKingPortraitGroup = selection;
 
-            LayoutKingPortraitGroupLarge.Visible = hasLarge && selection == KingPortraitGroupSelection.Large;
-            LayoutKingPortraitGroupMedium.Visible = hasMedium && selection == KingPortraitGroupSelection.Medium;
-            LayoutKingPortraitGroupSmall.Visible = hasSmall && selection == KingPortraitGroupSelection.Small;
-            LayoutKingPortraitGroupSml2.Visible = hasSml2 && selection == KingPortraitGroupSelection.Sml2;
+            LayoutKingPortraitGroupLarge.Visible = hasLarge && selection == PortraitGroupSelection.Large;
+            LayoutKingPortraitGroupMedium.Visible = hasMedium && selection == PortraitGroupSelection.Medium;
+            LayoutKingPortraitGroupSmall.Visible = hasSmall && selection == PortraitGroupSelection.Small;
+            LayoutKingPortraitGroupSml2.Visible = hasSml2 && selection == PortraitGroupSelection.Sml2;
 
-            LayoutKingPortraitGroupLarge.BackColor = selection == KingPortraitGroupSelection.Large ? gameType.BackColor : Color.Transparent;
-            LayoutKingPortraitGroupMedium.BackColor = selection == KingPortraitGroupSelection.Medium ? gameType.BackColor : Color.Transparent;
-            LayoutKingPortraitGroupSmall.BackColor = selection == KingPortraitGroupSelection.Small ? gameType.BackColor : Color.Transparent;
-            LayoutKingPortraitGroupSml2.BackColor = selection == KingPortraitGroupSelection.Sml2 ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupLarge.BackColor = selection == PortraitGroupSelection.Large ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupMedium.BackColor = selection == PortraitGroupSelection.Medium ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupSmall.BackColor = selection == PortraitGroupSelection.Small ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupSml2.BackColor = selection == PortraitGroupSelection.Sml2 ? gameType.BackColor : Color.Transparent;
             LayoutKingRight.BackColor = gameType.BackColor;
             LayoutKingRight.ForeColor = gameType.ForeColor;
 
@@ -2426,17 +2265,17 @@ namespace PortraitManager
             Color selFore = gameType.ForeColor;
 
             LabelKingCreatePortraitLarge.Visible = hasLarge;
-            LabelKingCreatePortraitLarge.BackColor = hasLarge && selection == KingPortraitGroupSelection.Large ? selBack : Color.Transparent;
-            LabelKingCreatePortraitLarge.ForeColor = hasLarge && selection == KingPortraitGroupSelection.Large ? selFore : Color.White;
+            LabelKingCreatePortraitLarge.BackColor = hasLarge && selection == PortraitGroupSelection.Large ? selBack : Color.Transparent;
+            LabelKingCreatePortraitLarge.ForeColor = hasLarge && selection == PortraitGroupSelection.Large ? selFore : Color.White;
             LabelKingCreatePortraitMedium.Visible = hasMedium;
-            LabelKingCreatePortraitMedium.BackColor = hasMedium && selection == KingPortraitGroupSelection.Medium ? selBack : Color.Transparent;
-            LabelKingCreatePortraitMedium.ForeColor = hasMedium && selection == KingPortraitGroupSelection.Medium ? selFore : Color.White;
+            LabelKingCreatePortraitMedium.BackColor = hasMedium && selection == PortraitGroupSelection.Medium ? selBack : Color.Transparent;
+            LabelKingCreatePortraitMedium.ForeColor = hasMedium && selection == PortraitGroupSelection.Medium ? selFore : Color.White;
             LabelKingCreatePortraitSmall.Visible = hasSmall;
-            LabelKingCreatePortraitSmall.BackColor = hasSmall && selection == KingPortraitGroupSelection.Small ? selBack : Color.Transparent;
-            LabelKingCreatePortraitSmall.ForeColor = hasSmall && selection == KingPortraitGroupSelection.Small ? selFore : Color.White;
+            LabelKingCreatePortraitSmall.BackColor = hasSmall && selection == PortraitGroupSelection.Small ? selBack : Color.Transparent;
+            LabelKingCreatePortraitSmall.ForeColor = hasSmall && selection == PortraitGroupSelection.Small ? selFore : Color.White;
             LabelKingCreatePortraitSml2.Visible = hasSml2;
-            LabelKingCreatePortraitSml2.BackColor = hasSml2 && selection == KingPortraitGroupSelection.Sml2 ? selBack : Color.Transparent;
-            LabelKingCreatePortraitSml2.ForeColor = hasSml2 && selection == KingPortraitGroupSelection.Sml2 ? selFore : Color.White;
+            LabelKingCreatePortraitSml2.BackColor = hasSml2 && selection == PortraitGroupSelection.Sml2 ? selBack : Color.Transparent;
+            LabelKingCreatePortraitSml2.ForeColor = hasSml2 && selection == PortraitGroupSelection.Sml2 ? selFore : Color.White;
             // force repaint to update borders
             LabelKingCreatePortraitLarge?.Invalidate();
             LabelKingCreatePortraitMedium?.Invalidate();
@@ -2463,15 +2302,15 @@ namespace PortraitManager
                 try
                 {
                     ReplacePictureBoxImagesToDefault();
-                    if (selection == KingPortraitGroupSelection.Medium)
+                    if (selection == PortraitGroupSelection.Medium)
                     {
                         FitPictureToPanel(PicKingMed, PanelKingMed);
                     }
-                    else if (selection == KingPortraitGroupSelection.Small)
+                    else if (selection == PortraitGroupSelection.Small)
                     {
                         FitPictureToPanel(PicKingSml, PanelKingSml);
                     }
-                    else if (selection == KingPortraitGroupSelection.Sml2)
+                    else if (selection == PortraitGroupSelection.Sml2)
                     {
                         FitPictureToPanel(PicKingSml2, PanelKingSml2);
                     }
@@ -2755,7 +2594,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitLarge_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitLarge.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Large ? GameTypes[_gameSelected].ForeColor : Color.White;
+            LabelKingCreatePortraitLarge.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Large ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
 
         private void LabelKingCreatePortraitMedium_MouseEnter(object sender, EventArgs e)
@@ -2765,7 +2604,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitMedium_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitMedium.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Medium ? GameTypes[_gameSelected].ForeColor : Color.White;
+            LabelKingCreatePortraitMedium.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Medium ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
 
         private void LabelKingCreatePortraitSmall_MouseEnter(object sender, EventArgs e)
@@ -2775,7 +2614,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitSmall_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitSmall.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Small ? GameTypes[_gameSelected].ForeColor : Color.White;
+            LabelKingCreatePortraitSmall.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Small ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
 
         private void LabelKingCreatePortraitSml2_MouseEnter(object sender, EventArgs e)
@@ -2785,7 +2624,7 @@ namespace PortraitManager
 
         private void LabelKingCreatePortraitSml2_MouseLeave(object sender, EventArgs e)
         {
-            LabelKingCreatePortraitSml2.ForeColor = _activeKingPortraitGroup == KingPortraitGroupSelection.Sml2 ? GameTypes[_gameSelected].ForeColor : Color.White;
+            LabelKingCreatePortraitSml2.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Sml2 ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
 
     }

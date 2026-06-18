@@ -18,8 +18,6 @@
 
 using PortraitManager.forms;
 using PortraitManager.Properties;
-using SharpCompress.Archives;
-using SharpCompress.Common;
 
 using System;
 using System.Collections.Generic;
@@ -33,6 +31,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using SharpCompress.Archives;
+using SharpCompress.Common;
+
 namespace PortraitManager
 {
     public partial class MainForm : Form
@@ -41,123 +42,17 @@ namespace PortraitManager
         {
             _imageSelectionFlag = 0;
             _isAnyLoadedToPortraitPage = false;
-            //ButtonNextImageType.Visible = true;
-            //ButtonNextImageType.Enabled = true;       
-            ////ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED;
-            //LblToAdvancedPage.Visible = true;
         }
 
-        public void AddClickEventsToMainButtons()
-        {
-            //RootFunctions.AddClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
-            //RootFunctions.AddClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
-            //RootFunctions.AddClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
-        }
 
-        public void RemoveClickEventsFromMainButtons()
-        {
-            //RootFunctions.RemoveClickEvent(ButtonToFilePage, ButtonToFilePage_Click);
-            //RootFunctions.RemoveClickEvent(ButtonToExtractPage, ButtonToExtract_Click);
-            //RootFunctions.RemoveClickEvent(ButtonToGalleryPage, ButtonToGalleryPage_Click);
-        }
-
-        public void AddClickEventsToCustomPortraitsButtons()
-        {
-            //RootFunctions.AddClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
-            //RootFunctions.AddClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
-            //RootFunctions.AddClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
-        }
-
-        public void RemoveClickEventsFromCustomPortraitsButtons()
-        {
-            //RootFunctions.RemoveClickEvent(ButtonLoadCustom, ButtonLoadCustom_Click);
-            //RootFunctions.RemoveClickEvent(ButtonLoadCustomNPC, ButtonLoadCustomNPC_Click);
-            //RootFunctions.RemoveClickEvent(ButtonLoadCustomArmy, ButtonLoadCustomArmy_Click);
-        }
-        
-        public void ClearPictureBoxImages(Image replacement)
-        {
-            //ImageControl.Utils.Replace(PicPortraitTemp, replacement);
-            //ImageControl.Utils.Replace(PicPortraitLrg, replacement);
-            //ImageControl.Utils.Replace(PicPortraitMed, replacement);
-            //ImageControl.Utils.Replace(PicPortraitSml, replacement);
-        }
-        
-        public void DisposePrimeImages()
-        {
-            //ImageControl.Utils.Dispose(PicPortraitTemp);
-            //ImageControl.Utils.Dispose(PicPortraitLrg);
-            //ImageControl.Utils.Dispose(PicPortraitMed);
-            //ImageControl.Utils.Dispose(PicPortraitSml);
-        }
-       
-        public void ResizeImageToParentControl(Control control, Image image, Control parent)
-        {
-            // Only allow automatic resizing when explicitly enabled (to avoid resizing on group changes)
-            if (!_allowAutoResize)
-            {
-                return;
-            }
-            float aspect = control.Height * 1.0f / control.Width * 1.0f;
-            Tuple<int, int> newSize = CalculateNewSize(parent, aspect);
-
-            if (control is PictureBox pictureBox)
-            {
-                pictureBox.Image = ImageControl.Direct.Resize(image, newSize.Item1, newSize.Item2);
-            }
-
-            DisableAutoScroll(parent, newSize.Item1, newSize.Item2);
-        }
-        
-        public void ResizeVisibleImagesToWindowSize()
-        {
-            //if (LayoutScalePage.Enabled == true)
-            //{
-            //    //using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-            //    //    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
-            //    //using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-            //    //    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
-            //    //using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-            //    //    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
-            //}
-
-            //if (LayoutFilePage.Enabled == true)
-            {
-                //using (Image img = new Bitmap(PicPortraitTemp.Image))
-                    //ResizeImageToParentControl(PicPortraitTemp, img, PanelPortraitTemp);
-            }
-        }
-
-        public static Tuple<int, int> CalculateNewSize(Control parent, float aspect)
-        {
-            int inWidth = parent.Width, inHeight = parent.Height;
-            int outWidth, outHeight;
-
-            outHeight = inHeight;
-            outWidth = (int)(inHeight * 1.0f / aspect * 1.0f);
-
-            if (outWidth < parent.Width)
-            {
-                outWidth = inWidth;
-                outHeight = (int)(inWidth * 1.0f / (1.0f / aspect * 1.0f));
-            }
-
-            return Tuple.Create(outWidth, outHeight);
-        }
-        
         public void ParentLayoutsDisable()
         {
-            //RootFunctions.LayoutDisable(LayoutFilePage);
             RootFunctions.LayoutDisable(LayoutMainPage);
-            //RootFunctions.LayoutDisable(LayoutScalePage);
             RootFunctions.LayoutDisable(LayoutExtractPage);
             RootFunctions.LayoutDisable(LayoutGalleryPage);
-            //RootFunctions.LayoutDisable(LayoutSettingsPage);
             RootFunctions.LayoutDisable(LayoutStartMenu);
             RootFunctions.LayoutDisable(LayoutPathPage);
             RootFunctions.LayoutDisable(LayoutKingCreatePortrait);
-            //RootFunctions.LayoutDisable(LayoutURLDialog);
-            //RootFunctions.LayoutDisable(LayoutFinalPage);
         }
         
         public void ParentLayoutsSetDockFill()
@@ -849,7 +744,6 @@ namespace PortraitManager
                         //}
 
                         LoadTempImagesToPicBox(_imageSelectionFlag);
-                        ResizeVisibleImagesToWindowSize();
                     }
                 }
             }
@@ -887,52 +781,7 @@ namespace PortraitManager
             //                             path + SMALL_APPEND, GAME_TYPES[_gameSelected].GetSmallAspect(),
             //                             GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight());
         }
-        
-        public void GenerateImageSelectionFlagString(ushort flag = 0)
-        {
-            if (flag == 0)
-            {
-                //LabelImageFlag.Text = "◼◼◼";
-            }
-            else if (flag == 1)
-            {
-                //LabelImageFlag.Text = "◼◧◻";
-            }
-            else if (flag == 2)
-            {
-                //LabelImageFlag.Text = "◼◼◧";
-            }
-            else if (flag == 100)
-            {
-                //LabelImageFlag.Text = "◻◻◻";
-            }
-        }
-        
-        public bool ValidateCustomPath(string path)
-        {
-            if (SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Army")) &&
-                SystemControl.FileControl.Readonly.DirectoryExists(Path.Combine(path, "..", "Portraits - Npc")))
-                {
-                return true;
-            }
-            return false;
-        }
-        
-        public void FixPicBoxAspectRatio(Panel parent, float aspect)
-        {
-            int width = parent.Width;
-            int height = parent.Height;
 
-            if (width * aspect <= height)
-            {
-                int diff = (height - (int)(width * aspect * 1.0f)) / 2;
-                parent.Margin = new Padding(3, diff, 3, diff);
-            }
-            else if (width * aspect > height) {
-                int diff = (width - (int)(height / aspect * 1.0f)) / 2;
-                parent.Margin = new Padding(diff, 3, diff, 3);
-            }
-        }
 
         public void Ctrl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
@@ -1176,7 +1025,7 @@ namespace PortraitManager
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
-            CheckBox cb = new CheckBox
+            RadioButton rb = new RadioButton
             {
                 Text = Path.GetFileName(folderKey),
                 Tag = folderKey,
@@ -1192,41 +1041,29 @@ namespace PortraitManager
                 Cursor = Cursors.Hand,
             };
 
-            cb.Font = new Font(_fontCollection.Families[0], 12);
+            rb.Font = new Font(_fontCollection.Families[0], 12);
 
-            cb.FlatAppearance.BorderSize = 3;
-            cb.FlatAppearance.BorderColor = gameBack;
-            cb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
-            cb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
+            rb.FlatAppearance.BorderSize = 3;
+            rb.FlatAppearance.BorderColor = gameBack;
+            rb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
+            rb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
 
-            cb.MouseEnter += (s, args) => { cb.ForeColor = gameFore; };
-            cb.MouseLeave += (s, args) => { cb.ForeColor = Color.White; };
-            cb.CheckedChanged += (s, args) =>
+            rb.MouseEnter += (s, args) => { rb.ForeColor = gameFore; };
+            rb.MouseLeave += (s, args) => { rb.ForeColor = Color.White; };
+            rb.CheckedChanged += (s, args) =>
             {
-                if (_suppressGalleryCheckEvents) return;
-                if (cb.Checked)
+                if (rb.Checked)
                 {
-                    _suppressGalleryCheckEvents = true;
-                    foreach (Control c2 in FlowLayoutPanelGallery.Controls)
-                    {
-                        if (c2 is CheckBox other && other != cb)
-                            other.Checked = false;
-                    }
-                    _suppressGalleryCheckEvents = false;
                     _selectedGalleryEntry = folderKey;
                 }
-                else
-                {
-                    _selectedGalleryEntry = null;
-                }
-                cb.FlatAppearance.BorderColor = cb.Checked ? gameFore : gameBack;
+                rb.FlatAppearance.BorderColor = rb.Checked ? gameFore : gameBack;
                 UpdateGalleryRightPanel();
             };
 
             Image thumb = new Bitmap(memImage, thumbSize);
-            cb.Image = thumb;
+            rb.Image = thumb;
 
-            FlowLayoutPanelGallery.Controls.Add(cb);
+            FlowLayoutPanelGallery.Controls.Add(rb);
         }
 
         private string FindBestGalleryImage(string folderPath)

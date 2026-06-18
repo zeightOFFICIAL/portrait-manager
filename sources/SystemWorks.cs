@@ -49,7 +49,6 @@ namespace SystemControl
             return fontCollection;
         }
 
-
         public class Readonly
         {
             public static bool DirectoryExists(string path)
@@ -222,8 +221,6 @@ namespace SystemControl
                 return false;
             }
         }
-        
-        
         
         public static bool CopyFile(string fromPath, string toPath)
         {

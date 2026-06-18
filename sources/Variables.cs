@@ -17,9 +17,11 @@
 */
 
 using Microsoft.Win32;
+
 using PortraitManager.forms;
 using PortraitManager.Properties;
 using PortraitManager.sources;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;

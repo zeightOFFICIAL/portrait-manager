@@ -124,7 +124,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open folder 📁.
+        ///   Looks up a localized string similar to Open game folder 📁.
         /// </summary>
         internal static string BUTTON_EXTRACT_OPENFOLDER {
             get {

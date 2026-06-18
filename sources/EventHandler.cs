@@ -53,22 +53,18 @@ namespace PortraitManager
                 if (_isAnyLoadedToPortraitPage == true)
                 {
                     LoadTempImagesToPicBox(_imageSelectionFlag);
-                    ResizeVisibleImagesToWindowSize();
                     return;
                 }
 
                 _isAnyLoadedToPortraitPage = false;
                 LoadTempImagesToPicBox(_imageSelectionFlag);
-                ResizeVisibleImagesToWindowSize();
                 return;
             }
             else
             {
                 _isAnyLoadedToPortraitPage = true;
-                GenerateImageSelectionFlagString(_imageSelectionFlag);
                 CreateAllImagesInTemp(path, _imageSelectionFlag);
                 LoadTempImagesToPicBox(_imageSelectionFlag);
-                ResizeVisibleImagesToWindowSize();
             }
 
         }
@@ -557,10 +553,10 @@ namespace PortraitManager
         private void MarkGroupInitialized(PictureBox pic)
         {
             if (pic == null) return;
-            if (pic.Name == "PicKingLrg") _kingGroupLrgInitialized = true;
-            else if (pic.Name == "PicKingMed") _kingGroupMedInitialized = true;
-            else if (pic.Name == "PicKingSml") _kingGroupSmlInitialized = true;
-            else if (pic.Name == "PicKingSml2") _kingGroupSml2Initialized = true;
+            if (pic.Name == "PicKingLrg") _groupLrgInitialized = true;
+            else if (pic.Name == "PicKingMed") _groupMedInitialized = true;
+            else if (pic.Name == "PicKingSml") _groupSmlInitialized = true;
+            else if (pic.Name == "PicKingSml2") _groupSml2Initialized = true;
         }
 
         private bool ValidateCreatedPortrait(string outDir, string uid = null, string femaleDir = null)
@@ -761,9 +757,9 @@ namespace PortraitManager
             StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
             StoreOriginalImage(PicKingSml2, new Bitmap(gameType.PlaceholderPortrait));
 
-            try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Large); } catch { }
-            try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Small); } catch { }
-            try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Sml2); } catch { }
+            try { AdjustActivePortraitPanelAspect(PortraitGroupSelection.Large); } catch { }
+            try { AdjustActivePortraitPanelAspect(PortraitGroupSelection.Small); } catch { }
+            try { AdjustActivePortraitPanelAspect(PortraitGroupSelection.Sml2); } catch { }
 
             FitImageToPanel(PicKingLrg);
             FitImageToPanel(PicKingSml);
@@ -773,7 +769,7 @@ namespace PortraitManager
                 HasPortraitSpecific(gameType, "MEDIUM_HEIGHT"))
             {
                 StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
-                try { AdjustActivePortraitPanelAspect(KingPortraitGroupSelection.Medium); } catch { }
+                try { AdjustActivePortraitPanelAspect(PortraitGroupSelection.Medium); } catch { }
                 FitImageToPanel(PicKingMed);
             }
 
@@ -1216,7 +1212,6 @@ namespace PortraitManager
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             try { AdjustActivePortraitPanelAspect(_activeKingPortraitGroup); } catch { }
-            ResizeVisibleImagesToWindowSize();
         }
 
         private void ButtonCreatePortrait_Click(object sender, EventArgs e)
@@ -1386,7 +1381,6 @@ namespace PortraitManager
 
             if (_gameSelected == 'r')
             {
-                RemoveClickEventsFromCustomPortraitsButtons();
                 //CheckBoxVerified.Checked = false;
                 //ButtonLoadCustom.Visible = false;
                 //ButtonLoadCustomNPC.Visible = false;
@@ -1490,7 +1484,6 @@ namespace PortraitManager
             //    img.Save(TEMP_SMALL_APPEND);
 
             LoadTempImagesToPicBox(100);
-            GenerateImageSelectionFlagString(0);
             _tunneledNameToPortraitPage = "!NONE!";
 
             //using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_DELETEOLD, CoreSettings.Default.SelectedLang))
@@ -1532,7 +1525,6 @@ namespace PortraitManager
             Focus();
             RestoreFilePageToInit();
             _isAnyLoadedToPortraitPage = true;
-            ResizeVisibleImagesToWindowSize();
         }
 
         private void ButtonDeletePortait_Click(object sender, EventArgs e)
@@ -1803,9 +1795,7 @@ namespace PortraitManager
                 _activeMenuIndex = 1;
                 Focus();
                 //CheckWebResourceAndLoad(url);
-                ResizeVisibleImagesToWindowSize();
                 //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-                GenerateImageSelectionFlagString(_imageSelectionFlag);
             }
             catch
             {
@@ -1820,7 +1810,6 @@ namespace PortraitManager
             //RootFunctions.LayoutDisable(LayoutURLDialog);
             //RootFunctions.LayoutEnable(LayoutFilePage);
             //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            ResizeVisibleImagesToWindowSize();
             _activeMenuIndex = 1;
 
             Focus();
@@ -1885,9 +1874,7 @@ namespace PortraitManager
                 //LblToAdvancedPage.Visible = false;
             }
 
-            GenerateImageSelectionFlagString(_imageSelectionFlag);
             LoadTempImagesToPicBox(_imageSelectionFlag);
-            ResizeVisibleImagesToWindowSize();
         }
         
         private void ButtonApplyChange_Click(object sender, EventArgs e)
@@ -2001,8 +1988,6 @@ namespace PortraitManager
         {
             _gameSelected = 'r';
             UpdateColorScheme();
-            RemoveClickEventsFromCustomPortraitsButtons();
-
             //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
             //{
             //    RemoveClickEventsFromMainButtons();
@@ -2684,7 +2669,6 @@ namespace PortraitManager
 
         private void LabelExit_Click(object sender, EventArgs e)
         {
-            DisposePrimeImages();
             SystemControl.FileControl.ClearTempImages();
             Dispose();
             Application.Exit();

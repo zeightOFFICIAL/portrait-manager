@@ -88,6 +88,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom NPC.
+        /// </summary>
+        internal static string BUTTON_CUSTOM_NPC {
+            get {
+                return ResourceManager.GetString("BUTTON_CUSTOM_NPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string BUTTON_EXIT {

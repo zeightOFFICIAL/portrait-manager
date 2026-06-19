@@ -1136,6 +1136,9 @@ namespace PortraitManager
                         string filePath = Path.Combine(dir, prefix + suf + ".png");
                         if (File.Exists(filePath))
                             File.Delete(filePath);
+                        string backupPath = filePath + ".backup";
+                        if (File.Exists(backupPath))
+                            File.Delete(backupPath);
                     }
                     string femaleDir = Path.Combine(Path.GetDirectoryName(dir), "female");
                     if (Directory.Exists(femaleDir))
@@ -1145,6 +1148,9 @@ namespace PortraitManager
                             string filePath = Path.Combine(femaleDir, prefix + suf + ".png");
                             if (File.Exists(filePath))
                                 File.Delete(filePath);
+                            string backupPath = filePath + ".backup";
+                            if (File.Exists(backupPath))
+                                File.Delete(backupPath);
                         }
                     }
                 }
@@ -1161,6 +1167,12 @@ namespace PortraitManager
             string gamePath = CoreSettings.Default.GamePath;
             if (string.IsNullOrEmpty(gamePath) || !Directory.Exists(gamePath))
                 return;
+
+            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            {
+                LoadNonPlayerGalleryImages(gamePath);
+                return;
+            }
 
             string portraitsDir;
             bool flatFile = false;
@@ -1211,6 +1223,111 @@ namespace PortraitManager
                     LoadFlatGalleryGradual(capturedPortraitsDir, capturedGame, token);
                 else
                     LoadSubfolderGalleryGradual(capturedPortraitsDir, capturedGame, token);
+
+                BeginInvoke(new Action(() =>
+                {
+                    if (_galleryEntries.Count > 0)
+                        ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                }));
+            }, token);
+        }
+
+        private void LoadNonPlayerGalleryImages(string gamePath)
+        {
+            string portraitsRoot = GetNonPlayerPortraitsRoot(gamePath);
+            if (portraitsRoot == null) return;
+            string[] subDirs = { "npc", "companions" };
+
+            var allFiles = new List<string>();
+            foreach (string sub in subDirs)
+            {
+                string dir = Path.Combine(portraitsRoot, sub);
+                if (!Directory.Exists(dir)) continue;
+                try
+                {
+                    allFiles.AddRange(Directory.GetFiles(dir, "*.png", SearchOption.AllDirectories));
+                }
+                catch { }
+            }
+
+            if (allFiles.Count == 0) return;
+
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource = new CancellationTokenSource();
+            var token = _cancellationTokenSource.Token;
+
+            string[] sizePriority = { "_convo", "_sm", "_si", "_med", "_lg" };
+
+            var groupBest = new Dictionary<string, string>();
+            foreach (string file in allFiles)
+            {
+                if (token.IsCancellationRequested) return;
+                string name = Path.GetFileNameWithoutExtension(file);
+                string prefix = name;
+                foreach (string suf in sizePriority)
+                {
+                    if (name.EndsWith(suf, StringComparison.OrdinalIgnoreCase))
+                    {
+                        prefix = name.Substring(0, name.Length - suf.Length);
+                        break;
+                    }
+                }
+
+                string key = prefix + "|" + Path.GetDirectoryName(file);
+                if (!groupBest.ContainsKey(key))
+                {
+                    groupBest[key] = file;
+                }
+                else
+                {
+                    string existingName = Path.GetFileNameWithoutExtension(groupBest[key]);
+                    int existingPrio = -1, newPrio = -1;
+                    for (int i = 0; i < sizePriority.Length; i++)
+                    {
+                        if (existingName.EndsWith(sizePriority[i], StringComparison.OrdinalIgnoreCase)) existingPrio = i;
+                        if (name.EndsWith(sizePriority[i], StringComparison.OrdinalIgnoreCase)) newPrio = i;
+                    }
+                    if (newPrio > existingPrio)
+                        groupBest[key] = file;
+                }
+            }
+
+            Task.Run(() =>
+            {
+                foreach (var kvp in groupBest)
+                {
+                    if (token.IsCancellationRequested) return;
+                    try
+                    {
+                        using (Image img = Image.FromFile(kvp.Value))
+                        {
+                            if (token.IsCancellationRequested) return;
+                            Bitmap memImage = new Bitmap(img);
+                            string dir = Path.GetDirectoryName(kvp.Value);
+                            string prefix = Path.GetFileNameWithoutExtension(kvp.Value);
+                            foreach (string suf in sizePriority)
+                            {
+                                if (prefix.EndsWith(suf, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    prefix = prefix.Substring(0, prefix.Length - suf.Length);
+                                    break;
+                                }
+                            }
+                            string capturedKey = Path.Combine(dir, prefix);
+                            BeginInvoke(new Action(() =>
+                            {
+                                if (token.IsCancellationRequested)
+                                {
+                                    memImage.Dispose();
+                                    return;
+                                }
+                                AddGalleryThumbnail(capturedKey, memImage);
+                                memImage.Dispose();
+                            }));
+                        }
+                    }
+                    catch { }
+                }
 
                 BeginInvoke(new Action(() =>
                 {

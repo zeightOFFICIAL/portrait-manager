@@ -156,6 +156,7 @@ namespace PortraitManager
             this.LayoutGalleryPage = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelGalleryTabs = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelGalleryTab = new System.Windows.Forms.Label();
+            this.LabelGalleryNonPlayerTab = new System.Windows.Forms.Label();
             this.LabelExtractCounter = new System.Windows.Forms.Label();
             this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.TableLayoutPanel();
             this.LabelExtractClearSelection = new System.Windows.Forms.Label();
@@ -2060,6 +2061,7 @@ namespace PortraitManager
             // flowLayoutPanelGalleryTabs
             // 
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryNonPlayerTab);
             this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelGalleryTabs.Location = new System.Drawing.Point(36, 9);
             this.flowLayoutPanelGalleryTabs.Margin = new System.Windows.Forms.Padding(0);
@@ -2076,14 +2078,34 @@ namespace PortraitManager
             this.LabelGalleryTab.Location = new System.Drawing.Point(0, 0);
             this.LabelGalleryTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelGalleryTab.Name = "LabelGalleryTab";
-            this.LabelGalleryTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 5);
-            this.LabelGalleryTab.Size = new System.Drawing.Size(113, 48);
+            this.LabelGalleryTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryTab.Size = new System.Drawing.Size(113, 73);
             this.LabelGalleryTab.TabIndex = 0;
             this.LabelGalleryTab.Text = "LABEL_GALLERY";
             this.LabelGalleryTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LabelGalleryTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryTab_Paint);
             this.LabelGalleryTab.MouseEnter += new System.EventHandler(this.LabelGalleryTab_MouseEnter);
             this.LabelGalleryTab.MouseLeave += new System.EventHandler(this.LabelGalleryTab_MouseLeave);
+            this.LabelGalleryTab.Click += new System.EventHandler(this.LabelGalleryTab_Click);
+            // 
+            // LabelGalleryNonPlayerTab
+            // 
+            this.LabelGalleryNonPlayerTab.AutoSize = true;
+            this.LabelGalleryNonPlayerTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryNonPlayerTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryNonPlayerTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryNonPlayerTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryNonPlayerTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryNonPlayerTab.Name = "LabelGalleryNonPlayerTab";
+            this.LabelGalleryNonPlayerTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryNonPlayerTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryNonPlayerTab.TabIndex = 2;
+            this.LabelGalleryNonPlayerTab.Text = "Non-player";
+            this.LabelGalleryNonPlayerTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryNonPlayerTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryNonPlayerTab_Paint);
+            this.LabelGalleryNonPlayerTab.MouseEnter += new System.EventHandler(this.LabelGalleryNonPlayerTab_MouseEnter);
+            this.LabelGalleryNonPlayerTab.MouseLeave += new System.EventHandler(this.LabelGalleryNonPlayerTab_MouseLeave);
+            this.LabelGalleryNonPlayerTab.Click += new System.EventHandler(this.LabelGalleryNonPlayerTab_Click);
             // 
             // PanelGalleryContainer
             // 
@@ -2429,6 +2451,7 @@ namespace PortraitManager
         private System.Windows.Forms.TableLayoutPanel LayoutGalleryPage;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGalleryTabs;
         private System.Windows.Forms.Label LabelGalleryTab;
+        private System.Windows.Forms.Label LabelGalleryNonPlayerTab;
         private System.Windows.Forms.Panel PanelGalleryContainer;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelGallery;
         private System.Windows.Forms.TableLayoutPanel LayoutGalleryRight;

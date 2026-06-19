@@ -124,6 +124,7 @@ namespace PortraitManager
         private string _selectedGalleryEntry;
         private string _overrideGallerySaveDir;
         private bool _suppressGalleryCheckEvents;
+        private string _galleryTabSelected = "player";
 
         private void FontInit()
         {
@@ -168,6 +169,7 @@ namespace PortraitManager
             ButtonExtractBack.Font = bebasNeueHead;
             ButtonExtractShowFolder.Font = bebasNeueHead;
             LabelGalleryTab.Font = bebasNeueHead;
+            LabelGalleryNonPlayerTab.Font = bebasNeueHead;
             ButtonGalleryBack.Font = bebasNeueHead;
             ButtonGalleryClone.Font = bebasNeueHead;
             ButtonGalleryChange.Font = bebasNeueHead;
@@ -254,6 +256,7 @@ namespace PortraitManager
             ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
             ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
             LabelGalleryTab.Text = TextVariables.BUTTON_GALLERY;
+            LabelGalleryNonPlayerTab.Text = "Non-player";
             ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
@@ -529,13 +532,14 @@ namespace PortraitManager
         {
             _activeMenuIndex = 6;
             _selectedGalleryEntry = null;
+            _galleryTabSelected = "player";
 
             Color gameBack, gameFore;
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
-            LabelGalleryTab.BackColor = gameBack;
-            LabelGalleryTab.ForeColor = gameFore;
+            LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
+            UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
 
@@ -694,9 +698,43 @@ namespace PortraitManager
         private void ButtonGalleryChange_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+
+            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            {
+                BackupNonPlayerPortraitSet(_selectedGalleryEntry);
+            }
+
             _overrideGallerySaveDir = _selectedGalleryEntry;
             LabelCreatePortrait_Click(sender, e);
             LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
+        }
+
+        private string GetNonPlayerPortraitsRoot(string basePath)
+        {
+            if (_gameSelected == 'p')
+                return Path.Combine(basePath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits");
+            if (_gameSelected == 'd')
+                return Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits");
+            if (_gameSelected == 't')
+                return Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits");
+            return null;
+        }
+
+        private void BackupNonPlayerPortraitSet(string entryPath)
+        {
+            string dir = Path.GetDirectoryName(entryPath);
+            string prefix = Path.GetFileName(entryPath);
+            string[] suffixes = { "_lg", "_sm", "_si", "_convo" };
+            foreach (string suf in suffixes)
+            {
+                string srcPath = Path.Combine(dir, prefix + suf + ".png");
+                string backupPath = srcPath + ".backup";
+                if (File.Exists(srcPath) && !File.Exists(backupPath))
+                {
+                    try { File.Copy(srcPath, backupPath, overwrite: false); }
+                    catch { }
+                }
+            }
         }
 
         private void ButtonGalleryBack_Click(object sender, EventArgs e)
@@ -711,6 +749,7 @@ namespace PortraitManager
 
         private void LabelGalleryTab_Paint(object sender, PaintEventArgs e)
         {
+            if (_galleryTabSelected != "player") return;
             Color penColor = Color.White;
             try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
             using (var pen = new Pen(penColor))
@@ -732,7 +771,71 @@ namespace PortraitManager
         private void LabelGalleryTab_MouseLeave(object sender, EventArgs e)
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
-            LabelGalleryTab.ForeColor = gt.ForeColor;
+            LabelGalleryTab.ForeColor = _galleryTabSelected == "player" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "player") return;
+            _galleryTabSelected = "player";
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryNonPlayerTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "nonplayer") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryNonPlayerTab.ClientSize.Width;
+                int h = LabelGalleryNonPlayerTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryNonPlayerTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryNonPlayerTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryNonPlayerTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryNonPlayerTab.ForeColor = _galleryTabSelected == "nonplayer" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryNonPlayerTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "nonplayer") return;
+            _galleryTabSelected = "nonplayer";
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void UpdateGalleryTabVisuals()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            Color gameBack = gt.BackColor;
+            Color gameFore = gt.ForeColor;
+
+            LabelGalleryTab.BackColor = _galleryTabSelected == "player" ? gameBack : Color.Transparent;
+            LabelGalleryTab.ForeColor = _galleryTabSelected == "player" ? gameFore : Color.White;
+            LabelGalleryTab.Invalidate();
+
+            LabelGalleryNonPlayerTab.BackColor = _galleryTabSelected == "nonplayer" ? gameBack : Color.Transparent;
+            LabelGalleryNonPlayerTab.ForeColor = _galleryTabSelected == "nonplayer" ? gameFore : Color.White;
+            LabelGalleryNonPlayerTab.Invalidate();
         }
 
         private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
@@ -749,14 +852,15 @@ namespace PortraitManager
                 e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
 
                 int gapStart = -1, gapEnd = -1;
-                if (LabelGalleryTab.Visible)
+                Label activeTab = _galleryTabSelected == "nonplayer" ? LabelGalleryNonPlayerTab : LabelGalleryTab;
+                if (activeTab.Visible)
                 {
                     try
                     {
-                        var lblScreen = LabelGalleryTab.PointToScreen(Point.Empty);
+                        var lblScreen = activeTab.PointToScreen(Point.Empty);
                         var lblInGroup = group.PointToClient(lblScreen);
                         gapStart = lblInGroup.X;
-                        gapEnd = lblInGroup.X + LabelGalleryTab.Width;
+                        gapEnd = lblInGroup.X + activeTab.Width;
                     }
                     catch { }
                 }
@@ -898,7 +1002,20 @@ namespace PortraitManager
 
         private void ButtonGalleryShowFolder_Click(object sender, EventArgs e)
         {
-            string gameDir = GetGameDirectory();
+            string gameDir;
+            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            {
+                string basePath = CoreSettings.Default.GamePath;
+                if (!string.IsNullOrEmpty(basePath))
+                    gameDir = GetNonPlayerPortraitsRoot(basePath);
+                else
+                    gameDir = null;
+            }
+            else
+            {
+                gameDir = GetGameDirectory();
+            }
+
             if (string.IsNullOrEmpty(gameDir))
             {
                 using (var msg = new forms.MyMessageDialog("Could not determine the game directory."))

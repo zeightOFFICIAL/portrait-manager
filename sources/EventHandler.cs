@@ -200,7 +200,23 @@ namespace PortraitManager
             if (!string.IsNullOrEmpty(_overrideGallerySaveDir))
             {
                 if (isObsidian || isWasteland)
+                {
                     uid = Path.GetFileName(_overrideGallerySaveDir);
+                    if (_galleryTabSelected == "nonplayer")
+                    {
+                        outDir = Path.GetDirectoryName(_overrideGallerySaveDir);
+                        Directory.CreateDirectory(outDir);
+                        if (outDir.EndsWith("\\male", StringComparison.OrdinalIgnoreCase))
+                        {
+                            femaleDir = Path.Combine(Path.GetDirectoryName(outDir), "female");
+                            Directory.CreateDirectory(femaleDir);
+                        }
+                        else
+                        {
+                            femaleDir = null;
+                        }
+                    }
+                }
                 else
                     outDir = _overrideGallerySaveDir;
                 _overrideGallerySaveDir = null;

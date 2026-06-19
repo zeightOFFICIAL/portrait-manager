@@ -157,6 +157,7 @@ namespace PortraitManager
             this.flowLayoutPanelGalleryTabs = new System.Windows.Forms.FlowLayoutPanel();
             this.LabelGalleryTab = new System.Windows.Forms.Label();
             this.LabelGalleryNonPlayerTab = new System.Windows.Forms.Label();
+            this.LabelGalleryCustomNpcTab = new System.Windows.Forms.Label();
             this.LabelExtractCounter = new System.Windows.Forms.Label();
             this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.TableLayoutPanel();
             this.LabelExtractClearSelection = new System.Windows.Forms.Label();
@@ -169,6 +170,7 @@ namespace PortraitManager
             this.ButtonGalleryChange = new System.Windows.Forms.Button();
             this.ButtonGalleryDelete = new System.Windows.Forms.Button();
             this.ButtonGalleryShowFolder = new System.Windows.Forms.Button();
+            this.ButtonGalleryNewNpcEntry = new System.Windows.Forms.Button();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -2062,6 +2064,7 @@ namespace PortraitManager
             // 
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryTab);
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryNonPlayerTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCustomNpcTab);
             this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelGalleryTabs.Location = new System.Drawing.Point(36, 9);
             this.flowLayoutPanelGalleryTabs.Margin = new System.Windows.Forms.Padding(0);
@@ -2107,6 +2110,25 @@ namespace PortraitManager
             this.LabelGalleryNonPlayerTab.MouseLeave += new System.EventHandler(this.LabelGalleryNonPlayerTab_MouseLeave);
             this.LabelGalleryNonPlayerTab.Click += new System.EventHandler(this.LabelGalleryNonPlayerTab_Click);
             // 
+            // LabelGalleryCustomNpcTab
+            // 
+            this.LabelGalleryCustomNpcTab.AutoSize = true;
+            this.LabelGalleryCustomNpcTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCustomNpcTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryCustomNpcTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryCustomNpcTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryCustomNpcTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryCustomNpcTab.Name = "LabelGalleryCustomNpcTab";
+            this.LabelGalleryCustomNpcTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCustomNpcTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryCustomNpcTab.TabIndex = 3;
+            this.LabelGalleryCustomNpcTab.Text = "CustomNPC";
+            this.LabelGalleryCustomNpcTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryCustomNpcTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryCustomNpcTab_Paint);
+            this.LabelGalleryCustomNpcTab.MouseEnter += new System.EventHandler(this.LabelGalleryCustomNpcTab_MouseEnter);
+            this.LabelGalleryCustomNpcTab.MouseLeave += new System.EventHandler(this.LabelGalleryCustomNpcTab_MouseLeave);
+            this.LabelGalleryCustomNpcTab.Click += new System.EventHandler(this.LabelGalleryCustomNpcTab_Click);
+            // 
             // PanelGalleryContainer
             // 
             this.PanelGalleryContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
@@ -2135,21 +2157,23 @@ namespace PortraitManager
             // 
             this.LayoutGalleryRight.ColumnCount = 1;
             this.LayoutGalleryRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 0);
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 1);
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryDelete, 0, 2);
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryShowFolder, 0, 3);
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 4);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryNewNpcEntry, 0, 0);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 1);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 2);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryDelete, 0, 3);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryShowFolder, 0, 4);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 5);
             this.LayoutGalleryRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutGalleryRight.Location = new System.Drawing.Point(546, 55);
             this.LayoutGalleryRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.LayoutGalleryRight.Name = "LayoutGalleryRight";
-            this.LayoutGalleryRight.RowCount = 5;
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
-            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.LayoutGalleryRight.RowCount = 6;
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
             this.LayoutGalleryRight.Size = new System.Drawing.Size(140, 404);
             this.LayoutGalleryRight.TabIndex = 6;
             this.LayoutGalleryRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutGalleryRight_Paint);
@@ -2228,6 +2252,21 @@ namespace PortraitManager
             this.ButtonGalleryShowFolder.Click += new System.EventHandler(this.ButtonGalleryShowFolder_Click);
             this.ButtonGalleryShowFolder.MouseEnter += new System.EventHandler(this.ButtonGalleryShowFolder_MouseEnter);
             this.ButtonGalleryShowFolder.MouseLeave += new System.EventHandler(this.ButtonGalleryShowFolder_MouseLeave);
+            // 
+            // ButtonGalleryNewNpcEntry
+            // 
+            this.ButtonGalleryNewNpcEntry.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryNewNpcEntry.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryNewNpcEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryNewNpcEntry.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryNewNpcEntry.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryNewNpcEntry.Name = "ButtonGalleryNewNpcEntry";
+            this.ButtonGalleryNewNpcEntry.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryNewNpcEntry.TabIndex = 5;
+            this.ButtonGalleryNewNpcEntry.Text = "NEW NPC +";
+            this.ButtonGalleryNewNpcEntry.Click += new System.EventHandler(this.ButtonGalleryNewNpcEntry_Click);
+            this.ButtonGalleryNewNpcEntry.MouseEnter += new System.EventHandler(this.ButtonGalleryNewNpcEntry_MouseEnter);
+            this.ButtonGalleryNewNpcEntry.MouseLeave += new System.EventHandler(this.ButtonGalleryNewNpcEntry_MouseLeave);
             // 
             // MainForm
             // 
@@ -2452,6 +2491,7 @@ namespace PortraitManager
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGalleryTabs;
         private System.Windows.Forms.Label LabelGalleryTab;
         private System.Windows.Forms.Label LabelGalleryNonPlayerTab;
+        private System.Windows.Forms.Label LabelGalleryCustomNpcTab;
         private System.Windows.Forms.Panel PanelGalleryContainer;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelGallery;
         private System.Windows.Forms.TableLayoutPanel LayoutGalleryRight;
@@ -2460,6 +2500,7 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonGalleryChange;
         private System.Windows.Forms.Button ButtonGalleryDelete;
         private System.Windows.Forms.Button ButtonGalleryShowFolder;
+        private System.Windows.Forms.Button ButtonGalleryNewNpcEntry;
     }
 }
 

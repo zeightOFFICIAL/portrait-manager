@@ -199,7 +199,14 @@ namespace PortraitManager
 
             if (!string.IsNullOrEmpty(_overrideGallerySaveDir))
             {
-                if (isObsidian || isWasteland)
+                if (_isCustomNpcMode)
+                {
+                    outDir = _overrideGallerySaveDir;
+                    Directory.CreateDirectory(outDir);
+                    uid = null;
+                    femaleDir = null;
+                }
+                else if (isObsidian || isWasteland)
                 {
                     uid = Path.GetFileName(_overrideGallerySaveDir);
                     if (_galleryTabSelected == "nonplayer")
@@ -295,6 +302,19 @@ namespace PortraitManager
                         (int)gameType.GetPortraitSpecific("SML2_WIDTH"),
                         (int)gameType.GetPortraitSpecific("SML2_HEIGHT"),
                         "si");
+                }
+
+                if (_isCustomNpcMode)
+                {
+                    string additionsDir = Path.Combine(Path.GetDirectoryName(outDir), "Additions", Path.GetFileName(outDir));
+                    try
+                    {
+                        Directory.CreateDirectory(additionsDir);
+                        string mediumSrc = Path.Combine(outDir, "Medium.png");
+                        if (File.Exists(mediumSrc))
+                            File.Copy(mediumSrc, Path.Combine(additionsDir, "Medium.png"), overwrite: true);
+                    }
+                    catch { }
                 }
 
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))

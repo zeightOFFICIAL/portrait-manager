@@ -125,6 +125,7 @@ namespace PortraitManager
         private string _overrideGallerySaveDir;
         private bool _suppressGalleryCheckEvents;
         private string _galleryTabSelected = "player";
+        private bool _isCustomNpcMode = false;
 
         private void FontInit()
         {
@@ -170,6 +171,8 @@ namespace PortraitManager
             ButtonExtractShowFolder.Font = bebasNeueHead;
             LabelGalleryTab.Font = bebasNeueHead;
             LabelGalleryNonPlayerTab.Font = bebasNeueHead;
+            LabelGalleryCustomNpcTab.Font = bebasNeueHead;
+            ButtonGalleryNewNpcEntry.Font = bebasNeueHead;
             ButtonGalleryBack.Font = bebasNeueHead;
             ButtonGalleryClone.Font = bebasNeueHead;
             ButtonGalleryChange.Font = bebasNeueHead;
@@ -257,6 +260,7 @@ namespace PortraitManager
             ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
             LabelGalleryTab.Text = TextVariables.BUTTON_GALLERY;
             LabelGalleryNonPlayerTab.Text = "Non-player";
+            LabelGalleryCustomNpcTab.Text = "CustomNPC";
             ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
@@ -533,12 +537,14 @@ namespace PortraitManager
             _activeMenuIndex = 6;
             _selectedGalleryEntry = null;
             _galleryTabSelected = "player";
+            _isCustomNpcMode = false;
 
             Color gameBack, gameFore;
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
+            LabelGalleryCustomNpcTab.Visible = _gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r';
             UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
@@ -705,6 +711,7 @@ namespace PortraitManager
             }
 
             _overrideGallerySaveDir = _selectedGalleryEntry;
+            _isCustomNpcMode = _galleryTabSelected == "customnpc";
             LabelCreatePortrait_Click(sender, e);
             LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
         }
@@ -718,6 +725,11 @@ namespace PortraitManager
             if (_gameSelected == 't')
                 return Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits");
             return null;
+        }
+
+        private string GetCustomNpcPortraitsDir(string basePath)
+        {
+            return Path.Combine(basePath, "Mods", "CustomNpcPortraits", "Portraits");
         }
 
         private void BackupNonPlayerPortraitSet(string entryPath)
@@ -778,6 +790,7 @@ namespace PortraitManager
         {
             if (_galleryTabSelected == "player") return;
             _galleryTabSelected = "player";
+            _isCustomNpcMode = false;
             UpdateGalleryTabVisuals();
             _cancellationTokenSource?.Cancel();
             ClearGalleryEntries();
@@ -816,6 +829,46 @@ namespace PortraitManager
         {
             if (_galleryTabSelected == "nonplayer") return;
             _galleryTabSelected = "nonplayer";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryCustomNpcTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "customnpc") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryCustomNpcTab.ClientSize.Width;
+                int h = LabelGalleryCustomNpcTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryCustomNpcTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCustomNpcTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryCustomNpcTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCustomNpcTab.ForeColor = _galleryTabSelected == "customnpc" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryCustomNpcTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "customnpc") return;
+            _galleryTabSelected = "customnpc";
+            _isCustomNpcMode = true;
             UpdateGalleryTabVisuals();
             _cancellationTokenSource?.Cancel();
             ClearGalleryEntries();
@@ -836,6 +889,10 @@ namespace PortraitManager
             LabelGalleryNonPlayerTab.BackColor = _galleryTabSelected == "nonplayer" ? gameBack : Color.Transparent;
             LabelGalleryNonPlayerTab.ForeColor = _galleryTabSelected == "nonplayer" ? gameFore : Color.White;
             LabelGalleryNonPlayerTab.Invalidate();
+
+            LabelGalleryCustomNpcTab.BackColor = _galleryTabSelected == "customnpc" ? gameBack : Color.Transparent;
+            LabelGalleryCustomNpcTab.ForeColor = _galleryTabSelected == "customnpc" ? gameFore : Color.White;
+            LabelGalleryCustomNpcTab.Invalidate();
         }
 
         private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
@@ -852,7 +909,13 @@ namespace PortraitManager
                 e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
 
                 int gapStart = -1, gapEnd = -1;
-                Label activeTab = _galleryTabSelected == "nonplayer" ? LabelGalleryNonPlayerTab : LabelGalleryTab;
+                Label activeTab;
+                if (_galleryTabSelected == "nonplayer")
+                    activeTab = LabelGalleryNonPlayerTab;
+                else if (_galleryTabSelected == "customnpc")
+                    activeTab = LabelGalleryCustomNpcTab;
+                else
+                    activeTab = LabelGalleryTab;
                 if (activeTab.Visible)
                 {
                     try
@@ -892,6 +955,8 @@ namespace PortraitManager
 
         private void UpdateGalleryRightPanel()
         {
+            ButtonGalleryNewNpcEntry.Visible = _isCustomNpcMode && string.IsNullOrEmpty(_selectedGalleryEntry);
+
             if (string.IsNullOrEmpty(_selectedGalleryEntry))
             {
                 ButtonGalleryDelete.Visible = false;
@@ -899,11 +964,24 @@ namespace PortraitManager
                 ButtonGalleryChange.Visible = false;
                 ButtonGalleryShowFolder.Visible = true;
                 ButtonGalleryBack.Visible = true;
-                LayoutGalleryRight.RowStyles[0].Height = 0;
-                LayoutGalleryRight.RowStyles[1].Height = 0;
-                LayoutGalleryRight.RowStyles[2].Height = 0;
-                LayoutGalleryRight.RowStyles[3].Height = 50;
-                LayoutGalleryRight.RowStyles[4].Height = 50;
+                if (_isCustomNpcMode)
+                {
+                    LayoutGalleryRight.RowStyles[0].Height = 50;
+                    LayoutGalleryRight.RowStyles[1].Height = 0;
+                    LayoutGalleryRight.RowStyles[2].Height = 0;
+                    LayoutGalleryRight.RowStyles[3].Height = 0;
+                    LayoutGalleryRight.RowStyles[4].Height = 0;
+                    LayoutGalleryRight.RowStyles[5].Height = 50;
+                }
+                else
+                {
+                    LayoutGalleryRight.RowStyles[0].Height = 0;
+                    LayoutGalleryRight.RowStyles[1].Height = 0;
+                    LayoutGalleryRight.RowStyles[2].Height = 0;
+                    LayoutGalleryRight.RowStyles[3].Height = 0;
+                    LayoutGalleryRight.RowStyles[4].Height = 50;
+                    LayoutGalleryRight.RowStyles[5].Height = 50;
+                }
             }
             else
             {
@@ -912,12 +990,83 @@ namespace PortraitManager
                 ButtonGalleryChange.Visible = true;
                 ButtonGalleryShowFolder.Visible = false;
                 ButtonGalleryBack.Visible = true;
-                LayoutGalleryRight.RowStyles[0].Height = 29;
+                LayoutGalleryRight.RowStyles[0].Height = 0;
                 LayoutGalleryRight.RowStyles[1].Height = 29;
-                LayoutGalleryRight.RowStyles[2].Height = 28;
-                LayoutGalleryRight.RowStyles[3].Height = 0;
-                LayoutGalleryRight.RowStyles[4].Height = 14;
+                LayoutGalleryRight.RowStyles[2].Height = 29;
+                LayoutGalleryRight.RowStyles[3].Height = 28;
+                LayoutGalleryRight.RowStyles[4].Height = 0;
+                LayoutGalleryRight.RowStyles[5].Height = 14;
             }
+        }
+
+        private void ButtonGalleryNewNpcEntry_Click(object sender, EventArgs e)
+        {
+            string name = null;
+            using (var inputForm = new Form())
+            {
+                inputForm.Text = "New NPC Entry";
+                inputForm.StartPosition = FormStartPosition.CenterParent;
+                inputForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                inputForm.MaximizeBox = false;
+                inputForm.MinimizeBox = false;
+                inputForm.ClientSize = new Size(320, 130);
+                inputForm.BackColor = Color.FromArgb(30, 30, 30);
+                inputForm.ForeColor = Color.White;
+
+                var lbl = new Label { Text = "Enter new NPC name:", Location = new Point(12, 12), Size = new Size(296, 20), ForeColor = Color.White, BackColor = Color.Transparent };
+                var txt = new TextBox { Location = new Point(12, 38), Size = new Size(296, 24), BackColor = Color.FromArgb(50, 50, 50), ForeColor = Color.White, BorderStyle = BorderStyle.FixedSingle };
+                var btnOk = new Button { Text = "OK", DialogResult = DialogResult.OK, Location = new Point(148, 72), Size = new Size(75, 30), BackColor = Color.FromArgb(60, 60, 60), ForeColor = Color.White, FlatStyle = FlatStyle.Flat };
+                var btnCancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Location = new Point(233, 72), Size = new Size(75, 30), BackColor = Color.FromArgb(60, 60, 60), ForeColor = Color.White, FlatStyle = FlatStyle.Flat };
+
+                inputForm.Controls.Add(lbl);
+                inputForm.Controls.Add(txt);
+                inputForm.Controls.Add(btnOk);
+                inputForm.Controls.Add(btnCancel);
+                inputForm.AcceptButton = btnOk;
+                inputForm.CancelButton = btnCancel;
+
+                if (inputForm.ShowDialog(this) == DialogResult.OK)
+                    name = txt.Text.Trim();
+            }
+
+            if (string.IsNullOrWhiteSpace(name)) return;
+
+            string basePath = CoreSettings.Default.GamePath;
+            if (string.IsNullOrEmpty(basePath)) return;
+            string npcDir = Path.Combine(GetCustomNpcPortraitsDir(basePath), name);
+            try
+            {
+                if (!Directory.Exists(npcDir))
+                    Directory.CreateDirectory(npcDir);
+            }
+            catch
+            {
+                using (var msg = new forms.MyMessageDialog("Could not create directory."))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+                return;
+            }
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+        }
+
+        private void ButtonGalleryNewNpcEntry_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryNewNpcEntry.BackColor = selFore;
+            ButtonGalleryNewNpcEntry.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryNewNpcEntry_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryNewNpcEntry.BackColor = selBack;
+            ButtonGalleryNewNpcEntry.ForeColor = selFore;
         }
 
         private void ButtonGalleryBack_MouseEnter(object sender, EventArgs e)
@@ -1008,6 +1157,14 @@ namespace PortraitManager
                 string basePath = CoreSettings.Default.GamePath;
                 if (!string.IsNullOrEmpty(basePath))
                     gameDir = GetNonPlayerPortraitsRoot(basePath);
+                else
+                    gameDir = null;
+            }
+            else if (_isCustomNpcMode)
+            {
+                string basePath = CoreSettings.Default.GamePath;
+                if (!string.IsNullOrEmpty(basePath))
+                    gameDir = GetCustomNpcPortraitsDir(basePath);
                 else
                     gameDir = null;
             }

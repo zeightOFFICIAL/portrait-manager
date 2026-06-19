@@ -1115,7 +1115,15 @@ namespace PortraitManager
 
             try
             {
-                if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+                if (_isCustomNpcMode && (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r'))
+                {
+                    string addDir = Path.Combine(Path.GetDirectoryName(path), "Additions", Path.GetFileName(path));
+                    if (Directory.Exists(addDir))
+                        Directory.Delete(addDir, recursive: true);
+                    if (Directory.Exists(path))
+                        Directory.Delete(path, recursive: true);
+                }
+                else if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
                 {
                     if (Directory.Exists(path))
                         Directory.Delete(path, recursive: true);
@@ -1171,6 +1179,29 @@ namespace PortraitManager
             if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
             {
                 LoadNonPlayerGalleryImages(gamePath);
+                return;
+            }
+
+            if (_galleryTabSelected == "customnpc")
+            {
+                if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+                {
+                    string npcRoot = GetCustomNpcPortraitsDir(gamePath);
+                    if (!Directory.Exists(npcRoot)) return;
+                    _cancellationTokenSource?.Cancel();
+                    _cancellationTokenSource = new CancellationTokenSource();
+                    var npcToken = _cancellationTokenSource.Token;
+                    string capturedNpcRoot = npcRoot;
+                    Task.Run(() =>
+                    {
+                        LoadSubfolderGalleryGradual(capturedNpcRoot, _gameSelected, npcToken);
+                        BeginInvoke(new Action(() =>
+                        {
+                            if (_galleryEntries.Count > 0)
+                                ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                        }));
+                    }, npcToken);
+                }
                 return;
             }
 

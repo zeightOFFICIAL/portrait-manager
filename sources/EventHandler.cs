@@ -243,6 +243,7 @@ namespace PortraitManager
                     if (isObsidianOrWaste) return "player_male_" + sizeSuffix + ".png";
                     if (sizeSuffix == "med") return "Medium.png";
                     if (sizeSuffix == "sm" || sizeSuffix == "sml") return "Small.png";
+                    if (sizeSuffix == "si") return "Small.png";
                     return "Fulllength.png";
                 }
 
@@ -251,7 +252,7 @@ namespace PortraitManager
                     if (orig == null) return;
                     string fileName = FileName(sizeSuffix);
                     string savePath = Path.Combine(outDir, fileName);
-                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 'l')
+                    if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
                         CropAndSaveDirectFill(orig, pb, panel, w, h, savePath);
                     else
                         CropAndSaveDirectUniform(orig, pb, panel, w, h, savePath);
@@ -617,6 +618,7 @@ namespace PortraitManager
                 if (obsidianNaming) return "player_male_" + sizeSuffix + ".png";
                 if (sizeSuffix == "med") return "Medium.png";
                 if (sizeSuffix == "sm" || sizeSuffix == "sml") return "Small.png";
+                if (sizeSuffix == "si") return "Small.png";
                 return "Fulllength.png";
             }
 

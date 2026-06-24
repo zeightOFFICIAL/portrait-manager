@@ -126,6 +126,8 @@ namespace PortraitManager
         private bool _suppressGalleryCheckEvents;
         private string _galleryTabSelected = "player";
         private bool _isCustomNpcMode = false;
+        private bool _hasBackupCreated = false;
+        private Panel _panelGalleryOverlay;
 
         private void FontInit()
         {
@@ -544,7 +546,7 @@ namespace PortraitManager
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
-            LabelGalleryCustomNpcTab.Visible = _gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r';
+            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r';
             UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
@@ -593,6 +595,15 @@ namespace PortraitManager
             ButtonGalleryShowFolder.FlatAppearance.MouseOverBackColor = gameFore;
             ButtonGalleryShowFolder.FlatAppearance.MouseDownBackColor = gameFore;
             ButtonGalleryShowFolder.TabStop = false;
+
+            ButtonGalleryNewNpcEntry.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryNewNpcEntry.FlatAppearance.BorderSize = 1;
+            ButtonGalleryNewNpcEntry.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryNewNpcEntry.BackColor = gameBack;
+            ButtonGalleryNewNpcEntry.ForeColor = gameFore;
+            ButtonGalleryNewNpcEntry.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryNewNpcEntry.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryNewNpcEntry.TabStop = false;
 
             _cancellationTokenSource?.Cancel();
             ClearGalleryEntries();
@@ -706,9 +717,16 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
 
+            _hasBackupCreated = false;
+
             if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
             {
                 BackupNonPlayerPortraitSet(_selectedGalleryEntry);
+            }
+            else if (_galleryTabSelected == "customnpc")
+            {
+                BackupCustomNpcPortraitSet(_selectedGalleryEntry);
+                _hasBackupCreated = true;
             }
 
             _overrideGallerySaveDir = _selectedGalleryEntry;
@@ -730,7 +748,8 @@ namespace PortraitManager
 
         private string GetCustomNpcPortraitsDir(string basePath)
         {
-            return Path.Combine(basePath, "Mods", "CustomNpcPortraits", "Portraits");
+            if (_gameSelected == 'r') return null;
+            return Path.Combine(basePath, "Portraits - Npc");
         }
 
         private void BackupNonPlayerPortraitSet(string entryPath)
@@ -867,6 +886,7 @@ namespace PortraitManager
 
         private void LabelGalleryCustomNpcTab_Click(object sender, EventArgs e)
         {
+            if (_gameSelected == 'r') return;
             if (_galleryTabSelected == "customnpc") return;
             _galleryTabSelected = "customnpc";
             _isCustomNpcMode = true;
@@ -956,6 +976,7 @@ namespace PortraitManager
 
         private void UpdateGalleryRightPanel()
         {
+            bool hasEntries = _galleryEntries != null && _galleryEntries.Count > 0;
             ButtonGalleryNewNpcEntry.Visible = _isCustomNpcMode && string.IsNullOrEmpty(_selectedGalleryEntry);
 
             if (string.IsNullOrEmpty(_selectedGalleryEntry))
@@ -967,12 +988,12 @@ namespace PortraitManager
                 ButtonGalleryBack.Visible = true;
                 if (_isCustomNpcMode)
                 {
-                    LayoutGalleryRight.RowStyles[0].Height = 50;
-                    LayoutGalleryRight.RowStyles[1].Height = 0;
-                    LayoutGalleryRight.RowStyles[2].Height = 0;
-                    LayoutGalleryRight.RowStyles[3].Height = 0;
-                    LayoutGalleryRight.RowStyles[4].Height = 0;
-                    LayoutGalleryRight.RowStyles[5].Height = 50;
+                    LayoutGalleryRight.RowStyles[0] = new RowStyle(SizeType.AutoSize);
+                    LayoutGalleryRight.RowStyles[1] = new RowStyle(SizeType.Absolute, 0);
+                    LayoutGalleryRight.RowStyles[2] = new RowStyle(SizeType.Absolute, 0);
+                    LayoutGalleryRight.RowStyles[3] = new RowStyle(SizeType.Absolute, 0);
+                    LayoutGalleryRight.RowStyles[4] = new RowStyle(SizeType.Absolute, 0);
+                    LayoutGalleryRight.RowStyles[5] = new RowStyle(SizeType.AutoSize);
                 }
                 else
                 {
@@ -986,9 +1007,9 @@ namespace PortraitManager
             }
             else
             {
-                ButtonGalleryDelete.Visible = true;
-                ButtonGalleryClone.Visible = true;
-                ButtonGalleryChange.Visible = true;
+                ButtonGalleryDelete.Visible = !_isCustomNpcMode;
+                ButtonGalleryClone.Visible = hasEntries;
+                ButtonGalleryChange.Visible = hasEntries;
                 ButtonGalleryShowFolder.Visible = false;
                 ButtonGalleryBack.Visible = true;
                 LayoutGalleryRight.RowStyles[0].Height = 0;
@@ -998,6 +1019,125 @@ namespace PortraitManager
                 LayoutGalleryRight.RowStyles[4].Height = 0;
                 LayoutGalleryRight.RowStyles[5].Height = 14;
             }
+
+            UpdateGalleryOverlay();
+        }
+
+        private void UpdateGalleryOverlay()
+        {
+            if (_galleryTabSelected != "customnpc")
+            {
+                if (_panelGalleryOverlay != null)
+                    _panelGalleryOverlay.Visible = false;
+                return;
+            }
+
+            bool hasEntries = _galleryEntries != null && _galleryEntries.Count > 0;
+            if (hasEntries)
+            {
+                if (_panelGalleryOverlay != null)
+                    _panelGalleryOverlay.Visible = false;
+                return;
+            }
+
+            if (_panelGalleryOverlay == null)
+            {
+                _panelGalleryOverlay = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.Transparent
+                };
+                _panelGalleryOverlay.Paint += PanelGalleryOverlay_Paint;
+                PanelGalleryContainer.Controls.Add(_panelGalleryOverlay);
+                _panelGalleryOverlay.BringToFront();
+            }
+
+            _panelGalleryOverlay.Visible = true;
+        }
+
+        private void PanelGalleryOverlay_Paint(object sender, PaintEventArgs e)
+        {
+            Panel panel = (Panel)sender;
+            Rectangle rect = panel.ClientRectangle;
+
+            string title = "CustomNPC";
+            string hint1 = "NPC must be met in-game first. Folder name = exact NPC dialog name.";
+            string hint2 = "Use \"NEW NPC +\" to create entry, then select it and click Change.";
+
+            using (Font titleFont = new Font(_fontCollection.Families[0], 22))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 12))
+            {
+                TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+
+                Size titleSize = TextRenderer.MeasureText(e.Graphics, title, titleFont,
+                    new Size(rect.Width, 0), tf);
+                Size hint1Size = TextRenderer.MeasureText(e.Graphics, hint1, hintFont,
+                    new Size(rect.Width, 0), tf);
+                Size hint2Size = TextRenderer.MeasureText(e.Graphics, hint2, hintFont,
+                    new Size(rect.Width, 0), tf);
+
+                int totalHeight = titleSize.Height + 20 + hint1Size.Height + 6 + hint2Size.Height;
+                int yStart = (rect.Height - totalHeight) / 2;
+
+                Rectangle titleRect = new Rectangle(0, yStart, rect.Width, titleSize.Height);
+                TextRenderer.DrawText(e.Graphics, title, titleFont, titleRect, Color.White, tf);
+
+                Rectangle hint1Rect = new Rectangle(0, yStart + titleSize.Height + 20, rect.Width, hint1Size.Height);
+                TextRenderer.DrawText(e.Graphics, hint1, hintFont, hint1Rect, Color.Gray, tf);
+
+                Rectangle hint2Rect = new Rectangle(0, yStart + titleSize.Height + 20 + hint1Size.Height + 6,
+                    rect.Width, hint2Size.Height);
+                TextRenderer.DrawText(e.Graphics, hint2, hintFont, hint2Rect, Color.Gray, tf);
+            }
+        }
+
+        private void BackupCustomNpcPortraitSet(string entryPath)
+        {
+            if (string.IsNullOrEmpty(entryPath) || !Directory.Exists(entryPath)) return;
+            try
+            {
+                foreach (string file in Directory.GetFiles(entryPath, "*.png"))
+                {
+                    string backup = file + ".backup";
+                    if (!File.Exists(backup))
+                        File.Copy(file, backup, overwrite: false);
+                }
+            }
+            catch { }
+        }
+
+        private void LoadCustomNpcBackupIntoCreatePage(string outDir)
+        {
+            if (string.IsNullOrEmpty(outDir) || !Directory.Exists(outDir)) return;
+            try
+            {
+                var backupFiles = new Dictionary<string, Action<Image>>(StringComparer.OrdinalIgnoreCase)
+                {
+                    { "Fulllength.png", img => { StoreOriginalImage(PicKingLrg, img); FitImageToPanel(PicKingLrg); _groupLrgInitialized = true; } },
+                    { "Medium.png", img => { StoreOriginalImage(PicKingMed, img); FitImageToPanel(PicKingMed); _groupMedInitialized = true; } },
+                    { "Small.png", img => { StoreOriginalImage(PicKingSml, img); FitImageToPanel(PicKingSml); _groupSmlInitialized = true; } }
+                };
+
+                foreach (string file in Directory.GetFiles(outDir, "*.backup"))
+                {
+                    string originalName = Path.GetFileNameWithoutExtension(file);
+                    if (backupFiles.TryGetValue(originalName, out var apply))
+                    {
+                        using (Image img = Image.FromFile(file))
+                        {
+                            Bitmap copy = new Bitmap(img);
+                            apply(copy);
+                        }
+                    }
+                }
+
+                using (var msg = new forms.MyMessageDialog("Backup portraits loaded into Create Portrait section."))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog();
+                }
+            }
+            catch { }
         }
 
         private void ButtonGalleryNewNpcEntry_Click(object sender, EventArgs e)
@@ -1034,7 +1174,9 @@ namespace PortraitManager
 
             string basePath = CoreSettings.Default.GamePath;
             if (string.IsNullOrEmpty(basePath)) return;
-            string npcDir = Path.Combine(GetCustomNpcPortraitsDir(basePath), name);
+            string npcRoot = GetCustomNpcPortraitsDir(basePath);
+            if (string.IsNullOrEmpty(npcRoot)) return;
+            string npcDir = Path.Combine(npcRoot, name);
             try
             {
                 if (!Directory.Exists(npcDir))
@@ -1121,6 +1263,7 @@ namespace PortraitManager
         private void ButtonGalleryDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+            if (_isCustomNpcMode) return;
             using (var dlg = new forms.MyInquiryDialog("Delete this portrait set?"))
             {
                 if (dlg.ShowDialog() == DialogResult.OK)

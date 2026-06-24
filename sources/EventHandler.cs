@@ -118,7 +118,40 @@ namespace PortraitManager
 
             string outDir = null;
 
-            if (isObsidian)
+            if (_isCustomNpcMode && string.IsNullOrEmpty(_overrideGallerySaveDir))
+            {
+                // CustomNPC clone: create new subfolder under CustomNPC directory
+                string customNpcDir = GetCustomNpcPortraitsDir(basePath);
+                if (string.IsNullOrEmpty(customNpcDir)) return;
+                try { Directory.CreateDirectory(customNpcDir); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to create CustomNPC portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string baseName = "NPC_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                string uniqueName = baseName;
+                int suffix = 1;
+                outDir = Path.Combine(customNpcDir, uniqueName);
+                while (Directory.Exists(outDir))
+                {
+                    suffix++;
+                    uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                    outDir = Path.Combine(customNpcDir, uniqueName);
+                }
+
+                try { Directory.CreateDirectory(outDir); }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to create CustomNPC portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                uid = null;
+                femaleDir = null;
+            }
+            else if (isObsidian)
             {
                 // Obsidian games: fixed game-expected path — write directly to player/male
                 if (_gameSelected == 'p')
@@ -160,39 +193,7 @@ namespace PortraitManager
             }
             else
             {
-                if (_isCustomNpcMode && string.IsNullOrEmpty(_overrideGallerySaveDir))
-                {
-                    // CustomNPC clone: create new subfolder under CustomNPC directory
-                    string customNpcDir = GetCustomNpcPortraitsDir(basePath);
-                    try { Directory.CreateDirectory(customNpcDir); }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to create CustomNPC portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    string baseName = "NPC_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
-                    string uniqueName = baseName;
-                    int suffix = 1;
-                    outDir = Path.Combine(customNpcDir, uniqueName);
-                    while (Directory.Exists(outDir))
-                    {
-                        suffix++;
-                        uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
-                        outDir = Path.Combine(customNpcDir, uniqueName);
-                    }
-
-                    try { Directory.CreateDirectory(outDir); }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to create CustomNPC portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    uid = null;
-                    femaleDir = null;
-                }
-                else if (string.IsNullOrEmpty(_overrideGallerySaveDir))
+                if (string.IsNullOrEmpty(_overrideGallerySaveDir))
                 {
                     // Owlcat games: timestamp-named subfolder under Portraits
                     string portraitsRoot = basePath;
@@ -337,22 +338,21 @@ namespace PortraitManager
                         "si");
                 }
 
-                if (_isCustomNpcMode)
-                {
-                    string additionsDir = Path.Combine(Path.GetDirectoryName(outDir), "Additions", Path.GetFileName(outDir));
-                    try
-                    {
-                        Directory.CreateDirectory(additionsDir);
-                        string mediumSrc = Path.Combine(outDir, "Medium.png");
-                        if (File.Exists(mediumSrc))
-                            File.Copy(mediumSrc, Path.Combine(additionsDir, "Medium.png"), overwrite: true);
-                    }
-                    catch { }
-                }
+
 
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
                 {
                     ShowCreatePortraitToast(outDir, uid);
+
+                    if (_hasBackupCreated)
+                    {
+                        using (var dlg = new forms.MyInquiryDialog("Backup of previous portraits was created.\nLoad backup into Create Portrait section?"))
+                        {
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                                LoadCustomNpcBackupIntoCreatePage(outDir);
+                        }
+                        _hasBackupCreated = false;
+                    }
 
                     if (keepOnLayout)
                     {

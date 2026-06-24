@@ -1017,53 +1017,63 @@ namespace PortraitManager
 
             _galleryEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
 
-            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 200);
-            int cbWidth = Math.Max(thumbSize.Width + 20, 145);
-            int cbHeight = thumbSize.Height + 60;
-
-            Color gameBack, gameFore;
-            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
-            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
-
-            RadioButton rb = new RadioButton
+            int gridWidth = FlowLayoutPanelGallery.ClientSize.Width;
+            if (gridWidth <= 0) gridWidth = 490;
+            float targetCols = 3.5f;
+            float targetCtrlWidth = gridWidth / targetCols;
+            float imageWidth = targetCtrlWidth - 26;
+            if (memImage.Width > 0 && memImage.Height > 0)
             {
-                Text = Path.GetFileName(folderKey),
-                Tag = folderKey,
-                Checked = false,
-                ForeColor = Color.White,
-                BackColor = gameBack,
-                FlatStyle = FlatStyle.Flat,
-                Size = new Size(cbWidth, cbHeight),
-                TextAlign = ContentAlignment.BottomCenter,
-                Padding = new Padding(8, 8, 8, 4),
-                ImageAlign = ContentAlignment.TopCenter,
-                Appearance = Appearance.Button,
-                Cursor = Cursors.Hand,
-            };
+                float imgAspect = (float)memImage.Height / memImage.Width;
+                int maxSize = Math.Max((int)(imageWidth * Math.Max(imgAspect, 1.0f)), 100);
+                Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), maxSize);
+                int cbWidth = Math.Max(thumbSize.Width + 20, 145);
+                int cbHeight = thumbSize.Height + 60;
 
-            rb.Font = new Font(_fontCollection.Families[0], 12);
+                Color gameBack, gameFore;
+                try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+                catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
-            rb.FlatAppearance.BorderSize = 3;
-            rb.FlatAppearance.BorderColor = gameBack;
-            rb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
-            rb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
-
-            rb.MouseEnter += (s, args) => { rb.ForeColor = gameFore; };
-            rb.MouseLeave += (s, args) => { rb.ForeColor = Color.White; };
-            rb.CheckedChanged += (s, args) =>
-            {
-                if (rb.Checked)
+                RadioButton rb = new RadioButton
                 {
-                    _selectedGalleryEntry = folderKey;
-                }
-                rb.FlatAppearance.BorderColor = rb.Checked ? gameFore : gameBack;
-                UpdateGalleryRightPanel();
-            };
+                    Text = Path.GetFileName(folderKey),
+                    Tag = folderKey,
+                    Checked = false,
+                    ForeColor = Color.White,
+                    BackColor = gameBack,
+                    FlatStyle = FlatStyle.Flat,
+                    Size = new Size(cbWidth, cbHeight),
+                    TextAlign = ContentAlignment.BottomCenter,
+                    Padding = new Padding(8, 8, 8, 4),
+                    ImageAlign = ContentAlignment.TopCenter,
+                    Appearance = Appearance.Button,
+                    Cursor = _isCustomNpcMode ? Cursors.Default : Cursors.Hand,
+                };
 
-            Image thumb = new Bitmap(memImage, thumbSize);
-            rb.Image = thumb;
+                rb.Font = new Font(_fontCollection.Families[0], 12);
 
-            FlowLayoutPanelGallery.Controls.Add(rb);
+                rb.FlatAppearance.BorderSize = 3;
+                rb.FlatAppearance.BorderColor = gameBack;
+                rb.FlatAppearance.CheckedBackColor = ControlPaint.Light(gameBack, 0.3f);
+                rb.FlatAppearance.MouseOverBackColor = ControlPaint.Light(gameBack, 0.15f);
+
+                rb.MouseEnter += (s, args) => { rb.ForeColor = gameFore; };
+                rb.MouseLeave += (s, args) => { rb.ForeColor = Color.White; };
+                rb.CheckedChanged += (s, args) =>
+                {
+                    if (rb.Checked)
+                    {
+                        _selectedGalleryEntry = folderKey;
+                    }
+                    rb.FlatAppearance.BorderColor = rb.Checked ? gameFore : gameBack;
+                    UpdateGalleryRightPanel();
+                };
+
+                Image thumb = new Bitmap(memImage, thumbSize);
+                rb.Image = thumb;
+
+                FlowLayoutPanelGallery.Controls.Add(rb);
+            }
         }
 
         private string FindBestGalleryImage(string folderPath)
@@ -1115,15 +1125,7 @@ namespace PortraitManager
 
             try
             {
-                if (_isCustomNpcMode && (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r'))
-                {
-                    string addDir = Path.Combine(Path.GetDirectoryName(path), "Additions", Path.GetFileName(path));
-                    if (Directory.Exists(addDir))
-                        Directory.Delete(addDir, recursive: true);
-                    if (Directory.Exists(path))
-                        Directory.Delete(path, recursive: true);
-                }
-                else if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+                if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
                 {
                     if (Directory.Exists(path))
                         Directory.Delete(path, recursive: true);
@@ -1184,24 +1186,22 @@ namespace PortraitManager
 
             if (_galleryTabSelected == "customnpc")
             {
-                if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
+                string npcRoot = GetCustomNpcPortraitsDir(gamePath);
+                if (string.IsNullOrEmpty(npcRoot) || !Directory.Exists(npcRoot)) return;
+                _cancellationTokenSource?.Cancel();
+                _cancellationTokenSource = new CancellationTokenSource();
+                var npcToken = _cancellationTokenSource.Token;
+                string capturedNpcRoot = npcRoot;
+                Task.Run(() =>
                 {
-                    string npcRoot = GetCustomNpcPortraitsDir(gamePath);
-                    if (!Directory.Exists(npcRoot)) return;
-                    _cancellationTokenSource?.Cancel();
-                    _cancellationTokenSource = new CancellationTokenSource();
-                    var npcToken = _cancellationTokenSource.Token;
-                    string capturedNpcRoot = npcRoot;
-                    Task.Run(() =>
+                    LoadSubfolderGalleryGradual(capturedNpcRoot, _gameSelected, npcToken);
+                    BeginInvoke(new Action(() =>
                     {
-                        LoadSubfolderGalleryGradual(capturedNpcRoot, _gameSelected, npcToken);
-                        BeginInvoke(new Action(() =>
-                        {
-                            if (_galleryEntries.Count > 0)
-                                ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
-                        }));
-                    }, npcToken);
-                }
+                        if (_galleryEntries.Count > 0)
+                            ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                        UpdateGalleryRightPanel();
+                    }));
+                }, npcToken);
                 return;
             }
 
@@ -1259,6 +1259,7 @@ namespace PortraitManager
                 {
                     if (_galleryEntries.Count > 0)
                         ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                    UpdateGalleryRightPanel();
                 }));
             }, token);
         }
@@ -1906,6 +1907,7 @@ namespace PortraitManager
 
             int count = 0;
             int conflictCount = 0;
+            int sizeInvalidCount = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
 
             try
@@ -1938,14 +1940,30 @@ namespace PortraitManager
                             var smEntry = entries.FirstOrDefault(e =>
                                 e.Name.Equals(key + "_sm.png", StringComparison.OrdinalIgnoreCase));
 
-                            lgEntry.ExtractToFile(Path.Combine(maleDir, lgName), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, lgName), Path.Combine(femaleDir, lgName), overwrite: true);
+                            string lgDest = Path.Combine(maleDir, lgName);
+                            lgEntry.ExtractToFile(lgDest, overwrite: true);
+                            bool hadInvalid = false;
+                            ValidatePortraitSize(lgDest, ref hadInvalid);
 
+                            string smDest = null;
                             if (smEntry != null)
                             {
-                                smEntry.ExtractToFile(Path.Combine(maleDir, smName), overwrite: true);
-                                File.Copy(Path.Combine(maleDir, smName), Path.Combine(femaleDir, smName), overwrite: true);
+                                smDest = Path.Combine(maleDir, smName);
+                                smEntry.ExtractToFile(smDest, overwrite: true);
+                                ValidatePortraitSize(smDest, ref hadInvalid);
                             }
+
+                            if (hadInvalid)
+                            {
+                                try { File.Delete(lgDest); } catch { }
+                                if (smDest != null) try { File.Delete(smDest); } catch { }
+                                sizeInvalidCount++;
+                                continue;
+                            }
+
+                            File.Copy(lgDest, Path.Combine(femaleDir, lgName), overwrite: true);
+                            if (smDest != null)
+                                File.Copy(smDest, Path.Combine(femaleDir, smName), overwrite: true);
                             count++;
                         }
                     }
@@ -1982,14 +2000,30 @@ namespace PortraitManager
                         string dir = Path.GetDirectoryName(lgFile);
                         string smFile = Path.Combine(dir, key + "_sm.png");
 
-                        File.Copy(lgFile, Path.Combine(maleDir, lgName), overwrite: true);
-                        File.Copy(Path.Combine(maleDir, lgName), Path.Combine(femaleDir, lgName), overwrite: true);
+                        string lgDest = Path.Combine(maleDir, lgName);
+                        File.Copy(lgFile, lgDest, overwrite: true);
+                        bool hadInvalid = false;
+                        ValidatePortraitSize(lgDest, ref hadInvalid);
 
+                        string smDest = null;
                         if (File.Exists(smFile))
                         {
-                            File.Copy(smFile, Path.Combine(maleDir, smName), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, smName), Path.Combine(femaleDir, smName), overwrite: true);
+                            smDest = Path.Combine(maleDir, smName);
+                            File.Copy(smFile, smDest, overwrite: true);
+                            ValidatePortraitSize(smDest, ref hadInvalid);
                         }
+
+                        if (hadInvalid)
+                        {
+                            try { File.Delete(lgDest); } catch { }
+                            if (smDest != null) try { File.Delete(smDest); } catch { }
+                            sizeInvalidCount++;
+                            continue;
+                        }
+
+                        File.Copy(lgDest, Path.Combine(femaleDir, lgName), overwrite: true);
+                        if (smDest != null)
+                            File.Copy(smDest, Path.Combine(femaleDir, smName), overwrite: true);
                         count++;
                     }
                 }
@@ -2015,21 +2049,41 @@ namespace PortraitManager
                         string dir = Path.GetDirectoryName(lgFile);
                         string smFile = Path.Combine(dir, key + "_sm.png");
 
-                        File.Copy(lgFile, Path.Combine(maleDir, lgName), overwrite: true);
-                        File.Copy(Path.Combine(maleDir, lgName), Path.Combine(femaleDir, lgName), overwrite: true);
+                        string lgDest = Path.Combine(maleDir, lgName);
+                        File.Copy(lgFile, lgDest, overwrite: true);
+                        bool hadInvalid = false;
+                        ValidatePortraitSize(lgDest, ref hadInvalid);
 
+                        string smDest = null;
                         if (File.Exists(smFile))
                         {
-                            File.Copy(smFile, Path.Combine(maleDir, smName), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, smName), Path.Combine(femaleDir, smName), overwrite: true);
+                            smDest = Path.Combine(maleDir, smName);
+                            File.Copy(smFile, smDest, overwrite: true);
+                            ValidatePortraitSize(smDest, ref hadInvalid);
                         }
+
+                        if (hadInvalid)
+                        {
+                            try { File.Delete(lgDest); } catch { }
+                            if (smDest != null) try { File.Delete(smDest); } catch { }
+                            sizeInvalidCount++;
+                            continue;
+                        }
+
+                        File.Copy(lgDest, Path.Combine(femaleDir, lgName), overwrite: true);
+                        if (smDest != null)
+                            File.Copy(smDest, Path.Combine(femaleDir, smName), overwrite: true);
                         count++;
                     }
                 }
 
-                string msgText = conflictCount > 0
-                    ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
-                    : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                string msgText;
+                if (conflictCount > 0)
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount);
+                else if (sizeInvalidCount > 0)
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count) + $"\nSkipped {sizeInvalidCount} set(s) with invalid portrait dimensions.";
+                else
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
@@ -2055,6 +2109,7 @@ namespace PortraitManager
 
             int count = 0;
             int conflictCount = 0;
+            int sizeInvalidCount = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
 
             try
@@ -2066,7 +2121,7 @@ namespace PortraitManager
                     using (ZipArchive archive = ZipFile.OpenRead(_selectedArchivePath))
                     {
                         var imgEntries = archive.Entries
-                            .Where(e => !e.FullName.EndsWith("/") && IsImageFile(e.Name))
+                            .Where(e => !e.FullName.EndsWith("/") && e.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                             .ToList();
 
                         foreach (var entry in imgEntries)
@@ -2076,14 +2131,21 @@ namespace PortraitManager
                             if (keys != null && !keys.Contains(key))
                                 continue;
 
-                            string fileExt = Path.GetExtension(entry.Name);
                             string destFile = Path.Combine(outDir, entry.Name);
                             string suffix = File.Exists(destFile)
                                 ? DateTime.Now.ToString("_ssddMM") : "";
                             if (!string.IsNullOrEmpty(suffix)) conflictCount++;
 
-                            string finalName = key + suffix + fileExt;
-                            entry.ExtractToFile(Path.Combine(outDir, finalName), overwrite: true);
+                            string finalName = key + suffix + ".png";
+                            string finalPath = Path.Combine(outDir, finalName);
+                            entry.ExtractToFile(finalPath, overwrite: true);
+                            bool hadInvalid = false;
+                            ValidatePortraitSize(finalPath, ref hadInvalid);
+                            if (hadInvalid)
+                            {
+                                sizeInvalidCount++;
+                                continue;
+                            }
                             count++;
                         }
                     }
@@ -2100,7 +2162,8 @@ namespace PortraitManager
                         return false;
                     }
 
-                    var imgFiles = Directory.GetFiles(_shellTempDir, "*", SearchOption.AllDirectories).Where(f => IsImageFile(f)).ToList();
+                    var imgFiles = Directory.GetFiles(_shellTempDir, "*", SearchOption.AllDirectories)
+                        .Where(f => f.EndsWith(".png", StringComparison.OrdinalIgnoreCase)).ToList();
                     foreach (var file in imgFiles)
                     {
                         string key = Path.GetFileNameWithoutExtension(file);
@@ -2108,20 +2171,28 @@ namespace PortraitManager
                         if (keys != null && !keys.Contains(key))
                             continue;
 
-                        string fileExt = Path.GetExtension(file);
-                        string destFile = Path.Combine(outDir, key + fileExt);
+                        string destFile = Path.Combine(outDir, key + ".png");
                         string suffix = File.Exists(destFile)
                             ? DateTime.Now.ToString("_ssddMM") : "";
                         if (!string.IsNullOrEmpty(suffix)) conflictCount++;
 
-                        string finalName = key + suffix + fileExt;
-                        File.Copy(file, Path.Combine(outDir, finalName), overwrite: true);
+                        string finalName = key + suffix + ".png";
+                        string finalPath = Path.Combine(outDir, finalName);
+                        File.Copy(file, finalPath, overwrite: true);
+                        bool hadInvalid = false;
+                        ValidatePortraitSize(finalPath, ref hadInvalid);
+                        if (hadInvalid)
+                        {
+                            sizeInvalidCount++;
+                            continue;
+                        }
                         count++;
                     }
                 }
                 else
                 {
-                    var imgFiles = Directory.GetFiles(_selectedArchivePath, "*", SearchOption.AllDirectories).Where(f => IsImageFile(f)).ToList();
+                    var imgFiles = Directory.GetFiles(_selectedArchivePath, "*", SearchOption.AllDirectories)
+                        .Where(f => f.EndsWith(".png", StringComparison.OrdinalIgnoreCase)).ToList();
                     foreach (var file in imgFiles)
                     {
                         string key = Path.GetFileNameWithoutExtension(file);
@@ -2129,21 +2200,32 @@ namespace PortraitManager
                         if (keys != null && !keys.Contains(key))
                             continue;
 
-                        string fileExt = Path.GetExtension(file);
-                        string destFile = Path.Combine(outDir, key + fileExt);
+                        string destFile = Path.Combine(outDir, key + ".png");
                         string suffix = File.Exists(destFile)
                             ? DateTime.Now.ToString("_ssddMM") : "";
                         if (!string.IsNullOrEmpty(suffix)) conflictCount++;
 
-                        string finalName = key + suffix + fileExt;
-                        File.Copy(file, Path.Combine(outDir, finalName), overwrite: true);
+                        string finalName = key + suffix + ".png";
+                        string finalPath = Path.Combine(outDir, finalName);
+                        File.Copy(file, finalPath, overwrite: true);
+                        bool hadInvalid = false;
+                        ValidatePortraitSize(finalPath, ref hadInvalid);
+                        if (hadInvalid)
+                        {
+                            sizeInvalidCount++;
+                            continue;
+                        }
                         count++;
                     }
                 }
 
-                string msgText = conflictCount > 0
-                    ? string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount)
-                    : string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
+                string msgText;
+                if (conflictCount > 0)
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount);
+                else if (sizeInvalidCount > 0)
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count) + $"\nSkipped {sizeInvalidCount} file(s) with invalid portrait dimensions.";
+                else
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count);
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
@@ -2172,6 +2254,7 @@ namespace PortraitManager
             int count = 0;
             int conflictCount = 0;
             int partialCount = 0;
+            int sizeInvalidCount = 0;
             string ext = Path.GetExtension(_selectedArchivePath).ToLowerInvariant();
 
             try
@@ -2201,6 +2284,8 @@ namespace PortraitManager
 
                             bool wroteAny = false;
                             int foundCount = 0;
+                            bool hadInvalid = false;
+                            var writtenFiles = new List<string>();
                             foreach (var sz in sizeSuffixes)
                             {
                                 var entry = archive.Entries.FirstOrDefault(e =>
@@ -2209,11 +2294,28 @@ namespace PortraitManager
                                 if (entry == null) continue;
 
                                 string finalName = key + suffix + "_" + sz + ".png";
-                                entry.ExtractToFile(Path.Combine(maleDir, finalName), overwrite: true);
-                                File.Copy(Path.Combine(maleDir, finalName), Path.Combine(femaleDir, finalName), overwrite: true);
+                                string malePath = Path.Combine(maleDir, finalName);
+                                entry.ExtractToFile(malePath, overwrite: true);
+                                ValidatePortraitSize(malePath, ref hadInvalid);
+                                writtenFiles.Add(malePath);
                                 wroteAny = true;
                                 foundCount++;
                             }
+
+                            if (hadInvalid)
+                            {
+                                foreach (var f in writtenFiles)
+                                    try { File.Delete(f); } catch { }
+                                sizeInvalidCount++;
+                                continue;
+                            }
+
+                            foreach (var maleFile in writtenFiles)
+                            {
+                                string femalePath = Path.Combine(femaleDir, Path.GetFileName(maleFile));
+                                File.Copy(maleFile, femalePath, overwrite: true);
+                            }
+
                             if (wroteAny)
                             {
                                 count++;
@@ -2252,17 +2354,36 @@ namespace PortraitManager
                         string dir = Path.GetDirectoryName(lgFile);
                         bool wroteAny = false;
                         int foundCount = 0;
+                        bool hadInvalid = false;
+                        var writtenFiles = new List<string>();
                         foreach (var sz in sizeSuffixes)
                         {
                             string srcFile = Path.Combine(dir, key + "_" + sz + ".png");
                             if (!File.Exists(srcFile)) continue;
 
                             string finalName = key + suffix + "_" + sz + ".png";
-                            File.Copy(srcFile, Path.Combine(maleDir, finalName), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, finalName), Path.Combine(femaleDir, finalName), overwrite: true);
+                            string malePath = Path.Combine(maleDir, finalName);
+                            File.Copy(srcFile, malePath, overwrite: true);
+                            ValidatePortraitSize(malePath, ref hadInvalid);
+                            writtenFiles.Add(malePath);
                             wroteAny = true;
                             foundCount++;
                         }
+
+                        if (hadInvalid)
+                        {
+                            foreach (var f in writtenFiles)
+                                try { File.Delete(f); } catch { }
+                            sizeInvalidCount++;
+                            continue;
+                        }
+
+                        foreach (var maleFile in writtenFiles)
+                        {
+                            string femalePath = Path.Combine(femaleDir, Path.GetFileName(maleFile));
+                            File.Copy(maleFile, femalePath, overwrite: true);
+                        }
+
                         if (wroteAny)
                         {
                             count++;
@@ -2290,17 +2411,36 @@ namespace PortraitManager
                         string dir = Path.GetDirectoryName(lgFile);
                         bool wroteAny = false;
                         int foundCount = 0;
+                        bool hadInvalid = false;
+                        var writtenFiles = new List<string>();
                         foreach (var sz in sizeSuffixes)
                         {
                             string srcFile = Path.Combine(dir, key + "_" + sz + ".png");
                             if (!File.Exists(srcFile)) continue;
 
                             string finalName = key + suffix + "_" + sz + ".png";
-                            File.Copy(srcFile, Path.Combine(maleDir, finalName), overwrite: true);
-                            File.Copy(Path.Combine(maleDir, finalName), Path.Combine(femaleDir, finalName), overwrite: true);
+                            string malePath = Path.Combine(maleDir, finalName);
+                            File.Copy(srcFile, malePath, overwrite: true);
+                            ValidatePortraitSize(malePath, ref hadInvalid);
+                            writtenFiles.Add(malePath);
                             wroteAny = true;
                             foundCount++;
                         }
+
+                        if (hadInvalid)
+                        {
+                            foreach (var f in writtenFiles)
+                                try { File.Delete(f); } catch { }
+                            sizeInvalidCount++;
+                            continue;
+                        }
+
+                        foreach (var maleFile in writtenFiles)
+                        {
+                            string femalePath = Path.Combine(femaleDir, Path.GetFileName(maleFile));
+                            File.Copy(maleFile, femalePath, overwrite: true);
+                        }
+
                         if (wroteAny)
                         {
                             count++;
@@ -2312,6 +2452,8 @@ namespace PortraitManager
                 string msgText;
                 if (conflictCount > 0)
                     msgText = string.Format(TextVariables.MESG_EXTRACT_CONFLICT, count, conflictCount);
+                else if (sizeInvalidCount > 0)
+                    msgText = string.Format(TextVariables.MESG_EXTRACT_SUCCESS, count) + $"\nSkipped {sizeInvalidCount} set(s) with invalid portrait dimensions.";
                 else if (partialCount > 0)
                     msgText = string.Format(TextVariables.MESG_EXTRACT_PARTIAL, count, partialCount);
                 else

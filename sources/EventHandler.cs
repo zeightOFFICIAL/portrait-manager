@@ -160,9 +160,41 @@ namespace PortraitManager
             }
             else
             {
-                // Owlcat games: timestamp-named subfolder under Portraits
-                if (string.IsNullOrEmpty(_overrideGallerySaveDir))
+                if (_isCustomNpcMode && string.IsNullOrEmpty(_overrideGallerySaveDir))
                 {
+                    // CustomNPC clone: create new subfolder under CustomNPC directory
+                    string customNpcDir = GetCustomNpcPortraitsDir(basePath);
+                    try { Directory.CreateDirectory(customNpcDir); }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to create CustomNPC portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string baseName = "NPC_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                    string uniqueName = baseName;
+                    int suffix = 1;
+                    outDir = Path.Combine(customNpcDir, uniqueName);
+                    while (Directory.Exists(outDir))
+                    {
+                        suffix++;
+                        uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                        outDir = Path.Combine(customNpcDir, uniqueName);
+                    }
+
+                    try { Directory.CreateDirectory(outDir); }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to create CustomNPC portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    uid = null;
+                    femaleDir = null;
+                }
+                else if (string.IsNullOrEmpty(_overrideGallerySaveDir))
+                {
+                    // Owlcat games: timestamp-named subfolder under Portraits
                     string portraitsRoot = basePath;
                     try
                     {

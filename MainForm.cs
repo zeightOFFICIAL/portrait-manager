@@ -697,6 +697,7 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
             _overrideGallerySaveDir = null;
+            _isCustomNpcMode = _galleryTabSelected == "customnpc";
             LabelCreatePortrait_Click(sender, e);
             LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
         }

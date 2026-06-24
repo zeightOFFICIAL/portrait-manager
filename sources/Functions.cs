@@ -1017,7 +1017,7 @@ namespace PortraitManager
 
             _galleryEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
 
-            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 140);
+            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 200);
             int cbWidth = Math.Max(thumbSize.Width + 20, 145);
             int cbHeight = thumbSize.Height + 60;
 

@@ -338,6 +338,61 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="BUTTON_GALLERY_DELETE" xml:space="preserve">
     <value>DELETE ✕</value>
   </data>
+  <data name="LABEL_GALLERY_NONPLAYER" xml:space="preserve">
+    <value>Non-player</value>
+  </data>
+  <data name="LABEL_GALLERY_CUSTOMNPC" xml:space="preserve">
+    <value>CustomNPC</value>
+  </data>
+  <data name="LABEL_GALLERY_COMPANIONS" xml:space="preserve">
+    <value>Companions</value>
+  </data>
+  <data name="LABEL_GALLERY_CHARACTERS" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="MESG_GALLERY_CUSTOMNPC_CREDIT" xml:space="preserve">
+    <value>Enabled thanks to edvin76's CustomNPC Portraits mod</value>
+  </data>
+  <data name="MESG_PATH_NOT_FOUND" xml:space="preserve">
+    <value>Could not locate the expected game data folder. Please make sure you select the root game installation directory.</value>
+  </data>
+  <data name="MESG_PATH_WRONG_ROOT" xml:space="preserve">
+    <value>Could not locate the expected game data folder. Please make sure you select the folder inside "LocalLow\Owlcat Games\{0}" (not the game's install directory).</value>
+  </data>
+  <data name="MESG_GAMEPATH_NOT_SET" xml:space="preserve">
+    <value>Game portraits path is not set or does not exist.</value>
+  </data>
+  <data name="MESG_UNSUPPORTED_GAMETYPE" xml:space="preserve">
+    <value>Unsupported game type.</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_CUSTOMNPC_ROOT" xml:space="preserve">
+    <value>Failed to create CustomNPC portraits folder: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_CUSTOMNPC_FOLDER" xml:space="preserve">
+    <value>Failed to create CustomNPC portrait folder: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_PORTRAITS_ROOT" xml:space="preserve">
+    <value>Failed to create portraits root folder: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_PORTRAIT_FOLDER" xml:space="preserve">
+    <value>Failed to create portrait folder: {0}</value>
+  </data>
+  <data name="MESG_PORTRAIT_CREATION_ERROR" xml:space="preserve">
+    <value>Portrait creation error: {0}</value>
+  </data>
+  <data name="MESG_RESTORE_BACKUP_PROMPT" xml:space="preserve">
+    <value>A backup of the original portrait exists.
+Load the original (backed-up) images into Create Portrait instead of the current ones?</value>
+  </data>
+  <data name="MESG_COULD_NOT_CREATE_DIRECTORY" xml:space="preserve">
+    <value>Could not create directory.</value>
+  </data>
+  <data name="MESG_NEW_NPC_ENTRY_TITLE" xml:space="preserve">
+    <value>New NPC Entry</value>
+  </data>
+  <data name="MESG_NEW_NPC_ENTRY_LABEL" xml:space="preserve">
+    <value>Enter new NPC name:</value>
+  </data>
   <data name="DIALOG_BUTTON_OK" xml:space="preserve">
     <value>OK</value>
   </data>

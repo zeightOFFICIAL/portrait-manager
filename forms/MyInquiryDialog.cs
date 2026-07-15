@@ -42,11 +42,13 @@ namespace PortraitManager.forms
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
             var family = _fontCollection.Families[0];
-            LabelInquiryMesg.Font = new Font(family, 17);
-            ButtonOK.Font = new Font(family, 17);
-            ButtonCancel.Font = new Font(family, 17);
+            // Same split as MyMessageDialog: plain sans-serif for the question text (needs exact
+            // reading), BebasNeue for the short button labels. 12 * 1.5 = 18.
+            LabelInquiryMesg.Font = new Font(FontFamily.GenericSansSerif, 18f);
+            ButtonOK.Font = new Font(family, 16f);
+            ButtonCancel.Font = new Font(family, 16f);
         }
 
         private void TextInit()
@@ -69,6 +71,25 @@ namespace PortraitManager.forms
                 }
             }
             catch { }
+        }
+
+        private void MyInquiryDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // See MyMessageDialog_FormClosing: this borderless, ShowInTaskbar=false dialog closing
+            // (e.g. via Cancel) can otherwise leave the real root application window minimized
+            // instead of just closing this dialog. Walk to the true root owner (not just the
+            // immediate one, in case this was opened from another dialog) and reactivate it while
+            // our own handle still exists.
+            Form root = Owner;
+            while (root != null && root.Owner != null)
+                root = root.Owner;
+
+            if (root != null)
+            {
+                if (root.WindowState == FormWindowState.Minimized)
+                    root.WindowState = FormWindowState.Normal;
+                root.Activate();
+            }
         }
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)

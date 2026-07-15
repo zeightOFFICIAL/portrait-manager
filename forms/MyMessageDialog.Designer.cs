@@ -99,6 +99,7 @@ namespace PortraitManager.forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyMessageDialog_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyMessageDialog_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyMessageDialog_KeyDown);
             this.LayoutRoot.ResumeLayout(false);

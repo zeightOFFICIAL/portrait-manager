@@ -113,12 +113,10 @@ namespace PortraitManager
         private bool _groupSmlInitialized;
         private bool _groupSml2Initialized;
 
+        // Loaded from BebasNeue-Regular-ru.ttf, which is confirmed (checked its GDI Unicode
+        // range table) to cover both Latin and Cyrillic glyphs - so this single collection
+        // covers every BebasNeue usage app-wide, English or Russian-localized folder names alike.
         private static PrivateFontCollection _fontCollection;
-        // Cyrillic-inclusive Bebas Neue variant, used only for dynamic labels (gallery/extract
-        // thumbnail captions) whose text comes from real folder names and may contain non-Latin
-        // characters (e.g. Russian-localized companion/NPC names) that the English-only
-        // BebasNeue-Regular.ttf has no glyphs for.
-        private static PrivateFontCollection _fontCollectionRu;
         private static CancellationTokenSource _cancellationTokenSource;
 
         private string _selectedArchivePath;
@@ -136,8 +134,7 @@ namespace PortraitManager
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-            _fontCollectionRu = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
 
             Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
                  bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
@@ -188,6 +185,21 @@ namespace PortraitManager
             ButtonGalleryChange.Font = bebasNeueHead;
             ButtonGalleryDelete.Font = bebasNeueHead;
             ButtonGalleryShowFolder.Font = bebasNeueHead;
+
+            // Body/explanatory/exact-value text: plain sans-serif, not the stylised BebasNeue, so
+            // it stays exactly legible (paths, counts, credits, footer). Explicitly assigned here
+            // rather than left at whatever the Designer.cs default happens to be.
+            Font arialExplain = new Font(FontFamily.GenericSansSerif, 12f);
+            Font arialSmall = new Font(FontFamily.GenericSansSerif, 8f);
+            Font arialSmallUnderline = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Underline);
+
+            LabelSelectPathExplain.Font = arialExplain;
+            LabelSelectPathSelected.Font = arialSmall;
+            LabelMainPageFooter.Font = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Italic);
+            LabelExtractCounter.Font = arialSmall;
+            LabelGalleryCredit.Font = arialSmall;
+            LabelExtractClearSelection.Font = arialSmallUnderline;
+            LabelExtractClose.Font = arialSmallUnderline;
 
             Font btnFont16 = bebasNeueButton16;
             Font btnFontZoom = bebasNeueZoom;
@@ -269,8 +281,10 @@ namespace PortraitManager
             ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
             ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
             LabelGalleryTab.Text = TextVariables.BUTTON_GALLERY;
-            LabelGalleryNonPlayerTab.Text = "Non-player";
-            LabelGalleryCustomNpcTab.Text = "CustomNPC";
+            LabelGalleryNonPlayerTab.Text = TextVariables.LABEL_GALLERY_NONPLAYER;
+            LabelGalleryCustomNpcTab.Text = TextVariables.LABEL_GALLERY_CUSTOMNPC;
+            LabelGalleryCompanionsTab.Text = TextVariables.LABEL_GALLERY_COMPANIONS;
+            LabelGalleryCharactersTab.Text = TextVariables.LABEL_GALLERY_CHARACTERS;
             ButtonGalleryBack.Text = TextVariables.BUTTON_GALLERY_BACK;
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
@@ -740,9 +754,9 @@ namespace PortraitManager
                 // A backup only exists once this entry has been edited before. Ask up front
                 // whether to keep working from that original, rather than the current version -
                 // the backup itself is never touched either way.
-                using (var dlg = new forms.MyInquiryDialog("A backup of the original portrait exists.\nLoad the original (backed-up) images into Create Portrait instead of the current ones?"))
+                using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
                 {
-                    if (dlg.ShowDialog() == DialogResult.OK)
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
                         restoreBackup = true;
                 }
             }
@@ -1038,7 +1052,7 @@ namespace PortraitManager
 
             if (_galleryTabSelected == "companions" || _galleryTabSelected == "characters")
             {
-                LabelGalleryCredit.Text = "Enabled thanks to edvin76's CustomNPC Portraits mod";
+                LabelGalleryCredit.Text = TextVariables.MESG_GALLERY_CUSTOMNPC_CREDIT;
                 LabelGalleryCredit.Visible = true;
             }
             else
@@ -1142,15 +1156,27 @@ namespace PortraitManager
             }
             else
             {
-                ButtonGalleryDelete.Visible = !_isCustomNpcMode;
+                bool showDelete = !_isCustomNpcMode && _galleryTabSelected != "companions" && _galleryTabSelected != "characters";
+                ButtonGalleryDelete.Visible = showDelete;
                 ButtonGalleryClone.Visible = hasEntries;
                 ButtonGalleryChange.Visible = hasEntries;
                 ButtonGalleryShowFolder.Visible = false;
                 ButtonGalleryBack.Visible = true;
                 LayoutGalleryRight.RowStyles[0].Height = 0;
-                LayoutGalleryRight.RowStyles[1].Height = 29;
-                LayoutGalleryRight.RowStyles[2].Height = 29;
-                LayoutGalleryRight.RowStyles[3].Height = 28;
+                if (showDelete)
+                {
+                    LayoutGalleryRight.RowStyles[1].Height = 29;
+                    LayoutGalleryRight.RowStyles[2].Height = 29;
+                    LayoutGalleryRight.RowStyles[3].Height = 28;
+                }
+                else
+                {
+                    // Delete's row is hidden here (Companions/Characters) - give its share to
+                    // Clone and Change instead of leaving an empty gap.
+                    LayoutGalleryRight.RowStyles[1].Height = 43;
+                    LayoutGalleryRight.RowStyles[2].Height = 43;
+                    LayoutGalleryRight.RowStyles[3].Height = 0;
+                }
                 LayoutGalleryRight.RowStyles[4].Height = 0;
                 LayoutGalleryRight.RowStyles[5].Height = 14;
             }
@@ -1304,19 +1330,31 @@ namespace PortraitManager
             string name = null;
             using (var inputForm = new Form())
             {
-                inputForm.Text = "New NPC Entry";
+                // Match the palette/styling of MyMessageDialog/MyInquiryDialog for visual
+                // consistency: same background gray, white text, black buttons with a white
+                // border and invert-on-hover, Arial for the (exact-reading) label/input, and
+                // BebasNeue for the button labels.
+                inputForm.Text = TextVariables.MESG_NEW_NPC_ENTRY_TITLE;
                 inputForm.StartPosition = FormStartPosition.CenterParent;
                 inputForm.FormBorderStyle = FormBorderStyle.FixedDialog;
                 inputForm.MaximizeBox = false;
                 inputForm.MinimizeBox = false;
                 inputForm.ClientSize = new Size(320, 130);
-                inputForm.BackColor = Color.FromArgb(30, 30, 30);
+                inputForm.BackColor = Color.FromArgb(60, 60, 60);
                 inputForm.ForeColor = Color.White;
 
-                var lbl = new Label { Text = "Enter new NPC name:", Location = new Point(12, 12), Size = new Size(296, 20), ForeColor = Color.White, BackColor = Color.Transparent };
-                var txt = new TextBox { Location = new Point(12, 38), Size = new Size(296, 24), BackColor = Color.FromArgb(50, 50, 50), ForeColor = Color.White, BorderStyle = BorderStyle.FixedSingle };
-                var btnOk = new Button { Text = "OK", DialogResult = DialogResult.OK, Location = new Point(148, 72), Size = new Size(75, 30), BackColor = Color.FromArgb(60, 60, 60), ForeColor = Color.White, FlatStyle = FlatStyle.Flat };
-                var btnCancel = new Button { Text = "Cancel", DialogResult = DialogResult.Cancel, Location = new Point(233, 72), Size = new Size(75, 30), BackColor = Color.FromArgb(60, 60, 60), ForeColor = Color.White, FlatStyle = FlatStyle.Flat };
+                Font bebasNeue16 = new Font(_fontCollection.Families[0], 16f);
+
+                var lbl = new Label { Text = TextVariables.MESG_NEW_NPC_ENTRY_LABEL, Location = new Point(12, 12), Size = new Size(296, 20), ForeColor = Color.White, BackColor = Color.Transparent, Font = new Font(FontFamily.GenericSansSerif, 9f) };
+                var txt = new TextBox { Location = new Point(12, 38), Size = new Size(296, 24), BackColor = Color.FromArgb(50, 50, 50), ForeColor = Color.White, BorderStyle = BorderStyle.FixedSingle, Font = new Font(FontFamily.GenericSansSerif, 10f) };
+                var btnOk = new Button { Text = TextVariables.DIALOG_BUTTON_OK, DialogResult = DialogResult.OK, Location = new Point(148, 72), Size = new Size(75, 30), BackColor = Color.Black, ForeColor = Color.White, FlatStyle = FlatStyle.Flat, Font = bebasNeue16 };
+                var btnCancel = new Button { Text = TextVariables.DIALOG_BUTTON_CANCEL, DialogResult = DialogResult.Cancel, Location = new Point(233, 72), Size = new Size(75, 30), BackColor = Color.Black, ForeColor = Color.White, FlatStyle = FlatStyle.Flat, Font = bebasNeue16 };
+                btnOk.FlatAppearance.BorderColor = Color.White;
+                btnCancel.FlatAppearance.BorderColor = Color.White;
+                btnOk.MouseEnter += (s, ev) => { btnOk.BackColor = Color.White; btnOk.ForeColor = Color.Black; };
+                btnOk.MouseLeave += (s, ev) => { btnOk.BackColor = Color.Black; btnOk.ForeColor = Color.White; };
+                btnCancel.MouseEnter += (s, ev) => { btnCancel.BackColor = Color.White; btnCancel.ForeColor = Color.Black; };
+                btnCancel.MouseLeave += (s, ev) => { btnCancel.BackColor = Color.Black; btnCancel.ForeColor = Color.White; };
 
                 inputForm.Controls.Add(lbl);
                 inputForm.Controls.Add(txt);
@@ -1343,10 +1381,10 @@ namespace PortraitManager
             }
             catch
             {
-                using (var msg = new forms.MyMessageDialog("Could not create directory."))
+                using (var msg = new forms.MyMessageDialog(TextVariables.MESG_COULD_NOT_CREATE_DIRECTORY))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return;
             }
@@ -1425,7 +1463,7 @@ namespace PortraitManager
             if (_isCustomNpcMode) return;
             using (var dlg = new forms.MyInquiryDialog("Delete this portrait set?"))
             {
-                if (dlg.ShowDialog() == DialogResult.OK)
+                if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
                     _cancellationTokenSource?.Cancel();
                     DeleteGalleryPortraitSet(_selectedGalleryEntry);
@@ -1489,7 +1527,7 @@ namespace PortraitManager
                 using (var msg = new forms.MyMessageDialog("Could not determine the game directory."))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return;
             }
@@ -1677,7 +1715,11 @@ namespace PortraitManager
                 {
                     if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
@@ -1695,7 +1737,11 @@ namespace PortraitManager
                         // same folder name "Pathfinder Kingmaker" as the real LocalLow save-data root.
                         // Only the latter sits directly under "...\LocalLow\Owlcat Games\", so require
                         // that parentage to avoid silently managing a folder the game never reads.
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the folder inside \"LocalLow\\Owlcat Games\\Pathfinder Kingmaker\" (not the game's install directory).");
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Pathfinder Kingmaker")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 

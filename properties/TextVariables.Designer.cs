@@ -286,6 +286,168 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-player.
+        /// </summary>
+        internal static string LABEL_GALLERY_NONPLAYER {
+            get {
+                return ResourceManager.GetString("LABEL_GALLERY_NONPLAYER", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to CustomNPC.
+        /// </summary>
+        internal static string LABEL_GALLERY_CUSTOMNPC {
+            get {
+                return ResourceManager.GetString("LABEL_GALLERY_CUSTOMNPC", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Companions.
+        /// </summary>
+        internal static string LABEL_GALLERY_COMPANIONS {
+            get {
+                return ResourceManager.GetString("LABEL_GALLERY_COMPANIONS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Characters.
+        /// </summary>
+        internal static string LABEL_GALLERY_CHARACTERS {
+            get {
+                return ResourceManager.GetString("LABEL_GALLERY_CHARACTERS", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled thanks to edvin76's CustomNPC Portraits mod.
+        /// </summary>
+        internal static string MESG_GALLERY_CUSTOMNPC_CREDIT {
+            get {
+                return ResourceManager.GetString("MESG_GALLERY_CUSTOMNPC_CREDIT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not locate the expected game data folder.
+        /// </summary>
+        internal static string MESG_PATH_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("MESG_PATH_NOT_FOUND", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not locate the expected game data folder (wrong root).
+        /// </summary>
+        internal static string MESG_PATH_WRONG_ROOT {
+            get {
+                return ResourceManager.GetString("MESG_PATH_WRONG_ROOT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Game portraits path is not set or does not exist.
+        /// </summary>
+        internal static string MESG_GAMEPATH_NOT_SET {
+            get {
+                return ResourceManager.GetString("MESG_GAMEPATH_NOT_SET", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported game type.
+        /// </summary>
+        internal static string MESG_UNSUPPORTED_GAMETYPE {
+            get {
+                return ResourceManager.GetString("MESG_UNSUPPORTED_GAMETYPE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create CustomNPC portraits folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_CUSTOMNPC_ROOT {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_CUSTOMNPC_ROOT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create CustomNPC portrait folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_CUSTOMNPC_FOLDER {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_CUSTOMNPC_FOLDER", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create portraits root folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_PORTRAITS_ROOT {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_PORTRAITS_ROOT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create portrait folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_PORTRAIT_FOLDER {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_PORTRAIT_FOLDER", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait creation error: {0}.
+        /// </summary>
+        internal static string MESG_PORTRAIT_CREATION_ERROR {
+            get {
+                return ResourceManager.GetString("MESG_PORTRAIT_CREATION_ERROR", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A backup of the original portrait exists.
+        /// </summary>
+        internal static string MESG_RESTORE_BACKUP_PROMPT {
+            get {
+                return ResourceManager.GetString("MESG_RESTORE_BACKUP_PROMPT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not create directory.
+        /// </summary>
+        internal static string MESG_COULD_NOT_CREATE_DIRECTORY {
+            get {
+                return ResourceManager.GetString("MESG_COULD_NOT_CREATE_DIRECTORY", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New NPC Entry.
+        /// </summary>
+        internal static string MESG_NEW_NPC_ENTRY_TITLE {
+            get {
+                return ResourceManager.GetString("MESG_NEW_NPC_ENTRY_TITLE", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new NPC name:.
+        /// </summary>
+        internal static string MESG_NEW_NPC_ENTRY_LABEL {
+            get {
+                return ResourceManager.GetString("MESG_NEW_NPC_ENTRY_LABEL", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string DIALOG_BUTTON_CLOSE {

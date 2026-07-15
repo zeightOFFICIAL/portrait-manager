@@ -90,22 +90,22 @@ namespace PortraitManager
 
             if (string.IsNullOrWhiteSpace(basePath) || !Directory.Exists(basePath))
             {
-                MessageBox.Show(
-                    "Game portraits path is not set or does not exist.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_GAMEPATH_NOT_SET))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
 
                 return;
             }
 
             if (!GameTypes.TryGetValue(CoreSettings.Default.GameType, out GameType gameType))
             {
-                MessageBox.Show(
-                    "Unsupported game type.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_UNSUPPORTED_GAMETYPE))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
 
                 return;
             }
@@ -126,7 +126,11 @@ namespace PortraitManager
                 try { Directory.CreateDirectory(customNpcDir); }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to create CustomNPC portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_CUSTOMNPC_ROOT, ex.Message)))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
                     return;
                 }
 
@@ -144,7 +148,11 @@ namespace PortraitManager
                 try { Directory.CreateDirectory(outDir); }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to create CustomNPC portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_CUSTOMNPC_FOLDER, ex.Message)))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
                     return;
                 }
 
@@ -206,7 +214,11 @@ namespace PortraitManager
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to create portraits root folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_PORTRAITS_ROOT, ex.Message)))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
@@ -224,7 +236,11 @@ namespace PortraitManager
                     try { Directory.CreateDirectory(outDir); }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to create portrait folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_PORTRAIT_FOLDER, ex.Message)))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
                 }
@@ -372,11 +388,11 @@ namespace PortraitManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    ex.Message,
-                    "Portrait Creation Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PORTRAIT_CREATION_ERROR, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
             }
         }
 
@@ -2730,7 +2746,7 @@ namespace PortraitManager
                     using (var msg = new MyMessageDialog("Could not determine the folder location."))
                     {
                         msg.StartPosition = FormStartPosition.CenterParent;
-                        msg.ShowDialog();
+                        msg.ShowDialog(this);
                     }
                 }
             }
@@ -2741,7 +2757,7 @@ namespace PortraitManager
                     using (var msg = new MyMessageDialog("Could not determine the game directory."))
                     {
                         msg.StartPosition = FormStartPosition.CenterParent;
-                        msg.ShowDialog();
+                        msg.ShowDialog(this);
                     }
                     return;
                 }
@@ -2811,7 +2827,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog(TextVariables.MESG_EXTRACT_NOSELECTION))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return;
             }

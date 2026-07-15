@@ -44,15 +44,40 @@ namespace PortraitManager.forms
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
             var family = _fontCollection.Families[0];
-            LabelMesg.Font = new Font(family, 14f);
+            // Message body needs to be exactly legible (may be a longer sentence, an error
+            // detail, or a Cyrillic folder/character name) - a plain sans-serif reads far better
+            // than the stylised, condensed BebasNeue for that. BebasNeue stays on the button,
+            // which is a short, branded label rather than something the user needs to carefully
+            // read. 12 * 1.5 = 18.
+            LabelMesg.Font = new Font(FontFamily.GenericSansSerif, 18f);
             ButtonClose.Font = new Font(family, 16f);
         }
 
         private void TextInit()
         {
             ButtonClose.Text = TextVariables.DIALOG_BUTTON_CLOSE;
+        }
+
+        private void MyMessageDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // This dialog is borderless and ShowInTaskbar=false; closing it can otherwise leave
+            // Windows unsure which window to hand activation back to, which sometimes shows up
+            // as the owner (or, if this dialog was itself opened from another dialog, the real
+            // root application window further up the chain) getting minimized instead of simply
+            // losing this dialog. Doing this in FormClosing - while our own handle still exists -
+            // is more reliable than doing it after the fact in FormClosed.
+            Form root = Owner;
+            while (root != null && root.Owner != null)
+                root = root.Owner;
+
+            if (root != null)
+            {
+                if (root.WindowState == FormWindowState.Minimized)
+                    root.WindowState = FormWindowState.Normal;
+                root.Activate();
+            }
         }
 
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)

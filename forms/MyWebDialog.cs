@@ -31,7 +31,7 @@ namespace PortraitManager.forms
                 Size = new Size(ClientSize.Width - 32, 20),
                 Location = new Point(16, ClientSize.Height - 26),
                 TextAlign = ContentAlignment.MiddleLeft,
-                Font = SystemFonts.MessageBoxFont
+                Font = new Font(FontFamily.GenericSansSerif, 8.5f)
             };
             tipLabel.Text = TextVariables.WEBDIALOG_TIP;
             Controls.Add(tipLabel);
@@ -59,14 +59,17 @@ namespace PortraitManager.forms
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
 
             try
             {
                 var family = _fontCollection.Families[0];
+                // Title/buttons are key/branded labels -> BebasNeue, unscaled. Only the URL
+                // textbox is enlarged (1.75x, 11->19.25) - that's the one thing the user is
+                // actually typing/reading closely. The hint and everything else stay as-is.
                 LabelTitle.Font    = new Font(family, 18f);
-                LabelHint.Font     = new Font(family, 12f);
-                TextBoxURL.Font    = new Font(family, 14f);
+                LabelHint.Font     = new Font(FontFamily.GenericSansSerif, 10f);
+                TextBoxURL.Font    = new Font(FontFamily.GenericSansSerif, 19.25f);
                 ButtonOK.Font      = new Font(family, 14f);
                 ButtonCancel.Font  = new Font(family, 14f);
             }
@@ -247,6 +250,25 @@ namespace PortraitManager.forms
         {
             if (e.KeyCode == Keys.Enter)  { e.Handled = true; ButtonOK_Click(sender, e); }
             else if (e.KeyCode == Keys.Escape) { DialogResult = DialogResult.Cancel; Close(); }
+        }
+
+        private void MyWebDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Same defensive fix as MyMessageDialog/MyInquiryDialog: don't let the real root
+            // application window end up minimized just because this borderless,
+            // ShowInTaskbar=false dialog closed. Walk to the true root (in case a MyMessageDialog
+            // error was shown on top of this one, making its Owner this dialog rather than
+            // MainForm) and do it in FormClosing, while our own handle still exists.
+            Form root = Owner;
+            while (root != null && root.Owner != null)
+                root = root.Owner;
+
+            if (root != null)
+            {
+                if (root.WindowState == FormWindowState.Minimized)
+                    root.WindowState = FormWindowState.Normal;
+                root.Activate();
+            }
         }
 
         private void MyWebDialog_FormClosed(object sender, FormClosedEventArgs e)

@@ -862,7 +862,7 @@ namespace PortraitManager
                 ImageAlign = ContentAlignment.TopCenter
             };
 
-            cb.Font = new Font(_fontCollectionRu.Families[0], 13);
+            cb.Font = new Font(_fontCollection.Families[0], 13);
 
             cb.FlatAppearance.BorderSize = 3;
             cb.FlatAppearance.BorderColor = borderColor;
@@ -1043,7 +1043,7 @@ namespace PortraitManager
                     Cursor = _isCustomNpcMode ? Cursors.Default : Cursors.Hand,
                 };
 
-                rb.Font = new Font(_fontCollectionRu.Families[0], 12);
+                rb.Font = new Font(_fontCollection.Families[0], 12);
 
                 rb.FlatAppearance.BorderSize = 3;
                 rb.FlatAppearance.BorderColor = gameBack;
@@ -1793,7 +1793,7 @@ namespace PortraitManager
                         using (var msg = new MyMessageDialog("Failed to load archive: " + ex.Message))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
-                            msg.ShowDialog();
+                            msg.ShowDialog(this);
                         }
                     }));
                 }
@@ -1824,7 +1824,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog("No portraits matching the expected dimensions for the selected game were found in the archive.\nMake sure you have the correct game selected."))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
             }
         }
@@ -2144,7 +2144,7 @@ namespace PortraitManager
                         using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
-                            msg.ShowDialog();
+                            msg.ShowDialog(this);
                         }
                         return false;
                     }
@@ -2256,7 +2256,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return count > 0;
             }
@@ -2265,7 +2265,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return false;
             }
@@ -2326,7 +2326,7 @@ namespace PortraitManager
                         using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
-                            msg.ShowDialog();
+                            msg.ShowDialog(this);
                         }
                         return false;
                     }
@@ -2398,7 +2398,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return count > 0;
             }
@@ -2407,7 +2407,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return false;
             }
@@ -2500,7 +2500,7 @@ namespace PortraitManager
                         using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
-                            msg.ShowDialog();
+                            msg.ShowDialog(this);
                         }
                         return false;
                     }
@@ -2630,7 +2630,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return count > 0;
             }
@@ -2639,7 +2639,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return false;
             }
@@ -2656,7 +2656,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog("Game path not set. Please configure the game path first."))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return false;
             }
@@ -2761,7 +2761,7 @@ namespace PortraitManager
                         using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
-                            msg.ShowDialog();
+                            msg.ShowDialog(this);
                         }
                         return false;
                     }
@@ -2870,7 +2870,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog(msgText))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return count > 0;
             }
@@ -2879,7 +2879,7 @@ namespace PortraitManager
                 using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    msg.ShowDialog(this);
                 }
                 return false;
             }

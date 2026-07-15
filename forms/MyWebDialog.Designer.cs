@@ -132,6 +132,7 @@ namespace PortraitManager.forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyWebDialog_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyWebDialog_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyWebDialog_KeyDown);
             this.PanelTextBorder.ResumeLayout(false);

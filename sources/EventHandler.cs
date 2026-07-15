@@ -210,7 +210,7 @@ namespace PortraitManager
                         return;
                     }
 
-                    string baseName = "portraitmanager_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                    string baseName = (_gameSelected == 'k' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
                     string uniqueName = baseName;
                     int suffix = 1;
                     outDir = Path.Combine(portraitsRoot, uniqueName);
@@ -1788,68 +1788,6 @@ namespace PortraitManager
             }
         }
 
-        private void ButtonRestorePath_Click(object sender, EventArgs e)
-        {
-            //TextBoxFullPath.Text = GAME_TYPES[_gameSelected].NormalDefaultDirectory;
-        }
-
-        private void TextBoxFullPath_TextChanged(object sender, EventArgs e)
-        {
-            //ButtonValidatePath.Text = TextVariables.BUTTON_VALIDATE;
-            //ButtonValidatePath.BackColor = Color.Black;
-            //ButtonValidatePath.ForeColor = Color.White;
-            //ButtonValidatePath.Enabled = true;
-            //ButtonApplyChange.Text = TextVariables.BUTTON_APPLY;
-            //ButtonApplyChange.BackColor = Color.Black;
-            //ButtonApplyChange.ForeColor = Color.White;
-            //ButtonApplyChange.Enabled = true;
-        }
-
-        private void ButtonValidatePath_Click(object sender, EventArgs e)
-        {
-            //if (ValidatePortraitPath(TextBoxFullPath.Text))
-            //{
-            //    ButtonValidatePath.Text = TextVariables.BUTTON_OK;
-            //    ButtonValidatePath.ForeColor = Color.White;
-            //    ButtonValidatePath.BackColor = Color.LimeGreen;
-            //    ButtonValidatePath.Enabled = false;
-            //}
-            //else
-            //{
-            //    ButtonValidatePath.Text = TextVariables.BUTTON_NO;
-            //    ButtonValidatePath.ForeColor = Color.White;
-            //    ButtonValidatePath.BackColor = Color.Red;
-            //    ButtonValidatePath.Enabled = false;
-            //}
-        }
-
-        private void ButtonSelectPath_Click(object sender, EventArgs e)
-        {
-            string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("Roaming", "LocalLow");
-            
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(defaultDir))
-            {
-                defaultDir = "";
-            }
-
-            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
-            {
-                SelectedPath = defaultDir,
-                //Description = TextVariables.TEXT_PATHOPEN,
-                ShowNewFolderButton = false,
-            })
-            {
-                if (FolderChoose.ShowDialog() == DialogResult.OK)
-                {
-                    //TextBoxFullPath.Text = FolderChoose.SelectedPath;
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
-        
         private void ButtonLoadWeb_Click(object sender, EventArgs e)
         {
             //string url = TextBoxURL.Text;
@@ -1945,34 +1883,6 @@ namespace PortraitManager
             }
 
             LoadTempImagesToPicBox(_imageSelectionFlag);
-        }
-        
-        private void ButtonApplyChange_Click(object sender, EventArgs e)
-        {
-            //if (ButtonValidatePath.Text == TextVariables.BUTTON_OK)
-            //{
-            //    if (_gameSelected == 'p')
-            //    {
-            //        CoreSettings.Default.KINGPath = TextBoxFullPath.Text;
-            //    }
-            //    else if (_gameSelected == 'w')
-            //    {
-            //        CoreSettings.Default.WOTRPath = TextBoxFullPath.Text;
-            //    }
-            //    else if (_gameSelected == 'r')
-            //    {
-            //        CoreSettings.Default.ROGUEPath = TextBoxFullPath.Text;
-            //    }
-
-            //    AnyButton_Leave(sender, e);
-            //    ButtonApplyChange.BackColor = Color.LimeGreen;
-            //    ButtonApplyChange.ForeColor = Color.White;
-            //    ButtonApplyChange.Enabled = false;
-            //    ButtonApplyChange.Text = TextVariables.BUTTON_SUCESS;
-            //    CoreSettings.Default.Save();
-            //    AddClickEventsToMainButtons();
-            //    //ACTIVE_PATHS[_gameSelected] = TextBoxFullPath.Text;
-            //}
         }
         
         private void ButtonLoadNormal_Click(object sender, EventArgs e)

@@ -114,6 +114,11 @@ namespace PortraitManager
         private bool _groupSml2Initialized;
 
         private static PrivateFontCollection _fontCollection;
+        // Cyrillic-inclusive Bebas Neue variant, used only for dynamic labels (gallery/extract
+        // thumbnail captions) whose text comes from real folder names and may contain non-Latin
+        // characters (e.g. Russian-localized companion/NPC names) that the English-only
+        // BebasNeue-Regular.ttf has no glyphs for.
+        private static PrivateFontCollection _fontCollectionRu;
         private static CancellationTokenSource _cancellationTokenSource;
 
         private string _selectedArchivePath;
@@ -132,6 +137,7 @@ namespace PortraitManager
         private void FontInit()
         {
             _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _fontCollectionRu = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
 
             Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
                  bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
@@ -174,6 +180,8 @@ namespace PortraitManager
             LabelGalleryTab.Font = bebasNeueHead;
             LabelGalleryNonPlayerTab.Font = bebasNeueHead;
             LabelGalleryCustomNpcTab.Font = bebasNeueHead;
+            LabelGalleryCompanionsTab.Font = bebasNeueHead;
+            LabelGalleryCharactersTab.Font = bebasNeueHead;
             ButtonGalleryNewNpcEntry.Font = bebasNeueHead;
             ButtonGalleryBack.Font = bebasNeueHead;
             ButtonGalleryClone.Font = bebasNeueHead;
@@ -547,6 +555,9 @@ namespace PortraitManager
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
             LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r';
+            bool isOwlcat = _gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r';
+            LabelGalleryCompanionsTab.Visible = isOwlcat;
+            LabelGalleryCharactersTab.Visible = isOwlcat;
             UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
@@ -723,8 +734,10 @@ namespace PortraitManager
             {
                 BackupNonPlayerPortraitSet(_selectedGalleryEntry);
             }
-            else if (_galleryTabSelected == "customnpc")
+            else if (_galleryTabSelected == "customnpc" || _galleryTabSelected == "companions" || _galleryTabSelected == "characters")
             {
+                // These folders are read directly by the game/mod (not just managed by this app),
+                // so back up the original before overwriting, same as CustomNPC edits.
                 BackupCustomNpcPortraitSet(_selectedGalleryEntry);
                 _hasBackupCreated = true;
             }
@@ -750,6 +763,16 @@ namespace PortraitManager
         {
             if (_gameSelected == 'r') return null;
             return Path.Combine(basePath, "Portraits - Npc");
+        }
+
+        // Sibling of the normal Portraits\ folder. Populated by a separate NPC portrait pack
+        // (not edvin76's CustomNpcPortraits mod - confirmed by its output format not matching
+        // any of that mod's own directory-naming methods), holding portraits for regular/non-
+        // companion characters. Confirmed to actually display in-game.
+        private string GetCharactersPortraitsDir(string basePath)
+        {
+            if (_gameSelected == 'r') return null;
+            return Path.Combine(basePath, "Portraits - All Additions");
         }
 
         private void BackupNonPlayerPortraitSet(string entryPath)
@@ -897,6 +920,84 @@ namespace PortraitManager
             UpdateGalleryRightPanel();
         }
 
+        private void LabelGalleryCompanionsTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "companions") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryCompanionsTab.ClientSize.Width;
+                int h = LabelGalleryCompanionsTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryCompanionsTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCompanionsTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryCompanionsTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCompanionsTab.ForeColor = _galleryTabSelected == "companions" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryCompanionsTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "companions") return;
+            _galleryTabSelected = "companions";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryCharactersTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "characters") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryCharactersTab.ClientSize.Width;
+                int h = LabelGalleryCharactersTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryCharactersTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCharactersTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryCharactersTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCharactersTab.ForeColor = _galleryTabSelected == "characters" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryCharactersTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "characters") return;
+            _galleryTabSelected = "characters";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
         private void UpdateGalleryTabVisuals()
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
@@ -914,6 +1015,14 @@ namespace PortraitManager
             LabelGalleryCustomNpcTab.BackColor = _galleryTabSelected == "customnpc" ? gameBack : Color.Transparent;
             LabelGalleryCustomNpcTab.ForeColor = _galleryTabSelected == "customnpc" ? gameFore : Color.White;
             LabelGalleryCustomNpcTab.Invalidate();
+
+            LabelGalleryCompanionsTab.BackColor = _galleryTabSelected == "companions" ? gameBack : Color.Transparent;
+            LabelGalleryCompanionsTab.ForeColor = _galleryTabSelected == "companions" ? gameFore : Color.White;
+            LabelGalleryCompanionsTab.Invalidate();
+
+            LabelGalleryCharactersTab.BackColor = _galleryTabSelected == "characters" ? gameBack : Color.Transparent;
+            LabelGalleryCharactersTab.ForeColor = _galleryTabSelected == "characters" ? gameFore : Color.White;
+            LabelGalleryCharactersTab.Invalidate();
         }
 
         private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
@@ -935,6 +1044,10 @@ namespace PortraitManager
                     activeTab = LabelGalleryNonPlayerTab;
                 else if (_galleryTabSelected == "customnpc")
                     activeTab = LabelGalleryCustomNpcTab;
+                else if (_galleryTabSelected == "companions")
+                    activeTab = LabelGalleryCompanionsTab;
+                else if (_galleryTabSelected == "characters")
+                    activeTab = LabelGalleryCharactersTab;
                 else
                     activeTab = LabelGalleryTab;
                 if (activeTab.Visible)
@@ -1312,6 +1425,14 @@ namespace PortraitManager
                 else
                     gameDir = null;
             }
+            else if (_galleryTabSelected == "characters")
+            {
+                string basePath = CoreSettings.Default.GamePath;
+                if (!string.IsNullOrEmpty(basePath))
+                    gameDir = GetCharactersPortraitsDir(basePath);
+                else
+                    gameDir = null;
+            }
             else
             {
                 gameDir = GetGameDirectory();
@@ -1521,9 +1642,14 @@ namespace PortraitManager
                             !dir.Name.Equals("Pathfinder Kingmaker", StringComparison.OrdinalIgnoreCase))
                         dir = dir.Parent;
 
-                    if (dir == null)
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        // A game install directory (e.g. the Steam/GOG copy) commonly shares the exact
+                        // same folder name "Pathfinder Kingmaker" as the real LocalLow save-data root.
+                        // Only the latter sits directly under "...\LocalLow\Owlcat Games\", so require
+                        // that parentage to avoid silently managing a folder the game never reads.
+                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the folder inside \"LocalLow\\Owlcat Games\\Pathfinder Kingmaker\" (not the game's install directory).");
                         return;
                     }
 

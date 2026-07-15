@@ -69,7 +69,17 @@ namespace PortraitManager.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] BebasNeue_Regular_RU {
+            get {
+                object obj = ResourceManager.GetObject("BebasNeue_Regular_RU", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

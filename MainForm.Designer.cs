@@ -158,6 +158,8 @@ namespace PortraitManager
             this.LabelGalleryTab = new System.Windows.Forms.Label();
             this.LabelGalleryNonPlayerTab = new System.Windows.Forms.Label();
             this.LabelGalleryCustomNpcTab = new System.Windows.Forms.Label();
+            this.LabelGalleryCompanionsTab = new System.Windows.Forms.Label();
+            this.LabelGalleryCharactersTab = new System.Windows.Forms.Label();
             this.LabelExtractCounter = new System.Windows.Forms.Label();
             this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.TableLayoutPanel();
             this.LabelExtractClearSelection = new System.Windows.Forms.Label();
@@ -1876,11 +1878,14 @@ namespace PortraitManager
             // 
             // PanelExtractOverlay
             // 
+            this.PanelExtractOverlay.AllowDrop = true;
             this.PanelExtractOverlay.BackColor = System.Drawing.Color.Transparent;
             this.PanelExtractOverlay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PanelExtractOverlay_MouseClick);
             this.PanelExtractOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PanelExtractOverlay.MouseEnter += new System.EventHandler(this.PanelExtractOverlay_MouseEnter);
             this.PanelExtractOverlay.MouseLeave += new System.EventHandler(this.PanelExtractOverlay_MouseLeave);
+            this.PanelExtractOverlay.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragDrop);
+            this.PanelExtractOverlay.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragEnter);
             this.PanelExtractOverlay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelExtractOverlay.Location = new System.Drawing.Point(0, 0);
             this.PanelExtractOverlay.Margin = new System.Windows.Forms.Padding(0);
@@ -2063,6 +2068,8 @@ namespace PortraitManager
             // flowLayoutPanelGalleryTabs
             // 
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCompanionsTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCharactersTab);
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryNonPlayerTab);
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCustomNpcTab);
             this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2090,7 +2097,45 @@ namespace PortraitManager
             this.LabelGalleryTab.MouseEnter += new System.EventHandler(this.LabelGalleryTab_MouseEnter);
             this.LabelGalleryTab.MouseLeave += new System.EventHandler(this.LabelGalleryTab_MouseLeave);
             this.LabelGalleryTab.Click += new System.EventHandler(this.LabelGalleryTab_Click);
-            // 
+            //
+            // LabelGalleryCompanionsTab
+            //
+            this.LabelGalleryCompanionsTab.AutoSize = true;
+            this.LabelGalleryCompanionsTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCompanionsTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryCompanionsTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryCompanionsTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryCompanionsTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryCompanionsTab.Name = "LabelGalleryCompanionsTab";
+            this.LabelGalleryCompanionsTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCompanionsTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryCompanionsTab.TabIndex = 1;
+            this.LabelGalleryCompanionsTab.Text = "Companions";
+            this.LabelGalleryCompanionsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryCompanionsTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryCompanionsTab_Paint);
+            this.LabelGalleryCompanionsTab.MouseEnter += new System.EventHandler(this.LabelGalleryCompanionsTab_MouseEnter);
+            this.LabelGalleryCompanionsTab.MouseLeave += new System.EventHandler(this.LabelGalleryCompanionsTab_MouseLeave);
+            this.LabelGalleryCompanionsTab.Click += new System.EventHandler(this.LabelGalleryCompanionsTab_Click);
+            //
+            // LabelGalleryCharactersTab
+            //
+            this.LabelGalleryCharactersTab.AutoSize = true;
+            this.LabelGalleryCharactersTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCharactersTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryCharactersTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryCharactersTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryCharactersTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryCharactersTab.Name = "LabelGalleryCharactersTab";
+            this.LabelGalleryCharactersTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCharactersTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryCharactersTab.TabIndex = 4;
+            this.LabelGalleryCharactersTab.Text = "Characters";
+            this.LabelGalleryCharactersTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryCharactersTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryCharactersTab_Paint);
+            this.LabelGalleryCharactersTab.MouseEnter += new System.EventHandler(this.LabelGalleryCharactersTab_MouseEnter);
+            this.LabelGalleryCharactersTab.MouseLeave += new System.EventHandler(this.LabelGalleryCharactersTab_MouseLeave);
+            this.LabelGalleryCharactersTab.Click += new System.EventHandler(this.LabelGalleryCharactersTab_Click);
+            //
             // LabelGalleryNonPlayerTab
             // 
             this.LabelGalleryNonPlayerTab.AutoSize = true;
@@ -2492,6 +2537,8 @@ namespace PortraitManager
         private System.Windows.Forms.Label LabelGalleryTab;
         private System.Windows.Forms.Label LabelGalleryNonPlayerTab;
         private System.Windows.Forms.Label LabelGalleryCustomNpcTab;
+        private System.Windows.Forms.Label LabelGalleryCompanionsTab;
+        private System.Windows.Forms.Label LabelGalleryCharactersTab;
         private System.Windows.Forms.Panel PanelGalleryContainer;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelGallery;
         private System.Windows.Forms.TableLayoutPanel LayoutGalleryRight;

@@ -758,16 +758,6 @@ namespace PortraitManager
             }
         }
         
-        public static bool ValidatePortraitPath(string path)
-        {
-            if (SystemControl.FileControl.Readonly.DirectoryExists(path) &&
-                (path.Split('\\').Last() == "Portraits" || SystemControl.FileControl.Readonly.DirectoryExists(path + "Portraits")))
-            {
-                return true;
-            }
-            return false;
-        }
-        
         public void GeneratePortraits(string path)
         {
             //Directory.CreateDirectory(path);
@@ -869,7 +859,7 @@ namespace PortraitManager
                 ImageAlign = ContentAlignment.TopCenter
             };
 
-            cb.Font = new Font(_fontCollection.Families[0], 13);
+            cb.Font = new Font(_fontCollectionRu.Families[0], 13);
 
             cb.FlatAppearance.BorderSize = 3;
             cb.FlatAppearance.BorderColor = borderColor;
@@ -1036,7 +1026,7 @@ namespace PortraitManager
 
                 RadioButton rb = new RadioButton
                 {
-                    Text = Path.GetFileName(folderKey),
+                    Text = DisplayNameForGalleryFolder(Path.GetFileName(folderKey)),
                     Tag = folderKey,
                     Checked = false,
                     ForeColor = Color.White,
@@ -1050,7 +1040,7 @@ namespace PortraitManager
                     Cursor = _isCustomNpcMode ? Cursors.Default : Cursors.Hand,
                 };
 
-                rb.Font = new Font(_fontCollection.Families[0], 12);
+                rb.Font = new Font(_fontCollectionRu.Families[0], 12);
 
                 rb.FlatAppearance.BorderSize = 3;
                 rb.FlatAppearance.BorderColor = gameBack;
@@ -1168,6 +1158,22 @@ namespace PortraitManager
             catch { }
         }
 
+        // Vanilla Owlcat's native custom-companion-portrait feature stores its folders directly
+        // in Portraits\ under this prefix. Distinct from the CustomNpcPortraits mod's own
+        // companion-override folders (ModCompanionPortraitPrefix), which the mod itself creates
+        // via GetCompanionPortraitDirPrefix() = "CustomNpcPortraits - ".
+        private const string VanillaCompanionPortraitPrefix = "CompanionCustomPortrait - ";
+        private const string ModCompanionPortraitPrefix = "CustomNpcPortraits - ";
+
+        private static string DisplayNameForGalleryFolder(string folderName)
+        {
+            if (folderName.StartsWith(VanillaCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase))
+                return folderName.Substring(VanillaCompanionPortraitPrefix.Length);
+            if (folderName.StartsWith(ModCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase))
+                return folderName.Substring(ModCompanionPortraitPrefix.Length);
+            return folderName;
+        }
+
         private void LoadGalleryImages()
         {
             ClearGalleryEntries();
@@ -1205,12 +1211,40 @@ namespace PortraitManager
                 return;
             }
 
+            if (_galleryTabSelected == "characters")
+            {
+                string charactersRoot = GetCharactersPortraitsDir(gamePath);
+                if (string.IsNullOrEmpty(charactersRoot) || !Directory.Exists(charactersRoot)) return;
+                _cancellationTokenSource?.Cancel();
+                _cancellationTokenSource = new CancellationTokenSource();
+                var charToken = _cancellationTokenSource.Token;
+                string capturedCharactersRoot = charactersRoot;
+                Task.Run(() =>
+                {
+                    LoadCharactersGalleryRecursive(capturedCharactersRoot, charToken);
+                    BeginInvoke(new Action(() =>
+                    {
+                        if (_galleryEntries.Count > 0)
+                            ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                        UpdateGalleryRightPanel();
+                    }));
+                }, charToken);
+                return;
+            }
+
             string portraitsDir;
             bool flatFile = false;
+            Func<string, bool> subfolderFilter = null;
 
             if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
             {
                 portraitsDir = Path.Combine(gamePath, "Portraits");
+
+                if (_galleryTabSelected == "companions")
+                    subfolderFilter = name => name.StartsWith(VanillaCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase);
+                else
+                    subfolderFilter = name => !name.StartsWith(VanillaCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase) &&
+                                               !name.StartsWith(ModCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase);
             }
             else if (_gameSelected == 'p')
             {
@@ -1247,13 +1281,14 @@ namespace PortraitManager
             string capturedPortraitsDir = portraitsDir;
             bool capturedFlatFile = flatFile;
             char capturedGame = _gameSelected;
+            Func<string, bool> capturedFilter = subfolderFilter;
 
             Task.Run(() =>
             {
                 if (capturedFlatFile)
                     LoadFlatGalleryGradual(capturedPortraitsDir, capturedGame, token);
                 else
-                    LoadSubfolderGalleryGradual(capturedPortraitsDir, capturedGame, token);
+                    LoadSubfolderGalleryGradual(capturedPortraitsDir, capturedGame, token, capturedFilter);
 
                 BeginInvoke(new Action(() =>
                 {
@@ -1369,7 +1404,7 @@ namespace PortraitManager
             }, token);
         }
 
-        private void LoadSubfolderGalleryGradual(string portraitsDir, char gameSelected, CancellationToken token)
+        private void LoadSubfolderGalleryGradual(string portraitsDir, char gameSelected, CancellationToken token, Func<string, bool> subfolderFilter = null)
         {
             string[] subDirs;
             try { subDirs = Directory.GetDirectories(portraitsDir); }
@@ -1379,6 +1414,7 @@ namespace PortraitManager
             {
                 if (token.IsCancellationRequested) return;
                 if (!Directory.Exists(subDir)) continue;
+                if (subfolderFilter != null && !subfolderFilter(Path.GetFileName(subDir))) continue;
                 string[] files;
                 try { files = Directory.GetFiles(subDir, "*.png"); }
                 catch { continue; }
@@ -1414,6 +1450,58 @@ namespace PortraitManager
                     }
                 }
                 catch { }
+            }
+        }
+
+        // "Portraits - All Additions" can hold, per character, either the portrait files directly
+        // or one or more nested subfolders representing area/plot-specific portrait versions.
+        // Recurse into any folder that has no images of its own so those versions still surface.
+        private void LoadCharactersGalleryRecursive(string dir, CancellationToken token, int depth = 0)
+        {
+            if (token.IsCancellationRequested || depth > 10) return;
+
+            string[] files;
+            try { files = Directory.GetFiles(dir, "*.png"); }
+            catch { return; }
+
+            if (files.Length > 0)
+            {
+                string bestFile = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
+                    ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase))
+                    ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase))
+                    ?? files[0];
+
+                try
+                {
+                    using (Image img = Image.FromFile(bestFile))
+                    {
+                        if (token.IsCancellationRequested) return;
+                        Bitmap memImage = new Bitmap(img);
+                        string capturedKey = dir;
+                        BeginInvoke(new Action(() =>
+                        {
+                            if (token.IsCancellationRequested)
+                            {
+                                memImage.Dispose();
+                                return;
+                            }
+                            AddGalleryThumbnail(capturedKey, memImage);
+                            memImage.Dispose();
+                        }));
+                    }
+                }
+                catch { }
+                return;
+            }
+
+            string[] subDirs;
+            try { subDirs = Directory.GetDirectories(dir); }
+            catch { return; }
+
+            foreach (string subDir in subDirs)
+            {
+                if (token.IsCancellationRequested) return;
+                LoadCharactersGalleryRecursive(subDir, token, depth + 1);
             }
         }
 

@@ -729,23 +729,35 @@ namespace PortraitManager
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
 
             _hasBackupCreated = false;
+            bool restoreBackup = false;
 
             if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
             {
                 BackupNonPlayerPortraitSet(_selectedGalleryEntry);
             }
-            else if (_galleryTabSelected == "customnpc" || _galleryTabSelected == "companions" || _galleryTabSelected == "characters")
+            else if (HasExistingBackup(_selectedGalleryEntry))
             {
-                // These folders are read directly by the game/mod (not just managed by this app),
-                // so back up the original before overwriting, same as CustomNPC edits.
-                BackupCustomNpcPortraitSet(_selectedGalleryEntry);
-                _hasBackupCreated = true;
+                // A backup only exists once this entry has been edited before. Ask up front
+                // whether to keep working from that original, rather than the current version -
+                // the backup itself is never touched either way.
+                using (var dlg = new forms.MyInquiryDialog("A backup of the original portrait exists.\nLoad the original (backed-up) images into Create Portrait instead of the current ones?"))
+                {
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                        restoreBackup = true;
+                }
             }
+            // For Owlcat games (customnpc/companions/characters/gallery), the backup itself and
+            // the actual file overwrite both happen only once "Create" is actually clicked, in
+            // ButtonKingAction_Create_Click - so backing out of this page is a true no-op.
 
             _overrideGallerySaveDir = _selectedGalleryEntry;
             _isCustomNpcMode = _galleryTabSelected == "customnpc";
             LabelCreatePortrait_Click(sender, e);
-            LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
+
+            if (restoreBackup)
+                LoadBackupImageIntoCreatePage(_selectedGalleryEntry);
+            else
+                LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
         }
 
         private string GetNonPlayerPortraitsRoot(string basePath)
@@ -1023,6 +1035,16 @@ namespace PortraitManager
             LabelGalleryCharactersTab.BackColor = _galleryTabSelected == "characters" ? gameBack : Color.Transparent;
             LabelGalleryCharactersTab.ForeColor = _galleryTabSelected == "characters" ? gameFore : Color.White;
             LabelGalleryCharactersTab.Invalidate();
+
+            if (_galleryTabSelected == "companions" || _galleryTabSelected == "characters")
+            {
+                LabelGalleryCredit.Text = "Enabled thanks to edvin76's CustomNPC Portraits mod";
+                LabelGalleryCredit.Visible = true;
+            }
+            else
+            {
+                LabelGalleryCredit.Visible = false;
+            }
         }
 
         private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
@@ -1219,35 +1241,59 @@ namespace PortraitManager
             catch { }
         }
 
-        private void LoadCustomNpcBackupIntoCreatePage(string outDir)
+        // The backup itself is never touched here - BackupCustomNpcPortraitSet only ever creates
+        // it once (skips if one already exists) and nothing in this app ever deletes or
+        // overwrites a .backup file.
+        private string FindBestBackupImage(string folderPath)
         {
-            if (string.IsNullOrEmpty(outDir) || !Directory.Exists(outDir)) return;
+            if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath)) return null;
+            string[] priority = { "Fulllength.png.backup", "Medium.png.backup", "Small.png.backup" };
+            foreach (string name in priority)
+            {
+                string path = Path.Combine(folderPath, name);
+                if (File.Exists(path)) return path;
+            }
+            return null;
+        }
+
+        private bool HasExistingBackup(string folderPath)
+        {
+            return FindBestBackupImage(folderPath) != null;
+        }
+
+        private void LoadBackupImageIntoCreatePage(string folderPath)
+        {
+            string bestFile = FindBestBackupImage(folderPath);
+            if (bestFile == null) return;
+
             try
             {
-                var backupFiles = new Dictionary<string, Action<Image>>(StringComparer.OrdinalIgnoreCase)
+                using (Image fileImg = Image.FromFile(bestFile))
                 {
-                    { "Fulllength.png", img => { StoreOriginalImage(PicKingLrg, img); FitImageToPanel(PicKingLrg); _groupLrgInitialized = true; } },
-                    { "Medium.png", img => { StoreOriginalImage(PicKingMed, img); FitImageToPanel(PicKingMed); _groupMedInitialized = true; } },
-                    { "Small.png", img => { StoreOriginalImage(PicKingSml, img); FitImageToPanel(PicKingSml); _groupSmlInitialized = true; } }
-                };
+                    Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
 
-                foreach (string file in Directory.GetFiles(outDir, "*.backup"))
-                {
-                    string originalName = Path.GetFileNameWithoutExtension(file);
-                    if (backupFiles.TryGetValue(originalName, out var apply))
+                    StoreOriginalImage(PicKingLrg, new Bitmap(copy));
+                    FitImageToPanel(PicKingLrg);
+                    MarkGroupInitialized(PicKingLrg);
+
+                    if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
+                        HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
+                        HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
                     {
-                        using (Image img = Image.FromFile(file))
-                        {
-                            Bitmap copy = new Bitmap(img);
-                            apply(copy);
-                        }
+                        StoreOriginalImage(PicKingMed, new Bitmap(copy));
+                        FitImageToPanel(PicKingMed);
+                        MarkGroupInitialized(PicKingMed);
                     }
-                }
 
-                using (var msg = new forms.MyMessageDialog("Backup portraits loaded into Create Portrait section."))
-                {
-                    msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog();
+                    StoreOriginalImage(PicKingSml, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml);
+                    MarkGroupInitialized(PicKingSml);
+
+                    StoreOriginalImage(PicKingSml2, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml2);
+                    MarkGroupInitialized(PicKingSml2);
+
+                    copy.Dispose();
                 }
             }
             catch { }

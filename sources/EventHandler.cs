@@ -238,6 +238,9 @@ namespace PortraitManager
                     Directory.CreateDirectory(outDir);
                     uid = null;
                     femaleDir = null;
+                    // Deferred: only back up now that we're actually about to overwrite files.
+                    BackupCustomNpcPortraitSet(outDir);
+                    _hasBackupCreated = true;
                 }
                 else if (isObsidian || isWasteland)
                 {
@@ -258,7 +261,12 @@ namespace PortraitManager
                     }
                 }
                 else
+                {
+                    // Owlcat games, gallery/companions/characters tabs: same deferred backup.
                     outDir = _overrideGallerySaveDir;
+                    BackupCustomNpcPortraitSet(outDir);
+                    _hasBackupCreated = true;
+                }
                 _overrideGallerySaveDir = null;
             }
 
@@ -343,16 +351,7 @@ namespace PortraitManager
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
                 {
                     ShowCreatePortraitToast(outDir, uid);
-
-                    if (_hasBackupCreated)
-                    {
-                        using (var dlg = new forms.MyInquiryDialog("Backup of previous portraits was created.\nLoad backup into Create Portrait section?"))
-                        {
-                            if (dlg.ShowDialog() == DialogResult.OK)
-                                LoadCustomNpcBackupIntoCreatePage(outDir);
-                        }
-                        _hasBackupCreated = false;
-                    }
+                    _hasBackupCreated = false;
 
                     if (keepOnLayout)
                     {

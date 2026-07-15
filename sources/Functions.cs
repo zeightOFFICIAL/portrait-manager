@@ -19,8 +19,11 @@
 using PortraitManager.forms;
 using PortraitManager.Properties;
 
+using Microsoft.Win32;
+
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
@@ -1001,7 +1004,7 @@ namespace PortraitManager
             FlowLayoutPanelGallery.Controls.Clear();
         }
 
-        private void AddGalleryThumbnail(string folderKey, Image image)
+        private void AddGalleryThumbnail(string folderKey, Image image, string displayNameOverride = null)
         {
             Bitmap memImage = new Bitmap(image);
 
@@ -1026,7 +1029,7 @@ namespace PortraitManager
 
                 RadioButton rb = new RadioButton
                 {
-                    Text = DisplayNameForGalleryFolder(Path.GetFileName(folderKey)),
+                    Text = displayNameOverride ?? DisplayNameForGalleryFolder(Path.GetFileName(folderKey)),
                     Tag = folderKey,
                     Checked = false,
                     ForeColor = Color.White,
@@ -1471,6 +1474,12 @@ namespace PortraitManager
                     ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase))
                     ?? files[0];
 
+                // Direct child of the root ("Portraits - All Additions\Name") -> plain name.
+                // Anything deeper is an area/plot-specific version -> "Name (Version)".
+                string displayName = depth <= 1
+                    ? Path.GetFileName(dir)
+                    : Path.GetFileName(Path.GetDirectoryName(dir)) + " (" + Path.GetFileName(dir) + ")";
+
                 try
                 {
                     using (Image img = Image.FromFile(bestFile))
@@ -1478,6 +1487,7 @@ namespace PortraitManager
                         if (token.IsCancellationRequested) return;
                         Bitmap memImage = new Bitmap(img);
                         string capturedKey = dir;
+                        string capturedDisplayName = displayName;
                         BeginInvoke(new Action(() =>
                         {
                             if (token.IsCancellationRequested)
@@ -1485,7 +1495,7 @@ namespace PortraitManager
                                 memImage.Dispose();
                                 return;
                             }
-                            AddGalleryThumbnail(capturedKey, memImage);
+                            AddGalleryThumbnail(capturedKey, memImage, capturedDisplayName);
                             memImage.Dispose();
                         }));
                     }
@@ -1819,8 +1829,79 @@ namespace PortraitManager
             }
         }
 
+        // SharpCompress's managed .7z decoder is noticeably slower and, on some archives,
+        // unreliable (non-deterministic load time, occasional crashes). A real 7-Zip install
+        // (native, battle-tested) is both faster and more robust, so prefer it when present and
+        // only fall back to the managed decoder if 7-Zip isn't installed. .rar keeps using
+        // SharpCompress unconditionally since it's fine there.
+        private static string FindNative7ZipExecutable()
+        {
+            try
+            {
+                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\7-Zip") ??
+                                  Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\7-Zip"))
+                {
+                    var path = key?.GetValue("Path") as string;
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        string exe = Path.Combine(path, "7z.exe");
+                        if (File.Exists(exe)) return exe;
+                    }
+                }
+            }
+            catch { }
+
+            string[] candidates =
+            {
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "7-Zip", "7z.exe"),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "7-Zip", "7z.exe"),
+            };
+            foreach (var candidate in candidates)
+                if (File.Exists(candidate)) return candidate;
+
+            return null;
+        }
+
+        private static bool TryExtractWithNative7Zip(string archivePath, string destDir)
+        {
+            string exe = FindNative7ZipExecutable();
+            if (exe == null) return false;
+
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = exe,
+                    Arguments = "x \"" + archivePath + "\" -o\"" + destDir + "\" -y -bd -bso0 -bse0",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                };
+
+                using (var proc = Process.Start(psi))
+                {
+                    bool exited = proc.WaitForExit(120000);
+                    if (!exited)
+                    {
+                        try { proc.Kill(); } catch { }
+                        return false;
+                    }
+                    return proc.ExitCode == 0;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void ExtractArchive(string archivePath, string destDir)
         {
+            string ext = Path.GetExtension(archivePath).ToLowerInvariant();
+            if (ext == ".7z" && TryExtractWithNative7Zip(archivePath, destDir))
+                return;
+
             using (var archive = ArchiveFactory.Open(archivePath))
             {
                 foreach (var entry in archive.Entries.Where(e => !e.IsDirectory))

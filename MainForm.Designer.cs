@@ -161,6 +161,7 @@ namespace PortraitManager
             this.LabelGalleryCompanionsTab = new System.Windows.Forms.Label();
             this.LabelGalleryCharactersTab = new System.Windows.Forms.Label();
             this.LabelExtractCounter = new System.Windows.Forms.Label();
+            this.LabelGalleryCredit = new System.Windows.Forms.Label();
             this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.TableLayoutPanel();
             this.LabelExtractClearSelection = new System.Windows.Forms.Label();
             this.LabelExtractClose = new System.Windows.Forms.Label();
@@ -1986,7 +1987,21 @@ namespace PortraitManager
             this.LabelExtractCounter.TabIndex = 7;
             this.LabelExtractCounter.Text = "Total: 0 | Selected: 0";
             this.LabelExtractCounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
+            // LabelGalleryCredit
+            //
+            this.LabelGalleryCredit.AutoSize = true;
+            this.LabelGalleryCredit.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelGalleryCredit.ForeColor = System.Drawing.Color.Gray;
+            this.LabelGalleryCredit.Margin = new System.Windows.Forms.Padding(3, 2, 0, 0);
+            this.LabelGalleryCredit.Name = "LabelGalleryCredit";
+            this.LabelGalleryCredit.Size = new System.Drawing.Size(220, 13);
+            this.LabelGalleryCredit.TabIndex = 8;
+            this.LabelGalleryCredit.Text = "";
+            this.LabelGalleryCredit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LabelGalleryCredit.Visible = false;
+            //
             // FlowLayoutPanelExtractBottom
             // 
             this.FlowLayoutPanelExtractBottom.BackColor = System.Drawing.Color.Transparent;
@@ -2052,6 +2067,7 @@ namespace PortraitManager
             this.LayoutGalleryPage.Controls.Add(this.flowLayoutPanelGalleryTabs, 1, 1);
             this.LayoutGalleryPage.Controls.Add(this.PanelGalleryContainer, 1, 2);
             this.LayoutGalleryPage.Controls.Add(this.LayoutGalleryRight, 2, 2);
+            this.LayoutGalleryPage.Controls.Add(this.LabelGalleryCredit, 1, 3);
             this.LayoutGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayoutGalleryPage.Location = new System.Drawing.Point(0, 0);
             this.LayoutGalleryPage.Name = "LayoutGalleryPage";
@@ -2529,6 +2545,7 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonExtractShowFolder;
         private System.Windows.Forms.TableLayoutPanel LayoutExtractRight;
         private System.Windows.Forms.Label LabelExtractCounter;
+        private System.Windows.Forms.Label LabelGalleryCredit;
         private System.Windows.Forms.TableLayoutPanel FlowLayoutPanelExtractBottom;
         private System.Windows.Forms.Label LabelExtractClearSelection;
         private System.Windows.Forms.Label LabelExtractClose;

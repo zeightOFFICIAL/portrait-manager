@@ -1076,9 +1076,7 @@ namespace PortraitManager
             if (isOwlcat)
             {
                 if (!Directory.Exists(folderPath)) return null;
-                string[] files;
-                try { files = Directory.GetFiles(folderPath, "*.png"); }
-                catch { return null; }
+                string[] files = GetPngFilesWithBackupFallback(folderPath);
                 if (files.Length == 0) return null;
                 string match;
                 match = files.FirstOrDefault(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase));
@@ -1168,6 +1166,31 @@ namespace PortraitManager
         private const string VanillaCompanionPortraitPrefix = "CompanionCustomPortrait - ";
         private const string ModCompanionPortraitPrefix = "CustomNpcPortraits - ";
 
+        // Kingmaker has a native (vanilla, non-mod) companion-custom-portrait feature using its
+        // own prefix. WotR has no such vanilla feature - its companions are only available
+        // through the CustomNpcPortraits mod's own prefix, sitting directly in Portraits\.
+        private string GetCompanionPrefixForCurrentGame()
+        {
+            return _gameSelected == 'w' ? ModCompanionPortraitPrefix : VanillaCompanionPortraitPrefix;
+        }
+
+        // WotR's CustomNpcPortraits mod does not place a replacement image at a companion
+        // folder's root until the player actually customizes that companion - until then, the
+        // only image available is the untouched default the mod backed up on first run, at
+        // "<folder>\Backup of Game Default Portraits\*.png". Fall back to that so an
+        // uncustomized WotR companion still shows/loads something instead of being skipped.
+        private static string[] GetPngFilesWithBackupFallback(string folderPath)
+        {
+            string[] files;
+            try { files = Directory.GetFiles(folderPath, "*.png"); }
+            catch { files = new string[0]; }
+            if (files.Length > 0) return files;
+
+            string backupDir = Path.Combine(folderPath, "Backup of Game Default Portraits");
+            try { return Directory.Exists(backupDir) ? Directory.GetFiles(backupDir, "*.png") : new string[0]; }
+            catch { return new string[0]; }
+        }
+
         private static string DisplayNameForGalleryFolder(string folderName)
         {
             if (folderName.StartsWith(VanillaCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase))
@@ -1216,15 +1239,20 @@ namespace PortraitManager
 
             if (_galleryTabSelected == "characters")
             {
-                string charactersRoot = GetCharactersPortraitsDir(gamePath);
-                if (string.IsNullOrEmpty(charactersRoot) || !Directory.Exists(charactersRoot)) return;
+                var charactersRoots = GetCharactersPortraitsRoots(gamePath)
+                    .Where(Directory.Exists)
+                    .ToList();
+                if (charactersRoots.Count == 0) return;
                 _cancellationTokenSource?.Cancel();
                 _cancellationTokenSource = new CancellationTokenSource();
                 var charToken = _cancellationTokenSource.Token;
-                string capturedCharactersRoot = charactersRoot;
                 Task.Run(() =>
                 {
-                    LoadCharactersGalleryRecursive(capturedCharactersRoot, charToken);
+                    foreach (string root in charactersRoots)
+                    {
+                        if (charToken.IsCancellationRequested) return;
+                        LoadCharactersGalleryRecursive(root, charToken);
+                    }
                     BeginInvoke(new Action(() =>
                     {
                         if (_galleryEntries.Count > 0)
@@ -1244,7 +1272,10 @@ namespace PortraitManager
                 portraitsDir = Path.Combine(gamePath, "Portraits");
 
                 if (_galleryTabSelected == "companions")
-                    subfolderFilter = name => name.StartsWith(VanillaCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase);
+                {
+                    string prefix = GetCompanionPrefixForCurrentGame();
+                    subfolderFilter = name => name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase);
+                }
                 else
                     subfolderFilter = name => !name.StartsWith(VanillaCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase) &&
                                                !name.StartsWith(ModCompanionPortraitPrefix, StringComparison.OrdinalIgnoreCase);
@@ -1418,9 +1449,7 @@ namespace PortraitManager
                 if (token.IsCancellationRequested) return;
                 if (!Directory.Exists(subDir)) continue;
                 if (subfolderFilter != null && !subfolderFilter(Path.GetFileName(subDir))) continue;
-                string[] files;
-                try { files = Directory.GetFiles(subDir, "*.png"); }
-                catch { continue; }
+                string[] files = GetPngFilesWithBackupFallback(subDir);
                 if (files.Length == 0) continue;
 
                 string bestFile = null;
@@ -1508,11 +1537,64 @@ namespace PortraitManager
             try { subDirs = Directory.GetDirectories(dir); }
             catch { return; }
 
+            var realSubDirs = new List<string>();
             foreach (string subDir in subDirs)
             {
-                if (token.IsCancellationRequested) return;
-                LoadCharactersGalleryRecursive(subDir, token, depth + 1);
+                string subDirName = Path.GetFileName(subDir);
+                // The mod's own backup-of-original-portrait folder - not a real character/version,
+                // must not be recursed into or it would surface as a fake "version" entry.
+                if (subDirName.Equals("Backup of Game Default Portraits", StringComparison.OrdinalIgnoreCase) ||
+                    subDirName.Equals("Game Default Portraits", StringComparison.OrdinalIgnoreCase))
+                    continue;
+                realSubDirs.Add(subDir);
             }
+
+            if (realSubDirs.Count > 0)
+            {
+                foreach (string subDir in realSubDirs)
+                {
+                    if (token.IsCancellationRequested) return;
+                    LoadCharactersGalleryRecursive(subDir, token, depth + 1);
+                }
+                return;
+            }
+
+            // No images directly and no real version subfolders to recurse into - same rule as
+            // WotR companions: this character has never been customized, so the only image
+            // available is the one the mod backed up on first run. Show that instead of nothing.
+            string[] backupFiles = GetPngFilesWithBackupFallback(dir);
+            if (backupFiles.Length == 0) return;
+
+            string bestBackupFile = backupFiles.FirstOrDefault(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
+                ?? backupFiles.FirstOrDefault(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase))
+                ?? backupFiles.FirstOrDefault(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase))
+                ?? backupFiles[0];
+
+            string fallbackDisplayName = depth <= 1
+                ? Path.GetFileName(dir)
+                : Path.GetFileName(Path.GetDirectoryName(dir)) + " (" + Path.GetFileName(dir) + ")";
+
+            try
+            {
+                using (Image img = Image.FromFile(bestBackupFile))
+                {
+                    if (token.IsCancellationRequested) return;
+                    Bitmap memImage = new Bitmap(img);
+                    string capturedKey = dir;
+                    string capturedDisplayName = fallbackDisplayName;
+                    BeginInvoke(new Action(() =>
+                    {
+                        if (token.IsCancellationRequested)
+                        {
+                            memImage.Dispose();
+                            return;
+                        }
+                        AddGalleryThumbnail(capturedKey, memImage, capturedDisplayName);
+                        memImage.Dispose();
+                    }));
+                }
+            }
+            catch { }
         }
 
         private void LoadFlatGalleryGradual(string portraitsDir, char gameSelected, CancellationToken token)

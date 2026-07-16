@@ -421,33 +421,6 @@ namespace PortraitManager.Properties {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Could not create directory.
-        /// </summary>
-        internal static string MESG_COULD_NOT_CREATE_DIRECTORY {
-            get {
-                return ResourceManager.GetString("MESG_COULD_NOT_CREATE_DIRECTORY", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to New NPC Entry.
-        /// </summary>
-        internal static string MESG_NEW_NPC_ENTRY_TITLE {
-            get {
-                return ResourceManager.GetString("MESG_NEW_NPC_ENTRY_TITLE", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Enter new NPC name:.
-        /// </summary>
-        internal static string MESG_NEW_NPC_ENTRY_LABEL {
-            get {
-                return ResourceManager.GetString("MESG_NEW_NPC_ENTRY_LABEL", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string DIALOG_BUTTON_CLOSE {

@@ -179,7 +179,6 @@ namespace PortraitManager
             LabelGalleryCustomNpcTab.Font = bebasNeueHead;
             LabelGalleryCompanionsTab.Font = bebasNeueHead;
             LabelGalleryCharactersTab.Font = bebasNeueHead;
-            ButtonGalleryNewNpcEntry.Font = bebasNeueHead;
             ButtonGalleryBack.Font = bebasNeueHead;
             ButtonGalleryClone.Font = bebasNeueHead;
             ButtonGalleryChange.Font = bebasNeueHead;
@@ -189,12 +188,16 @@ namespace PortraitManager
             // Body/explanatory/exact-value text: plain sans-serif, not the stylised BebasNeue, so
             // it stays exactly legible (paths, counts, credits, footer). Explicitly assigned here
             // rather than left at whatever the Designer.cs default happens to be.
-            Font arialExplain = new Font(FontFamily.GenericSansSerif, 12f);
             Font arialSmall = new Font(FontFamily.GenericSansSerif, 8f);
             Font arialSmallUnderline = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Underline);
 
-            LabelSelectPathExplain.Font = arialExplain;
-            LabelSelectPathSelected.Font = arialSmall;
+            // Path page: game info (explain) label shrunk to 0.8x (12 -> 9.6), selected-path
+            // label enlarged to 1.5x (8 -> 12) so the actual path stands out more than the
+            // static blurb around it. The path label's row is AutoSize (see Designer.cs
+            // tableLayoutPanel21 row 1) so it can wrap to two or more lines and grow instead of
+            // clipping a long path.
+            LabelSelectPathExplain.Font = new Font(FontFamily.GenericSansSerif, 12f * 0.8f);
+            LabelSelectPathSelected.Font = new Font(FontFamily.GenericSansSerif, 8f * 1.5f);
             LabelMainPageFooter.Font = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Italic);
             LabelExtractCounter.Font = arialSmall;
             LabelGalleryCredit.Font = arialSmall;
@@ -568,7 +571,10 @@ namespace PortraitManager
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
-            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r';
+            // Retired for Kingmaker/WotR: "Characters" now covers everything this tab used to
+            // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
+            // the same NPC folders under two tabs.
+            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' && _gameSelected != 'w';
             bool isOwlcat = _gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r';
             LabelGalleryCompanionsTab.Visible = isOwlcat;
             LabelGalleryCharactersTab.Visible = isOwlcat;
@@ -620,15 +626,6 @@ namespace PortraitManager
             ButtonGalleryShowFolder.FlatAppearance.MouseOverBackColor = gameFore;
             ButtonGalleryShowFolder.FlatAppearance.MouseDownBackColor = gameFore;
             ButtonGalleryShowFolder.TabStop = false;
-
-            ButtonGalleryNewNpcEntry.FlatStyle = FlatStyle.Flat;
-            ButtonGalleryNewNpcEntry.FlatAppearance.BorderSize = 1;
-            ButtonGalleryNewNpcEntry.FlatAppearance.BorderColor = gameFore;
-            ButtonGalleryNewNpcEntry.BackColor = gameBack;
-            ButtonGalleryNewNpcEntry.ForeColor = gameFore;
-            ButtonGalleryNewNpcEntry.FlatAppearance.MouseOverBackColor = gameFore;
-            ButtonGalleryNewNpcEntry.FlatAppearance.MouseDownBackColor = gameFore;
-            ButtonGalleryNewNpcEntry.TabStop = false;
 
             _cancellationTokenSource?.Cancel();
             ClearGalleryEntries();
@@ -791,14 +788,29 @@ namespace PortraitManager
             return Path.Combine(basePath, "Portraits - Npc");
         }
 
-        // Sibling of the normal Portraits\ folder. Populated by a separate NPC portrait pack
-        // (not edvin76's CustomNpcPortraits mod - confirmed by its output format not matching
-        // any of that mod's own directory-naming methods), holding portraits for regular/non-
-        // companion characters. Confirmed to actually display in-game.
-        private string GetCharactersPortraitsDir(string basePath)
+        // The "Characters" tab merges everything that isn't a companion into one view:
+        // - Kingmaker: "Portraits - All Additions", a sibling of Portraits\ populated by a
+        //   separate NPC portrait pack (not edvin76's mod - its output format doesn't match any
+        //   of that mod's own directory-naming methods), confirmed to display in-game.
+        // - WotR: the mod's own "Portraits - Npc" (regular NPCs; portraits sit one level deeper
+        //   per-NPC, same recursive shape as Kingmaker's "All Additions"), "Portraits - Army"
+        //   (army leaders) and "Portraits - Tactical" (army units), all folded into one tab per
+        //   the user's direction rather than given their own tabs.
+        // Rogue Trader has no CustomNPC support at all, so this returns nothing there.
+        private List<string> GetCharactersPortraitsRoots(string basePath)
         {
-            if (_gameSelected == 'r') return null;
-            return Path.Combine(basePath, "Portraits - All Additions");
+            var roots = new List<string>();
+            if (_gameSelected == 'k')
+            {
+                roots.Add(Path.Combine(basePath, "Portraits - All Additions"));
+            }
+            else if (_gameSelected == 'w')
+            {
+                roots.Add(Path.Combine(basePath, "Portraits - Npc"));
+                roots.Add(Path.Combine(basePath, "Portraits - Army"));
+                roots.Add(Path.Combine(basePath, "Portraits - Tactical"));
+            }
+            return roots;
         }
 
         private void BackupNonPlayerPortraitSet(string entryPath)
@@ -1126,7 +1138,6 @@ namespace PortraitManager
         private void UpdateGalleryRightPanel()
         {
             bool hasEntries = _galleryEntries != null && _galleryEntries.Count > 0;
-            ButtonGalleryNewNpcEntry.Visible = _isCustomNpcMode && string.IsNullOrEmpty(_selectedGalleryEntry);
 
             if (string.IsNullOrEmpty(_selectedGalleryEntry))
             {
@@ -1135,24 +1146,16 @@ namespace PortraitManager
                 ButtonGalleryChange.Visible = false;
                 ButtonGalleryShowFolder.Visible = true;
                 ButtonGalleryBack.Visible = true;
-                if (_isCustomNpcMode)
-                {
-                    LayoutGalleryRight.RowStyles[0] = new RowStyle(SizeType.AutoSize);
-                    LayoutGalleryRight.RowStyles[1] = new RowStyle(SizeType.Absolute, 0);
-                    LayoutGalleryRight.RowStyles[2] = new RowStyle(SizeType.Absolute, 0);
-                    LayoutGalleryRight.RowStyles[3] = new RowStyle(SizeType.Absolute, 0);
-                    LayoutGalleryRight.RowStyles[4] = new RowStyle(SizeType.Absolute, 0);
-                    LayoutGalleryRight.RowStyles[5] = new RowStyle(SizeType.AutoSize);
-                }
-                else
-                {
-                    LayoutGalleryRight.RowStyles[0].Height = 0;
-                    LayoutGalleryRight.RowStyles[1].Height = 0;
-                    LayoutGalleryRight.RowStyles[2].Height = 0;
-                    LayoutGalleryRight.RowStyles[3].Height = 0;
-                    LayoutGalleryRight.RowStyles[4].Height = 50;
-                    LayoutGalleryRight.RowStyles[5].Height = 50;
-                }
+                // NOTE: every row here is a Percent-type RowStyle (see Designer.cs) and must
+                // stay that way - only ever adjust .Height, never replace the RowStyle objects
+                // (that previously mutated SizeType to AutoSize/Absolute and broke every other
+                // tab's layout afterward, since they all assume Percent sizing persists).
+                LayoutGalleryRight.RowStyles[0].Height = 0;
+                LayoutGalleryRight.RowStyles[1].Height = 0;
+                LayoutGalleryRight.RowStyles[2].Height = 0;
+                LayoutGalleryRight.RowStyles[3].Height = 0;
+                LayoutGalleryRight.RowStyles[4].Height = 50;
+                LayoutGalleryRight.RowStyles[5].Height = 50;
             }
             else
             {
@@ -1186,7 +1189,7 @@ namespace PortraitManager
 
         private void UpdateGalleryOverlay()
         {
-            if (_galleryTabSelected != "customnpc")
+            if (_galleryTabSelected != "customnpc" && _galleryTabSelected != "characters")
             {
                 if (_panelGalleryOverlay != null)
                     _panelGalleryOverlay.Visible = false;
@@ -1221,9 +1224,9 @@ namespace PortraitManager
             Panel panel = (Panel)sender;
             Rectangle rect = panel.ClientRectangle;
 
-            string title = "CustomNPC";
+            string title = _galleryTabSelected == "characters" ? "Characters" : "CustomNPC";
             string hint1 = "NPC must be met in-game first. Folder name = exact NPC dialog name.";
-            string hint2 = "Use \"NEW NPC +\" to create entry, then select it and click Change.";
+            string hint2 = "Use the folder button below to open Portraits - Npc directly.";
 
             using (Font titleFont = new Font(_fontCollection.Families[0], 22))
             using (Font hintFont = new Font(_fontCollection.Families[0], 12))
@@ -1323,90 +1326,6 @@ namespace PortraitManager
                 }
             }
             catch { }
-        }
-
-        private void ButtonGalleryNewNpcEntry_Click(object sender, EventArgs e)
-        {
-            string name = null;
-            using (var inputForm = new Form())
-            {
-                // Match the palette/styling of MyMessageDialog/MyInquiryDialog for visual
-                // consistency: same background gray, white text, black buttons with a white
-                // border and invert-on-hover, Arial for the (exact-reading) label/input, and
-                // BebasNeue for the button labels.
-                inputForm.Text = TextVariables.MESG_NEW_NPC_ENTRY_TITLE;
-                inputForm.StartPosition = FormStartPosition.CenterParent;
-                inputForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-                inputForm.MaximizeBox = false;
-                inputForm.MinimizeBox = false;
-                inputForm.ClientSize = new Size(320, 130);
-                inputForm.BackColor = Color.FromArgb(60, 60, 60);
-                inputForm.ForeColor = Color.White;
-
-                Font bebasNeue16 = new Font(_fontCollection.Families[0], 16f);
-
-                var lbl = new Label { Text = TextVariables.MESG_NEW_NPC_ENTRY_LABEL, Location = new Point(12, 12), Size = new Size(296, 20), ForeColor = Color.White, BackColor = Color.Transparent, Font = new Font(FontFamily.GenericSansSerif, 9f) };
-                var txt = new TextBox { Location = new Point(12, 38), Size = new Size(296, 24), BackColor = Color.FromArgb(50, 50, 50), ForeColor = Color.White, BorderStyle = BorderStyle.FixedSingle, Font = new Font(FontFamily.GenericSansSerif, 10f) };
-                var btnOk = new Button { Text = TextVariables.DIALOG_BUTTON_OK, DialogResult = DialogResult.OK, Location = new Point(148, 72), Size = new Size(75, 30), BackColor = Color.Black, ForeColor = Color.White, FlatStyle = FlatStyle.Flat, Font = bebasNeue16 };
-                var btnCancel = new Button { Text = TextVariables.DIALOG_BUTTON_CANCEL, DialogResult = DialogResult.Cancel, Location = new Point(233, 72), Size = new Size(75, 30), BackColor = Color.Black, ForeColor = Color.White, FlatStyle = FlatStyle.Flat, Font = bebasNeue16 };
-                btnOk.FlatAppearance.BorderColor = Color.White;
-                btnCancel.FlatAppearance.BorderColor = Color.White;
-                btnOk.MouseEnter += (s, ev) => { btnOk.BackColor = Color.White; btnOk.ForeColor = Color.Black; };
-                btnOk.MouseLeave += (s, ev) => { btnOk.BackColor = Color.Black; btnOk.ForeColor = Color.White; };
-                btnCancel.MouseEnter += (s, ev) => { btnCancel.BackColor = Color.White; btnCancel.ForeColor = Color.Black; };
-                btnCancel.MouseLeave += (s, ev) => { btnCancel.BackColor = Color.Black; btnCancel.ForeColor = Color.White; };
-
-                inputForm.Controls.Add(lbl);
-                inputForm.Controls.Add(txt);
-                inputForm.Controls.Add(btnOk);
-                inputForm.Controls.Add(btnCancel);
-                inputForm.AcceptButton = btnOk;
-                inputForm.CancelButton = btnCancel;
-
-                if (inputForm.ShowDialog(this) == DialogResult.OK)
-                    name = txt.Text.Trim();
-            }
-
-            if (string.IsNullOrWhiteSpace(name)) return;
-
-            string basePath = CoreSettings.Default.GamePath;
-            if (string.IsNullOrEmpty(basePath)) return;
-            string npcRoot = GetCustomNpcPortraitsDir(basePath);
-            if (string.IsNullOrEmpty(npcRoot)) return;
-            string npcDir = Path.Combine(npcRoot, name);
-            try
-            {
-                if (!Directory.Exists(npcDir))
-                    Directory.CreateDirectory(npcDir);
-            }
-            catch
-            {
-                using (var msg = new forms.MyMessageDialog(TextVariables.MESG_COULD_NOT_CREATE_DIRECTORY))
-                {
-                    msg.StartPosition = FormStartPosition.CenterParent;
-                    msg.ShowDialog(this);
-                }
-                return;
-            }
-            _cancellationTokenSource?.Cancel();
-            ClearGalleryEntries();
-            LoadGalleryImages();
-        }
-
-        private void ButtonGalleryNewNpcEntry_MouseEnter(object sender, EventArgs e)
-        {
-            Color selBack = Color.Black, selFore = Color.White;
-            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
-            ButtonGalleryNewNpcEntry.BackColor = selFore;
-            ButtonGalleryNewNpcEntry.ForeColor = selBack;
-        }
-
-        private void ButtonGalleryNewNpcEntry_MouseLeave(object sender, EventArgs e)
-        {
-            Color selBack = Color.Black, selFore = Color.White;
-            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
-            ButtonGalleryNewNpcEntry.BackColor = selBack;
-            ButtonGalleryNewNpcEntry.ForeColor = selFore;
         }
 
         private void ButtonGalleryBack_MouseEnter(object sender, EventArgs e)
@@ -1511,11 +1430,11 @@ namespace PortraitManager
             }
             else if (_galleryTabSelected == "characters")
             {
+                // With "New NPC +" removed, this is now the only way to reach Portraits - Npc
+                // from the Characters tab (e.g. to manually create/inspect an NPC folder before
+                // meeting them in-game triggers the mod to do it).
                 string basePath = CoreSettings.Default.GamePath;
-                if (!string.IsNullOrEmpty(basePath))
-                    gameDir = GetCharactersPortraitsDir(basePath);
-                else
-                    gameDir = null;
+                gameDir = !string.IsNullOrEmpty(basePath) ? GetCustomNpcPortraitsDir(basePath) : null;
             }
             else
             {
@@ -1775,7 +1694,11 @@ namespace PortraitManager
                 {
                     if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog();
+                        }
                         return;
                     }
 
@@ -1786,9 +1709,18 @@ namespace PortraitManager
                             !dir.Name.Equals("Pathfinder Wrath Of The Righteous", StringComparison.OrdinalIgnoreCase))
                         dir = dir.Parent;
 
-                    if (dir == null)
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        // Same reasoning as Kingmaker: the game's Steam/GOG install directory
+                        // commonly shares the exact folder name "Pathfinder Wrath Of The
+                        // Righteous" with the real LocalLow save-data root. Only the latter sits
+                        // directly under "...\LocalLow\Owlcat Games\".
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Pathfinder Wrath Of The Righteous")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 

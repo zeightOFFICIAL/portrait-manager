@@ -173,7 +173,6 @@ namespace PortraitManager
             this.ButtonGalleryChange = new System.Windows.Forms.Button();
             this.ButtonGalleryDelete = new System.Windows.Forms.Button();
             this.ButtonGalleryShowFolder = new System.Windows.Forms.Button();
-            this.ButtonGalleryNewNpcEntry = new System.Windows.Forms.Button();
             this.LayoutStartMenu.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
@@ -771,7 +770,7 @@ namespace PortraitManager
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 4;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
-            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
             this.tableLayoutPanel21.Size = new System.Drawing.Size(374, 680);
@@ -2218,7 +2217,6 @@ namespace PortraitManager
             // 
             this.LayoutGalleryRight.ColumnCount = 1;
             this.LayoutGalleryRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryNewNpcEntry, 0, 0);
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 1);
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 2);
             this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryDelete, 0, 3);
@@ -2313,24 +2311,9 @@ namespace PortraitManager
             this.ButtonGalleryShowFolder.Click += new System.EventHandler(this.ButtonGalleryShowFolder_Click);
             this.ButtonGalleryShowFolder.MouseEnter += new System.EventHandler(this.ButtonGalleryShowFolder_MouseEnter);
             this.ButtonGalleryShowFolder.MouseLeave += new System.EventHandler(this.ButtonGalleryShowFolder_MouseLeave);
-            // 
-            // ButtonGalleryNewNpcEntry
-            // 
-            this.ButtonGalleryNewNpcEntry.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonGalleryNewNpcEntry.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonGalleryNewNpcEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonGalleryNewNpcEntry.Location = new System.Drawing.Point(0, 0);
-            this.ButtonGalleryNewNpcEntry.Margin = new System.Windows.Forms.Padding(0);
-            this.ButtonGalleryNewNpcEntry.Name = "ButtonGalleryNewNpcEntry";
-            this.ButtonGalleryNewNpcEntry.Size = new System.Drawing.Size(140, 134);
-            this.ButtonGalleryNewNpcEntry.TabIndex = 5;
-            this.ButtonGalleryNewNpcEntry.Text = "NEW NPC +";
-            this.ButtonGalleryNewNpcEntry.Click += new System.EventHandler(this.ButtonGalleryNewNpcEntry_Click);
-            this.ButtonGalleryNewNpcEntry.MouseEnter += new System.EventHandler(this.ButtonGalleryNewNpcEntry_MouseEnter);
-            this.ButtonGalleryNewNpcEntry.MouseLeave += new System.EventHandler(this.ButtonGalleryNewNpcEntry_MouseLeave);
-            // 
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.Black;
@@ -2564,7 +2547,6 @@ namespace PortraitManager
         private System.Windows.Forms.Button ButtonGalleryChange;
         private System.Windows.Forms.Button ButtonGalleryDelete;
         private System.Windows.Forms.Button ButtonGalleryShowFolder;
-        private System.Windows.Forms.Button ButtonGalleryNewNpcEntry;
     }
 }
 

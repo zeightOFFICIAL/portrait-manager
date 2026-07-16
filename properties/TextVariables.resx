@@ -384,15 +384,6 @@ Choose a local image from your computer or select a web image from the internet.
     <value>A backup of the original portrait exists.
 Load the original (backed-up) images into Create Portrait instead of the current ones?</value>
   </data>
-  <data name="MESG_COULD_NOT_CREATE_DIRECTORY" xml:space="preserve">
-    <value>Could not create directory.</value>
-  </data>
-  <data name="MESG_NEW_NPC_ENTRY_TITLE" xml:space="preserve">
-    <value>New NPC Entry</value>
-  </data>
-  <data name="MESG_NEW_NPC_ENTRY_LABEL" xml:space="preserve">
-    <value>Enter new NPC name:</value>
-  </data>
   <data name="DIALOG_BUTTON_OK" xml:space="preserve">
     <value>OK</value>
   </data>

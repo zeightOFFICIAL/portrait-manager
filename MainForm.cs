@@ -129,7 +129,6 @@ namespace PortraitManager
         private bool _suppressGalleryCheckEvents;
         private string _galleryTabSelected = "player";
         private bool _isCustomNpcMode = false;
-        private bool _hasBackupCreated = false;
         private Panel _panelGalleryOverlay;
 
         private void FontInit()
@@ -739,27 +738,25 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
 
-            _hasBackupCreated = false;
             bool restoreBackup = false;
 
             if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
             {
                 BackupNonPlayerPortraitSet(_selectedGalleryEntry);
             }
-            else if (HasExistingBackup(_selectedGalleryEntry))
+            else if (HasModDefaultBackup(_selectedGalleryEntry))
             {
-                // A backup only exists once this entry has been edited before. Ask up front
-                // whether to keep working from that original, rather than the current version -
-                // the backup itself is never touched either way.
+                // This app never creates its own backup - it just asks whether to start from the
+                // mod's own "Backup of Game Default Portraits" (the original) or the present
+                // portrait currently at this folder's root, whenever the mod actually has one on
+                // file. Nothing is written here either way; the choice only affects what gets
+                // loaded into Create Portrait below.
                 using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
                 {
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                         restoreBackup = true;
                 }
             }
-            // For Owlcat games (customnpc/companions/characters/gallery), the backup itself and
-            // the actual file overwrite both happen only once "Create" is actually clicked, in
-            // ButtonKingAction_Create_Click - so backing out of this page is a true no-op.
 
             _overrideGallerySaveDir = _selectedGalleryEntry;
             _isCustomNpcMode = _galleryTabSelected == "customnpc";
@@ -797,12 +794,17 @@ namespace PortraitManager
         //   (army leaders) and "Portraits - Tactical" (army units), all folded into one tab per
         //   the user's direction rather than given their own tabs.
         // Rogue Trader has no CustomNPC support at all, so this returns nothing there.
+        //
+        // "Portraits - Npc" itself is the mod's own live NPC folder (created as the player meets
+        // NPCs in-game), and the mod is available for both Kingmaker and WotR - so it belongs in
+        // both games' Characters roots, alongside whatever else each game also has.
         private List<string> GetCharactersPortraitsRoots(string basePath)
         {
             var roots = new List<string>();
             if (_gameSelected == 'k')
             {
                 roots.Add(Path.Combine(basePath, "Portraits - All Additions"));
+                roots.Add(Path.Combine(basePath, "Portraits - Npc"));
             }
             else if (_gameSelected == 'w')
             {
@@ -1255,44 +1257,34 @@ namespace PortraitManager
             }
         }
 
-        private void BackupCustomNpcPortraitSet(string entryPath)
+        // This app never creates its own backup copies of a CustomNpcPortraits-mod-managed
+        // folder (Companions or Characters/Portraits - Npc) - the mod already keeps one, at
+        // "<folder>\Backup of Game Default Portraits\*.png", so there's no need for a second,
+        // parallel one. This just looks up the mod's own backup image.
+        private string FindModDefaultBackupImage(string folderPath)
         {
-            if (string.IsNullOrEmpty(entryPath) || !Directory.Exists(entryPath)) return;
-            try
-            {
-                foreach (string file in Directory.GetFiles(entryPath, "*.png"))
-                {
-                    string backup = file + ".backup";
-                    if (!File.Exists(backup))
-                        File.Copy(file, backup, overwrite: false);
-                }
-            }
-            catch { }
+            if (string.IsNullOrEmpty(folderPath)) return null;
+            string backupDir = Path.Combine(folderPath, "Backup of Game Default Portraits");
+            if (!Directory.Exists(backupDir)) return null;
+
+            string[] files;
+            try { files = Directory.GetFiles(backupDir, "*.png"); }
+            catch { return null; }
+
+            return files.FirstOrDefault(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
+                ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase))
+                ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase))
+                ?? files.FirstOrDefault();
         }
 
-        // The backup itself is never touched here - BackupCustomNpcPortraitSet only ever creates
-        // it once (skips if one already exists) and nothing in this app ever deletes or
-        // overwrites a .backup file.
-        private string FindBestBackupImage(string folderPath)
+        private bool HasModDefaultBackup(string folderPath)
         {
-            if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath)) return null;
-            string[] priority = { "Fulllength.png.backup", "Medium.png.backup", "Small.png.backup" };
-            foreach (string name in priority)
-            {
-                string path = Path.Combine(folderPath, name);
-                if (File.Exists(path)) return path;
-            }
-            return null;
-        }
-
-        private bool HasExistingBackup(string folderPath)
-        {
-            return FindBestBackupImage(folderPath) != null;
+            return FindModDefaultBackupImage(folderPath) != null;
         }
 
         private void LoadBackupImageIntoCreatePage(string folderPath)
         {
-            string bestFile = FindBestBackupImage(folderPath);
+            string bestFile = FindModDefaultBackupImage(folderPath);
             if (bestFile == null) return;
 
             try

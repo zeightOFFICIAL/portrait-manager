@@ -222,7 +222,7 @@ namespace PortraitManager
                         return;
                     }
 
-                    string baseName = (_gameSelected == 'k' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                    string baseName = (_gameSelected == 'k' || _gameSelected == 'w' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
                     string uniqueName = baseName;
                     int suffix = 1;
                     outDir = Path.Combine(portraitsRoot, uniqueName);
@@ -254,9 +254,6 @@ namespace PortraitManager
                     Directory.CreateDirectory(outDir);
                     uid = null;
                     femaleDir = null;
-                    // Deferred: only back up now that we're actually about to overwrite files.
-                    BackupCustomNpcPortraitSet(outDir);
-                    _hasBackupCreated = true;
                 }
                 else if (isObsidian || isWasteland)
                 {
@@ -278,10 +275,7 @@ namespace PortraitManager
                 }
                 else
                 {
-                    // Owlcat games, gallery/companions/characters tabs: same deferred backup.
                     outDir = _overrideGallerySaveDir;
-                    BackupCustomNpcPortraitSet(outDir);
-                    _hasBackupCreated = true;
                 }
                 _overrideGallerySaveDir = null;
             }
@@ -367,7 +361,6 @@ namespace PortraitManager
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
                 {
                     ShowCreatePortraitToast(outDir, uid);
-                    _hasBackupCreated = false;
 
                     if (keepOnLayout)
                     {

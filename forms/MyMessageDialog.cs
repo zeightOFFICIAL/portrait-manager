@@ -50,8 +50,8 @@ namespace PortraitManager.forms
             // detail, or a Cyrillic folder/character name) - a plain sans-serif reads far better
             // than the stylised, condensed BebasNeue for that. BebasNeue stays on the button,
             // which is a short, branded label rather than something the user needs to carefully
-            // read. 12 * 1.5 = 18.
-            LabelMesg.Font = new Font(FontFamily.GenericSansSerif, 18f);
+            // read. 12 * 1.5 * 0.8 = 14.4.
+            LabelMesg.Font = new Font(FontFamily.GenericSansSerif, 14.4f);
             ButtonClose.Font = new Font(family, 16f);
         }
 

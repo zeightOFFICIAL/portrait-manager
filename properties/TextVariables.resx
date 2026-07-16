@@ -381,8 +381,8 @@ Choose a local image from your computer or select a web image from the internet.
     <value>Portrait creation error: {0}</value>
   </data>
   <data name="MESG_RESTORE_BACKUP_PROMPT" xml:space="preserve">
-    <value>A backup of the original portrait exists.
-Load the original (backed-up) images into Create Portrait instead of the current ones?</value>
+    <value>A backup of the original portrait is available.
+Load the backup, or keep working from the present portrait?</value>
   </data>
   <data name="DIALOG_BUTTON_OK" xml:space="preserve">
     <value>OK</value>

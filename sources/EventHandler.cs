@@ -222,7 +222,7 @@ namespace PortraitManager
                         return;
                     }
 
-                    string baseName = (_gameSelected == 'k' || _gameSelected == 'w' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                    string baseName = (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
                     string uniqueName = baseName;
                     int suffix = 1;
                     outDir = Path.Combine(portraitsRoot, uniqueName);

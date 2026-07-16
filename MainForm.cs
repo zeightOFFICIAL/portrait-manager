@@ -574,9 +574,12 @@ namespace PortraitManager
             // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
             // the same NPC folders under two tabs.
             LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' && _gameSelected != 'w';
-            bool isOwlcat = _gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r';
-            LabelGalleryCompanionsTab.Visible = isOwlcat;
-            LabelGalleryCharactersTab.Visible = isOwlcat;
+            // Rogue Trader has no CustomNPC support at all (no vanilla companion-custom-portrait
+            // feature, no CustomNpcPortraits mod release) - Companions/Characters would just be
+            // permanently empty dead ends there, so only offer them for Kingmaker/WotR.
+            bool hasCustomNpc = _gameSelected == 'k' || _gameSelected == 'w';
+            LabelGalleryCompanionsTab.Visible = hasCustomNpc;
+            LabelGalleryCharactersTab.Visible = hasCustomNpc;
             UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
@@ -1746,7 +1749,11 @@ namespace PortraitManager
                 {
                     if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
@@ -1757,9 +1764,18 @@ namespace PortraitManager
                             !dir.Name.Equals("Warhammer 40000 Rogue Trader", StringComparison.OrdinalIgnoreCase))
                         dir = dir.Parent;
 
-                    if (dir == null)
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        // Same reasoning as Kingmaker/WotR: the game's Steam/GOG install directory
+                        // commonly shares the exact folder name "Warhammer 40000 Rogue Trader" with
+                        // the real LocalLow save-data root. Only the latter sits directly under
+                        // "...\LocalLow\Owlcat Games\".
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Warhammer 40000 Rogue Trader")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 

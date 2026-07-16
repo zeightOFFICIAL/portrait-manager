@@ -570,6 +570,13 @@ namespace PortraitManager
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
+            // Tyranny is unique among these three in that its "non-player" folder actually is
+            // companions/close-NPCs stored as loose files in the game's own data folder - call
+            // it what it is there. PoE/Deadfire keep the more generic "Non-player" label until
+            // their own pass confirms whether the same framing applies.
+            LabelGalleryNonPlayerTab.Text = _gameSelected == 't'
+                ? TextVariables.LABEL_GALLERY_COMPANIONS
+                : TextVariables.LABEL_GALLERY_NONPLAYER;
             // Retired for Kingmaker/WotR: "Characters" now covers everything this tab used to
             // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
             // the same NPC folders under two tabs.
@@ -742,10 +749,21 @@ namespace PortraitManager
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
 
             bool restoreBackup = false;
+            bool isNonPlayer = _galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd');
 
-            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            if (isNonPlayer)
             {
+                // Unlike CustomNpcPortraits, there's no mod keeping an original copy for us here -
+                // these are the game's own shipped asset files, replaced in place. So this app
+                // has to make its own backup, but only ever once (BackupNonPlayerPortraitSet
+                // no-ops if one already exists), and then always offer to load it instead of the
+                // present (already-replaced-at-least-once) portrait.
                 BackupNonPlayerPortraitSet(_selectedGalleryEntry);
+                using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                {
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                        restoreBackup = true;
+                }
             }
             else if (HasModDefaultBackup(_selectedGalleryEntry))
             {
@@ -765,7 +783,9 @@ namespace PortraitManager
             _isCustomNpcMode = _galleryTabSelected == "customnpc";
             LabelCreatePortrait_Click(sender, e);
 
-            if (restoreBackup)
+            if (restoreBackup && isNonPlayer)
+                LoadNonPlayerBackupIntoCreatePage(_selectedGalleryEntry);
+            else if (restoreBackup)
                 LoadBackupImageIntoCreatePage(_selectedGalleryEntry);
             else
                 LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
@@ -833,6 +853,60 @@ namespace PortraitManager
                     catch { }
                 }
             }
+        }
+
+        // These games have no mod keeping a separate original copy, so BackupNonPlayerPortraitSet
+        // makes our own ".backup" of the game's shipped asset the first time it's about to be
+        // replaced (and only that once). This looks up whichever one exists, same priority order.
+        private string FindBestNonPlayerBackupImage(string entryPath)
+        {
+            string dir = Path.GetDirectoryName(entryPath);
+            string prefix = Path.GetFileName(entryPath);
+            string[] priority = { "_lg", "_sm", "_si", "_convo" };
+            foreach (string suf in priority)
+            {
+                string path = Path.Combine(dir, prefix + suf + ".png.backup");
+                if (File.Exists(path)) return path;
+            }
+            return null;
+        }
+
+        private void LoadNonPlayerBackupIntoCreatePage(string entryPath)
+        {
+            string bestFile = FindBestNonPlayerBackupImage(entryPath);
+            if (bestFile == null) return;
+
+            try
+            {
+                using (Image fileImg = Image.FromFile(bestFile))
+                {
+                    Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+
+                    StoreOriginalImage(PicKingLrg, new Bitmap(copy));
+                    FitImageToPanel(PicKingLrg);
+                    MarkGroupInitialized(PicKingLrg);
+
+                    if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
+                        HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
+                        HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
+                    {
+                        StoreOriginalImage(PicKingMed, new Bitmap(copy));
+                        FitImageToPanel(PicKingMed);
+                        MarkGroupInitialized(PicKingMed);
+                    }
+
+                    StoreOriginalImage(PicKingSml, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml);
+                    MarkGroupInitialized(PicKingSml);
+
+                    StoreOriginalImage(PicKingSml2, new Bitmap(copy));
+                    FitImageToPanel(PicKingSml2);
+                    MarkGroupInitialized(PicKingSml2);
+
+                    copy.Dispose();
+                }
+            }
+            catch { }
         }
 
         private void ButtonGalleryBack_Click(object sender, EventArgs e)
@@ -1164,7 +1238,12 @@ namespace PortraitManager
             }
             else
             {
-                bool showDelete = !_isCustomNpcMode && _galleryTabSelected != "companions" && _galleryTabSelected != "characters";
+                // "nonplayer" (Tyranny's Companions/close-NPCs) is the game's own shipped asset
+                // file, not something this app created - same reasoning as Companions/Characters
+                // for Kingmaker/WotR: no casual permanent-delete button for content that isn't
+                // ours, especially since deleting here would also remove its one-time backup.
+                bool showDelete = !_isCustomNpcMode && _galleryTabSelected != "companions" &&
+                                   _galleryTabSelected != "characters" && _galleryTabSelected != "nonplayer";
                 ButtonGalleryDelete.Visible = showDelete;
                 ButtonGalleryClone.Visible = hasEntries;
                 ButtonGalleryChange.Visible = hasEntries;
@@ -1925,7 +2004,11 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
@@ -1934,16 +2017,30 @@ namespace PortraitManager
                         dir = dir.Parent;
                     if (dir == null)
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    // Tyranny has no separate "install dir vs. save-data dir" split like the
+                    // Owlcat/Wasteland games - Tyranny_Data lives directly inside whatever folder
+                    // the player installed the game into, so there's no LocalLow/Documents
+                    // sibling to confuse it with. Verifying real game content (an actual data
+                    // folder with real assets) instead of just a folder name is the correct
+                    // check here, and was already in place.
                     string checkPath = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "icons", "abilities");
 
                     if (!Directory.Exists(checkPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
@@ -1977,16 +2074,30 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null && !dir.Name.Equals("Wasteland3", StringComparison.OrdinalIgnoreCase))
                         dir = dir.Parent;
-                    if (dir == null)
+
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("My Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        // Same reasoning as the Owlcat games: Wasteland 3's Steam/GOG install
+                        // directory is also commonly named "Wasteland3", same as the real
+                        // Documents\My Games\Wasteland3 save-data root. Only the latter sits
+                        // directly under "...\Documents\My Games\".
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT_DOCUMENTS, "Wasteland3")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 

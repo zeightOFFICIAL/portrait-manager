@@ -620,6 +620,15 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("MESG_PATH_WRONG_ROOT", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not locate the expected game data folder (Documents\My Games variant).
+        /// </summary>
+        internal static string MESG_PATH_WRONG_ROOT_DOCUMENTS {
+            get {
+                return ResourceManager.GetString("MESG_PATH_WRONG_ROOT_DOCUMENTS", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Portrait creation error: {0}.

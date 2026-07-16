@@ -358,6 +358,9 @@ Choose a local image from your computer or select a web image from the internet.
   <data name="MESG_PATH_WRONG_ROOT" xml:space="preserve">
     <value>Could not locate the expected game data folder. Please make sure you select the folder inside "LocalLow\Owlcat Games\{0}" (not the game's install directory).</value>
   </data>
+  <data name="MESG_PATH_WRONG_ROOT_DOCUMENTS" xml:space="preserve">
+    <value>Could not locate the expected game data folder. Please make sure you select the folder inside "Documents\My Games\{0}" (not the game's install directory).</value>
+  </data>
   <data name="MESG_GAMEPATH_NOT_SET" xml:space="preserve">
     <value>Game portraits path is not set or does not exist.</value>
   </data>

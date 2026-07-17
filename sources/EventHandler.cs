@@ -2272,34 +2272,50 @@ namespace PortraitManager
             Panel panel = (Panel)sender;
             Rectangle rect = panel.ClientRectangle;
 
-            string title = _galleryTabSelected == "characters" ? "Characters" : "CustomNPC";
-            string hint1 = "NPC must be met in-game first. Folder name = exact NPC dialog name.";
-            string hint2 = "Use the folder button below to open Portraits - Npc directly.";
+            if (_galleryTabSelected == "player")
+            {
+                using (Font emptyFont = new Font(_fontCollection.Families[0], 22))
+                {
+                    TextFormatFlags tfEmpty = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+                    TextRenderer.DrawText(e.Graphics, TextVariables.GALLERY_EMPTY_TEXT, emptyFont, rect, Color.White, tfEmpty);
+                }
+                return;
+            }
+
+            string title = _galleryTabSelected == "characters" ? TextVariables.LABEL_GALLERY_CHARACTERS
+                : _galleryTabSelected == "companions" ? TextVariables.LABEL_GALLERY_COMPANIONS
+                : TextVariables.LABEL_GALLERY_CUSTOMNPC;
+            string[] hints =
+            {
+                TextVariables.GALLERY_HINT_REQUIRES_MOD,
+                TextVariables.GALLERY_HINT_NPC_MET,
+                TextVariables.GALLERY_HINT_OPEN_FOLDER,
+                TextVariables.GALLERY_HINT_LOCALE_NOTE,
+            };
+            const int titleGap = 20;
+            const int hintGap = 6;
 
             using (Font titleFont = new Font(_fontCollection.Families[0], 22))
             using (Font hintFont = new Font(_fontCollection.Families[0], 12))
             {
                 TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
 
-                Size titleSize = TextRenderer.MeasureText(e.Graphics, title, titleFont,
-                    new Size(rect.Width, 0), tf);
-                Size hint1Size = TextRenderer.MeasureText(e.Graphics, hint1, hintFont,
-                    new Size(rect.Width, 0), tf);
-                Size hint2Size = TextRenderer.MeasureText(e.Graphics, hint2, hintFont,
-                    new Size(rect.Width, 0), tf);
+                Size titleSize = TextRenderer.MeasureText(e.Graphics, title, titleFont, new Size(rect.Width, 0), tf);
+                Size[] hintSizes = Array.ConvertAll(hints, h =>
+                    TextRenderer.MeasureText(e.Graphics, h, hintFont, new Size(rect.Width, 0), tf));
 
-                int totalHeight = titleSize.Height + 20 + hint1Size.Height + 6 + hint2Size.Height;
-                int yStart = (rect.Height - totalHeight) / 2;
+                int totalHeight = titleSize.Height + titleGap;
+                foreach (Size s in hintSizes) totalHeight += s.Height + hintGap;
 
-                Rectangle titleRect = new Rectangle(0, yStart, rect.Width, titleSize.Height);
-                TextRenderer.DrawText(e.Graphics, title, titleFont, titleRect, Color.White, tf);
+                int y = (rect.Height - totalHeight) / 2;
+                TextRenderer.DrawText(e.Graphics, title, titleFont, new Rectangle(0, y, rect.Width, titleSize.Height), Color.White, tf);
+                y += titleSize.Height + titleGap;
 
-                Rectangle hint1Rect = new Rectangle(0, yStart + titleSize.Height + 20, rect.Width, hint1Size.Height);
-                TextRenderer.DrawText(e.Graphics, hint1, hintFont, hint1Rect, Color.Gray, tf);
-
-                Rectangle hint2Rect = new Rectangle(0, yStart + titleSize.Height + 20 + hint1Size.Height + 6,
-                    rect.Width, hint2Size.Height);
-                TextRenderer.DrawText(e.Graphics, hint2, hintFont, hint2Rect, Color.Gray, tf);
+                for (int i = 0; i < hints.Length; i++)
+                {
+                    TextRenderer.DrawText(e.Graphics, hints[i], hintFont, new Rectangle(0, y, rect.Width, hintSizes[i].Height), Color.Gray, tf);
+                    y += hintSizes[i].Height + hintGap;
+                }
             }
         }
 
@@ -2405,16 +2421,16 @@ namespace PortraitManager
             }
             else if (_galleryTabSelected == "characters")
             {
-
                 string basePath = CoreSettings.Default.GamePath;
-                gameDir = !string.IsNullOrEmpty(basePath) ? GetCustomNpcPortraitsDir(basePath) : null;
+                var charactersRoots = !string.IsNullOrEmpty(basePath) ? GetCharactersPortraitsRoots(basePath) : null;
+                gameDir = charactersRoots?.FirstOrDefault(Directory.Exists) ?? charactersRoots?.FirstOrDefault();
             }
             else
             {
                 gameDir = GetGameDirectory();
             }
 
-            if (string.IsNullOrEmpty(gameDir))
+            if (string.IsNullOrEmpty(gameDir) || !Directory.Exists(gameDir))
             {
                 using (var msg = new forms.MyMessageDialog(TextVariables.MESG_GAME_DIRECTORY_UNKNOWN))
                 {

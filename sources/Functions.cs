@@ -2753,7 +2753,7 @@ namespace PortraitManager
 
         private void UpdateGalleryOverlay()
         {
-            if (_galleryTabSelected != "customnpc" && _galleryTabSelected != "characters")
+            if (_galleryTabSelected != "customnpc" && _galleryTabSelected != "characters" && _galleryTabSelected != "companions" && _galleryTabSelected != "player")
             {
                 if (_panelGalleryOverlay != null)
                     _panelGalleryOverlay.Visible = false;
@@ -2781,6 +2781,7 @@ namespace PortraitManager
             }
 
             _panelGalleryOverlay.Visible = true;
+            _panelGalleryOverlay.Invalidate();
         }
 
         private string FindModDefaultBackupImage(string folderPath)

@@ -945,7 +945,7 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Pathfinder: Kingmaker stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. The program automatically detects this path through your Windows user profile. 
         ///
-        ///- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC..
+        ///- You can alter companions and NPC portraits via Browse Gallery, only if you have installed CustomNPC..
         /// </summary>
         internal static string TEXT_EXPLAIN_PATH_KING {
             get {
@@ -1007,7 +1007,7 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Pathfinder: Wrath of the Righteous stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. The program automatically detects this path through your Windows user profile. 
         ///
-        ///- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC..
+        ///- You can alter companions and NPC portraits via Browse Gallery, only if you have installed CustomNPC..
         /// </summary>
         internal static string TEXT_EXPLAIN_PATH_WOTR {
             get {
@@ -1159,6 +1159,36 @@ namespace PortraitManager.Properties {
         internal static string WEBDIALOG_TITLE {
             get {
                 return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
+            }
+        }
+
+        internal static string GALLERY_HINT_NPC_MET {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_NPC_MET", resourceCulture);
+            }
+        }
+
+        internal static string GALLERY_HINT_OPEN_FOLDER {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_OPEN_FOLDER", resourceCulture);
+            }
+        }
+
+        internal static string GALLERY_HINT_LOCALE_NOTE {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_LOCALE_NOTE", resourceCulture);
+            }
+        }
+
+        internal static string GALLERY_EMPTY_TEXT {
+            get {
+                return ResourceManager.GetString("GALLERY_EMPTY_TEXT", resourceCulture);
+            }
+        }
+
+        internal static string GALLERY_HINT_REQUIRES_MOD {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_REQUIRES_MOD", resourceCulture);
             }
         }
     }

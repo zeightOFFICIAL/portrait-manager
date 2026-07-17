@@ -31,6 +31,7 @@ namespace PortraitManager.forms
         private readonly string _outDir;
         private readonly Timer _hideTimer;
         private Color _closeXColor = Color.Silver;
+        private Form _owner;
 
         public MyCreationTooltip(string outDir, string uid = null)
         {
@@ -74,11 +75,22 @@ namespace PortraitManager.forms
 
         public void ShowAnchoredTo(Form owner)
         {
-            Point ownerClientOrigin = owner.PointToScreen(Point.Empty);
-            Location = new Point(
-                ownerClientOrigin.X + owner.ClientSize.Width - Width - 12,
-                ownerClientOrigin.Y + owner.ClientSize.Height - Height - 12);
+            _owner = owner;
+            _owner.LocationChanged += OwnerMovedOrResized;
+            _owner.SizeChanged += OwnerMovedOrResized;
+            RepositionRelativeToOwner();
             Show(owner);
+        }
+
+        private void OwnerMovedOrResized(object sender, EventArgs e) => RepositionRelativeToOwner();
+
+        private void RepositionRelativeToOwner()
+        {
+            if (_owner == null) return;
+            Point ownerClientOrigin = _owner.PointToScreen(Point.Empty);
+            Location = new Point(
+                ownerClientOrigin.X + _owner.ClientSize.Width - Width - 12,
+                ownerClientOrigin.Y + _owner.ClientSize.Height - Height - 12);
         }
 
         private void Dismiss()
@@ -136,6 +148,14 @@ namespace PortraitManager.forms
 
         private void PanelCloseButton_Click(object sender, EventArgs e) => Dismiss();
 
-        private void MyCreationTooltip_FormClosed(object sender, FormClosedEventArgs e) => Dispose();
+        private void MyCreationTooltip_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (_owner != null)
+            {
+                _owner.LocationChanged -= OwnerMovedOrResized;
+                _owner.SizeChanged -= OwnerMovedOrResized;
+            }
+            Dispose();
+        }
     }
 }

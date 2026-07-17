@@ -180,12 +180,12 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
   <data name="TEXT_EXPLAIN_PATH_KING" xml:space="preserve">
     <value>Pathfinder: Kingmaker stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. The program automatically detects this path through your Windows user profile. 
 
-- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC.</value>
+- You can alter companions and NPC portraits via Browse Gallery, only if you have installed CustomNPC.</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_WOTR" xml:space="preserve">
     <value>Pathfinder: Wrath of the Righteous stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. The program automatically detects this path through your Windows user profile. 
 
-- You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC.</value>
+- You can alter companions and NPC portraits via Browse Gallery, only if you have installed CustomNPC.</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_POE" xml:space="preserve">
     <value>Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder.
@@ -510,5 +510,20 @@ Try dragging the image from your browser onto a portrait slot instead.</value>
   </data>
   <data name="TOAST_NAME_PREFIX" xml:space="preserve">
     <value>Name: {0}</value>
+  </data>
+  <data name="GALLERY_HINT_NPC_MET" xml:space="preserve">
+    <value>NPC must be met in-game first. Folder name = exact NPC dialog name.</value>
+  </data>
+  <data name="GALLERY_HINT_OPEN_FOLDER" xml:space="preserve">
+    <value>Use the folder button below to open Portraits - Npc directly.</value>
+  </data>
+  <data name="GALLERY_HINT_LOCALE_NOTE" xml:space="preserve">
+    <value>Folder name appears in your game's display language, not necessarily English.</value>
+  </data>
+  <data name="GALLERY_EMPTY_TEXT" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="GALLERY_HINT_REQUIRES_MOD" xml:space="preserve">
+    <value>Requires the CustomNpcPortraits mod to be installed.</value>
   </data>
 </root>

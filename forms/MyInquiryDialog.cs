@@ -26,14 +26,16 @@ namespace PortraitManager.forms
     public partial class MyInquiryDialog : Form
     {
         private PrivateFontCollection _fontCollection;
+        private readonly bool _useYesNo;
 
-        public MyInquiryDialog(string message)
+        public MyInquiryDialog(string message, bool useYesNo = false)
         {
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
             Shown += MyInquiryDialog_Shown;
 
+            _useYesNo = useYesNo;
             FontInit();
             TextInit();
             LabelInquiryMesg.Text = message;
@@ -52,8 +54,8 @@ namespace PortraitManager.forms
 
         private void TextInit()
         {
-            ButtonOK.Text = TextVariables.DIALOG_BUTTON_OK;
-            ButtonCancel.Text = TextVariables.DIALOG_BUTTON_CANCEL;
+            ButtonOK.Text = _useYesNo ? TextVariables.DIALOG_BUTTON_YES : TextVariables.DIALOG_BUTTON_OK;
+            ButtonCancel.Text = _useYesNo ? TextVariables.DIALOG_BUTTON_NO : TextVariables.DIALOG_BUTTON_CANCEL;
         }
 
         private void MyInquiryDialog_Shown(object sender, EventArgs e)

@@ -2805,9 +2805,8 @@ namespace PortraitManager
             return FindModDefaultBackupImage(folderPath) != null;
         }
 
-        private void LoadBackupImageIntoCreatePage(string folderPath)
+        private void LoadImageFileIntoCreatePage(string bestFile)
         {
-            string bestFile = FindModDefaultBackupImage(folderPath);
             if (bestFile == null) return;
 
             try
@@ -2833,6 +2832,46 @@ namespace PortraitManager
             }
             catch { }
         }
+
+        private void LoadBackupImageIntoCreatePage(string folderPath) => LoadImageFileIntoCreatePage(FindModDefaultBackupImage(folderPath));
+
+        // Companions/Characters (Kingmaker/WotR, CustomNpcPortraits mod) folders store one flat
+        // file per size (Fulllength.png/Medium.png/Small.png), unlike the "_lg"/"_sm"-suffixed
+        // per-file convention BackupNonPlayerPortraitSet uses for Tyranny/PoE/Deadfire - same
+        // backup-before-overwrite concept, just matched to this folder layout instead.
+        private static readonly string[] OwlcatPortraitFileNames = { "Fulllength.png", "Medium.png", "Small.png" };
+
+        // Returns true if a backup already existed for this entry before this call (i.e. this
+        // is at least the second time it's been changed) - on the very first change, the backup
+        // this creates is byte-identical to the present portrait, so there's nothing meaningful
+        // for the caller to offer a choice between.
+        private bool BackupCompanionPortraitSet(string folderPath)
+        {
+            if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath)) return false;
+
+            bool hadExistingBackup = OwlcatPortraitFileNames.Any(name => File.Exists(Path.Combine(folderPath, name + ".backup")));
+            foreach (string name in OwlcatPortraitFileNames)
+            {
+                string srcPath = Path.Combine(folderPath, name);
+                string backupPath = srcPath + ".backup";
+                if (File.Exists(srcPath) && !File.Exists(backupPath))
+                {
+                    try { File.Copy(srcPath, backupPath, overwrite: false); }
+                    catch { }
+                }
+            }
+            return hadExistingBackup;
+        }
+
+        private string FindBestCompanionBackupImage(string folderPath)
+        {
+            if (string.IsNullOrEmpty(folderPath)) return null;
+            return OwlcatPortraitFileNames
+                .Select(name => Path.Combine(folderPath, name + ".backup"))
+                .FirstOrDefault(File.Exists);
+        }
+
+        private void LoadCompanionBackupIntoCreatePage(string folderPath) => LoadImageFileIntoCreatePage(FindBestCompanionBackupImage(folderPath));
 
         private void UpdateExtractCounter()
         {

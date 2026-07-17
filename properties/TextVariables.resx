@@ -526,4 +526,10 @@ Try dragging the image from your browser onto a portrait slot instead.</value>
   <data name="GALLERY_HINT_REQUIRES_MOD" xml:space="preserve">
     <value>Requires the CustomNpcPortraits mod to be installed.</value>
   </data>
+  <data name="DIALOG_BUTTON_YES" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DIALOG_BUTTON_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

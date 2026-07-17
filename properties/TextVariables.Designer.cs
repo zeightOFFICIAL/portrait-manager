@@ -1191,5 +1191,17 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("GALLERY_HINT_REQUIRES_MOD", resourceCulture);
             }
         }
+
+        internal static string DIALOG_BUTTON_YES {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_YES", resourceCulture);
+            }
+        }
+
+        internal static string DIALOG_BUTTON_NO {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_NO", resourceCulture);
+            }
+        }
     }
 }

@@ -1962,15 +1962,43 @@ namespace PortraitManager
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
 
             bool restoreBackup = false;
+            bool restoreOwnBackup = false;
             bool isNonPlayer = _galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd');
+            bool isCompanionOrCharacter = _galleryTabSelected == "companions" || _galleryTabSelected == "characters";
 
             if (isNonPlayer)
             {
-
                 bool hadExistingBackup = BackupNonPlayerPortraitSet(_selectedGalleryEntry);
                 if (hadExistingBackup)
                 {
-                    using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                    using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT, useYesNo: true))
+                    {
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                            restoreBackup = true;
+                    }
+                }
+            }
+            else if (isCompanionOrCharacter)
+            {
+                // Our own backup (the portrait as it was just before this change) takes priority
+                // over the mod's default-portrait backup once one exists, since it's the more
+                // useful revert target; the mod's original-default backup remains the fallback
+                // for a portrait's very first customization, when we have no backup of our own yet.
+                bool hadExistingBackup = BackupCompanionPortraitSet(_selectedGalleryEntry);
+                if (hadExistingBackup)
+                {
+                    using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT, useYesNo: true))
+                    {
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            restoreBackup = true;
+                            restoreOwnBackup = true;
+                        }
+                    }
+                }
+                else if (HasModDefaultBackup(_selectedGalleryEntry))
+                {
+                    using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT, useYesNo: true))
                     {
                         if (dlg.ShowDialog(this) == DialogResult.OK)
                             restoreBackup = true;
@@ -1979,8 +2007,7 @@ namespace PortraitManager
             }
             else if (HasModDefaultBackup(_selectedGalleryEntry))
             {
-
-                using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT, useYesNo: true))
                 {
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                         restoreBackup = true;
@@ -1993,6 +2020,8 @@ namespace PortraitManager
 
             if (restoreBackup && isNonPlayer)
                 LoadNonPlayerBackupIntoCreatePage(_selectedGalleryEntry);
+            else if (restoreBackup && restoreOwnBackup)
+                LoadCompanionBackupIntoCreatePage(_selectedGalleryEntry);
             else if (restoreBackup)
                 LoadBackupImageIntoCreatePage(_selectedGalleryEntry);
             else

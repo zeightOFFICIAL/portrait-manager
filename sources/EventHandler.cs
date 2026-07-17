@@ -113,7 +113,7 @@ namespace PortraitManager
             bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
             bool isWasteland = _gameSelected == 'l';
             bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't' || _gameSelected == 'l'; // UID naming for PoE, Deadfire, Tyranny, Wasteland 3
-            string uid = useUid ? (_gameSelected == 'l' || _gameSelected == 't' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture) : null;
+            string uid = useUid ? (_gameSelected == 'l' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture) : null;
             string femaleDir = null;
 
             string outDir = null;
@@ -172,7 +172,11 @@ namespace PortraitManager
                 try { Directory.CreateDirectory(outDir); }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to create portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_PORTRAIT_FOLDER, ex.Message)))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
                     return;
                 }
 
@@ -183,7 +187,11 @@ namespace PortraitManager
                     try { Directory.CreateDirectory(femaleDir); }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to create female portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_PORTRAIT_FOLDER, ex.Message)))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
                 }
@@ -195,7 +203,11 @@ namespace PortraitManager
                 try { Directory.CreateDirectory(outDir); }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to create portraits folder: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_FAILED_CREATE_PORTRAIT_FOLDER, ex.Message)))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
                     return;
                 }
             }
@@ -726,7 +738,7 @@ namespace PortraitManager
             var title = new Label
             {
                 AutoSize = false,
-                Size = new Size(346, 20),
+                Size = new Size(310, 20),
                 Location = new Point(8, 6),
                 ForeColor = Color.FromArgb(130, 230, 130),
                 Font = new Font(Font, FontStyle.Bold),
@@ -736,7 +748,7 @@ namespace PortraitManager
             var name = new Label
             {
                 AutoSize = false,
-                Size = new Size(346, 18),
+                Size = new Size(310, 18),
                 Location = new Point(8, 30),
                 ForeColor = Color.Gainsboro,
                 Text = "Name: " + portraitName
@@ -745,7 +757,7 @@ namespace PortraitManager
             var info = new Label
             {
                 AutoSize = false,
-                Size = new Size(346, 16),
+                Size = new Size(310, 16),
                 Location = new Point(8, 50),
                 ForeColor = Color.Silver,
                 Text = "Saved to game portraits folder"
@@ -773,17 +785,55 @@ namespace PortraitManager
                 catch { }
             };
 
+            // Drawn by hand rather than relying on a Unicode glyph (e.g. "✕") in a Label - glyph
+            // rendering/hit-testing came out glitchy (missing X, only edges of the box
+            // clickable). A plain Panel with its own Paint handler sidesteps both problems:
+            // what gets drawn and what area is clickable are the exact same rectangle.
+            var closeButton = new Panel
+            {
+                Size = new Size(28, 28),
+                Location = new Point(toast.Width - 34, 4),
+                BackColor = Color.FromArgb(24, 24, 24),
+                Cursor = Cursors.Hand
+            };
+            Color closeXColor = Color.Silver;
+            closeButton.Paint += (s, e) =>
+            {
+                int pad = 9;
+                using (var pen = new Pen(closeXColor, 2f))
+                {
+                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    e.Graphics.DrawLine(pen, pad, pad, closeButton.Width - pad, closeButton.Height - pad);
+                    e.Graphics.DrawLine(pen, closeButton.Width - pad, pad, pad, closeButton.Height - pad);
+                }
+            };
+            closeButton.MouseEnter += (s, e) =>
+            {
+                closeXColor = Color.White;
+                closeButton.BackColor = Color.FromArgb(60, 60, 60);
+                closeButton.Invalidate();
+            };
+            closeButton.MouseLeave += (s, e) =>
+            {
+                closeXColor = Color.Silver;
+                closeButton.BackColor = Color.FromArgb(24, 24, 24);
+                closeButton.Invalidate();
+            };
+
             toast.Controls.Add(title);
             toast.Controls.Add(name);
             toast.Controls.Add(info);
             toast.Controls.Add(link);
+            toast.Controls.Add(closeButton);
+            closeButton.BringToFront();
             toast.Location = new Point(ClientSize.Width - toast.Width - 12, ClientSize.Height - toast.Height - 12);
 
             Controls.Add(toast);
             toast.BringToFront();
 
             var hideTimer = new System.Windows.Forms.Timer { Interval = 5000 };
-            hideTimer.Tick += (s, e) =>
+
+            void DismissToast()
             {
                 hideTimer.Stop();
                 hideTimer.Dispose();
@@ -792,8 +842,28 @@ namespace PortraitManager
                     Controls.Remove(toast);
                     toast.Dispose();
                 }
-            };
+            }
+
+            hideTimer.Tick += (s, e) => DismissToast();
             hideTimer.Start();
+
+            closeButton.Click += (s, e) => DismissToast();
+
+            // Hovering anywhere on the toast pauses the auto-dismiss countdown entirely (not
+            // just a one-time reset) so it can't expire mid-hover, then resumes a fresh
+            // countdown once the mouse actually leaves - it never disappears out from under
+            // the user while they're still reading it or about to click "Open folder"/close.
+            void PauseTimer(object s, EventArgs e) => hideTimer.Stop();
+            void ResumeTimer(object s, EventArgs e)
+            {
+                hideTimer.Stop();
+                hideTimer.Start();
+            }
+            foreach (Control c in new Control[] { toast, title, name, info, link, closeButton })
+            {
+                c.MouseEnter += PauseTimer;
+                c.MouseLeave += ResumeTimer;
+            }
         }
 
         private string CompactPathForToast(string fullPath)

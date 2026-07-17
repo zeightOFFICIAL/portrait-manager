@@ -188,7 +188,7 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
 - You can alter companions, NPCs, and army portraits via Browse Gallery, only if you have installed CustomNPC.</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_POE" xml:space="preserve">
-    <value>Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+    <value>Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder.
 
 - You can also alter companions and NPC portraits if they exist via Browse Gallery.</value>
   </data>

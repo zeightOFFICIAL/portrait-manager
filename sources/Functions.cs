@@ -1337,10 +1337,14 @@ namespace PortraitManager
         {
             string portraitsRoot = GetNonPlayerPortraitsRoot(gamePath);
             if (portraitsRoot == null) return;
-            // Tyranny's actual install (verified against a real tree) only has ".../portraits/
-            // companion/" (singular, no separate "npc" sibling) - PoE/Deadfire keep the
-            // previous "npc"/"companions" guess until their own pass confirms it either way.
-            string[] subDirs = _gameSelected == 't' ? new[] { "companion" } : new[] { "npc", "companions" };
+            // Verified against real installs: Tyranny's ".../portraits/" only has "companion/"
+            // (singular, no separate npc sibling). PoE and Deadfire both have "companion/"
+            // (singular) and "npcs/" (plural) - neither matches the original "npc"/"companions"
+            // guess (Deadfire also has an "animal_companion/" sibling, not portrait-relevant).
+            string[] subDirs;
+            if (_gameSelected == 't') subDirs = new[] { "companion" };
+            else if (_gameSelected == 'p' || _gameSelected == 'd') subDirs = new[] { "companion", "npcs" };
+            else subDirs = new[] { "npc", "companions" };
 
             var allFiles = new List<string>();
             foreach (string sub in subDirs)

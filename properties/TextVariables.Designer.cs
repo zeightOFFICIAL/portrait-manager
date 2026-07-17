@@ -733,9 +733,9 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+        ///   Looks up a localized string similar to Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder.
         ///
-        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery.
         /// </summary>
         internal static string TEXT_EXPLAIN_PATH_POE {
             get {

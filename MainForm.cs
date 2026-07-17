@@ -570,20 +570,21 @@ namespace PortraitManager
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
-            // Tyranny is unique among these three in that its "non-player" folder actually is
-            // companions/close-NPCs stored as loose files in the game's own data folder - call
-            // it what it is there. PoE/Deadfire keep the more generic "Non-player" label until
-            // their own pass confirms whether the same framing applies.
-            LabelGalleryNonPlayerTab.Text = _gameSelected == 't'
+            // Tyranny, PoE, and Deadfire all store companions/close-NPCs as loose files in the
+            // game's own data folder (verified against real installs for all three) - call it
+            // what it is there.
+            LabelGalleryNonPlayerTab.Text = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'
                 ? TextVariables.LABEL_GALLERY_COMPANIONS
                 : TextVariables.LABEL_GALLERY_NONPLAYER;
             // Retired for Kingmaker/WotR: "Characters" now covers everything this tab used to
             // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
-            // the same NPC folders under two tabs. Never applicable to Tyranny either: it has no
-            // "Portraits - Npc"-style mod folder at all - its companions/NPCs are the game's own
-            // shipped asset files, already covered by the Companions ("nonplayer") tab instead.
+            // the same NPC folders under two tabs. Never applicable to Tyranny, PoE, or Deadfire
+            // either: none of them has a "Portraits - Npc"-style mod folder at all (that mod is
+            // Owlcat-only) - their companions/NPCs are the game's own shipped asset files,
+            // already covered by the Companions ("nonplayer") tab instead.
             LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' &&
-                                                _gameSelected != 'w' && _gameSelected != 't';
+                                                _gameSelected != 'w' && _gameSelected != 't' &&
+                                                _gameSelected != 'p' && _gameSelected != 'd';
             // Rogue Trader has no CustomNPC support at all (no vanilla companion-custom-portrait
             // feature, no CustomNpcPortraits mod release) - Companions/Characters would just be
             // permanently empty dead ends there, so only offer them for Kingmaker/WotR.
@@ -698,6 +699,12 @@ namespace PortraitManager
                 return;
             }
 
+            if (_gameSelected == 'p')
+            {
+                LoadPillarsGalleryIntoCreatePage(folderPath, fromBackup: false);
+                return;
+            }
+
             string bestFile = FindBestGalleryImage(folderPath);
             if (bestFile == null) return;
 
@@ -725,14 +732,39 @@ namespace PortraitManager
             catch { }
         }
 
-        private void LoadDeadfireGalleryIntoCreatePage(string folderPath)
+        // Deadfire's companion archives ship "_lg" (210x330), "_convo" (90x141), "_sm" (76x96)
+        // and "_si" (76x96) as genuinely separate files per companion (confirmed by the
+        // extraction code's own completeness check, which requires all four to exist) - the
+        // real game data does the same. Loading a single found file into every box (the old
+        // behavior here for Large/Small/Sml2) is exactly the bug that produced black bars on
+        // Tyranny's and PoE's Small portraits; give each box its own matching file instead,
+        // same fix already applied there. fromBackup mirrors the Tyranny/Pillars loaders so
+        // this same function can serve both the present-load and backup-restore paths.
+        private void LoadDeadfireGalleryIntoCreatePage(string folderPath, bool fromBackup = false)
         {
             string dir = Path.GetDirectoryName(folderPath);
             string prefix = Path.GetFileName(folderPath);
+            string suffix = fromBackup ? ".png.backup" : ".png";
 
             try
             {
-                string convoPath = Path.Combine(dir, prefix + "_convo.png");
+                string lgPath = Path.Combine(dir, prefix + "_lg" + suffix);
+                if (!fromBackup && !File.Exists(lgPath))
+                {
+                    string fallback = FindBestGalleryImage(folderPath);
+                    if (fallback != null) lgPath = fallback;
+                }
+                if (File.Exists(lgPath))
+                {
+                    using (Image lgImg = Image.FromFile(lgPath))
+                    {
+                        Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                        LoadImageIntoPortraitBox(PicKingLrg, lgCopy, PortraitGroupSelection.Large);
+                    }
+                }
+
+                string convoPath = Path.Combine(dir, prefix + "_convo" + suffix);
+                if (!File.Exists(convoPath)) convoPath = lgPath;
                 if (File.Exists(convoPath))
                 {
                     using (Image convoImg = Image.FromFile(convoPath))
@@ -742,19 +774,26 @@ namespace PortraitManager
                     }
                 }
 
-                string lgPath = Path.Combine(dir, prefix + "_lg.png");
-                string bestFile = File.Exists(lgPath) ? lgPath : FindBestGalleryImage(folderPath);
-                if (bestFile == null || !File.Exists(bestFile)) return;
-
-                using (Image lgImg = Image.FromFile(bestFile))
+                string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
+                if (!File.Exists(smPath)) smPath = lgPath;
+                if (File.Exists(smPath))
                 {
-                    Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                    using (Image smImg = Image.FromFile(smPath))
+                    {
+                        Bitmap smCopy = ImageControl.Direct.Resize(smImg, smImg.Width, smImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml, smCopy, PortraitGroupSelection.Small);
+                    }
+                }
 
-                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(lgCopy), PortraitGroupSelection.Large);
-                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(lgCopy), PortraitGroupSelection.Small);
-                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(lgCopy), PortraitGroupSelection.Sml2);
-
-                    lgCopy.Dispose();
+                string siPath = Path.Combine(dir, prefix + "_si" + suffix);
+                if (!File.Exists(siPath)) siPath = File.Exists(smPath) ? smPath : lgPath;
+                if (File.Exists(siPath))
+                {
+                    using (Image siImg = Image.FromFile(siPath))
+                    {
+                        Bitmap siCopy = ImageControl.Direct.Resize(siImg, siImg.Width, siImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml2, siCopy, PortraitGroupSelection.Sml2);
+                    }
                 }
             }
             catch { }
@@ -781,13 +820,17 @@ namespace PortraitManager
                 // Unlike CustomNpcPortraits, there's no mod keeping an original copy for us here -
                 // these are the game's own shipped asset files, replaced in place. So this app
                 // has to make its own backup, but only ever once (BackupNonPlayerPortraitSet
-                // no-ops if one already exists), and then always offer to load it instead of the
-                // present (already-replaced-at-least-once) portrait.
-                BackupNonPlayerPortraitSet(_selectedGalleryEntry);
-                using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                // no-ops if one already exists). On the very first change there's nothing to ask
+                // about yet - the backup it just created is identical to the present portrait -
+                // so only offer the choice starting from the second change onward.
+                bool hadExistingBackup = BackupNonPlayerPortraitSet(_selectedGalleryEntry);
+                if (hadExistingBackup)
                 {
-                    if (dlg.ShowDialog(this) == DialogResult.OK)
-                        restoreBackup = true;
+                    using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                    {
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                            restoreBackup = true;
+                    }
                 }
             }
             else if (HasModDefaultBackup(_selectedGalleryEntry))
@@ -863,11 +906,16 @@ namespace PortraitManager
             return roots;
         }
 
-        private void BackupNonPlayerPortraitSet(string entryPath)
+        // Returns true if a backup already existed for this entry before this call (i.e. this
+        // is at least the second time it's been changed) - on the very first change, the
+        // backup this creates is byte-identical to the present portrait, so there's nothing
+        // meaningful for the caller to offer a choice between.
+        private bool BackupNonPlayerPortraitSet(string entryPath)
         {
             string dir = Path.GetDirectoryName(entryPath);
             string prefix = Path.GetFileName(entryPath);
             string[] suffixes = { "_lg", "_sm", "_si", "_convo" };
+            bool hadExistingBackup = suffixes.Any(suf => File.Exists(Path.Combine(dir, prefix + suf + ".png.backup")));
             foreach (string suf in suffixes)
             {
                 string srcPath = Path.Combine(dir, prefix + suf + ".png");
@@ -878,6 +926,7 @@ namespace PortraitManager
                     catch { }
                 }
             }
+            return hadExistingBackup;
         }
 
         // These games have no mod keeping a separate original copy, so BackupNonPlayerPortraitSet
@@ -947,11 +996,60 @@ namespace PortraitManager
             catch { }
         }
 
+        // PoE's companion files use the exact same "_lg" (210x330) / "_sm" (76x96) split as
+        // Tyranny's (verified against a real install) - same reasoning as
+        // LoadTyrannyGalleryIntoCreatePage above applies here, so give it the same per-size
+        // loader instead of falling through to the generic "one file into every box" path.
+        private void LoadPillarsGalleryIntoCreatePage(string folderPath, bool fromBackup)
+        {
+            string dir = Path.GetDirectoryName(folderPath);
+            string prefix = Path.GetFileName(folderPath);
+            string suffix = fromBackup ? ".png.backup" : ".png";
+
+            try
+            {
+                string lgPath = Path.Combine(dir, prefix + "_lg" + suffix);
+                if (File.Exists(lgPath))
+                {
+                    using (Image lgImg = Image.FromFile(lgPath))
+                    {
+                        Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                        LoadImageIntoPortraitBox(PicKingLrg, lgCopy, PortraitGroupSelection.Large);
+                    }
+                }
+
+                string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
+                if (!File.Exists(smPath)) smPath = lgPath;
+                if (File.Exists(smPath))
+                {
+                    using (Image smImg = Image.FromFile(smPath))
+                    {
+                        Bitmap smCopy = ImageControl.Direct.Resize(smImg, smImg.Width, smImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml, new Bitmap(smCopy), PortraitGroupSelection.Small);
+                        LoadImageIntoPortraitBox(PicKingSml2, smCopy, PortraitGroupSelection.Sml2);
+                    }
+                }
+            }
+            catch { }
+        }
+
         private void LoadNonPlayerBackupIntoCreatePage(string entryPath)
         {
             if (_gameSelected == 't')
             {
                 LoadTyrannyGalleryIntoCreatePage(entryPath, fromBackup: true);
+                return;
+            }
+
+            if (_gameSelected == 'p')
+            {
+                LoadPillarsGalleryIntoCreatePage(entryPath, fromBackup: true);
+                return;
+            }
+
+            if (_gameSelected == 'd')
+            {
+                LoadDeadfireGalleryIntoCreatePage(entryPath, fromBackup: true);
                 return;
             }
 
@@ -1952,30 +2050,47 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
+                    // The install directory's own name varies (Steam/GOG/custom location,
+                    // "Definitive Edition" variants, etc.), so matching it by name is fragile -
+                    // walk up to "PillarsOfEternity_Data" instead, which is fixed by the Unity
+                    // build itself regardless of what the player named the parent folder.
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null &&
-                           !dir.Name.Equals("Pillars of Eternity", StringComparison.OrdinalIgnoreCase))
+                           !dir.Name.Equals("PillarsOfEternity_Data", StringComparison.OrdinalIgnoreCase))
                     {
                         dir = dir.Parent;
                     }
 
-                    if (dir == null)
+                    string rootPath;
+                    if (dir != null)
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
-                        return;
+                        rootPath = dir.Parent.FullName + Path.DirectorySeparatorChar;
+                    }
+                    else
+                    {
+                        // User may have selected the install root directly (containing
+                        // PillarsOfEternity_Data as a child rather than being inside it).
+                        rootPath = selectedPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
                     }
 
-                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
                     string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits");
                     if (!Directory.Exists(portraitsRoot))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
@@ -2009,33 +2124,48 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
+                    // The install directory's own name varies wildly across storefronts/editions
+                    // (several guessed variants used to be matched here and still might miss the
+                    // real one) - walk up to "PillarsOfEternityII_Data" instead, which is fixed
+                    // by the Unity build itself regardless of what the player named the parent
+                    // folder. Same fix as Pillars of Eternity (original)'s path resolution.
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null &&
-                           !dir.Name.Equals("Pillars of Eternity II Deadfire", StringComparison.OrdinalIgnoreCase) &&
-                           !dir.Name.Equals("Pillars of Eternity II", StringComparison.OrdinalIgnoreCase) &&
-                           !dir.Name.Equals("PillarsOfEternityII", StringComparison.OrdinalIgnoreCase) &&
-                           !dir.Name.Equals("Pillars of Eternity II - Deadfire", StringComparison.OrdinalIgnoreCase))
+                           !dir.Name.Equals("PillarsOfEternityII_Data", StringComparison.OrdinalIgnoreCase))
                     {
                         dir = dir.Parent;
                     }
 
-                    if (dir == null)
+                    string rootPath;
+                    if (dir != null)
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
-                        return;
+                        rootPath = dir.Parent.FullName + Path.DirectorySeparatorChar;
+                    }
+                    else
+                    {
+                        // User may have selected the install root directly (containing
+                        // PillarsOfEternityII_Data as a child rather than being inside it).
+                        rootPath = selectedPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
                     }
 
-                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;                    
                     string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternityII_Data", "gui", "portraits");
                     if (!Directory.Exists(portraitsRoot))
                     {
-                        MessageBox.Show("Could not locate the expected game data folder. Please make sure you select the root game installation directory.");
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
                         return;
                     }
                     string maleDir = Path.Combine(portraitsRoot, "player", "male");
@@ -2440,14 +2570,15 @@ namespace PortraitManager
                 // which clamps the panel's width to whatever fraction of the row's current
                 // total width that percentage computes to, regardless of Anchor/Dock -
                 // requesting a wider Size than the cell allows just gets silently shrunk back
-                // down, and Tyranny's Small portrait (76x96) needs more width relative to its
-                // height than that percent column happens to allow at this container size, so
-                // the panel ended up shorter/wider than 76:96 and produced a crop/target
-                // aspect mismatch (visible as black bars). Rather than fight the column
-                // (widening it squeezes the sibling button panel), shrink to fit within
-                // whatever width the cell already provides, keeping the same 76:96 ratio -
-                // i.e. maximize inside the available cell instead of overflowing it.
-                if (_gameSelected == 't' && panel.Name == "PanelKingSml")
+                // down. Tyranny and PoE's Small portrait (both 76x96, SMALL_AR=1.2631) need
+                // more width relative to their height than that percent column happens to
+                // allow at this container size, so the panel ended up shorter/wider than
+                // 76:96 and produced a crop/target aspect mismatch (visible as black bars).
+                // Rather than fight the column (widening it squeezes the sibling button
+                // panel), shrink to fit within whatever width the cell already provides,
+                // keeping the same 76:96 ratio - i.e. maximize inside the available cell
+                // instead of overflowing it.
+                if ((_gameSelected == 't' || _gameSelected == 'p') && panel.Name == "PanelKingSml")
                 {
                     int availableWidth = panel.Width;
                     if (availableWidth > 0 && newWidth > availableWidth)
@@ -2502,7 +2633,14 @@ namespace PortraitManager
             else if (selection == PortraitGroupSelection.Small)
             {
                 if (!HasPortraitSpecific(gameType, "SMALL_WIDTH")) return;
-                float smlHeight = (_gameSelected == 'l') ? 256f : 360f;
+                // PoE's and Deadfire's Small panels need slightly less height than the other
+                // 76:96 games (same AR, but the surrounding layout cell clamps their width
+                // tighter here) - without this the panel ends up wider than 76:96, producing
+                // left/right black bars on save. Confirmed by testing; scoped to each game.
+                float smlHeight = (_gameSelected == 'l') ? 256f
+                    : (_gameSelected == 'p') ? 345f
+                    : (_gameSelected == 'd') ? 340f
+                    : 360f;
                 AdjustPortraitPanelAspect(
                     PanelKingSml,
                     GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
@@ -2511,10 +2649,13 @@ namespace PortraitManager
             else if (selection == PortraitGroupSelection.Sml2)
             {
                 if (!HasPortraitSpecific(gameType, "SML2_WIDTH")) return;
+                // Same reasoning as Small above - Deadfire's Sml2 ("_si") shares the same 76:96
+                // AR and the same panel-clamp behavior, needing the same reduction.
+                float sml2Height = (_gameSelected == 'd') ? 340f : 360f;
                 AdjustPortraitPanelAspect(
                     PanelKingSml2,
                     GetPortraitSpecificOrDefault(gameType, "SML2_AR", 1.4f),
-                    360f);
+                    sml2Height);
             }
         }
 

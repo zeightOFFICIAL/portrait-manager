@@ -1,4 +1,4 @@
-/*
+﻿/*
     Zeight Portrait Manager
     Desktop application for managing in-game portraits for games from Owlcat Games,
     Obsidian Entertainment and inXile Entertainment.
@@ -15,7 +15,6 @@
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
 using Microsoft.Win32;
 
 using System;
@@ -30,7 +29,6 @@ namespace SystemControl
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
-        /// Loads an embedded font resource into a private, process-local font collection (used for the app's custom UI font).
         public static PrivateFontCollection InitCustomFont(byte[] font)
         {
             PrivateFontCollection fontCollection = new PrivateFontCollection();
@@ -47,7 +45,6 @@ namespace SystemControl
             return fontCollection;
         }
 
-        /// Non-mutating filesystem existence checks.
         public class Readonly
         {
             public static bool DirectoryExists(string path)
@@ -61,7 +58,6 @@ namespace SystemControl
             }
         }
 
-        /// Removes the app's scratch folder used while staging portrait images before they're placed in-game.
         public static void ClearTempImages()
         {
             DeleteDirectoryRecursive("temp_DoNotDeleteWhileRunning/");
@@ -100,11 +96,6 @@ namespace SystemControl
             }
         }
 
-        // SharpCompress's managed .7z decoder is noticeably slower and, on some archives,
-        // unreliable (non-deterministic load time, occasional crashes). A real 7-Zip install
-        // (native, battle-tested) is both faster and more robust, so callers should prefer it
-        // when present and only fall back to the managed decoder if 7-Zip isn't installed.
-        /// Locates a native 7z.exe via the 7-Zip registry key, falling back to its default Program Files install paths.
         public static string FindNative7ZipExecutable()
         {
             try
@@ -133,7 +124,6 @@ namespace SystemControl
             return null;
         }
 
-        /// Locates a Tyranny install by checking Steam's library folders, then GOG's registered games, then the default Epic Games path.
         public static string DetectTyrannyInstall()
         {
             try
@@ -215,7 +205,6 @@ namespace SystemControl
             return "";
         }
 
-        /// Locates a Pillars of Eternity II: Deadfire install by checking Steam, then GOG, then the default Epic Games path.
         public static string DetectDeadfireInstall()
         {
             string Validate(string path)
@@ -301,7 +290,6 @@ namespace SystemControl
             return "";
         }
 
-        /// Locates a Pillars of Eternity install by checking Steam, then GOG, then the default Epic Games path.
         public static string DetectPillarsInstall()
         {
 
@@ -386,7 +374,6 @@ namespace SystemControl
             return "";
         }
 
-        /// Builds the LocalLow path Owlcat's Unity-based games use for save/portrait data (no probing needed - the path is deterministic).
         public static string DetectOwlcatInstall(string name)
         {
             string localLow = Path.Combine(

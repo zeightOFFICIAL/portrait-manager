@@ -53,7 +53,6 @@ namespace PortraitManager.forms
             this.LabelTitle.Name = "LabelTitle";
             this.LabelTitle.Size = new System.Drawing.Size(310, 20);
             this.LabelTitle.TabIndex = 0;
-            this.LabelTitle.Text = "✓ Portrait created";
             //
             // LabelName
             //
@@ -74,7 +73,6 @@ namespace PortraitManager.forms
             this.LabelInfo.Name = "LabelInfo";
             this.LabelInfo.Size = new System.Drawing.Size(310, 16);
             this.LabelInfo.TabIndex = 2;
-            this.LabelInfo.Text = "Saved to game portraits folder";
             //
             // LinkLabelOpenFolder
             //
@@ -86,7 +84,6 @@ namespace PortraitManager.forms
             this.LinkLabelOpenFolder.Name = "LinkLabelOpenFolder";
             this.LinkLabelOpenFolder.TabIndex = 3;
             this.LinkLabelOpenFolder.TabStop = true;
-            this.LinkLabelOpenFolder.Text = "Open folder";
             this.LinkLabelOpenFolder.VisitedLinkColor = System.Drawing.Color.DeepSkyBlue;
             this.LinkLabelOpenFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelOpenFolder_LinkClicked);
             //
@@ -116,14 +113,13 @@ namespace PortraitManager.forms
             this.Controls.Add(this.LabelName);
             this.Controls.Add(this.LabelTitle);
             this.ForeColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MyCreationTooltip";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyCreationTooltip_FormClosed);
             this.ResumeLayout(false);
 

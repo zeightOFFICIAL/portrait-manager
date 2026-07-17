@@ -15,7 +15,6 @@
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
 using PortraitManager.forms;
 using PortraitManager.Properties;
 using PortraitManager.sources;
@@ -29,10 +28,7 @@ namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        // Static GameType definitions for every supported game, keyed by the single-char
-        // game-selection codes ('k' Kingmaker, 'w' WotR, 'r' Rogue Trader, 'p' PoE, 'd'
-        // Deadfire, 't' Tyranny, 'l' Wasteland 3). Install-path detection lives in
-        // SystemControl.FileControl (sources/SystemWorks.cs).
+
         private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
             Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             SystemControl.FileControl.DetectOwlcatInstall("Pathfinder Kingmaker").Replace("/", "\\"),
@@ -136,8 +132,6 @@ namespace PortraitManager
                 { "SMALL_AR", 1.0f},
             });
 
-
-        /// Looks up a GameType by its single-char game-selection code.
         private static readonly Dictionary<char, GameType> GameTypes = new Dictionary<char, GameType>
         {
             { 'k', KING_TYPE },

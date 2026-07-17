@@ -42,10 +42,9 @@ namespace PortraitManager.forms
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
             var family = _fontCollection.Families[0];
-            // Same split as MyMessageDialog: plain sans-serif for the question text (needs exact
-            // reading), BebasNeue for the short button labels. 12 * 1.5 * 0.8 = 14.4.
+
             LabelInquiryMesg.Font = new Font(FontFamily.GenericSansSerif, 14.4f);
             ButtonOK.Font = new Font(family, 16f);
             ButtonCancel.Font = new Font(family, 16f);
@@ -75,11 +74,7 @@ namespace PortraitManager.forms
 
         private void MyInquiryDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // See MyMessageDialog_FormClosing: this borderless, ShowInTaskbar=false dialog closing
-            // (e.g. via Cancel) can otherwise leave the real root application window minimized
-            // instead of just closing this dialog. Walk to the true root owner (not just the
-            // immediate one, in case this was opened from another dialog) and reactivate it while
-            // our own handle still exists.
+
             Form root = Owner;
             while (root != null && root.Owner != null)
                 root = root.Owner;

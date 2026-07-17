@@ -15,7 +15,6 @@
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
 using PortraitManager.forms;
 using PortraitManager.Properties;
 using PortraitManager.sources;
@@ -75,7 +74,7 @@ namespace PortraitManager
 
             bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
             bool isWasteland = _gameSelected == 'l';
-            bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't' || _gameSelected == 'l'; // UID naming for PoE, Deadfire, Tyranny, Wasteland 3
+            bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't' || _gameSelected == 'l';
             string uid = useUid ? (_gameSelected == 'l' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture) : null;
             string femaleDir = null;
 
@@ -83,7 +82,7 @@ namespace PortraitManager
 
             if (_isCustomNpcMode && string.IsNullOrEmpty(_overrideGallerySaveDir))
             {
-                // CustomNPC clone: create new subfolder under CustomNPC directory
+
                 string customNpcDir = GetCustomNpcPortraitsDir(basePath);
                 if (string.IsNullOrEmpty(customNpcDir)) return;
                 try { Directory.CreateDirectory(customNpcDir); }
@@ -124,7 +123,7 @@ namespace PortraitManager
             }
             else if (isObsidian)
             {
-                // Obsidian games: fixed game-expected path — write directly to player/male
+
                 if (_gameSelected == 'p')
                     outDir = Path.Combine(basePath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits", "player", "male");
                 else if (_gameSelected == 'd')
@@ -143,7 +142,6 @@ namespace PortraitManager
                     return;
                 }
 
-                // For PoE, Tyranny, and Deadfire, also create the female directory for copies
                 if (useUid && !isWasteland)
                 {
                     femaleDir = Path.Combine(Path.GetDirectoryName(outDir), "female");
@@ -161,7 +159,7 @@ namespace PortraitManager
             }
             else if (isWasteland)
             {
-                // Wasteland 3: fixed path — write directly to Custom Portraits
+
                 outDir = Path.Combine(basePath, "Custom Portraits");
                 try { Directory.CreateDirectory(outDir); }
                 catch (Exception ex)
@@ -178,7 +176,7 @@ namespace PortraitManager
             {
                 if (string.IsNullOrEmpty(_overrideGallerySaveDir))
                 {
-                    // Owlcat games: timestamp-named subfolder under Portraits
+
                     string portraitsRoot = basePath;
                     try
                     {
@@ -281,7 +279,7 @@ namespace PortraitManager
                     if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
                         ImageControl.PortraitCrop.SaveFillCrop(orig, pb, panel, w, h, savePath);
                     else
-                        ImageControl.PortraitCrop.SaveUniformCrop(orig, pb, panel, w, h, savePath, _gameSelected);
+                        ImageControl.PortraitCrop.SaveUniformCrop(orig, pb, panel, w, h, savePath);
                     if (femaleDir != null)
                         File.Copy(savePath, Path.Combine(femaleDir, fileName), overwrite: true);
                 }
@@ -363,9 +361,6 @@ namespace PortraitManager
             }
         }
 
-        // ── Portrait page drag-and-drop ──────────────────────────────────────
-
-        // Shared DragEnter: accept image files and plain-text URLs
         private void PicKing_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -393,7 +388,6 @@ namespace PortraitManager
             e.Effect = DragDropEffects.None;
         }
 
-        // Shared DragLeave: remove drop-target visual
         private void PicKing_DragLeave(object sender, EventArgs e)
         {
             if (sender is Control ctrl && ctrl.ClientRectangle.Contains(ctrl.PointToClient(Cursor.Position)))
@@ -401,7 +395,6 @@ namespace PortraitManager
             RemoveDropTargetTint(sender as Control);
         }
 
-        // Overlay a semi-transparent highlight on the parent panel while dragging
         private void ApplyDropTargetTint(Control source)
         {
             var pic = GetPortraitPictureBox(source);
@@ -463,14 +456,12 @@ namespace PortraitManager
                 overlay.Visible = false;
         }
 
-        // Shared DragDrop: load from file path or web URL
         private void PicKing_DragDrop(object sender, DragEventArgs e)
         {
             var pic = GetPortraitPictureBox(sender);
             if (pic == null) return;
             RemoveDropTargetTint(sender as Control);
 
-            // ── file drop ────────────────────────────────────────────────────
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 var files = e.Data.GetData(DataFormats.FileDrop) as string[];
@@ -490,13 +481,11 @@ namespace PortraitManager
                 return;
             }
 
-            // ── URL text drop ─────────────────────────────────────────────────
             string url = e.Data.GetData(DataFormats.UnicodeText) as string
                       ?? e.Data.GetData(DataFormats.Text) as string;
             if (string.IsNullOrWhiteSpace(url)) return;
             url = url.Trim();
 
-            // injection guard: http/https only, no whitespace/control chars
             if ((!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
                  !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase)) ||
                 url.Length > 2048)
@@ -504,7 +493,6 @@ namespace PortraitManager
             foreach (char c in url)
                 if (char.IsControl(c) || char.IsWhiteSpace(c)) return;
 
-            // quick check: look at the path segment for image extensions
             try
             {
                 var uri = new Uri(url);
@@ -513,9 +501,7 @@ namespace PortraitManager
                 string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
                 if (!ext.Contains("") && Array.IndexOf(imageExts, ext) < 0)
                 {
-                    using (var dlg = new forms.MyMessageDialog(
-                        "That link does not point to a supported image file.\n\n" +
-                        "Supported formats: PNG, JPG, GIF, BMP, WebP."))
+                    using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_UNSUPPORTED_IMAGE_LINK))
                     {
                         dlg.StartPosition = FormStartPosition.CenterParent;
                         dlg.ShowDialog(this);
@@ -590,8 +576,7 @@ namespace PortraitManager
             {
                 try
                 {
-                    using (var dlg = new forms.MyMessageDialog(
-                        "Could not load the image from that address. " + ex.Message))
+                    using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
                     {
                         dlg.StartPosition = FormStartPosition.CenterParent;
                         dlg.ShowDialog(this);
@@ -743,13 +728,13 @@ namespace PortraitManager
                 pb.Location = ClampPictureLocation(pb, panel, desired);
             }
         }
-        
+
         private void PicPortraitLrg_MouseUp(object sender, MouseEventArgs e)
         {
-            //RootFunctions.HideScrollBar(PanelPortraitLrg);
+
             _isDraggingMouse = 0;
         }
-        
+
         private void PicPortraitMed_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -761,7 +746,7 @@ namespace PortraitManager
                 _isDraggingMouse = 2;
             }
         }
-        
+
         private void PicPortraitMed_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDraggingMouse == 2)
@@ -780,7 +765,7 @@ namespace PortraitManager
 
         private void PicPortraitMed_MouseUp(object sender, MouseEventArgs e)
         {
-            //RootFunctions.HideScrollBar(PanelPortraitMed);
+
             _isDraggingMouse = 0;
         }
 
@@ -847,10 +832,10 @@ namespace PortraitManager
 
         private void PicPortraitSml_MouseUp(object sender, MouseEventArgs e)
         {
-            //RootFunctions.HideScrollBar(PanelPortraitSml);
+
             _isDraggingMouse = 0;
         }
-        
+
         private Panel GetPortraitPanel(PictureBox pictureBox)
         {
             Control current = pictureBox?.Parent;
@@ -908,7 +893,7 @@ namespace PortraitManager
 
             return new Point(newX, newY);
         }
-        
+
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
             try { AdjustActivePortraitPanelAspect(_activeKingPortraitGroup); } catch { }
@@ -1093,7 +1078,7 @@ namespace PortraitManager
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
             LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
             _activeMenuIndex = 150;
-            
+
             OpenPathSelectPage();
         }
 
@@ -1301,12 +1286,12 @@ namespace PortraitManager
 
         private void LabelSelectPathTitle_MouseEnter(object sender, EventArgs e)
         {
-            
+
         }
 
         private void LabelSelectPathTitle_MouseLeave(object sender, EventArgs e)
         {
-            
+
         }
 
         private void LabelSelectPathBackToStart_MouseEnter(object sender, EventArgs e)
@@ -1334,7 +1319,7 @@ namespace PortraitManager
             LabelSelectPathSelected.Text = GameTypes[_gameSelected].DefaultDirectory.ToLower();
             if (LabelSelectPathSelected.Text == "")
             {
-                LabelSelectPathSelected.Text = " - ";
+                LabelSelectPathSelected.Text = TextVariables.TEXT_PATH_PLACEHOLDER;
             }
         }
 
@@ -1342,7 +1327,7 @@ namespace PortraitManager
         {
             LabelSelectPathSelected.ForeColor = Color.White;
         }
-        
+
         private void LabelSelectPathSelected_MouseLeave(object sender, EventArgs e)
         {
             LabelSelectPathSelected.ForeColor = Color.DarkGray;
@@ -1368,37 +1353,37 @@ namespace PortraitManager
 
         private void LabelCreatePortrait_MouseEnter(object sender, EventArgs e)
         {
-            LabelCreatePortrait.Text = "◈" + LabelCreatePortrait.Text;
+            LabelCreatePortrait.Text = TextVariables.MENU_HOVER_MARKER + LabelCreatePortrait.Text;
             LabelCreatePortrait.ForeColor = GameTypes[_gameSelected].ForeColor;
         }
 
         private void LabelCreatePortrait_MouseLeave(object sender, EventArgs e)
         {
-            LabelCreatePortrait.Text = LabelCreatePortrait.Text.Replace("◈", "");
+            LabelCreatePortrait.Text = LabelCreatePortrait.Text.Replace(TextVariables.MENU_HOVER_MARKER, "");
             LabelCreatePortrait.ForeColor = Color.White;
         }
 
         private void LabelExtract_MouseEnter(object sender, EventArgs e)
         {
-            LabelExtract.Text = "◈" + LabelExtract.Text;
+            LabelExtract.Text = TextVariables.MENU_HOVER_MARKER + LabelExtract.Text;
             LabelExtract.ForeColor = GameTypes[_gameSelected].ForeColor;
         }
 
         private void LabelExtract_MouseLeave(object sender, EventArgs e)
         {
-            LabelExtract.Text = LabelExtract.Text.Replace("◈", "");
+            LabelExtract.Text = LabelExtract.Text.Replace(TextVariables.MENU_HOVER_MARKER, "");
             LabelExtract.ForeColor = Color.White;
         }
 
         private void LabelBrowse_MouseEnter(object sender, EventArgs e)
         {
-            LabelBrowse.Text = "◈" + LabelBrowse.Text;
+            LabelBrowse.Text = TextVariables.MENU_HOVER_MARKER + LabelBrowse.Text;
             LabelBrowse.ForeColor = GameTypes[_gameSelected].ForeColor;
         }
 
         private void LabelBrowse_MouseLeave(object sender, EventArgs e)
         {
-            LabelBrowse.Text = LabelBrowse.Text.Replace("◈", "");
+            LabelBrowse.Text = LabelBrowse.Text.Replace(TextVariables.MENU_HOVER_MARKER, "");
             LabelBrowse.ForeColor = Color.White;
         }
 
@@ -1414,25 +1399,25 @@ namespace PortraitManager
 
         private void LabelSettingsPage_MouseEnter(object sender, EventArgs e)
         {
-            LabelSettingsPage.Text = "◈" + LabelSettingsPage.Text;
+            LabelSettingsPage.Text = TextVariables.MENU_HOVER_MARKER + LabelSettingsPage.Text;
             LabelSettingsPage.ForeColor = GameTypes[_gameSelected].ForeColor;
         }
 
         private void LabelSettingsPage_MouseLeave(object sender, EventArgs e)
         {
-            LabelSettingsPage.Text = LabelSettingsPage.Text.Replace("◈", "");
+            LabelSettingsPage.Text = LabelSettingsPage.Text.Replace(TextVariables.MENU_HOVER_MARKER, "");
             LabelSettingsPage.ForeColor = Color.White;
         }
 
         private void LabelExit_MouseEnter(object sender, EventArgs e)
         {
-            LabelExit.Text = "◈" + LabelExit.Text;
+            LabelExit.Text = TextVariables.MENU_HOVER_MARKER + LabelExit.Text;
             LabelExit.ForeColor = GameTypes[_gameSelected].ForeColor;
         }
 
         private void LabelExit_MouseLeave(object sender, EventArgs e)
         {
-            LabelExit.Text = LabelExit.Text.Replace("◈", "");
+            LabelExit.Text = LabelExit.Text.Replace(TextVariables.MENU_HOVER_MARKER, "");
             LabelExit.ForeColor = Color.White;
         }
 
@@ -1517,7 +1502,7 @@ namespace PortraitManager
 
                 if (!any)
                 {
-                    using (var msg = new MyMessageDialog("Could not determine the folder location."))
+                    using (var msg = new MyMessageDialog(TextVariables.MESG_FOLDER_LOCATION_UNKNOWN))
                     {
                         msg.StartPosition = FormStartPosition.CenterParent;
                         msg.ShowDialog(this);
@@ -1528,7 +1513,7 @@ namespace PortraitManager
             {
                 if (string.IsNullOrEmpty(gameDir))
                 {
-                    using (var msg = new MyMessageDialog("Could not determine the game directory."))
+                    using (var msg = new MyMessageDialog(TextVariables.MESG_GAME_DIRECTORY_UNKNOWN))
                     {
                         msg.StartPosition = FormStartPosition.CenterParent;
                         msg.ShowDialog(this);
@@ -1714,7 +1699,7 @@ namespace PortraitManager
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        {            
+        {
             FontInit();
             TextInit();
             _activeMenuIndex = 65535;
@@ -1729,7 +1714,7 @@ namespace PortraitManager
             {
                 _gameSelected = '-';
                 RootFunctions.LayoutEnable(LayoutStartMenu);
-                _activeMenuIndex = 100;                
+                _activeMenuIndex = 100;
             }
             else if (CoreSettings.Default.GameType == 'w')
             {
@@ -1768,7 +1753,7 @@ namespace PortraitManager
                 _activeMenuIndex = 207;
                 LabelSelectPathNextToMain_Click(sender, e);
             }
-            else 
+            else
             {
                 _gameSelected = 'k';
                 _activeMenuIndex = 201;
@@ -1831,7 +1816,7 @@ namespace PortraitManager
         {
             DrawGroupBorder(sender as Control, e, null);
         }
-                
+
         private void LabelExtract_Click(object sender, EventArgs e)
         {
             _activeMenuIndex = 5;
@@ -1892,24 +1877,15 @@ namespace PortraitManager
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
             LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
-            // Tyranny, PoE, and Deadfire all store companions/close-NPCs as loose files in the
-            // game's own data folder (verified against real installs for all three) - call it
-            // what it is there.
+
             LabelGalleryNonPlayerTab.Text = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'
                 ? TextVariables.LABEL_GALLERY_COMPANIONS
                 : TextVariables.LABEL_GALLERY_NONPLAYER;
-            // Retired for Kingmaker/WotR: "Characters" now covers everything this tab used to
-            // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
-            // the same NPC folders under two tabs. Never applicable to Tyranny, PoE, or Deadfire
-            // either: none of them has a "Portraits - Npc"-style mod folder at all (that mod is
-            // Owlcat-only) - their companions/NPCs are the game's own shipped asset files,
-            // already covered by the Companions ("nonplayer") tab instead.
+
             LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' &&
                                                 _gameSelected != 'w' && _gameSelected != 't' &&
                                                 _gameSelected != 'p' && _gameSelected != 'd';
-            // Rogue Trader has no CustomNPC support at all (no vanilla companion-custom-portrait
-            // feature, no CustomNpcPortraits mod release) - Companions/Characters would just be
-            // permanently empty dead ends there, so only offer them for Kingmaker/WotR.
+
             bool hasCustomNpc = _gameSelected == 'k' || _gameSelected == 'w';
             LabelGalleryCompanionsTab.Visible = hasCustomNpc;
             LabelGalleryCharactersTab.Visible = hasCustomNpc;
@@ -1990,12 +1966,7 @@ namespace PortraitManager
 
             if (isNonPlayer)
             {
-                // Unlike CustomNpcPortraits, there's no mod keeping an original copy for us here -
-                // these are the game's own shipped asset files, replaced in place. So this app
-                // has to make its own backup, but only ever once (BackupNonPlayerPortraitSet
-                // no-ops if one already exists). On the very first change there's nothing to ask
-                // about yet - the backup it just created is identical to the present portrait -
-                // so only offer the choice starting from the second change onward.
+
                 bool hadExistingBackup = BackupNonPlayerPortraitSet(_selectedGalleryEntry);
                 if (hadExistingBackup)
                 {
@@ -2008,11 +1979,7 @@ namespace PortraitManager
             }
             else if (HasModDefaultBackup(_selectedGalleryEntry))
             {
-                // This app never creates its own backup - it just asks whether to start from the
-                // mod's own "Backup of Game Default Portraits" (the original) or the present
-                // portrait currently at this folder's root, whenever the mod actually has one on
-                // file. Nothing is written here either way; the choice only affects what gets
-                // loaded into Create Portrait below.
+
                 using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
                 {
                     if (dlg.ShowDialog(this) == DialogResult.OK)
@@ -2388,7 +2355,7 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
             if (_isCustomNpcMode) return;
-            using (var dlg = new forms.MyInquiryDialog("Delete this portrait set?"))
+            using (var dlg = new forms.MyInquiryDialog(TextVariables.INQR_DELETE_PORTRAIT_SET))
             {
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {
@@ -2438,9 +2405,7 @@ namespace PortraitManager
             }
             else if (_galleryTabSelected == "characters")
             {
-                // With "New NPC +" removed, this is now the only way to reach Portraits - Npc
-                // from the Characters tab (e.g. to manually create/inspect an NPC folder before
-                // meeting them in-game triggers the mod to do it).
+
                 string basePath = CoreSettings.Default.GamePath;
                 gameDir = !string.IsNullOrEmpty(basePath) ? GetCustomNpcPortraitsDir(basePath) : null;
             }
@@ -2451,7 +2416,7 @@ namespace PortraitManager
 
             if (string.IsNullOrEmpty(gameDir))
             {
-                using (var msg = new forms.MyMessageDialog("Could not determine the game directory."))
+                using (var msg = new forms.MyMessageDialog(TextVariables.MESG_GAME_DIRECTORY_UNKNOWN))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -2486,7 +2451,7 @@ namespace PortraitManager
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -2527,10 +2492,7 @@ namespace PortraitManager
                     if (dir == null || dir.Parent == null ||
                         !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        // A game install directory (e.g. the Steam/GOG copy) commonly shares the exact
-                        // same folder name "Pathfinder Kingmaker" as the real LocalLow save-data root.
-                        // Only the latter sits directly under "...\LocalLow\Owlcat Games\", so require
-                        // that parentage to avoid silently managing a folder the game never reads.
+
                         using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Pathfinder Kingmaker")))
                         {
                             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -2587,10 +2549,7 @@ namespace PortraitManager
                     if (dir == null || dir.Parent == null ||
                         !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Same reasoning as Kingmaker: the game's Steam/GOG install directory
-                        // commonly shares the exact folder name "Pathfinder Wrath Of The
-                        // Righteous" with the real LocalLow save-data root. Only the latter sits
-                        // directly under "...\LocalLow\Owlcat Games\".
+
                         using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Pathfinder Wrath Of The Righteous")))
                         {
                             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -2647,10 +2606,7 @@ namespace PortraitManager
                     if (dir == null || dir.Parent == null ||
                         !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Same reasoning as Kingmaker/WotR: the game's Steam/GOG install directory
-                        // commonly shares the exact folder name "Warhammer 40000 Rogue Trader" with
-                        // the real LocalLow save-data root. Only the latter sits directly under
-                        // "...\LocalLow\Owlcat Games\".
+
                         using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Warhammer 40000 Rogue Trader")))
                         {
                             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -2699,10 +2655,6 @@ namespace PortraitManager
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
-                    // The install directory's own name varies (Steam/GOG/custom location,
-                    // "Definitive Edition" variants, etc.), so matching it by name is fragile -
-                    // walk up to "PillarsOfEternity_Data" instead, which is fixed by the Unity
-                    // build itself regardless of what the player named the parent folder.
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null &&
                            !dir.Name.Equals("PillarsOfEternity_Data", StringComparison.OrdinalIgnoreCase))
@@ -2717,8 +2669,7 @@ namespace PortraitManager
                     }
                     else
                     {
-                        // User may have selected the install root directly (containing
-                        // PillarsOfEternity_Data as a child rather than being inside it).
+
                         rootPath = selectedPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
                     }
 
@@ -2773,11 +2724,6 @@ namespace PortraitManager
 
                     selectedPath = selectedPath.Replace('/', '\\');
 
-                    // The install directory's own name varies wildly across storefronts/editions
-                    // (several guessed variants used to be matched here and still might miss the
-                    // real one) - walk up to "PillarsOfEternityII_Data" instead, which is fixed
-                    // by the Unity build itself regardless of what the player named the parent
-                    // folder. Same fix as Pillars of Eternity (original)'s path resolution.
                     var dir = new DirectoryInfo(selectedPath);
                     while (dir != null &&
                            !dir.Name.Equals("PillarsOfEternityII_Data", StringComparison.OrdinalIgnoreCase))
@@ -2792,8 +2738,7 @@ namespace PortraitManager
                     }
                     else
                     {
-                        // User may have selected the install root directly (containing
-                        // PillarsOfEternityII_Data as a child rather than being inside it).
+
                         rootPath = selectedPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
                     }
 
@@ -2859,12 +2804,7 @@ namespace PortraitManager
                     }
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
-                    // Tyranny has no separate "install dir vs. save-data dir" split like the
-                    // Owlcat/Wasteland games - Data lives directly inside whatever folder
-                    // the player installed the game into, so there's no LocalLow/Documents
-                    // sibling to confuse it with. Verifying real game content (an actual data
-                    // folder with real assets) instead of just a folder name is the correct
-                    // check here, and was already in place.
+
                     string checkPath = Path.Combine(rootPath, "Data", "data", "art", "gui", "icons", "abilities");
 
                     if (!Directory.Exists(checkPath))
@@ -2922,10 +2862,7 @@ namespace PortraitManager
                     if (dir == null || dir.Parent == null ||
                         !dir.Parent.Name.Equals("My Games", StringComparison.OrdinalIgnoreCase))
                     {
-                        // Same reasoning as the Owlcat games: Wasteland 3's Steam/GOG install
-                        // directory is also commonly named "Wasteland3", same as the real
-                        // Documents\My Games\Wasteland3 save-data root. Only the latter sits
-                        // directly under "...\Documents\My Games\".
+
                         using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT_DOCUMENTS, "Wasteland3")))
                         {
                             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -3069,7 +3006,7 @@ namespace PortraitManager
             using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
             {
                 SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
-                //Description = TextVariables.TEXT_FOLDEROPEN,
+
                 ShowNewFolderButton = false,
             })
             {
@@ -3123,7 +3060,7 @@ namespace PortraitManager
 
         private void ButtonKingBackToPathfinder_Click(object sender, EventArgs e)
         {
-            // Explicit button to return user to the selected game's main page
+
             try
             {
                 _overrideGallerySaveDir = null;
@@ -3138,13 +3075,12 @@ namespace PortraitManager
 
         private void ButtonKingSelectWeb_Click(object sender, EventArgs e)
         {
-            // placeholder: open web selection dialog
-            // sender.Tag contains picture box name currently, but for now do nothing
+
         }
 
         private void ButtonKingSelectLocal_Click(object sender, EventArgs e)
         {
-            // Open local file dialog and set image with initial fit
+
             if (sender is Button btn && btn.Tag is string picName)
             {
                 PictureBox pic = this.Controls.Find(picName, true).FirstOrDefault() as PictureBox;
@@ -3216,7 +3152,6 @@ namespace PortraitManager
             Color selFore = Color.White;
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
 
-            // swap fore and back on hover, keep border as fore
             btn.BackColor = selFore;
             btn.ForeColor = selBack;
             btn.FlatAppearance.BorderColor = selFore;
@@ -3229,7 +3164,6 @@ namespace PortraitManager
             Color selFore = Color.White;
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
 
-            // restore original colors
             btn.BackColor = selBack;
             btn.ForeColor = selFore;
             btn.FlatAppearance.BorderColor = selFore;

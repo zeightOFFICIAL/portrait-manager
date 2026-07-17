@@ -15,7 +15,6 @@
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
 using PortraitManager.sources;
 using PortraitManager.Properties;
 
@@ -62,10 +61,8 @@ namespace PortraitManager
         private bool _groupSmlInitialized;
         private bool _groupSml2Initialized;
 
-        // Loaded from BebasNeue-Regular-ru.ttf, which is confirmed (checked its GDI Unicode
-        // range table) to cover both Latin and Cyrillic glyphs - so this single collection
-        // covers every BebasNeue usage app-wide, English or Russian-localized folder names alike.
         private static PrivateFontCollection _fontCollection;
+        private static PrivateFontCollection _fontCollectionCyrillic;
         private static CancellationTokenSource _cancellationTokenSource;
 
         private string _selectedArchivePath;
@@ -81,7 +78,8 @@ namespace PortraitManager
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            _fontCollectionCyrillic = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
 
             Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
                  bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
@@ -132,17 +130,9 @@ namespace PortraitManager
             ButtonGalleryDelete.Font = bebasNeueHead;
             ButtonGalleryShowFolder.Font = bebasNeueHead;
 
-            // Body/explanatory/exact-value text: plain sans-serif, not the stylised BebasNeue, so
-            // it stays exactly legible (paths, counts, credits, footer). Explicitly assigned here
-            // rather than left at whatever the Designer.cs default happens to be.
             Font arialSmall = new Font(FontFamily.GenericSansSerif, 8f);
             Font arialSmallUnderline = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Underline);
 
-            // Path page: game info (explain) label shrunk to 0.8x (12 -> 9.6), selected-path
-            // label enlarged to 1.5x (8 -> 12) so the actual path stands out more than the
-            // static blurb around it. The path label's row is AutoSize (see Designer.cs
-            // tableLayoutPanel21 row 1) so it can wrap to two or more lines and grow instead of
-            // clipping a long path.
             LabelSelectPathExplain.Font = new Font(FontFamily.GenericSansSerif, 12f * 0.8f);
             LabelSelectPathSelected.Font = new Font(FontFamily.GenericSansSerif, 8f * 1.5f);
             LabelMainPageFooter.Font = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Italic);
@@ -211,10 +201,10 @@ namespace PortraitManager
 
             if (_gameSelected == 'd')
             {
-                LabelKingCreatePortraitLarge.Text = "⍞ Full";
-                LabelKingCreatePortraitMedium.Text = "⌻ Full²";
-                LabelKingCreatePortraitSmall.Text = "⌼ Sml";
-                LabelKingCreatePortraitSml2.Text = "⌼ Sml²";
+                LabelKingCreatePortraitLarge.Text = TextVariables.BUTTON_KINGCREATEPAGELRG_D;
+                LabelKingCreatePortraitMedium.Text = TextVariables.BUTTON_KINGCREATEPAGEMID_D;
+                LabelKingCreatePortraitSmall.Text = TextVariables.BUTTON_KINGCREATEPAGESML_D;
+                LabelKingCreatePortraitSml2.Text = TextVariables.BUTTON_KINGCREATEPAGESML2_D;
             }
             else
             {
@@ -224,8 +214,8 @@ namespace PortraitManager
                 LabelKingCreatePortraitSml2.Text = TextVariables.BUTTON_KINGCREATEPAGESML2;
             }
 
-            ButtonKingCreateNewPortrait.Text = "Create +";
-            ButtonKingBackToPathfinder.Text = "< Back";
+            ButtonKingCreateNewPortrait.Text = TextVariables.BUTTON_CREATE_NEW;
+            ButtonKingBackToPathfinder.Text = TextVariables.BUTTON_BACK_TO_PATHFINDER;
             ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
             ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACT_SELECTED;
             ButtonExtractBack.Text = TextVariables.BUTTON_EXTRACT_BACK;
@@ -239,7 +229,7 @@ namespace PortraitManager
             ButtonGalleryClone.Text = TextVariables.BUTTON_GALLERY_CLONE;
             ButtonGalleryChange.Text = TextVariables.BUTTON_GALLERY_CHANGE;
             ButtonGalleryDelete.Text = TextVariables.BUTTON_GALLERY_DELETE;
-            ButtonGalleryShowFolder.Text = "FOLDER \U0001F4C1";
+            ButtonGalleryShowFolder.Text = TextVariables.BUTTON_GALLERY_SHOWFOLDER;
 
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
 
@@ -262,19 +252,19 @@ namespace PortraitManager
             foreach (var zb in zoomInButtons)
             {
                 if (zb == null) continue;
-                zb.Text = "\U0001F50D+";
+                zb.Text = TextVariables.ICON_ZOOM_IN;
             }
             var zoomOutButtons = new Button[] { ButtonKingLrgZoomOut, ButtonKingMedZoomOut, ButtonKingSmlZoomOut, ButtonKingSml2ZoomOut };
             foreach (var zb in zoomOutButtons)
             {
                 if (zb == null) continue;
-                zb.Text = "\U0001F50D\u2212";
+                zb.Text = TextVariables.ICON_ZOOM_OUT;
             }
             var zoomResetButtons = new Button[] { ButtonKingLrgZoomReset, ButtonKingMedZoomReset, ButtonKingSmlZoomReset, ButtonKingSml2ZoomReset };
             foreach (var zb in zoomResetButtons)
             {
                 if (zb == null) continue;
-                zb.Text = "\u21ba";
+                zb.Text = TextVariables.ICON_ZOOM_RESET;
             }
         }
 
@@ -283,13 +273,13 @@ namespace PortraitManager
             get
             {
                 CreateParams handleParam = base.CreateParams;
-                handleParam.ExStyle |= 0x02000000;     
+                handleParam.ExStyle |= 0x02000000;
                 return handleParam;
             }
         }
 
         public MainForm()
-        {            
+        {
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.Selectable, false);

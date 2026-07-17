@@ -15,7 +15,6 @@
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
 using PortraitManager.forms;
 using PortraitManager.Properties;
 using PortraitManager.sources;
@@ -39,7 +38,7 @@ namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        /// Hides every top-level page layout (main/extract/gallery/start menu/path/create-portrait).
+
         public void ParentLayoutsDisable()
         {
             RootFunctions.LayoutDisable(LayoutMainPage);
@@ -49,7 +48,7 @@ namespace PortraitManager
             RootFunctions.LayoutDisable(LayoutPathPage);
             RootFunctions.LayoutDisable(LayoutKingCreatePortrait);
         }
-        
+
         public void ParentLayoutsSetDockFill()
         {
             foreach (Control control in Controls)
@@ -57,8 +56,7 @@ namespace PortraitManager
                 RootFunctions.LayoutsSetDockFill(control);
             }
         }
-        
-        /// Shared TableLayoutPanel-based page-navigation helpers used across MainForm.
+
         class RootFunctions
         {
             static public void LayoutEnable(TableLayoutPanel table)
@@ -69,7 +67,7 @@ namespace PortraitManager
                     table.Enabled = true;
                 }
             }
-            
+
             static public void LayoutDisable(TableLayoutPanel table)
             {
                 if (table.Visible == true && table.Enabled == true)
@@ -78,7 +76,7 @@ namespace PortraitManager
                     table.Enabled = false;
                 }
             }
-            
+
             static public void LayoutsSetDockFill(Control control)
             {
                 if (control is TableLayoutPanel)
@@ -93,28 +91,24 @@ namespace PortraitManager
             }
         }
 
-        /// Fits each portrait editor's currently loaded image to its PictureBox using cover-scaling.
         public void ReplacePictureBoxImagesToDefault()
         {
-            // Apply "cover" scaling to portrait picture boxes so one dimension matches the
-            // PictureBox and the other is >= PictureBox (can be cropped). This centers the
-            // image and allows later zoom/pan logic to operate on the original image.
+
             try
             {
-                // Large
+
                 if (PicKingLrg != null && PicKingLrg.Image != null)
                 {
-                    // preserve original copy for zoom operations
+
                     if (_originalImageLrg == null)
                         _originalImageLrg = new Bitmap(PicKingLrg.Image);
 
                     var scaled = ImageControl.PortraitCrop.ResizeCover(_originalImageLrg, PicKingLrg.Width, PicKingLrg.Height);
-                    // use Normal mode and set control size to match rendered image so drag/zoom
-                    // logic (which uses PictureBox.Width/Height as image size) stays correct
+
                     PicKingLrg.Dock = DockStyle.None;
                     PicKingLrg.SizeMode = PictureBoxSizeMode.Normal;
                     PicKingLrg.Size = new Size(scaled.Width, scaled.Height);
-                    // dispose previous displayed image if it is not the original reference
+
                     if (PicKingLrg.Image != null && !object.ReferenceEquals(PicKingLrg.Image, _originalImageLrg))
                     {
                         try { PicKingLrg.Image.Dispose(); } catch { }
@@ -122,7 +116,6 @@ namespace PortraitManager
                     PicKingLrg.Image = scaled;
                 }
 
-                // Medium
                 if (PicKingMed != null && PicKingMed.Image != null)
                 {
                     if (_originalImageMed == null)
@@ -139,7 +132,6 @@ namespace PortraitManager
                     PicKingMed.Image = scaled;
                 }
 
-                // Small
                 if (PicKingSml != null && PicKingSml.Image != null)
                 {
                     if (_originalImageSml == null)
@@ -156,7 +148,6 @@ namespace PortraitManager
                     PicKingSml.Image = scaled;
                 }
 
-                // Sml2
                 if (PicKingSml2 != null && PicKingSml2.Image != null)
                 {
                     if (_originalImageSml2 == null)
@@ -175,11 +166,10 @@ namespace PortraitManager
             }
             catch
             {
-                // silently ignore failures during UI default replacement
+
             }
         }
 
-        /// Navigates to the game-folder selection page for the currently selected game.
         private void OpenPathSelectPage()
         {
             ParentLayoutsDisable();
@@ -436,7 +426,7 @@ namespace PortraitManager
                     Cursor = _isCustomNpcMode ? Cursors.Default : Cursors.Hand,
                 };
 
-                rb.Font = new Font(_fontCollection.Families[0], 12);
+                rb.Font = new Font(_fontCollectionCyrillic.Families[0], 12);
 
                 rb.FlatAppearance.BorderSize = 3;
                 rb.FlatAppearance.BorderColor = gameBack;
@@ -552,26 +542,14 @@ namespace PortraitManager
             catch { }
         }
 
-        // Vanilla Owlcat's native custom-companion-portrait feature stores its folders directly
-        // in Portraits\ under this prefix. Distinct from the CustomNpcPortraits mod's own
-        // companion-override folders (ModCompanionPortraitPrefix), which the mod itself creates
-        // via GetCompanionPortraitDirPrefix() = "CustomNpcPortraits - ".
         private const string VanillaCompanionPortraitPrefix = "CompanionCustomPortrait - ";
         private const string ModCompanionPortraitPrefix = "CustomNpcPortraits - ";
 
-        // Kingmaker has a native (vanilla, non-mod) companion-custom-portrait feature using its
-        // own prefix. WotR has no such vanilla feature - its companions are only available
-        // through the CustomNpcPortraits mod's own prefix, sitting directly in Portraits\.
         private string GetCompanionPrefixForCurrentGame()
         {
             return _gameSelected == 'w' ? ModCompanionPortraitPrefix : VanillaCompanionPortraitPrefix;
         }
 
-        // WotR's CustomNpcPortraits mod does not place a replacement image at a companion
-        // folder's root until the player actually customizes that companion - until then, the
-        // only image available is the untouched default the mod backed up on first run, at
-        // "<folder>\Backup of Game Default Portraits\*.png". Fall back to that so an
-        // uncustomized WotR companion still shows/loads something instead of being skipped.
         private static string[] GetPngFilesWithBackupFallback(string folderPath)
         {
             string[] files;
@@ -730,10 +708,7 @@ namespace PortraitManager
         {
             string portraitsRoot = GetNonPlayerPortraitsRoot(gamePath);
             if (portraitsRoot == null) return;
-            // Verified against real installs: Tyranny's ".../portraits/" only has "companion/"
-            // (singular, no separate npc sibling). PoE and Deadfire both have "companion/"
-            // (singular) and "npcs/" (plural) - neither matches the original "npc"/"companions"
-            // guess (Deadfire also has an "animal_companion/" sibling, not portrait-relevant).
+
             string[] subDirs;
             if (_gameSelected == 't') subDirs = new[] { "companion" };
             else if (_gameSelected == 'p' || _gameSelected == 'd') subDirs = new[] { "companion", "npcs" };
@@ -885,9 +860,6 @@ namespace PortraitManager
             }
         }
 
-        // "Portraits - All Additions" can hold, per character, either the portrait files directly
-        // or one or more nested subfolders representing area/plot-specific portrait versions.
-        // Recurse into any folder that has no images of its own so those versions still surface.
         private void LoadCharactersGalleryRecursive(string dir, CancellationToken token, int depth = 0)
         {
             if (token.IsCancellationRequested || depth > 10) return;
@@ -903,8 +875,6 @@ namespace PortraitManager
                     ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase))
                     ?? files[0];
 
-                // Direct child of the root ("Portraits - All Additions\Name") -> plain name.
-                // Anything deeper is an area/plot-specific version -> "Name (Version)".
                 string displayName = depth <= 1
                     ? Path.GetFileName(dir)
                     : Path.GetFileName(Path.GetDirectoryName(dir)) + " (" + Path.GetFileName(dir) + ")";
@@ -941,8 +911,7 @@ namespace PortraitManager
             foreach (string subDir in subDirs)
             {
                 string subDirName = Path.GetFileName(subDir);
-                // The mod's own backup-of-original-portrait folder - not a real character/version,
-                // must not be recursed into or it would surface as a fake "version" entry.
+
                 if (subDirName.Equals("Backup of Game Default Portraits", StringComparison.OrdinalIgnoreCase) ||
                     subDirName.Equals("Game Default Portraits", StringComparison.OrdinalIgnoreCase))
                     continue;
@@ -959,9 +928,6 @@ namespace PortraitManager
                 return;
             }
 
-            // No images directly and no real version subfolders to recurse into - same rule as
-            // WotR companions: this character has never been customized, so the only image
-            // available is the one the mod backed up on first run. Show that instead of nothing.
             string[] backupFiles = GetPngFilesWithBackupFallback(dir);
             if (backupFiles.Length == 0) return;
 
@@ -1272,7 +1238,7 @@ namespace PortraitManager
                 {
                     BeginInvoke(new Action(() =>
                     {
-                        using (var msg = new MyMessageDialog("Failed to load archive: " + ex.Message))
+                        using (var msg = new MyMessageDialog(string.Format(TextVariables.MESG_ARCHIVE_LOAD_FAILED, ex.Message)))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
                             msg.ShowDialog(this);
@@ -1303,7 +1269,7 @@ namespace PortraitManager
             }
             else
             {
-                using (var msg = new MyMessageDialog("No portraits matching the expected dimensions for the selected game were found in the archive.\nMake sure you have the correct game selected."))
+                using (var msg = new MyMessageDialog(TextVariables.MESG_NO_MATCHING_PORTRAITS))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -1311,11 +1277,6 @@ namespace PortraitManager
             }
         }
 
-        // SharpCompress's managed .7z decoder is noticeably slower and, on some archives,
-        // unreliable (non-deterministic load time, occasional crashes). A real 7-Zip install
-        // (native, battle-tested) is both faster and more robust, so prefer it when present and
-        // only fall back to the managed decoder if 7-Zip isn't installed. .rar keeps using
-        // SharpCompress unconditionally since it's fine there.
         private static bool TryExtractWithNative7Zip(string archivePath, string destDir)
         {
             string exe = SystemControl.FileControl.FindNative7ZipExecutable();
@@ -1595,7 +1556,7 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
                     {
-                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        using (var msg = new MyMessageDialog(TextVariables.MESG_ARCHIVE_CONTENTS_NOT_FOUND))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
                             msg.ShowDialog(this);
@@ -1716,7 +1677,7 @@ namespace PortraitManager
             }
             catch (Exception ex)
             {
-                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                using (var msg = new MyMessageDialog(string.Format(TextVariables.MESG_EXTRACTION_FAILED, ex.Message)))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -1777,7 +1738,7 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
                     {
-                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        using (var msg = new MyMessageDialog(TextVariables.MESG_ARCHIVE_CONTENTS_NOT_FOUND))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
                             msg.ShowDialog(this);
@@ -1858,7 +1819,7 @@ namespace PortraitManager
             }
             catch (Exception ex)
             {
-                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                using (var msg = new MyMessageDialog(string.Format(TextVariables.MESG_EXTRACTION_FAILED, ex.Message)))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -1951,7 +1912,7 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
                     {
-                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        using (var msg = new MyMessageDialog(TextVariables.MESG_ARCHIVE_CONTENTS_NOT_FOUND))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
                             msg.ShowDialog(this);
@@ -2090,7 +2051,7 @@ namespace PortraitManager
             }
             catch (Exception ex)
             {
-                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                using (var msg = new MyMessageDialog(string.Format(TextVariables.MESG_EXTRACTION_FAILED, ex.Message)))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -2107,7 +2068,7 @@ namespace PortraitManager
             string portraitsDir = CoreSettings.Default.GamePath;
             if (string.IsNullOrEmpty(portraitsDir) || portraitsDir == "0")
             {
-                using (var msg = new MyMessageDialog("Game path not set. Please configure the game path first."))
+                using (var msg = new MyMessageDialog(TextVariables.MESG_GAME_PATH_NOT_SET_EXTRACT))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -2212,7 +2173,7 @@ namespace PortraitManager
                 {
                     if (string.IsNullOrEmpty(_shellTempDir) || !Directory.Exists(_shellTempDir))
                     {
-                        using (var msg = new MyMessageDialog("Archive contents not found. Please reload the archive."))
+                        using (var msg = new MyMessageDialog(TextVariables.MESG_ARCHIVE_CONTENTS_NOT_FOUND))
                         {
                             msg.StartPosition = FormStartPosition.CenterParent;
                             msg.ShowDialog(this);
@@ -2330,7 +2291,7 @@ namespace PortraitManager
             }
             catch (Exception ex)
             {
-                using (var msg = new MyMessageDialog("Extraction failed: " + ex.Message))
+                using (var msg = new MyMessageDialog(string.Format(TextVariables.MESG_EXTRACTION_FAILED, ex.Message)))
                 {
                     msg.StartPosition = FormStartPosition.CenterParent;
                     msg.ShowDialog(this);
@@ -2386,16 +2347,6 @@ namespace PortraitManager
             }
         }
 
-        // SetKingPortraitGroup only ever makes ONE group's layout/panel visible at a time
-        // (LayoutKingPortraitGroupMedium/Small/Sml2.Visible = false while inactive) - so calling
-        // FitImageToPanel immediately for an inactive group runs against a panel that isn't
-        // necessarily laid out to its real size yet, producing a wrong crop/fit (this is the
-        // black-bars-until-you-switch-tabs bug: switching tabs happens to trigger a correct,
-        // lazy re-fit via EnsureKingGroupInitialized, which only runs for a group that hasn't
-        // already been marked initialized). So: only fit+mark-initialized the group that's
-        // actually active right now (Large, in every caller of this - Change/Clone always open
-        // on the Large tab); for every other group, just store the image and leave it
-        // un-initialized so the existing, correct lazy-fit runs whenever the user switches to it.
         private void LoadImageIntoPortraitBox(PictureBox pic, Image img, PortraitGroupSelection group)
         {
             StoreOriginalImage(pic, img);
@@ -2406,11 +2357,7 @@ namespace PortraitManager
             }
             else
             {
-                // EnsureKingGroupInitialized's lazy fit (FitPictureToPanel) bails out early if
-                // pic.Image is still null - which it can be for a box that has never been shown
-                // in this app session. Assign the raw image directly (not fitted - just a
-                // placeholder that gets replaced the moment this group actually becomes active)
-                // so that null-check never blocks the real, correctly-timed fit later.
+
                 if (pic.Image == null)
                     pic.Image = img;
 
@@ -2468,14 +2415,6 @@ namespace PortraitManager
             catch { }
         }
 
-        // Deadfire's companion archives ship "_lg" (210x330), "_convo" (90x141), "_sm" (76x96)
-        // and "_si" (76x96) as genuinely separate files per companion (confirmed by the
-        // extraction code's own completeness check, which requires all four to exist) - the
-        // real game data does the same. Loading a single found file into every box (the old
-        // behavior here for Large/Small/Sml2) is exactly the bug that produced black bars on
-        // Tyranny's and PoE's Small portraits; give each box its own matching file instead,
-        // same fix already applied there. fromBackup mirrors the Tyranny/Pillars loaders so
-        // this same function can serve both the present-load and backup-restore paths.
         private void LoadDeadfireGalleryIntoCreatePage(string folderPath, bool fromBackup = false)
         {
             string dir = Path.GetDirectoryName(folderPath);
@@ -2552,19 +2491,6 @@ namespace PortraitManager
             return Path.Combine(basePath, "Portraits - Npc");
         }
 
-        // The "Characters" tab merges everything that isn't a companion into one view:
-        // - Kingmaker: "Portraits - All Additions", a sibling of Portraits\ populated by a
-        //   separate NPC portrait pack (not edvin76's mod - its output format doesn't match any
-        //   of that mod's own directory-naming methods), confirmed to display in-game.
-        // - WotR: the mod's own "Portraits - Npc" (regular NPCs; portraits sit one level deeper
-        //   per-NPC, same recursive shape as Kingmaker's "All Additions"), "Portraits - Army"
-        //   (army leaders) and "Portraits - Tactical" (army units), all folded into one tab per
-        //   the user's direction rather than given their own tabs.
-        // Rogue Trader has no CustomNPC support at all, so this returns nothing there.
-        //
-        // "Portraits - Npc" itself is the mod's own live NPC folder (created as the player meets
-        // NPCs in-game), and the mod is available for both Kingmaker and WotR - so it belongs in
-        // both games' Characters roots, alongside whatever else each game also has.
         private List<string> GetCharactersPortraitsRoots(string basePath)
         {
             var roots = new List<string>();
@@ -2582,10 +2508,6 @@ namespace PortraitManager
             return roots;
         }
 
-        // Returns true if a backup already existed for this entry before this call (i.e. this
-        // is at least the second time it's been changed) - on the very first change, the
-        // backup this creates is byte-identical to the present portrait, so there's nothing
-        // meaningful for the caller to offer a choice between.
         private bool BackupNonPlayerPortraitSet(string entryPath)
         {
             string dir = Path.GetDirectoryName(entryPath);
@@ -2605,9 +2527,6 @@ namespace PortraitManager
             return hadExistingBackup;
         }
 
-        // These games have no mod keeping a separate original copy, so BackupNonPlayerPortraitSet
-        // makes our own ".backup" of the game's shipped asset the first time it's about to be
-        // replaced (and only that once). This looks up whichever one exists, same priority order.
         private string FindBestNonPlayerBackupImage(string entryPath)
         {
             string dir = Path.GetDirectoryName(entryPath);
@@ -2621,13 +2540,6 @@ namespace PortraitManager
             return null;
         }
 
-        // Tyranny's "_lg" and "_sm" files are genuinely different native images (not just
-        // different crops of one source) with visibly different aspect ratios - "_lg" is
-        // 210x330, "_sm" is 76x96. Stretching one of them across every size box (the generic
-        // approach every other non-player game still uses below) makes whichever box the
-        // aspect actually mismatches show black bars once saved (and, worse, once the preview
-        // itself started reflecting the true crop). Load each box from its own matching file
-        // instead, same fix already applied to Deadfire's "_convo" vs "_lg" split above.
         private void LoadTyrannyGalleryIntoCreatePage(string folderPath, bool fromBackup)
         {
             string dir = Path.GetDirectoryName(folderPath);
@@ -2648,7 +2560,7 @@ namespace PortraitManager
 
                 string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
                 bool smFallback = !File.Exists(smPath);
-                if (smFallback) smPath = lgPath; // no dedicated small file - fall back rather than show nothing
+                if (smFallback) smPath = lgPath;
                 try
                 {
                     string log =
@@ -2672,10 +2584,6 @@ namespace PortraitManager
             catch { }
         }
 
-        // PoE's companion files use the exact same "_lg" (210x330) / "_sm" (76x96) split as
-        // Tyranny's (verified against a real install) - same reasoning as
-        // LoadTyrannyGalleryIntoCreatePage above applies here, so give it the same per-size
-        // loader instead of falling through to the generic "one file into every box" path.
         private void LoadPillarsGalleryIntoCreatePage(string folderPath, bool fromBackup)
         {
             string dir = Path.GetDirectoryName(folderPath);
@@ -2804,10 +2712,7 @@ namespace PortraitManager
                 ButtonGalleryChange.Visible = false;
                 ButtonGalleryShowFolder.Visible = true;
                 ButtonGalleryBack.Visible = true;
-                // NOTE: every row here is a Percent-type RowStyle (see Designer.cs) and must
-                // stay that way - only ever adjust .Height, never replace the RowStyle objects
-                // (that previously mutated SizeType to AutoSize/Absolute and broke every other
-                // tab's layout afterward, since they all assume Percent sizing persists).
+
                 LayoutGalleryRight.RowStyles[0].Height = 0;
                 LayoutGalleryRight.RowStyles[1].Height = 0;
                 LayoutGalleryRight.RowStyles[2].Height = 0;
@@ -2817,10 +2722,7 @@ namespace PortraitManager
             }
             else
             {
-                // "nonplayer" (Tyranny's Companions/close-NPCs) is the game's own shipped asset
-                // file, not something this app created - same reasoning as Companions/Characters
-                // for Kingmaker/WotR: no casual permanent-delete button for content that isn't
-                // ours, especially since deleting here would also remove its one-time backup.
+
                 bool showDelete = !_isCustomNpcMode && _galleryTabSelected != "companions" &&
                                    _galleryTabSelected != "characters" && _galleryTabSelected != "nonplayer";
                 ButtonGalleryDelete.Visible = showDelete;
@@ -2837,8 +2739,7 @@ namespace PortraitManager
                 }
                 else
                 {
-                    // Delete's row is hidden here (Companions/Characters) - give its share to
-                    // Clone and Change instead of leaving an empty gap.
+
                     LayoutGalleryRight.RowStyles[1].Height = 43;
                     LayoutGalleryRight.RowStyles[2].Height = 43;
                     LayoutGalleryRight.RowStyles[3].Height = 0;
@@ -2882,10 +2783,6 @@ namespace PortraitManager
             _panelGalleryOverlay.Visible = true;
         }
 
-        // This app never creates its own backup copies of a CustomNpcPortraits-mod-managed
-        // folder (Companions or Characters/Portraits - Npc) - the mod already keeps one, at
-        // "<folder>\Backup of Game Default Portraits\*.png", so there's no need for a second,
-        // parallel one. This just looks up the mod's own backup image.
         private string FindModDefaultBackupImage(string folderPath)
         {
             if (string.IsNullOrEmpty(folderPath)) return null;
@@ -2945,7 +2842,7 @@ namespace PortraitManager
                 total = _archiveEntries.Count;
                 selected = FlowLayoutPanelExtract.Controls.OfType<CheckBox>().Count(cb => cb.Checked);
             }
-            LabelExtractCounter.Text = "Total: " + total + " | Selected: " + selected;
+            LabelExtractCounter.Text = string.Format(TextVariables.LABEL_EXTRACT_COUNTER, total, selected);
         }
 
         private ushort GetMainMenuIndexForCurrentGame()
@@ -3006,10 +2903,9 @@ namespace PortraitManager
             }
             else
             {
-                _groupMedInitialized = true; // mark as initialized so EnsureKingGroup skips it
+                _groupMedInitialized = true;
             }
 
-            // Enable drag-and-drop onto each portrait PictureBox (file or URL text)
             WirePortraitDragDrop(PicKingLrg);
             WirePortraitDragDrop(PicKingSml);
             WirePortraitDragDrop(PicKingSml2);
@@ -3040,18 +2936,6 @@ namespace PortraitManager
                 int newWidth = (int)Math.Round(staticHeight / ar);
                 int newHeight = (int)staticHeight;
 
-                // PanelKingSml's cell in LayoutKingPortraitGroupSmall uses a Percent column,
-                // which clamps the panel's width to whatever fraction of the row's current
-                // total width that percentage computes to, regardless of Anchor/Dock -
-                // requesting a wider Size than the cell allows just gets silently shrunk back
-                // down. Tyranny and PoE's Small portrait (both 76x96, SMALL_AR=1.2631) need
-                // more width relative to their height than that percent column happens to
-                // allow at this container size, so the panel ended up shorter/wider than
-                // 76:96 and produced a crop/target aspect mismatch (visible as black bars).
-                // Rather than fight the column (widening it squeezes the sibling button
-                // panel), shrink to fit within whatever width the cell already provides,
-                // keeping the same 76:96 ratio - i.e. maximize inside the available cell
-                // instead of overflowing it.
                 if ((_gameSelected == 't' || _gameSelected == 'p') && panel.Name == "PanelKingSml")
                 {
                     int availableWidth = panel.Width;
@@ -3107,10 +2991,7 @@ namespace PortraitManager
             else if (selection == PortraitGroupSelection.Small)
             {
                 if (!HasPortraitSpecific(gameType, "SMALL_WIDTH")) return;
-                // PoE's and Deadfire's Small panels need slightly less height than the other
-                // 76:96 games (same AR, but the surrounding layout cell clamps their width
-                // tighter here) - without this the panel ends up wider than 76:96, producing
-                // left/right black bars on save. Confirmed by testing; scoped to each game.
+
                 float smlHeight = (_gameSelected == 'l') ? 256f
                     : (_gameSelected == 'p') ? 345f
                     : (_gameSelected == 'd') ? 340f
@@ -3123,8 +3004,7 @@ namespace PortraitManager
             else if (selection == PortraitGroupSelection.Sml2)
             {
                 if (!HasPortraitSpecific(gameType, "SML2_WIDTH")) return;
-                // Same reasoning as Small above - Deadfire's Sml2 ("_si") shares the same 76:96
-                // AR and the same panel-clamp behavior, needing the same reduction.
+
                 float sml2Height = (_gameSelected == 'd') ? 340f : 360f;
                 AdjustPortraitPanelAspect(
                     PanelKingSml2,
@@ -3271,7 +3151,6 @@ namespace PortraitManager
         private const int DWMWA_CAPTION_COLOR = 35;
         private const int DWMWA_TEXT_COLOR = 36;
 
-        /// Applies the dark-mode titlebar, border, caption, and text colors (DWM composition attributes) to match the current game's theme; no-ops on Windows versions without DWM support.
         private void ApplyGameWindowStyle()
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
@@ -3327,8 +3206,7 @@ namespace PortraitManager
         private void ZoomPortrait(PictureBox pb, Panel panel, int wheelDelta, Point localPos)
         {
             Image original = GetOriginalImage(pb);
-            // If no stored original exists, fall back to using the currently displayed image
-            // and store a deep copy as the original so subsequent resizes stay high-quality.
+
             if (original == null && pb.Image != null)
             {
                 try
@@ -3344,9 +3222,6 @@ namespace PortraitManager
             }
             if (original == null || pb.Image == null) return;
 
-            // Determine current zoom: prefer tracked zoom level, but compute from displayed
-            // image size when possible so cover-mode images (which may be larger than the
-            // picturebox control) behave correctly.
             float currentZoom = GetZoomLevel(pb);
             try
             {
@@ -3387,10 +3262,9 @@ namespace PortraitManager
             Bitmap zoomed = ImageControl.Direct.Resize(original, newW, newH);
             Image old = pb.Image;
             pb.Image = zoomed;
-            // disable docking so we can reposition/resize the PictureBox freely
+
             pb.Dock = DockStyle.None;
-            // update control size to reflect new image dimensions so ClampPictureLocation
-            // and other logic that relies on PictureBox.Width/Height behave correctly
+
             pb.SizeMode = PictureBoxSizeMode.Normal;
             pb.Size = new Size(newW, newH);
             if (old != null && old != original)
@@ -3464,7 +3338,7 @@ namespace PortraitManager
             Bitmap resized = ImageControl.Direct.Resize(original, newW, newH);
             Image oldImg = pic.Image;
             pic.Image = resized;
-            // disable docking so location/size updates take effect and dragging works
+
             pic.Dock = DockStyle.None;
             pic.SizeMode = PictureBoxSizeMode.Normal;
             pic.Size = new Size(newW, newH);
@@ -3488,7 +3362,7 @@ namespace PortraitManager
 
             if (!GameTypes.TryGetValue(_gameSelected, out var gameType))
             {
-                // No valid game selected (e.g. sentinel '-'), skip styling updates.
+
                 _activeKingPortraitGroup = selection;
                 LayoutKingPortraitGroupLarge.Visible = selection == PortraitGroupSelection.Large;
                 LayoutKingPortraitGroupMedium.Visible = selection == PortraitGroupSelection.Medium;
@@ -3510,7 +3384,6 @@ namespace PortraitManager
             bool hasSml2 = HasPortraitSpecific(gameType, "SML2_WIDTH") &&
                            HasPortraitSpecific(gameType, "SML2_HEIGHT");
 
-            // Fall back to first available group if requested selection has no dimensions
             bool selectionAvailable =
                 (selection == PortraitGroupSelection.Large && hasLarge) ||
                 (selection == PortraitGroupSelection.Medium && hasMedium) ||
@@ -3554,27 +3427,20 @@ namespace PortraitManager
             LabelKingCreatePortraitSml2.Visible = hasSml2;
             LabelKingCreatePortraitSml2.BackColor = hasSml2 && selection == PortraitGroupSelection.Sml2 ? selBack : Color.Transparent;
             LabelKingCreatePortraitSml2.ForeColor = hasSml2 && selection == PortraitGroupSelection.Sml2 ? selFore : Color.White;
-            // force repaint to update borders
+
             LabelKingCreatePortraitLarge?.Invalidate();
             LabelKingCreatePortraitMedium?.Invalidate();
             LabelKingCreatePortraitSmall?.Invalidate();
             LabelKingCreatePortraitSml2?.Invalidate();
             AdjustActivePortraitPanelAspect(selection);
             EnsureKingGroupInitialized(selection);
-            // Update portrait buttons styles to match selected game colors
+
             UpdatePortraitButtonsStyle();
 
-            // Reset Small label margin to default left alignment
             LabelKingCreatePortraitSmall.Margin = new Padding(0, 0, 3, 0);
 
-            // Ensure large/medium layouts use small group as reference for size/row styles
             ApplySmallLayoutReference();
-            // Reset displayed images into default cover state and fit-to-panel only
-            // when automatic resize is explicitly allowed. This prevents group
-            // changes (label clicks) from forcing a zoom-out. Callers that intend
-            // to perform a reset (placeholder load, loading a new image) should
-            // set `_allowAutoResize = true` before calling SetKingPortraitGroup
-            // or calling the resize helpers directly.
+
             if (_allowAutoResize)
             {
                 try
@@ -3594,7 +3460,7 @@ namespace PortraitManager
                     }
                     else
                     {
-                        // also ensure large has consistent zoom state
+
                         FitPictureToPanel(PicKingLrg, PanelKingLrg);
                     }
                 }
@@ -3606,7 +3472,6 @@ namespace PortraitManager
         {
             if (pb == null || panel == null || pb.Image == null) return;
 
-            // Determine original image stored or use current image as fallback
             Image original = GetOriginalImage(pb);
             if (original == null)
             {
@@ -3628,14 +3493,14 @@ namespace PortraitManager
             int newH = Math.Max(1, (int)(original.Height * minZoom));
 
             Bitmap fitted = ImageControl.Direct.Resize(original, newW, newH);
-            // dispose previous displayed image if it is not the original reference
+
             try { if (pb.Image != null && !object.ReferenceEquals(pb.Image, original)) pb.Image.Dispose(); } catch { }
             pb.Image = fitted;
             pb.Dock = DockStyle.None;
             pb.SizeMode = PictureBoxSizeMode.Normal;
             pb.Size = new Size(newW, newH);
             SetZoomLevel(pb, minZoom);
-            // center the picture inside the panel
+
             pb.Location = new Point((panelW - pb.Width) / 2, (panelH - pb.Height) / 2);
         }
 
@@ -3644,7 +3509,7 @@ namespace PortraitManager
             if (LayoutKingPortraitGroupSmall == null) return;
             try
             {
-                // Copy overall size so other groups align to small group area
+
                 var refSize = LayoutKingPortraitGroupSmall.Size;
                 LayoutKingPortraitGroupLarge.Size = refSize;
                 if (LayoutKingPortraitGroupMedium != null)
@@ -3652,22 +3517,19 @@ namespace PortraitManager
                 if (LayoutKingPortraitGroupSml2 != null)
                     LayoutKingPortraitGroupSml2.Size = refSize;
 
-                // Copy row styles (counts and heights)
                 CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupLarge);
                 if (LayoutKingPortraitGroupMedium != null)
                     CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupMedium);
                 if (LayoutKingPortraitGroupSml2 != null)
                     CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupSml2);
 
-                // Ensure button panels (which are table layout panels) have the same row styles
                 CopyRowStyles(PanelKingSmlButtons, PanelKingLrgButtons);
                 if (PanelKingMedButtons != null)
                     CopyRowStyles(PanelKingSmlButtons, PanelKingMedButtons);
                 if (PanelKingSml2Buttons != null)
                     CopyRowStyles(PanelKingSmlButtons, PanelKingSml2Buttons);
 
-                // Determine bottom row height in pixels if absolute
-                int bottomHeight = 40; // fallback
+                int bottomHeight = 40;
                 if (LayoutKingPortraitGroupSmall.RowCount > 0)
                 {
                     var last = LayoutKingPortraitGroupSmall.RowStyles[LayoutKingPortraitGroupSmall.RowCount - 1];
@@ -3675,7 +3537,6 @@ namespace PortraitManager
                         bottomHeight = (int)Math.Max(1, last.Height);
                 }
 
-                // Apply bottom button heights and ensure consistent minimums
                 var zoomButtons = new Button[] {
                     ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
                     ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
@@ -3730,7 +3591,6 @@ namespace PortraitManager
             Color selFore = Color.White;
             try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
 
-            // Style hint labels above the Local/Web buttons — pick resource keys per game
             string lrgKey, medKey, smlKey, sml2Key;
             if (_gameSelected == 'r')
             {
@@ -3742,7 +3602,7 @@ namespace PortraitManager
             else if (_gameSelected == 'p' || _gameSelected == 't')
             {
                 lrgKey = "HINT_PILLARS_LRG";
-                medKey = null; // no medium for these games
+                medKey = null;
                 smlKey = "HINT_PILLARS_SML";
                 sml2Key = null;
             }
@@ -3755,9 +3615,9 @@ namespace PortraitManager
             }
             else if (_gameSelected == 'l')
             {
-                lrgKey = null; // no large for Wasteland 3
+                lrgKey = null;
                 medKey = null;
-                smlKey = null; // set directly below
+                smlKey = "HINT_WASTE_SML";
                 sml2Key = null;
             }
             else
@@ -3796,12 +3656,6 @@ namespace PortraitManager
                     }
                 }
                 catch { }
-            }
-
-            // Wasteland 3: only Small exists at 256×256
-            if (_gameSelected == 'l' && LabelKingSmlHint != null)
-            {
-                LabelKingSmlHint.Text = "Portrait (256×256) — used for character portraits.\n\nChoose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.";
             }
 
             var buttons = new Button[] {

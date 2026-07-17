@@ -398,4 +398,117 @@ Load the backup, or keep working from the present portrait?</value>
   <data name="WEBDIALOG_TIP" xml:space="preserve">
     <value>Tip: you can also drop an image file directly onto the portrait panel.</value>
   </data>
+  <data name="BUTTON_KINGCREATEPAGELRG_D" xml:space="preserve">
+    <value>⍞ Full</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGEMID_D" xml:space="preserve">
+    <value>⌻ Full²</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML_D" xml:space="preserve">
+    <value>⌼ Sml</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML2_D" xml:space="preserve">
+    <value>⌼ Sml²</value>
+  </data>
+  <data name="BUTTON_CREATE_NEW" xml:space="preserve">
+    <value>Create +</value>
+  </data>
+  <data name="BUTTON_BACK_TO_PATHFINDER" xml:space="preserve">
+    <value>&lt; Back</value>
+  </data>
+  <data name="BUTTON_GALLERY_SHOWFOLDER" xml:space="preserve">
+    <value>FOLDER 📁</value>
+  </data>
+  <data name="ICON_ZOOM_IN" xml:space="preserve">
+    <value>🔍+</value>
+  </data>
+  <data name="ICON_ZOOM_OUT" xml:space="preserve">
+    <value>🔍−</value>
+  </data>
+  <data name="ICON_ZOOM_RESET" xml:space="preserve">
+    <value>↺</value>
+  </data>
+  <data name="MENU_HOVER_MARKER" xml:space="preserve">
+    <value>◈</value>
+  </data>
+  <data name="TEXT_PATH_PLACEHOLDER" xml:space="preserve">
+    <value> - </value>
+  </data>
+  <data name="MESG_FOLDER_LOCATION_UNKNOWN" xml:space="preserve">
+    <value>Could not determine the folder location.</value>
+  </data>
+  <data name="MESG_GAME_DIRECTORY_UNKNOWN" xml:space="preserve">
+    <value>Could not determine the game directory.</value>
+  </data>
+  <data name="MESG_UNSUPPORTED_IMAGE_LINK" xml:space="preserve">
+    <value>That link does not point to a supported image file.
+
+Supported formats: PNG, JPG, GIF, BMP, WebP.</value>
+  </data>
+  <data name="MESG_IMAGE_LOAD_FAILED" xml:space="preserve">
+    <value>Could not load the image from that address. {0}</value>
+  </data>
+  <data name="INQR_DELETE_PORTRAIT_SET" xml:space="preserve">
+    <value>Delete this portrait set?</value>
+  </data>
+  <data name="MESG_ARCHIVE_LOAD_FAILED" xml:space="preserve">
+    <value>Failed to load archive: {0}</value>
+  </data>
+  <data name="MESG_NO_MATCHING_PORTRAITS" xml:space="preserve">
+    <value>No portraits matching the expected dimensions for the selected game were found in the archive.
+Make sure you have the correct game selected.</value>
+  </data>
+  <data name="MESG_ARCHIVE_CONTENTS_NOT_FOUND" xml:space="preserve">
+    <value>Archive contents not found. Please reload the archive.</value>
+  </data>
+  <data name="MESG_EXTRACTION_FAILED" xml:space="preserve">
+    <value>Extraction failed: {0}</value>
+  </data>
+  <data name="MESG_GAME_PATH_NOT_SET_EXTRACT" xml:space="preserve">
+    <value>Game path not set. Please configure the game path first.</value>
+  </data>
+  <data name="LABEL_EXTRACT_COUNTER" xml:space="preserve">
+    <value>Total: {0} | Selected: {1}</value>
+  </data>
+  <data name="HINT_WASTE_SML" xml:space="preserve">
+    <value>Portrait (256×256) — used for character portraits.
+
+Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_EMPTY_URL" xml:space="preserve">
+    <value>Please enter a web address before pressing Load.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_INVALID_URL" xml:space="preserve">
+    <value>The address you entered does not look like a valid web link. Make sure it starts with http:// or https:// and contains no spaces.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_UNSUPPORTED_FORMAT" xml:space="preserve">
+    <value>That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP, WebP.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_NOT_IMAGE" xml:space="preserve">
+    <value>The server did not return an image. Make sure the link points directly to an image file.
+Try dragging the image from your browser onto a portrait slot instead.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_NO_DATA" xml:space="preserve">
+    <value>The image could not be loaded. The server did not return any data.
+Try dragging the image from your browser onto a portrait slot instead.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_LOAD_EXCEPTION" xml:space="preserve">
+    <value>The image could not be loaded. {0}
+Try dragging the image from your browser onto a portrait slot instead.</value>
+  </data>
+  <data name="DIALOG_TITLE_ERROR" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TOAST_TITLE" xml:space="preserve">
+    <value>✓ Portrait created</value>
+  </data>
+  <data name="TOAST_INFO" xml:space="preserve">
+    <value>Saved to game portraits folder</value>
+  </data>
+  <data name="TOAST_OPEN_FOLDER" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
+  <data name="TOAST_NAME_PREFIX" xml:space="preserve">
+    <value>Name: {0}</value>
+  </data>
 </root>

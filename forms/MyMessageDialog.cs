@@ -15,7 +15,6 @@
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
 using PortraitManager.Properties;
 using System;
 using System.Drawing;
@@ -44,13 +43,9 @@ namespace PortraitManager.forms
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
             var family = _fontCollection.Families[0];
-            // Message body needs to be exactly legible (may be a longer sentence, an error
-            // detail, or a Cyrillic folder/character name) - a plain sans-serif reads far better
-            // than the stylised, condensed BebasNeue for that. BebasNeue stays on the button,
-            // which is a short, branded label rather than something the user needs to carefully
-            // read. 12 * 1.5 * 0.8 = 14.4.
+
             LabelMesg.Font = new Font(FontFamily.GenericSansSerif, 14.4f);
             ButtonClose.Font = new Font(family, 16f);
         }
@@ -62,12 +57,7 @@ namespace PortraitManager.forms
 
         private void MyMessageDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // This dialog is borderless and ShowInTaskbar=false; closing it can otherwise leave
-            // Windows unsure which window to hand activation back to, which sometimes shows up
-            // as the owner (or, if this dialog was itself opened from another dialog, the real
-            // root application window further up the chain) getting minimized instead of simply
-            // losing this dialog. Doing this in FormClosing - while our own handle still exists -
-            // is more reliable than doing it after the fact in FormClosed.
+
             Form root = Owner;
             while (root != null && root.Owner != null)
                 root = root.Owner;
@@ -128,4 +118,3 @@ namespace PortraitManager.forms
         }
     }
 }
-

@@ -1,4 +1,4 @@
-using PortraitManager.Properties;
+﻿using PortraitManager.Properties;
 using System;
 using System.Drawing;
 using System.Drawing.Text;
@@ -22,7 +22,6 @@ namespace PortraitManager.forms
             TextInit();
             TextBoxURL.Select();
 
-            // add a subtle drag-drop hint below the buttons
             var tipLabel = new Label
             {
                 ForeColor = Color.Gray,
@@ -59,14 +58,12 @@ namespace PortraitManager.forms
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
 
             try
             {
                 var family = _fontCollection.Families[0];
-                // Title/buttons are key/branded labels -> BebasNeue, unscaled. Only the URL
-                // textbox is enlarged (1.75x, 11->19.25) - that's the one thing the user is
-                // actually typing/reading closely. The hint and everything else stay as-is.
+
                 LabelTitle.Font    = new Font(family, 18f);
                 LabelHint.Font     = new Font(FontFamily.GenericSansSerif, 10f);
                 TextBoxURL.Font    = new Font(FontFamily.GenericSansSerif, 19.25f);
@@ -128,17 +125,16 @@ namespace PortraitManager.forms
 
             if (string.IsNullOrWhiteSpace(url))
             {
-                ShowError("Please enter a web address before pressing Load.");
+                ShowError(TextVariables.WEBDIALOG_ERR_EMPTY_URL);
                 return;
             }
 
             if (!IsUrlSafe(url))
             {
-                ShowError("The address you entered does not look like a valid web link. Make sure it starts with http:// or https:// and contains no spaces.");
+                ShowError(TextVariables.WEBDIALOG_ERR_INVALID_URL);
                 return;
             }
 
-            // quick check: look at the path segment for image extensions
             try
             {
                 var uri = new Uri(url);
@@ -147,7 +143,7 @@ namespace PortraitManager.forms
                 string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
                 if (ext.Length > 0 && Array.IndexOf(imageExts, ext) < 0)
                 {
-                    ShowError("That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP, WebP.");
+                    ShowError(TextVariables.WEBDIALOG_ERR_UNSUPPORTED_FORMAT);
                     return;
                 }
             }
@@ -186,7 +182,7 @@ namespace PortraitManager.forms
                             !contentType.StartsWith("application/octet-stream", StringComparison.OrdinalIgnoreCase) &&
                             !string.IsNullOrEmpty(contentType) && !contentType.Contains("binary"))
                         {
-                            ShowError("The server did not return an image. Make sure the link points directly to an image file.\nTry dragging the image from your browser onto a portrait slot instead.");
+                            ShowError(TextVariables.WEBDIALOG_ERR_NOT_IMAGE);
                             return;
                         }
 
@@ -202,7 +198,7 @@ namespace PortraitManager.forms
 
                 if (imageData == null || imageData.Length == 0)
                 {
-                    ShowError("The image could not be loaded. The server did not return any data.\nTry dragging the image from your browser onto a portrait slot instead.");
+                    ShowError(TextVariables.WEBDIALOG_ERR_NO_DATA);
                     return;
                 }
 
@@ -217,7 +213,7 @@ namespace PortraitManager.forms
             }
             catch (Exception ex)
             {
-                ShowError("The image could not be loaded. " + ex.Message + "\nTry dragging the image from your browser onto a portrait slot instead.");
+                ShowError(string.Format(TextVariables.WEBDIALOG_ERR_LOAD_EXCEPTION, ex.Message));
             }
         }
 
@@ -233,7 +229,7 @@ namespace PortraitManager.forms
             }
             catch
             {
-                MessageBox.Show(this, message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, message, TextVariables.DIALOG_TITLE_ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void Button_MouseEnter(object sender, EventArgs e)
@@ -254,11 +250,7 @@ namespace PortraitManager.forms
 
         private void MyWebDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Same defensive fix as MyMessageDialog/MyInquiryDialog: don't let the real root
-            // application window end up minimized just because this borderless,
-            // ShowInTaskbar=false dialog closed. Walk to the true root (in case a MyMessageDialog
-            // error was shown on top of this one, making its Owner this dialog rather than
-            // MainForm) and do it in FormClosing, while our own handle still exists.
+
             Form root = Owner;
             while (root != null && root.Owner != null)
                 root = root.Owner;
@@ -277,4 +269,3 @@ namespace PortraitManager.forms
         }
     }
 }
-

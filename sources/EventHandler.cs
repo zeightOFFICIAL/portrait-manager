@@ -26,49 +26,12 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        private string _extractFolderPath = "!NONE!";
-        private string _tunneledNameToPortraitPage = "!NONE!";
-
-        private void PicPortraitTemp_DragDrop(object sender, DragEventArgs e)
-        {
-            string path = ParseDragDropFile(e);
-
-            if (path == "!NONE!")
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-
-                if (_isAnyLoadedToPortraitPage == true)
-                {
-                    LoadTempImagesToPicBox(_imageSelectionFlag);
-                    return;
-                }
-
-                _isAnyLoadedToPortraitPage = false;
-                LoadTempImagesToPicBox(_imageSelectionFlag);
-                return;
-            }
-            else
-            {
-                _isAnyLoadedToPortraitPage = true;
-                CreateAllImagesInTemp(path, _imageSelectionFlag);
-                LoadTempImagesToPicBox(_imageSelectionFlag);
-            }
-
-        }
-
         private static bool HasPortraitSpecific(GameType gameType, string key)
         {
             try
@@ -316,9 +279,9 @@ namespace PortraitManager
                     string fileName = FileName(sizeSuffix);
                     string savePath = Path.Combine(outDir, fileName);
                     if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
-                        CropAndSaveDirectFill(orig, pb, panel, w, h, savePath);
+                        ImageControl.PortraitCrop.SaveFillCrop(orig, pb, panel, w, h, savePath);
                     else
-                        CropAndSaveDirectUniform(orig, pb, panel, w, h, savePath);
+                        ImageControl.PortraitCrop.SaveUniformCrop(orig, pb, panel, w, h, savePath, _gameSelected);
                     if (femaleDir != null)
                         File.Copy(savePath, Path.Combine(femaleDir, fileName), overwrite: true);
                 }
@@ -368,11 +331,10 @@ namespace PortraitManager
                         "si");
                 }
 
-
-
                 if (ValidateCreatedPortrait(outDir, uid, femaleDir))
                 {
-                    ShowCreatePortraitToast(outDir, uid);
+                    if (!string.IsNullOrWhiteSpace(outDir) && Directory.Exists(outDir))
+                        new forms.MyCreationTooltip(outDir, uid).ShowAnchoredTo(this);
 
                     if (keepOnLayout)
                     {
@@ -720,180 +682,6 @@ namespace PortraitManager
             return valid;
         }
 
-        private void ShowCreatePortraitToast(string outDir, string uid = null)
-        {
-            if (string.IsNullOrWhiteSpace(outDir) || !Directory.Exists(outDir))
-                return;
-
-            string portraitName = uid ?? Path.GetFileName(outDir);
-
-            var toast = new Panel
-            {
-                BackColor = Color.FromArgb(24, 24, 24),
-                BorderStyle = BorderStyle.FixedSingle,
-                Size = new Size(360, 94),
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Right
-            };
-
-            var title = new Label
-            {
-                AutoSize = false,
-                Size = new Size(310, 20),
-                Location = new Point(8, 6),
-                ForeColor = Color.FromArgb(130, 230, 130),
-                Font = new Font(Font, FontStyle.Bold),
-                Text = "✓ Portrait created"
-            };
-
-            var name = new Label
-            {
-                AutoSize = false,
-                Size = new Size(310, 18),
-                Location = new Point(8, 30),
-                ForeColor = Color.Gainsboro,
-                Text = "Name: " + portraitName
-            };
-
-            var info = new Label
-            {
-                AutoSize = false,
-                Size = new Size(310, 16),
-                Location = new Point(8, 50),
-                ForeColor = Color.Silver,
-                Text = "Saved to game portraits folder"
-            };
-
-            var link = new LinkLabel
-            {
-                AutoSize = true,
-                Location = new Point(8, 68),
-                LinkColor = Color.DeepSkyBlue,
-                ActiveLinkColor = Color.White,
-                VisitedLinkColor = Color.DeepSkyBlue,
-                Text = "Open folder"
-            };
-            link.LinkClicked += (s, e) =>
-            {
-                try
-                {
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = outDir,
-                        UseShellExecute = true
-                    });
-                }
-                catch { }
-            };
-
-            // Drawn by hand rather than relying on a Unicode glyph (e.g. "✕") in a Label - glyph
-            // rendering/hit-testing came out glitchy (missing X, only edges of the box
-            // clickable). A plain Panel with its own Paint handler sidesteps both problems:
-            // what gets drawn and what area is clickable are the exact same rectangle.
-            var closeButton = new Panel
-            {
-                Size = new Size(28, 28),
-                Location = new Point(toast.Width - 34, 4),
-                BackColor = Color.FromArgb(24, 24, 24),
-                Cursor = Cursors.Hand
-            };
-            Color closeXColor = Color.Silver;
-            closeButton.Paint += (s, e) =>
-            {
-                int pad = 9;
-                using (var pen = new Pen(closeXColor, 2f))
-                {
-                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    e.Graphics.DrawLine(pen, pad, pad, closeButton.Width - pad, closeButton.Height - pad);
-                    e.Graphics.DrawLine(pen, closeButton.Width - pad, pad, pad, closeButton.Height - pad);
-                }
-            };
-            closeButton.MouseEnter += (s, e) =>
-            {
-                closeXColor = Color.White;
-                closeButton.BackColor = Color.FromArgb(60, 60, 60);
-                closeButton.Invalidate();
-            };
-            closeButton.MouseLeave += (s, e) =>
-            {
-                closeXColor = Color.Silver;
-                closeButton.BackColor = Color.FromArgb(24, 24, 24);
-                closeButton.Invalidate();
-            };
-
-            toast.Controls.Add(title);
-            toast.Controls.Add(name);
-            toast.Controls.Add(info);
-            toast.Controls.Add(link);
-            toast.Controls.Add(closeButton);
-            closeButton.BringToFront();
-            toast.Location = new Point(ClientSize.Width - toast.Width - 12, ClientSize.Height - toast.Height - 12);
-
-            Controls.Add(toast);
-            toast.BringToFront();
-
-            var hideTimer = new System.Windows.Forms.Timer { Interval = 5000 };
-
-            void DismissToast()
-            {
-                hideTimer.Stop();
-                hideTimer.Dispose();
-                if (!toast.IsDisposed)
-                {
-                    Controls.Remove(toast);
-                    toast.Dispose();
-                }
-            }
-
-            hideTimer.Tick += (s, e) => DismissToast();
-            hideTimer.Start();
-
-            closeButton.Click += (s, e) => DismissToast();
-
-            // Hovering anywhere on the toast pauses the auto-dismiss countdown entirely (not
-            // just a one-time reset) so it can't expire mid-hover, then resumes a fresh
-            // countdown once the mouse actually leaves - it never disappears out from under
-            // the user while they're still reading it or about to click "Open folder"/close.
-            void PauseTimer(object s, EventArgs e) => hideTimer.Stop();
-            void ResumeTimer(object s, EventArgs e)
-            {
-                hideTimer.Stop();
-                hideTimer.Start();
-            }
-            foreach (Control c in new Control[] { toast, title, name, info, link, closeButton })
-            {
-                c.MouseEnter += PauseTimer;
-                c.MouseLeave += ResumeTimer;
-            }
-        }
-
-        private string CompactPathForToast(string fullPath)
-        {
-            if (string.IsNullOrWhiteSpace(fullPath)) return fullPath;
-
-            string normalized = fullPath.Replace('\\', '/');
-            string[] anchors = {
-                "/LocalLow/Owlcat",
-                "/My Games/",
-                "/Portraits/",
-                "/PillarsOfEternity",
-                "/Data/data/art/gui/portraits"
-            };
-
-            foreach (var anchor in anchors)
-            {
-                int idx = normalized.IndexOf(anchor, StringComparison.OrdinalIgnoreCase);
-                if (idx >= 0)
-                {
-                    return normalized.Substring(idx);
-                }
-            }
-
-            if (normalized.Length > 56)
-                return "..." + normalized.Substring(normalized.Length - 56);
-
-            return normalized;
-        }
-
         private void RestoreKingPortraitEditorsToPlaceholder()
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gameType) || gameType.PlaceholderPortrait == null)
@@ -926,262 +714,6 @@ namespace PortraitManager
             catch
             {
             }
-        }
-
-        private void CropAndSaveDirectFill(
-            Image original,
-            PictureBox pb,
-            Panel panel,
-            int targetW,
-            int targetH,
-            string outPath)
-        {
-            if (original == null) return;
-
-            int imgW = original.Width;
-            int imgH = original.Height;
-
-            Rectangle visible = pb.RectangleToClient(
-                panel.RectangleToScreen(panel.ClientRectangle));
-
-            if (visible.Width <= 0 || visible.Height <= 0) return;
-
-            float scaleX = (float)imgW / pb.ClientSize.Width;
-            float scaleY = (float)imgH / pb.ClientSize.Height;
-
-            // Center of the visible area in original image coordinates
-            float centerX = (visible.X + visible.Width / 2f) * scaleX;
-            float centerY = (visible.Y + visible.Height / 2f) * scaleY;
-
-            // Initial crop from the visible area
-            int cropW = (int)Math.Round(visible.Width * scaleX);
-            int cropH = (int)Math.Round(visible.Height * scaleY);
-            if (cropW <= 0 || cropH <= 0) return;
-
-            // Force the crop rectangle to have exactly the target aspect ratio
-            // so the final resize is a pure uniform scale with no distortion
-            float targetAR = (float)targetW / targetH;
-            if (cropW * targetH > cropH * targetW)
-                cropW = (int)Math.Round(cropH * targetAR);
-            else if (cropW * targetH < cropH * targetW)
-                cropH = (int)Math.Round(cropW / targetAR);
-
-            // Center the crop on the user's view, clamped to image bounds
-            int cropX = Math.Max(0, Math.Min(imgW - cropW,
-                (int)Math.Round(centerX - cropW / 2f)));
-            int cropY = Math.Max(0, Math.Min(imgH - cropH,
-                (int)Math.Round(centerY - cropH / 2f)));
-
-            using (Bitmap cropped = new Bitmap(cropW, cropH))
-            {
-                using (Graphics g = Graphics.FromImage(cropped))
-                {
-                    g.CompositingQuality =
-                        System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                    g.InterpolationMode =
-                        System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.SmoothingMode =
-                        System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    g.PixelOffsetMode =
-                        System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    g.DrawImage(original,
-                        new Rectangle(0, 0, cropW, cropH),
-                        new RectangleF(cropX, cropY, cropW, cropH),
-                        GraphicsUnit.Pixel);
-                }
-
-                // Pure uniform resize — AR already matches exactly
-                using (Bitmap output = new Bitmap(targetW, targetH))
-                {
-                    using (Graphics g = Graphics.FromImage(output))
-                    {
-                        g.CompositingQuality =
-                            System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                        g.InterpolationMode =
-                            System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        g.SmoothingMode =
-                            System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        g.PixelOffsetMode =
-                            System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-
-                        g.DrawImage(cropped,
-                            new Rectangle(0, 0, targetW, targetH),
-                            new Rectangle(0, 0, cropW, cropH),
-                            GraphicsUnit.Pixel);
-                    }
-
-                    output.Save(
-                        outPath,
-                        System.Drawing.Imaging.ImageFormat.Png);
-                }
-            }
-        }
-
-        private void CropAndSaveDirectUniform(
-            Image original,
-            PictureBox pb,
-            Panel panel,
-            int targetW,
-            int targetH,
-            string outPath)
-        {
-            if (original == null) return;
-
-            int imgW = original.Width;
-            int imgH = original.Height;
-
-            // The panel viewport, mapped into picture-box coordinates.
-            Rectangle visible = pb.RectangleToClient(
-                panel.RectangleToScreen(panel.ClientRectangle));
-
-            if (visible.Width <= 0 || visible.Height <= 0) return;
-
-            // Map from displayed pixels back to original image pixels.
-            float scaleX = (float)imgW / pb.ClientSize.Width;
-            float scaleY = (float)imgH / pb.ClientSize.Height;
-
-            float srcX = visible.X * scaleX;
-            float srcY = visible.Y * scaleY;
-            float srcW = visible.Width * scaleX;
-            float srcH = visible.Height * scaleY;
-
-            // Clamp to image bounds
-            if (srcX < 0) { srcW += srcX; srcX = 0; }
-            if (srcY < 0) { srcH += srcY; srcY = 0; }
-            if (srcX + srcW > imgW) srcW = imgW - srcX;
-            if (srcY + srcH > imgH) srcH = imgH - srcY;
-
-            if (srcW <= 0 || srcH <= 0) return;
-
-            int cropW = (int)Math.Round(srcW);
-            int cropH = (int)Math.Round(srcH);
-            if (cropW <= 0 || cropH <= 0) return;
-
-            // Step 1 — crop the visible area from the original
-            using (Bitmap cropped = new Bitmap(cropW, cropH))
-            {
-                using (Graphics g = Graphics.FromImage(cropped))
-                {
-                    g.CompositingQuality =
-                        System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                    g.InterpolationMode =
-                        System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.SmoothingMode =
-                        System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                    g.PixelOffsetMode =
-                        System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                    g.DrawImage(original,
-                        new Rectangle(0, 0, cropW, cropH),
-                        new RectangleF(srcX, srcY, srcW, srcH),
-                        GraphicsUnit.Pixel);
-                }
-
-                // Step 2 — uniform-resize to target dimensions (no stretching)
-                using (Bitmap output = new Bitmap(targetW, targetH))
-                {
-                    using (Graphics g = Graphics.FromImage(output))
-                    {
-                        g.CompositingQuality =
-                            System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                        g.InterpolationMode =
-                            System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                        g.SmoothingMode =
-                            System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        g.PixelOffsetMode =
-                            System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                        g.Clear(Color.Black);
-
-                        float scale = Math.Min(
-                            (float)targetW / cropW,
-                            (float)targetH / cropH);
-                        int destW = (int)Math.Round(cropW * scale);
-                        int destH = (int)Math.Round(cropH * scale);
-                        int destX = (targetW - destW) / 2;
-                        int destY = (targetH - destH) / 2;
-
-                        if (_gameSelected == 't' && targetW == 76 && targetH == 96)
-                        {
-                            try
-                            {
-                                string log =
-                                    $"[{DateTime.Now:HH:mm:ss}] Tyranny SMALL diagnostic{Environment.NewLine}" +
-                                    $"  img: {imgW}x{imgH}  aspect={(float)imgW / imgH:F5}{Environment.NewLine}" +
-                                    $"  panel.ClientSize: {panel.ClientSize.Width}x{panel.ClientSize.Height}{Environment.NewLine}" +
-                                    $"  pb.ClientSize: {pb.ClientSize.Width}x{pb.ClientSize.Height}  pb.Size: {pb.Size.Width}x{pb.Size.Height}  pb.Location: {pb.Location}{Environment.NewLine}" +
-                                    $"  panel.Visible(chain): {panel.Visible}  pb.Visible: {pb.Visible}{Environment.NewLine}" +
-                                    $"  visible rect (pb-local): {visible}{Environment.NewLine}" +
-                                    $"  scaleX/scaleY: {scaleX:F5}/{scaleY:F5}{Environment.NewLine}" +
-                                    $"  src rect: X={srcX:F2} Y={srcY:F2} W={srcW:F2} H={srcH:F2}{Environment.NewLine}" +
-                                    $"  crop: {cropW}x{cropH}{Environment.NewLine}" +
-                                    $"  target: {targetW}x{targetH}  scale={scale:F5}  dest: {destW}x{destH} at ({destX},{destY}){Environment.NewLine}{Environment.NewLine}";
-                                File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
-                            }
-                            catch { }
-                        }
-
-                        g.DrawImage(cropped,
-                            new Rectangle(destX, destY, destW, destH),
-                            new Rectangle(0, 0, cropW, cropH),
-                            GraphicsUnit.Pixel);
-                    }
-
-                    output.Save(
-                        outPath,
-                        System.Drawing.Imaging.ImageFormat.Png);
-                }
-            }
-        }
-
-        private void PicPortraitTemp_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-        
-        private void PicPortraitTemp_Click(object sender, EventArgs e)
-        {
-            //string path = SystemControl.FileControl.OpenFileLocation(TextVariables.TEXT_IMAGEFILTER, TextVariables.TEXT_TITLEOPENFILE);
-
-            //if (path == "!NONE!")
-            //{
-            //    //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_WRONGFORMAT, CoreSettings.Default.SelectedLang))
-            //    //{
-            //    //    Message.StartPosition = FormStartPosition.CenterParent;
-            //    //    Message.ShowDialog();
-            //    //}
-
-            //    if (_isAnyLoadedToPortraitPage == true)
-            //    {
-            //        LoadTempImagesToPicBox(_imageSelectionFlag);
-            //        ResizeVisibleImagesToWindowSize();
-            //        return;
-            //    }
-
-            //    _isAnyLoadedToPortraitPage = false;
-            //    LoadTempImagesToPicBox(_imageSelectionFlag);
-            //    ResizeVisibleImagesToWindowSize();
-            //    return;
-            //}
-            //else
-            //{
-            //    _isAnyLoadedToPortraitPage = true;
-            //    GenerateImageSelectionFlagString(_imageSelectionFlag);
-            //    CreateAllImagesInTemp(path, _imageSelectionFlag);
-            //    LoadTempImagesToPicBox(_imageSelectionFlag);
-            //    ResizeVisibleImagesToWindowSize();
-            //}
-            //Focus();
-        }
-
-        private void ButtonLocalPortraitLoad_Click(object sender, EventArgs e)
-        {
-            PicPortraitTemp_Click(sender, e);
         }
 
         private void PicPortraitLrg_MouseDown(object sender, MouseEventArgs e)
@@ -1381,847 +913,6 @@ namespace PortraitManager
         {
             try { AdjustActivePortraitPanelAspect(_activeKingPortraitGroup); } catch { }
         }
-
-        private void ButtonCreatePortrait_Click(object sender, EventArgs e)
-        {
-            //ButtonToMainPageAndFolder.Enabled = true;
-            //RootFunctions.LayoutDisable(LayoutScalePage);
-            _activeMenuIndex = 100;
-
-            string path = "";
-            bool placeableFilepath = false;
-            uint pseudoUniqueName = 0;
-
-            //if (!SystemControl.FileControl.Readonly.DirectoryExists(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    RootFunctions.LayoutEnable(LayoutFinalPage);
-            //    Focus();
-            //    LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
-            //    LabelDirLoc.Text = ACTIVE_PATHS[_gameSelected];
-            //    ButtonToMainPageAndFolder.Enabled = false;
-            //    return;
-            //}
-
-            if (_tunneledNameToPortraitPage != "!NONE!")
-            {
-                path = _tunneledNameToPortraitPage;
-                _tunneledNameToPortraitPage = "!NONE!";
-                GeneratePortraits(path);
-                placeableFilepath = true;
-            }
-
-            //while (!placeableFilepath)
-            //{
-            //    path = ACTIVE_PATHS[_gameSelected] + "\\" + Convert.ToString(pseudoUniqueName);
-            //    if (!Directory.Exists(path))
-            //    {
-            //        GeneratePortraits(path);
-            //        placeableFilepath = true;
-            //    }
-            //    pseudoUniqueName++;
-            //}
-
-            //if (CheckPortraitExistence(path))
-            //{
-            //    RootFunctions.LayoutEnable(LayoutFinalPage);
-            //    Focus();
-            //    LabelFinalMesg.Text = TextVariables.LABEL_CREATEDOK;
-            //    LabelDirLoc.Text = path;
-            //}
-            //else
-            //{
-            //    RootFunctions.LayoutEnable(LayoutFinalPage);
-            //    Focus();
-            //    LabelFinalMesg.Text = TextVariables.LABEL_CREATEDERROR;
-            //    LabelDirLoc.Text = path;
-            //    ButtonToMainPageAndFolder.Enabled = false;
-            //}
-        }
-        
-        private void PicPortraitMed_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-            //    ResizeImageToParentControl(PicPortraitMed, img, PanelPortraitMed);
-        }
-        
-        private void PicPortraitLrg_MouseDoubleClick(object sedner, MouseEventArgs e)
-        {
-            //using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-            //    ResizeImageToParentControl(PicPortraitLrg, img, PanelPortraitLrg);
-        }
-        
-        private void PicPortraitSml_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-            //    ResizeImageToParentControl(PicPortraitSml, img, PanelPortraitSml);
-        }
-        
-        private void LabelMedImg_MouseHover(object sender, EventArgs e)
-        {
-            //LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG2;
-        }
-        
-        private void LabelLrgImg_MouseHover(object sender, EventArgs e)
-        {
-            //LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG2;
-        }
-        
-        private void LabelSmlImg_MouseHover(object sender, EventArgs e)
-        {
-            //LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG2;
-        }
-        
-        private void LabelMedImg_MouseLeave(object sender, EventArgs e)
-        {
-            //LabelMedImage.Text = TextVariables.LABEL_MEDIUMIMG;
-        }
-        
-        private void LabelLrgImg_MouseLeave(object sender, EventArgs e)
-        {
-            //LabelLrgImg.Text = TextVariables.LABEL_LARGEIMG;
-        }
-        
-        private void LabelSmlImg_MouseLeave(object sender, EventArgs e)
-        {
-            //LabelSmlImg.Text = TextVariables.LABEL_SMALLIMG;
-        }
-        
-        private void ButtonWebPortraitLoad_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 200;
-            //RootFunctions.LayoutDisable(LayoutFilePage);            
-            //RootFunctions.LayoutEnable(LayoutURLDialog);
-            Focus();
-            //AnyButton_Leave(ButtonDenyWeb, e);
-            //AnyButton_Leave(ButtonLoadWeb, e);
-        }
-        
-        private void ButtonHintOnScalePage_Click(object sender, EventArgs e)
-        {
-            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_SCALEPAGE, CoreSettings.Default.SelectedLang))
-            //{
-            //    Hint.StartPosition = FormStartPosition.CenterParent;
-            //    Hint.ShowDialog();
-            //}
-        }
-
-        private void ButtonHintOnFilePage_Click(object sender, EventArgs e)
-        {
-            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_FILEPAGE, CoreSettings.Default.SelectedLang))
-            //{
-            //    Hint.StartPosition = FormStartPosition.CenterParent;
-            //    Hint.ShowDialog();
-            //}
-        }
-
-        private void PictureBoxTitle_Click(object sender, EventArgs e)
-        {
-            if (_gameSelected == 'p')
-            {
-                _gameSelected = 'w';
-            }
-            else if (_gameSelected == 'r')
-            {
-                _gameSelected = 'p';
-            }
-            else
-            {
-                _gameSelected = 'r';
-            }
-
-            CoreSettings.Default.GameType = _gameSelected;
-            CoreSettings.Default.Save();
-            UpdateColorScheme();
-
-            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_GAMEFOLDERNOTFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    RemoveClickEventsFromMainButtons();
-            //}
-            //else
-            //{
-            //    AddClickEventsToMainButtons();
-            //}
-
-            if (_gameSelected == 'r')
-            {
-                //CheckBoxVerified.Checked = false;
-                //ButtonLoadCustom.Visible = false;
-                //ButtonLoadCustomNPC.Visible = false;
-                //ButtonLoadCustomArmy.Visible = false;
-                return;
-            }
-
-            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && 
-            //    (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    RemoveClickEventsFromCustomPortraitsButtons();
-            //    CheckBoxVerified.Checked = false;
-            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-            //    UseStamps.Default.Save();
-            //    ButtonLoadCustom.Visible = false;
-            //    ButtonLoadCustomNPC.Visible = false;
-            //    ButtonLoadCustomArmy.Visible = false;
-
-            //}
-            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) 
-            //    && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    AddClickEventsToCustomPortraitsButtons();
-            //    CheckBoxVerified.Checked = true;
-            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
-            //    UseStamps.Default.Save();
-            //    ButtonLoadCustom.Visible = true;
-            //    ButtonLoadCustomNPC.Visible = true;
-            //    ButtonLoadCustomArmy.Visible = true;
-            //}
-
-        }
-        
-        private void ButtonOpenFolder_Click(object sender, EventArgs e)
-        {
-            //System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
-        }
-        
-        private void ButtonChangePortrait_Click(object sender, EventArgs e)
-        {
-            //if (ListGallery.Items.Count < 1)
-            {
-                return;
-            }
-
-            //if (ListGallery.SelectedItems.Count < 1)
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-
-                return;
-            }
-            //else if (ListGallery.SelectedItems.Count > 1)
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_SELECTEDMORE, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-            }
-
-            //ListViewItem item = ListGallery.SelectedItems[0];
-            //using (Image img = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
-            //    ClearPictureBoxImages(img);
-            SystemControl.FileControl.ClearTempImages();
-            SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning\\");
-
-            //string path = item.Tag.ToString().Split('>')[0];
-            //string type = item.Tag.ToString().Split('>')[1];
-
-            //try
-            //{
-            //    using (Image img = new Bitmap(path + LARGE_APPEND))
-            //        img.Save(TEMP_LARGE_APPEND);
-            //}
-            //catch
-            //{
-            //    using (Image img = new Bitmap(path + MEDIUM_APPEND))
-            //    {
-            //        Bitmap newImg = ImageControl.Direct.Resize(img, 692, 1024);
-            //        newImg.Save(TEMP_LARGE_APPEND);
-            //    }
-            //}
-
-            //using (Image img = new Bitmap(path + MEDIUM_APPEND))
-            //    img.Save(TEMP_MEDIUM_APPEND);
-            //using (Image img = new Bitmap(path + SMALL_APPEND))
-            //    img.Save(TEMP_SMALL_APPEND);
-
-            LoadTempImagesToPicBox(100);
-            _tunneledNameToPortraitPage = "!NONE!";
-
-            //using (MyInquiryDialog Inquiry = new MyInquiryDialog(TextVariables.INQR_DELETEOLD, CoreSettings.Default.SelectedLang))
-            //{
-            //    Inquiry.StartPosition = FormStartPosition.CenterParent;
-
-            //    if (Inquiry.ShowDialog() == DialogResult.OK)
-            //    {
-            //        ListGallery.Items.RemoveByKey(item.Text);
-            //        ImgListGallery.Images.RemoveByKey(item.Text);
-
-            //        //if (type == "LOCAL")
-            //        //{
-            //        //    SystemControl.FileControl.DeleteDirectoryRecursive(ACTIVE_PATHS[_gameSelected] + "\\" + item.Text);
-            //        //}
-            //        //else
-            //        //{
-            //        //    SystemControl.FileControl.DeleteDirectoryRecursive(path + "\\BACKUP");
-            //        //    SystemControl.FileControl.CreateDirectory(path + "\\BACKUP");
-            //        //    SystemControl.FileControl.CopyFile(path + LARGE_APPEND, path + "\\BACKUP" + LARGE_APPEND);
-            //        //    SystemControl.FileControl.CopyFile(path + MEDIUM_APPEND, path + "\\BACKUP" + MEDIUM_APPEND);
-            //        //    SystemControl.FileControl.CopyFile(path + SMALL_APPEND, path + "\\BACKUP" + SMALL_APPEND);
-            //        //}
-            //        _tunneledNameToPortraitPage = path;
-            //        item.Remove();
-            //    }
-            //    else
-            //    {
-            //        if (type == "CUSTOM")
-            //        {
-            //            _tunneledNameToPortraitPage = Path.Combine(path, path.Split('\\').Last().Split('-').Last() + DateTimeOffset.Now.ToUnixTimeMilliseconds().ToString());
-            //        }
-            //    }
-            //}
-
-            ButtonToMainPage3_Click(sender, e);
-            //RootFunctions.LayoutDisable(LayoutMainPage);
-            //RootFunctions.LayoutEnable(LayoutFilePage);
-            Focus();
-            RestoreFilePageToInit();
-            _isAnyLoadedToPortraitPage = true;
-        }
-
-        private void ButtonDeletePortait_Click(object sender, EventArgs e)
-        {
-            //if (ListGallery.Items.Count < 1)
-            {
-                return;
-            }
-
-            //if (ListGallery.SelectedItems.Count < 1)
-            {
-                //using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_NONESELECTED, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //}
-                return;
-            }
-
-            //using (MyInquiryDialog Message = new MyInquiryDialog(TextVariables.MESG_DELETE + ListGallery.SelectedItems.Count, CoreSettings.Default.SelectedLang))
-            //{
-            //    Message.StartPosition = FormStartPosition.CenterParent;
-            //    if (Message.ShowDialog() != DialogResult.OK)
-            //    {
-            //        return;
-            //    }
-            //}
-
-            //foreach (ListViewItem item in ListGallery.SelectedItems)
-            //{
-            //    string path = ACTIVE_PATHS[_gameSelected] + "\\" + item.Text + "\\";
-            //    ImgListGallery.Images.RemoveByKey(item.Text);
-            //    item.Remove();
-            //    SystemControl.FileControl.DeleteDirectoryRecursive(path);
-            //}
-            _cancellationTokenSource.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-
-            //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    ButtonToMainPage3_Click(sender, e);
-            //    return;
-            //}
-        }
-
-        private void ButtonHintFolder_Click(object sender, EventArgs e)
-        {
-            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_GALLERYPAGE, CoreSettings.Default.SelectedLang))
-            //{
-            //    Hint.StartPosition = FormStartPosition.CenterParent;
-            //    Hint.ShowDialog();
-            //}
-        }
-
-        private void ButtonChooseFolder_Click(object sender, EventArgs e)
-        {
-            if (_extractFolderPath != "!NONE!")
-            {
-                //ClearImageListsSync(ListExtract, ImgListExtract);
-            }
-
-            _cancellationTokenSource?.Cancel();
-            string defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(defaultDir))
-            {
-                defaultDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            }
-
-            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
-            {
-                SelectedPath = defaultDir,
-                //Description = TextVariables.TEXT_FOLDEROPEN,
-                ShowNewFolderButton = false,
-
-            })
-            {
-                if (FolderChoose.ShowDialog() == DialogResult.OK)
-                {
-                    _extractFolderPath = FolderChoose.SelectedPath;
-                }
-                else
-                {
-                    FolderChoose.Dispose();
-                    _extractFolderPath = "!NONE!";
-                    return;
-                }
-            }
-
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(_extractFolderPath))
-            {
-                _extractFolderPath = "!NONE!";
-                return;
-            }
-
-            //ClearImageListsSync(ListExtract, ImgListExtract);
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancellationToken = _cancellationTokenSource.Token;
-            ExploreDirectory(_extractFolderPath, cancellationToken);
-        }
-        
-        private void ButtonOpenFolders_Click(object sender, EventArgs e)
-        {
-            if (_extractFolderPath == "!NONE!")
-            {
-                return;
-            }
-
-            //System.Diagnostics.Process.Start(ACTIVE_PATHS[_gameSelected]);
-            System.Diagnostics.Process.Start(_extractFolderPath);
-            ButtonToMainPage2_Click(sender, e);
-        }
-        
-        private void ButtonHintExtract_Click(object sender, EventArgs e)
-        {
-            //using (MyMessageDialog Hint = new MyMessageDialog(TextVariables.HINT_EXTRACTPAGE, CoreSettings.Default.SelectedLang))
-            //{
-            //    Hint.StartPosition = FormStartPosition.CenterParent;
-            //    Hint.ShowDialog();
-            //}
-        }
-        
-        private void LabelCopyright_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-owlcat");
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void LabelVersion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager-owlcat/releases/tag/1.3.5.0c");
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private void AnyPrimeButton_Enter(object sender, EventArgs e)
-        {
-            if (sender is Button button)
-            {
-                if (button != null)
-                {
-                    //button.BackColor = GAME_TYPES[_gameSelected].ControlForeColor;
-                    //button.ForeColor = GAME_TYPES[_gameSelected].ControlBackColor;
-                }
-            }
-        }
-        
-        private void AnyPrimeButton_Leave(object sender, EventArgs e)
-        {
-            if (sender is Button button)
-            {
-                if (button != null)
-                {
-                    //button.BackColor = GAME_TYPES[_gameSelected].ControlBackColor;
-                    //button.ForeColor = GAME_TYPES[_gameSelected].ControlForeColor;
-                }
-            }
-        }
-
-        private void AnyButton_Enter(object sender, EventArgs e)
-        {
-            if (sender is Button button)
-            {
-                if (button != null)
-                {
-                    button.BackColor = Color.White;
-                    button.ForeColor = Color.Black;
-                }
-            }
-        }
-
-        private void AnyButton_Leave(object sender, EventArgs e)
-        {
-            if (sender is Button button)
-            {
-                if (button != null && button.Enabled == true)
-                {
-                    button.BackColor = Color.Black;
-                    button.ForeColor = Color.White;
-                }
-            }
-        }
-
-        private void ButtonLoadWeb_Click(object sender, EventArgs e)
-        {
-            //string url = TextBoxURL.Text;
-
-            try
-            {
-                //HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                //request.Method = "HEAD";
-                //HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                //response.Close();
-                //RootFunctions.LayoutDisable(LayoutURLDialog);
-                //RootFunctions.LayoutEnable(LayoutFilePage);
-                _activeMenuIndex = 1;
-                Focus();
-                //CheckWebResourceAndLoad(url);
-                //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            }
-            catch
-            {
-                Focus();
-                //TextBoxURL.Text = TextVariables.TEXTBOX_URL_WRONG;
-            }
-            Focus();
-        }
-        
-        private void ButtonDenyWeb_Click(object sender, EventArgs e)
-        {
-            //RootFunctions.LayoutDisable(LayoutURLDialog);
-            //RootFunctions.LayoutEnable(LayoutFilePage);
-            //TextBoxURL.Text = TextVariables.TEXTBOX_URL_INPUT;
-            _activeMenuIndex = 1;
-
-            Focus();
-        }
-        
-        private void TextBoxURL_DragEnter(object sender, DragEventArgs e)
-        {
-            //TextBoxURL.Clear();
-            if (e.Data.GetDataPresent(DataFormats.Text))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-        
-        private void TextBoxURL_DragDrop(object sender, DragEventArgs e)
-        {
-            TextBox senderTextBox = (TextBox)sender;
-
-            senderTextBox.Text = (string)e.Data.GetData(DataFormats.Text);
-            if (!senderTextBox.Text.Contains("http"))
-            {
-                senderTextBox.Text = "http://" + senderTextBox.Text;
-            }
-        }
-        
-        private void TextBoxURL_Enter(object sender, EventArgs e)
-        {
-            //TextBoxURL.Clear();
-        }
-        
-        private void ButtonToMainPageAndFolder_Click(object sender, EventArgs e)
-        {
-            _activeMenuIndex = 0;
-            //ButtonToMainPageAndFolder.BackColor = Color.Black;
-            //ButtonToMainPageAndFolder.ForeColor = Color.White;
-            //RootFunctions.LayoutDisable(LayoutFinalPage);
-            ReplacePictureBoxImagesToDefault();
-            _isAnyLoadedToPortraitPage = false;
-            ParentLayoutsDisable();
-            //System.Diagnostics.Process.Start(LabelDirLoc.Text);
-            //RootFunctions.LayoutEnable(LayoutMainPage);
-            Focus();
-            //ButtonToMainPageAndFolder.Enabled = true;
-        }
-        
-        private void ButtonNextImageType_Click(object sender, EventArgs e)
-        {
-            _imageSelectionFlag++;
-
-            if (_imageSelectionFlag == 1)
-            {
-                //ButtonNextImageType.Text = TextVariables.BUTTON_ADVANCED2;
-            }
-            else
-            {
-                //ButtonNextImageType.Visible = false;
-                //ButtonNextImageType.Enabled = false;
-                //LblToAdvancedPage.Visible = false;
-            }
-
-            LoadTempImagesToPicBox(_imageSelectionFlag);
-        }
-        
-        private void ButtonLoadNormal_Click(object sender, EventArgs e)
-        {
-            _cancellationTokenSource?.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            //if (!LoadGallery(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    ButtonToMainPage3_Click(sender, e);
-            //    return;
-            //}
-        }
-        
-        private void ButtonLoadCustom_Click(object sender, EventArgs e)
-        {
-            string fromPath, fromPath2;
-
-            //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            //fromPath2 = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army"); 
-            _cancellationTokenSource?.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-
-            //if (!LoadGalleryCustom(ACTIVE_PATHS[_gameSelected], true) ||
-            //    !LoadGalleryCustom(fromPath, false) ||
-            //    !LoadGalleryCustom(fromPath2, false))
-            //{
-            //    ButtonToMainPage3_Click(sender, e);
-            //    return;
-            //}
-        }
-
-        private bool LoadGalleryCustom(string fromRootPath, bool flag = false)
-        {
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(fromRootPath))
-            {
-                return false;
-            }
-
-            _cancellationTokenSource?.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancelToken = _cancellationTokenSource.Token;
-
-            Task.Factory.StartNew(() =>
-            {
-                RecursiveParsePortraitsFolderAsync(fromRootPath, cancelToken, flag);
-            }, cancelToken);
-
-            return true;
-        }
-        
-        private void ButtonLoadCustomNPC_Click(object sender, EventArgs e)
-        {
-            string fromPath;
-
-            //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Npc");
-            _cancellationTokenSource?.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            //if (!LoadGalleryCustom(fromPath, false))
-            //{
-            //    ButtonToMainPage3_Click(sender, e);
-            //    return;
-            //}
-        }
-        
-        private void ButtonLoadCustomArmy_Click(object sender, EventArgs e)
-        {
-            string fromPath;
-
-            //fromPath = Path.Combine(ACTIVE_PATHS[_gameSelected], "..", "Portraits - Army");
-            //_cancellationTokenSource?.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            //if (!LoadGalleryCustom(fromPath, false))
-            //{
-            //    ButtonToMainPage3_Click(sender, e);
-            //    return;
-            //}
-        }
-        
-
-
-        private void ButtonRT_Click(object sender, EventArgs e)
-        {
-            _gameSelected = 'r';
-            UpdateColorScheme();
-            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    RemoveClickEventsFromMainButtons();
-            //}
-            //else
-            //{
-            //    AddClickEventsToMainButtons();
-            //}
-
-            //ButtonLoadCustom.Visible = false;
-            //ButtonLoadCustomNPC.Visible = false;
-            //ButtonLoadCustomArmy.Visible = false;
-            //CheckBoxVerified.Checked = false;
-
-            CoreSettings.Default.GameType = _gameSelected;
-            CoreSettings.Default.Save();
-        }
-
-        private void ButtonKingmaker_Click(object sender, EventArgs e)
-        {
-            _gameSelected = 'p';
-            UpdateColorScheme();
-
-            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    RemoveClickEventsFromMainButtons();
-            //}
-            //else
-            //{
-            //    AddClickEventsToMainButtons();
-            //}
-
-            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    RemoveClickEventsFromCustomPortraitsButtons();
-            //    CheckBoxVerified.Checked = false;
-            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-            //    UseStamps.Default.Save();
-            //    ButtonLoadCustom.Visible = false;
-            //    ButtonLoadCustomNPC.Visible = false;
-            //    ButtonLoadCustomArmy.Visible = false;
-            //}
-            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    AddClickEventsToCustomPortraitsButtons();
-            //    CheckBoxVerified.Checked = true;
-            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
-            //    UseStamps.Default.Save();
-            //    ButtonLoadCustom.Visible = true;
-            //    ButtonLoadCustomNPC.Visible = true;
-            //    ButtonLoadCustomArmy.Visible = true;
-            //}
-
-            CoreSettings.Default.GameType = _gameSelected;
-            CoreSettings.Default.Save();
-        }
-
-        private void ButtonWotR_Click(object sender, EventArgs e)
-        {
-            _gameSelected = 'w';
-            UpdateColorScheme();
-
-            //if (!ValidatePortraitPath(ACTIVE_PATHS[_gameSelected]))
-            //{
-            //    RemoveClickEventsFromMainButtons();
-            //}
-            //else
-            //{
-            //    AddClickEventsToMainButtons();
-            //}
-
-            //if (!ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "WorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMNOTFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    RemoveClickEventsFromCustomPortraitsButtons();
-            //    CheckBoxVerified.Checked = false;
-            //    UseStamps.Default.isAwareNPC = "NotWorkRevealed";
-            //    UseStamps.Default.Save();
-            //    ButtonLoadCustom.Visible = false;
-            //    ButtonLoadCustomNPC.Visible = false;
-            //    ButtonLoadCustomArmy.Visible = false;
-            //}
-            //else if (ValidateCustomPath(ACTIVE_PATHS[_gameSelected]) && (UseStamps.Default.isAwareNPC == "NotRevealed" || UseStamps.Default.isAwareNPC == "NotWorkRevealed"))
-            //{
-            //    using (MyMessageDialog Message = new MyMessageDialog(TextVariables.MESG_CUSTOMFOUND, CoreSettings.Default.SelectedLang))
-            //    {
-            //        Message.StartPosition = FormStartPosition.CenterParent;
-            //        Message.ShowDialog();
-            //    }
-            //    AddClickEventsToCustomPortraitsButtons();
-            //    CheckBoxVerified.Checked = true;
-            //    UseStamps.Default.isAwareNPC = "WorkRevealed";
-            //    UseStamps.Default.Save();
-            //    ButtonLoadCustom.Visible = true;
-            //    ButtonLoadCustomNPC.Visible = true;
-            //    ButtonLoadCustomArmy.Visible = true;
-            //}
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void ButtonStartKing_MouseEnter(object sender, EventArgs e)
         {
@@ -2978,6 +1669,1610 @@ namespace PortraitManager
                 System.Diagnostics.Process.Start("https://github.com/zeightOFFICIAL/portrait-manager");
             else if (target == "nexus")
                 System.Diagnostics.Process.Start("https://next.nexusmods.com/profile/zeightOFFICIAL/mods");
+        }
+
+        private void ButtonKingSelectWebModal_Click(object sender, EventArgs e)
+        {
+            if (!(sender is System.Windows.Forms.Button btn)) return;
+
+            using (forms.MyWebDialog dlg = new forms.MyWebDialog())
+            {
+                dlg.StartPosition = FormStartPosition.CenterParent;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    var img = dlg.DownloadedImage;
+                    if (img == null) return;
+
+                    string tag = btn.Tag as string;
+                    if (tag == "PicKingLrg")
+                    {
+                        StoreOriginalImage(PicKingLrg, new Bitmap(img));
+                        FitImageToPanel(PicKingLrg);
+                        _groupLrgInitialized = true;
+                    }
+                    else if (tag == "PicKingMed")
+                    {
+                        StoreOriginalImage(PicKingMed, new Bitmap(img));
+                        FitImageToPanel(PicKingMed);
+                        _groupMedInitialized = true;
+                    }
+                    else if (tag == "PicKingSml")
+                    {
+                        StoreOriginalImage(PicKingSml, new Bitmap(img));
+                        FitImageToPanel(PicKingSml);
+                        _groupSmlInitialized = true;
+                    }
+                    else if (tag == "PicKingSml2")
+                    {
+                        StoreOriginalImage(PicKingSml2, new Bitmap(img));
+                        FitImageToPanel(PicKingSml2);
+                        _groupSml2Initialized = true;
+                    }
+                    img.Dispose();
+                }
+            }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {            
+            FontInit();
+            TextInit();
+            _activeMenuIndex = 65535;
+            SetClientSizeCore(750, 520);
+            CenterToScreen();
+            ParentLayoutsSetDockFill();
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutStartMenu);
+            LabelSelectPathSelected.Text = CoreSettings.Default.GamePath;
+
+            if (CoreSettings.Default.GameType == '-')
+            {
+                _gameSelected = '-';
+                RootFunctions.LayoutEnable(LayoutStartMenu);
+                _activeMenuIndex = 100;                
+            }
+            else if (CoreSettings.Default.GameType == 'w')
+            {
+                _gameSelected = 'w';
+                _activeMenuIndex = 202;
+                LabelSelectPathNextToMain_Click(sender, e);
+
+            }
+            else if (CoreSettings.Default.GameType == 'r')
+            {
+                _gameSelected = 'r';
+                _activeMenuIndex = 203;
+                LabelSelectPathNextToMain_Click(sender, e);
+            }
+            else if (CoreSettings.Default.GameType == 'p')
+            {
+                _gameSelected = 'p';
+                _activeMenuIndex = 204;
+                LabelSelectPathNextToMain_Click(sender, e);
+            }
+            else if (CoreSettings.Default.GameType == 'd')
+            {
+                _gameSelected = 'd';
+                _activeMenuIndex = 205;
+                LabelSelectPathNextToMain_Click(sender, e);
+            }
+            else if (CoreSettings.Default.GameType == 't')
+            {
+                _gameSelected = 't';
+                _activeMenuIndex = 206;
+                LabelSelectPathNextToMain_Click(sender, e);
+            }
+            else if (CoreSettings.Default.GameType == 'l')
+            {
+                _gameSelected = 'l';
+                _activeMenuIndex = 207;
+                LabelSelectPathNextToMain_Click(sender, e);
+            }
+            else 
+            {
+                _gameSelected = 'k';
+                _activeMenuIndex = 201;
+                LabelSelectPathNextToMain_Click(sender, e);
+            }
+
+            Focus();
+            SetKingPortraitGroup(PortraitGroupSelection.Large);
+            _allowAutoResize = true;
+            ReplacePictureBoxImagesToDefault();
+            _allowAutoResize = false;
+
+            Focus();
+            ApplyGameWindowStyle();
+        }
+
+        private void LabelKingCreatePortrait_Paint(object sender, PaintEventArgs e)
+        {
+            if (!(sender is Label lbl)) return;
+            bool isSelected = false;
+            if (lbl.Name == "LabelKingCreatePortraitLarge") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Large;
+            else if (lbl.Name == "LabelKingCreatePortraitMedium") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Medium;
+            else if (lbl.Name == "LabelKingCreatePortraitSmall") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Small;
+            else if (lbl.Name == "LabelKingCreatePortraitSml2") isSelected = _activeKingPortraitGroup == PortraitGroupSelection.Sml2;
+            if (!isSelected) return;
+
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { penColor = lbl.ForeColor; }
+            using (var pen = new Pen(penColor))
+            {
+                int w = lbl.ClientSize.Width;
+                int h = lbl.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LayoutKingPortraitGroupLarge_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitLarge);
+        }
+
+        private void LayoutKingPortraitGroupMedium_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitMedium);
+        }
+
+        private void LayoutKingPortraitGroupSmall_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitSmall);
+        }
+
+        private void LayoutKingPortraitGroupSml2_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitSml2);
+        }
+
+        private void LayoutKingRight_Paint(object sender, PaintEventArgs e)
+        {
+            DrawGroupBorder(sender as Control, e, null);
+        }
+                
+        private void LabelExtract_Click(object sender, EventArgs e)
+        {
+            _activeMenuIndex = 5;
+
+            Color gameBack, gameFore;
+            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
+
+            PanelExtractContainer.BackColor = gameBack;
+            PanelExtractOverlay.BackColor = gameBack;
+            LayoutExtractRight.BackColor = gameBack;
+            LayoutExtractRight.ForeColor = gameFore;
+            _overlayHovered = false;
+
+            foreach (var btn in new[] { ButtonExtractAll, ButtonExtractSelected, ButtonExtractShowFolder, ButtonExtractBack })
+            {
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.FlatAppearance.BorderColor = gameFore;
+                btn.BackColor = gameBack;
+                btn.ForeColor = gameFore;
+                btn.FlatAppearance.MouseOverBackColor = gameFore;
+                btn.FlatAppearance.MouseDownBackColor = gameFore;
+                btn.TabStop = false;
+            }
+
+            ButtonExtractAll.Visible = false;
+            ButtonExtractSelected.Visible = false;
+            ButtonExtractShowFolder.Visible = true;
+            ButtonExtractShowFolder.Text = TextVariables.BUTTON_EXTRACT_OPENFOLDER;
+            ButtonExtractBack.Visible = true;
+            LayoutExtractRight.RowStyles[0].Height = 0;
+            LayoutExtractRight.RowStyles[1].Height = 0;
+            LayoutExtractRight.RowStyles[2].Height = 70;
+            LayoutExtractRight.RowStyles[3].Height = 30;
+
+            _selectedArchivePath = null;
+            ClearArchiveEntries();
+            CleanupShellTempDir();
+            FlowLayoutPanelExtract.Visible = false;
+            PanelExtractOverlay.Visible = true;
+            FlowLayoutPanelExtractBottom.Visible = false;
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutExtractPage);
+            Focus();
+        }
+
+        private void LabelBrowse_Click(object sender, EventArgs e)
+        {
+            _activeMenuIndex = 6;
+            _selectedGalleryEntry = null;
+            _galleryTabSelected = "player";
+            _isCustomNpcMode = false;
+
+            Color gameBack, gameFore;
+            try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
+            catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
+
+            LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
+            // Tyranny, PoE, and Deadfire all store companions/close-NPCs as loose files in the
+            // game's own data folder (verified against real installs for all three) - call it
+            // what it is there.
+            LabelGalleryNonPlayerTab.Text = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'
+                ? TextVariables.LABEL_GALLERY_COMPANIONS
+                : TextVariables.LABEL_GALLERY_NONPLAYER;
+            // Retired for Kingmaker/WotR: "Characters" now covers everything this tab used to
+            // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
+            // the same NPC folders under two tabs. Never applicable to Tyranny, PoE, or Deadfire
+            // either: none of them has a "Portraits - Npc"-style mod folder at all (that mod is
+            // Owlcat-only) - their companions/NPCs are the game's own shipped asset files,
+            // already covered by the Companions ("nonplayer") tab instead.
+            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' &&
+                                                _gameSelected != 'w' && _gameSelected != 't' &&
+                                                _gameSelected != 'p' && _gameSelected != 'd';
+            // Rogue Trader has no CustomNPC support at all (no vanilla companion-custom-portrait
+            // feature, no CustomNpcPortraits mod release) - Companions/Characters would just be
+            // permanently empty dead ends there, so only offer them for Kingmaker/WotR.
+            bool hasCustomNpc = _gameSelected == 'k' || _gameSelected == 'w';
+            LabelGalleryCompanionsTab.Visible = hasCustomNpc;
+            LabelGalleryCharactersTab.Visible = hasCustomNpc;
+            UpdateGalleryTabVisuals();
+            PanelGalleryContainer.BackColor = gameBack;
+            FlowLayoutPanelGallery.BackColor = gameBack;
+
+            ButtonGalleryBack.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryBack.FlatAppearance.BorderSize = 1;
+            ButtonGalleryBack.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryBack.BackColor = gameBack;
+            ButtonGalleryBack.ForeColor = gameFore;
+            ButtonGalleryBack.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryBack.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryBack.TabStop = false;
+
+            ButtonGalleryClone.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryClone.FlatAppearance.BorderSize = 1;
+            ButtonGalleryClone.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryClone.BackColor = gameBack;
+            ButtonGalleryClone.ForeColor = gameFore;
+            ButtonGalleryClone.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryClone.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryClone.TabStop = false;
+
+            ButtonGalleryChange.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryChange.FlatAppearance.BorderSize = 1;
+            ButtonGalleryChange.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryChange.BackColor = gameBack;
+            ButtonGalleryChange.ForeColor = gameFore;
+            ButtonGalleryChange.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryChange.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryChange.TabStop = false;
+
+            ButtonGalleryDelete.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryDelete.FlatAppearance.BorderSize = 1;
+            ButtonGalleryDelete.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryDelete.BackColor = gameBack;
+            ButtonGalleryDelete.ForeColor = gameFore;
+            ButtonGalleryDelete.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryDelete.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryDelete.TabStop = false;
+
+            ButtonGalleryShowFolder.FlatStyle = FlatStyle.Flat;
+            ButtonGalleryShowFolder.FlatAppearance.BorderSize = 1;
+            ButtonGalleryShowFolder.FlatAppearance.BorderColor = gameFore;
+            ButtonGalleryShowFolder.BackColor = gameBack;
+            ButtonGalleryShowFolder.ForeColor = gameFore;
+            ButtonGalleryShowFolder.FlatAppearance.MouseOverBackColor = gameFore;
+            ButtonGalleryShowFolder.FlatAppearance.MouseDownBackColor = gameFore;
+            ButtonGalleryShowFolder.TabStop = false;
+
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutGalleryPage);
+            Focus();
+        }
+
+        private void ButtonGalleryClone_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+            _overrideGallerySaveDir = null;
+            _isCustomNpcMode = _galleryTabSelected == "customnpc";
+            LabelCreatePortrait_Click(sender, e);
+            LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
+        }
+
+        private void ButtonGalleryChange_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+
+            bool restoreBackup = false;
+            bool isNonPlayer = _galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd');
+
+            if (isNonPlayer)
+            {
+                // Unlike CustomNpcPortraits, there's no mod keeping an original copy for us here -
+                // these are the game's own shipped asset files, replaced in place. So this app
+                // has to make its own backup, but only ever once (BackupNonPlayerPortraitSet
+                // no-ops if one already exists). On the very first change there's nothing to ask
+                // about yet - the backup it just created is identical to the present portrait -
+                // so only offer the choice starting from the second change onward.
+                bool hadExistingBackup = BackupNonPlayerPortraitSet(_selectedGalleryEntry);
+                if (hadExistingBackup)
+                {
+                    using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                    {
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                            restoreBackup = true;
+                    }
+                }
+            }
+            else if (HasModDefaultBackup(_selectedGalleryEntry))
+            {
+                // This app never creates its own backup - it just asks whether to start from the
+                // mod's own "Backup of Game Default Portraits" (the original) or the present
+                // portrait currently at this folder's root, whenever the mod actually has one on
+                // file. Nothing is written here either way; the choice only affects what gets
+                // loaded into Create Portrait below.
+                using (var dlg = new forms.MyInquiryDialog(TextVariables.MESG_RESTORE_BACKUP_PROMPT))
+                {
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                        restoreBackup = true;
+                }
+            }
+
+            _overrideGallerySaveDir = _selectedGalleryEntry;
+            _isCustomNpcMode = _galleryTabSelected == "customnpc";
+            LabelCreatePortrait_Click(sender, e);
+
+            if (restoreBackup && isNonPlayer)
+                LoadNonPlayerBackupIntoCreatePage(_selectedGalleryEntry);
+            else if (restoreBackup)
+                LoadBackupImageIntoCreatePage(_selectedGalleryEntry);
+            else
+                LoadGalleryImageIntoCreatePage(_selectedGalleryEntry);
+        }
+
+        private void ButtonGalleryBack_Click(object sender, EventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            _activeMenuIndex = GetMainMenuIndexForCurrentGame();
+
+            ParentLayoutsDisable();
+            RootFunctions.LayoutEnable(LayoutMainPage);
+            Focus();
+        }
+
+        private void LabelGalleryTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "player") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryTab.ClientSize.Width;
+                int h = LabelGalleryTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryTab.ForeColor = _galleryTabSelected == "player" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "player") return;
+            _galleryTabSelected = "player";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryNonPlayerTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "nonplayer") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryNonPlayerTab.ClientSize.Width;
+                int h = LabelGalleryNonPlayerTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryNonPlayerTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryNonPlayerTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryNonPlayerTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryNonPlayerTab.ForeColor = _galleryTabSelected == "nonplayer" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryNonPlayerTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "nonplayer") return;
+            _galleryTabSelected = "nonplayer";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryCustomNpcTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "customnpc") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryCustomNpcTab.ClientSize.Width;
+                int h = LabelGalleryCustomNpcTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryCustomNpcTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCustomNpcTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryCustomNpcTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCustomNpcTab.ForeColor = _galleryTabSelected == "customnpc" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryCustomNpcTab_Click(object sender, EventArgs e)
+        {
+            if (_gameSelected == 'r') return;
+            if (_galleryTabSelected == "customnpc") return;
+            _galleryTabSelected = "customnpc";
+            _isCustomNpcMode = true;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryCompanionsTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "companions") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryCompanionsTab.ClientSize.Width;
+                int h = LabelGalleryCompanionsTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryCompanionsTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCompanionsTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryCompanionsTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCompanionsTab.ForeColor = _galleryTabSelected == "companions" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryCompanionsTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "companions") return;
+            _galleryTabSelected = "companions";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void LabelGalleryCharactersTab_Paint(object sender, PaintEventArgs e)
+        {
+            if (_galleryTabSelected != "characters") return;
+            Color penColor = Color.White;
+            try { penColor = GameTypes[_gameSelected].ForeColor; } catch { }
+            using (var pen = new Pen(penColor))
+            {
+                int w = LabelGalleryCharactersTab.ClientSize.Width;
+                int h = LabelGalleryCharactersTab.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+            }
+        }
+
+        private void LabelGalleryCharactersTab_MouseEnter(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCharactersTab.ForeColor = gt.ForeColor;
+        }
+
+        private void LabelGalleryCharactersTab_MouseLeave(object sender, EventArgs e)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            LabelGalleryCharactersTab.ForeColor = _galleryTabSelected == "characters" ? gt.ForeColor : Color.White;
+        }
+
+        private void LabelGalleryCharactersTab_Click(object sender, EventArgs e)
+        {
+            if (_galleryTabSelected == "characters") return;
+            _galleryTabSelected = "characters";
+            _isCustomNpcMode = false;
+            UpdateGalleryTabVisuals();
+            _cancellationTokenSource?.Cancel();
+            ClearGalleryEntries();
+            LoadGalleryImages();
+            UpdateGalleryRightPanel();
+        }
+
+        private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
+        {
+            Color col = Color.White;
+            try { col = GameTypes[_gameSelected].ForeColor; } catch { }
+            Panel group = (Panel)sender;
+            using (var pen = new Pen(col))
+            {
+                int w = group.ClientSize.Width;
+                int h = group.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+                e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
+
+                int gapStart = -1, gapEnd = -1;
+                Label activeTab;
+                if (_galleryTabSelected == "nonplayer")
+                    activeTab = LabelGalleryNonPlayerTab;
+                else if (_galleryTabSelected == "customnpc")
+                    activeTab = LabelGalleryCustomNpcTab;
+                else if (_galleryTabSelected == "companions")
+                    activeTab = LabelGalleryCompanionsTab;
+                else if (_galleryTabSelected == "characters")
+                    activeTab = LabelGalleryCharactersTab;
+                else
+                    activeTab = LabelGalleryTab;
+                if (activeTab.Visible)
+                {
+                    try
+                    {
+                        var lblScreen = activeTab.PointToScreen(Point.Empty);
+                        var lblInGroup = group.PointToClient(lblScreen);
+                        gapStart = lblInGroup.X;
+                        gapEnd = lblInGroup.X + activeTab.Width;
+                    }
+                    catch { }
+                }
+
+                if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
+                {
+                    e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                }
+                else
+                {
+                    int leftSegEnd = Math.Max(0, gapStart - 1);
+                    if (leftSegEnd > 0)
+                        e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
+
+                    int rightSegStart = Math.Min(w - 1, gapEnd + 1);
+                    if (rightSegStart < w - 1)
+                        e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
+                }
+            }
+        }
+
+        private void LayoutGalleryRight_Paint(object sender, PaintEventArgs e)
+        {
+            Color foreColor;
+            try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
+            ControlPaint.DrawBorder(e.Graphics, ((TableLayoutPanel)sender).ClientRectangle,
+                foreColor, ButtonBorderStyle.Solid);
+        }
+
+        private void PanelGalleryOverlay_Paint(object sender, PaintEventArgs e)
+        {
+            Panel panel = (Panel)sender;
+            Rectangle rect = panel.ClientRectangle;
+
+            string title = _galleryTabSelected == "characters" ? "Characters" : "CustomNPC";
+            string hint1 = "NPC must be met in-game first. Folder name = exact NPC dialog name.";
+            string hint2 = "Use the folder button below to open Portraits - Npc directly.";
+
+            using (Font titleFont = new Font(_fontCollection.Families[0], 22))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 12))
+            {
+                TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+
+                Size titleSize = TextRenderer.MeasureText(e.Graphics, title, titleFont,
+                    new Size(rect.Width, 0), tf);
+                Size hint1Size = TextRenderer.MeasureText(e.Graphics, hint1, hintFont,
+                    new Size(rect.Width, 0), tf);
+                Size hint2Size = TextRenderer.MeasureText(e.Graphics, hint2, hintFont,
+                    new Size(rect.Width, 0), tf);
+
+                int totalHeight = titleSize.Height + 20 + hint1Size.Height + 6 + hint2Size.Height;
+                int yStart = (rect.Height - totalHeight) / 2;
+
+                Rectangle titleRect = new Rectangle(0, yStart, rect.Width, titleSize.Height);
+                TextRenderer.DrawText(e.Graphics, title, titleFont, titleRect, Color.White, tf);
+
+                Rectangle hint1Rect = new Rectangle(0, yStart + titleSize.Height + 20, rect.Width, hint1Size.Height);
+                TextRenderer.DrawText(e.Graphics, hint1, hintFont, hint1Rect, Color.Gray, tf);
+
+                Rectangle hint2Rect = new Rectangle(0, yStart + titleSize.Height + 20 + hint1Size.Height + 6,
+                    rect.Width, hint2Size.Height);
+                TextRenderer.DrawText(e.Graphics, hint2, hintFont, hint2Rect, Color.Gray, tf);
+            }
+        }
+
+        private void ButtonGalleryBack_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryBack.BackColor = selFore;
+            ButtonGalleryBack.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryBack_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryBack.BackColor = selBack;
+            ButtonGalleryBack.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryClone_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryClone.BackColor = selFore;
+            ButtonGalleryClone.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryClone_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryClone.BackColor = selBack;
+            ButtonGalleryClone.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryChange_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryChange.BackColor = selFore;
+            ButtonGalleryChange.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryChange_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryChange.BackColor = selBack;
+            ButtonGalleryChange.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryDelete_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
+            if (_isCustomNpcMode) return;
+            using (var dlg = new forms.MyInquiryDialog("Delete this portrait set?"))
+            {
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    _cancellationTokenSource?.Cancel();
+                    DeleteGalleryPortraitSet(_selectedGalleryEntry);
+                    _selectedGalleryEntry = null;
+                    UpdateGalleryRightPanel();
+                    LoadGalleryImages();
+                }
+            }
+        }
+
+        private void ButtonGalleryDelete_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryDelete.BackColor = selFore;
+            ButtonGalleryDelete.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryDelete_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryDelete.BackColor = selBack;
+            ButtonGalleryDelete.ForeColor = selFore;
+        }
+
+        private void ButtonGalleryShowFolder_Click(object sender, EventArgs e)
+        {
+            string gameDir;
+            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            {
+                string basePath = CoreSettings.Default.GamePath;
+                if (!string.IsNullOrEmpty(basePath))
+                    gameDir = GetNonPlayerPortraitsRoot(basePath);
+                else
+                    gameDir = null;
+            }
+            else if (_isCustomNpcMode)
+            {
+                string basePath = CoreSettings.Default.GamePath;
+                if (!string.IsNullOrEmpty(basePath))
+                    gameDir = GetCustomNpcPortraitsDir(basePath);
+                else
+                    gameDir = null;
+            }
+            else if (_galleryTabSelected == "characters")
+            {
+                // With "New NPC +" removed, this is now the only way to reach Portraits - Npc
+                // from the Characters tab (e.g. to manually create/inspect an NPC folder before
+                // meeting them in-game triggers the mod to do it).
+                string basePath = CoreSettings.Default.GamePath;
+                gameDir = !string.IsNullOrEmpty(basePath) ? GetCustomNpcPortraitsDir(basePath) : null;
+            }
+            else
+            {
+                gameDir = GetGameDirectory();
+            }
+
+            if (string.IsNullOrEmpty(gameDir))
+            {
+                using (var msg = new forms.MyMessageDialog("Could not determine the game directory."))
+                {
+                    msg.StartPosition = FormStartPosition.CenterParent;
+                    msg.ShowDialog(this);
+                }
+                return;
+            }
+            Process.Start("explorer.exe", gameDir);
+        }
+
+        private void ButtonGalleryShowFolder_MouseEnter(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryShowFolder.BackColor = selFore;
+            ButtonGalleryShowFolder.ForeColor = selBack;
+        }
+
+        private void ButtonGalleryShowFolder_MouseLeave(object sender, EventArgs e)
+        {
+            Color selBack = Color.Black, selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+            ButtonGalleryShowFolder.BackColor = selBack;
+            ButtonGalleryShowFolder.ForeColor = selFore;
+        }
+
+        private void MainForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            SystemControl.FileControl.ClearTempImages();
+            Dispose();
+            Application.Exit();
+        }
+
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+            }
+        }
+        private void LabelSelectPathNextToMain_Click(object sender, EventArgs e)
+        {
+            string selectedPath = LabelSelectPathSelected.Text;
+            if (string.IsNullOrEmpty(selectedPath) || selectedPath == "-" || selectedPath == " - ")
+            {
+                return;
+            }
+            if (_gameSelected == 'k')
+            {
+                try
+                {
+                    if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                            !dir.Name.Equals("Pathfinder Kingmaker", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // A game install directory (e.g. the Steam/GOG copy) commonly shares the exact
+                        // same folder name "Pathfinder Kingmaker" as the real LocalLow save-data root.
+                        // Only the latter sits directly under "...\LocalLow\Owlcat Games\", so require
+                        // that parentage to avoid silently managing a folder the game never reads.
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Pathfinder Kingmaker")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsDir = Path.Combine(rootPath, "Portraits");
+                    if (!Directory.Exists(portraitsDir))
+                        Directory.CreateDirectory(portraitsDir);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'k';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.path_menu_page;
+                    _activeMenuIndex = 201;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'w')
+            {
+                try
+                {
+                    if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog();
+                        }
+                        return;
+                    }
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                            !dir.Name.Equals("Pathfinder Wrath Of The Righteous", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Same reasoning as Kingmaker: the game's Steam/GOG install directory
+                        // commonly shares the exact folder name "Pathfinder Wrath Of The
+                        // Righteous" with the real LocalLow save-data root. Only the latter sits
+                        // directly under "...\LocalLow\Owlcat Games\".
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Pathfinder Wrath Of The Righteous")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsDir = Path.Combine(rootPath, "Portraits");
+                    if (!Directory.Exists(portraitsDir))
+                        Directory.CreateDirectory(portraitsDir);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'w';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.wotr_menu_page;
+                    _activeMenuIndex = 202;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'r')
+            {
+                try
+                {
+                    if (!Directory.Exists(selectedPath) || string.IsNullOrWhiteSpace(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                            !dir.Name.Equals("Warhammer 40000 Rogue Trader", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("Owlcat Games", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Same reasoning as Kingmaker/WotR: the game's Steam/GOG install directory
+                        // commonly shares the exact folder name "Warhammer 40000 Rogue Trader" with
+                        // the real LocalLow save-data root. Only the latter sits directly under
+                        // "...\LocalLow\Owlcat Games\".
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT, "Warhammer 40000 Rogue Trader")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    string portraitsDir = Path.Combine(rootPath, "Portraits");
+                    if (!Directory.Exists(portraitsDir))
+                        Directory.CreateDirectory(portraitsDir);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'r';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.rt_menu_page;
+                    _activeMenuIndex = 203;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'p')
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    // The install directory's own name varies (Steam/GOG/custom location,
+                    // "Definitive Edition" variants, etc.), so matching it by name is fragile -
+                    // walk up to "PillarsOfEternity_Data" instead, which is fixed by the Unity
+                    // build itself regardless of what the player named the parent folder.
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                           !dir.Name.Equals("PillarsOfEternity_Data", StringComparison.OrdinalIgnoreCase))
+                    {
+                        dir = dir.Parent;
+                    }
+
+                    string rootPath;
+                    if (dir != null)
+                    {
+                        rootPath = dir.Parent.FullName + Path.DirectorySeparatorChar;
+                    }
+                    else
+                    {
+                        // User may have selected the install root directly (containing
+                        // PillarsOfEternity_Data as a child rather than being inside it).
+                        rootPath = selectedPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                    }
+
+                    string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits");
+                    if (!Directory.Exists(portraitsRoot))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string maleDir = Path.Combine(portraitsRoot, "player", "male");
+                    string femaleDir = Path.Combine(portraitsRoot, "player", "female");
+                    Directory.CreateDirectory(maleDir);
+                    Directory.CreateDirectory(femaleDir);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'p';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.poe_menu_page;
+                    _activeMenuIndex = 204;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'd')
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    selectedPath = selectedPath.Replace('/', '\\');
+
+                    // The install directory's own name varies wildly across storefronts/editions
+                    // (several guessed variants used to be matched here and still might miss the
+                    // real one) - walk up to "PillarsOfEternityII_Data" instead, which is fixed
+                    // by the Unity build itself regardless of what the player named the parent
+                    // folder. Same fix as Pillars of Eternity (original)'s path resolution.
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null &&
+                           !dir.Name.Equals("PillarsOfEternityII_Data", StringComparison.OrdinalIgnoreCase))
+                    {
+                        dir = dir.Parent;
+                    }
+
+                    string rootPath;
+                    if (dir != null)
+                    {
+                        rootPath = dir.Parent.FullName + Path.DirectorySeparatorChar;
+                    }
+                    else
+                    {
+                        // User may have selected the install root directly (containing
+                        // PillarsOfEternityII_Data as a child rather than being inside it).
+                        rootPath = selectedPath.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                    }
+
+                    string portraitsRoot = Path.Combine(rootPath, "PillarsOfEternityII_Data", "gui", "portraits");
+                    if (!Directory.Exists(portraitsRoot))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+                    string maleDir = Path.Combine(portraitsRoot, "player", "male");
+                    string femaleDir = Path.Combine(portraitsRoot, "player", "female");
+                    Directory.CreateDirectory(maleDir);
+                    Directory.CreateDirectory(femaleDir);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath;
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'd';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.poed_menu_page;
+                    _activeMenuIndex = 205;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 't')
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null && !dir.Name.Equals("Tyranny", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+                    if (dir == null)
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+                    // Tyranny has no separate "install dir vs. save-data dir" split like the
+                    // Owlcat/Wasteland games - Data lives directly inside whatever folder
+                    // the player installed the game into, so there's no LocalLow/Documents
+                    // sibling to confuse it with. Verifying real game content (an actual data
+                    // folder with real assets) instead of just a folder name is the correct
+                    // check here, and was already in place.
+                    string checkPath = Path.Combine(rootPath, "Data", "data", "art", "gui", "icons", "abilities");
+
+                    if (!Directory.Exists(checkPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string maleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "male");
+                    string femaleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "female");
+                    Directory.CreateDirectory(maleDir);
+                    Directory.CreateDirectory(femaleDir);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath.ToLower();
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 't';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.tyr_menu_page;
+                    _activeMenuIndex = 206;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            else if (_gameSelected == 'l')
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(selectedPath) || !Directory.Exists(selectedPath))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_PATH_NOT_FOUND))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    var dir = new DirectoryInfo(selectedPath);
+                    while (dir != null && !dir.Name.Equals("Wasteland3", StringComparison.OrdinalIgnoreCase))
+                        dir = dir.Parent;
+
+                    if (dir == null || dir.Parent == null ||
+                        !dir.Parent.Name.Equals("My Games", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Same reasoning as the Owlcat games: Wasteland 3's Steam/GOG install
+                        // directory is also commonly named "Wasteland3", same as the real
+                        // Documents\My Games\Wasteland3 save-data root. Only the latter sits
+                        // directly under "...\Documents\My Games\".
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_PATH_WRONG_ROOT_DOCUMENTS, "Wasteland3")))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+
+                    string rootPath = dir.FullName + Path.DirectorySeparatorChar;
+
+                    string customPortraits = Path.Combine(rootPath, "Custom Portraits");
+                    Directory.CreateDirectory(customPortraits);
+
+                    CoreSettings.Default.GamePath = "0";
+                    CoreSettings.Default.GameType = '-';
+                    CoreSettings.Default.Save();
+                    LabelSelectPathSelected.Text = rootPath.ToLower();
+                    CoreSettings.Default.GamePath = rootPath;
+                    CoreSettings.Default.GameType = 'l';
+                    CoreSettings.Default.Save();
+                    LayoutMainPage.BackgroundImage = Resources.waste_menu_page;
+                    _activeMenuIndex = 207;
+                    ParentLayoutsDisable();
+                    RootFunctions.LayoutEnable(LayoutMainPage);
+                    PrepareKingCreatePortraitStyleState();
+                    Focus();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+            LabelBrowse.Visible = true;
+            ApplyGameWindowStyle();
+        }
+
+        private void LayoutPathPage_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PanelExtractContainer_Paint(object sender, PaintEventArgs e)
+        {
+            Color foreColor;
+            try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
+            ControlPaint.DrawBorder(e.Graphics, ((Panel)sender).ClientRectangle,
+                foreColor, ButtonBorderStyle.Solid);
+        }
+
+        private void PanelExtractOverlay_Paint(object sender, PaintEventArgs e)
+        {
+            Panel panel = (Panel)sender;
+            Rectangle rect = panel.ClientRectangle;
+
+            Color gameFore, gameBack;
+            try { gameFore = GameTypes[_gameSelected].ForeColor; gameBack = GameTypes[_gameSelected].BackColor; }
+            catch { gameFore = Color.White; gameBack = Color.FromArgb(12, 12, 12); }
+
+            string title = TextVariables.BUTTON_SELECT_ARCHIVE;
+            string folderIcon = "\U0001F4C1";
+            string hint = TextVariables.EXTRACT_HINT_OVERLAY;
+            string hintSub = TextVariables.EXTRACT_HINT_SUB;
+
+            using (Font titleFont = new Font(_fontCollection.Families[0], 22))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 12))
+            using (Font hintSubFont = new Font(_fontCollection.Families[0], 9))
+            {
+                string titleLine = title + "\n" + folderIcon;
+                TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
+
+                Size titleSize = TextRenderer.MeasureText(e.Graphics, titleLine, titleFont,
+                    new Size(rect.Width, 0), tf);
+                Size hintSize = TextRenderer.MeasureText(e.Graphics, hint, hintFont,
+                    new Size(rect.Width, 0), tf);
+                Size hintSubSize = TextRenderer.MeasureText(e.Graphics, hintSub, hintSubFont,
+                    new Size(rect.Width, 0), tf);
+
+                int totalHeight = titleSize.Height + 16 + hintSize.Height + 6 + hintSubSize.Height;
+                int yStart = (rect.Height - totalHeight) / 2;
+
+                Color titleColor = _overlayHovered ? gameFore : Color.White;
+
+                Rectangle titleRect = new Rectangle(0, yStart, rect.Width, titleSize.Height);
+                TextRenderer.DrawText(e.Graphics, titleLine, titleFont, titleRect, titleColor, tf);
+
+                Rectangle hintRect = new Rectangle(0, yStart + titleSize.Height + 16, rect.Width, hintSize.Height);
+                TextRenderer.DrawText(e.Graphics, hint, hintFont, hintRect, Color.Gray, tf);
+
+                Rectangle hintSubRect = new Rectangle(0, yStart + titleSize.Height + 16 + hintSize.Height + 6,
+                    rect.Width, hintSubSize.Height);
+                TextRenderer.DrawText(e.Graphics, hintSub, hintSubFont, hintSubRect, Color.Gray, tf);
+            }
+        }
+
+        private void PanelExtractOverlay_MouseEnter(object sender, EventArgs e)
+        {
+            _overlayHovered = true;
+            ((Panel)sender).Invalidate();
+        }
+
+        private void PanelExtractOverlay_MouseLeave(object sender, EventArgs e)
+        {
+            _overlayHovered = false;
+            ((Panel)sender).Invalidate();
+        }
+
+        private void PanelExtractContainer_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void PanelExtractContainer_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files == null || files.Length == 0) return;
+
+            string path = files[0];
+            if (Directory.Exists(path))
+            {
+                LoadArchiveThumbnails(path);
+            }
+            else
+            {
+                string ext = Path.GetExtension(path).ToLowerInvariant();
+                if (ext == ".zip" || ext == ".7z" || ext == ".rar")
+                    LoadArchiveThumbnails(path);
+            }
+        }
+
+        private void LayoutExtractRight_Paint(object sender, PaintEventArgs e)
+        {
+            Color foreColor;
+            try { foreColor = GameTypes[_gameSelected].ForeColor; } catch { foreColor = Color.FromArgb(60, 60, 60); }
+            ControlPaint.DrawBorder(e.Graphics, ((TableLayoutPanel)sender).ClientRectangle,
+                foreColor, ButtonBorderStyle.Solid);
+        }
+
+        private void LabelSelectPathChoosePath_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog FolderChoose = new FolderBrowserDialog()
+            {
+                SelectedPath = GameTypes[_gameSelected].DefaultDirectory,
+                //Description = TextVariables.TEXT_FOLDEROPEN,
+                ShowNewFolderButton = false,
+            })
+            {
+                if (FolderChoose.ShowDialog() == DialogResult.OK)
+                {
+                    LabelSelectPathSelected.Text = FolderChoose.SelectedPath;
+                }
+                else
+                {
+                    FolderChoose.Dispose();
+                    return;
+                }
+            }
+        }
+
+        private void LabelCreatePortrait_Click(object sender, EventArgs e)
+        {
+            if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' ||
+                _gameSelected == 'p' || _gameSelected == 't' || _gameSelected == 'd' || _gameSelected == 'l')
+            {
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutKingCreatePortrait);
+                _activeMenuIndex = GetCreatePortraitMenuIndexForCurrentGame();
+
+                PrepareKingCreatePortraitView();
+                PrepareKingCreatePortraitStyleState();
+                TextInit();
+                Focus();
+            }
+        }
+
+        private void LabelKingCreatePortraitLarge_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(PortraitGroupSelection.Large);
+        }
+
+        private void LabelKingCreatePortraitMedium_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(PortraitGroupSelection.Medium);
+        }
+
+        private void LabelKingCreatePortraitSmall_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(PortraitGroupSelection.Small);
+        }
+
+        private void LabelKingCreatePortraitSml2_Click(object sender, EventArgs e)
+        {
+            SetKingPortraitGroup(PortraitGroupSelection.Sml2);
+        }
+
+        private void ButtonKingBackToPathfinder_Click(object sender, EventArgs e)
+        {
+            // Explicit button to return user to the selected game's main page
+            try
+            {
+                _overrideGallerySaveDir = null;
+                _activeMenuIndex = GetMainMenuIndexForCurrentGame();
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutMainPage);
+                PrepareKingCreatePortraitStyleState();
+                Focus();
+            }
+            catch { }
+        }
+
+        private void ButtonKingSelectWeb_Click(object sender, EventArgs e)
+        {
+            // placeholder: open web selection dialog
+            // sender.Tag contains picture box name currently, but for now do nothing
+        }
+
+        private void ButtonKingSelectLocal_Click(object sender, EventArgs e)
+        {
+            // Open local file dialog and set image with initial fit
+            if (sender is Button btn && btn.Tag is string picName)
+            {
+                PictureBox pic = this.Controls.Find(picName, true).FirstOrDefault() as PictureBox;
+                if (pic == null) return;
+
+                using (OpenFileDialog ofd = new OpenFileDialog()
+                {
+                    Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.webp",
+                    Multiselect = false
+                })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            using (Image fileImg = Image.FromFile(ofd.FileName))
+                            {
+                                Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+                                StoreOriginalImage(pic, copy);
+                            }
+                            FitImageToPanel(pic);
+                            MarkGroupInitialized(pic);
+                        }
+                        catch
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ButtonKingZoomIn_Click(object sender, EventArgs e)
+        {
+            ZoomFromButton(sender, 120);
+        }
+
+        private void ButtonKingZoomOut_Click(object sender, EventArgs e)
+        {
+            ZoomFromButton(sender, -120);
+        }
+
+        private void ButtonKingZoomReset_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+            string picName = button.Tag as string;
+            if (string.IsNullOrEmpty(picName)) return;
+
+            PictureBox pb = null;
+            if (picName == "PicKingLrg") pb = PicKingLrg;
+            else if (picName == "PicKingMed") pb = PicKingMed;
+            else if (picName == "PicKingSml") pb = PicKingSml;
+            else if (picName == "PicKingSml2") pb = PicKingSml2;
+
+            if (pb == null || pb.Image == null) return;
+            FitImageToPanel(pb);
+        }
+
+        private void PortraitButton_GotFocus(object sender, EventArgs e)
+        {
+            ActiveControl = null;
+        }
+
+        private void PortraitButton_MouseEnter(object sender, EventArgs e)
+        {
+            if (!(sender is Button btn)) return;
+            Color selBack = Color.Black;
+            Color selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+
+            // swap fore and back on hover, keep border as fore
+            btn.BackColor = selFore;
+            btn.ForeColor = selBack;
+            btn.FlatAppearance.BorderColor = selFore;
+        }
+
+        private void PortraitButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (!(sender is Button btn)) return;
+            Color selBack = Color.Black;
+            Color selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+
+            // restore original colors
+            btn.BackColor = selBack;
+            btn.ForeColor = selFore;
+            btn.FlatAppearance.BorderColor = selFore;
+        }
+
+        private void LabelKingCreatePortraitLarge_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitLarge.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitLarge_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitLarge.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Large ? GameTypes[_gameSelected].ForeColor : Color.White;
+        }
+
+        private void LabelKingCreatePortraitMedium_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitMedium.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitMedium_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitMedium.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Medium ? GameTypes[_gameSelected].ForeColor : Color.White;
+        }
+
+        private void LabelKingCreatePortraitSmall_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitSmall.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitSmall_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitSmall.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Small ? GameTypes[_gameSelected].ForeColor : Color.White;
+        }
+
+        private void LabelKingCreatePortraitSml2_MouseEnter(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitSml2.ForeColor = GameTypes[_gameSelected].ForeColor;
+        }
+
+        private void LabelKingCreatePortraitSml2_MouseLeave(object sender, EventArgs e)
+        {
+            LabelKingCreatePortraitSml2.ForeColor = _activeKingPortraitGroup == PortraitGroupSelection.Sml2 ? GameTypes[_gameSelected].ForeColor : Color.White;
         }
     }
 }

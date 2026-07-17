@@ -22,6 +22,7 @@ using System.Drawing;
 
 namespace PortraitManager.sources
 {
+    /// Describes one supported game: display strings, themed art assets, and per-portrait-size pixel dimensions.
     public class GameType
     {
         public string FullGameName;
@@ -36,6 +37,7 @@ namespace PortraitManager.sources
         public Color ForeColor;
         public Color BackColor;
 
+        // Keyed by e.g. "LARGE_WIDTH", "MEDIUM_AR" - see GetPortraitSpecific.
         private readonly Dictionary<string, float> PortraitSpecifics;
         public string DefaultDirectory;
 
@@ -62,6 +64,7 @@ namespace PortraitManager.sources
             PortraitSpecifics = newPortraitSpecifics;
         }
 
+        /// Looks up a portrait size/aspect-ratio constant (e.g. "LARGE_WIDTH"); throws if the game has no such size slot.
         public float GetPortraitSpecific(string key)
         {
             return PortraitSpecifics[key];

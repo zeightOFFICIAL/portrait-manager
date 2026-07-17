@@ -18,18 +18,16 @@
 
 using PortraitManager.forms;
 using PortraitManager.Properties;
-
-using Microsoft.Win32;
+using PortraitManager.sources;
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,13 +39,7 @@ namespace PortraitManager
 {
     public partial class MainForm : Form
     {
-        public void RestoreFilePageToInit()
-        {
-            _imageSelectionFlag = 0;
-            _isAnyLoadedToPortraitPage = false;
-        }
-
-
+        /// Hides every top-level page layout (main/extract/gallery/start menu/path/create-portrait).
         public void ParentLayoutsDisable()
         {
             RootFunctions.LayoutDisable(LayoutMainPage);
@@ -66,35 +58,9 @@ namespace PortraitManager
             }
         }
         
+        /// Shared TableLayoutPanel-based page-navigation helpers used across MainForm.
         class RootFunctions
         {
-            static public void AddClickEvent(object sender, EventHandler handler)
-            {
-                if (sender is Button button)
-                {
-
-                    if (button != null)
-                    {
-                        button.Click -= handler;
-                        button.Click += handler;
-                    }
-
-                }
-            }
-            
-            static public void RemoveClickEvent(object sender, EventHandler handler)
-            {
-                if (sender is Button button)
-                {
-
-                    if (button != null)
-                    {
-                        button.Click -= handler;
-                    }
-
-                }
-            }
-
             static public void LayoutEnable(TableLayoutPanel table)
             {
                 if (table.Visible == false && table.Enabled == false)
@@ -125,211 +91,9 @@ namespace PortraitManager
                     LayoutsSetDockFill(subCtrl);
                 }
             }
-            
-            static public void HideScrollBar(Control control)
-            {
-                if (control is Panel panel)
-                {
-
-                    if (panel != null)
-                    {
-                        panel.VerticalScroll.Visible = false;
-                        panel.HorizontalScroll.Visible = false;
-                        panel.AutoScroll = false;
-                    }
-
-                }
-            }
         }
-        
-        public void LoadAllTempImagesToPicBox()
-        {
-            LoadTempImagesToPicBox(200);
-        }
-        
-        public void LoadTempImagesToPicBox(ushort selectionFlag)
-        {
-            //if (selectionFlag == 0 || selectionFlag == 100)
-            //{
-            //    using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-            //        ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-            //}
-            //else if (selectionFlag == 1)
-            //{
-            //    using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-            //        ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-            //}
-            //else if (selectionFlag == 2)
-            //{
-            //    using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-            //        ImageControl.Utils.Replace(PicPortraitTemp, new Bitmap(img));
-            //}
-            //else if (selectionFlag == 200)
-            //{
-            //    using (Image img = new Bitmap(TEMP_SMALL_APPEND))
-            //        ImageControl.Utils.Replace(PicPortraitSml, new Bitmap(img));
-            //    using (Image img = new Bitmap(TEMP_MEDIUM_APPEND))
-            //        ImageControl.Utils.Replace(PicPortraitMed, new Bitmap(img));
-            //    using (Image img = new Bitmap(TEMP_LARGE_APPEND))
-            //        ImageControl.Utils.Replace(PicPortraitLrg, new Bitmap(img));
-            //    DisableAutoScroll(PanelPortraitLrg, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            //    DisableAutoScroll(PanelPortraitMed, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            //    DisableAutoScroll(PanelPortraitSml, PicPortraitLrg.Height, PicPortraitLrg.Width);
-            //}
-        }
-        
-        public static void DisableAutoScroll(Control control, int xMax, int yMax)
-        {
-            if (control is Panel panel)
-            {
-                panel.AutoScroll = false;
-                panel.VerticalScroll.Minimum = 0;
-                panel.HorizontalScroll.Minimum = 0;
-                panel.VerticalScroll.Maximum = xMax;
-                panel.HorizontalScroll.Maximum = yMax;
-                panel.VerticalScroll.Visible = true;
-                panel.HorizontalScroll.Visible = true;
-            }
-        }
-        
-        public static bool CheckPortraitExistence(string path)
-        {
-            //if (SystemControl.FileControl.Readonly.DirectoryExists(path))
 
-            //    if (SystemControl.FileControl.Readonly.FileExist(path + LARGE_APPEND) &&
-            //        SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
-            //        SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
-
-            //        if (SystemControl.FileControl.Readonly.GetFileExtension(path + LARGE_APPEND) == ".png" &&
-            //            SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
-            //            SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
-            //            return true;
-
-            //        else
-            //            return false;
-            //    else
-            //        return false;
-            //else
-            //    return false;
-            return false;
-        }
-        
-        public static bool CheckPortraitExistenceClipped(string path)
-        {
-            //if (SystemControl.FileControl.Readonly.DirectoryExists(path))
-
-            //    if (SystemControl.FileControl.Readonly.FileExist(path + MEDIUM_APPEND) &&
-            //        SystemControl.FileControl.Readonly.FileExist(path + SMALL_APPEND))
-
-            //        if (SystemControl.FileControl.Readonly.GetFileExtension(path + MEDIUM_APPEND) == ".png" &&
-            //            SystemControl.FileControl.Readonly.GetFileExtension(path + SMALL_APPEND) == ".png")
-            //            return true;
-
-            //        else
-            //            return false;
-            //    else
-            //        return false;
-            //else
-            //    return false;
-            return false;
-        }
-        
-        private void RecursiveParsePortraitsDirectoryAsync(string path, CancellationToken cancelToken)
-        {
-            if (cancelToken.IsCancellationRequested)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    //ClearImageListsSync(ListExtract, ImgListExtract);
-                });
-
-                return;
-            }
-
-            if (CheckPortraitExistence(path))
-            {
-                //if (SystemControl.FileControl.Readonly.CheckImagePixeling(path + LARGE_APPEND, 
-                //    GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
-                //    SystemControl.FileControl.Readonly.CheckImagePixeling(path + MEDIUM_APPEND, 
-                //    GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
-                //    SystemControl.FileControl.Readonly.CheckImagePixeling(path + SMALL_APPEND, 
-                //    GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
-                //{
-                //    try
-                //    {
-                //        using (Image img = new Bitmap(path + "\\Fulllength.png"))
-                //        {
-                //            ListViewItem item = new ListViewItem
-                //            {
-                //                Text = path.Split('\\').Last(),
-                //                ImageIndex = ListExtract.Items.Count,
-                //                Tag = path
-                //            };
-                //            Invoke((MethodInvoker)delegate
-                //            {
-                //                ImgListExtract.Images.Add(path, img);
-                //                ListExtract.Items.Add(item);
-                //                ButtonExtractAll.Enabled = true;
-                //                ButtonExtractSelected.Enabled = true;
-                //                ButtonOpenFolders.Enabled = true;
-                //            });
-                //        }
-                //    }
-                //    catch
-                //    {
-                //        return;
-                //    }
-                //}
-            }
-
-            string[] subDirs = Directory.GetDirectories(path);
-            foreach (string subDir in subDirs)
-            {
-                RecursiveParsePortraitsDirectoryAsync(subDir, cancelToken);
-            }
-        }
-        
-        public void ExploreDirectory(string path, CancellationToken cancelToken)
-        {                
-            Task.Factory.StartNew(() =>
-            {
-                RecursiveParsePortraitsDirectoryAsync(path, cancelToken);
-            }, cancelToken);
-        }
-        
-
-        
-        public void UpdateObjectColoringInDepth(Control ctrl, Color a, Color b)
-        {
-            //if (ctrl is PictureBox || ctrl.Equals(LayoutURLDialog)
-                                   //|| ctrl.Equals(LayoutFinalPage)
-                                   //|| ctrl.Equals(LayoutSettingsPage)
-                                   //|| ctrl.Equals(LayoutLang)
-                                   //|| ctrl.Equals(LayoutStartMenu))
-            {
-                return;
-            }
-
-            //if (ctrl.Equals(LabelCopyright) || ctrl.Equals(LabelVersion) ||
-            //    ctrl.Equals(LblPointerToFilePage) ||
-            //    ctrl.Equals(LblPointerToGalleryPage))
-            //{
-            //    ctrl.ForeColor = a;
-            //    return;
-            //}
-
-            ctrl.ForeColor = a;
-            ctrl.BackColor = b;
-            ctrl.TabStop = false;
-            ctrl.TabIndex = 1;
-            ctrl.PreviewKeyDown += new PreviewKeyDownEventHandler(Ctrl_PreviewKeyDown);
-
-            foreach (Control subCtrl in ctrl.Controls)
-            {
-                UpdateObjectColoringInDepth(subCtrl, a, b);
-            }
-        }
-        
+        /// Fits each portrait editor's currently loaded image to its PictureBox using cover-scaling.
         public void ReplacePictureBoxImagesToDefault()
         {
             // Apply "cover" scaling to portrait picture boxes so one dimension matches the
@@ -344,7 +108,7 @@ namespace PortraitManager
                     if (_originalImageLrg == null)
                         _originalImageLrg = new Bitmap(PicKingLrg.Image);
 
-                    var scaled = ResizeImageCover(_originalImageLrg, PicKingLrg.Width, PicKingLrg.Height);
+                    var scaled = ImageControl.PortraitCrop.ResizeCover(_originalImageLrg, PicKingLrg.Width, PicKingLrg.Height);
                     // use Normal mode and set control size to match rendered image so drag/zoom
                     // logic (which uses PictureBox.Width/Height as image size) stays correct
                     PicKingLrg.Dock = DockStyle.None;
@@ -364,7 +128,7 @@ namespace PortraitManager
                     if (_originalImageMed == null)
                         _originalImageMed = new Bitmap(PicKingMed.Image);
 
-                    var scaled = ResizeImageCover(_originalImageMed, PicKingMed.Width, PicKingMed.Height);
+                    var scaled = ImageControl.PortraitCrop.ResizeCover(_originalImageMed, PicKingMed.Width, PicKingMed.Height);
                     PicKingMed.Dock = DockStyle.None;
                     PicKingMed.SizeMode = PictureBoxSizeMode.Normal;
                     PicKingMed.Size = new Size(scaled.Width, scaled.Height);
@@ -381,7 +145,7 @@ namespace PortraitManager
                     if (_originalImageSml == null)
                         _originalImageSml = new Bitmap(PicKingSml.Image);
 
-                    var scaled = ResizeImageCover(_originalImageSml, PicKingSml.Width, PicKingSml.Height);
+                    var scaled = ImageControl.PortraitCrop.ResizeCover(_originalImageSml, PicKingSml.Width, PicKingSml.Height);
                     PicKingSml.Dock = DockStyle.None;
                     PicKingSml.SizeMode = PictureBoxSizeMode.Normal;
                     PicKingSml.Size = new Size(scaled.Width, scaled.Height);
@@ -398,7 +162,7 @@ namespace PortraitManager
                     if (_originalImageSml2 == null)
                         _originalImageSml2 = new Bitmap(PicKingSml2.Image);
 
-                    var scaled = ResizeImageCover(_originalImageSml2, PicKingSml2.Width, PicKingSml2.Height);
+                    var scaled = ImageControl.PortraitCrop.ResizeCover(_originalImageSml2, PicKingSml2.Width, PicKingSml2.Height);
                     PicKingSml2.Dock = DockStyle.None;
                     PicKingSml2.SizeMode = PictureBoxSizeMode.Normal;
                     PicKingSml2.Size = new Size(scaled.Width, scaled.Height);
@@ -415,378 +179,7 @@ namespace PortraitManager
             }
         }
 
-        private Image ResizeImageCover(Image src, int boxWidth, int boxHeight)
-        {
-            if (src == null || boxWidth <= 0 || boxHeight <= 0)
-                return src == null ? null : new Bitmap(src);
-
-            float scaleX = (float)boxWidth / src.Width;
-            float scaleY = (float)boxHeight / src.Height;
-            // cover: pick the larger scale so the image fills the box and overflows one axis
-            float scale = Math.Max(scaleX, scaleY);
-
-            int newW = Math.Max(1, (int)Math.Ceiling(src.Width * scale));
-            int newH = Math.Max(1, (int)Math.Ceiling(src.Height * scale));
-
-            Bitmap dest = new Bitmap(newW, newH);
-            dest.SetResolution(src.HorizontalResolution, src.VerticalResolution);
-
-            using (Graphics g = Graphics.FromImage(dest))
-            {
-                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-
-                g.Clear(Color.Transparent);
-                g.DrawImage(src, 0, 0, newW, newH);
-            }
-
-            return dest;
-        }
-        
-        public static void CreateAllImagesInTemp(string newImagePath, ushort flag)
-        {
-            //using (Image placeholder = new Bitmap(GAME_TYPES[_gameSelected].PortraitPlaceholderImage))
-            //{
-            //    if (flag == 1)
-            //    {
-            //        SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
-            //        SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
-            //    }
-            //    else if (flag == 2)
-            //    {
-            //        SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
-            //        SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
-            //    }
-            //    else if (flag == 100 || flag == 0)
-            //    {
-            //        SystemControl.FileControl.ClearTempImages();
-            //        SystemControl.FileControl.CreateTempImages(newImagePath, TEMP_APPENDS, placeholder, flag);
-            //    }
-            //}
-        }
-        
-        public void UpdateColorScheme()
-        {
-            //Color foreColor = GAME_TYPES[_gameSelected].ControlForeColor;
-            //Color backColor = GAME_TYPES[_gameSelected].ControlBackColor;
-
-            //Icon = GAME_TYPES[_gameSelected].ApplicationIcon;
-            //PictureBoxTitle.BackgroundImage = GAME_TYPES[_gameSelected].MenuTitleImage;
-            //LayoutMainPage.BackgroundImage = GAME_TYPES[_gameSelected].MenuBackgroundImage;
-
-            //foreach (Control ctrl in Controls)
-            //{
-            //    UpdateObjectColoringInDepth(ctrl, foreColor, backColor);
-            //}
-
-            //Text = GAME_TYPES[_gameSelected].WindowTitleText;
-            //TextBoxFullPath.Clear();
-
-            //if (_gameSelected == 'p')
-            //{
-            //    ButtonLoadNormal.Visible = true;
-
-            //    ButtonKingmaker.Enabled = false;
-            //    ButtonKingmaker.ForeColor = backColor;
-            //    ButtonKingmaker.BackColor = foreColor;
-
-            //    ButtonWotR.Enabled = true;
-            //    ButtonWotR.ForeColor = Color.White;
-            //    ButtonWotR.BackColor = Color.Black;
-
-            //    ButtonRT.Enabled = true;
-            //    ButtonRT.ForeColor = Color.White;
-            //    ButtonRT.BackColor = Color.Black;
-
-            //    TextBoxFullPath.Text = CoreSettings.Default.KINGPath;
-            //}
-            //else if (_gameSelected == 'w')
-            //{
-            //    ButtonLoadNormal.Visible = true;
-
-            //    ButtonKingmaker.Enabled = true;
-            //    ButtonKingmaker.ForeColor = Color.White;
-            //    ButtonKingmaker.BackColor = Color.Black;   
-                
-            //    ButtonWotR.Enabled = false;
-            //    ButtonWotR.ForeColor = backColor;
-            //    ButtonWotR.BackColor = foreColor;
-
-            //    ButtonRT.Enabled = true;
-            //    ButtonRT.ForeColor = Color.White;
-            //    ButtonRT.BackColor = Color.Black;
-
-            //    TextBoxFullPath.Text = CoreSettings.Default.WOTRPath;
-            //}
-            //else if (_gameSelected == 'r')
-            //{
-            //    ButtonLoadNormal.Visible = false;
-
-            //    ButtonKingmaker.Enabled = true;
-            //    ButtonKingmaker.ForeColor = Color.White;
-            //    ButtonKingmaker.BackColor = Color.Black;
-
-            //    ButtonWotR.Enabled = true;
-            //    ButtonWotR.ForeColor = Color.White;
-            //    ButtonWotR.BackColor = Color.Black;
-
-            //    ButtonRT.Enabled = false;
-            //    ButtonRT.ForeColor = backColor;
-            //    ButtonRT.BackColor = foreColor;
-                
-            //    TextBoxFullPath.Text = CoreSettings.Default.ROGUEPath;
-            //}
-        }
-
-        public bool LoadGallery(string path)
-        {
-            if (!SystemControl.FileControl.Readonly.DirectoryExists(path))
-            {
-                return false;
-            }
-
-            _cancellationTokenSource?.Cancel();
-            //ClearImageListsSync(ListGallery, ImgListGallery);
-            _cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancelToken = _cancellationTokenSource.Token;
-
-            Task.Factory.StartNew(() =>
-            {
-                IterativeParsePortraitsFolderAsync(path, cancelToken);
-            }, cancelToken);
-
-            return true;
-        }
-
-        private void IterativeParsePortraitsFolderAsync(string fromPath, CancellationToken cancelToken)
-        {
-            string[] subDirs = Directory.GetDirectories(fromPath);
-
-            foreach (string subDir in subDirs)
-            {
-                if (cancelToken.IsCancellationRequested)
-                {
-                    BeginInvoke((MethodInvoker)delegate
-                    {
-                        //ClearImageListsSync(ListGallery, ImgListGallery);
-                    });
-
-                    return;
-                }
-
-                if (CheckPortraitExistence(subDir))
-                {
-                    //if (SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + LARGE_APPEND,
-                    //    GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight()) &&
-                    //    SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + MEDIUM_APPEND,
-                    //    GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight()) &&
-                    //    SystemControl.FileControl.Readonly.CheckImagePixeling(subDir + SMALL_APPEND,
-                    //    GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight()))
-                    //{
-                    //    try
-                    //    {
-                    //        using (Image img = new Bitmap(subDir + "\\Fulllength.png"))
-                    //        {
-
-                    //            ListViewItem item = new ListViewItem
-                    //            {
-                    //                Text = subDir.Split('\\').Last(),
-                    //                ImageIndex = ImgListGallery.Images.Count,
-                    //                Tag = subDir+">LOCAL"
-                    //            };
-                    //            Invoke((MethodInvoker)delegate
-                    //            {
-                    //                ImgListGallery.Images.Add(subDir, img);
-                    //                ListGallery.Items.Add(item);
-                    //            });
-
-                    //        }
-                    //    }
-                    //    catch
-                    //    {
-                    //        return;
-                    //    }
-                    //}
-                }
-            }
-        }
-        
-        private void RecursiveParsePortraitsFolderAsync(string fromPath, CancellationToken cancelToken, bool flag)
-        {
-            if (cancelToken.IsCancellationRequested)
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    //ClearImageListsSync(ListGallery, ImgListGallery);
-                });
-
-                return;
-            }
-
-            if (CheckPortraitExistenceClipped(fromPath))
-            {
-
-                try
-                {
-                    string fromPathFilePath = fromPath + "\\Fulllength.png";
-                    string name;
-
-                    if (!SystemControl.FileControl.Readonly.FileExist(fromPathFilePath))
-                    {
-                        fromPathFilePath = fromPath + "\\Medium.png";
-                    }
-
-                    if (fromPath.Split('\\').Last() == "Game Default Portraits")
-                    {
-                        string[] parts = fromPath.Split('\\');
-                        name = parts[parts.Length - 2] + " DEFAULT";
-                    }
-                    else
-                    {
-                        name = fromPath.Split('\\').Last();
-                    }
-
-                    if (flag)
-                    {
-                        if (!fromPath.Contains("CustomNpcPortraits - "))
-                        {
-                            return;
-                        }
-                    }
-
-                    if (fromPath.Contains("BACKUP"))
-                    {
-                        return;
-                    }
-
-                    using (Image img = new Bitmap(fromPathFilePath))
-                    {
-                        ListViewItem item = new ListViewItem
-                        {
-                            Text = name,
-                            //ImageIndex = ListGallery.Items.Count,
-                            Tag = fromPath + ">CUSTOM"
-                        };
-                        Invoke((MethodInvoker)delegate
-                        {
-                            ImgListGallery.Images.Add(fromPath, img);
-                            //ListGallery.Items.Add(item);
-                        });
-                    }
-                }
-                catch
-                {
-                    return;
-                }
-            }
-            string[] subDirs = Directory.GetDirectories(fromPath);
-            foreach (string subDir in subDirs)
-            {
-                RecursiveParsePortraitsFolderAsync(subDir, cancelToken, flag);
-            }
-        }
-        
-        public static void ClearImageListsSync(ListView listView, ImageList imageList)
-        {
-            listView.Items.Clear();
-            listView.Clear();
-            imageList.Images.Clear();
-        }
-
-        public string ParseDragDropFile(DragEventArgs e)
-        {
-            string[] filesList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            string filePath = "!NONE!";
-
-            if (filesList[0] != null && File.Exists(filesList[0]) &&
-                (Path.GetExtension(filesList[0]) == ".png") ||
-                (Path.GetExtension(filesList[0]) == ".jpg") ||
-                (Path.GetExtension(filesList[0]) == ".jpeg") ||
-                (Path.GetExtension(filesList[0]) == ".bmp") ||
-                (Path.GetExtension(filesList[0]) == ".gif"))
-            {
-                filePath = filesList[0];
-            }
-
-            return filePath;
-        }
-
-        public void CheckWebResourceAndLoad(string URL)
-        {
-            try
-            {
-                WebRequest request = WebRequest.Create(URL);
-
-                using (WebResponse response = request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                {
-                    using (Image webImage = Image.FromStream(stream))
-                    {
-
-                        _isAnyLoadedToPortraitPage = true;
-
-                        //if (_imageSelectionFlag == 1)
-                        //{
-                        //    SystemControl.FileControl.DeleteFile(TEMP_MEDIUM_APPEND);
-                        //    webImage.Save(TEMP_MEDIUM_APPEND);
-                        //}
-                        //else if (_imageSelectionFlag == 2)
-                        //{
-                        //    SystemControl.FileControl.DeleteFile(TEMP_SMALL_APPEND);
-                        //    webImage.Save(TEMP_SMALL_APPEND);
-                        //}
-                        //else if (_imageSelectionFlag == 100 || _imageSelectionFlag == 0)
-                        //{
-                        //    SystemControl.FileControl.ClearTempImages();
-                        //    SystemControl.FileControl.CreateDirectory("temp_DoNotDeleteWhileRunning/");
-                        //    webImage.Save(TEMP_MEDIUM_APPEND);
-                        //    webImage.Save(TEMP_SMALL_APPEND);
-                        //    webImage.Save(TEMP_LARGE_APPEND);
-                        //}
-
-                        LoadTempImagesToPicBox(_imageSelectionFlag);
-                    }
-                }
-            }
-            catch
-            {
-                //using (forms.MyMessageDialog Message = new forms.MyMessageDialog(TextVariables.MESG_CANNOTLOAD, CoreSettings.Default.SelectedLang))
-                //{
-                //    Message.StartPosition = FormStartPosition.CenterParent;
-                //    Message.ShowDialog();
-                //    Focus();
-                //}
-            }
-        }
-        
-        public void GeneratePortraits(string path)
-        {
-            //Directory.CreateDirectory(path);
-            //ImageControl.Wraps.CropImage(PicPortraitLrg, PanelPortraitLrg, TEMP_LARGE_APPEND,
-            //                             path + LARGE_APPEND, GAME_TYPES[_gameSelected].GetLargeAspect(),
-            //                             GAME_TYPES[_gameSelected].GetLargeWidth(), GAME_TYPES[_gameSelected].GetLargeHeight());
-            //ImageControl.Wraps.CropImage(PicPortraitMed, PanelPortraitMed, TEMP_MEDIUM_APPEND,
-            //                             path + MEDIUM_APPEND, GAME_TYPES[_gameSelected].GetMediumAspect(),
-            //                             GAME_TYPES[_gameSelected].GetMediumWidth(), GAME_TYPES[_gameSelected].GetMediumHeight());
-            //ImageControl.Wraps.CropImage(PicPortraitSml, PanelPortraitSml, TEMP_SMALL_APPEND,
-            //                             path + SMALL_APPEND, GAME_TYPES[_gameSelected].GetSmallAspect(),
-            //                             GAME_TYPES[_gameSelected].GetSmallWidth(), GAME_TYPES[_gameSelected].GetSmallHeight());
-        }
-
-
-        public void Ctrl_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right ||
-                e.KeyCode == Keys.Enter)
-            {
-                e.IsInputKey = true;
-            }
-        }
-    
-
-
+        /// Navigates to the game-folder selection page for the currently selected game.
         private void OpenPathSelectPage()
         {
             ParentLayoutsDisable();
@@ -1923,37 +1316,9 @@ namespace PortraitManager
         // (native, battle-tested) is both faster and more robust, so prefer it when present and
         // only fall back to the managed decoder if 7-Zip isn't installed. .rar keeps using
         // SharpCompress unconditionally since it's fine there.
-        private static string FindNative7ZipExecutable()
-        {
-            try
-            {
-                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\7-Zip") ??
-                                  Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\7-Zip"))
-                {
-                    var path = key?.GetValue("Path") as string;
-                    if (!string.IsNullOrEmpty(path))
-                    {
-                        string exe = Path.Combine(path, "7z.exe");
-                        if (File.Exists(exe)) return exe;
-                    }
-                }
-            }
-            catch { }
-
-            string[] candidates =
-            {
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "7-Zip", "7z.exe"),
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "7-Zip", "7z.exe"),
-            };
-            foreach (var candidate in candidates)
-                if (File.Exists(candidate)) return candidate;
-
-            return null;
-        }
-
         private static bool TryExtractWithNative7Zip(string archivePath, string destDir)
         {
-            string exe = FindNative7ZipExecutable();
+            string exe = SystemControl.FileControl.FindNative7ZipExecutable();
             if (exe == null) return false;
 
             try
@@ -2976,6 +2341,1497 @@ namespace PortraitManager
             {
                 CleanupShellTempDir();
             }
+        }
+
+        private void DrawGroupBorder(Control group, PaintEventArgs e, Label label)
+        {
+            if (group == null) return;
+            Color col = Color.White;
+            try { col = GameTypes[_gameSelected].ForeColor; } catch { if (label != null) col = label.ForeColor; }
+            using (var pen = new Pen(col))
+            {
+                int w = group.ClientSize.Width;
+                int h = group.ClientSize.Height;
+                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
+                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
+                e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
+
+                int gapStart = -1, gapEnd = -1;
+                if (label != null && label.Visible)
+                {
+                    try
+                    {
+                        var lblScreen = label.PointToScreen(Point.Empty);
+                        var lblInGroup = group.PointToClient(lblScreen);
+                        gapStart = lblInGroup.X;
+                        gapEnd = lblInGroup.X + label.Width;
+                    }
+                    catch { gapStart = -1; gapEnd = -1; }
+                }
+
+                if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
+                {
+                    e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
+                }
+                else
+                {
+                    int leftSegEnd = Math.Max(0, gapStart - 1);
+                    if (leftSegEnd > 0)
+                        e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
+
+                    int rightSegStart = Math.Min(w - 1, gapEnd + 1);
+                    if (rightSegStart < w - 1)
+                        e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
+                }
+            }
+        }
+
+        // SetKingPortraitGroup only ever makes ONE group's layout/panel visible at a time
+        // (LayoutKingPortraitGroupMedium/Small/Sml2.Visible = false while inactive) - so calling
+        // FitImageToPanel immediately for an inactive group runs against a panel that isn't
+        // necessarily laid out to its real size yet, producing a wrong crop/fit (this is the
+        // black-bars-until-you-switch-tabs bug: switching tabs happens to trigger a correct,
+        // lazy re-fit via EnsureKingGroupInitialized, which only runs for a group that hasn't
+        // already been marked initialized). So: only fit+mark-initialized the group that's
+        // actually active right now (Large, in every caller of this - Change/Clone always open
+        // on the Large tab); for every other group, just store the image and leave it
+        // un-initialized so the existing, correct lazy-fit runs whenever the user switches to it.
+        private void LoadImageIntoPortraitBox(PictureBox pic, Image img, PortraitGroupSelection group)
+        {
+            StoreOriginalImage(pic, img);
+            if (group == _activeKingPortraitGroup)
+            {
+                FitImageToPanel(pic);
+                MarkGroupInitialized(pic);
+            }
+            else
+            {
+                // EnsureKingGroupInitialized's lazy fit (FitPictureToPanel) bails out early if
+                // pic.Image is still null - which it can be for a box that has never been shown
+                // in this app session. Assign the raw image directly (not fitted - just a
+                // placeholder that gets replaced the moment this group actually becomes active)
+                // so that null-check never blocks the real, correctly-timed fit later.
+                if (pic.Image == null)
+                    pic.Image = img;
+
+                if (pic.Name == "PicKingLrg") _groupLrgInitialized = false;
+                else if (pic.Name == "PicKingMed") _groupMedInitialized = false;
+                else if (pic.Name == "PicKingSml") _groupSmlInitialized = false;
+                else if (pic.Name == "PicKingSml2") _groupSml2Initialized = false;
+            }
+        }
+
+        private void LoadGalleryImageIntoCreatePage(string folderPath)
+        {
+            if (_gameSelected == 'd')
+            {
+                LoadDeadfireGalleryIntoCreatePage(folderPath);
+                return;
+            }
+
+            if (_gameSelected == 't')
+            {
+                LoadTyrannyGalleryIntoCreatePage(folderPath, fromBackup: false);
+                return;
+            }
+
+            if (_gameSelected == 'p')
+            {
+                LoadPillarsGalleryIntoCreatePage(folderPath, fromBackup: false);
+                return;
+            }
+
+            string bestFile = FindBestGalleryImage(folderPath);
+            if (bestFile == null) return;
+
+            try
+            {
+                using (Image fileImg = Image.FromFile(bestFile))
+                {
+                    Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(copy), PortraitGroupSelection.Large);
+
+                    if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
+                        HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
+                        HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
+                    {
+                        LoadImageIntoPortraitBox(PicKingMed, new Bitmap(copy), PortraitGroupSelection.Medium);
+                    }
+
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(copy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(copy), PortraitGroupSelection.Sml2);
+
+                    copy.Dispose();
+                }
+            }
+            catch { }
+        }
+
+        // Deadfire's companion archives ship "_lg" (210x330), "_convo" (90x141), "_sm" (76x96)
+        // and "_si" (76x96) as genuinely separate files per companion (confirmed by the
+        // extraction code's own completeness check, which requires all four to exist) - the
+        // real game data does the same. Loading a single found file into every box (the old
+        // behavior here for Large/Small/Sml2) is exactly the bug that produced black bars on
+        // Tyranny's and PoE's Small portraits; give each box its own matching file instead,
+        // same fix already applied there. fromBackup mirrors the Tyranny/Pillars loaders so
+        // this same function can serve both the present-load and backup-restore paths.
+        private void LoadDeadfireGalleryIntoCreatePage(string folderPath, bool fromBackup = false)
+        {
+            string dir = Path.GetDirectoryName(folderPath);
+            string prefix = Path.GetFileName(folderPath);
+            string suffix = fromBackup ? ".png.backup" : ".png";
+
+            try
+            {
+                string lgPath = Path.Combine(dir, prefix + "_lg" + suffix);
+                if (!fromBackup && !File.Exists(lgPath))
+                {
+                    string fallback = FindBestGalleryImage(folderPath);
+                    if (fallback != null) lgPath = fallback;
+                }
+                if (File.Exists(lgPath))
+                {
+                    using (Image lgImg = Image.FromFile(lgPath))
+                    {
+                        Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                        LoadImageIntoPortraitBox(PicKingLrg, lgCopy, PortraitGroupSelection.Large);
+                    }
+                }
+
+                string convoPath = Path.Combine(dir, prefix + "_convo" + suffix);
+                if (!File.Exists(convoPath)) convoPath = lgPath;
+                if (File.Exists(convoPath))
+                {
+                    using (Image convoImg = Image.FromFile(convoPath))
+                    {
+                        Bitmap convoCopy = ImageControl.Direct.Resize(convoImg, convoImg.Width, convoImg.Height);
+                        LoadImageIntoPortraitBox(PicKingMed, convoCopy, PortraitGroupSelection.Medium);
+                    }
+                }
+
+                string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
+                if (!File.Exists(smPath)) smPath = lgPath;
+                if (File.Exists(smPath))
+                {
+                    using (Image smImg = Image.FromFile(smPath))
+                    {
+                        Bitmap smCopy = ImageControl.Direct.Resize(smImg, smImg.Width, smImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml, smCopy, PortraitGroupSelection.Small);
+                    }
+                }
+
+                string siPath = Path.Combine(dir, prefix + "_si" + suffix);
+                if (!File.Exists(siPath)) siPath = File.Exists(smPath) ? smPath : lgPath;
+                if (File.Exists(siPath))
+                {
+                    using (Image siImg = Image.FromFile(siPath))
+                    {
+                        Bitmap siCopy = ImageControl.Direct.Resize(siImg, siImg.Width, siImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml2, siCopy, PortraitGroupSelection.Sml2);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private string GetNonPlayerPortraitsRoot(string basePath)
+        {
+            if (_gameSelected == 'p')
+                return Path.Combine(basePath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits");
+            if (_gameSelected == 'd')
+                return Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits");
+            if (_gameSelected == 't')
+                return Path.Combine(basePath, "Data", "data", "art", "gui", "portraits");
+            return null;
+        }
+
+        private string GetCustomNpcPortraitsDir(string basePath)
+        {
+            if (_gameSelected == 'r') return null;
+            return Path.Combine(basePath, "Portraits - Npc");
+        }
+
+        // The "Characters" tab merges everything that isn't a companion into one view:
+        // - Kingmaker: "Portraits - All Additions", a sibling of Portraits\ populated by a
+        //   separate NPC portrait pack (not edvin76's mod - its output format doesn't match any
+        //   of that mod's own directory-naming methods), confirmed to display in-game.
+        // - WotR: the mod's own "Portraits - Npc" (regular NPCs; portraits sit one level deeper
+        //   per-NPC, same recursive shape as Kingmaker's "All Additions"), "Portraits - Army"
+        //   (army leaders) and "Portraits - Tactical" (army units), all folded into one tab per
+        //   the user's direction rather than given their own tabs.
+        // Rogue Trader has no CustomNPC support at all, so this returns nothing there.
+        //
+        // "Portraits - Npc" itself is the mod's own live NPC folder (created as the player meets
+        // NPCs in-game), and the mod is available for both Kingmaker and WotR - so it belongs in
+        // both games' Characters roots, alongside whatever else each game also has.
+        private List<string> GetCharactersPortraitsRoots(string basePath)
+        {
+            var roots = new List<string>();
+            if (_gameSelected == 'k')
+            {
+                roots.Add(Path.Combine(basePath, "Portraits - All Additions"));
+                roots.Add(Path.Combine(basePath, "Portraits - Npc"));
+            }
+            else if (_gameSelected == 'w')
+            {
+                roots.Add(Path.Combine(basePath, "Portraits - Npc"));
+                roots.Add(Path.Combine(basePath, "Portraits - Army"));
+                roots.Add(Path.Combine(basePath, "Portraits - Tactical"));
+            }
+            return roots;
+        }
+
+        // Returns true if a backup already existed for this entry before this call (i.e. this
+        // is at least the second time it's been changed) - on the very first change, the
+        // backup this creates is byte-identical to the present portrait, so there's nothing
+        // meaningful for the caller to offer a choice between.
+        private bool BackupNonPlayerPortraitSet(string entryPath)
+        {
+            string dir = Path.GetDirectoryName(entryPath);
+            string prefix = Path.GetFileName(entryPath);
+            string[] suffixes = { "_lg", "_sm", "_si", "_convo" };
+            bool hadExistingBackup = suffixes.Any(suf => File.Exists(Path.Combine(dir, prefix + suf + ".png.backup")));
+            foreach (string suf in suffixes)
+            {
+                string srcPath = Path.Combine(dir, prefix + suf + ".png");
+                string backupPath = srcPath + ".backup";
+                if (File.Exists(srcPath) && !File.Exists(backupPath))
+                {
+                    try { File.Copy(srcPath, backupPath, overwrite: false); }
+                    catch { }
+                }
+            }
+            return hadExistingBackup;
+        }
+
+        // These games have no mod keeping a separate original copy, so BackupNonPlayerPortraitSet
+        // makes our own ".backup" of the game's shipped asset the first time it's about to be
+        // replaced (and only that once). This looks up whichever one exists, same priority order.
+        private string FindBestNonPlayerBackupImage(string entryPath)
+        {
+            string dir = Path.GetDirectoryName(entryPath);
+            string prefix = Path.GetFileName(entryPath);
+            string[] priority = { "_lg", "_sm", "_si", "_convo" };
+            foreach (string suf in priority)
+            {
+                string path = Path.Combine(dir, prefix + suf + ".png.backup");
+                if (File.Exists(path)) return path;
+            }
+            return null;
+        }
+
+        // Tyranny's "_lg" and "_sm" files are genuinely different native images (not just
+        // different crops of one source) with visibly different aspect ratios - "_lg" is
+        // 210x330, "_sm" is 76x96. Stretching one of them across every size box (the generic
+        // approach every other non-player game still uses below) makes whichever box the
+        // aspect actually mismatches show black bars once saved (and, worse, once the preview
+        // itself started reflecting the true crop). Load each box from its own matching file
+        // instead, same fix already applied to Deadfire's "_convo" vs "_lg" split above.
+        private void LoadTyrannyGalleryIntoCreatePage(string folderPath, bool fromBackup)
+        {
+            string dir = Path.GetDirectoryName(folderPath);
+            string prefix = Path.GetFileName(folderPath);
+            string suffix = fromBackup ? ".png.backup" : ".png";
+
+            try
+            {
+                string lgPath = Path.Combine(dir, prefix + "_lg" + suffix);
+                if (File.Exists(lgPath))
+                {
+                    using (Image lgImg = Image.FromFile(lgPath))
+                    {
+                        Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                        LoadImageIntoPortraitBox(PicKingLrg, lgCopy, PortraitGroupSelection.Large);
+                    }
+                }
+
+                string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
+                bool smFallback = !File.Exists(smPath);
+                if (smFallback) smPath = lgPath; // no dedicated small file - fall back rather than show nothing
+                try
+                {
+                    string log =
+                        $"[{DateTime.Now:HH:mm:ss.fff}] LoadTyrannyGalleryIntoCreatePage{Environment.NewLine}" +
+                        $"  folderPath arg: {folderPath}{Environment.NewLine}" +
+                        $"  dir={dir}  prefix={prefix}  fromBackup={fromBackup}{Environment.NewLine}" +
+                        $"  smPath (final)={smPath}  smFallbackToLarge={smFallback}{Environment.NewLine}{Environment.NewLine}";
+                    File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
+                }
+                catch { }
+                if (File.Exists(smPath))
+                {
+                    using (Image smImg = Image.FromFile(smPath))
+                    {
+                        Bitmap smCopy = ImageControl.Direct.Resize(smImg, smImg.Width, smImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml, new Bitmap(smCopy), PortraitGroupSelection.Small);
+                        LoadImageIntoPortraitBox(PicKingSml2, smCopy, PortraitGroupSelection.Sml2);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        // PoE's companion files use the exact same "_lg" (210x330) / "_sm" (76x96) split as
+        // Tyranny's (verified against a real install) - same reasoning as
+        // LoadTyrannyGalleryIntoCreatePage above applies here, so give it the same per-size
+        // loader instead of falling through to the generic "one file into every box" path.
+        private void LoadPillarsGalleryIntoCreatePage(string folderPath, bool fromBackup)
+        {
+            string dir = Path.GetDirectoryName(folderPath);
+            string prefix = Path.GetFileName(folderPath);
+            string suffix = fromBackup ? ".png.backup" : ".png";
+
+            try
+            {
+                string lgPath = Path.Combine(dir, prefix + "_lg" + suffix);
+                if (File.Exists(lgPath))
+                {
+                    using (Image lgImg = Image.FromFile(lgPath))
+                    {
+                        Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                        LoadImageIntoPortraitBox(PicKingLrg, lgCopy, PortraitGroupSelection.Large);
+                    }
+                }
+
+                string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
+                if (!File.Exists(smPath)) smPath = lgPath;
+                if (File.Exists(smPath))
+                {
+                    using (Image smImg = Image.FromFile(smPath))
+                    {
+                        Bitmap smCopy = ImageControl.Direct.Resize(smImg, smImg.Width, smImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml, new Bitmap(smCopy), PortraitGroupSelection.Small);
+                        LoadImageIntoPortraitBox(PicKingSml2, smCopy, PortraitGroupSelection.Sml2);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void LoadNonPlayerBackupIntoCreatePage(string entryPath)
+        {
+            if (_gameSelected == 't')
+            {
+                LoadTyrannyGalleryIntoCreatePage(entryPath, fromBackup: true);
+                return;
+            }
+
+            if (_gameSelected == 'p')
+            {
+                LoadPillarsGalleryIntoCreatePage(entryPath, fromBackup: true);
+                return;
+            }
+
+            if (_gameSelected == 'd')
+            {
+                LoadDeadfireGalleryIntoCreatePage(entryPath, fromBackup: true);
+                return;
+            }
+
+            string bestFile = FindBestNonPlayerBackupImage(entryPath);
+            if (bestFile == null) return;
+
+            try
+            {
+                using (Image fileImg = Image.FromFile(bestFile))
+                {
+                    Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(copy), PortraitGroupSelection.Large);
+
+                    if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
+                        HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
+                        HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
+                    {
+                        LoadImageIntoPortraitBox(PicKingMed, new Bitmap(copy), PortraitGroupSelection.Medium);
+                    }
+
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(copy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(copy), PortraitGroupSelection.Sml2);
+
+                    copy.Dispose();
+                }
+            }
+            catch { }
+        }
+
+        private void UpdateGalleryTabVisuals()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gt)) return;
+            Color gameBack = gt.BackColor;
+            Color gameFore = gt.ForeColor;
+
+            LabelGalleryTab.BackColor = _galleryTabSelected == "player" ? gameBack : Color.Transparent;
+            LabelGalleryTab.ForeColor = _galleryTabSelected == "player" ? gameFore : Color.White;
+            LabelGalleryTab.Invalidate();
+
+            LabelGalleryNonPlayerTab.BackColor = _galleryTabSelected == "nonplayer" ? gameBack : Color.Transparent;
+            LabelGalleryNonPlayerTab.ForeColor = _galleryTabSelected == "nonplayer" ? gameFore : Color.White;
+            LabelGalleryNonPlayerTab.Invalidate();
+
+            LabelGalleryCustomNpcTab.BackColor = _galleryTabSelected == "customnpc" ? gameBack : Color.Transparent;
+            LabelGalleryCustomNpcTab.ForeColor = _galleryTabSelected == "customnpc" ? gameFore : Color.White;
+            LabelGalleryCustomNpcTab.Invalidate();
+
+            LabelGalleryCompanionsTab.BackColor = _galleryTabSelected == "companions" ? gameBack : Color.Transparent;
+            LabelGalleryCompanionsTab.ForeColor = _galleryTabSelected == "companions" ? gameFore : Color.White;
+            LabelGalleryCompanionsTab.Invalidate();
+
+            LabelGalleryCharactersTab.BackColor = _galleryTabSelected == "characters" ? gameBack : Color.Transparent;
+            LabelGalleryCharactersTab.ForeColor = _galleryTabSelected == "characters" ? gameFore : Color.White;
+            LabelGalleryCharactersTab.Invalidate();
+
+            if (_galleryTabSelected == "companions" || _galleryTabSelected == "characters")
+            {
+                LabelGalleryCredit.Text = TextVariables.MESG_GALLERY_CUSTOMNPC_CREDIT;
+                LabelGalleryCredit.Visible = true;
+            }
+            else
+            {
+                LabelGalleryCredit.Visible = false;
+            }
+        }
+
+        private void UpdateGalleryRightPanel()
+        {
+            bool hasEntries = _galleryEntries != null && _galleryEntries.Count > 0;
+
+            if (string.IsNullOrEmpty(_selectedGalleryEntry))
+            {
+                ButtonGalleryDelete.Visible = false;
+                ButtonGalleryClone.Visible = false;
+                ButtonGalleryChange.Visible = false;
+                ButtonGalleryShowFolder.Visible = true;
+                ButtonGalleryBack.Visible = true;
+                // NOTE: every row here is a Percent-type RowStyle (see Designer.cs) and must
+                // stay that way - only ever adjust .Height, never replace the RowStyle objects
+                // (that previously mutated SizeType to AutoSize/Absolute and broke every other
+                // tab's layout afterward, since they all assume Percent sizing persists).
+                LayoutGalleryRight.RowStyles[0].Height = 0;
+                LayoutGalleryRight.RowStyles[1].Height = 0;
+                LayoutGalleryRight.RowStyles[2].Height = 0;
+                LayoutGalleryRight.RowStyles[3].Height = 0;
+                LayoutGalleryRight.RowStyles[4].Height = 50;
+                LayoutGalleryRight.RowStyles[5].Height = 50;
+            }
+            else
+            {
+                // "nonplayer" (Tyranny's Companions/close-NPCs) is the game's own shipped asset
+                // file, not something this app created - same reasoning as Companions/Characters
+                // for Kingmaker/WotR: no casual permanent-delete button for content that isn't
+                // ours, especially since deleting here would also remove its one-time backup.
+                bool showDelete = !_isCustomNpcMode && _galleryTabSelected != "companions" &&
+                                   _galleryTabSelected != "characters" && _galleryTabSelected != "nonplayer";
+                ButtonGalleryDelete.Visible = showDelete;
+                ButtonGalleryClone.Visible = hasEntries;
+                ButtonGalleryChange.Visible = hasEntries;
+                ButtonGalleryShowFolder.Visible = false;
+                ButtonGalleryBack.Visible = true;
+                LayoutGalleryRight.RowStyles[0].Height = 0;
+                if (showDelete)
+                {
+                    LayoutGalleryRight.RowStyles[1].Height = 29;
+                    LayoutGalleryRight.RowStyles[2].Height = 29;
+                    LayoutGalleryRight.RowStyles[3].Height = 28;
+                }
+                else
+                {
+                    // Delete's row is hidden here (Companions/Characters) - give its share to
+                    // Clone and Change instead of leaving an empty gap.
+                    LayoutGalleryRight.RowStyles[1].Height = 43;
+                    LayoutGalleryRight.RowStyles[2].Height = 43;
+                    LayoutGalleryRight.RowStyles[3].Height = 0;
+                }
+                LayoutGalleryRight.RowStyles[4].Height = 0;
+                LayoutGalleryRight.RowStyles[5].Height = 14;
+            }
+
+            UpdateGalleryOverlay();
+        }
+
+        private void UpdateGalleryOverlay()
+        {
+            if (_galleryTabSelected != "customnpc" && _galleryTabSelected != "characters")
+            {
+                if (_panelGalleryOverlay != null)
+                    _panelGalleryOverlay.Visible = false;
+                return;
+            }
+
+            bool hasEntries = _galleryEntries != null && _galleryEntries.Count > 0;
+            if (hasEntries)
+            {
+                if (_panelGalleryOverlay != null)
+                    _panelGalleryOverlay.Visible = false;
+                return;
+            }
+
+            if (_panelGalleryOverlay == null)
+            {
+                _panelGalleryOverlay = new Panel
+                {
+                    Dock = DockStyle.Fill,
+                    BackColor = Color.Transparent
+                };
+                _panelGalleryOverlay.Paint += PanelGalleryOverlay_Paint;
+                PanelGalleryContainer.Controls.Add(_panelGalleryOverlay);
+                _panelGalleryOverlay.BringToFront();
+            }
+
+            _panelGalleryOverlay.Visible = true;
+        }
+
+        // This app never creates its own backup copies of a CustomNpcPortraits-mod-managed
+        // folder (Companions or Characters/Portraits - Npc) - the mod already keeps one, at
+        // "<folder>\Backup of Game Default Portraits\*.png", so there's no need for a second,
+        // parallel one. This just looks up the mod's own backup image.
+        private string FindModDefaultBackupImage(string folderPath)
+        {
+            if (string.IsNullOrEmpty(folderPath)) return null;
+            string backupDir = Path.Combine(folderPath, "Backup of Game Default Portraits");
+            if (!Directory.Exists(backupDir)) return null;
+
+            string[] files;
+            try { files = Directory.GetFiles(backupDir, "*.png"); }
+            catch { return null; }
+
+            return files.FirstOrDefault(f => Path.GetFileName(f).Equals("Fulllength.png", StringComparison.OrdinalIgnoreCase))
+                ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Medium.png", StringComparison.OrdinalIgnoreCase))
+                ?? files.FirstOrDefault(f => Path.GetFileName(f).Equals("Small.png", StringComparison.OrdinalIgnoreCase))
+                ?? files.FirstOrDefault();
+        }
+
+        private bool HasModDefaultBackup(string folderPath)
+        {
+            return FindModDefaultBackupImage(folderPath) != null;
+        }
+
+        private void LoadBackupImageIntoCreatePage(string folderPath)
+        {
+            string bestFile = FindModDefaultBackupImage(folderPath);
+            if (bestFile == null) return;
+
+            try
+            {
+                using (Image fileImg = Image.FromFile(bestFile))
+                {
+                    Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
+
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(copy), PortraitGroupSelection.Large);
+
+                    if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
+                        HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
+                        HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
+                    {
+                        LoadImageIntoPortraitBox(PicKingMed, new Bitmap(copy), PortraitGroupSelection.Medium);
+                    }
+
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(copy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(copy), PortraitGroupSelection.Sml2);
+
+                    copy.Dispose();
+                }
+            }
+            catch { }
+        }
+
+        private void UpdateExtractCounter()
+        {
+            int total = 0;
+            int selected = 0;
+            if (_archiveEntries != null)
+            {
+                total = _archiveEntries.Count;
+                selected = FlowLayoutPanelExtract.Controls.OfType<CheckBox>().Count(cb => cb.Checked);
+            }
+            LabelExtractCounter.Text = "Total: " + total + " | Selected: " + selected;
+        }
+
+        private ushort GetMainMenuIndexForCurrentGame()
+        {
+            if (_gameSelected == 'w') return 202;
+            if (_gameSelected == 'r') return 203;
+            if (_gameSelected == 'p') return 204;
+            if (_gameSelected == 'd') return 205;
+            if (_gameSelected == 't') return 206;
+            if (_gameSelected == 'l') return 207;
+            return 201;
+        }
+
+        private ushort GetCreatePortraitMenuIndexForCurrentGame()
+        {
+            if (_gameSelected == 'w') return 302;
+            if (_gameSelected == 'r') return 303;
+            if (_gameSelected == 'p') return 304;
+            if (_gameSelected == 'd') return 305;
+            if (_gameSelected == 't') return 306;
+            if (_gameSelected == 'l') return 307;
+            return 301;
+        }
+
+        private void PrepareKingCreatePortraitStyleState()
+        {
+            SetKingPortraitGroup(PortraitGroupSelection.Large);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Medium);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Small);
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Sml2);
+            LayoutKingPortraitGroupLarge.Invalidate();
+            LayoutKingPortraitGroupMedium.Invalidate();
+            LayoutKingPortraitGroupSmall.Invalidate();
+            LayoutKingPortraitGroupSml2.Invalidate();
+            LayoutKingRight.Invalidate();
+        }
+
+        private void PrepareKingCreatePortraitView()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType) || gameType.PlaceholderPortrait == null)
+                return;
+
+            StoreOriginalImage(PicKingLrg, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingSml, new Bitmap(gameType.PlaceholderPortrait));
+            StoreOriginalImage(PicKingSml2, new Bitmap(gameType.PlaceholderPortrait));
+
+            _groupLrgInitialized = false;
+            _groupSmlInitialized = false;
+            _groupSml2Initialized = false;
+
+            bool hasMed = HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                          HasPortraitSpecific(gameType, "MEDIUM_HEIGHT");
+
+            if (hasMed)
+            {
+                StoreOriginalImage(PicKingMed, new Bitmap(gameType.PlaceholderPortrait));
+                _groupMedInitialized = false;
+            }
+            else
+            {
+                _groupMedInitialized = true; // mark as initialized so EnsureKingGroup skips it
+            }
+
+            // Enable drag-and-drop onto each portrait PictureBox (file or URL text)
+            WirePortraitDragDrop(PicKingLrg);
+            WirePortraitDragDrop(PicKingSml);
+            WirePortraitDragDrop(PicKingSml2);
+            if (hasMed)
+                WirePortraitDragDrop(PicKingMed);
+
+            AdjustActivePortraitPanelAspect(PortraitGroupSelection.Large);
+            EnsureKingGroupInitialized(PortraitGroupSelection.Large);
+        }
+
+        private float GetPortraitSpecificOrDefault(GameType gameType, string key, float fallback)
+        {
+            if (gameType == null) return fallback;
+            try { return gameType.GetPortraitSpecific(key); }
+            catch { return fallback; }
+        }
+
+        private void AdjustPortraitPanelAspect(Panel panel, float ar, float staticHeight)
+        {
+            if (panel == null) return;
+
+            panel.SuspendLayout();
+            try
+            {
+                panel.AutoSize = false;
+                panel.Dock = DockStyle.None;
+                panel.Anchor = AnchorStyles.None;
+                int newWidth = (int)Math.Round(staticHeight / ar);
+                int newHeight = (int)staticHeight;
+
+                // PanelKingSml's cell in LayoutKingPortraitGroupSmall uses a Percent column,
+                // which clamps the panel's width to whatever fraction of the row's current
+                // total width that percentage computes to, regardless of Anchor/Dock -
+                // requesting a wider Size than the cell allows just gets silently shrunk back
+                // down. Tyranny and PoE's Small portrait (both 76x96, SMALL_AR=1.2631) need
+                // more width relative to their height than that percent column happens to
+                // allow at this container size, so the panel ended up shorter/wider than
+                // 76:96 and produced a crop/target aspect mismatch (visible as black bars).
+                // Rather than fight the column (widening it squeezes the sibling button
+                // panel), shrink to fit within whatever width the cell already provides,
+                // keeping the same 76:96 ratio - i.e. maximize inside the available cell
+                // instead of overflowing it.
+                if ((_gameSelected == 't' || _gameSelected == 'p') && panel.Name == "PanelKingSml")
+                {
+                    int availableWidth = panel.Width;
+                    if (availableWidth > 0 && newWidth > availableWidth)
+                    {
+                        newWidth = availableWidth;
+                        newHeight = (int)Math.Round(availableWidth * ar);
+                    }
+                }
+
+                panel.Size = new Size(newWidth, newHeight);
+
+                if (_gameSelected == 't' && panel.Name == "PanelKingSml")
+                {
+                    try
+                    {
+                        string log =
+                            $"[{DateTime.Now:HH:mm:ss.fff}] AdjustPortraitPanelAspect(PanelKingSml){Environment.NewLine}" +
+                            $"  ar={ar:F5} staticHeight={staticHeight}  ->  newWidth={newWidth}  panel.Size after set={panel.Size}  panel.ClientSize after set={panel.ClientSize}{Environment.NewLine}{Environment.NewLine}";
+                        File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
+                    }
+                    catch { }
+                }
+            }
+            finally
+            {
+                panel.ResumeLayout();
+            }
+        }
+
+        private void AdjustActivePortraitPanelAspect(PortraitGroupSelection selection)
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
+
+            if (selection == PortraitGroupSelection.Large)
+            {
+                if (!HasPortraitSpecific(gameType, "LARGE_WIDTH")) return;
+                AdjustPortraitPanelAspect(
+                    PanelKingLrg,
+                    GetPortraitSpecificOrDefault(gameType, "LARGE_AR", 1.3f),
+                    360f);
+            }
+            else if (selection == PortraitGroupSelection.Medium)
+            {
+                if (HasPortraitSpecific(gameType, "MEDIUM_WIDTH"))
+                {
+                    AdjustPortraitPanelAspect(
+                        PanelKingMed,
+                        GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
+                        360f);
+                }
+            }
+            else if (selection == PortraitGroupSelection.Small)
+            {
+                if (!HasPortraitSpecific(gameType, "SMALL_WIDTH")) return;
+                // PoE's and Deadfire's Small panels need slightly less height than the other
+                // 76:96 games (same AR, but the surrounding layout cell clamps their width
+                // tighter here) - without this the panel ends up wider than 76:96, producing
+                // left/right black bars on save. Confirmed by testing; scoped to each game.
+                float smlHeight = (_gameSelected == 'l') ? 256f
+                    : (_gameSelected == 'p') ? 345f
+                    : (_gameSelected == 'd') ? 340f
+                    : 360f;
+                AdjustPortraitPanelAspect(
+                    PanelKingSml,
+                    GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
+                    smlHeight);
+            }
+            else if (selection == PortraitGroupSelection.Sml2)
+            {
+                if (!HasPortraitSpecific(gameType, "SML2_WIDTH")) return;
+                // Same reasoning as Small above - Deadfire's Sml2 ("_si") shares the same 76:96
+                // AR and the same panel-clamp behavior, needing the same reduction.
+                float sml2Height = (_gameSelected == 'd') ? 340f : 360f;
+                AdjustPortraitPanelAspect(
+                    PanelKingSml2,
+                    GetPortraitSpecificOrDefault(gameType, "SML2_AR", 1.4f),
+                    sml2Height);
+            }
+        }
+
+        private void WirePortraitDragDrop(PictureBox pic)
+        {
+            if (pic == null) return;
+            pic.AllowDrop = true;
+            pic.DragEnter -= PicKing_DragEnter;
+            pic.DragDrop  -= PicKing_DragDrop;
+            pic.DragLeave -= PicKing_DragLeave;
+            pic.DragEnter += PicKing_DragEnter;
+            pic.DragDrop  += PicKing_DragDrop;
+            pic.DragLeave += PicKing_DragLeave;
+        }
+
+        private void EnsureKingGroupInitialized(PortraitGroupSelection selection)
+        {
+            if (selection == PortraitGroupSelection.Large)
+            {
+                if (_groupLrgInitialized) return;
+                FitPictureToPanel(PicKingLrg, PanelKingLrg);
+                _groupLrgInitialized = true;
+            }
+            else if (selection == PortraitGroupSelection.Medium)
+            {
+                if (_groupMedInitialized) return;
+                FitPictureToPanel(PicKingMed, PanelKingMed);
+                _groupMedInitialized = true;
+            }
+            else if (selection == PortraitGroupSelection.Small)
+            {
+                if (_groupSmlInitialized) return;
+                FitPictureToPanel(PicKingSml, PanelKingSml);
+                _groupSmlInitialized = true;
+            }
+            else if (selection == PortraitGroupSelection.Sml2)
+            {
+                if (_groupSml2Initialized) return;
+                FitPictureToPanel(PicKingSml2, PanelKingSml2);
+                _groupSml2Initialized = true;
+            }
+        }
+
+        private void ResetPortraitToOriginalDisplay(PictureBox pic)
+        {
+            if (pic == null) return;
+
+            Image original = GetOriginalImage(pic);
+            if (original == null) return;
+
+            try
+            {
+                if (pic.Image != null && !object.ReferenceEquals(pic.Image, original))
+                    pic.Image.Dispose();
+            }
+            catch { }
+
+            pic.Dock = DockStyle.Fill;
+            pic.SizeMode = PictureBoxSizeMode.Zoom;
+            pic.Location = new Point(0, 0);
+            pic.Image = new Bitmap(original);
+            SetZoomLevel(pic, 1.0f);
+        }
+
+        private void NavigateToMainPage()
+        {
+            try
+            {
+                _activeMenuIndex = GetMainMenuIndexForCurrentGame();
+                ParentLayoutsDisable();
+                RootFunctions.LayoutEnable(LayoutMainPage);
+                Focus();
+            }
+            catch { }
+        }
+
+        private void StoreOriginalImage(PictureBox pic, Image img)
+        {
+            if (pic.Name == "PicKingLrg")
+            {
+                _originalImageLrg?.Dispose();
+                _originalImageLrg = img;
+                _zoomLevelLrg = 1.0f;
+            }
+            else if (pic.Name == "PicKingMed")
+            {
+                _originalImageMed?.Dispose();
+                _originalImageMed = img;
+                _zoomLevelMed = 1.0f;
+            }
+            else if (pic.Name == "PicKingSml")
+            {
+                _originalImageSml?.Dispose();
+                _originalImageSml = img;
+                _zoomLevelSml = 1.0f;
+            }
+            else if (pic.Name == "PicKingSml2")
+            {
+                _originalImageSml2?.Dispose();
+                _originalImageSml2 = img;
+                _zoomLevelSml2 = 1.0f;
+            }
+        }
+
+        private Image GetOriginalImage(PictureBox pic)
+        {
+            if (pic.Name == "PicKingLrg") return _originalImageLrg;
+            if (pic.Name == "PicKingMed") return _originalImageMed;
+            if (pic.Name == "PicKingSml") return _originalImageSml;
+            if (pic.Name == "PicKingSml2") return _originalImageSml2;
+            return null;
+        }
+
+        private float GetZoomLevel(PictureBox pic)
+        {
+            if (pic.Name == "PicKingLrg") return _zoomLevelLrg;
+            if (pic.Name == "PicKingMed") return _zoomLevelMed;
+            if (pic.Name == "PicKingSml") return _zoomLevelSml;
+            if (pic.Name == "PicKingSml2") return _zoomLevelSml2;
+            return 1.0f;
+        }
+
+        private void SetZoomLevel(PictureBox pic, float zoom)
+        {
+            if (pic.Name == "PicKingLrg") _zoomLevelLrg = zoom;
+            else if (pic.Name == "PicKingMed") _zoomLevelMed = zoom;
+            else if (pic.Name == "PicKingSml") _zoomLevelSml = zoom;
+            else if (pic.Name == "PicKingSml2") _zoomLevelSml2 = zoom;
+        }
+
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        [DllImport("user32.dll")]
+        private static extern int ShowScrollBar(IntPtr hWnd, int wBar, bool bShow);
+
+        private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+        private const int DWMWA_BORDER_COLOR = 34;
+        private const int DWMWA_CAPTION_COLOR = 35;
+        private const int DWMWA_TEXT_COLOR = 36;
+
+        /// Applies the dark-mode titlebar, border, caption, and text colors (DWM composition attributes) to match the current game's theme; no-ops on Windows versions without DWM support.
+        private void ApplyGameWindowStyle()
+        {
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
+
+            try
+            {
+                int useDark = 1;
+                DwmSetWindowAttribute(Handle, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useDark, sizeof(int));
+
+                int borderColor = System.Drawing.ColorTranslator.ToWin32(gameType.ForeColor);
+                DwmSetWindowAttribute(Handle, DWMWA_BORDER_COLOR, ref borderColor, sizeof(int));
+
+                int captionColor = System.Drawing.ColorTranslator.ToWin32(gameType.BackColor);
+                DwmSetWindowAttribute(Handle, DWMWA_CAPTION_COLOR, ref captionColor, sizeof(int));
+
+                int textColor = System.Drawing.ColorTranslator.ToWin32(gameType.ForeColor);
+                DwmSetWindowAttribute(Handle, DWMWA_TEXT_COLOR, ref textColor, sizeof(int));
+            }
+            catch { }
+        }
+
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg != WM_MOUSEWHEEL) return false;
+
+            Point cursor = Cursor.Position;
+            Panel targetPanel = null;
+            PictureBox targetPic = null;
+
+            Panel[] panels = { PanelKingLrg, PanelKingMed, PanelKingSml, PanelKingSml2 };
+            PictureBox[] pics = { PicKingLrg, PicKingMed, PicKingSml, PicKingSml2 };
+
+            for (int i = 0; i < panels.Length; i++)
+            {
+                if (panels[i] == null || !panels[i].Visible) continue;
+                if (panels[i].RectangleToScreen(panels[i].ClientRectangle).Contains(cursor))
+                {
+                    targetPanel = panels[i];
+                    targetPic = pics[i];
+                    break;
+                }
+            }
+
+            if (targetPanel == null || targetPic == null) return false;
+            if (targetPic.Image == null) return false;
+
+            int delta = (short)((m.WParam.ToInt64() >> 16) & 0xFFFF);
+            Point localPos = targetPic.PointToClient(cursor);
+            ZoomPortrait(targetPic, targetPanel, delta, localPos);
+            return true;
+        }
+
+        private void ZoomPortrait(PictureBox pb, Panel panel, int wheelDelta, Point localPos)
+        {
+            Image original = GetOriginalImage(pb);
+            // If no stored original exists, fall back to using the currently displayed image
+            // and store a deep copy as the original so subsequent resizes stay high-quality.
+            if (original == null && pb.Image != null)
+            {
+                try
+                {
+                    var copy = new Bitmap(pb.Image);
+                    StoreOriginalImage(pb, copy);
+                    original = copy;
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            if (original == null || pb.Image == null) return;
+
+            // Determine current zoom: prefer tracked zoom level, but compute from displayed
+            // image size when possible so cover-mode images (which may be larger than the
+            // picturebox control) behave correctly.
+            float currentZoom = GetZoomLevel(pb);
+            try
+            {
+                if (pb.Image != null && original.Width > 0)
+                {
+                    currentZoom = (float)pb.Image.Width / original.Width;
+                }
+            }
+            catch { }
+
+            float zoomStep = 0.08f;
+            float newZoom = wheelDelta > 0 ? currentZoom + zoomStep : currentZoom - zoomStep;
+
+            int panelW = panel.ClientSize.Width;
+            int panelH = panel.ClientSize.Height;
+            if (panelW <= 0 || panelH <= 0) return;
+
+            float imgAspect = (float)original.Width / original.Height;
+            float panelAspect = (float)panelW / panelH;
+            float minZoom = imgAspect > panelAspect
+                ? (float)panelH / original.Height
+                : (float)panelW / original.Width;
+
+            if (newZoom < minZoom) newZoom = minZoom;
+            if (newZoom > 4.0f) newZoom = 4.0f;
+
+            int newW = Math.Max(1, (int)(original.Width * newZoom));
+            int newH = Math.Max(1, (int)(original.Height * newZoom));
+
+            if (newW == pb.Width && newH == pb.Height)
+                return;
+
+            int oldW = pb.Width;
+            int oldH = pb.Height;
+            float relX = oldW <= 0 ? 0.5f : (float)localPos.X / oldW;
+            float relY = oldH <= 0 ? 0.5f : (float)localPos.Y / oldH;
+
+            Bitmap zoomed = ImageControl.Direct.Resize(original, newW, newH);
+            Image old = pb.Image;
+            pb.Image = zoomed;
+            // disable docking so we can reposition/resize the PictureBox freely
+            pb.Dock = DockStyle.None;
+            // update control size to reflect new image dimensions so ClampPictureLocation
+            // and other logic that relies on PictureBox.Width/Height behave correctly
+            pb.SizeMode = PictureBoxSizeMode.Normal;
+            pb.Size = new Size(newW, newH);
+            if (old != null && old != original)
+                old.Dispose();
+            SetZoomLevel(pb, newZoom);
+
+            if ((pb == PicKingLrg || pb == PicKingSml2) && wheelDelta < 0 && Math.Abs(newZoom - minZoom) < 0.0001f)
+            {
+                pb.Location = new Point((panelW - newW) / 2, (panelH - newH) / 2);
+                return;
+            }
+
+            var desired = new Point(
+                pb.Location.X - (int)(relX * newW - localPos.X),
+                pb.Location.Y - (int)(relY * newH - localPos.Y));
+            pb.Location = ClampPictureLocation(pb, panel, desired);
+        }
+
+        private void ZoomFromButton(object sender, int wheelDelta)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            string picName = button.Tag as string;
+            if (string.IsNullOrEmpty(picName)) return;
+
+            PictureBox pb = null;
+            Panel panel = null;
+
+            if (picName == "PicKingLrg") { pb = PicKingLrg; panel = PanelKingLrg; }
+            else if (picName == "PicKingMed") { pb = PicKingMed; panel = PanelKingMed; }
+            else if (picName == "PicKingSml") { pb = PicKingSml; panel = PanelKingSml; }
+            else if (picName == "PicKingSml2") { pb = PicKingSml2; panel = PanelKingSml2; }
+
+            if (pb == null || panel == null || pb.Image == null) return;
+
+            Point center = new Point(pb.Width / 2, pb.Height / 2);
+            ZoomPortrait(pb, panel, wheelDelta, center);
+        }
+
+        private void FitImageToPanel(PictureBox pic)
+        {
+            Image original = GetOriginalImage(pic);
+            if (original == null) return;
+
+            Panel panel = pic.Parent as Panel;
+            if (panel == null) return;
+
+            int panelW = panel.ClientSize.Width;
+            int panelH = panel.ClientSize.Height;
+            if (panelW <= 0 || panelH <= 0) return;
+
+            float imgAspect = (float)original.Width / original.Height;
+            float panelAspect = (float)panelW / panelH;
+
+            int newW, newH;
+            if (imgAspect > panelAspect)
+            {
+                newH = panelH;
+                newW = Math.Max(1, (int)(panelH * imgAspect));
+            }
+            else
+            {
+                newW = panelW;
+                newH = Math.Max(1, (int)(panelW / imgAspect));
+            }
+
+            float zoom = (float)newW / original.Width;
+            SetZoomLevel(pic, zoom);
+
+            Bitmap resized = ImageControl.Direct.Resize(original, newW, newH);
+            Image oldImg = pic.Image;
+            pic.Image = resized;
+            // disable docking so location/size updates take effect and dragging works
+            pic.Dock = DockStyle.None;
+            pic.SizeMode = PictureBoxSizeMode.Normal;
+            pic.Size = new Size(newW, newH);
+            if (oldImg != null && oldImg != original)
+                oldImg.Dispose();
+
+            int x = (panelW - newW) / 2;
+            int y = (panelH - newH) / 2;
+            pic.Location = new Point(x, y);
+        }
+
+        private void SetKingPortraitGroup(PortraitGroupSelection selection)
+        {
+            if (LayoutKingPortraitGroupLarge == null ||
+                LayoutKingPortraitGroupMedium == null ||
+                LayoutKingPortraitGroupSmall == null ||
+                LayoutKingPortraitGroupSml2 == null)
+            {
+                return;
+            }
+
+            if (!GameTypes.TryGetValue(_gameSelected, out var gameType))
+            {
+                // No valid game selected (e.g. sentinel '-'), skip styling updates.
+                _activeKingPortraitGroup = selection;
+                LayoutKingPortraitGroupLarge.Visible = selection == PortraitGroupSelection.Large;
+                LayoutKingPortraitGroupMedium.Visible = selection == PortraitGroupSelection.Medium;
+                LayoutKingPortraitGroupSmall.Visible = selection == PortraitGroupSelection.Small;
+                LayoutKingPortraitGroupSml2.Visible = selection == PortraitGroupSelection.Sml2;
+                LabelKingCreatePortraitLarge.Visible = true;
+                LabelKingCreatePortraitMedium.Visible = true;
+                LabelKingCreatePortraitSmall.Visible = true;
+                LabelKingCreatePortraitSml2.Visible = true;
+                return;
+            }
+
+            bool hasMedium = HasPortraitSpecific(gameType, "MEDIUM_WIDTH") &&
+                             HasPortraitSpecific(gameType, "MEDIUM_HEIGHT");
+            bool hasLarge = HasPortraitSpecific(gameType, "LARGE_WIDTH") &&
+                            HasPortraitSpecific(gameType, "LARGE_HEIGHT");
+            bool hasSmall = HasPortraitSpecific(gameType, "SMALL_WIDTH") &&
+                            HasPortraitSpecific(gameType, "SMALL_HEIGHT");
+            bool hasSml2 = HasPortraitSpecific(gameType, "SML2_WIDTH") &&
+                           HasPortraitSpecific(gameType, "SML2_HEIGHT");
+
+            // Fall back to first available group if requested selection has no dimensions
+            bool selectionAvailable =
+                (selection == PortraitGroupSelection.Large && hasLarge) ||
+                (selection == PortraitGroupSelection.Medium && hasMedium) ||
+                (selection == PortraitGroupSelection.Small && hasSmall) ||
+                (selection == PortraitGroupSelection.Sml2 && hasSml2);
+
+            if (!selectionAvailable)
+            {
+                if (hasSmall) selection = PortraitGroupSelection.Small;
+                else if (hasSml2) selection = PortraitGroupSelection.Sml2;
+                else if (hasMedium) selection = PortraitGroupSelection.Medium;
+                else if (hasLarge) selection = PortraitGroupSelection.Large;
+            }
+
+            _activeKingPortraitGroup = selection;
+
+            LayoutKingPortraitGroupLarge.Visible = hasLarge && selection == PortraitGroupSelection.Large;
+            LayoutKingPortraitGroupMedium.Visible = hasMedium && selection == PortraitGroupSelection.Medium;
+            LayoutKingPortraitGroupSmall.Visible = hasSmall && selection == PortraitGroupSelection.Small;
+            LayoutKingPortraitGroupSml2.Visible = hasSml2 && selection == PortraitGroupSelection.Sml2;
+
+            LayoutKingPortraitGroupLarge.BackColor = selection == PortraitGroupSelection.Large ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupMedium.BackColor = selection == PortraitGroupSelection.Medium ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupSmall.BackColor = selection == PortraitGroupSelection.Small ? gameType.BackColor : Color.Transparent;
+            LayoutKingPortraitGroupSml2.BackColor = selection == PortraitGroupSelection.Sml2 ? gameType.BackColor : Color.Transparent;
+            LayoutKingRight.BackColor = gameType.BackColor;
+            LayoutKingRight.ForeColor = gameType.ForeColor;
+
+            Color selBack = gameType.BackColor;
+            Color selFore = gameType.ForeColor;
+
+            LabelKingCreatePortraitLarge.Visible = hasLarge;
+            LabelKingCreatePortraitLarge.BackColor = hasLarge && selection == PortraitGroupSelection.Large ? selBack : Color.Transparent;
+            LabelKingCreatePortraitLarge.ForeColor = hasLarge && selection == PortraitGroupSelection.Large ? selFore : Color.White;
+            LabelKingCreatePortraitMedium.Visible = hasMedium;
+            LabelKingCreatePortraitMedium.BackColor = hasMedium && selection == PortraitGroupSelection.Medium ? selBack : Color.Transparent;
+            LabelKingCreatePortraitMedium.ForeColor = hasMedium && selection == PortraitGroupSelection.Medium ? selFore : Color.White;
+            LabelKingCreatePortraitSmall.Visible = hasSmall;
+            LabelKingCreatePortraitSmall.BackColor = hasSmall && selection == PortraitGroupSelection.Small ? selBack : Color.Transparent;
+            LabelKingCreatePortraitSmall.ForeColor = hasSmall && selection == PortraitGroupSelection.Small ? selFore : Color.White;
+            LabelKingCreatePortraitSml2.Visible = hasSml2;
+            LabelKingCreatePortraitSml2.BackColor = hasSml2 && selection == PortraitGroupSelection.Sml2 ? selBack : Color.Transparent;
+            LabelKingCreatePortraitSml2.ForeColor = hasSml2 && selection == PortraitGroupSelection.Sml2 ? selFore : Color.White;
+            // force repaint to update borders
+            LabelKingCreatePortraitLarge?.Invalidate();
+            LabelKingCreatePortraitMedium?.Invalidate();
+            LabelKingCreatePortraitSmall?.Invalidate();
+            LabelKingCreatePortraitSml2?.Invalidate();
+            AdjustActivePortraitPanelAspect(selection);
+            EnsureKingGroupInitialized(selection);
+            // Update portrait buttons styles to match selected game colors
+            UpdatePortraitButtonsStyle();
+
+            // Reset Small label margin to default left alignment
+            LabelKingCreatePortraitSmall.Margin = new Padding(0, 0, 3, 0);
+
+            // Ensure large/medium layouts use small group as reference for size/row styles
+            ApplySmallLayoutReference();
+            // Reset displayed images into default cover state and fit-to-panel only
+            // when automatic resize is explicitly allowed. This prevents group
+            // changes (label clicks) from forcing a zoom-out. Callers that intend
+            // to perform a reset (placeholder load, loading a new image) should
+            // set `_allowAutoResize = true` before calling SetKingPortraitGroup
+            // or calling the resize helpers directly.
+            if (_allowAutoResize)
+            {
+                try
+                {
+                    ReplacePictureBoxImagesToDefault();
+                    if (selection == PortraitGroupSelection.Medium)
+                    {
+                        FitPictureToPanel(PicKingMed, PanelKingMed);
+                    }
+                    else if (selection == PortraitGroupSelection.Small)
+                    {
+                        FitPictureToPanel(PicKingSml, PanelKingSml);
+                    }
+                    else if (selection == PortraitGroupSelection.Sml2)
+                    {
+                        FitPictureToPanel(PicKingSml2, PanelKingSml2);
+                    }
+                    else
+                    {
+                        // also ensure large has consistent zoom state
+                        FitPictureToPanel(PicKingLrg, PanelKingLrg);
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void FitPictureToPanel(PictureBox pb, Panel panel)
+        {
+            if (pb == null || panel == null || pb.Image == null) return;
+
+            // Determine original image stored or use current image as fallback
+            Image original = GetOriginalImage(pb);
+            if (original == null)
+            {
+                try { original = new Bitmap(pb.Image); }
+                catch { return; }
+            }
+
+            int panelW = panel.ClientSize.Width;
+            int panelH = panel.ClientSize.Height;
+            if (panelW <= 0 || panelH <= 0) return;
+
+            float imgAspect = (float)original.Width / original.Height;
+            float panelAspect = (float)panelW / panelH;
+            float minZoom = imgAspect > panelAspect
+                ? (float)panelH / original.Height
+                : (float)panelW / original.Width;
+
+            int newW = Math.Max(1, (int)(original.Width * minZoom));
+            int newH = Math.Max(1, (int)(original.Height * minZoom));
+
+            Bitmap fitted = ImageControl.Direct.Resize(original, newW, newH);
+            // dispose previous displayed image if it is not the original reference
+            try { if (pb.Image != null && !object.ReferenceEquals(pb.Image, original)) pb.Image.Dispose(); } catch { }
+            pb.Image = fitted;
+            pb.Dock = DockStyle.None;
+            pb.SizeMode = PictureBoxSizeMode.Normal;
+            pb.Size = new Size(newW, newH);
+            SetZoomLevel(pb, minZoom);
+            // center the picture inside the panel
+            pb.Location = new Point((panelW - pb.Width) / 2, (panelH - pb.Height) / 2);
+        }
+
+        private void ApplySmallLayoutReference()
+        {
+            if (LayoutKingPortraitGroupSmall == null) return;
+            try
+            {
+                // Copy overall size so other groups align to small group area
+                var refSize = LayoutKingPortraitGroupSmall.Size;
+                LayoutKingPortraitGroupLarge.Size = refSize;
+                if (LayoutKingPortraitGroupMedium != null)
+                    LayoutKingPortraitGroupMedium.Size = refSize;
+                if (LayoutKingPortraitGroupSml2 != null)
+                    LayoutKingPortraitGroupSml2.Size = refSize;
+
+                // Copy row styles (counts and heights)
+                CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupLarge);
+                if (LayoutKingPortraitGroupMedium != null)
+                    CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupMedium);
+                if (LayoutKingPortraitGroupSml2 != null)
+                    CopyRowStyles(LayoutKingPortraitGroupSmall, LayoutKingPortraitGroupSml2);
+
+                // Ensure button panels (which are table layout panels) have the same row styles
+                CopyRowStyles(PanelKingSmlButtons, PanelKingLrgButtons);
+                if (PanelKingMedButtons != null)
+                    CopyRowStyles(PanelKingSmlButtons, PanelKingMedButtons);
+                if (PanelKingSml2Buttons != null)
+                    CopyRowStyles(PanelKingSmlButtons, PanelKingSml2Buttons);
+
+                // Determine bottom row height in pixels if absolute
+                int bottomHeight = 40; // fallback
+                if (LayoutKingPortraitGroupSmall.RowCount > 0)
+                {
+                    var last = LayoutKingPortraitGroupSmall.RowStyles[LayoutKingPortraitGroupSmall.RowCount - 1];
+                    if (last.SizeType == SizeType.Absolute)
+                        bottomHeight = (int)Math.Max(1, last.Height);
+                }
+
+                // Apply bottom button heights and ensure consistent minimums
+                var zoomButtons = new Button[] {
+                    ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                    ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                    ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                    ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
+                };
+                foreach (var zb in zoomButtons)
+                {
+                    if (zb == null) continue;
+                    zb.MinimumSize = new Size(0, bottomHeight);
+                    zb.Height = bottomHeight;
+                    zb.Dock = DockStyle.Fill;
+                }
+
+                var handCursorButtons = new Button[] {
+                    ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                    ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                    ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                    ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset
+                };
+                foreach (var b in handCursorButtons)
+                {
+                    if (b == null) continue;
+                    b.Cursor = Cursors.Hand;
+                }
+            }
+            catch { }
+        }
+
+        private void CopyRowStyles(TableLayoutPanel from, TableLayoutPanel to)
+        {
+            if (from == null || to == null) return;
+            try
+            {
+                to.SuspendLayout();
+                to.RowStyles.Clear();
+                to.RowCount = from.RowCount;
+                for (int i = 0; i < from.RowStyles.Count; i++)
+                {
+                    var rs = from.RowStyles[i];
+                    var ns = new RowStyle(rs.SizeType, rs.Height);
+                    to.RowStyles.Add(ns);
+                }
+            }
+            catch { }
+            finally { try { to.ResumeLayout(); } catch { } }
+        }
+
+        private void UpdatePortraitButtonsStyle()
+        {
+            Color selBack = Color.Black;
+            Color selFore = Color.White;
+            try { selBack = GameTypes[_gameSelected].BackColor; selFore = GameTypes[_gameSelected].ForeColor; } catch { }
+
+            // Style hint labels above the Local/Web buttons — pick resource keys per game
+            string lrgKey, medKey, smlKey, sml2Key;
+            if (_gameSelected == 'r')
+            {
+                lrgKey = "HINT_RT_LRG";
+                medKey = "HINT_RT_MED";
+                smlKey = "HINT_RT_SML";
+                sml2Key = null;
+            }
+            else if (_gameSelected == 'p' || _gameSelected == 't')
+            {
+                lrgKey = "HINT_PILLARS_LRG";
+                medKey = null; // no medium for these games
+                smlKey = "HINT_PILLARS_SML";
+                sml2Key = null;
+            }
+            else if (_gameSelected == 'd')
+            {
+                lrgKey = "HINT_PILLARS_LRG";
+                medKey = "HINT_PILLARS_MED";
+                smlKey = "HINT_PILLARS_SML";
+                sml2Key = "HINT_PILLARS_SML2";
+            }
+            else if (_gameSelected == 'l')
+            {
+                lrgKey = null; // no large for Wasteland 3
+                medKey = null;
+                smlKey = null; // set directly below
+                sml2Key = null;
+            }
+            else
+            {
+                lrgKey = "HINT_KING_LRG";
+                medKey = "HINT_KING_MED";
+                smlKey = "HINT_KING_SML";
+                sml2Key = null;
+            }
+
+            var hintLabels = new (System.Windows.Forms.Label lbl, string key)[]
+            {
+                (LabelKingLrgHint, lrgKey),
+                (LabelKingMedHint, medKey),
+                (LabelKingSmlHint, smlKey),
+                (LabelKingSml2Hint, sml2Key),
+            };
+            foreach (var (lbl, key) in hintLabels)
+            {
+                if (lbl == null) continue;
+                lbl.BackColor = selBack;
+                lbl.ForeColor = selFore;
+                lbl.TextAlign = ContentAlignment.TopLeft;
+                try
+                {
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        var prop = typeof(TextVariables).GetProperty(key,
+                            System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static |
+                            System.Reflection.BindingFlags.NonPublic);
+                        if (prop != null)
+                        {
+                            var val = prop.GetValue(null) as string;
+                            if (!string.IsNullOrEmpty(val)) lbl.Text = val;
+                        }
+                    }
+                }
+                catch { }
+            }
+
+            // Wasteland 3: only Small exists at 256×256
+            if (_gameSelected == 'l' && LabelKingSmlHint != null)
+            {
+                LabelKingSmlHint.Text = "Portrait (256×256) — used for character portraits.\n\nChoose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area.";
+            }
+
+            var buttons = new Button[] {
+                ButtonKingLrgWeb, ButtonKingLrgLocal, ButtonKingLrgZoomIn, ButtonKingLrgZoomOut, ButtonKingLrgZoomReset,
+                ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
+                ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
+                ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset,
+                ButtonKingCreateNewPortrait, ButtonKingBackToPathfinder
+            };
+
+            foreach (var btn in buttons)
+            {
+                if (btn == null) continue;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 1;
+                btn.FlatAppearance.BorderColor = selFore;
+                btn.BackColor = selBack;
+                btn.ForeColor = selFore;
+                btn.FlatAppearance.MouseOverBackColor = selFore;
+                btn.FlatAppearance.MouseDownBackColor = selFore;
+                btn.TabStop = false;
+
+                btn.MouseEnter -= PortraitButton_MouseEnter;
+                btn.MouseLeave -= PortraitButton_MouseLeave;
+                btn.GotFocus -= PortraitButton_GotFocus;
+                btn.MouseEnter += PortraitButton_MouseEnter;
+                btn.MouseLeave += PortraitButton_MouseLeave;
+                btn.GotFocus += PortraitButton_GotFocus;
+            }
+
         }
     }
 }

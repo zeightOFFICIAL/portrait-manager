@@ -132,6 +132,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="forms\MyCreationTooltip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyCreationTooltip.Designer.cs">
+      <DependentUpon>MyCreationTooltip.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\MyInquiryDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     <Compile Include="sources\Variables.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="forms\MyCreationTooltip.resx">
+      <DependentUpon>MyCreationTooltip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\MyInquiryDialog.resx">
       <DependentUpon>MyInquiryDialog.cs</DependentUpon>
     </EmbeddedResource>

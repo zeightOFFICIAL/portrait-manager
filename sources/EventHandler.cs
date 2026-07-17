@@ -167,7 +167,7 @@ namespace PortraitManager
                 else if (_gameSelected == 'd')
                     outDir = Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits", "player", "male");
                 else
-                    outDir = Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
+                    outDir = Path.Combine(basePath, "Data", "data", "art", "gui", "portraits", "player", "male");
 
                 try { Directory.CreateDirectory(outDir); }
                 catch (Exception ex)
@@ -1028,6 +1028,26 @@ namespace PortraitManager
                         int destH = (int)Math.Round(cropH * scale);
                         int destX = (targetW - destW) / 2;
                         int destY = (targetH - destH) / 2;
+
+                        if (_gameSelected == 't' && targetW == 76 && targetH == 96)
+                        {
+                            try
+                            {
+                                string log =
+                                    $"[{DateTime.Now:HH:mm:ss}] Tyranny SMALL diagnostic{Environment.NewLine}" +
+                                    $"  img: {imgW}x{imgH}  aspect={(float)imgW / imgH:F5}{Environment.NewLine}" +
+                                    $"  panel.ClientSize: {panel.ClientSize.Width}x{panel.ClientSize.Height}{Environment.NewLine}" +
+                                    $"  pb.ClientSize: {pb.ClientSize.Width}x{pb.ClientSize.Height}  pb.Size: {pb.Size.Width}x{pb.Size.Height}  pb.Location: {pb.Location}{Environment.NewLine}" +
+                                    $"  panel.Visible(chain): {panel.Visible}  pb.Visible: {pb.Visible}{Environment.NewLine}" +
+                                    $"  visible rect (pb-local): {visible}{Environment.NewLine}" +
+                                    $"  scaleX/scaleY: {scaleX:F5}/{scaleY:F5}{Environment.NewLine}" +
+                                    $"  src rect: X={srcX:F2} Y={srcY:F2} W={srcW:F2} H={srcH:F2}{Environment.NewLine}" +
+                                    $"  crop: {cropW}x{cropH}{Environment.NewLine}" +
+                                    $"  target: {targetW}x{targetH}  scale={scale:F5}  dest: {destW}x{destH} at ({destX},{destY}){Environment.NewLine}{Environment.NewLine}";
+                                File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
+                            }
+                            catch { }
+                        }
 
                         g.DrawImage(cropped,
                             new Rectangle(destX, destY, destW, destH),

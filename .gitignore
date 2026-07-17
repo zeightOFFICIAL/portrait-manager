@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /AGENTS.md
+
+# Local-machine-only build steps (e.g. post-build copy to a network share)
+PostBuild.local.targets

@@ -49,7 +49,7 @@ namespace PortraitManager
 
                         foreach (var path in steamLibs)
                         {
-                            if (Directory.Exists(Path.Combine(path, "Tyranny_Data", "data", "art", "gui", "icons", "abilities")))
+                            if (Directory.Exists(Path.Combine(path, "Data", "data", "art", "gui", "icons", "abilities")))
                                 return new DirectoryInfo(path).FullName;
                         }
 
@@ -65,7 +65,7 @@ namespace PortraitManager
                                     if (Directory.Exists(Path.Combine(s, "steamapps", "common", "Tyranny")))
                                     {
                                         var candidate = Path.Combine(s, "steamapps", "common", "Tyranny");
-                                        if (Directory.Exists(Path.Combine(candidate, "Tyranny_Data", "data", "art", "gui", "icons", "abilities")))
+                                        if (Directory.Exists(Path.Combine(candidate, "Data", "data", "art", "gui", "icons", "abilities")))
                                             return new DirectoryInfo(candidate).FullName;
                                     }
                                 }
@@ -89,7 +89,7 @@ namespace PortraitManager
                             {
                                 var path = subKey?.GetValue("path") as string;
                                 if (!string.IsNullOrEmpty(path) &&
-                                    Directory.Exists(Path.Combine(path, "Tyranny_Data", "data", "art", "gui", "icons", "abilities")))
+                                    Directory.Exists(Path.Combine(path, "Data", "data", "art", "gui", "icons", "abilities")))
                                     return new DirectoryInfo(path).FullName;
                             }
                         }
@@ -105,7 +105,7 @@ namespace PortraitManager
                     "Epic Games",
                     "Tyranny"
                 );
-                if (Directory.Exists(Path.Combine(epicPath, "Tyranny_Data", "data", "art", "gui", "icons", "abilities")))
+                if (Directory.Exists(Path.Combine(epicPath, "Data", "data", "art", "gui", "icons", "abilities")))
                     return new DirectoryInfo(epicPath).FullName;
             }
             catch { }

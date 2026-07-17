@@ -579,8 +579,11 @@ namespace PortraitManager
                 : TextVariables.LABEL_GALLERY_NONPLAYER;
             // Retired for Kingmaker/WotR: "Characters" now covers everything this tab used to
             // (Portraits - Npc), plus Army/Tactical for WotR - showing both would just duplicate
-            // the same NPC folders under two tabs.
-            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' && _gameSelected != 'w';
+            // the same NPC folders under two tabs. Never applicable to Tyranny either: it has no
+            // "Portraits - Npc"-style mod folder at all - its companions/NPCs are the game's own
+            // shipped asset files, already covered by the Companions ("nonplayer") tab instead.
+            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' &&
+                                                _gameSelected != 'w' && _gameSelected != 't';
             // Rogue Trader has no CustomNPC support at all (no vanilla companion-custom-portrait
             // feature, no CustomNpcPortraits mod release) - Companions/Characters would just be
             // permanently empty dead ends there, so only offer them for Kingmaker/WotR.
@@ -646,11 +649,52 @@ namespace PortraitManager
             Focus();
         }
 
+        // SetKingPortraitGroup only ever makes ONE group's layout/panel visible at a time
+        // (LayoutKingPortraitGroupMedium/Small/Sml2.Visible = false while inactive) - so calling
+        // FitImageToPanel immediately for an inactive group runs against a panel that isn't
+        // necessarily laid out to its real size yet, producing a wrong crop/fit (this is the
+        // black-bars-until-you-switch-tabs bug: switching tabs happens to trigger a correct,
+        // lazy re-fit via EnsureKingGroupInitialized, which only runs for a group that hasn't
+        // already been marked initialized). So: only fit+mark-initialized the group that's
+        // actually active right now (Large, in every caller of this - Change/Clone always open
+        // on the Large tab); for every other group, just store the image and leave it
+        // un-initialized so the existing, correct lazy-fit runs whenever the user switches to it.
+        private void LoadImageIntoPortraitBox(PictureBox pic, Image img, PortraitGroupSelection group)
+        {
+            StoreOriginalImage(pic, img);
+            if (group == _activeKingPortraitGroup)
+            {
+                FitImageToPanel(pic);
+                MarkGroupInitialized(pic);
+            }
+            else
+            {
+                // EnsureKingGroupInitialized's lazy fit (FitPictureToPanel) bails out early if
+                // pic.Image is still null - which it can be for a box that has never been shown
+                // in this app session. Assign the raw image directly (not fitted - just a
+                // placeholder that gets replaced the moment this group actually becomes active)
+                // so that null-check never blocks the real, correctly-timed fit later.
+                if (pic.Image == null)
+                    pic.Image = img;
+
+                if (pic.Name == "PicKingLrg") _groupLrgInitialized = false;
+                else if (pic.Name == "PicKingMed") _groupMedInitialized = false;
+                else if (pic.Name == "PicKingSml") _groupSmlInitialized = false;
+                else if (pic.Name == "PicKingSml2") _groupSml2Initialized = false;
+            }
+        }
+
         private void LoadGalleryImageIntoCreatePage(string folderPath)
         {
             if (_gameSelected == 'd')
             {
                 LoadDeadfireGalleryIntoCreatePage(folderPath);
+                return;
+            }
+
+            if (_gameSelected == 't')
+            {
+                LoadTyrannyGalleryIntoCreatePage(folderPath, fromBackup: false);
                 return;
             }
 
@@ -663,26 +707,17 @@ namespace PortraitManager
                 {
                     Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
 
-                    StoreOriginalImage(PicKingLrg, new Bitmap(copy));
-                    FitImageToPanel(PicKingLrg);
-                    MarkGroupInitialized(PicKingLrg);
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(copy), PortraitGroupSelection.Large);
 
                     if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
                         HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
                         HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
                     {
-                        StoreOriginalImage(PicKingMed, new Bitmap(copy));
-                        FitImageToPanel(PicKingMed);
-                        MarkGroupInitialized(PicKingMed);
+                        LoadImageIntoPortraitBox(PicKingMed, new Bitmap(copy), PortraitGroupSelection.Medium);
                     }
 
-                    StoreOriginalImage(PicKingSml, new Bitmap(copy));
-                    FitImageToPanel(PicKingSml);
-                    MarkGroupInitialized(PicKingSml);
-
-                    StoreOriginalImage(PicKingSml2, new Bitmap(copy));
-                    FitImageToPanel(PicKingSml2);
-                    MarkGroupInitialized(PicKingSml2);
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(copy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(copy), PortraitGroupSelection.Sml2);
 
                     copy.Dispose();
                 }
@@ -703,9 +738,7 @@ namespace PortraitManager
                     using (Image convoImg = Image.FromFile(convoPath))
                     {
                         Bitmap convoCopy = ImageControl.Direct.Resize(convoImg, convoImg.Width, convoImg.Height);
-                        StoreOriginalImage(PicKingMed, convoCopy);
-                        FitImageToPanel(PicKingMed);
-                        MarkGroupInitialized(PicKingMed);
+                        LoadImageIntoPortraitBox(PicKingMed, convoCopy, PortraitGroupSelection.Medium);
                     }
                 }
 
@@ -717,17 +750,9 @@ namespace PortraitManager
                 {
                     Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
 
-                    StoreOriginalImage(PicKingLrg, new Bitmap(lgCopy));
-                    FitImageToPanel(PicKingLrg);
-                    MarkGroupInitialized(PicKingLrg);
-
-                    StoreOriginalImage(PicKingSml, new Bitmap(lgCopy));
-                    FitImageToPanel(PicKingSml);
-                    MarkGroupInitialized(PicKingSml);
-
-                    StoreOriginalImage(PicKingSml2, new Bitmap(lgCopy));
-                    FitImageToPanel(PicKingSml2);
-                    MarkGroupInitialized(PicKingSml2);
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(lgCopy), PortraitGroupSelection.Large);
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(lgCopy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(lgCopy), PortraitGroupSelection.Sml2);
 
                     lgCopy.Dispose();
                 }
@@ -798,7 +823,7 @@ namespace PortraitManager
             if (_gameSelected == 'd')
                 return Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits");
             if (_gameSelected == 't')
-                return Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits");
+                return Path.Combine(basePath, "Data", "data", "art", "gui", "portraits");
             return null;
         }
 
@@ -871,8 +896,65 @@ namespace PortraitManager
             return null;
         }
 
+        // Tyranny's "_lg" and "_sm" files are genuinely different native images (not just
+        // different crops of one source) with visibly different aspect ratios - "_lg" is
+        // 210x330, "_sm" is 76x96. Stretching one of them across every size box (the generic
+        // approach every other non-player game still uses below) makes whichever box the
+        // aspect actually mismatches show black bars once saved (and, worse, once the preview
+        // itself started reflecting the true crop). Load each box from its own matching file
+        // instead, same fix already applied to Deadfire's "_convo" vs "_lg" split above.
+        private void LoadTyrannyGalleryIntoCreatePage(string folderPath, bool fromBackup)
+        {
+            string dir = Path.GetDirectoryName(folderPath);
+            string prefix = Path.GetFileName(folderPath);
+            string suffix = fromBackup ? ".png.backup" : ".png";
+
+            try
+            {
+                string lgPath = Path.Combine(dir, prefix + "_lg" + suffix);
+                if (File.Exists(lgPath))
+                {
+                    using (Image lgImg = Image.FromFile(lgPath))
+                    {
+                        Bitmap lgCopy = ImageControl.Direct.Resize(lgImg, lgImg.Width, lgImg.Height);
+                        LoadImageIntoPortraitBox(PicKingLrg, lgCopy, PortraitGroupSelection.Large);
+                    }
+                }
+
+                string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
+                bool smFallback = !File.Exists(smPath);
+                if (smFallback) smPath = lgPath; // no dedicated small file - fall back rather than show nothing
+                try
+                {
+                    string log =
+                        $"[{DateTime.Now:HH:mm:ss.fff}] LoadTyrannyGalleryIntoCreatePage{Environment.NewLine}" +
+                        $"  folderPath arg: {folderPath}{Environment.NewLine}" +
+                        $"  dir={dir}  prefix={prefix}  fromBackup={fromBackup}{Environment.NewLine}" +
+                        $"  smPath (final)={smPath}  smFallbackToLarge={smFallback}{Environment.NewLine}{Environment.NewLine}";
+                    File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
+                }
+                catch { }
+                if (File.Exists(smPath))
+                {
+                    using (Image smImg = Image.FromFile(smPath))
+                    {
+                        Bitmap smCopy = ImageControl.Direct.Resize(smImg, smImg.Width, smImg.Height);
+                        LoadImageIntoPortraitBox(PicKingSml, new Bitmap(smCopy), PortraitGroupSelection.Small);
+                        LoadImageIntoPortraitBox(PicKingSml2, smCopy, PortraitGroupSelection.Sml2);
+                    }
+                }
+            }
+            catch { }
+        }
+
         private void LoadNonPlayerBackupIntoCreatePage(string entryPath)
         {
+            if (_gameSelected == 't')
+            {
+                LoadTyrannyGalleryIntoCreatePage(entryPath, fromBackup: true);
+                return;
+            }
+
             string bestFile = FindBestNonPlayerBackupImage(entryPath);
             if (bestFile == null) return;
 
@@ -882,26 +964,17 @@ namespace PortraitManager
                 {
                     Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
 
-                    StoreOriginalImage(PicKingLrg, new Bitmap(copy));
-                    FitImageToPanel(PicKingLrg);
-                    MarkGroupInitialized(PicKingLrg);
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(copy), PortraitGroupSelection.Large);
 
                     if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
                         HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
                         HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
                     {
-                        StoreOriginalImage(PicKingMed, new Bitmap(copy));
-                        FitImageToPanel(PicKingMed);
-                        MarkGroupInitialized(PicKingMed);
+                        LoadImageIntoPortraitBox(PicKingMed, new Bitmap(copy), PortraitGroupSelection.Medium);
                     }
 
-                    StoreOriginalImage(PicKingSml, new Bitmap(copy));
-                    FitImageToPanel(PicKingSml);
-                    MarkGroupInitialized(PicKingSml);
-
-                    StoreOriginalImage(PicKingSml2, new Bitmap(copy));
-                    FitImageToPanel(PicKingSml2);
-                    MarkGroupInitialized(PicKingSml2);
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(copy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(copy), PortraitGroupSelection.Sml2);
 
                     copy.Dispose();
                 }
@@ -1375,26 +1448,17 @@ namespace PortraitManager
                 {
                     Bitmap copy = ImageControl.Direct.Resize(fileImg, fileImg.Width, fileImg.Height);
 
-                    StoreOriginalImage(PicKingLrg, new Bitmap(copy));
-                    FitImageToPanel(PicKingLrg);
-                    MarkGroupInitialized(PicKingLrg);
+                    LoadImageIntoPortraitBox(PicKingLrg, new Bitmap(copy), PortraitGroupSelection.Large);
 
                     if (GameTypes.TryGetValue(_gameSelected, out var gt) &&
                         HasPortraitSpecific(gt, "MEDIUM_WIDTH") &&
                         HasPortraitSpecific(gt, "MEDIUM_HEIGHT"))
                     {
-                        StoreOriginalImage(PicKingMed, new Bitmap(copy));
-                        FitImageToPanel(PicKingMed);
-                        MarkGroupInitialized(PicKingMed);
+                        LoadImageIntoPortraitBox(PicKingMed, new Bitmap(copy), PortraitGroupSelection.Medium);
                     }
 
-                    StoreOriginalImage(PicKingSml, new Bitmap(copy));
-                    FitImageToPanel(PicKingSml);
-                    MarkGroupInitialized(PicKingSml);
-
-                    StoreOriginalImage(PicKingSml2, new Bitmap(copy));
-                    FitImageToPanel(PicKingSml2);
-                    MarkGroupInitialized(PicKingSml2);
+                    LoadImageIntoPortraitBox(PicKingSml, new Bitmap(copy), PortraitGroupSelection.Small);
+                    LoadImageIntoPortraitBox(PicKingSml2, new Bitmap(copy), PortraitGroupSelection.Sml2);
 
                     copy.Dispose();
                 }
@@ -2027,12 +2091,12 @@ namespace PortraitManager
 
                     string rootPath = dir.FullName + Path.DirectorySeparatorChar;
                     // Tyranny has no separate "install dir vs. save-data dir" split like the
-                    // Owlcat/Wasteland games - Tyranny_Data lives directly inside whatever folder
+                    // Owlcat/Wasteland games - Data lives directly inside whatever folder
                     // the player installed the game into, so there's no LocalLow/Documents
                     // sibling to confuse it with. Verifying real game content (an actual data
                     // folder with real assets) instead of just a folder name is the correct
                     // check here, and was already in place.
-                    string checkPath = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "icons", "abilities");
+                    string checkPath = Path.Combine(rootPath, "Data", "data", "art", "gui", "icons", "abilities");
 
                     if (!Directory.Exists(checkPath))
                     {
@@ -2044,8 +2108,8 @@ namespace PortraitManager
                         return;
                     }
 
-                    string maleDir = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
-                    string femaleDir = Path.Combine(rootPath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "female");
+                    string maleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "male");
+                    string femaleDir = Path.Combine(rootPath, "Data", "data", "art", "gui", "portraits", "player", "female");
                     Directory.CreateDirectory(maleDir);
                     Directory.CreateDirectory(femaleDir);
 
@@ -2370,7 +2434,42 @@ namespace PortraitManager
                 panel.Dock = DockStyle.None;
                 panel.Anchor = AnchorStyles.None;
                 int newWidth = (int)Math.Round(staticHeight / ar);
-                panel.Size = new Size(newWidth, (int)staticHeight);
+                int newHeight = (int)staticHeight;
+
+                // PanelKingSml's cell in LayoutKingPortraitGroupSmall uses a Percent column,
+                // which clamps the panel's width to whatever fraction of the row's current
+                // total width that percentage computes to, regardless of Anchor/Dock -
+                // requesting a wider Size than the cell allows just gets silently shrunk back
+                // down, and Tyranny's Small portrait (76x96) needs more width relative to its
+                // height than that percent column happens to allow at this container size, so
+                // the panel ended up shorter/wider than 76:96 and produced a crop/target
+                // aspect mismatch (visible as black bars). Rather than fight the column
+                // (widening it squeezes the sibling button panel), shrink to fit within
+                // whatever width the cell already provides, keeping the same 76:96 ratio -
+                // i.e. maximize inside the available cell instead of overflowing it.
+                if (_gameSelected == 't' && panel.Name == "PanelKingSml")
+                {
+                    int availableWidth = panel.Width;
+                    if (availableWidth > 0 && newWidth > availableWidth)
+                    {
+                        newWidth = availableWidth;
+                        newHeight = (int)Math.Round(availableWidth * ar);
+                    }
+                }
+
+                panel.Size = new Size(newWidth, newHeight);
+
+                if (_gameSelected == 't' && panel.Name == "PanelKingSml")
+                {
+                    try
+                    {
+                        string log =
+                            $"[{DateTime.Now:HH:mm:ss.fff}] AdjustPortraitPanelAspect(PanelKingSml){Environment.NewLine}" +
+                            $"  ar={ar:F5} staticHeight={staticHeight}  ->  newWidth={newWidth}  panel.Size after set={panel.Size}  panel.ClientSize after set={panel.ClientSize}{Environment.NewLine}{Environment.NewLine}";
+                        File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
+                    }
+                    catch { }
+                }
             }
             finally
             {

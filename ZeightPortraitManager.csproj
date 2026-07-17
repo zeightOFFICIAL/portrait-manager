@@ -298,4 +298,7 @@
     <None Include="resources\w\wotr_icon_ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Local-machine-only post-build step (e.g. copying to a network share). Not tracked in git;
+       silently skipped on any machine where the file doesn't exist. -->
+  <Import Project="PostBuild.local.targets" Condition="Exists('PostBuild.local.targets')" />
 </Project>

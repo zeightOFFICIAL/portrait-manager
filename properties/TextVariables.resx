@@ -173,7 +173,7 @@ Artemii "Zeight" Saganenko ©2023-2024</value>
     <value>Change game</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
-    <value>Tyranny keeps its portrait files directly inside the game’s installation directory, under: Tyranny_Data\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder. 
+    <value>Tyranny keeps its portrait files directly inside the game’s installation directory, under: Data\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder.
 
 - You can also alter companions and NPC portraits if they exist via Browse Gallery.</value>
   </data>

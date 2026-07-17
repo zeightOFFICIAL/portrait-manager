@@ -970,7 +970,7 @@ namespace PortraitManager
                     path = Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits", "player", "male");
                     break;
                 case 't':
-                    path = Path.Combine(basePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
+                    path = Path.Combine(basePath, "Data", "data", "art", "gui", "portraits", "player", "male");
                     break;
                 case 'l':
                     path = Path.Combine(basePath, "Custom Portraits");
@@ -1292,7 +1292,7 @@ namespace PortraitManager
             }
             else if (_gameSelected == 't')
             {
-                portraitsDir = Path.Combine(gamePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
+                portraitsDir = Path.Combine(gamePath, "Data", "data", "art", "gui", "portraits", "player", "male");
                 flatFile = true;
             }
             else if (_gameSelected == 'l')
@@ -1337,7 +1337,10 @@ namespace PortraitManager
         {
             string portraitsRoot = GetNonPlayerPortraitsRoot(gamePath);
             if (portraitsRoot == null) return;
-            string[] subDirs = { "npc", "companions" };
+            // Tyranny's actual install (verified against a real tree) only has ".../portraits/
+            // companion/" (singular, no separate "npc" sibling) - PoE/Deadfire keep the
+            // previous "npc"/"companions" guess until their own pass confirms it either way.
+            string[] subDirs = _gameSelected == 't' ? new[] { "companion" } : new[] { "npc", "companions" };
 
             var allFiles = new List<string>();
             foreach (string sub in subDirs)
@@ -2151,8 +2154,8 @@ namespace PortraitManager
 
         private bool ExtractTyrannyPortraits(List<string> selectedKeys, string gamePath)
         {
-            string maleDir = Path.Combine(gamePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "male");
-            string femaleDir = Path.Combine(gamePath, "Tyranny_Data", "data", "art", "gui", "portraits", "player", "female");
+            string maleDir = Path.Combine(gamePath, "Data", "data", "art", "gui", "portraits", "player", "male");
+            string femaleDir = Path.Combine(gamePath, "Data", "data", "art", "gui", "portraits", "player", "female");
             Directory.CreateDirectory(maleDir);
             Directory.CreateDirectory(femaleDir);
 

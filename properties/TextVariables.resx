@@ -124,8 +124,8 @@
     <value>Reset 🔄</value>
   </data>
   <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
-    <value>Zeight Portrait Manager 
-Artemii "Zeight" Saganenko ©2023-2024</value>
+    <value>Zeight Portrait Manager
+Artemii "Zeight" Saganenko ©2023-2026</value>
   </data>
   <data name="MAIN_MENU_TITLE" xml:space="preserve">
     <value>Portrait Manager</value>
@@ -378,6 +378,9 @@ Choose a local image from your computer or select a web image from the internet.
   </data>
   <data name="MESG_FAILED_CREATE_PORTRAIT_FOLDER" xml:space="preserve">
     <value>Failed to create portrait folder: {0}</value>
+  </data>
+  <data name="MESG_DELETE_PORTRAIT_FAILED" xml:space="preserve">
+    <value>Could not delete this portrait set: {0}</value>
   </data>
   <data name="MESG_PORTRAIT_CREATION_ERROR" xml:space="preserve">
     <value>Portrait creation error: {0}</value>

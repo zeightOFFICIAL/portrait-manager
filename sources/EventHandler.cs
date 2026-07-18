@@ -10,7 +10,7 @@
         5. Pillars of Eternity: Deadfire,
         6. Tyranny,
         7. Wasteland 3.
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
@@ -476,7 +476,14 @@ namespace PortraitManager
                         FitImageToPanel(pic);
                         MarkGroupInitialized(pic);
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                    }
                 }
                 return;
             }
@@ -1003,7 +1010,7 @@ namespace PortraitManager
 
         private void ButtonStartPoe_MouseLeave(object sender, EventArgs e)
         {
-            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
             ButtonStartPoe.ForeColor = Color.White;
         }
 
@@ -1045,7 +1052,7 @@ namespace PortraitManager
 
         private void PictureBoxStartPoe_MouseLeave(object sender, EventArgs e)
         {
-            LayoutStartMenu.BackgroundImage = Resources.poed_start_page;
+            LayoutStartMenu.BackgroundImage = Resources.poe_start_page;
             ButtonStartPoe.ForeColor = Color.White;
         }
 
@@ -1336,6 +1343,7 @@ namespace PortraitManager
         private void LabelSelectPathBackToStart_Click(object sender, EventArgs e)
         {
             _gameSelected = '-';
+            Icon = _defaultAppIcon;
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
             _activeMenuIndex = 0;
@@ -1390,6 +1398,7 @@ namespace PortraitManager
         private void LabelSettingsPage_Click(object sender, EventArgs e)
         {
             _gameSelected = '-';
+            Icon = _defaultAppIcon;
             CoreSettings.Default.GameType = '-';
             CoreSettings.Default.Save();
             ParentLayoutsDisable();

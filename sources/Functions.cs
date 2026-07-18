@@ -10,7 +10,7 @@
         5. Pillars of Eternity: Deadfire, 
         6. Tyranny,
         7. Wasteland 3.
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
@@ -570,7 +570,14 @@ namespace PortraitManager
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_DELETE_PORTRAIT_FAILED, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
+            }
         }
 
         private const string VanillaCompanionPortraitPrefix = "CompanionCustomPortrait - ";
@@ -2451,7 +2458,14 @@ namespace PortraitManager
                     copy.Dispose();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
+            }
         }
 
         private void LoadDeadfireGalleryIntoCreatePage(string folderPath, bool fromBackup = false)
@@ -2510,7 +2524,14 @@ namespace PortraitManager
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
+            }
         }
 
         private string GetNonPlayerPortraitsRoot(string basePath)
@@ -2598,18 +2619,7 @@ namespace PortraitManager
                 }
 
                 string smPath = Path.Combine(dir, prefix + "_sm" + suffix);
-                bool smFallback = !File.Exists(smPath);
-                if (smFallback) smPath = lgPath;
-                try
-                {
-                    string log =
-                        $"[{DateTime.Now:HH:mm:ss.fff}] LoadTyrannyGalleryIntoCreatePage{Environment.NewLine}" +
-                        $"  folderPath arg: {folderPath}{Environment.NewLine}" +
-                        $"  dir={dir}  prefix={prefix}  fromBackup={fromBackup}{Environment.NewLine}" +
-                        $"  smPath (final)={smPath}  smFallbackToLarge={smFallback}{Environment.NewLine}{Environment.NewLine}";
-                    File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
-                }
-                catch { }
+                if (!File.Exists(smPath)) smPath = lgPath;
                 if (File.Exists(smPath))
                 {
                     using (Image smImg = Image.FromFile(smPath))
@@ -2620,7 +2630,14 @@ namespace PortraitManager
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
+            }
         }
 
         private void LoadPillarsGalleryIntoCreatePage(string folderPath, bool fromBackup)
@@ -2653,7 +2670,14 @@ namespace PortraitManager
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
+            }
         }
 
         private void LoadNonPlayerBackupIntoCreatePage(string entryPath)
@@ -2869,7 +2893,14 @@ namespace PortraitManager
                     copy.Dispose();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                {
+                    dlg.StartPosition = FormStartPosition.CenterParent;
+                    dlg.ShowDialog(this);
+                }
+            }
         }
 
         private void LoadBackupImageIntoCreatePage(string folderPath) => LoadImageFileIntoCreatePage(FindModDefaultBackupImage(folderPath));
@@ -3026,18 +3057,6 @@ namespace PortraitManager
                 }
 
                 panel.Size = new Size(newWidth, newHeight);
-
-                if (_gameSelected == 't' && panel.Name == "PanelKingSml")
-                {
-                    try
-                    {
-                        string log =
-                            $"[{DateTime.Now:HH:mm:ss.fff}] AdjustPortraitPanelAspect(PanelKingSml){Environment.NewLine}" +
-                            $"  ar={ar:F5} staticHeight={staticHeight}  ->  newWidth={newWidth}  panel.Size after set={panel.Size}  panel.ClientSize after set={panel.ClientSize}{Environment.NewLine}{Environment.NewLine}";
-                        File.AppendAllText(Path.Combine(Path.GetTempPath(), "zpm_tyranny_debug.log"), log);
-                    }
-                    catch { }
-                }
             }
             finally
             {
@@ -3233,6 +3252,8 @@ namespace PortraitManager
         private void ApplyGameWindowStyle()
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
+
+            Icon = gameType.ApplicationIcon ?? _defaultAppIcon;
 
             try
             {

@@ -10,7 +10,7 @@
         5. Pillars of Eternity: Deadfire, 
         6. Tyranny,
         7. Wasteland 3.
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
@@ -64,6 +64,7 @@ namespace PortraitManager
         private static PrivateFontCollection _fontCollection;
         private static PrivateFontCollection _fontCollectionCyrillic;
         private static CancellationTokenSource _cancellationTokenSource;
+        private Icon _defaultAppIcon;
 
         private string _selectedArchivePath;
         private List<Tuple<string, Image>> _archiveEntries;
@@ -135,7 +136,7 @@ namespace PortraitManager
 
             LabelSelectPathExplain.Font = new Font(FontFamily.GenericSansSerif, 12f * 0.8f);
             LabelSelectPathSelected.Font = new Font(FontFamily.GenericSansSerif, 8f * 1.5f);
-            LabelMainPageFooter.Font = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Italic);
+            LabelMainPageFooter.Font = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Italic);
             LabelExtractCounter.Font = arialSmall;
             LabelGalleryCredit.Font = arialSmall;
             LabelExtractClearSelection.Font = arialSmallUnderline;
@@ -281,6 +282,7 @@ namespace PortraitManager
         public MainForm()
         {
             InitializeComponent();
+            _defaultAppIcon = Icon;
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.Selectable, false);
             Application.AddMessageFilter(this);

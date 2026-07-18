@@ -614,8 +614,8 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zeight Portrait Manager 
-        ///Artemii &quot;Zeight&quot; Saganenko ©2023-2024.
+        ///   Looks up a localized string similar to Zeight Portrait Manager
+        ///Artemii &quot;Zeight&quot; Saganenko ©2023-2026.
         /// </summary>
         internal static string MAIN_MENU_AUTHOR {
             get {
@@ -739,7 +739,16 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("MESG_FAILED_CREATE_PORTRAIT_FOLDER", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not delete this portrait set: {0}.
+        /// </summary>
+        internal static string MESG_DELETE_PORTRAIT_FAILED {
+            get {
+                return ResourceManager.GetString("MESG_DELETE_PORTRAIT_FAILED", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Failed to create portraits root folder: {0}.
         /// </summary>

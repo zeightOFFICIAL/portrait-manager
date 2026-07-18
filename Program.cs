@@ -10,7 +10,7 @@
         5. Pillars of Eternity: Deadfire, 
         6. Tyranny,
         7. Wasteland 3.
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

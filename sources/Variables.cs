@@ -10,7 +10,7 @@
         5. Pillars of Eternity: Deadfire, 
         6. Tyranny,
         7. Wasteland 3.
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
@@ -29,8 +29,8 @@ namespace PortraitManager
     public partial class MainForm : Form
     {
 
-        private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Portrait Manager: Owlcat (Kingmaker)",
-            Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.path_icon_ico, Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
+        private static readonly GameType KING_TYPE = new GameType("Pathfinder: Kingmaker", "Kingmaker", "Zeight Portrait Manager: Owlcat (Kingmaker)",
+            Resources.path_title, Resources.path_menu_page, Resources.path_placeholder, Resources.taskbar_icon_path, Color.FromArgb(218, 165, 32), Color.FromArgb(9, 28, 11),
             SystemControl.FileControl.DetectOwlcatInstall("Pathfinder Kingmaker").Replace("/", "\\"),
             new Dictionary<string, float>
             {
@@ -45,8 +45,8 @@ namespace PortraitManager
                 { "LARGE_AR", 1.4797f}
             });
 
-        private static readonly GameType WOTR_TYPE = new GameType("Pathfinder: Wrath of the Righteous", "Wrath of the Righteous", "Portrait Manager: Owlcat (Wotr)",
-            Resources.wotr_title, Resources.wotr_start_page, Resources.wotr_placeholder, Resources.wotr_icon_ico, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
+        private static readonly GameType WOTR_TYPE = new GameType("Pathfinder: Wrath of the Righteous", "Wrath of the Righteous", "Zeight Portrait Manager: Owlcat (Wotr)",
+            Resources.wotr_title, Resources.wotr_start_page, Resources.wotr_placeholder, Resources.taskbar_icon_wotr, Color.FromArgb(255, 20, 147), Color.FromArgb(20, 6, 30),
             SystemControl.FileControl.DetectOwlcatInstall("Pathfinder Wrath Of The Righteous").Replace("/", "\\"),
             new Dictionary<string, float>
             {
@@ -61,8 +61,8 @@ namespace PortraitManager
                 { "LARGE_AR", 1.4797f}
             });
 
-        private static readonly GameType ROGUE_TYPE = new GameType("Warhammer 40K: Rogue Trader", "Rogue Trader", "Portrait Manager: Owlcat (RT)",
-            Resources.rt_title, Resources.rt_start_page, Resources.rt_placeholder, Resources.rt_icon_ico, Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
+        private static readonly GameType ROGUE_TYPE = new GameType("Warhammer 40K: Rogue Trader", "Rogue Trader", "Zeight Portrait Manager: Owlcat (RT)",
+            Resources.rt_title, Resources.rt_start_page, Resources.rt_placeholder, Resources.taskbar_icon_rt, Color.FromArgb(255, 187, 0), Color.FromArgb(5, 0, 42),
             SystemControl.FileControl.DetectOwlcatInstall("Warhammer 40000 Rogue Trader").Replace("/", "\\"),
             new Dictionary<string, float>
             {
@@ -77,8 +77,8 @@ namespace PortraitManager
                 { "LARGE_AR", 1.3703f}
             });
 
-        private static readonly GameType PILLARS_TYPE = new GameType("Pillars of Eternity", "Pillars of Eternity", "Portrait Manager: Obsidian (PoE)",
-            Resources.poe_title, Resources.poe_start_page, Resources.poe_placeholder, Resources.poe_icon_ico, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
+        private static readonly GameType PILLARS_TYPE = new GameType("Pillars of Eternity", "Pillars of Eternity", "Zeight Portrait Manager: Obsidian (PoE)",
+            Resources.poe_title, Resources.poe_start_page, Resources.poe_placeholder, Resources.taskbar_icon_poe, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
             SystemControl.FileControl.DetectPillarsInstall().Replace("/", "\\"),
             new Dictionary<string, float>
             {
@@ -90,8 +90,8 @@ namespace PortraitManager
                 { "LARGE_AR", 1.5714f}
             });
 
-        private static readonly GameType DEADFIRE_TYPE = new GameType("Pillars of Eternity: Deadfire", "Deadfire", "Portrait Manager: Obsidian (PoED)",
-            Resources.poed_title, Resources.poed_start_page, Resources.poed_placeholder, Resources.poed_icon_ico, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
+        private static readonly GameType DEADFIRE_TYPE = new GameType("Pillars of Eternity: Deadfire", "Deadfire", "Zeight Portrait Manager: Obsidian (PoED)",
+            Resources.poed_title, Resources.poed_start_page, Resources.poed_placeholder, Resources.taskbar_icon_poed, Color.FromArgb(50, 250, 200), Color.FromArgb(7, 33, 27),
             SystemControl.FileControl.DetectDeadfireInstall().Replace("/","\\"),
             new Dictionary<string, float>
             {
@@ -109,8 +109,8 @@ namespace PortraitManager
                 { "SML2_AR", 1.2631f}
             });
 
-        private static readonly GameType TYR_TYPE = new GameType("Tyranny", "Tyranny", "Portrait Manager: Obsidian (Tyranny)",
-            Resources.tyr_title, Resources.tyr_start_page, Resources.tyr_placeholder, Resources.tyr_icon_ico, Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
+        private static readonly GameType TYR_TYPE = new GameType("Tyranny", "Tyranny", "Zeight Portrait Manager: Obsidian (Tyranny)",
+            Resources.tyr_title, Resources.tyr_start_page, Resources.tyr_placeholder, Resources.taskbar_icon_tyr, Color.FromArgb(248, 34, 34), Color.FromArgb(43, 3, 3),
             SystemControl.FileControl.DetectTyrannyInstall().Replace("/","\\"),
             new Dictionary<string, float>
             {
@@ -122,8 +122,8 @@ namespace PortraitManager
                 { "LARGE_AR", 1.5714f}
             });
 
-        private static readonly GameType WASTE_TYPE = new GameType("Wasteland 3", "Wasteland 3", "Portrait Manager: inXile (W3)",
-            Resources.waste_title, Resources.waste_start_page, Resources.waste_placeholder, Resources.waste_icon_ico, Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
+        private static readonly GameType WASTE_TYPE = new GameType("Wasteland 3", "Wasteland 3", "Zeight Portrait Manager: inXile (W3)",
+            Resources.waste_title, Resources.waste_start_page, Resources.waste_placeholder, Resources.taskbar_icon_waste, Color.FromArgb(176, 200, 210), Color.FromArgb(35, 50, 50),
             (Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\My Games\\Wasteland3\\"),
             new Dictionary<string, float>
             {

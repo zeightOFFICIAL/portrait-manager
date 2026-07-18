@@ -1,8 +1,16 @@
-﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+﻿/*
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games,
+    Obsidian Entertainment and inXile Entertainment.
+    Including:
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous,
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity,
+        5. Pillars of Eternity: Deadfire,
+        6. Tyranny,
+        7. Wasteland 3.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs.
@@ -1024,17 +1032,17 @@ namespace PortraitManager
             this.LabelMainPageFooter.AutoSize = false;
             this.LabelMainPageFooter.BackColor = System.Drawing.Color.Transparent;
             this.LabelMainPageFooter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelMainPageFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMainPageFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelMainPageFooter.ForeColor = System.Drawing.Color.Gray;
             this.LabelMainPageFooter.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.LabelMainPageFooter.LinkColor = System.Drawing.Color.Gray;
-            this.LabelMainPageFooter.Links.Add(38, 6, "github");
-            this.LabelMainPageFooter.Links.Add(47, 10, "nexus");
+            this.LabelMainPageFooter.Links.Add(43, 6, "github");
+            this.LabelMainPageFooter.Links.Add(52, 9, "nexus");
             this.LabelMainPageFooter.Name = "LabelMainPageFooter";
             this.LabelMainPageFooter.Size = new System.Drawing.Size(657, 75);
             this.LabelMainPageFooter.TabIndex = 5;
             this.LabelMainPageFooter.TabStop = true;
-            this.LabelMainPageFooter.Text = "Portrait Manager v1.5 © 2024 Zeight | GitHub | Nexus Mods";
+            this.LabelMainPageFooter.Text = "Portrait Manager v1.5 © 2023-2026 Zeight | GitHub | NexusMods";
             this.LabelMainPageFooter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.LabelMainPageFooter.VisitedLinkColor = System.Drawing.Color.Gray;
             this.LabelMainPageFooter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LabelMainPageFooter_LinkClicked);

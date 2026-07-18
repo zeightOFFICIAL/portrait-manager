@@ -11,7 +11,7 @@
 <p align="left">Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3</p>
 
 #### <p align="center">Nexus mods link:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120<br>Pillars of Eternity - <br>Pillars of Eternity: Deadfire - <br>Tyranny - <br>Wasteland 3 - </p> 
-#### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2024</p>
+#### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2026</p>
 
 ---
 

@@ -316,6 +316,15 @@
   <ItemGroup>
     <None Include="resources\w\wotr_icon_ico.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\icon_path.ico" />
+    <None Include="resources\icon_wotr.ico" />
+    <None Include="resources\icon_rt.ico" />
+    <None Include="resources\icon_poe.ico" />
+    <None Include="resources\icon_poed.ico" />
+    <None Include="resources\icon_tyr.ico" />
+    <None Include="resources\icon_waste.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Local-machine-only post-build step (e.g. copying to a network share). Not tracked in git;
        silently skipped on any machine where the file doesn't exist. -->

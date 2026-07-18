@@ -129,7 +129,77 @@ namespace PortraitManager.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_path {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_path", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_wotr {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_wotr", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_rt {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_rt", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_poe {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_poe", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_poed {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_poed", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_tyr {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_tyr", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon taskbar_icon_waste {
+            get {
+                object obj = ResourceManager.GetObject("taskbar_icon_waste", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

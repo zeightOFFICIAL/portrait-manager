@@ -2,12 +2,12 @@
 using System.Resources;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Portrait Manager")]
+[assembly: AssemblyTitle("Zeight Portrait Manager")]
 [assembly: AssemblyDescription("Desktop application for managing in-game portraits for games from Owlcat Games, Obsidian Entertainment and inXile Entertainment.")]
 [assembly: AssemblyConfiguration("K/WOTR/RT/POE/POED/T/W3 - ANY")]
 [assembly: AssemblyCompany("zeight")]
-[assembly: AssemblyProduct("Portrait Manager")]
-[assembly: AssemblyCopyright("Copyright Artemii Saganenko ©2024")]
+[assembly: AssemblyProduct("Zeight Portrait Manager")]
+[assembly: AssemblyCopyright("Copyright Artemii Saganenko ©2023-2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

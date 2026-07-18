@@ -259,6 +259,27 @@
   <data name="path_icon_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\k\path_icon_ico.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="taskbar_icon_path" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_path.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskbar_icon_wotr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_wotr.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskbar_icon_rt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_rt.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskbar_icon_poe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_poe.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskbar_icon_poed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_poed.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskbar_icon_tyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_tyr.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="taskbar_icon_waste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_waste.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="poed_icon_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\d\poed_icon_ico.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

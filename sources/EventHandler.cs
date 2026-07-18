@@ -1882,9 +1882,9 @@ namespace PortraitManager
                 ? TextVariables.LABEL_GALLERY_COMPANIONS
                 : TextVariables.LABEL_GALLERY_NONPLAYER;
 
-            LabelGalleryCustomNpcTab.Visible = _gameSelected != 'r' && _gameSelected != 'k' &&
-                                                _gameSelected != 'w' && _gameSelected != 't' &&
-                                                _gameSelected != 'p' && _gameSelected != 'd';
+            // Retired: fully superseded by the Characters tab (which now covers everything this
+            // tab used to show for Kingmaker/WotR) and never applicable to any other game.
+            LabelGalleryCustomNpcTab.Visible = false;
 
             bool hasCustomNpc = _gameSelected == 'k' || _gameSelected == 'w';
             LabelGalleryCompanionsTab.Visible = hasCustomNpc;
@@ -2400,7 +2400,7 @@ namespace PortraitManager
         {
             if (string.IsNullOrEmpty(_selectedGalleryEntry)) return;
             if (_isCustomNpcMode) return;
-            using (var dlg = new forms.MyInquiryDialog(TextVariables.INQR_DELETE_PORTRAIT_SET))
+            using (var dlg = new forms.MyInquiryDialog(TextVariables.INQR_DELETE_PORTRAIT_SET, useYesNo: true))
             {
                 if (dlg.ShowDialog(this) == DialogResult.OK)
                 {

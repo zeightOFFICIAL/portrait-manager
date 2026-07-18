@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -207,6 +208,22 @@ namespace PortraitManager
                    ext.Equals(".webp", StringComparison.OrdinalIgnoreCase);
         }
 
+        // The gallery grid accepts any image format via IsImageFile, but every game's custom
+        // portraits folder only recognizes .png - a straight File.Copy of a non-png source
+        // (e.g. a .jpg mod pack) would silently produce a file the game can't read. Copy .png
+        // sources directly; convert anything else on the way out.
+        private static void CopyOrConvertToPng(string srcFile, string destPath)
+        {
+            if (Path.GetExtension(srcFile).Equals(".png", StringComparison.OrdinalIgnoreCase))
+            {
+                File.Copy(srcFile, destPath, overwrite: true);
+                return;
+            }
+
+            using (Image img = Image.FromFile(srcFile))
+                img.Save(destPath, ImageFormat.Png);
+        }
+
         private static Size FitSize(Size original, int maxSize)
         {
             double ratio = Math.Min((double)maxSize / original.Width, (double)maxSize / original.Height);
@@ -220,8 +237,11 @@ namespace PortraitManager
 
             _archiveEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
 
-            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), 140);
-            int cbWidth = Math.Max(thumbSize.Width + 20, 145);
+            // Wasteland 3 packs are typically flat, dozens-of-portraits-large, so a smaller
+            // thumbnail (fitting three per row instead of two) makes the grid far more usable.
+            int maxThumb = _gameSelected == 'l' ? 115 : 140;
+            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), maxThumb);
+            int cbWidth = Math.Max(thumbSize.Width + 20, _gameSelected == 'l' ? 126 : 145);
             int cbHeight = thumbSize.Height + 50;
 
             Color gameBack, gameFore;
@@ -280,6 +300,17 @@ namespace PortraitManager
             try
             {
                 var gt = GameTypes[gameSelected];
+
+                if (gameSelected == 'l')
+                {
+                    // Wasteland 3 scales custom portraits at load time, so any resolution works
+                    // as long as its aspect ratio matches the expected crop - unlike the other
+                    // games, an exact pixel match isn't required.
+                    float expectedAR = gt.GetPortraitSpecific("SMALL_AR");
+                    float actualAR = (float)imageSize.Width / imageSize.Height;
+                    return Math.Abs(actualAR - expectedAR) <= 0.05f;
+                }
+
                 var expected = new List<Size>();
                 try { expected.Add(new Size((int)gt.GetPortraitSpecific("SMALL_WIDTH"), (int)gt.GetPortraitSpecific("SMALL_HEIGHT"))); } catch { }
                 try { expected.Add(new Size((int)gt.GetPortraitSpecific("MEDIUM_WIDTH"), (int)gt.GetPortraitSpecific("MEDIUM_HEIGHT"))); } catch { }
@@ -1705,7 +1736,7 @@ namespace PortraitManager
                     using (ZipArchive archive = ZipFile.OpenRead(_selectedArchivePath))
                     {
                         var imgEntries = archive.Entries
-                            .Where(e => !e.FullName.EndsWith("/") && e.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                            .Where(e => !e.FullName.EndsWith("/") && IsImageFile(e.Name))
                             .ToList();
 
                         foreach (var entry in imgEntries)
@@ -1715,14 +1746,22 @@ namespace PortraitManager
                             if (keys != null && !keys.Contains(key))
                                 continue;
 
-                            string destFile = Path.Combine(outDir, entry.Name);
+                            string destFile = Path.Combine(outDir, key + ".png");
                             string suffix = File.Exists(destFile)
                                 ? DateTime.Now.ToString("_ssddMM") : "";
                             if (!string.IsNullOrEmpty(suffix)) conflictCount++;
 
                             string finalName = key + suffix + ".png";
                             string finalPath = Path.Combine(outDir, finalName);
-                            entry.ExtractToFile(finalPath, overwrite: true);
+                            if (Path.GetExtension(entry.Name).Equals(".png", StringComparison.OrdinalIgnoreCase))
+                            {
+                                entry.ExtractToFile(finalPath, overwrite: true);
+                            }
+                            else
+                            {
+                                using (Image img = LoadImageFromBytes(ReadEntryBytes(entry)))
+                                    img.Save(finalPath, ImageFormat.Png);
+                            }
                             bool hadInvalid = false;
                             ValidatePortraitSize(finalPath, ref hadInvalid);
                             if (hadInvalid)
@@ -1747,7 +1786,7 @@ namespace PortraitManager
                     }
 
                     var imgFiles = Directory.GetFiles(_shellTempDir, "*", SearchOption.AllDirectories)
-                        .Where(f => f.EndsWith(".png", StringComparison.OrdinalIgnoreCase)).ToList();
+                        .Where(IsImageFile).ToList();
                     foreach (var file in imgFiles)
                     {
                         string key = Path.GetFileNameWithoutExtension(file);
@@ -1762,7 +1801,7 @@ namespace PortraitManager
 
                         string finalName = key + suffix + ".png";
                         string finalPath = Path.Combine(outDir, finalName);
-                        File.Copy(file, finalPath, overwrite: true);
+                        CopyOrConvertToPng(file, finalPath);
                         bool hadInvalid = false;
                         ValidatePortraitSize(finalPath, ref hadInvalid);
                         if (hadInvalid)
@@ -1776,7 +1815,7 @@ namespace PortraitManager
                 else
                 {
                     var imgFiles = Directory.GetFiles(_selectedArchivePath, "*", SearchOption.AllDirectories)
-                        .Where(f => f.EndsWith(".png", StringComparison.OrdinalIgnoreCase)).ToList();
+                        .Where(IsImageFile).ToList();
                     foreach (var file in imgFiles)
                     {
                         string key = Path.GetFileNameWithoutExtension(file);
@@ -1791,7 +1830,7 @@ namespace PortraitManager
 
                         string finalName = key + suffix + ".png";
                         string finalPath = Path.Combine(outDir, finalName);
-                        File.Copy(file, finalPath, overwrite: true);
+                        CopyOrConvertToPng(file, finalPath);
                         bool hadInvalid = false;
                         ValidatePortraitSize(finalPath, ref hadInvalid);
                         if (hadInvalid)

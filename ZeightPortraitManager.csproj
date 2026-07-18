@@ -46,7 +46,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\PortraitManagerOwlcat-1350w\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
     <ErrorReport>none</ErrorReport>
@@ -130,6 +130,15 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Weaves all lib\*.dll references above into the built exe as embedded resources
+         (unpacked into memory at runtime), so the shipped output is a single .exe instead of
+         an exe plus a dozen loose dependency DLLs. -->
+    <PackageReference Include="Costura.Fody">
+      <Version>6.2.0</Version>
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="forms\MyCreationTooltip.cs">
@@ -231,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="FodyWeavers.xml" />
     <None Include="Properties\CoreSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>CoreSettings.Designer.cs</LastGenOutput>

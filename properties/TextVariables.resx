@@ -446,7 +446,7 @@ Load the backup, or keep working from the present portrait?</value>
   <data name="MESG_UNSUPPORTED_IMAGE_LINK" xml:space="preserve">
     <value>That link does not point to a supported image file.
 
-Supported formats: PNG, JPG, GIF, BMP, WebP.</value>
+Supported formats: PNG, JPG, GIF, BMP.</value>
   </data>
   <data name="MESG_IMAGE_LOAD_FAILED" xml:space="preserve">
     <value>Could not load the image from that address. {0}</value>
@@ -485,7 +485,7 @@ Choose a local image from your computer or select a web image from the internet.
     <value>The address you entered does not look like a valid web link. Make sure it starts with http:// or https:// and contains no spaces.</value>
   </data>
   <data name="WEBDIALOG_ERR_UNSUPPORTED_FORMAT" xml:space="preserve">
-    <value>That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP, WebP.</value>
+    <value>That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP.</value>
   </data>
   <data name="WEBDIALOG_ERR_NOT_IMAGE" xml:space="preserve">
     <value>The server did not return an image. Make sure the link points directly to an image file.

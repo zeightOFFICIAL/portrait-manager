@@ -140,7 +140,7 @@ namespace PortraitManager.forms
                 var uri = new Uri(url);
                 string path = uri.AbsolutePath;
                 string ext = System.IO.Path.GetExtension(path).ToLowerInvariant();
-                string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
+                string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp" };
                 if (ext.Length > 0 && Array.IndexOf(imageExts, ext) < 0)
                 {
                     ShowError(TextVariables.WEBDIALOG_ERR_UNSUPPORTED_FORMAT);

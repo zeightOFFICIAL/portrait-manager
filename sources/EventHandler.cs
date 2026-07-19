@@ -231,7 +231,7 @@ namespace PortraitManager
                 else if (isObsidian || isWasteland)
                 {
                     uid = Path.GetFileName(_overrideGallerySaveDir);
-                    if (_galleryTabSelected == "nonplayer")
+                    if (_galleryTabSelected == "nonplayer" || _galleryTabSelected == "companions" || _galleryTabSelected == "characters")
                     {
                         outDir = Path.GetDirectoryName(_overrideGallerySaveDir);
                         Directory.CreateDirectory(outDir);
@@ -370,7 +370,7 @@ namespace PortraitManager
                 {
                     string ext = Path.GetExtension(files[0]).ToLowerInvariant();
                     if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" ||
-                        ext == ".bmp" || ext == ".gif" || ext == ".webp")
+                        ext == ".bmp" || ext == ".gif")
                     {
                         e.Effect = DragDropEffects.Copy;
                         ApplyDropTargetTint(sender as Control);
@@ -505,7 +505,7 @@ namespace PortraitManager
                 var uri = new Uri(url);
                 string path = uri.AbsolutePath;
                 string ext = System.IO.Path.GetExtension(path).ToLowerInvariant();
-                string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp" };
+                string[] imageExts = { ".png", ".jpg", ".jpeg", ".gif", ".bmp" };
                 if (!ext.Contains("") && Array.IndexOf(imageExts, ext) < 0)
                 {
                     using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_UNSUPPORTED_IMAGE_LINK))
@@ -1885,9 +1885,11 @@ namespace PortraitManager
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
             catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
 
-            LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd';
+            // Deadfire's base install already splits companion and NPC portraits into separate
+            // folders, so it gets its own Companions/Characters tabs below instead of this merged one.
+            LabelGalleryNonPlayerTab.Visible = _gameSelected == 't' || _gameSelected == 'p';
 
-            LabelGalleryNonPlayerTab.Text = _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'
+            LabelGalleryNonPlayerTab.Text = _gameSelected == 't' || _gameSelected == 'p'
                 ? TextVariables.LABEL_GALLERY_COMPANIONS
                 : TextVariables.LABEL_GALLERY_NONPLAYER;
 
@@ -1895,9 +1897,9 @@ namespace PortraitManager
             // tab used to show for Kingmaker/WotR) and never applicable to any other game.
             LabelGalleryCustomNpcTab.Visible = false;
 
-            bool hasCustomNpc = _gameSelected == 'k' || _gameSelected == 'w';
-            LabelGalleryCompanionsTab.Visible = hasCustomNpc;
-            LabelGalleryCharactersTab.Visible = hasCustomNpc;
+            bool hasCompanionsAndCharactersTabs = _gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'd';
+            LabelGalleryCompanionsTab.Visible = hasCompanionsAndCharactersTabs;
+            LabelGalleryCharactersTab.Visible = hasCompanionsAndCharactersTabs;
             UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
@@ -1972,8 +1974,12 @@ namespace PortraitManager
 
             bool restoreBackup = false;
             bool restoreOwnBackup = false;
-            bool isNonPlayer = _galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd');
-            bool isCompanionOrCharacter = _galleryTabSelected == "companions" || _galleryTabSelected == "characters";
+            // Deadfire's Companions/Characters tabs use the same "_lg"/"_sm"-suffixed file layout
+            // as its old merged Non-player tab, so they share that backup path rather than the
+            // Owlcat flat-file (Fulllength.png/Medium.png/Small.png) one Kingmaker/WotR use.
+            bool isNonPlayer = (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p')) ||
+                                ((_galleryTabSelected == "companions" || _galleryTabSelected == "characters") && _gameSelected == 'd');
+            bool isCompanionOrCharacter = (_galleryTabSelected == "companions" || _galleryTabSelected == "characters") && _gameSelected != 'd';
 
             if (isNonPlayer)
             {
@@ -2310,7 +2316,10 @@ namespace PortraitManager
             Panel panel = (Panel)sender;
             Rectangle rect = panel.ClientRectangle;
 
-            if (_galleryTabSelected == "player")
+            // Deadfire's Companions/Characters tabs come from the base game's own portrait
+            // folders, not the CustomNpcPortraits mod, so the hints below (which describe that
+            // mod's install/first-encounter quirks) don't apply - just show the plain empty state.
+            if (_galleryTabSelected == "player" || _gameSelected == 'd')
             {
                 using (Font emptyFont = new Font(_fontCollection.Families[0], 22))
                 {
@@ -2441,13 +2450,21 @@ namespace PortraitManager
         private void ButtonGalleryShowFolder_Click(object sender, EventArgs e)
         {
             string gameDir;
-            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p'))
             {
                 string basePath = CoreSettings.Default.GamePath;
                 if (!string.IsNullOrEmpty(basePath))
                     gameDir = GetNonPlayerPortraitsRoot(basePath);
                 else
                     gameDir = null;
+            }
+            else if ((_galleryTabSelected == "companions" || _galleryTabSelected == "characters") && _gameSelected == 'd')
+            {
+                string basePath = CoreSettings.Default.GamePath;
+                string root = !string.IsNullOrEmpty(basePath) ? GetNonPlayerPortraitsRoot(basePath) : null;
+                string subDir = _galleryTabSelected == "characters" ? "npcs" : "companion";
+                string subPath = root != null ? Path.Combine(root, subDir) : null;
+                gameDir = subPath != null && Directory.Exists(subPath) ? subPath : root;
             }
             else if (_isCustomNpcMode)
             {
@@ -3142,7 +3159,7 @@ namespace PortraitManager
 
                 using (OpenFileDialog ofd = new OpenFileDialog()
                 {
-                    Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.webp",
+                    Filter = "Image files|*.png;*.jpg;*.jpeg;*.bmp;*.gif",
                     Multiselect = false
                 })
                 {
@@ -3158,9 +3175,13 @@ namespace PortraitManager
                             FitImageToPanel(pic);
                             MarkGroupInitialized(pic);
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            return;
+                            using (var dlg = new forms.MyMessageDialog(string.Format(TextVariables.MESG_IMAGE_LOAD_FAILED, ex.Message)))
+                            {
+                                dlg.StartPosition = FormStartPosition.CenterParent;
+                                dlg.ShowDialog(this);
+                            }
                         }
                     }
                 }

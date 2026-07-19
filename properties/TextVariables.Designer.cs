@@ -97,7 +97,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create ➕.
+        ///   Looks up a localized string similar to Create +.
         /// </summary>
         internal static string BUTTON_CREATE_NEW {
             get {
@@ -358,11 +358,29 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string DIALOG_BUTTON_NO {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string DIALOG_BUTTON_OK {
             get {
                 return ResourceManager.GetString("DIALOG_BUTTON_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string DIALOG_BUTTON_YES {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_YES", resourceCulture);
             }
         }
         
@@ -399,6 +417,51 @@ namespace PortraitManager.Properties {
         internal static string EXTRACT_PAGE_TITLE {
             get {
                 return ResourceManager.GetString("EXTRACT_PAGE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty.
+        /// </summary>
+        internal static string GALLERY_EMPTY_TEXT {
+            get {
+                return ResourceManager.GetString("GALLERY_EMPTY_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder name appears in your game&apos;s display language, not necessarily English..
+        /// </summary>
+        internal static string GALLERY_HINT_LOCALE_NOTE {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_LOCALE_NOTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPC must be met in-game first. Folder name = exact NPC dialog name..
+        /// </summary>
+        internal static string GALLERY_HINT_NPC_MET {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_NPC_MET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the folder button below to open Portraits - Npc directly..
+        /// </summary>
+        internal static string GALLERY_HINT_OPEN_FOLDER {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_OPEN_FOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requires the CustomNpcPortraits mod to be installed..
+        /// </summary>
+        internal static string GALLERY_HINT_REQUIRES_MOD {
+            get {
+                return ResourceManager.GetString("GALLERY_HINT_REQUIRES_MOD", resourceCulture);
             }
         }
         
@@ -533,7 +596,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ➕.
+        ///   Looks up a localized string similar to 🔍+.
         /// </summary>
         internal static string ICON_ZOOM_IN {
             get {
@@ -542,7 +605,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ➖.
+        ///   Looks up a localized string similar to 🔍−.
         /// </summary>
         internal static string ICON_ZOOM_OUT {
             get {
@@ -551,7 +614,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ↩.
+        ///   Looks up a localized string similar to ↺.
         /// </summary>
         internal static string ICON_ZOOM_RESET {
             get {
@@ -660,6 +723,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not delete this portrait set: {0}.
+        /// </summary>
+        internal static string MESG_DELETE_PORTRAIT_FAILED {
+            get {
+                return ResourceManager.GetString("MESG_DELETE_PORTRAIT_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix..
         /// </summary>
         internal static string MESG_EXTRACT_CONFLICT {
@@ -739,16 +811,7 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("MESG_FAILED_CREATE_PORTRAIT_FOLDER", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Could not delete this portrait set: {0}.
-        /// </summary>
-        internal static string MESG_DELETE_PORTRAIT_FAILED {
-            get {
-                return ResourceManager.GetString("MESG_DELETE_PORTRAIT_FAILED", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Failed to create portraits root folder: {0}.
         /// </summary>
@@ -880,7 +943,7 @@ namespace PortraitManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to That link does not point to a supported image file.
         ///
-        ///Supported formats: PNG, JPG, GIF, BMP, WebP..
+        ///Supported formats: PNG, JPG, GIF, BMP..
         /// </summary>
         internal static string MESG_UNSUPPORTED_IMAGE_LINK {
             get {
@@ -1136,7 +1199,7 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP, WebP..
+        ///   Looks up a localized string similar to That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP..
         /// </summary>
         internal static string WEBDIALOG_ERR_UNSUPPORTED_FORMAT {
             get {
@@ -1168,48 +1231,6 @@ namespace PortraitManager.Properties {
         internal static string WEBDIALOG_TITLE {
             get {
                 return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
-            }
-        }
-
-        internal static string GALLERY_HINT_NPC_MET {
-            get {
-                return ResourceManager.GetString("GALLERY_HINT_NPC_MET", resourceCulture);
-            }
-        }
-
-        internal static string GALLERY_HINT_OPEN_FOLDER {
-            get {
-                return ResourceManager.GetString("GALLERY_HINT_OPEN_FOLDER", resourceCulture);
-            }
-        }
-
-        internal static string GALLERY_HINT_LOCALE_NOTE {
-            get {
-                return ResourceManager.GetString("GALLERY_HINT_LOCALE_NOTE", resourceCulture);
-            }
-        }
-
-        internal static string GALLERY_EMPTY_TEXT {
-            get {
-                return ResourceManager.GetString("GALLERY_EMPTY_TEXT", resourceCulture);
-            }
-        }
-
-        internal static string GALLERY_HINT_REQUIRES_MOD {
-            get {
-                return ResourceManager.GetString("GALLERY_HINT_REQUIRES_MOD", resourceCulture);
-            }
-        }
-
-        internal static string DIALOG_BUTTON_YES {
-            get {
-                return ResourceManager.GetString("DIALOG_BUTTON_YES", resourceCulture);
-            }
-        }
-
-        internal static string DIALOG_BUTTON_NO {
-            get {
-                return ResourceManager.GetString("DIALOG_BUTTON_NO", resourceCulture);
             }
         }
     }

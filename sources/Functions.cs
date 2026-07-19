@@ -197,6 +197,9 @@ namespace PortraitManager
             }
         }
 
+        // WebP is deliberately excluded: GDI+ has no built-in WebP decoder, so Image.FromFile
+        // throws OutOfMemoryException (GDI+'s generic failure signal for any format it can't
+        // decode) instead of a normal load error.
         private bool IsImageFile(string name)
         {
             string ext = Path.GetExtension(name);
@@ -204,8 +207,7 @@ namespace PortraitManager
                    ext.Equals(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                    ext.Equals(".png", StringComparison.OrdinalIgnoreCase) ||
                    ext.Equals(".bmp", StringComparison.OrdinalIgnoreCase) ||
-                   ext.Equals(".gif", StringComparison.OrdinalIgnoreCase) ||
-                   ext.Equals(".webp", StringComparison.OrdinalIgnoreCase);
+                   ext.Equals(".gif", StringComparison.OrdinalIgnoreCase);
         }
 
         // The gallery grid accepts any image format via IsImageFile, but every game's custom
@@ -619,9 +621,18 @@ namespace PortraitManager
             if (string.IsNullOrEmpty(gamePath) || !Directory.Exists(gamePath))
                 return;
 
-            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd'))
+            if (_galleryTabSelected == "nonplayer" && (_gameSelected == 't' || _gameSelected == 'p'))
             {
                 LoadNonPlayerGalleryImages(gamePath);
+                return;
+            }
+
+            // Deadfire is the only game where the base install already splits companion and
+            // NPC portraits into separate "companion"/"npcs" subfolders, so it gets its own
+            // pair of Companions/Characters tabs instead of the single merged one PoE1/Tyranny use.
+            if (_galleryTabSelected == "companions" && _gameSelected == 'd')
+            {
+                LoadNonPlayerGalleryImages(gamePath, new[] { "companion" });
                 return;
             }
 
@@ -643,6 +654,12 @@ namespace PortraitManager
                         UpdateGalleryRightPanel();
                     }));
                 }, npcToken);
+                return;
+            }
+
+            if (_galleryTabSelected == "characters" && _gameSelected == 'd')
+            {
+                LoadNonPlayerGalleryImages(gamePath, new[] { "npcs" });
                 return;
             }
 
@@ -742,13 +759,14 @@ namespace PortraitManager
             }, token);
         }
 
-        private void LoadNonPlayerGalleryImages(string gamePath)
+        private void LoadNonPlayerGalleryImages(string gamePath, string[] subDirsOverride = null)
         {
             string portraitsRoot = GetNonPlayerPortraitsRoot(gamePath);
             if (portraitsRoot == null) return;
 
             string[] subDirs;
-            if (_gameSelected == 't') subDirs = new[] { "companion" };
+            if (subDirsOverride != null) subDirs = subDirsOverride;
+            else if (_gameSelected == 't') subDirs = new[] { "companion" };
             else if (_gameSelected == 'p' || _gameSelected == 'd') subDirs = new[] { "companion", "npcs" };
             else subDirs = new[] { "npc", "companions" };
 
@@ -847,6 +865,7 @@ namespace PortraitManager
                 {
                     if (_galleryEntries.Count > 0)
                         ShowScrollBar(FlowLayoutPanelGallery.Handle, 3, false);
+                    UpdateGalleryRightPanel();
                 }));
             }, token);
         }
@@ -2753,7 +2772,7 @@ namespace PortraitManager
             LabelGalleryCharactersTab.ForeColor = _galleryTabSelected == "characters" ? gameFore : Color.White;
             LabelGalleryCharactersTab.Invalidate();
 
-            if (_galleryTabSelected == "companions" || _galleryTabSelected == "characters")
+            if ((_galleryTabSelected == "companions" || _galleryTabSelected == "characters") && _gameSelected != 'd')
             {
                 LabelGalleryCredit.Text = TextVariables.MESG_GALLERY_CUSTOMNPC_CREDIT;
                 LabelGalleryCredit.Visible = true;

@@ -64,11 +64,9 @@ Prefer to pick the name yourself instead of an auto-generated one? Press Create 
 </tr>
 </table>
 
-*Left to right: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Tyranny.*
-
 ##### Portrait sizes per game
 
-<table style="width:100%;">
+<table style="border:none; border-collapse:collapse; width:100%;">
 <tr><th>Game</th><th>Small</th><th>Medium</th><th>Full</th></tr>
 <tr><td>Pathfinder: Kingmaker</td><td>185×242</td><td>330×432</td><td>692×1024</td></tr>
 <tr><td>Pathfinder: Wrath of the Righteous</td><td>185×242</td><td>330×432</td><td>692×1024</td></tr>

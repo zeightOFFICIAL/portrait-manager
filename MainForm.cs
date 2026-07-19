@@ -71,6 +71,8 @@ namespace PortraitManager
         private PictureBox _flagEng;
         private PictureBox _flagDe;
         private PictureBox _flagRus;
+        private Button _galleryHelpButton;
+        private string _customPortraitName;
 
         private string _selectedArchivePath;
         private List<Tuple<string, Image>> _archiveEntries;
@@ -128,6 +130,7 @@ namespace PortraitManager
             LabelKingCreatePortraitSmall.Font = bebasNeueHead;
             LabelKingCreatePortraitSml2.Font = bebasNeueHead;
             ButtonKingCreateNewPortrait.Font = bebasNeueHead;
+            ButtonKingCustomName.Font = new Font(activeFontCollection.Families[0], bebasNeueHead.Size * 0.7f);
             ButtonKingBackToPathfinder.Font = bebasNeueHead;
             ButtonExtractAll.Font = bebasNeueHead;
             ButtonExtractSelected.Font = bebasNeueHead;
@@ -229,6 +232,7 @@ namespace PortraitManager
             }
 
             ButtonKingCreateNewPortrait.Text = TextVariables.BUTTON_CREATE_NEW;
+            RefreshCustomNameButtonText();
             ButtonKingBackToPathfinder.Text = TextVariables.BUTTON_BACK_TO_PATHFINDER;
             ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
             ButtonExtractSelected.Text = TextVariables.BUTTON_EXTRACT_SELECTED;
@@ -371,6 +375,108 @@ namespace PortraitManager
             }
         }
 
+        private static string GetGameDisplayName(char gameSelected)
+        {
+            switch (gameSelected)
+            {
+                case 'w': return TextVariables.NAME_WOTR;
+                case 'r': return TextVariables.NAME_ROGUE;
+                case 'p': return TextVariables.NAME_PILLARS;
+                case 'd': return TextVariables.NAME_DEADFIRE;
+                case 't': return TextVariables.NAME_TYR;
+                case 'l': return TextVariables.NAME_WASTE;
+                default: return TextVariables.NAME_KING;
+            }
+        }
+
+        // Matches the per-game font size each LabelStartXXX_Click / LabelSelectPathNextToMain_Click handler
+        // applies to LabelSelectPathTitle (longer names get a smaller size so they still fit the title area).
+        private static float GetGameTitleFontSize(char gameSelected)
+        {
+            switch (gameSelected)
+            {
+                case 'w': return 22f;
+                case 'r': return 25f;
+                case 'd': return 27f;
+                default: return 34f;
+            }
+        }
+
+        private static string GetGalleryHelpText(char gameSelected)
+        {
+            switch (gameSelected)
+            {
+                case 'w': return TextVariables.GALLERY_HELP_WOTR;
+                case 'r': return TextVariables.GALLERY_HELP_ROGUE;
+                case 'p': return TextVariables.GALLERY_HELP_POE;
+                case 'd': return TextVariables.GALLERY_HELP_POED;
+                case 't': return TextVariables.GALLERY_HELP_TYR;
+                case 'l': return TextVariables.GALLERY_HELP_WASTE;
+                default: return TextVariables.GALLERY_HELP_KING;
+            }
+        }
+
+        private void RefreshCustomNameButtonText()
+        {
+            ButtonKingCustomName.Text = string.IsNullOrEmpty(_customPortraitName)
+                ? TextVariables.BUTTON_CUSTOM_NAME
+                : _customPortraitName;
+        }
+
+        // Behaves exactly like ButtonKingCreateNewPortrait's own click, except it asks for a name first.
+        // If the name is denied (cancelled, invalid, or a duplicate caught on re-check during creation),
+        // ButtonKingAction_Create_Click's own early-return paths already show a MyMessageDialog and leave
+        // the user on the Create Portrait page - nothing extra is needed here for that case.
+        private void ButtonKingCustomName_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new forms.MyNameDialog(_customPortraitName, IsCustomPortraitNameTaken))
+            {
+                dlg.StartPosition = FormStartPosition.CenterParent;
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                _customPortraitName = dlg.ChosenName;
+                RefreshCustomNameButtonText();
+            }
+
+            ButtonKingAction_Create_Click(sender, e);
+        }
+
+        // Floats directly on the Form (not inside LayoutGalleryPage) so it isn't subject to the page's
+        // TableLayoutPanel cell grid; visibility is tied to the page itself via VisibleChanged so it
+        // shows and hides in step with Browse Gallery without touching every navigation handler.
+        private void GalleryHelpButtonInit()
+        {
+            _galleryHelpButton = new Button
+            {
+                Size = new Size(24, 24),
+                Location = new Point(8, 8),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left,
+                Text = "?",
+                Font = new Font(_fontCollection.Families[0], 10f),
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand,
+                TabStop = false,
+                Visible = false
+            };
+            _galleryHelpButton.FlatAppearance.BorderSize = 1;
+            _galleryHelpButton.Click += GalleryHelpButton_Click;
+
+            Controls.Add(_galleryHelpButton);
+            _galleryHelpButton.BringToFront();
+
+            LayoutGalleryPage.VisibleChanged += (s, e) => _galleryHelpButton.Visible = LayoutGalleryPage.Visible;
+        }
+
+        private void GalleryHelpButton_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new forms.MyMessageDialog(GetGalleryHelpText(_gameSelected)))
+            {
+                dlg.StartPosition = FormStartPosition.CenterParent;
+                dlg.ShowDialog(this);
+            }
+        }
+
         /// <summary>
         /// Switches the active UI language. Not auto-detected: the user always picks it explicitly by
         /// clicking a flag, or it is restored from the previously chosen value in CoreSettings.
@@ -403,6 +509,8 @@ namespace PortraitManager
 
                     FontInit();
                     TextInit();
+                    LabelSelectPathTitle.Text = GetGameDisplayName(_gameSelected);
+                    LabelSelectPathTitle.Font = new Font(LabelSelectPathTitle.Font.FontFamily, GetGameTitleFontSize(_gameSelected), FontStyle.Regular);
                     LabelSelectPathExplain.Text = GetPathExplainText(_gameSelected);
                     UpdatePortraitButtonsStyle();
                     RefreshFlagHighlight();

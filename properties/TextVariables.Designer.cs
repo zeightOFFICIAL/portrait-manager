@@ -106,6 +106,16 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create 
+        ///with name ✎.
+        /// </summary>
+        internal static string BUTTON_CUSTOM_NAME {
+            get {
+                return ResourceManager.GetString("BUTTON_CUSTOM_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         internal static string BUTTON_EXIT {
@@ -430,6 +440,69 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions and Characters need edvin76&apos;s CustomNpcPortraits mod, and appear once you&apos;ve met that character in-game..
+        /// </summary>
+        internal static string GALLERY_HELP_KING {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions covers every companion and NPC portrait from the base game - no mod needed..
+        /// </summary>
+        internal static string GALLERY_HELP_POE {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_POE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions and Characters split automatically - the base game already keeps them separate, no mod needed..
+        /// </summary>
+        internal static string GALLERY_HELP_POED {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_POED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing player portraits appear here as thumbnails. Rogue Trader has no companion/NPC portrait mod yet..
+        /// </summary>
+        internal static string GALLERY_HELP_ROGUE {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions covers every companion portrait from the base game - no mod needed..
+        /// </summary>
+        internal static string GALLERY_HELP_TYR {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing player portraits appear here as thumbnails. Wasteland 3&apos;s custom-portraits folder is player-only, so no companion/NPC tab exists..
+        /// </summary>
+        internal static string GALLERY_HELP_WASTE {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_WASTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions and Characters need edvin76&apos;s CustomNpcPortraits mod. Edit your MC via the &quot;CustomNpcPortraits - {name}&quot; entry, not their own tile..
+        /// </summary>
+        internal static string GALLERY_HELP_WOTR {
+            get {
+                return ResourceManager.GetString("GALLERY_HELP_WOTR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder name appears in your game&apos;s display language, not necessarily English..
         /// </summary>
         internal static string GALLERY_HINT_LOCALE_NOTE {
@@ -723,6 +796,15 @@ namespace PortraitManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That name is already in use. Please choose a different one before creating the portrait..
+        /// </summary>
+        internal static string MESG_CUSTOM_NAME_TAKEN {
+            get {
+                return ResourceManager.GetString("MESG_CUSTOM_NAME_TAKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not delete this portrait set: {0}.
         /// </summary>
         internal static string MESG_DELETE_PORTRAIT_FAILED {
@@ -1011,6 +1093,60 @@ namespace PortraitManager.Properties {
         internal static string NAME_WOTR {
             get {
                 return ResourceManager.GetString("NAME_WOTR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string NAMEDIALOG_BUTTON_CANCEL {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_BUTTON_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use name.
+        /// </summary>
+        internal static string NAMEDIALOG_BUTTON_OK {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_BUTTON_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That name is already in use. Please choose a different one..
+        /// </summary>
+        internal static string NAMEDIALOG_ERR_DUPLICATE {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_ERR_DUPLICATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That name contains characters that aren&apos;t allowed in a file or folder name..
+        /// </summary>
+        internal static string NAMEDIALOG_ERR_INVALID_CHARS {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_ERR_INVALID_CHARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type a name for the portrait&apos;s folder or file, or leave it blank to clear a custom name and use an automatic one instead..
+        /// </summary>
+        internal static string NAMEDIALOG_HINT {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_HINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name this portrait.
+        /// </summary>
+        internal static string NAMEDIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_TITLE", resourceCulture);
             }
         }
         

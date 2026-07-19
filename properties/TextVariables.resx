@@ -535,4 +535,50 @@ Try dragging the image from your browser onto a portrait slot instead.</value>
   <data name="DIALOG_BUTTON_NO" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="GALLERY_HELP_KING" xml:space="preserve">
+    <value>Existing portraits appear here as thumbnails. Companions and Characters need edvin76's CustomNpcPortraits mod, and appear once you've met that character in-game.</value>
+  </data>
+  <data name="GALLERY_HELP_WOTR" xml:space="preserve">
+    <value>Existing portraits appear here as thumbnails. Companions and Characters need edvin76's CustomNpcPortraits mod. Edit your MC via the "CustomNpcPortraits - {name}" entry, not their own tile.</value>
+  </data>
+  <data name="GALLERY_HELP_ROGUE" xml:space="preserve">
+    <value>Existing player portraits appear here as thumbnails. Rogue Trader has no companion/NPC portrait mod yet.</value>
+  </data>
+  <data name="GALLERY_HELP_POE" xml:space="preserve">
+    <value>Existing portraits appear here as thumbnails. Companions covers every companion and NPC portrait from the base game - no mod needed.</value>
+  </data>
+  <data name="GALLERY_HELP_POED" xml:space="preserve">
+    <value>Existing portraits appear here as thumbnails. Companions and Characters split automatically - the base game already keeps them separate, no mod needed.</value>
+  </data>
+  <data name="GALLERY_HELP_TYR" xml:space="preserve">
+    <value>Existing portraits appear here as thumbnails. Companions covers every companion portrait from the base game - no mod needed.</value>
+  </data>
+  <data name="GALLERY_HELP_WASTE" xml:space="preserve">
+    <value>Existing player portraits appear here as thumbnails. Wasteland 3's custom-portraits folder is player-only, so no companion/NPC tab exists.</value>
+  </data>
+  <data name="BUTTON_CUSTOM_NAME" xml:space="preserve">
+    <value>Create 
+with name ✎</value>
+  </data>
+  <data name="NAMEDIALOG_TITLE" xml:space="preserve">
+    <value>Name this portrait</value>
+  </data>
+  <data name="NAMEDIALOG_HINT" xml:space="preserve">
+    <value>Type a name for the portrait's folder or file, or leave it blank to clear a custom name and use an automatic one instead.</value>
+  </data>
+  <data name="NAMEDIALOG_BUTTON_OK" xml:space="preserve">
+    <value>Use name</value>
+  </data>
+  <data name="NAMEDIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="NAMEDIALOG_ERR_INVALID_CHARS" xml:space="preserve">
+    <value>That name contains characters that aren't allowed in a file or folder name.</value>
+  </data>
+  <data name="NAMEDIALOG_ERR_DUPLICATE" xml:space="preserve">
+    <value>That name is already in use. Please choose a different one.</value>
+  </data>
+  <data name="MESG_CUSTOM_NAME_TAKEN" xml:space="preserve">
+    <value>That name is already in use. Please choose a different one before creating the portrait.</value>
+  </data>
 </root>

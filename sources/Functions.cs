@@ -2570,6 +2570,61 @@ namespace PortraitManager
             return Path.Combine(basePath, "Portraits - Npc");
         }
 
+        /// <summary>
+        /// Mirrors the folder/file naming scheme <see cref="ButtonKingAction_Create_Click"/> uses for a
+        /// brand-new portrait, so a custom name can be rejected up front instead of silently colliding.
+        /// Kingmaker/WotR/Rogue Trader (and Custom NPC mode) get a dedicated folder per portrait; Obsidian
+        /// games and Wasteland 3 use the name as a shared file-name prefix instead.
+        /// </summary>
+        private bool IsCustomPortraitNameTaken(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) return false;
+
+            string basePath = CoreSettings.Default.GamePath;
+            if (string.IsNullOrWhiteSpace(basePath) || !Directory.Exists(basePath)) return false;
+
+            bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
+            bool isWasteland = _gameSelected == 'l';
+
+            try
+            {
+                if (_isCustomNpcMode)
+                {
+                    string customNpcDir = GetCustomNpcPortraitsDir(basePath);
+                    if (string.IsNullOrEmpty(customNpcDir)) return false;
+                    return Directory.Exists(Path.Combine(customNpcDir, name));
+                }
+
+                if (isObsidian || isWasteland)
+                {
+                    string outDir;
+                    if (isWasteland)
+                        outDir = Path.Combine(basePath, "Custom Portraits");
+                    else if (_gameSelected == 'p')
+                        outDir = Path.Combine(basePath, "PillarsOfEternity_Data", "data", "art", "gui", "portraits", "player", "male");
+                    else if (_gameSelected == 'd')
+                        outDir = Path.Combine(basePath, "PillarsOfEternityII_Data", "gui", "portraits", "player", "male");
+                    else
+                        outDir = Path.Combine(basePath, "Data", "data", "art", "gui", "portraits", "player", "male");
+
+                    if (!Directory.Exists(outDir)) return false;
+                    return Directory.GetFiles(outDir, name + ".*").Length > 0
+                        || Directory.GetFiles(outDir, name + "_*").Length > 0;
+                }
+
+                string portraitsRoot = basePath;
+                string last = new DirectoryInfo(basePath).Name;
+                if (!last.Equals("Portraits", StringComparison.OrdinalIgnoreCase))
+                    portraitsRoot = Path.Combine(basePath, "Portraits");
+
+                return Directory.Exists(Path.Combine(portraitsRoot, name));
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private List<string> GetCharactersPortraitsRoots(string basePath)
         {
             var roots = new List<string>();
@@ -3782,7 +3837,7 @@ namespace PortraitManager
                 ButtonKingMedWeb, ButtonKingMedLocal, ButtonKingMedZoomIn, ButtonKingMedZoomOut, ButtonKingMedZoomReset,
                 ButtonKingSmlWeb, ButtonKingSmlLocal, ButtonKingSmlZoomIn, ButtonKingSmlZoomOut, ButtonKingSmlZoomReset,
                 ButtonKingSml2Web, ButtonKingSml2Local, ButtonKingSml2ZoomIn, ButtonKingSml2ZoomOut, ButtonKingSml2ZoomReset,
-                ButtonKingCreateNewPortrait, ButtonKingBackToPathfinder
+                ButtonKingCreateNewPortrait, ButtonKingCustomName, ButtonKingBackToPathfinder
             };
 
             foreach (var btn in buttons)

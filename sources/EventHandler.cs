@@ -75,7 +75,10 @@ namespace PortraitManager
             bool isObsidian = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't';
             bool isWasteland = _gameSelected == 'l';
             bool useUid = _gameSelected == 'p' || _gameSelected == 'd' || _gameSelected == 't' || _gameSelected == 'l';
-            string uid = useUid ? (_gameSelected == 'l' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture) : null;
+            bool hasCustomName = !string.IsNullOrEmpty(_customPortraitName);
+            string uid = useUid
+                ? (hasCustomName ? _customPortraitName : (_gameSelected == 'l' || _gameSelected == 't' || _gameSelected == 'p' || _gameSelected == 'd' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture))
+                : null;
             string femaleDir = null;
 
             string outDir = null;
@@ -96,15 +99,31 @@ namespace PortraitManager
                     return;
                 }
 
-                string baseName = "NPC_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                string baseName = hasCustomName ? _customPortraitName : "NPC_" + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
                 string uniqueName = baseName;
-                int suffix = 1;
                 outDir = Path.Combine(customNpcDir, uniqueName);
-                while (Directory.Exists(outDir))
+
+                if (hasCustomName)
                 {
-                    suffix++;
-                    uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
-                    outDir = Path.Combine(customNpcDir, uniqueName);
+                    if (Directory.Exists(outDir))
+                    {
+                        using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_CUSTOM_NAME_TAKEN))
+                        {
+                            dlg.StartPosition = FormStartPosition.CenterParent;
+                            dlg.ShowDialog(this);
+                        }
+                        return;
+                    }
+                }
+                else
+                {
+                    int suffix = 1;
+                    while (Directory.Exists(outDir))
+                    {
+                        suffix++;
+                        uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                        outDir = Path.Combine(customNpcDir, uniqueName);
+                    }
                 }
 
                 try { Directory.CreateDirectory(outDir); }
@@ -195,15 +214,33 @@ namespace PortraitManager
                         return;
                     }
 
-                    string baseName = (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
+                    string baseName = hasCustomName
+                        ? _customPortraitName
+                        : (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r' ? "PortraitManager - " : "portraitmanager_") + DateTime.Now.ToString("ssmmhh'_'ddMM", CultureInfo.InvariantCulture);
                     string uniqueName = baseName;
-                    int suffix = 1;
                     outDir = Path.Combine(portraitsRoot, uniqueName);
-                    while (Directory.Exists(outDir))
+
+                    if (hasCustomName)
                     {
-                        uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
-                        outDir = Path.Combine(portraitsRoot, uniqueName);
-                        suffix++;
+                        if (Directory.Exists(outDir))
+                        {
+                            using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_CUSTOM_NAME_TAKEN))
+                            {
+                                dlg.StartPosition = FormStartPosition.CenterParent;
+                                dlg.ShowDialog(this);
+                            }
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        int suffix = 1;
+                        while (Directory.Exists(outDir))
+                        {
+                            uniqueName = baseName + "_" + suffix.ToString(CultureInfo.InvariantCulture);
+                            outDir = Path.Combine(portraitsRoot, uniqueName);
+                            suffix++;
+                        }
                     }
 
                     try { Directory.CreateDirectory(outDir); }
@@ -216,6 +253,23 @@ namespace PortraitManager
                         }
                         return;
                     }
+                }
+            }
+
+            // Obsidian/Wasteland save the uid as a shared file-name prefix rather than a dedicated folder,
+            // so a custom name has to be checked against existing files in the (already-shared) outDir here.
+            if (hasCustomName && (isObsidian || isWasteland) && string.IsNullOrEmpty(_overrideGallerySaveDir))
+            {
+                bool takenAsFile = Directory.Exists(outDir) &&
+                    (Directory.GetFiles(outDir, uid + ".*").Length > 0 || Directory.GetFiles(outDir, uid + "_*").Length > 0);
+                if (takenAsFile)
+                {
+                    using (var dlg = new forms.MyMessageDialog(TextVariables.MESG_CUSTOM_NAME_TAKEN))
+                    {
+                        dlg.StartPosition = FormStartPosition.CenterParent;
+                        dlg.ShowDialog(this);
+                    }
+                    return;
                 }
             }
 
@@ -333,6 +387,9 @@ namespace PortraitManager
                 {
                     if (!string.IsNullOrWhiteSpace(outDir) && Directory.Exists(outDir))
                         new forms.MyCreationTooltip(outDir, uid).ShowAnchoredTo(this);
+
+                    _customPortraitName = null;
+                    RefreshCustomNameButtonText();
 
                     if (keepOnLayout)
                     {
@@ -1720,6 +1777,7 @@ namespace PortraitManager
             SetClientSizeCore(750, 520);
             CenterToScreen();
             LanguageFlagsInit();
+            GalleryHelpButtonInit();
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
@@ -1909,6 +1967,15 @@ namespace PortraitManager
             UpdateGalleryTabVisuals();
             PanelGalleryContainer.BackColor = gameBack;
             FlowLayoutPanelGallery.BackColor = gameBack;
+
+            if (_galleryHelpButton != null)
+            {
+                _galleryHelpButton.FlatAppearance.BorderColor = gameFore;
+                _galleryHelpButton.BackColor = gameBack;
+                _galleryHelpButton.ForeColor = gameFore;
+                _galleryHelpButton.FlatAppearance.MouseOverBackColor = gameFore;
+                _galleryHelpButton.FlatAppearance.MouseDownBackColor = gameFore;
+            }
 
             ButtonGalleryBack.FlatStyle = FlatStyle.Flat;
             ButtonGalleryBack.FlatAppearance.BorderSize = 1;
@@ -3141,6 +3208,8 @@ namespace PortraitManager
             try
             {
                 _overrideGallerySaveDir = null;
+                _customPortraitName = null;
+                RefreshCustomNameButtonText();
                 _activeMenuIndex = GetMainMenuIndexForCurrentGame();
                 ParentLayoutsDisable();
                 RootFunctions.LayoutEnable(LayoutMainPage);

@@ -4,10 +4,12 @@
 
 <h2 align="center">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</h2>
 
+#### <p align="center">Click a title image below to open its Nexus Mods page</p>
+
 <table style="border:none; border-collapse:collapse; width:100%;">
 <tr>
-<td style="border:none; padding:0; width:50%;"><img src="media/k/pathfinder_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/k/pathfinder_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0; width:50%;"><img src="media/r/warhammer_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/r/warhammer_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:50%;"><a href="https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466"><img src="media/k/pathfinder_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/k/pathfinder_title_bar.jpg" width="100%" style="display:block; border:none;"/></a></td>
+<td style="border:none; padding:0; width:50%;"><a href="https://www.nexusmods.com/warhammer40kroguetrader/mods/120"><img src="media/r/warhammer_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/r/warhammer_title_bar.jpg" width="100%" style="display:block; border:none;"/></a></td>
 </tr>
 <tr>
 <td style="border:none; padding:0;"><img src="media/p/pillars_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/p/pillars_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
@@ -21,7 +23,6 @@
 
 Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3
 
-#### <p align="center">Nexus mods links:<br>Pathfinder Kingmaker - https://www.nexusmods.com/pathfinderkingmaker/mods/277<br>Pathfinder: Wrath of the Righteous - https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/466<br>Warhammer 40000: Rogue Trader - https://www.nexusmods.com/warhammer40kroguetrader/mods/120<br>Pillars of Eternity - <br>Pillars of Eternity: Deadfire - <br>Tyranny - <br>Wasteland 3 - </p> 
 #### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2026</p>
 
 ---

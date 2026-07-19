@@ -1709,11 +1709,17 @@ namespace PortraitManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            _currentLanguage = CoreSettings.Default.Language;
+            TextVariables.Culture = _currentLanguage == 'd' ? new CultureInfo("de")
+                                   : _currentLanguage == 'r' ? new CultureInfo("ru")
+                                   : CultureInfo.InvariantCulture;
+
             FontInit();
             TextInit();
             _activeMenuIndex = 65535;
             SetClientSizeCore(750, 520);
             CenterToScreen();
+            LanguageFlagsInit();
             ParentLayoutsSetDockFill();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);

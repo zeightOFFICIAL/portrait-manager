@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -66,6 +67,11 @@ namespace PortraitManager
         private static CancellationTokenSource _cancellationTokenSource;
         private Icon _defaultAppIcon;
 
+        private static char _currentLanguage = 'e';
+        private PictureBox _flagEng;
+        private PictureBox _flagDe;
+        private PictureBox _flagRus;
+
         private string _selectedArchivePath;
         private List<Tuple<string, Image>> _archiveEntries;
         private bool _overlayHovered;
@@ -79,21 +85,28 @@ namespace PortraitManager
 
         private void FontInit()
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
-            _fontCollectionCyrillic = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
+            // English and German both use the Latin BebasNeue face; only Russian needs the Cyrillic-hinted variant.
+            // Both are loaded once at startup — the gallery also renders Cyrillic folder names via _fontCollectionCyrillic
+            // regardless of the currently selected UI language.
+            if (_fontCollection == null)
+                _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            if (_fontCollectionCyrillic == null)
+                _fontCollectionCyrillic = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
 
-            Font bebasNeueMainPage = new Font(_fontCollection.Families[0], 44),
-                 bebasNeueMainPage2 = new Font(_fontCollection.Families[0], 30),
-                 bebasNeueFullHeader = new Font(_fontCollection.Families[0], 25),
-                 bebasNeue22 = new Font(_fontCollection.Families[0], 22),
-                 bebasNeueHead = new Font(_fontCollection.Families[0], 21),
-                 bebasNeueUnder = new Font(_fontCollection.Families[0], 17),
-                 bebasNeueButton16 = new Font(_fontCollection.Families[0], 16f),
-                 bebasNeueZoom = new Font(_fontCollection.Families[0], 14.85f),
-                 bebasNeueMedium = new Font(_fontCollection.Families[0], 13),
-                 bebasNeue12 = new Font(_fontCollection.Families[0], 12),
-                 bebasNeue10 = new Font(_fontCollection.Families[0], 10f),
-                 bebasNeueSmall = new Font(_fontCollection.Families[0], 9);
+            PrivateFontCollection activeFontCollection = (_currentLanguage == 'r') ? _fontCollectionCyrillic : _fontCollection;
+
+            Font bebasNeueMainPage = new Font(activeFontCollection.Families[0], 44),
+                 bebasNeueMainPage2 = new Font(activeFontCollection.Families[0], 30),
+                 bebasNeueFullHeader = new Font(activeFontCollection.Families[0], 25),
+                 bebasNeue22 = new Font(activeFontCollection.Families[0], 22),
+                 bebasNeueHead = new Font(activeFontCollection.Families[0], 21),
+                 bebasNeueUnder = new Font(activeFontCollection.Families[0], 17),
+                 bebasNeueButton16 = new Font(activeFontCollection.Families[0], 16f),
+                 bebasNeueZoom = new Font(activeFontCollection.Families[0], 14.85f),
+                 bebasNeueMedium = new Font(activeFontCollection.Families[0], 13),
+                 bebasNeue12 = new Font(activeFontCollection.Families[0], 12),
+                 bebasNeue10 = new Font(activeFontCollection.Families[0], 10f),
+                 bebasNeueSmall = new Font(activeFontCollection.Families[0], 9);
 
             ButtonStartKing.Font = bebasNeueMedium;
             ButtonStartWotr.Font = bebasNeueMedium;
@@ -267,6 +280,159 @@ namespace PortraitManager
                 if (zb == null) continue;
                 zb.Text = TextVariables.ICON_ZOOM_RESET;
             }
+        }
+
+        private void LanguageFlagsInit()
+        {
+            const int flagWidth = 26;
+            const int flagHeight = 17;
+            const int flagGap = 6;
+            const int margin = 10;
+
+            // A solid backing (rather than BackColor.Transparent) is used deliberately: this panel sits
+            // directly on the Form, as a sibling of the Dock=Fill page panels, not as their child — WinForms
+            // only resolves a transparent BackColor against the immediate parent, not sibling controls, so
+            // transparency here would show the Form's own background instead of the active page underneath it.
+            var flagsPanel = new Panel
+            {
+                Size = new Size(flagWidth * 3 + flagGap * 2 + 8, flagHeight + 8),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                BackColor = Color.FromArgb(30, 30, 30)
+            };
+            flagsPanel.Location = new Point(ClientSize.Width - flagsPanel.Width - margin, margin);
+
+            const int inset = 4;
+
+            _flagEng = new PictureBox
+            {
+                Size = new Size(flagWidth, flagHeight),
+                Location = new Point(inset, inset),
+                Image = Resources.eng_flag,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Cursor = Cursors.Hand,
+                Tag = 'e'
+            };
+            _flagDe = new PictureBox
+            {
+                Size = new Size(flagWidth, flagHeight),
+                Location = new Point(inset + flagWidth + flagGap, inset),
+                Image = Resources.de_flag,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Cursor = Cursors.Hand,
+                Tag = 'd'
+            };
+            _flagRus = new PictureBox
+            {
+                Size = new Size(flagWidth, flagHeight),
+                Location = new Point(inset + (flagWidth + flagGap) * 2, inset),
+                Image = Resources.rus_flag,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Cursor = Cursors.Hand,
+                Tag = 'r'
+            };
+
+            foreach (var flag in new[] { _flagEng, _flagDe, _flagRus })
+            {
+                flag.Click += FlagPictureBox_Click;
+                flag.Paint += FlagPictureBox_Paint;
+                flagsPanel.Controls.Add(flag);
+            }
+
+            Controls.Add(flagsPanel);
+            flagsPanel.BringToFront();
+            RefreshFlagHighlight();
+        }
+
+        private void FlagPictureBox_Click(object sender, EventArgs e)
+        {
+            if (!(sender is PictureBox flag) || !(flag.Tag is char lang)) return;
+            SetLanguage(lang);
+        }
+
+        private void FlagPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (!(sender is PictureBox flag) || !(flag.Tag is char lang)) return;
+            if (lang == _currentLanguage)
+            {
+                using (var pen = new Pen(Color.White, 2))
+                {
+                    e.Graphics.DrawRectangle(pen, 1, 1, flag.Width - 3, flag.Height - 3);
+                }
+            }
+        }
+
+        private void RefreshFlagHighlight()
+        {
+            foreach (var flag in new[] { _flagEng, _flagDe, _flagRus })
+                flag?.Invalidate();
+        }
+
+        private static string GetPathExplainText(char gameSelected)
+        {
+            switch (gameSelected)
+            {
+                case 'w': return TextVariables.TEXT_EXPLAIN_PATH_WOTR;
+                case 'r': return TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
+                case 'p': return TextVariables.TEXT_EXPLAIN_PATH_POE;
+                case 'd': return TextVariables.TEXT_EXPLAIN_PATH_POED;
+                case 't': return TextVariables.TEXT_EXPLAIN_PATH_TYR;
+                case 'l': return TextVariables.TEXT_EXPLAIN_PATH_WASTE;
+                default: return TextVariables.TEXT_EXPLAIN_PATH_KING;
+            }
+        }
+
+        /// <summary>
+        /// Switches the active UI language. Not auto-detected: the user always picks it explicitly by
+        /// clicking a flag, or it is restored from the previously chosen value in CoreSettings.
+        /// Resolving the culture's satellite resource assembly (and, for Russian, the Cyrillic font)
+        /// touches disk on first use, so that lookup happens on a background thread; only the resulting
+        /// property assignments run back on the UI thread via Invoke.
+        /// </summary>
+        private void SetLanguage(char lang, bool persist = true)
+        {
+            if (lang == _currentLanguage) return;
+
+            foreach (var flag in new[] { _flagEng, _flagDe, _flagRus })
+                if (flag != null) flag.Enabled = false;
+            Cursor priorCursor = Cursor;
+            Cursor = Cursors.WaitCursor;
+
+            var thread = new Thread(() =>
+            {
+                CultureInfo culture = lang == 'd' ? new CultureInfo("de")
+                                     : lang == 'r' ? new CultureInfo("ru")
+                                     : CultureInfo.InvariantCulture;
+
+                // Forces the satellite resource assembly for this culture to load off the UI thread.
+                TextVariables.ResourceManager.GetResourceSet(culture, true, true);
+
+                void ApplyLanguage()
+                {
+                    _currentLanguage = lang;
+                    TextVariables.Culture = culture;
+
+                    FontInit();
+                    TextInit();
+                    LabelSelectPathExplain.Text = GetPathExplainText(_gameSelected);
+                    UpdatePortraitButtonsStyle();
+                    RefreshFlagHighlight();
+
+                    if (persist)
+                    {
+                        CoreSettings.Default.Language = lang;
+                        CoreSettings.Default.Save();
+                    }
+
+                    Cursor = priorCursor;
+                    foreach (var flag in new[] { _flagEng, _flagDe, _flagRus })
+                        if (flag != null) flag.Enabled = true;
+                }
+
+                if (IsHandleCreated)
+                    Invoke((MethodInvoker)ApplyLanguage);
+            })
+            { IsBackground = true };
+            thread.Start();
         }
 
         protected override CreateParams CreateParams

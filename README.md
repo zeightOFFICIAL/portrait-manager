@@ -1,12 +1,23 @@
+<h1 align="center"><img src="media/icon_small.png" height="28" style="vertical-align:middle"/> <span style="vertical-align:middle">Zeight Portrait Manager</span></h1>
+
 ![Portrait Manager by Zeight](media/title_img.jpg)
 
-<h2 align="center"><img src="media/icon_small.png" height="24" style="vertical-align:middle"/> <span style="vertical-align:middle">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</span></h2>
+<h2 align="center">Desktop application for managing in-game portraits for Owlcat Games, inXile Entertainment and Obsidian Entertainment games</h2>
 
-| | |
-|---|---|
-|<img src="media/k/pathfinder_title_img.jpg" width="100%" style="display:block"/><img src="media/k/pathfinder_title_bar.jpg" width="100%" style="display:block"/>|<img src="media/r/warhammer_title_img.jpg" width="100%" style="display:block"/><img src="media/r/warhammer_title_bar.jpg" width="100%" style="display:block"/>|
-|<img src="media/p/pillars_title_img.jpg" width="100%" style="display:block"/><img src="media/p/pillars_title_bar.jpg" width="100%" style="display:block"/>|<img src="media/t/tyranny_title_img.jpg" width="100%" style="display:block"/><img src="media/t/tyranny_title_bar.jpg" width="100%" style="display:block"/>|
-|<img src="media/l/wasteland_title_img.jpg" width="100%" style="display:block"/><img src="media/l/wasteland_title_bar.jpg" width="100%" style="display:block"/>| |
+<table style="border:none; border-collapse:collapse; width:100%;">
+<tr>
+<td style="border:none; padding:0; width:50%;"><img src="media/k/pathfinder_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/k/pathfinder_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:50%;"><img src="media/r/warhammer_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/r/warhammer_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+</tr>
+<tr>
+<td style="border:none; padding:0;"><img src="media/p/pillars_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/p/pillars_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/t/tyranny_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/t/tyranny_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+</tr>
+<tr>
+<td style="border:none; padding:0;"><img src="media/l/wasteland_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/l/wasteland_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"></td>
+</tr>
+</table>
 
 Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3
 
@@ -20,66 +31,129 @@ Zeight Portrait Manager is a lightweight Windows tool for creating, browsing, ed
 
 Ships as a single self-contained `.exe`. Nothing to unpack, no companion DLLs to keep together, no installer. The only requirement is .NET Framework 4.8, which is already present on virtually every Windows 10/11 machine.
 
-| | | |
-|---|---|---|
-|![Pathfinder: Kingmaker](media/k/listing/1main.png)|![Pathfinder: Wrath of the Righteous](media/w/listing/1main.png)|![Warhammer 40,000: Rogue Trader](media/r/listing/1main.png)|
-|![Pillars of Eternity](media/p/listing/1main.png)|![Pillars of Eternity: Deadfire](media/d/1main.png)|![Tyranny](media/t/listing/1main.png)|
-| |![Wasteland 3](media/l/listing/1main.png)| |
+<table style="border:none; border-collapse:collapse; width:100%;">
+<tr>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/k/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/w/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/r/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+</tr>
+<tr>
+<td style="border:none; padding:0;"><img src="media/p/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/d/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/t/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+</tr>
+<tr>
+<td style="border:none; padding:0;"></td>
+<td style="border:none; padding:0;"><img src="media/l/listing/1main.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"></td>
+</tr>
+</table>
 
 ### Features
 
 #### Create new portraits
 Load an image from a local file or a web URL - drag-and-drop works too, either straight onto the portrait panel or as a pasted link. Zoom, pan and reset the crop with the mouse; each panel is shaped to the exact aspect ratio the game expects for that size, so what you see previewed is what gets written to disk. Press Create and Portrait Manager crops, resizes and saves every required size for that game in one pass, then shows a toast confirming where it landed with a one-click "open folder" link.
 
-<p align="left">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/2create.png?raw=true" width="49%"/>
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/listing/xgeneralweb.png?raw=true" width="49%"/>
-</p>
+<table style="border:none; border-collapse:collapse; width:100%;">
+<tr>
+<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/2create.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/2create.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/2create.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+</tr>
+</table>
+
+*Left to right: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Tyranny.*
 
 ##### Portrait sizes per game
 
-| Game | Small | Medium | Full |
-|---|---|---|---|
-| Pathfinder: Kingmaker / Wrath of the Righteous | 185×242 | 330×432 | 692×1024 |
-| Warhammer 40,000: Rogue Trader | 260×336 | 448×600 | 1080×1480 |
-| Pillars of Eternity / Tyranny | 76×96 | - | 210×330 |
-| Pillars of Eternity: Deadfire | 76×96 (×2 slots) | 90×141 | 210×330 |
-| Wasteland 3 | 256×256 | - | - |
+<table style="width:100%;">
+<tr><th>Game</th><th>Small</th><th>Medium</th><th>Full</th></tr>
+<tr><td>Pathfinder: Kingmaker</td><td>185×242</td><td>330×432</td><td>692×1024</td></tr>
+<tr><td>Pathfinder: Wrath of the Righteous</td><td>185×242</td><td>330×432</td><td>692×1024</td></tr>
+<tr><td>Warhammer 40,000: Rogue Trader</td><td>260×336</td><td>448×600</td><td>1080×1480</td></tr>
+<tr><td>Pillars of Eternity</td><td>76×96</td><td>-</td><td>210×330</td></tr>
+<tr><td>Tyranny</td><td>76×96</td><td>-</td><td>210×330</td></tr>
+<tr><td>Pillars of Eternity: Deadfire</td><td>76×96 (×2 slots)</td><td>90×141</td><td>210×330</td></tr>
+<tr><td>Wasteland 3</td><td>256×256</td><td>-</td><td>-</td></tr>
+</table>
 
 #### Extract portraits from a downloaded pack
 Point Portrait Manager at a `.zip`, `.rar`, `.7z` archive, or a plain unpacked folder - drag-and-drop, or right-click for a folder picker. It scans recursively, matches every image against the sizes above, and lets you extract everything at once or hand-pick individual portraits from the grid. Anything that isn't PNG already gets converted on the way out, so mixed-format packs (PNG/JPG/GIF/BMP) just work.
 
-<p align="left">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/3extract_pre.png?raw=true" width="49%"/>
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/4extract.png?raw=true" width="49%"/>
-</p>
+<table style="border:none; border-collapse:collapse; width:100%;">
+<tr>
+<td style="border:none; padding:0; width:50%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/3extract_pre.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:50%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/4extract.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+</tr>
+</table>
 
 #### Browse gallery
 Every existing portrait - player, companion, or NPC - shows up in Browse Gallery as a thumbnail grid. **Clone** duplicates a portrait as a brand-new one without touching the original. **Change** replaces it in place with a new image, so a portrait already in use by an active save updates immediately with no save-editing required. **Delete** removes it, with a confirmation first. Any in-place change automatically backs up the untouched original before overwriting, so nothing is ever lost to a bad edit.
 
-<p align="left">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/5browse_gal.png?raw=true" width="49%"/>
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/listing/xgeneralbackup.png?raw=true" width="49%"/>
-</p>
+<table style="border:none; border-collapse:collapse; width:100%;">
+<tr>
+<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/5browse_gal.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/6browse_comp.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/7browse_char.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+</tr>
+</table>
+
+*Left to right: Kingmaker's Gallery tab, Tyranny's Companions tab, Wrath of the Righteous's Characters tab.*
 
 #### Companion & character portraits
 This is the part that differs the most from game to game, because it depends on how each game actually stores that data:
 
-**Pathfinder: Kingmaker & Wrath of the Righteous** rely on edvin76's [CustomNpcPortraits](https://github.com/edvin76/CustomNpcPortraits) mod. That mod only creates a portrait folder for a companion or NPC the first time you meet them in-game (or if you've installed a pre-made folder pack) - Portrait Manager can't create those folders itself, only edit what the mod has already created. Once they exist, Browse Gallery splits them into a **Companions** tab and a **Characters** tab automatically.
+**Pathfinder: Kingmaker** relies on edvin76's [CustomNpcPortraits](https://github.com/edvin76/CustomNpcPortraits) mod. That mod only creates a portrait folder for a companion or NPC the first time you meet them in-game (or if you've installed a pre-made folder pack) - Portrait Manager can't create those folders itself, only edit what the mod has already created. Once they exist, Browse Gallery splits them into a **Companions** tab and a **Characters** tab automatically.
+
+<table style="border:none; border-collapse:collapse;">
+<tr>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+</tr>
+</table>
+
+**Pathfinder: Wrath of the Righteous** uses the same CustomNpcPortraits mod and Companions/Characters tab layout as Kingmaker.
 
 *(mind the CustomNPC)* In Wrath of the Righteous specifically, the game overwrites the Main Character's own portrait, so a custom portrait applied to the MC through CustomNpcPortraits stops working once you're back in-game. To make it stick, apply/change it through the companion entry named "CustomNpcPortraits - {your MC's name}" instead.
 
-<p align="left">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/10customnpc.png?raw=true" height="220"/>
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/12customnpc.png?raw=true" height="220"/>
-</p>
+<table style="border:none; border-collapse:collapse;">
+<tr>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+</tr>
+</table>
 
-**Pillars of Eternity, Tyranny & Pillars of Eternity: Deadfire** ship their companion and NPC portraits directly in the base install - no mod needed. Portrait Manager exposes them as a **Companions** tab, and in Deadfire's case a separate **Characters** tab too, since the base game already keeps companions and NPCs in different folders on disk - the same convenience Kingmaker/WotR get from CustomNpcPortraits, with zero mod dependency.
+**Pillars of Eternity** ships its companion and NPC portraits directly in the base install - no mod needed. Portrait Manager exposes them under a single merged **Companions** tab.
 
-<p align="left">
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/10customnpc.png?raw=true" height="220"/>
-<img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/12customnpc.png?raw=true" height="220"/>
-</p>
+<table style="border:none; border-collapse:collapse;">
+<tr>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+</tr>
+</table>
+
+**Pillars of Eternity: Deadfire** works virtually the same as Pillars of Eternity and Tyranny below, just more complete: the base game already keeps companions and NPCs in separate folders on disk, so Portrait Manager gives Deadfire its own dedicated **Companions** and **Characters** tabs too, the same convenience Kingmaker/WotR get from a mod, with zero mod dependency.
+
+<table style="border:none; border-collapse:collapse;">
+<tr>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/d/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/d/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/d/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+</tr>
+</table>
+
+**Tyranny** ships its companion portraits directly in the base install too, merged into a single **Companions** tab, same as Pillars of Eternity.
+
+<table style="border:none; border-collapse:collapse;">
+<tr>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+</tr>
+</table>
 
 **Warhammer 40,000: Rogue Trader & Wasteland 3** don't expose a companion/NPC portrait system Portrait Manager can reach (Rogue Trader has no equivalent mod yet; Wasteland 3's custom-portraits folder is player-only), so Browse Gallery for those games only shows the player tab.
 
@@ -115,10 +189,11 @@ Requires .NET Framework 4.8. If you're on a reasonably current Windows 10 or Win
 ### Build info
 * C#, .NET Framework 4.8, Visual Studio 2022
 * Single self-contained `.exe` - all dependencies embedded via Costura.Fody, nothing to distribute separately
-* Release builds are produced by GitHub Actions on tagged commits, with debug symbols stripped
+* Release builds have debug symbols stripped
 
 ##### Changelog
 * 1.5 (current)
+    * Major visual, conceptual and functional overhaul
     * Added full support for Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny and Wasteland 3
     * Added a backup-and-restore system for companion/character portraits: the untouched original is preserved automatically on first edit and offered back on later edits
     * Major internal refactor touching nearly every part of the codebase: code split by responsibility (UI events, business logic, image/file operations), all user-facing text centralized, dead code removed
@@ -177,7 +252,6 @@ Requires .NET Framework 4.8. If you're on a reasonably current Windows 10 or Win
 1. Images and icons used in the program belong to Owlcat Games, Obsidian Entertainment, or inXile Entertainment, unless stated otherwise
 2. Font Bebas Neue belongs to its creator Ryoichi Tsunekawa (https://fonts.google.com/specimen/Bebas+Neue, https://dharmatype.com/bebas-neue)
 3. Font Bebas Neue for Cyrillic belongs to its creator Ryoichi Tsunekawa and AA (https://fonts-online.ru/fonts/bebas-neue-cyrillic, https://dharmatype.com/bebas-neue)
-4. Placeholder portrait image for Pillars of Eternity - Nature Godlike by telthona (https://www.deviantart.com/telthona/art/Nature-Godlike-655455075)
 
 **Mods & portrait packs referenced or used for testing**
 1. Custom Npc Portraits (https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/346, https://www.nexusmods.com/pathfinderkingmaker/mods/100) belongs to Nexus Mods (https://www.nexusmods.com/) and edvin76 (https://www.nexusmods.com/pathfinderkingmaker/users/1599293), (https://github.com/edvin76/CustomNpcPortraits). None of Custom Npc Portraits' assets are used, just its result - I am not in cooperation with edvin76, but respect the work. If any question arises, contact me by listed email
@@ -187,6 +261,7 @@ Requires .NET Framework 4.8. If you're on a reasonably current Windows 10 or Win
 5. Portrait pack https://www.nexusmods.com/pillarsofeternity2/mods/276 (MQ Portraits Pack) belongs to Nexus Mods (https://www.nexusmods.com/) and MaxQuest (https://www.nexusmods.com/pillarsofeternity2/users/1963564)
 6. Portrait pack https://www.nexusmods.com/tyranny/mods/36 (Garion's Portrait Pack - Tyranny) belongs to Nexus Mods (https://www.nexusmods.com/) and garion85 (https://www.nexusmods.com/tyranny/users/84847078)
 7. Portrait pack https://www.nexusmods.com/wasteland3/mods/5 (Wasteland 3 - Lore Friendly Custom Portraits) belongs to Nexus Mods (https://www.nexusmods.com/) and Kerem (https://www.nexusmods.com/wasteland3/users/2205741)
+8. Placeholder portrait image for Pillars of Eternity - Nature Godlike by telthona (https://www.deviantart.com/telthona/art/Nature-Godlike-655455075)
 
 <b>Inform me if your ownership rights have been violated, if you encounter any errors, or if you have suggestions for improving functionality or optimization - I'm open to any of it.
 

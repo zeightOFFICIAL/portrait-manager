@@ -225,6 +225,12 @@
       <LastGenOutput>TextVariables.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\TextVariables.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\TextVariables.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -293,6 +299,7 @@
     <None Include="resources\nm_logo_png.png" />
     <None Include="resources\github_logo_png.png" />
     <None Include="resources\eng_flag.jpg" />
+    <None Include="resources\de_flag.jpg" />
     <None Include="resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>

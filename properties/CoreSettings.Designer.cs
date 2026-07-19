@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OwlcatPortraitManager.Properties {
+namespace PortraitManager.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class CoreSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static CoreSettings defaultInstance = ((CoreSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new CoreSettings())));
@@ -25,55 +25,7 @@ namespace OwlcatPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
-        public string WOTRPath {
-            get {
-                return ((string)(this["WOTRPath"]));
-            }
-            set {
-                this["WOTRPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
-        public string KINGPath {
-            get {
-                return ((string)(this["KINGPath"]));
-            }
-            set {
-                this["KINGPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int MaxWindowWidth {
-            get {
-                return ((int)(this["MaxWindowWidth"]));
-            }
-            set {
-                this["MaxWindowWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int MaxWindowHeight {
-            get {
-                return ((int)(this["MaxWindowHeight"]));
-            }
-            set {
-                this["MaxWindowHeight"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("w")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-")]
         public char GameType {
             get {
                 return ((char)(this["GameType"]));
@@ -85,37 +37,25 @@ namespace OwlcatPortraitManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool EnabledCustomNPC {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GamePath {
             get {
-                return ((bool)(this["EnabledCustomNPC"]));
+                return ((string)(this["GamePath"]));
             }
             set {
-                this["EnabledCustomNPC"] = value;
+                this["GamePath"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string SelectedLang {
+        [global::System.Configuration.DefaultSettingValueAttribute("e")]
+        public char Language {
             get {
-                return ((string)(this["SelectedLang"]));
+                return ((char)(this["Language"]));
             }
             set {
-                this["SelectedLang"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("!NOTSET!")]
-        public string ROGUEPath {
-            get {
-                return ((string)(this["ROGUEPath"]));
-            }
-            set {
-                this["ROGUEPath"] = value;
+                this["Language"] = value;
             }
         }
     }

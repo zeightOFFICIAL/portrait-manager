@@ -1,8 +1,16 @@
 ﻿/*
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games, 
+    Obsidian Entertainment and inXile Entertainment. 
+    Including: 
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous, 
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity, 
+        5. Pillars of Eternity: Deadfire, 
+        6. Tyranny,
+        7. Wasteland 3.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,14 +27,17 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
     GPL-2.0 license terms are listed in LICENSE file.
-    This is a License header for this project.
+    This is a license header for this project.
+
+    Contact artemsaganenko@hotmail.com considering
+    cooperation and copyright rights.
 */
 
 
 using System;
 using System.Windows.Forms;
 
-namespace OwlcatPortraitManager
+namespace PortraitManager
 {
     static class Program
     {

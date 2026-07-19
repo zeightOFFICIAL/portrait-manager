@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD9F7CB4-BCED-4FCB-B450-EDCB88B2A514}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PortraitManager</RootNamespace>
+    <AssemblyName>Portrait Manager</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.5.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>none</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SharpCompress, Version=0.38.0.0, Culture=neutral, PublicKeyToken=be6306fb8e755753, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SharpCompress.dll</HintPath>
+    </Reference>
+    <!-- SharpCompress 0.38.0's own dependency closure (needed at runtime for .7z/.rar; .zip
+         uses System.IO.Compression directly and never touches these). Without them, opening
+         a .7z/.rar throws FileNotFoundException / TypeInitializationException at runtime. -->
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="ZstdSharp, Version=0.8.1.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ZstdSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Weaves all lib\*.dll references above into the built exe as embedded resources
+         (unpacked into memory at runtime), so the shipped output is a single .exe instead of
+         an exe plus a dozen loose dependency DLLs. -->
+    <PackageReference Include="Costura.Fody">
+      <Version>6.2.0</Version>
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="forms\MyCreationTooltip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyCreationTooltip.Designer.cs">
+      <DependentUpon>MyCreationTooltip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\MyInquiryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyInquiryDialog.Designer.cs">
+      <DependentUpon>MyInquiryDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\MyMessageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyMessageDialog.Designer.cs">
+      <DependentUpon>MyMessageDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\MyWebDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyWebDialog.Designer.cs">
+      <DependentUpon>MyWebDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\MyNameDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\MyNameDialog.Designer.cs">
+      <DependentUpon>MyNameDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\CoreSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>CoreSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\TextVariables.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextVariables.resx</DependentUpon>
+    </Compile>
+    <Compile Include="sources\EventHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sources\Functions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sources\GameTypeClass.cs" />
+    <Compile Include="sources\ImageWorks.cs" />
+    <Compile Include="sources\SystemWorks.cs" />
+    <Compile Include="sources\Variables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="forms\MyCreationTooltip.resx">
+      <DependentUpon>MyCreationTooltip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyInquiryDialog.resx">
+      <DependentUpon>MyInquiryDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyMessageDialog.resx">
+      <DependentUpon>MyMessageDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyWebDialog.resx">
+      <DependentUpon>MyWebDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\MyNameDialog.resx">
+      <DependentUpon>MyNameDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\TextVariables.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextVariables.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\TextVariables.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\TextVariables.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="FodyWeavers.xml" />
+    <None Include="Properties\CoreSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>CoreSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\w\wotr_title.png" />
+    <None Include="resources\w\wotr_start_page.jpg" />
+    <None Include="resources\w\wotr_placeholder.png" />
+    <None Include="resources\w\wotr_menu_page.jpg" />
+    <None Include="resources\w\wotr_icon_png.png" />
+    <None Include="resources\w\wotr_folder_page.jpg" />
+    <None Include="resources\t\tyr_title.png" />
+    <None Include="resources\t\tyr_start_page.jpg" />
+    <None Include="resources\t\tyr_placeholder.png" />
+    <None Include="resources\t\tyr_menu_page.jpg" />
+    <None Include="resources\t\tyr_icon_png.png" />
+    <None Include="resources\t\tyr_folder_page.jpg" />
+    <None Include="resources\r\rt_title.png" />
+    <None Include="resources\r\rt_start_page.jpg" />
+    <None Include="resources\r\rt_placeholder.png" />
+    <None Include="resources\r\rt_menu_page.jpg" />
+    <None Include="resources\r\rt_icon_png.png" />
+    <None Include="resources\r\rt_folder_page.jpg" />
+    <None Include="resources\p\poe_title.png" />
+    <None Include="resources\p\poe_start_page.jpg" />
+    <None Include="resources\p\poe_placeholder.jpeg" />
+    <None Include="resources\p\poe_menu_page.jpg" />
+    <None Include="resources\p\poe_icon_png.png" />
+    <None Include="resources\p\poe_folder_page.jpg" />
+    <None Include="resources\l\waste_title.png" />
+    <None Include="resources\l\waste_start_page.jpg" />
+    <None Include="resources\l\waste_placeholder.png" />
+    <None Include="resources\l\waste_menu_page.jpg" />
+    <None Include="resources\l\waste_icon_png.png" />
+    <None Include="resources\l\waste_folder_page.jpg" />
+    <None Include="resources\k\path_title.png" />
+    <None Include="resources\k\path_start_page.jpg" />
+    <None Include="resources\k\path_placeholder.png" />
+    <None Include="resources\k\path_menu_page.jpg" />
+    <None Include="resources\k\path_icon_png.png" />
+    <None Include="resources\k\path_folder_page.jpg" />
+    <None Include="resources\d\poed_title.png" />
+    <None Include="resources\d\poed_start_page.jpg" />
+    <None Include="resources\d\poed_placeholder.jpeg" />
+    <None Include="resources\d\poed_menu_page.jpg" />
+    <None Include="resources\d\poed_icon_png.png" />
+    <None Include="resources\d\poed_folder_page.jpg" />
+    <None Include="resources\rus_flag.jpg" />
+    <None Include="resources\nm_logo_png.png" />
+    <None Include="resources\github_logo_png.png" />
+    <None Include="resources\eng_flag.jpg" />
+    <None Include="resources\de_flag.jpg" />
+    <None Include="resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\d\poed_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\k\path_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\l\waste_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\p\poe_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\r\rt_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\t\tyr_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\w\wotr_icon_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\icon_path.ico" />
+    <None Include="resources\icon_wotr.ico" />
+    <None Include="resources\icon_rt.ico" />
+    <None Include="resources\icon_poe.ico" />
+    <None Include="resources\icon_poed.ico" />
+    <None Include="resources\icon_tyr.ico" />
+    <None Include="resources\icon_waste.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Local-machine-only post-build step (e.g. copying to a network share). Not tracked in git;
+       silently skipped on any machine where the file doesn't exist. -->
+  <Import Project="PostBuild.local.targets" Condition="Exists('PostBuild.local.targets')" />
+</Project>

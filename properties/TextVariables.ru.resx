@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,232 +117,468 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_ADVANCED" xml:space="preserve">
-    <value>Средний портрет</value>
-  </data>
-  <data name="BUTTON_ADVANCED2" xml:space="preserve">
-    <value>Малый портрет</value>
-  </data>
-  <data name="BUTTON_APPLY" xml:space="preserve">
-    <value>Применить</value>
-  </data>
-  <data name="BUTTON_BACK" xml:space="preserve">
-    <value>Назад</value>
-  </data>
-  <data name="BUTTON_CANCEL" xml:space="preserve">
-    <value>Отменить</value>
-  </data>
-  <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
-    <value>Армии</value>
-  </data>
-  <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>Персонажи</value>
-  </data>
-  <data name="BUTTON_EXIT" xml:space="preserve">
-    <value>Выйти</value>
-  </data>
-  <data name="BUTTON_EXTRACTALL" xml:space="preserve">
-    <value>Переместить все</value>
-  </data>
-  <data name="BUTTON_EXTRACTOPENFOLDER" xml:space="preserve">
-    <value>Открыть папки</value>
-  </data>
-  <data name="BUTTON_EXTRACTSELECTED" xml:space="preserve">
-    <value>Переместить</value>
-  </data>
-  <data name="BUTTON_FINALOPENFOLDER" xml:space="preserve">
-    <value>Открыть</value>
-  </data>
-  <data name="BUTTON_GALLERYOPENFOLDER" xml:space="preserve">
-    <value>Открыть папку</value>
-  </data>
-  <data name="BUTTON_HINT" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="BUTTON_LOAD" xml:space="preserve">
-    <value>Загрузить</value>
-  </data>
-  <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
+  <data name="BUTTON_CHOOSE" xml:space="preserve">
     <value>Выбрать</value>
   </data>
-  <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
-    <value>Загрузить</value>
+  <data name="BUTTON_RESET" xml:space="preserve">
+    <value>Сбросить</value>
   </data>
-  <data name="BUTTON_MENU" xml:space="preserve">
-    <value>Меню</value>
+  <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
+    <value>Zeight Portrait Manager
+Artemii "Zeight" Saganenko ©2023-2026</value>
   </data>
-  <data name="BUTTON_NEW" xml:space="preserve">
-    <value>Создать</value>
+  <data name="MAIN_MENU_TITLE" xml:space="preserve">
+    <value>Portrait Manager</value>
   </data>
-  <data name="BUTTON_NO" xml:space="preserve">
-    <value>Нет</value>
+  <data name="NAME_DEADFIRE" xml:space="preserve">
+    <value>Pillars of Eternity: Deadfire</value>
   </data>
-  <data name="BUTTON_OK" xml:space="preserve">
-    <value>Ок</value>
+  <data name="NAME_KING" xml:space="preserve">
+    <value>Pathfinder: Kingmaker</value>
   </data>
-  <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
-    <value>Изменить</value>
+  <data name="NAME_PILLARS" xml:space="preserve">
+    <value>Pillars of Eternity</value>
   </data>
-  <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
-    <value>Удалить</value>
+  <data name="NAME_ROGUE" xml:space="preserve">
+    <value>Warhammer 40K: Rogue Trader</value>
   </data>
-  <data name="BUTTON_SELECTPATH" xml:space="preserve">
-    <value>Путь</value>
+  <data name="NAME_TYR" xml:space="preserve">
+    <value>Tyranny</value>
   </data>
-  <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
-    <value>CustomNPC</value>
+  <data name="NAME_WASTE" xml:space="preserve">
+    <value>Wasteland 3</value>
   </data>
-  <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
-    <value>Портреты</value>
+  <data name="NAME_WOTR" xml:space="preserve">
+    <value>Pathfinder: Wrath of the Righteous</value>
   </data>
-  <data name="BUTTON_SUCESS" xml:space="preserve">
-    <value>Успешно</value>
-  </data>
-  <data name="BUTTON_TOCREATE" xml:space="preserve">
-    <value>Создать</value>
-  </data>
-  <data name="BUTTON_TOEXRACTPAGE" xml:space="preserve">
+  <data name="BUTTON_EXTRACT" xml:space="preserve">
     <value>Извлечь папку</value>
   </data>
-  <data name="BUTTON_TOFILEPAGE" xml:space="preserve">
+  <data name="TEXT_EXPLAIN_PATH_ROGUE" xml:space="preserve">
+    <value>Rogue Trader хранит портреты в папке локальных данных приложения: AppData\LocalLow\Owlcat Games\Warhammer 40000 Rogue Trader\Portraits\. Программа автоматически определяет этот путь через профиль пользователя Windows.</value>
+  </data>
+  <data name="BUTTON_BROWSE" xml:space="preserve">
+    <value>Обзор галереи</value>
+  </data>
+  <data name="BUTTON_CREATE" xml:space="preserve">
     <value>Создать портрет</value>
   </data>
-  <data name="BUTTON_TOGALLERYPAGE" xml:space="preserve">
+  <data name="BUTTON_EXIT" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_WASTE" xml:space="preserve">
+    <value>Wasteland 3 хранит все пользовательские портреты в папке «Документы»: Documents\My Games\Wasteland3\Custom Portraits\. Программа автоматически определяет эту папку, используя системный путь к документам. Если автоопределение не сработает, вы можете открыть папку вручную.</value>
+  </data>
+  <data name="BUTTON_SETTINGS" xml:space="preserve">
+    <value>Сменить игру</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
+    <value>Tyranny хранит файлы портретов прямо в папке установки игры: Data\data\art\gui\portraits\player\. Программа автоматически пытается найти установку Tyranny, проверяя библиотеки Steam, GOG и Epic Games через реестр. Если автоопределение не находит игру, вы можете выбрать папку Tyranny вручную.
+
+- Портреты спутников и NPC (если есть) также можно изменить через Обзор галереи.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_KING" xml:space="preserve">
+    <value>Pathfinder: Kingmaker хранит портреты в папке локальных данных приложения: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. Программа автоматически определяет этот путь через профиль пользователя Windows.
+
+- Портреты спутников и NPC можно изменить через Обзор галереи, только если установлен CustomNPC.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_WOTR" xml:space="preserve">
+    <value>Pathfinder: Wrath of the Righteous хранит портреты в папке локальных данных приложения: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. Программа автоматически определяет этот путь через профиль пользователя Windows.
+
+- Портреты спутников и NPC можно изменить через Обзор галереи, только если установлен CustomNPC.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_POE" xml:space="preserve">
+    <value>Pillars of Eternity хранит портреты в папке установки: &lt;папка установки Pillars of Eternity&gt;\PillarsOfEternity_Data\data\art\gui\portraits\. Программа автоматически пытается найти эту папку, проверяя установки Steam, GOG и Epic Games. Если автоопределение не находит игру, вы можете выбрать папку установки вручную.
+
+- Портреты спутников и NPC (если есть) также можно изменить через Обзор галереи.</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_POED" xml:space="preserve">
+    <value>Pillars of Eternity: Deadfire хранит портреты в папке установки: &lt;папка установки Pillars of Eternity II&gt;\PillarsOfEternityII_Data\gui\portraits\. Программа автоматически пытается найти эту папку, проверяя установки Steam, GOG и Epic Games. Если автоопределение не находит игру, вы можете выбрать папку установки вручную.
+
+- Портреты спутников и NPC (если есть) также можно изменить через Обзор галереи.</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGELRG" xml:space="preserve">
+    <value>⍞ Во весь рост</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGEMID" xml:space="preserve">
+    <value>⌻ Средний</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML" xml:space="preserve">
+    <value>⌼ Портрет</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML2" xml:space="preserve">
+    <value>▣ Мал2</value>
+  </data>
+  <data name="BUTTON_SELECT_WEB" xml:space="preserve">
+    <value>Из сети 🌐</value>
+  </data>
+  <data name="BUTTON_SELECT_LOCAL" xml:space="preserve">
+    <value>Локально 📁</value>
+  </data>
+  <data name="HINT_KING_LRG" xml:space="preserve">
+    <value>Во весь рост (692×1024) — используется на бумажной кукле персонажа и экране повышения уровня.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_KING_MED" xml:space="preserve">
+    <value>Средний (330×432) — используется на панели группы и экране персонажа.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_KING_SML" xml:space="preserve">
+    <value>Портрет / Маленький (185×242) — используется в диалогах и списке спутников.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_KING_ZOOM" xml:space="preserve">
+    <value>Используйте + и −, чтобы увеличить или уменьшить изображение, если колесо мыши не работает.</value>
+  </data>
+  <data name="HINT_RT_LRG" xml:space="preserve">
+    <value>Во весь рост (1080×1480) — используется на бумажной кукле персонажа и экране повышения уровня.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_RT_MED" xml:space="preserve">
+    <value>Средний (448×600) — используется на панели группы и экране персонажа.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_RT_SML" xml:space="preserve">
+    <value>Портрет / Маленький (260×336) — используется в диалогах и списке спутников.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_PILLARS_LRG" xml:space="preserve">
+    <value>Полный портрет (210×330) — используется на экране персонажа и бумажной кукле.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_PILLARS_SML" xml:space="preserve">
+    <value>Портрет / Маленький (76×96) — используется в диалогах и списке спутников.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_PILLARS_MED" xml:space="preserve">
+    <value>Полный2 / Диалог (90×141) — используется на экранах диалогов.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="HINT_PILLARS_SML2" xml:space="preserve">
+    <value>Портрет 2 (76×96) — используется для дополнительных элементов интерфейса.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="WEBDIALOG_TITLE" xml:space="preserve">
+    <value>Изображение из сети</value>
+  </data>
+  <data name="WEBDIALOG_HINT" xml:space="preserve">
+    <value>Вставьте или перетащите адрес изображения из сети в поле ниже, затем нажмите «Загрузить». Подойдёт любая ссылка на изображение, открывающаяся в браузере.</value>
+  </data>
+  <data name="WEBDIALOG_BUTTON_LOAD" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="WEBDIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="EXTRACT_PAGE_TITLE" xml:space="preserve">
+    <value>Извлечь портреты</value>
+  </data>
+  <data name="BUTTON_SELECT_ARCHIVE" xml:space="preserve">
+    <value>Выбрать пакет</value>
+  </data>
+  <data name="BUTTON_EXTRACT_ALL" xml:space="preserve">
+    <value>Извлечь всё ▉ </value>
+  </data>
+  <data name="BUTTON_EXTRACT_SELECTED" xml:space="preserve">
+    <value>Извлечь выбранное ▞ </value>
+  </data>
+  <data name="BUTTON_EXTRACT_BACK" xml:space="preserve">
+    <value>&lt; Назад</value>
+  </data>
+  <data name="BUTTON_EXTRACT_OPENFOLDER" xml:space="preserve">
+    <value>Открыть папку игры 📁</value>
+  </data>
+  <data name="BUTTON_EXTRACT_OPENFOLDERS" xml:space="preserve">
+    <value>Открыть папки 📁</value>
+  </data>
+  <data name="MESG_EXTRACT_SUCCESS" xml:space="preserve">
+    <value>Успешно извлечено портретов: {0}.</value>
+  </data>
+  <data name="MESG_EXTRACT_NOSELECTION" xml:space="preserve">
+    <value>Портреты не выбраны.</value>
+  </data>
+  <data name="MESG_EXTRACT_DUPFOLDER" xml:space="preserve">
+    <value>Некоторые папки уже существуют. Портреты сохранены с уникальными именами.</value>
+  </data>
+  <data name="MESG_EXTRACT_CONFLICT" xml:space="preserve">
+    <value>Извлечено наборов портретов: {0}. Имён уже существовало: {1} — сохранены с суффиксом.</value>
+  </data>
+  <data name="MESG_EXTRACT_PARTIAL" xml:space="preserve">
+    <value>Извлечено наборов портретов: {0}. В {1} наборе(ах) отсутствует один или несколько размеров портрета.</value>
+  </data>
+  <data name="EXTRACT_HINT_OVERLAY" xml:space="preserve">
+    <value>архив  ЛКМ 🖱️ ПКМ  папка</value>
+  </data>
+  <data name="EXTRACT_HINT_SUB" xml:space="preserve">
+    <value>.zip, .rar, .7z, папка  ·  ЛКМ, ПКМ или перетаскивание</value>
+  </data>
+  <data name="BUTTON_GALLERY" xml:space="preserve">
     <value>Галерея</value>
   </data>
-  <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
-    <value>Обрезать портрет</value>
+  <data name="BUTTON_GALLERY_BACK" xml:space="preserve">
+    <value>&lt; Назад</value>
   </data>
-  <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
-    <value>Настройки</value>
+  <data name="BUTTON_GALLERY_CLONE" xml:space="preserve">
+    <value>КЛОН &gt;</value>
   </data>
-  <data name="BUTTON_VALIDATE" xml:space="preserve">
-    <value>Проверить</value>
+  <data name="BUTTON_GALLERY_CHANGE" xml:space="preserve">
+    <value>ЗАМЕНА &gt;</value>
   </data>
-  <data name="BUTTON_YES" xml:space="preserve">
+  <data name="BUTTON_GALLERY_DELETE" xml:space="preserve">
+    <value>УДАЛИТЬ ✕</value>
+  </data>
+  <data name="LABEL_GALLERY_NONPLAYER" xml:space="preserve">
+    <value>Неигровые</value>
+  </data>
+  <data name="LABEL_GALLERY_CUSTOMNPC" xml:space="preserve">
+    <value>CustomNPC</value>
+  </data>
+  <data name="LABEL_GALLERY_COMPANIONS" xml:space="preserve">
+    <value>Спутники</value>
+  </data>
+  <data name="LABEL_GALLERY_CHARACTERS" xml:space="preserve">
+    <value>Персонажи</value>
+  </data>
+  <data name="MESG_GALLERY_CUSTOMNPC_CREDIT" xml:space="preserve">
+    <value>Доступно благодаря моду CustomNPC Portraits от edvin76</value>
+  </data>
+  <data name="MESG_PATH_NOT_FOUND" xml:space="preserve">
+    <value>Не удалось найти ожидаемую папку с данными игры. Убедитесь, что вы выбрали корневой каталог установки игры.</value>
+  </data>
+  <data name="MESG_PATH_WRONG_ROOT" xml:space="preserve">
+    <value>Не удалось найти ожидаемую папку с данными игры. Убедитесь, что вы выбрали папку внутри "LocalLow\Owlcat Games\{0}" (а не каталог установки игры).</value>
+  </data>
+  <data name="MESG_PATH_WRONG_ROOT_DOCUMENTS" xml:space="preserve">
+    <value>Не удалось найти ожидаемую папку с данными игры. Убедитесь, что вы выбрали папку внутри "Documents\My Games\{0}" (а не каталог установки игры).</value>
+  </data>
+  <data name="MESG_GAMEPATH_NOT_SET" xml:space="preserve">
+    <value>Путь к портретам игры не задан или не существует.</value>
+  </data>
+  <data name="MESG_UNSUPPORTED_GAMETYPE" xml:space="preserve">
+    <value>Неподдерживаемый тип игры.</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_CUSTOMNPC_ROOT" xml:space="preserve">
+    <value>Не удалось создать корневую папку портретов CustomNPC: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_CUSTOMNPC_FOLDER" xml:space="preserve">
+    <value>Не удалось создать папку портрета CustomNPC: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_PORTRAITS_ROOT" xml:space="preserve">
+    <value>Не удалось создать корневую папку портретов: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_PORTRAIT_FOLDER" xml:space="preserve">
+    <value>Не удалось создать папку портрета: {0}</value>
+  </data>
+  <data name="MESG_DELETE_PORTRAIT_FAILED" xml:space="preserve">
+    <value>Не удалось удалить этот набор портретов: {0}</value>
+  </data>
+  <data name="MESG_PORTRAIT_CREATION_ERROR" xml:space="preserve">
+    <value>Ошибка создания портрета: {0}</value>
+  </data>
+  <data name="MESG_RESTORE_BACKUP_PROMPT" xml:space="preserve">
+    <value>Доступна резервная копия оригинального портрета.
+Загрузить резервную копию или продолжить работу с текущим портретом?</value>
+  </data>
+  <data name="DIALOG_BUTTON_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="DIALOG_BUTTON_CLOSE" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="WEBDIALOG_TIP" xml:space="preserve">
+    <value>Совет: изображение также можно перетащить прямо на панель портрета.</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGELRG_D" xml:space="preserve">
+    <value>⍞ Бол1</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGEMID_D" xml:space="preserve">
+    <value>⌻ Бол2</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML_D" xml:space="preserve">
+    <value>⌼ Мал1</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML2_D" xml:space="preserve">
+    <value>⌼ Мал2</value>
+  </data>
+  <data name="BUTTON_CREATE_NEW" xml:space="preserve">
+    <value>Создать +</value>
+  </data>
+  <data name="BUTTON_BACK_TO_PATHFINDER" xml:space="preserve">
+    <value>&lt; Назад</value>
+  </data>
+  <data name="BUTTON_GALLERY_SHOWFOLDER" xml:space="preserve">
+    <value>ПАПКА 📁</value>
+  </data>
+  <data name="ICON_ZOOM_IN" xml:space="preserve">
+    <value>🔍+</value>
+  </data>
+  <data name="ICON_ZOOM_OUT" xml:space="preserve">
+    <value>🔍−</value>
+  </data>
+  <data name="ICON_ZOOM_RESET" xml:space="preserve">
+    <value>↺</value>
+  </data>
+  <data name="MENU_HOVER_MARKER" xml:space="preserve">
+    <value>◈</value>
+  </data>
+  <data name="TEXT_PATH_PLACEHOLDER" xml:space="preserve">
+    <value> - </value>
+  </data>
+  <data name="MESG_FOLDER_LOCATION_UNKNOWN" xml:space="preserve">
+    <value>Не удалось определить расположение папки.</value>
+  </data>
+  <data name="MESG_GAME_DIRECTORY_UNKNOWN" xml:space="preserve">
+    <value>Не удалось определить каталог игры.</value>
+  </data>
+  <data name="MESG_UNSUPPORTED_IMAGE_LINK" xml:space="preserve">
+    <value>Эта ссылка не указывает на поддерживаемый файл изображения.
+
+Поддерживаемые форматы: PNG, JPG, GIF, BMP.</value>
+  </data>
+  <data name="MESG_IMAGE_LOAD_FAILED" xml:space="preserve">
+    <value>Не удалось загрузить изображение по этому адресу. {0}</value>
+  </data>
+  <data name="INQR_DELETE_PORTRAIT_SET" xml:space="preserve">
+    <value>Удалить этот набор портретов?</value>
+  </data>
+  <data name="MESG_ARCHIVE_LOAD_FAILED" xml:space="preserve">
+    <value>Не удалось загрузить архив: {0}</value>
+  </data>
+  <data name="MESG_NO_MATCHING_PORTRAITS" xml:space="preserve">
+    <value>В архиве не найдено портретов, соответствующих ожидаемым размерам для выбранной игры.
+Убедитесь, что выбрана правильная игра.</value>
+  </data>
+  <data name="MESG_ARCHIVE_CONTENTS_NOT_FOUND" xml:space="preserve">
+    <value>Содержимое архива не найдено. Пожалуйста, загрузите архив заново.</value>
+  </data>
+  <data name="MESG_EXTRACTION_FAILED" xml:space="preserve">
+    <value>Извлечение не удалось: {0}</value>
+  </data>
+  <data name="MESG_GAME_PATH_NOT_SET_EXTRACT" xml:space="preserve">
+    <value>Путь к игре не задан. Сначала укажите путь к игре.</value>
+  </data>
+  <data name="LABEL_EXTRACT_COUNTER" xml:space="preserve">
+    <value>Всего: {0} | Выбрано: {1}</value>
+  </data>
+  <data name="HINT_WASTE_SML" xml:space="preserve">
+    <value>Портрет (256×256) — используется для портретов персонажей.
+
+Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_EMPTY_URL" xml:space="preserve">
+    <value>Пожалуйста, введите веб-адрес перед нажатием «Загрузить».</value>
+  </data>
+  <data name="WEBDIALOG_ERR_INVALID_URL" xml:space="preserve">
+    <value>Введённый адрес не похож на корректную веб-ссылку. Убедитесь, что он начинается с http:// или https:// и не содержит пробелов.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_UNSUPPORTED_FORMAT" xml:space="preserve">
+    <value>Эта ссылка не указывает на поддерживаемый файл изображения. Поддерживаемые форматы: PNG, JPG, GIF, BMP.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_NOT_IMAGE" xml:space="preserve">
+    <value>Сервер не вернул изображение. Убедитесь, что ссылка указывает непосредственно на файл изображения.
+Попробуйте вместо этого перетащить изображение из браузера на слот портрета.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_NO_DATA" xml:space="preserve">
+    <value>Не удалось загрузить изображение. Сервер не вернул данные.
+Попробуйте вместо этого перетащить изображение из браузера на слот портрета.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_LOAD_EXCEPTION" xml:space="preserve">
+    <value>Не удалось загрузить изображение. {0}
+Попробуйте вместо этого перетащить изображение из браузера на слот портрета.</value>
+  </data>
+  <data name="DIALOG_TITLE_ERROR" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="TOAST_TITLE" xml:space="preserve">
+    <value>✓ Портрет создан</value>
+  </data>
+  <data name="TOAST_INFO" xml:space="preserve">
+    <value>Сохранено в папку портретов игры</value>
+  </data>
+  <data name="TOAST_OPEN_FOLDER" xml:space="preserve">
+    <value>Открыть папку</value>
+  </data>
+  <data name="TOAST_NAME_PREFIX" xml:space="preserve">
+    <value>Имя: {0}</value>
+  </data>
+  <data name="GALLERY_HINT_NPC_MET" xml:space="preserve">
+    <value>Сначала нужно встретить NPC в игре. Имя папки = точное имя NPC в диалоге.</value>
+  </data>
+  <data name="GALLERY_HINT_OPEN_FOLDER" xml:space="preserve">
+    <value>Используйте кнопку папки ниже, чтобы открыть Portraits - Npc напрямую.</value>
+  </data>
+  <data name="GALLERY_HINT_LOCALE_NOTE" xml:space="preserve">
+    <value>Имя папки отображается на языке интерфейса вашей игры, не обязательно на английском.</value>
+  </data>
+  <data name="GALLERY_EMPTY_TEXT" xml:space="preserve">
+    <value>Пусто</value>
+  </data>
+  <data name="GALLERY_HINT_REQUIRES_MOD" xml:space="preserve">
+    <value>Требуется установленный мод CustomNpcPortraits.</value>
+  </data>
+  <data name="DIALOG_BUTTON_YES" xml:space="preserve">
     <value>Да</value>
   </data>
-  <data name="HINT_EXTRACTPAGE" xml:space="preserve">
-    <value>Это страница для извлечения папок. Здесь вы можете скопировать все изображения из любой папки в папку с игрой. Нажмите кнопку "выбрать папку", чтобы выбрать папку для копирования. Выберите изображения и нажмите кнопку "извлечь выбранные", чтобы переместить только определенные изображения, или нажмите кнопку "извлечь все", чтобы переместить все имеющиеся портреты. Для того, чтобы выполнить процесс вручную нажмите кнопку "открыть папки".</value>
+  <data name="DIALOG_BUTTON_NO" xml:space="preserve">
+    <value>Нет</value>
   </data>
-  <data name="HINT_FILEPAGE" xml:space="preserve">
-    <value>Это страница выбора изображения. Здесь можно выбрать, какое изображение использовать в качестве портрета. Можно загрузить локальное изображение, щелкнув на кнопке или картинке, или просто перетащить его на рисунок. Также можно загрузить веб-изображение нажав на кнопку и следуя инструкциям. Для замены соответствующих портретов используйте кнопки "Средний портрет" и "Малый портрет".</value>
+  <data name="GALLERY_HELP_KING" xml:space="preserve">
+    <value>Существующие портреты отображаются здесь в виде миниатюр. Спутники и Персонажи требуют мод CustomNpcPortraits от edvin76 и появляются после встречи с этим персонажем в игре.</value>
   </data>
-  <data name="HINT_GALLERYPAGE" xml:space="preserve">
-    <value>Это страница галереи на которой отображаются все загруженные в игру портреты. Выберите изображение и нажмите кнопку "изменить", чтобы скопировать/заменить любой портрет и создать новый. Вы также можете выбрать несколько изображений или некоторые из них и нажать кнопку "удалить", чтобы удалить их из папки игры. Если у вас установлен CustomNPC, нажмите соответствующие кнопки в верхней части, чтобы отобразить портреты, управляемые модом.</value>
+  <data name="GALLERY_HELP_WOTR" xml:space="preserve">
+    <value>Существующие портреты отображаются здесь в виде миниатюр. Спутники/Персонажи требуют CustomNpcPortraits. Портрет Главного героя редактируйте через «CustomNpcPortraits - {имя}», а не через его плитку.</value>
   </data>
-  <data name="HINT_SCALEPAGE" xml:space="preserve">
-    <value>Это страница для масштабирования и обрезки изображения по усмотрению. Для увеличения или уменьшения масштаба изображения используйте колесико мыши. Дважды щелкните на изображении, чтобы вернуть его в исходное состояние. Нажмите и перетащите изображение, чтобы изменить его. Нажмите кнопку "Создать", чтобы добавить новый портрет. Загруженные портреты будут почти точными копиями изображений, которые вы поместили в рамках на этой странице. Нажмите кнопку "назад", чтобы вернуться на предыдущую страницу.</value>
+  <data name="GALLERY_HELP_ROGUE" xml:space="preserve">
+    <value>Существующие портреты игрока отображаются здесь в виде миниатюр. Для Rogue Trader пока нет мода на спутников/NPC.</value>
   </data>
-  <data name="INQR_DELETEOLD" xml:space="preserve">
-    <value>Вы хотите удалить старую версию портрета?  Имейте в виду, что при выходе со страницы выбора изображения вы рискуете потерять портрет. Нажмите "нет", чтобы создать копию. Или "да", чтобы заменить старый портрет.</value>
+  <data name="GALLERY_HELP_POE" xml:space="preserve">
+    <value>Существующие портреты отображаются здесь в виде миниатюр. Вкладка «Спутники» включает все портреты спутников и NPC из базовой игры - мод не нужен.</value>
   </data>
-  <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
-    <value>Вы не загрузили ни одного изображения. Однако вы можете использовать изображение по умолчанию. Нажмите "да", чтобы продолжить работу с изображениями по умолчанию. Нажмите "нет", чтобы вернуться и выбрать другое изображение.</value>
+  <data name="GALLERY_HELP_POED" xml:space="preserve">
+    <value>Существующие портреты отображаются здесь в виде миниатюр. Спутники и Персонажи разделены автоматически - базовая игра уже хранит их раздельно, мод не нужен.</value>
   </data>
-  <data name="KING" xml:space="preserve">
-    <value>Kingmaker</value>
+  <data name="GALLERY_HELP_TYR" xml:space="preserve">
+    <value>Существующие портреты отображаются здесь в виде миниатюр. Вкладка «Спутники» включает все портреты спутников из базовой игры - мод не нужен.</value>
   </data>
-  <data name="LABEL_COPY" xml:space="preserve">
-    <value>Артемий "Zeight" Саганенко© 2024</value>
+  <data name="GALLERY_HELP_WASTE" xml:space="preserve">
+    <value>Существующие портреты игрока отображаются здесь в виде миниатюр. Папка пользовательских портретов Wasteland 3 предназначена только для игрока.</value>
   </data>
-  <data name="LABEL_CREATEDERROR" xml:space="preserve">
-    <value>Что-то пошло не так. Если вы дошли до этого этапа, то, скорее всего, проблема заключается в каталоге игры. Запустите игру хотя бы один раз. Проверьте наличие указанного выше каталога. При необходимости создайте его. Для получения дополнительной информации посетите страницу настроек. Если проблема осталась напишите в автору на nexusmods.</value>
+  <data name="BUTTON_CUSTOM_NAME" xml:space="preserve">
+    <value>Создать
+с именем ✎</value>
   </data>
-  <data name="LABEL_CREATEDOK" xml:space="preserve">
-    <value>Портрет был успешно создан в рабочем каталоге, расположение которого указано выше. Теперь он доступен для использования в игре. Приятной игры!</value>
+  <data name="NAMEDIALOG_TITLE" xml:space="preserve">
+    <value>Назвать портрет</value>
   </data>
-  <data name="LABEL_LANG" xml:space="preserve">
-    <value>Язык интерфейса </value>
+  <data name="NAMEDIALOG_HINT" xml:space="preserve">
+    <value>Введите имя для папки или файла портрета, либо оставьте поле пустым, чтобы убрать своё имя и снова использовать автоматическое.</value>
   </data>
-  <data name="LABEL_LARGEIMG" xml:space="preserve">
-    <value>Большой портрет</value>
+  <data name="NAMEDIALOG_BUTTON_OK" xml:space="preserve">
+    <value>Использовать имя</value>
   </data>
-  <data name="LABEL_LARGEIMG2" xml:space="preserve">
-    <value>Страница персонажа</value>
+  <data name="NAMEDIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Отмена</value>
   </data>
-  <data name="LABEL_MEDIUMIMG" xml:space="preserve">
-    <value>Средний портрет</value>
+  <data name="NAMEDIALOG_ERR_INVALID_CHARS" xml:space="preserve">
+    <value>Это имя содержит символы, недопустимые в имени файла или папки.</value>
   </data>
-  <data name="LABEL_MEDIUMIMG2" xml:space="preserve">
-    <value>Навыки, диалог</value>
+  <data name="NAMEDIALOG_ERR_DUPLICATE" xml:space="preserve">
+    <value>Это имя уже используется. Пожалуйста, выберите другое.</value>
   </data>
-  <data name="LABEL_PATH" xml:space="preserve">
-    <value>Путь к папке портретов</value>
-  </data>
-  <data name="LABEL_SETTINGS" xml:space="preserve">
-    <value>Это страница настроек. Здесь можно настроить размер, перетащив окно за угол. И проверить путь к нужной папке с портретами.</value>
-  </data>
-  <data name="LABEL_SMALLIMG" xml:space="preserve">
-    <value>Малый портрет</value>
-  </data>
-  <data name="LABEL_SMALLIMG2" xml:space="preserve">
-    <value>Геймплей, карта</value>
-  </data>
-  <data name="LABEL_URLDIALOG" xml:space="preserve">
-    <value>Перетащите, введите или скопируйте url-адрес существующего изображения. Адрес url должен вести на доступный веб-источник.</value>
-  </data>
-  <data name="MESG_CANNOTLOAD" xml:space="preserve">
-    <value>Выбранное веб-изображение недоступно. Попробуйте в другой раз или просто сохраните его на локальном диске и загрузите локально. Обратите внимание, что формат WEBP не поддерживается.</value>
-  </data>
-  <data name="MESG_CUSTOMFOUND" xml:space="preserve">
-    <value>Похоже, вы установили программу Custom NPC Portraits от edvin76! Эта программа позволит вам легче настраивать внешний вид портретов Custom NPC. Перейдите на страницу Галереи и нажмите кнопку для отображения портретов, отредактируйте любой портрет по своему усмотрению. Обратите внимание, что при редактировании портретов, если необходимо заменить старые, в папке создается резервная копия. Если необходимо сделать копию, то она будет помещена в новую папку. Обратите внимание, что данная программа не создает портреты для Custom NPC, а только заменяет их!</value>
-  </data>
-  <data name="MESG_CUSTOMNOTFOUND" xml:space="preserve">
-    <value>Custom NPC не найден. Если он не установлен, игнорируйте это предупреждение. В противном случае перепроверьте установку в самой игре через Unity Mod Manager. Запустите игру хотя бы один раз, чтобы Custom NPC создал папки для портретов. Обратите внимание, что данная программа не создает портреты для Custom NPC, а только заменяет их!</value>
-  </data>
-  <data name="MESG_DELETE" xml:space="preserve">
-    <value>Вы собираетесь удалить изображения. Этот процесс необратим! Если ваши внутриигровые портреты используются, то они будут заменены на обычные самой игрой. Вы хотите продолжить? Всего изображений: </value>
-  </data>
-  <data name="MESG_GAMEFOLDERFOUND" xml:space="preserve">
-    <value>Папка найдена! Вы можете начать создавать свои портреты! Нажмите кнопку "Создать портрет", чтобы добавить новый портрет, "Извлечь папку", чтобы добавить несколько портретов из другой папки, "Просмотреть галерею", чтобы отредактировать или удалить старые портреты.</value>
-  </data>
-  <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
-    <value>Не найдена папка с игрой. Убедитесь, что вы запустили игру хотя бы один раз. Если проблема сохраняется, сообщите о ней в разделе ошибок. Если вам необходимо управлять другой игрой, будь то Kingmaker, WotR или Rogue Trader. Измените тип игры в настройках или щелкнув на заглавном изображении. Для получения дополнительной информации посетите страницу настроек. Пока проблема не будет устранена, все функции будут заблокированы.</value>
-  </data>
-  <data name="MESG_NONESELECTED" xml:space="preserve">
-    <value>Вы не выбрали ни одного портрета. Для редактирования или удаления выберите хотя бы одно изображение из списка.</value>
-  </data>
-  <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
-    <value>Вы не выбрали ни одного портрета. Для извлечения выберите хотя бы одно изображение из списка.</value>
-  </data>
-  <data name="MESG_REPEATFOLDER" xml:space="preserve">
-    <value>Одна или несколько папок уже существуют в папке с внутриигровыми портретами. Их имена повторяются. Программа переименует выходные папки так, чтобы изображения не были переопределены.</value>
-  </data>
-  <data name="MESG_SELECTEDMORE" xml:space="preserve">
-    <value>Выбрано более одного изображения. Будет обработано только первое из всех выбранных изображений.</value>
-  </data>
-  <data name="MESG_SUCCESS" xml:space="preserve">
-    <value>Выполнено! Изображения успешно загружены: </value>
-  </data>
-  <data name="MESG_WRONGFORMAT" xml:space="preserve">
-    <value>Файл имеет неправильный формат. Пожалуйста, выберите изображение из разрешенных форматов. Допускаются форматы PNG, JPG, JPEG, BMP или GIF. Также файл может быть недоступен. Каталог не должен быть защищен дополнительными правами! Попробуйте избежать киррилицы в пути к папке.</value>
-  </data>
-  <data name="ROGUE" xml:space="preserve">
-    <value>Rogue Trader</value>
-  </data>
-  <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
-    <value>Введите URL...</value>
-  </data>
-  <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
-    <value>Неверный URL...</value>
-  </data>
-  <data name="TEXT_FOLDEROPEN" xml:space="preserve">
-    <value>Выбрать папку для извлечения</value>
-  </data>
-  <data name="TEXT_IMAGEFILTER" xml:space="preserve">
-    <value>Все изображения</value>
-  </data>
-  <data name="TEXT_PATHOPEN" xml:space="preserve">
-    <value>Выберите внутриигровую папку</value>
-  </data>
-  <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
-    <value>Выберите изображение</value>
-  </data>
-  <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
-    <value>Выбрать папку</value>
-  </data>
-  <data name="WOTR" xml:space="preserve">
-    <value>WotR</value>
+  <data name="MESG_CUSTOM_NAME_TAKEN" xml:space="preserve">
+    <value>Это имя уже используется. Пожалуйста, выберите другое перед созданием портрета.</value>
   </data>
 </root>

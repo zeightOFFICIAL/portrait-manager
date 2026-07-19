@@ -1,15 +1,23 @@
-﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+﻿/*
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games,
+    Obsidian Entertainment and inXile Entertainment.
+    Including:
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous,
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity,
+        5. Pillars of Eternity: Deadfire,
+        6. Tyranny,
+        7. Wasteland 3.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs.
 */
 
 
-namespace OwlcatPortraitManager
+namespace PortraitManager
 {
     partial class MainForm
     {
@@ -41,1039 +49,191 @@ namespace OwlcatPortraitManager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.LayoutFilePage = new System.Windows.Forms.TableLayoutPanel();
-            this.LayoutUnnamed1 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonLocalPortraitLoad = new System.Windows.Forms.Button();
-            this.ButtonToScalePage = new System.Windows.Forms.Button();
-            this.ButtonWebPortraitLoad = new System.Windows.Forms.Button();
-            this.ButtonHintOnFilePage = new System.Windows.Forms.Button();
-            this.ButtonNextImageType = new System.Windows.Forms.Button();
-            this.ButtonToMainPage = new System.Windows.Forms.Button();
-            this.LblToLoadLocal = new System.Windows.Forms.Label();
-            this.LblToLoadWeb = new System.Windows.Forms.Label();
-            this.LblToMainPage = new System.Windows.Forms.Label();
-            this.LblToScalePage = new System.Windows.Forms.Label();
-            this.LblToAdvancedPage = new System.Windows.Forms.Label();
-            this.LayoutUnnamed5 = new System.Windows.Forms.TableLayoutPanel();
-            this.PanelPortraitTemp = new System.Windows.Forms.Panel();
-            this.PicPortraitTemp = new System.Windows.Forms.PictureBox();
-            this.LabelImageFlag = new System.Windows.Forms.Label();
-            this.LayoutScalePage = new System.Windows.Forms.TableLayoutPanel();
-            this.LayoutUnnamed2 = new System.Windows.Forms.TableLayoutPanel();
-            this.PanelPortraitLrg = new System.Windows.Forms.Panel();
-            this.PicPortraitLrg = new System.Windows.Forms.PictureBox();
-            this.PanelPortraitMed = new System.Windows.Forms.Panel();
-            this.PicPortraitMed = new System.Windows.Forms.PictureBox();
-            this.PanelPortraitSml = new System.Windows.Forms.Panel();
-            this.PicPortraitSml = new System.Windows.Forms.PictureBox();
-            this.LayoutUnnamed3 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonHintOnScalePage = new System.Windows.Forms.Button();
-            this.ButtonToFilePage2 = new System.Windows.Forms.Button();
-            this.ButtonCreatePortrait = new System.Windows.Forms.Button();
-            this.LblToFilePage = new System.Windows.Forms.Label();
-            this.LblToCreatePortrait = new System.Windows.Forms.Label();
-            this.LayoutUnnamed4 = new System.Windows.Forms.TableLayoutPanel();
-            this.LabelMedImage = new System.Windows.Forms.Label();
-            this.LabelLrgImg = new System.Windows.Forms.Label();
-            this.LabelSmlImg = new System.Windows.Forms.Label();
-            this.LayoutMainPage = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonToFilePage = new System.Windows.Forms.Button();
-            this.ButtonToExtractPage = new System.Windows.Forms.Button();
-            this.ButtonToGalleryPage = new System.Windows.Forms.Button();
-            this.PictureBoxTitle = new System.Windows.Forms.PictureBox();
-            this.LabelCopyright = new System.Windows.Forms.Label();
-            this.ButtonToSettingsPage = new System.Windows.Forms.Button();
-            this.ButtonExit = new System.Windows.Forms.Button();
-            this.LayoutLang = new System.Windows.Forms.TableLayoutPanel();
-            this.PicBoxEng = new System.Windows.Forms.PictureBox();
-            this.PicBoxRus = new System.Windows.Forms.PictureBox();
-            this.PicBoxGer = new System.Windows.Forms.PictureBox();
-            this.LabelVersion = new System.Windows.Forms.Label();
-            this.LblPointerToFilePage = new System.Windows.Forms.Label();
-            this.LblPointerToExtractPage = new System.Windows.Forms.Label();
-            this.LblPointerToGalleryPage = new System.Windows.Forms.Label();
-            this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.ListExtract = new System.Windows.Forms.ListView();
             this.ImgListExtract = new System.Windows.Forms.ImageList(this.components);
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonChooseFolder = new System.Windows.Forms.Button();
+            this.ImgListGallery = new System.Windows.Forms.ImageList(this.components);
+            this.LayoutStartMenu = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartKing = new System.Windows.Forms.Button();
+            this.PictureBoxStartKing = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartWotr = new System.Windows.Forms.Button();
+            this.PictureBoxStartWotr = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartRt = new System.Windows.Forms.Button();
+            this.PictureBoxStartRt = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartPoe = new System.Windows.Forms.Button();
+            this.PictureBoxStartPoe = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartPoed = new System.Windows.Forms.Button();
+            this.PictureBoxStartPoed = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartTyr = new System.Windows.Forms.Button();
+            this.PictureBoxStartTyr = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonStartW3 = new System.Windows.Forms.Button();
+            this.PictureBoxStartW3 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelStartAuthor = new System.Windows.Forms.Label();
+            this.PictureBoxStartOpenNM = new System.Windows.Forms.PictureBox();
+            this.PictureBoxStartOpenGitHub = new System.Windows.Forms.PictureBox();
+            this.LayoutPathPage = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelSelectPathExplain = new System.Windows.Forms.Label();
+            this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelSelectPathResetPath = new System.Windows.Forms.Label();
+            this.LabelSelectPathChoosePath = new System.Windows.Forms.Label();
+            this.LabelSelectPathSelected = new System.Windows.Forms.Label();
+            this.LabelSelectPathTitle = new System.Windows.Forms.Label();
+            this.LabelSelectPathBackToStart = new System.Windows.Forms.Label();
+            this.LabelSelectPathNextToMain = new System.Windows.Forms.Label();
+            this.LayoutMainPage = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelCreatePortrait = new System.Windows.Forms.Label();
+            this.LabelExtract = new System.Windows.Forms.Label();
+            this.LabelBrowse = new System.Windows.Forms.Label();
+            this.LabelSettingsPage = new System.Windows.Forms.Label();
+            this.LabelExit = new System.Windows.Forms.Label();
+            this.LabelMainPageFooter = new System.Windows.Forms.LinkLabel();
+            this.LayoutKingCreatePortrait = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.LabelKingCreatePortraitLarge = new System.Windows.Forms.Label();
+            this.LabelKingCreatePortraitMedium = new System.Windows.Forms.Label();
+            this.LabelKingCreatePortraitSmall = new System.Windows.Forms.Label();
+            this.LabelKingCreatePortraitSml2 = new System.Windows.Forms.Label();
+            this.LayoutKingPortraitGroups = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutKingPortraitGroupLarge = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelKingLrg = new System.Windows.Forms.Panel();
+            this.PicKingLrg = new System.Windows.Forms.PictureBox();
+            this.PanelKingLrgButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingLrgHint = new System.Windows.Forms.Label();
+            this.ButtonKingLrgLocal = new System.Windows.Forms.Button();
+            this.ButtonKingLrgWeb = new System.Windows.Forms.Button();
+            this.ButtonKingLrgZoomIn = new System.Windows.Forms.Button();
+            this.ButtonKingLrgZoomOut = new System.Windows.Forms.Button();
+            this.ButtonKingLrgZoomReset = new System.Windows.Forms.Button();
+            this.LayoutKingPortraitGroupMedium = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelKingMed = new System.Windows.Forms.Panel();
+            this.PicKingMed = new System.Windows.Forms.PictureBox();
+            this.PanelKingMedButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingMedHint = new System.Windows.Forms.Label();
+            this.ButtonKingMedLocal = new System.Windows.Forms.Button();
+            this.ButtonKingMedWeb = new System.Windows.Forms.Button();
+            this.ButtonKingMedZoomIn = new System.Windows.Forms.Button();
+            this.ButtonKingMedZoomOut = new System.Windows.Forms.Button();
+            this.ButtonKingMedZoomReset = new System.Windows.Forms.Button();
+            this.LayoutKingPortraitGroupSmall = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelKingSml = new System.Windows.Forms.Panel();
+            this.PicKingSml = new System.Windows.Forms.PictureBox();
+            this.PanelKingSmlButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingSmlHint = new System.Windows.Forms.Label();
+            this.ButtonKingSmlLocal = new System.Windows.Forms.Button();
+            this.ButtonKingSmlWeb = new System.Windows.Forms.Button();
+            this.ButtonKingSmlZoomIn = new System.Windows.Forms.Button();
+            this.ButtonKingSmlZoomOut = new System.Windows.Forms.Button();
+            this.ButtonKingSmlZoomReset = new System.Windows.Forms.Button();
+            this.LayoutKingPortraitGroupSml2 = new System.Windows.Forms.TableLayoutPanel();
+            this.PanelKingSml2 = new System.Windows.Forms.Panel();
+            this.PicKingSml2 = new System.Windows.Forms.PictureBox();
+            this.PanelKingSml2Buttons = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelKingSml2Hint = new System.Windows.Forms.Label();
+            this.ButtonKingSml2Local = new System.Windows.Forms.Button();
+            this.ButtonKingSml2Web = new System.Windows.Forms.Button();
+            this.ButtonKingSml2ZoomIn = new System.Windows.Forms.Button();
+            this.ButtonKingSml2ZoomOut = new System.Windows.Forms.Button();
+            this.ButtonKingSml2ZoomReset = new System.Windows.Forms.Button();
+            this.LayoutKingRight = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonKingCreateNewPortrait = new System.Windows.Forms.Button();
+            this.ButtonKingCustomName = new System.Windows.Forms.Button();
+            this.ButtonKingBackToPathfinder = new System.Windows.Forms.Button();
+            this.LabelKingGroupLargeTitle = new System.Windows.Forms.Label();
+            this.LabelKingGroupMediumTitle = new System.Windows.Forms.Label();
+            this.LabelKingGroupSmallTitle = new System.Windows.Forms.Label();
+            this.LabelKingGroupSml2Title = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.FlowLayoutPanelExtract = new System.Windows.Forms.FlowLayoutPanel();
+            this.PanelExtractOverlay = new System.Windows.Forms.Panel();
+            this.PanelExtractContainer = new System.Windows.Forms.Panel();
+
             this.ButtonExtractAll = new System.Windows.Forms.Button();
             this.ButtonExtractSelected = new System.Windows.Forms.Button();
-            this.ButtonOpenFolders = new System.Windows.Forms.Button();
-            this.ButtonToMainPage2 = new System.Windows.Forms.Button();
-            this.ButtonHintExtract = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.LayoutUnnamed10 = new System.Windows.Forms.TableLayoutPanel();
-            this.ListGallery = new System.Windows.Forms.ListView();
-            this.ImgListGallery = new System.Windows.Forms.ImageList(this.components);
-            this.LayoutUnnamed11 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonToMainPage3 = new System.Windows.Forms.Button();
-            this.ButtonOpenFolder = new System.Windows.Forms.Button();
-            this.ButtonDeletePortait = new System.Windows.Forms.Button();
-            this.ButtonChangePortrait = new System.Windows.Forms.Button();
-            this.ButtonHintFolder = new System.Windows.Forms.Button();
-            this.LblToMainPage3 = new System.Windows.Forms.Label();
-            this.LblToOpenFolder = new System.Windows.Forms.Label();
-            this.LayoutGallery = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonLoadNormal = new System.Windows.Forms.Button();
-            this.ButtonLoadCustom = new System.Windows.Forms.Button();
-            this.ButtonLoadCustomNPC = new System.Windows.Forms.Button();
-            this.ButtonLoadCustomArmy = new System.Windows.Forms.Button();
-            this.LayoutURLDialog = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.LabelURLInfo = new System.Windows.Forms.Label();
-            this.TextBoxURL = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonDenyWeb = new System.Windows.Forms.Button();
-            this.ButtonLoadWeb = new System.Windows.Forms.Button();
-            this.LblToFilePage3 = new System.Windows.Forms.Label();
-            this.LblToLoadToFilePage = new System.Windows.Forms.Label();
-            this.LayoutFinalPage = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonToMainPage4 = new System.Windows.Forms.Button();
-            this.ButtonToFilePage3 = new System.Windows.Forms.Button();
-            this.ButtonToMainPageAndFolder = new System.Windows.Forms.Button();
-            this.LabelFinalMesg = new System.Windows.Forms.Label();
-            this.LabelDirLoc = new System.Windows.Forms.Label();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.LblToMenuPage = new System.Windows.Forms.Label();
-            this.LblToFilePage2 = new System.Windows.Forms.Label();
-            this.LblToMenuPageAndOpenFIle = new System.Windows.Forms.Label();
-            this.LayoutSettingsPage = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonKingmaker = new System.Windows.Forms.Button();
-            this.ButtonWotR = new System.Windows.Forms.Button();
-            this.ButtonRT = new System.Windows.Forms.Button();
-            this.ButtonToMainPage5 = new System.Windows.Forms.Button();
-            this.LabelSelectedPath = new System.Windows.Forms.Label();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonValidatePath = new System.Windows.Forms.Button();
-            this.ButtonSelectPath = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ButtonApplyChange = new System.Windows.Forms.Button();
-            this.LabelSettings = new System.Windows.Forms.Label();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.ButtonRestorePath = new System.Windows.Forms.Button();
-            this.TextBoxFullPath = new System.Windows.Forms.TextBox();
-            this.LayoutUnnamed16 = new System.Windows.Forms.TableLayoutPanel();
-            this.CheckBoxVerified = new System.Windows.Forms.CheckBox();
-            this.LabelLang = new System.Windows.Forms.Label();
-            this.LayoutFilePage.SuspendLayout();
-            this.LayoutUnnamed1.SuspendLayout();
-            this.LayoutUnnamed5.SuspendLayout();
-            this.PanelPortraitTemp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTemp)).BeginInit();
-            this.LayoutScalePage.SuspendLayout();
-            this.LayoutUnnamed2.SuspendLayout();
-            this.PanelPortraitLrg.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitLrg)).BeginInit();
-            this.PanelPortraitMed.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitMed)).BeginInit();
-            this.PanelPortraitSml.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitSml)).BeginInit();
-            this.LayoutUnnamed3.SuspendLayout();
-            this.LayoutUnnamed4.SuspendLayout();
+            this.ButtonExtractBack = new System.Windows.Forms.Button();
+            this.ButtonExtractShowFolder = new System.Windows.Forms.Button();
+            this.LayoutExtractRight = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutExtractPage = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutGalleryPage = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanelGalleryTabs = new System.Windows.Forms.FlowLayoutPanel();
+            this.LabelGalleryTab = new System.Windows.Forms.Label();
+            this.LabelGalleryNonPlayerTab = new System.Windows.Forms.Label();
+            this.LabelGalleryCustomNpcTab = new System.Windows.Forms.Label();
+            this.LabelGalleryCompanionsTab = new System.Windows.Forms.Label();
+            this.LabelGalleryCharactersTab = new System.Windows.Forms.Label();
+            this.LabelExtractCounter = new System.Windows.Forms.Label();
+            this.LabelGalleryCredit = new System.Windows.Forms.Label();
+            this.FlowLayoutPanelExtractBottom = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelExtractClearSelection = new System.Windows.Forms.Label();
+            this.LabelExtractClose = new System.Windows.Forms.Label();
+            this.PanelGalleryContainer = new System.Windows.Forms.Panel();
+            this.FlowLayoutPanelGallery = new System.Windows.Forms.FlowLayoutPanel();
+            this.LayoutGalleryRight = new System.Windows.Forms.TableLayoutPanel();
+            this.ButtonGalleryBack = new System.Windows.Forms.Button();
+            this.ButtonGalleryClone = new System.Windows.Forms.Button();
+            this.ButtonGalleryChange = new System.Windows.Forms.Button();
+            this.ButtonGalleryDelete = new System.Windows.Forms.Button();
+            this.ButtonGalleryShowFolder = new System.Windows.Forms.Button();
+            this.LayoutStartMenu.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).BeginInit();
+            this.tableLayoutPanel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartWotr)).BeginInit();
+            this.tableLayoutPanel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartRt)).BeginInit();
+            this.tableLayoutPanel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartPoe)).BeginInit();
+            this.tableLayoutPanel17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartPoed)).BeginInit();
+            this.tableLayoutPanel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartTyr)).BeginInit();
+            this.tableLayoutPanel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartW3)).BeginInit();
+            this.tableLayoutPanel20.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenNM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenGitHub)).BeginInit();
+            this.LayoutPathPage.SuspendLayout();
+            this.tableLayoutPanel21.SuspendLayout();
+            this.tableLayoutPanel22.SuspendLayout();
             this.LayoutMainPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxTitle)).BeginInit();
-            this.LayoutLang.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxEng)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxRus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxGer)).BeginInit();
+            this.tableLayoutPanel23.SuspendLayout();
             this.LayoutExtractPage.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            this.LayoutUnnamed10.SuspendLayout();
-            this.LayoutUnnamed11.SuspendLayout();
-            this.LayoutGallery.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
-            this.LayoutURLDialog.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.LayoutFinalPage.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.LayoutSettingsPage.SuspendLayout();
-            this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
-            this.LayoutUnnamed16.SuspendLayout();
+            this.PanelExtractContainer.SuspendLayout();
+            this.FlowLayoutPanelExtract.SuspendLayout();
+            this.FlowLayoutPanelExtractBottom.SuspendLayout();
+            this.PanelExtractOverlay.SuspendLayout();
+            this.LayoutKingCreatePortrait.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.LayoutKingPortraitGroups.SuspendLayout();
+            this.LayoutKingPortraitGroupLarge.SuspendLayout();
+            this.PanelKingLrg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingLrg)).BeginInit();
+            this.PanelKingLrgButtons.SuspendLayout();
+            this.LayoutKingPortraitGroupMedium.SuspendLayout();
+            this.PanelKingMed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingMed)).BeginInit();
+            this.PanelKingMedButtons.SuspendLayout();
+            this.LayoutKingPortraitGroupSmall.SuspendLayout();
+            this.PanelKingSml.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingSml)).BeginInit();
+            this.PanelKingSmlButtons.SuspendLayout();
+            this.LayoutKingPortraitGroupSml2.SuspendLayout();
+            this.PanelKingSml2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingSml2)).BeginInit();
+            this.PanelKingSml2Buttons.SuspendLayout();
+            this.LayoutKingRight.SuspendLayout();
+            this.LayoutGalleryPage.SuspendLayout();
+            this.flowLayoutPanelGalleryTabs.SuspendLayout();
+            this.PanelGalleryContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // LayoutFilePage
-            // 
-            this.LayoutFilePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayoutFilePage.ColumnCount = 5;
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.LayoutFilePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.LayoutFilePage.Controls.Add(this.LayoutUnnamed1, 3, 0);
-            this.LayoutFilePage.Controls.Add(this.LayoutUnnamed5, 1, 0);
-            this.LayoutFilePage.ForeColor = System.Drawing.Color.White;
-            this.LayoutFilePage.Location = new System.Drawing.Point(0, 3);
-            this.LayoutFilePage.Name = "LayoutFilePage";
-            this.LayoutFilePage.RowCount = 1;
-            this.LayoutFilePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutFilePage.Size = new System.Drawing.Size(829, 555);
-            this.LayoutFilePage.TabIndex = 1;
-            // 
-            // LayoutUnnamed1
-            // 
-            this.LayoutUnnamed1.ColumnCount = 2;
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed1.Controls.Add(this.ButtonLocalPortraitLoad, 1, 1);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToScalePage, 1, 4);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonWebPortraitLoad, 1, 2);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonHintOnFilePage, 1, 8);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonNextImageType, 1, 5);
-            this.LayoutUnnamed1.Controls.Add(this.ButtonToMainPage, 1, 6);
-            this.LayoutUnnamed1.Controls.Add(this.LblToLoadLocal, 0, 1);
-            this.LayoutUnnamed1.Controls.Add(this.LblToLoadWeb, 0, 2);
-            this.LayoutUnnamed1.Controls.Add(this.LblToMainPage, 0, 6);
-            this.LayoutUnnamed1.Controls.Add(this.LblToScalePage, 0, 4);
-            this.LayoutUnnamed1.Controls.Add(this.LblToAdvancedPage, 0, 5);
-            this.LayoutUnnamed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed1.Location = new System.Drawing.Point(499, 3);
-            this.LayoutUnnamed1.Name = "LayoutUnnamed1";
-            this.LayoutUnnamed1.RowCount = 10;
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed1.Size = new System.Drawing.Size(284, 549);
-            this.LayoutUnnamed1.TabIndex = 0;
-            // 
-            // ButtonLocalPortraitLoad
-            // 
-            this.ButtonLocalPortraitLoad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonLocalPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLocalPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLocalPortraitLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonLocalPortraitLoad.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLocalPortraitLoad.Location = new System.Drawing.Point(48, 97);
-            this.ButtonLocalPortraitLoad.Name = "ButtonLocalPortraitLoad";
-            this.ButtonLocalPortraitLoad.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ButtonLocalPortraitLoad.Size = new System.Drawing.Size(233, 39);
-            this.ButtonLocalPortraitLoad.TabIndex = 2;
-            this.ButtonLocalPortraitLoad.Text = "LoadLocal";
-            this.ButtonLocalPortraitLoad.UseVisualStyleBackColor = true;
-            this.ButtonLocalPortraitLoad.Click += new System.EventHandler(this.ButtonLocalPortraitLoad_Click);
-            this.ButtonLocalPortraitLoad.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonLocalPortraitLoad.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonToScalePage
-            // 
-            this.ButtonToScalePage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToScalePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToScalePage.Location = new System.Drawing.Point(48, 232);
-            this.ButtonToScalePage.Name = "ButtonToScalePage";
-            this.ButtonToScalePage.Size = new System.Drawing.Size(233, 39);
-            this.ButtonToScalePage.TabIndex = 1;
-            this.ButtonToScalePage.Text = "ToScalePage";
-            this.ButtonToScalePage.UseVisualStyleBackColor = true;
-            this.ButtonToScalePage.Click += new System.EventHandler(this.ButtonToScalePage_Click);
-            this.ButtonToScalePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToScalePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonWebPortraitLoad
-            // 
-            this.ButtonWebPortraitLoad.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonWebPortraitLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonWebPortraitLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonWebPortraitLoad.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonWebPortraitLoad.Location = new System.Drawing.Point(48, 142);
-            this.ButtonWebPortraitLoad.Name = "ButtonWebPortraitLoad";
-            this.ButtonWebPortraitLoad.Size = new System.Drawing.Size(233, 39);
-            this.ButtonWebPortraitLoad.TabIndex = 3;
-            this.ButtonWebPortraitLoad.Text = "LoadWeb";
-            this.ButtonWebPortraitLoad.UseVisualStyleBackColor = true;
-            this.ButtonWebPortraitLoad.Click += new System.EventHandler(this.ButtonWebPortraitLoad_Click);
-            this.ButtonWebPortraitLoad.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonWebPortraitLoad.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonHintOnFilePage
-            // 
-            this.ButtonHintOnFilePage.Cursor = System.Windows.Forms.Cursors.Help;
-            this.ButtonHintOnFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonHintOnFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonHintOnFilePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonHintOnFilePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonHintOnFilePage.Location = new System.Drawing.Point(48, 412);
-            this.ButtonHintOnFilePage.Name = "ButtonHintOnFilePage";
-            this.ButtonHintOnFilePage.Size = new System.Drawing.Size(233, 39);
-            this.ButtonHintOnFilePage.TabIndex = 6;
-            this.ButtonHintOnFilePage.Text = "Hint";
-            this.ButtonHintOnFilePage.UseVisualStyleBackColor = true;
-            this.ButtonHintOnFilePage.Click += new System.EventHandler(this.ButtonHintOnFilePage_Click);
-            this.ButtonHintOnFilePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonHintOnFilePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonNextImageType
-            // 
-            this.ButtonNextImageType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonNextImageType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonNextImageType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonNextImageType.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonNextImageType.Location = new System.Drawing.Point(48, 277);
-            this.ButtonNextImageType.Name = "ButtonNextImageType";
-            this.ButtonNextImageType.Size = new System.Drawing.Size(233, 39);
-            this.ButtonNextImageType.TabIndex = 7;
-            this.ButtonNextImageType.Text = "ToAdvancedPage";
-            this.ButtonNextImageType.UseVisualStyleBackColor = true;
-            this.ButtonNextImageType.Click += new System.EventHandler(this.ButtonNextImageType_Click);
-            this.ButtonNextImageType.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonNextImageType.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonToMainPage
-            // 
-            this.ButtonToMainPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToMainPage.Location = new System.Drawing.Point(48, 322);
-            this.ButtonToMainPage.Name = "ButtonToMainPage";
-            this.ButtonToMainPage.Size = new System.Drawing.Size(233, 39);
-            this.ButtonToMainPage.TabIndex = 0;
-            this.ButtonToMainPage.Text = "ToMainPage";
-            this.ButtonToMainPage.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage.Click += new System.EventHandler(this.ButtonToMainPage_Click);
-            this.ButtonToMainPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToMainPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // LblToLoadLocal
-            // 
-            this.LblToLoadLocal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToLoadLocal.AutoSize = true;
-            this.LblToLoadLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToLoadLocal.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToLoadLocal.Location = new System.Drawing.Point(25, 109);
-            this.LblToLoadLocal.Name = "LblToLoadLocal";
-            this.LblToLoadLocal.Size = new System.Drawing.Size(17, 15);
-            this.LblToLoadLocal.TabIndex = 8;
-            this.LblToLoadLocal.Text = "1.";
-            this.LblToLoadLocal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToLoadWeb
-            // 
-            this.LblToLoadWeb.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToLoadWeb.AutoSize = true;
-            this.LblToLoadWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToLoadWeb.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToLoadWeb.Location = new System.Drawing.Point(25, 154);
-            this.LblToLoadWeb.Name = "LblToLoadWeb";
-            this.LblToLoadWeb.Size = new System.Drawing.Size(17, 15);
-            this.LblToLoadWeb.TabIndex = 9;
-            this.LblToLoadWeb.Text = "2.";
-            this.LblToLoadWeb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToMainPage
-            // 
-            this.LblToMainPage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToMainPage.AutoSize = true;
-            this.LblToMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToMainPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToMainPage.Location = new System.Drawing.Point(25, 334);
-            this.LblToMainPage.Name = "LblToMainPage";
-            this.LblToMainPage.Size = new System.Drawing.Size(17, 15);
-            this.LblToMainPage.TabIndex = 10;
-            this.LblToMainPage.Text = "q.";
-            this.LblToMainPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToScalePage
-            // 
-            this.LblToScalePage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToScalePage.AutoSize = true;
-            this.LblToScalePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToScalePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToScalePage.Location = new System.Drawing.Point(28, 244);
-            this.LblToScalePage.Name = "LblToScalePage";
-            this.LblToScalePage.Size = new System.Drawing.Size(14, 15);
-            this.LblToScalePage.TabIndex = 11;
-            this.LblToScalePage.Text = "r.";
-            this.LblToScalePage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToAdvancedPage
-            // 
-            this.LblToAdvancedPage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToAdvancedPage.AutoSize = true;
-            this.LblToAdvancedPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToAdvancedPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToAdvancedPage.Location = new System.Drawing.Point(25, 289);
-            this.LblToAdvancedPage.Name = "LblToAdvancedPage";
-            this.LblToAdvancedPage.Size = new System.Drawing.Size(17, 15);
-            this.LblToAdvancedPage.TabIndex = 12;
-            this.LblToAdvancedPage.Text = "e.";
-            this.LblToAdvancedPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutUnnamed5
-            // 
-            this.LayoutUnnamed5.ColumnCount = 1;
-            this.LayoutUnnamed5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed5.Controls.Add(this.PanelPortraitTemp, 0, 1);
-            this.LayoutUnnamed5.Controls.Add(this.LabelImageFlag, 0, 2);
-            this.LayoutUnnamed5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed5.Location = new System.Drawing.Point(44, 3);
-            this.LayoutUnnamed5.Name = "LayoutUnnamed5";
-            this.LayoutUnnamed5.RowCount = 3;
-            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.384029F));
-            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.8503F));
-            this.LayoutUnnamed5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.765676F));
-            this.LayoutUnnamed5.Size = new System.Drawing.Size(408, 549);
-            this.LayoutUnnamed5.TabIndex = 1;
-            // 
-            // PanelPortraitTemp
-            // 
-            this.PanelPortraitTemp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PanelPortraitTemp.Controls.Add(this.PicPortraitTemp);
-            this.PanelPortraitTemp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitTemp.Location = new System.Drawing.Point(0, 24);
-            this.PanelPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
-            this.PanelPortraitTemp.Name = "PanelPortraitTemp";
-            this.PanelPortraitTemp.Size = new System.Drawing.Size(408, 476);
-            this.PanelPortraitTemp.TabIndex = 1;
-            // 
-            // PicPortraitTemp
-            // 
-            this.PicPortraitTemp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicPortraitTemp.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PicPortraitTemp.ErrorImage")));
-            this.PicPortraitTemp.Image = ((System.Drawing.Image)(resources.GetObject("PicPortraitTemp.Image")));
-            this.PicPortraitTemp.InitialImage = ((System.Drawing.Image)(resources.GetObject("PicPortraitTemp.InitialImage")));
-            this.PicPortraitTemp.Location = new System.Drawing.Point(0, 0);
-            this.PicPortraitTemp.Margin = new System.Windows.Forms.Padding(0);
-            this.PicPortraitTemp.Name = "PicPortraitTemp";
-            this.PicPortraitTemp.Size = new System.Drawing.Size(664, 1007);
-            this.PicPortraitTemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PicPortraitTemp.TabIndex = 1;
-            this.PicPortraitTemp.TabStop = false;
-            this.PicPortraitTemp.Click += new System.EventHandler(this.PicPortraitTemp_Click);
-            this.PicPortraitTemp.DragDrop += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragDrop);
-            this.PicPortraitTemp.DragEnter += new System.Windows.Forms.DragEventHandler(this.PicPortraitTemp_DragEnter);
-            // 
-            // LabelImageFlag
-            // 
-            this.LabelImageFlag.AutoSize = true;
-            this.LabelImageFlag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelImageFlag.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelImageFlag.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelImageFlag.Location = new System.Drawing.Point(3, 500);
-            this.LabelImageFlag.Name = "LabelImageFlag";
-            this.LabelImageFlag.Size = new System.Drawing.Size(402, 49);
-            this.LabelImageFlag.TabIndex = 2;
-            this.LabelImageFlag.Text = "ImageFlag";
-            this.LabelImageFlag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutScalePage
-            // 
-            this.LayoutScalePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayoutScalePage.ColumnCount = 1;
-            this.LayoutScalePage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed2, 0, 1);
-            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed3, 0, 3);
-            this.LayoutScalePage.Controls.Add(this.LayoutUnnamed4, 0, 2);
-            this.LayoutScalePage.ForeColor = System.Drawing.Color.White;
-            this.LayoutScalePage.Location = new System.Drawing.Point(0, 0);
-            this.LayoutScalePage.Name = "LayoutScalePage";
-            this.LayoutScalePage.RowCount = 5;
-            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.92792F));
-            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 83.73881F));
-            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.LayoutScalePage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.333276F));
-            this.LayoutScalePage.Size = new System.Drawing.Size(832, 558);
-            this.LayoutScalePage.TabIndex = 2;
-            // 
-            // LayoutUnnamed2
-            // 
-            this.LayoutUnnamed2.ColumnCount = 5;
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.731966F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.36763F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.79687F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.37157F));
-            this.LayoutUnnamed2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.731966F));
-            this.LayoutUnnamed2.Controls.Add(this.PanelPortraitLrg, 2, 0);
-            this.LayoutUnnamed2.Controls.Add(this.PanelPortraitMed, 1, 0);
-            this.LayoutUnnamed2.Controls.Add(this.PanelPortraitSml, 3, 0);
-            this.LayoutUnnamed2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed2.Location = new System.Drawing.Point(3, 53);
-            this.LayoutUnnamed2.Name = "LayoutUnnamed2";
-            this.LayoutUnnamed2.RowCount = 1;
-            this.LayoutUnnamed2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed2.Size = new System.Drawing.Size(826, 377);
-            this.LayoutUnnamed2.TabIndex = 0;
-            // 
-            // PanelPortraitLrg
-            // 
-            this.PanelPortraitLrg.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PanelPortraitLrg.Controls.Add(this.PicPortraitLrg);
-            this.PanelPortraitLrg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitLrg.Location = new System.Drawing.Point(284, 3);
-            this.PanelPortraitLrg.Name = "PanelPortraitLrg";
-            this.PanelPortraitLrg.Padding = new System.Windows.Forms.Padding(10);
-            this.PanelPortraitLrg.Size = new System.Drawing.Size(256, 371);
-            this.PanelPortraitLrg.TabIndex = 3;
-            // 
-            // PicPortraitLrg
-            // 
-            this.PicPortraitLrg.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.PicPortraitLrg.Image = ((System.Drawing.Image)(resources.GetObject("PicPortraitLrg.Image")));
-            this.PicPortraitLrg.Location = new System.Drawing.Point(0, 0);
-            this.PicPortraitLrg.Name = "PicPortraitLrg";
-            this.PicPortraitLrg.Size = new System.Drawing.Size(664, 1007);
-            this.PicPortraitLrg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PicPortraitLrg.TabIndex = 0;
-            this.PicPortraitLrg.TabStop = false;
-            this.PicPortraitLrg.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseDoubleClick);
-            this.PicPortraitLrg.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseDown);
-            this.PicPortraitLrg.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseMove);
-            this.PicPortraitLrg.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseUp);
-            // 
-            // PanelPortraitMed
-            // 
-            this.PanelPortraitMed.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PanelPortraitMed.Controls.Add(this.PicPortraitMed);
-            this.PanelPortraitMed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitMed.Location = new System.Drawing.Point(42, 3);
-            this.PanelPortraitMed.Name = "PanelPortraitMed";
-            this.PanelPortraitMed.Padding = new System.Windows.Forms.Padding(10);
-            this.PanelPortraitMed.Size = new System.Drawing.Size(236, 371);
-            this.PanelPortraitMed.TabIndex = 4;
-            // 
-            // PicPortraitMed
-            // 
-            this.PicPortraitMed.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.PicPortraitMed.Image = ((System.Drawing.Image)(resources.GetObject("PicPortraitMed.Image")));
-            this.PicPortraitMed.Location = new System.Drawing.Point(0, 0);
-            this.PicPortraitMed.Name = "PicPortraitMed";
-            this.PicPortraitMed.Size = new System.Drawing.Size(664, 1007);
-            this.PicPortraitMed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PicPortraitMed.TabIndex = 1;
-            this.PicPortraitMed.TabStop = false;
-            this.PicPortraitMed.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseDoubleClick);
-            this.PicPortraitMed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseDown);
-            this.PicPortraitMed.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseMove);
-            this.PicPortraitMed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseUp);
-            // 
-            // PanelPortraitSml
-            // 
-            this.PanelPortraitSml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PanelPortraitSml.Controls.Add(this.PicPortraitSml);
-            this.PanelPortraitSml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelPortraitSml.Location = new System.Drawing.Point(546, 3);
-            this.PanelPortraitSml.Name = "PanelPortraitSml";
-            this.PanelPortraitSml.Padding = new System.Windows.Forms.Padding(10);
-            this.PanelPortraitSml.Size = new System.Drawing.Size(236, 371);
-            this.PanelPortraitSml.TabIndex = 5;
-            // 
-            // PicPortraitSml
-            // 
-            this.PicPortraitSml.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.PicPortraitSml.Image = ((System.Drawing.Image)(resources.GetObject("PicPortraitSml.Image")));
-            this.PicPortraitSml.Location = new System.Drawing.Point(0, 0);
-            this.PicPortraitSml.Name = "PicPortraitSml";
-            this.PicPortraitSml.Size = new System.Drawing.Size(664, 1007);
-            this.PicPortraitSml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.PicPortraitSml.TabIndex = 2;
-            this.PicPortraitSml.TabStop = false;
-            this.PicPortraitSml.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseDoubleClick);
-            this.PicPortraitSml.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseDown);
-            this.PicPortraitSml.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseMove);
-            this.PicPortraitSml.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseUp);
-            // 
-            // LayoutUnnamed3
-            // 
-            this.LayoutUnnamed3.ColumnCount = 7;
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.26437F));
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.817605F));
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.543945F));
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.08789F));
-            this.LayoutUnnamed3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.28619F));
-            this.LayoutUnnamed3.Controls.Add(this.ButtonHintOnScalePage, 5, 0);
-            this.LayoutUnnamed3.Controls.Add(this.ButtonToFilePage2, 1, 0);
-            this.LayoutUnnamed3.Controls.Add(this.ButtonCreatePortrait, 3, 0);
-            this.LayoutUnnamed3.Controls.Add(this.LblToFilePage, 0, 0);
-            this.LayoutUnnamed3.Controls.Add(this.LblToCreatePortrait, 2, 0);
-            this.LayoutUnnamed3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed3.Location = new System.Drawing.Point(3, 486);
-            this.LayoutUnnamed3.Name = "LayoutUnnamed3";
-            this.LayoutUnnamed3.RowCount = 1;
-            this.LayoutUnnamed3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed3.Size = new System.Drawing.Size(826, 44);
-            this.LayoutUnnamed3.TabIndex = 1;
-            // 
-            // ButtonHintOnScalePage
-            // 
-            this.ButtonHintOnScalePage.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonHintOnScalePage.Cursor = System.Windows.Forms.Cursors.Help;
-            this.ButtonHintOnScalePage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonHintOnScalePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonHintOnScalePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonHintOnScalePage.Location = new System.Drawing.Point(635, 3);
-            this.ButtonHintOnScalePage.Name = "ButtonHintOnScalePage";
-            this.ButtonHintOnScalePage.Size = new System.Drawing.Size(57, 38);
-            this.ButtonHintOnScalePage.TabIndex = 0;
-            this.ButtonHintOnScalePage.Text = "Hint";
-            this.ButtonHintOnScalePage.UseVisualStyleBackColor = true;
-            this.ButtonHintOnScalePage.Click += new System.EventHandler(this.ButtonHintOnScalePage_Click);
-            this.ButtonHintOnScalePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonHintOnScalePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonToFilePage2
-            // 
-            this.ButtonToFilePage2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToFilePage2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToFilePage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToFilePage2.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToFilePage2.Location = new System.Drawing.Point(227, 3);
-            this.ButtonToFilePage2.Name = "ButtonToFilePage2";
-            this.ButtonToFilePage2.Size = new System.Drawing.Size(164, 38);
-            this.ButtonToFilePage2.TabIndex = 0;
-            this.ButtonToFilePage2.Text = "ToFilePage";
-            this.ButtonToFilePage2.UseVisualStyleBackColor = true;
-            this.ButtonToFilePage2.Click += new System.EventHandler(this.ButtonToFilePage2_Click);
-            this.ButtonToFilePage2.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToFilePage2.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonCreatePortrait
-            // 
-            this.ButtonCreatePortrait.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonCreatePortrait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonCreatePortrait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonCreatePortrait.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonCreatePortrait.Location = new System.Drawing.Point(434, 3);
-            this.ButtonCreatePortrait.Name = "ButtonCreatePortrait";
-            this.ButtonCreatePortrait.Size = new System.Drawing.Size(164, 38);
-            this.ButtonCreatePortrait.TabIndex = 2;
-            this.ButtonCreatePortrait.Text = "ToCreatePortrait";
-            this.ButtonCreatePortrait.UseVisualStyleBackColor = true;
-            this.ButtonCreatePortrait.Click += new System.EventHandler(this.ButtonCreatePortrait_Click);
-            this.ButtonCreatePortrait.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonCreatePortrait.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // LblToFilePage
-            // 
-            this.LblToFilePage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToFilePage.AutoSize = true;
-            this.LblToFilePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToFilePage.Location = new System.Drawing.Point(205, 15);
-            this.LblToFilePage.Name = "LblToFilePage";
-            this.LblToFilePage.Size = new System.Drawing.Size(16, 13);
-            this.LblToFilePage.TabIndex = 3;
-            this.LblToFilePage.Text = "q.";
-            this.LblToFilePage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToCreatePortrait
-            // 
-            this.LblToCreatePortrait.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToCreatePortrait.AutoSize = true;
-            this.LblToCreatePortrait.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToCreatePortrait.Location = new System.Drawing.Point(412, 15);
-            this.LblToCreatePortrait.Name = "LblToCreatePortrait";
-            this.LblToCreatePortrait.Size = new System.Drawing.Size(16, 13);
-            this.LblToCreatePortrait.TabIndex = 4;
-            this.LblToCreatePortrait.Text = "e.";
-            this.LblToCreatePortrait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutUnnamed4
-            // 
-            this.LayoutUnnamed4.ColumnCount = 5;
-            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.627249F));
-            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.38005F));
-            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.67116F));
-            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.11051F));
-            this.LayoutUnnamed4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.9922F));
-            this.LayoutUnnamed4.Controls.Add(this.LabelMedImage, 1, 0);
-            this.LayoutUnnamed4.Controls.Add(this.LabelLrgImg, 2, 0);
-            this.LayoutUnnamed4.Controls.Add(this.LabelSmlImg, 3, 0);
-            this.LayoutUnnamed4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed4.Location = new System.Drawing.Point(3, 436);
-            this.LayoutUnnamed4.Name = "LayoutUnnamed4";
-            this.LayoutUnnamed4.RowCount = 1;
-            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayoutUnnamed4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayoutUnnamed4.Size = new System.Drawing.Size(826, 44);
-            this.LayoutUnnamed4.TabIndex = 2;
-            // 
-            // LabelMedImage
-            // 
-            this.LabelMedImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelMedImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LabelMedImage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelMedImage.Location = new System.Drawing.Point(41, 0);
-            this.LabelMedImage.Name = "LabelMedImage";
-            this.LabelMedImage.Size = new System.Drawing.Size(237, 44);
-            this.LabelMedImage.TabIndex = 0;
-            this.LabelMedImage.Text = "ForMedImage";
-            this.LabelMedImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelMedImage.MouseLeave += new System.EventHandler(this.LabelMedImg_MouseLeave);
-            this.LabelMedImage.MouseHover += new System.EventHandler(this.LabelMedImg_MouseHover);
-            // 
-            // LabelLrgImg
-            // 
-            this.LabelLrgImg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelLrgImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LabelLrgImg.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelLrgImg.Location = new System.Drawing.Point(284, 0);
-            this.LabelLrgImg.Name = "LabelLrgImg";
-            this.LabelLrgImg.Size = new System.Drawing.Size(256, 44);
-            this.LabelLrgImg.TabIndex = 1;
-            this.LabelLrgImg.Text = "ForLrgImage";
-            this.LabelLrgImg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelLrgImg.MouseLeave += new System.EventHandler(this.LabelLrgImg_MouseLeave);
-            this.LabelLrgImg.MouseHover += new System.EventHandler(this.LabelLrgImg_MouseHover);
-            // 
-            // LabelSmlImg
-            // 
-            this.LabelSmlImg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelSmlImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LabelSmlImg.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelSmlImg.Location = new System.Drawing.Point(546, 0);
-            this.LabelSmlImg.Name = "LabelSmlImg";
-            this.LabelSmlImg.Size = new System.Drawing.Size(234, 44);
-            this.LabelSmlImg.TabIndex = 2;
-            this.LabelSmlImg.Text = "ForSmlImage";
-            this.LabelSmlImg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelSmlImg.MouseLeave += new System.EventHandler(this.LabelSmlImg_MouseLeave);
-            this.LabelSmlImg.MouseHover += new System.EventHandler(this.LabelSmlImg_MouseHover);
-            // 
-            // LayoutMainPage
-            // 
-            this.LayoutMainPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayoutMainPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LayoutMainPage.BackgroundImage")));
-            this.LayoutMainPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.LayoutMainPage.ColumnCount = 3;
-            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 330F));
-            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutMainPage.Controls.Add(this.ButtonToFilePage, 1, 2);
-            this.LayoutMainPage.Controls.Add(this.ButtonToExtractPage, 1, 3);
-            this.LayoutMainPage.Controls.Add(this.ButtonToGalleryPage, 1, 4);
-            this.LayoutMainPage.Controls.Add(this.PictureBoxTitle, 1, 1);
-            this.LayoutMainPage.Controls.Add(this.LabelCopyright, 1, 7);
-            this.LayoutMainPage.Controls.Add(this.ButtonToSettingsPage, 1, 5);
-            this.LayoutMainPage.Controls.Add(this.ButtonExit, 1, 6);
-            this.LayoutMainPage.Controls.Add(this.LayoutLang, 0, 0);
-            this.LayoutMainPage.Controls.Add(this.LabelVersion, 2, 7);
-            this.LayoutMainPage.Controls.Add(this.LblPointerToFilePage, 0, 2);
-            this.LayoutMainPage.Controls.Add(this.LblPointerToExtractPage, 0, 3);
-            this.LayoutMainPage.Controls.Add(this.LblPointerToGalleryPage, 0, 4);
-            this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
-            this.LayoutMainPage.Name = "LayoutMainPage";
-            this.LayoutMainPage.RowCount = 8;
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 165F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
-            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayoutMainPage.Size = new System.Drawing.Size(734, 481);
-            this.LayoutMainPage.TabIndex = 0;
-            // 
-            // ButtonToFilePage
-            // 
-            this.ButtonToFilePage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToFilePage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToFilePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToFilePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToFilePage.Location = new System.Drawing.Point(205, 213);
-            this.ButtonToFilePage.Name = "ButtonToFilePage";
-            this.ButtonToFilePage.Size = new System.Drawing.Size(324, 39);
-            this.ButtonToFilePage.TabIndex = 0;
-            this.ButtonToFilePage.Text = "ToFilePage";
-            this.ButtonToFilePage.UseVisualStyleBackColor = true;
-            this.ButtonToFilePage.Click += new System.EventHandler(this.ButtonToFilePage_Click);
-            this.ButtonToFilePage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToFilePage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonToExtractPage
-            // 
-            this.ButtonToExtractPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToExtractPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToExtractPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToExtractPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToExtractPage.Location = new System.Drawing.Point(205, 258);
-            this.ButtonToExtractPage.Name = "ButtonToExtractPage";
-            this.ButtonToExtractPage.Size = new System.Drawing.Size(324, 39);
-            this.ButtonToExtractPage.TabIndex = 3;
-            this.ButtonToExtractPage.Text = "ToExtractPage";
-            this.ButtonToExtractPage.UseVisualStyleBackColor = true;
-            this.ButtonToExtractPage.Click += new System.EventHandler(this.ButtonToExtract_Click);
-            this.ButtonToExtractPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToExtractPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonToGalleryPage
-            // 
-            this.ButtonToGalleryPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToGalleryPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToGalleryPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToGalleryPage.Location = new System.Drawing.Point(205, 303);
-            this.ButtonToGalleryPage.Name = "ButtonToGalleryPage";
-            this.ButtonToGalleryPage.Size = new System.Drawing.Size(324, 39);
-            this.ButtonToGalleryPage.TabIndex = 2;
-            this.ButtonToGalleryPage.Text = "ToGalleryPage";
-            this.ButtonToGalleryPage.UseVisualStyleBackColor = true;
-            this.ButtonToGalleryPage.Click += new System.EventHandler(this.ButtonToGalleryPage_Click);
-            this.ButtonToGalleryPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToGalleryPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // PictureBoxTitle
-            // 
-            this.PictureBoxTitle.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBoxTitle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PictureBoxTitle.BackgroundImage")));
-            this.PictureBoxTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PictureBoxTitle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBoxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBoxTitle.Location = new System.Drawing.Point(205, 48);
-            this.PictureBoxTitle.Name = "PictureBoxTitle";
-            this.PictureBoxTitle.Size = new System.Drawing.Size(324, 159);
-            this.PictureBoxTitle.TabIndex = 4;
-            this.PictureBoxTitle.TabStop = false;
-            this.PictureBoxTitle.Click += new System.EventHandler(this.PictureBoxTitle_Click);
-            // 
-            // LabelCopyright
-            // 
-            this.LabelCopyright.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.LabelCopyright.AutoSize = true;
-            this.LabelCopyright.BackColor = System.Drawing.Color.Transparent;
-            this.LabelCopyright.Cursor = System.Windows.Forms.Cursors.Help;
-            this.LabelCopyright.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelCopyright.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelCopyright.Location = new System.Drawing.Point(324, 465);
-            this.LabelCopyright.Name = "LabelCopyright";
-            this.LabelCopyright.Size = new System.Drawing.Size(86, 16);
-            this.LabelCopyright.TabIndex = 5;
-            this.LabelCopyright.Text = "COPYRIGHT";
-            this.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LabelCopyright.Click += new System.EventHandler(this.LabelCopyright_Click);
-            // 
-            // ButtonToSettingsPage
-            // 
-            this.ButtonToSettingsPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToSettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToSettingsPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToSettingsPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToSettingsPage.Location = new System.Drawing.Point(205, 348);
-            this.ButtonToSettingsPage.Name = "ButtonToSettingsPage";
-            this.ButtonToSettingsPage.Size = new System.Drawing.Size(324, 39);
-            this.ButtonToSettingsPage.TabIndex = 6;
-            this.ButtonToSettingsPage.Text = "ToSettingsPage";
-            this.ButtonToSettingsPage.UseVisualStyleBackColor = true;
-            this.ButtonToSettingsPage.Click += new System.EventHandler(this.ButtonToSettingsPage_Click);
-            this.ButtonToSettingsPage.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToSettingsPage.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonExit
-            // 
-            this.ButtonExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonExit.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonExit.Location = new System.Drawing.Point(205, 393);
-            this.ButtonExit.Name = "ButtonExit";
-            this.ButtonExit.Size = new System.Drawing.Size(324, 39);
-            this.ButtonExit.TabIndex = 1;
-            this.ButtonExit.Text = "ToExit";
-            this.ButtonExit.UseVisualStyleBackColor = true;
-            this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
-            this.ButtonExit.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonExit.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // LayoutLang
-            // 
-            this.LayoutLang.BackColor = System.Drawing.Color.Transparent;
-            this.LayoutLang.ColumnCount = 5;
-            this.LayoutLang.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutLang.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutLang.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutLang.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.LayoutLang.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.LayoutLang.Controls.Add(this.PicBoxEng, 0, 0);
-            this.LayoutLang.Controls.Add(this.PicBoxRus, 1, 0);
-            this.LayoutLang.Controls.Add(this.PicBoxGer, 2, 0);
-            this.LayoutLang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutLang.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.LayoutLang.Location = new System.Drawing.Point(3, 3);
-            this.LayoutLang.Name = "LayoutLang";
-            this.LayoutLang.RowCount = 2;
-            this.LayoutLang.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.LayoutLang.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.LayoutLang.Size = new System.Drawing.Size(196, 39);
-            this.LayoutLang.TabIndex = 8;
-            // 
-            // PicBoxEng
-            // 
-            this.PicBoxEng.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.eng;
-            this.PicBoxEng.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PicBoxEng.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicBoxEng.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PicBoxEng.Location = new System.Drawing.Point(3, 3);
-            this.PicBoxEng.Name = "PicBoxEng";
-            this.PicBoxEng.Size = new System.Drawing.Size(34, 19);
-            this.PicBoxEng.TabIndex = 0;
-            this.PicBoxEng.TabStop = false;
-            this.PicBoxEng.Click += new System.EventHandler(this.PicBoxEng_Click);
-            // 
-            // PicBoxRus
-            // 
-            this.PicBoxRus.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.rus;
-            this.PicBoxRus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PicBoxRus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicBoxRus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PicBoxRus.Location = new System.Drawing.Point(43, 3);
-            this.PicBoxRus.Name = "PicBoxRus";
-            this.PicBoxRus.Size = new System.Drawing.Size(34, 19);
-            this.PicBoxRus.TabIndex = 1;
-            this.PicBoxRus.TabStop = false;
-            this.PicBoxRus.Click += new System.EventHandler(this.PicBoxRus_Click);
-            // 
-            // PicBoxGer
-            // 
-            this.PicBoxGer.BackgroundImage = global::OwlcatPortraitManager.Properties.Resources.ger;
-            this.PicBoxGer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PicBoxGer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PicBoxGer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PicBoxGer.Location = new System.Drawing.Point(83, 3);
-            this.PicBoxGer.Name = "PicBoxGer";
-            this.PicBoxGer.Size = new System.Drawing.Size(34, 19);
-            this.PicBoxGer.TabIndex = 2;
-            this.PicBoxGer.TabStop = false;
-            this.PicBoxGer.Click += new System.EventHandler(this.PicBoxGer_Click);
-            // 
-            // LabelVersion
-            // 
-            this.LabelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LabelVersion.AutoSize = true;
-            this.LabelVersion.BackColor = System.Drawing.Color.Transparent;
-            this.LabelVersion.Cursor = System.Windows.Forms.Cursors.Help;
-            this.LabelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelVersion.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LabelVersion.Location = new System.Drawing.Point(687, 465);
-            this.LabelVersion.Name = "LabelVersion";
-            this.LabelVersion.Size = new System.Drawing.Size(44, 16);
-            this.LabelVersion.TabIndex = 7;
-            this.LabelVersion.Text = "1.3.5.0";
-            this.LabelVersion.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.LabelVersion.Click += new System.EventHandler(this.LabelVersion_Click);
-            // 
-            // LblPointerToFilePage
-            // 
-            this.LblPointerToFilePage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblPointerToFilePage.AutoSize = true;
-            this.LblPointerToFilePage.BackColor = System.Drawing.Color.Transparent;
-            this.LblPointerToFilePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblPointerToFilePage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblPointerToFilePage.Location = new System.Drawing.Point(182, 225);
-            this.LblPointerToFilePage.Name = "LblPointerToFilePage";
-            this.LblPointerToFilePage.Size = new System.Drawing.Size(17, 15);
-            this.LblPointerToFilePage.TabIndex = 9;
-            this.LblPointerToFilePage.Text = "1.";
-            this.LblPointerToFilePage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblPointerToExtractPage
-            // 
-            this.LblPointerToExtractPage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblPointerToExtractPage.AutoSize = true;
-            this.LblPointerToExtractPage.BackColor = System.Drawing.Color.Transparent;
-            this.LblPointerToExtractPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblPointerToExtractPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblPointerToExtractPage.Location = new System.Drawing.Point(182, 270);
-            this.LblPointerToExtractPage.Name = "LblPointerToExtractPage";
-            this.LblPointerToExtractPage.Size = new System.Drawing.Size(17, 15);
-            this.LblPointerToExtractPage.TabIndex = 10;
-            this.LblPointerToExtractPage.Text = "2.";
-            this.LblPointerToExtractPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblPointerToGalleryPage
-            // 
-            this.LblPointerToGalleryPage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblPointerToGalleryPage.AutoSize = true;
-            this.LblPointerToGalleryPage.BackColor = System.Drawing.Color.Transparent;
-            this.LblPointerToGalleryPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblPointerToGalleryPage.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblPointerToGalleryPage.Location = new System.Drawing.Point(182, 315);
-            this.LblPointerToGalleryPage.Name = "LblPointerToGalleryPage";
-            this.LblPointerToGalleryPage.Size = new System.Drawing.Size(17, 15);
-            this.LblPointerToGalleryPage.TabIndex = 11;
-            this.LblPointerToGalleryPage.Text = "3.";
-            this.LblPointerToGalleryPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutExtractPage
-            // 
-            this.LayoutExtractPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(28)))), ((int)(((byte)(11)))));
-            this.LayoutExtractPage.ColumnCount = 1;
-            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutExtractPage.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.LayoutExtractPage.Enabled = false;
-            this.LayoutExtractPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutExtractPage.Location = new System.Drawing.Point(-5, 0);
-            this.LayoutExtractPage.Name = "LayoutExtractPage";
-            this.LayoutExtractPage.RowCount = 3;
-            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.641887F));
-            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.71623F));
-            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.641887F));
-            this.LayoutExtractPage.Size = new System.Drawing.Size(837, 558);
-            this.LayoutExtractPage.TabIndex = 3;
-            this.LayoutExtractPage.Visible = false;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 5;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.35F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.63232F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.873536F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 226F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.030001F));
-            this.tableLayoutPanel5.Controls.Add(this.ListExtract, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 3, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 51);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(831, 455);
-            this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // ListExtract
-            // 
-            this.ListExtract.BackColor = System.Drawing.Color.Black;
-            this.ListExtract.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListExtract.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListExtract.HideSelection = false;
-            this.ListExtract.LargeImageList = this.ImgListExtract;
-            this.ListExtract.Location = new System.Drawing.Point(17, 3);
-            this.ListExtract.Name = "ListExtract";
-            this.ListExtract.Size = new System.Drawing.Size(542, 449);
-            this.ListExtract.TabIndex = 0;
-            this.ListExtract.UseCompatibleStateImageBehavior = false;
             // 
             // ImgListExtract
             // 
@@ -1081,1117 +241,2115 @@ namespace OwlcatPortraitManager
             this.ImgListExtract.ImageSize = new System.Drawing.Size(100, 148);
             this.ImgListExtract.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 2;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.ButtonChooseFolder, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.ButtonExtractAll, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.ButtonExtractSelected, 1, 3);
-            this.tableLayoutPanel6.Controls.Add(this.ButtonOpenFolders, 1, 5);
-            this.tableLayoutPanel6.Controls.Add(this.ButtonToMainPage2, 1, 6);
-            this.tableLayoutPanel6.Controls.Add(this.ButtonHintExtract, 1, 7);
-            this.tableLayoutPanel6.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel6.Controls.Add(this.label5, 0, 6);
-            this.tableLayoutPanel6.Controls.Add(this.label6, 0, 5);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(576, 3);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 9;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(220, 449);
-            this.tableLayoutPanel6.TabIndex = 1;
-            // 
-            // ButtonChooseFolder
-            // 
-            this.ButtonChooseFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonChooseFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonChooseFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonChooseFolder.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonChooseFolder.Location = new System.Drawing.Point(38, 70);
-            this.ButtonChooseFolder.Name = "ButtonChooseFolder";
-            this.ButtonChooseFolder.Size = new System.Drawing.Size(179, 39);
-            this.ButtonChooseFolder.TabIndex = 0;
-            this.ButtonChooseFolder.Text = "ChooseFolder";
-            this.ButtonChooseFolder.UseVisualStyleBackColor = true;
-            this.ButtonChooseFolder.Click += new System.EventHandler(this.ButtonChooseFolder_Click);
-            this.ButtonChooseFolder.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonChooseFolder.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonExtractAll
-            // 
-            this.ButtonExtractAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonExtractAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonExtractAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonExtractAll.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonExtractAll.Location = new System.Drawing.Point(38, 115);
-            this.ButtonExtractAll.Name = "ButtonExtractAll";
-            this.ButtonExtractAll.Size = new System.Drawing.Size(179, 39);
-            this.ButtonExtractAll.TabIndex = 1;
-            this.ButtonExtractAll.Text = "ExtrcAll";
-            this.ButtonExtractAll.UseVisualStyleBackColor = true;
-            this.ButtonExtractAll.Click += new System.EventHandler(this.ButtonExtractAll_Click);
-            this.ButtonExtractAll.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonExtractAll.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonExtractSelected
-            // 
-            this.ButtonExtractSelected.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonExtractSelected.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonExtractSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonExtractSelected.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonExtractSelected.Location = new System.Drawing.Point(38, 160);
-            this.ButtonExtractSelected.Name = "ButtonExtractSelected";
-            this.ButtonExtractSelected.Size = new System.Drawing.Size(179, 39);
-            this.ButtonExtractSelected.TabIndex = 2;
-            this.ButtonExtractSelected.Text = "ExtrcSelected";
-            this.ButtonExtractSelected.UseVisualStyleBackColor = true;
-            this.ButtonExtractSelected.Click += new System.EventHandler(this.ButtonExtractSelected_Click);
-            this.ButtonExtractSelected.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonExtractSelected.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonOpenFolders
-            // 
-            this.ButtonOpenFolders.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonOpenFolders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonOpenFolders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonOpenFolders.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonOpenFolders.Location = new System.Drawing.Point(38, 250);
-            this.ButtonOpenFolders.Name = "ButtonOpenFolders";
-            this.ButtonOpenFolders.Size = new System.Drawing.Size(179, 39);
-            this.ButtonOpenFolders.TabIndex = 5;
-            this.ButtonOpenFolders.Text = "Open2F";
-            this.ButtonOpenFolders.UseVisualStyleBackColor = true;
-            this.ButtonOpenFolders.Click += new System.EventHandler(this.ButtonOpenFolders_Click);
-            this.ButtonOpenFolders.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonOpenFolders.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonToMainPage2
-            // 
-            this.ButtonToMainPage2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPage2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPage2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage2.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToMainPage2.Location = new System.Drawing.Point(38, 295);
-            this.ButtonToMainPage2.Name = "ButtonToMainPage2";
-            this.ButtonToMainPage2.Size = new System.Drawing.Size(179, 39);
-            this.ButtonToMainPage2.TabIndex = 3;
-            this.ButtonToMainPage2.Text = "ToMainPage";
-            this.ButtonToMainPage2.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage2.Click += new System.EventHandler(this.ButtonToMainPage2_Click);
-            this.ButtonToMainPage2.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToMainPage2.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // ButtonHintExtract
-            // 
-            this.ButtonHintExtract.Cursor = System.Windows.Forms.Cursors.Help;
-            this.ButtonHintExtract.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonHintExtract.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonHintExtract.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonHintExtract.Location = new System.Drawing.Point(38, 340);
-            this.ButtonHintExtract.Name = "ButtonHintExtract";
-            this.ButtonHintExtract.Size = new System.Drawing.Size(179, 39);
-            this.ButtonHintExtract.TabIndex = 4;
-            this.ButtonHintExtract.Text = "Hint";
-            this.ButtonHintExtract.UseVisualStyleBackColor = true;
-            this.ButtonHintExtract.Click += new System.EventHandler(this.ButtonHintExtract_Click);
-            this.ButtonHintExtract.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonHintExtract.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Goldenrod;
-            this.label3.Location = new System.Drawing.Point(16, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(16, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "e.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Goldenrod;
-            this.label4.Location = new System.Drawing.Point(19, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(13, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "r.";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Goldenrod;
-            this.label5.Location = new System.Drawing.Point(16, 308);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(16, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "q.";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Goldenrod;
-            this.label6.Location = new System.Drawing.Point(16, 263);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "o.";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutUnnamed10
-            // 
-            this.LayoutUnnamed10.ColumnCount = 5;
-            this.LayoutUnnamed10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.349733F));
-            this.LayoutUnnamed10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 91.09589F));
-            this.LayoutUnnamed10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.369863F));
-            this.LayoutUnnamed10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 222F));
-            this.LayoutUnnamed10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.029026F));
-            this.LayoutUnnamed10.Controls.Add(this.ListGallery, 1, 0);
-            this.LayoutUnnamed10.Controls.Add(this.LayoutUnnamed11, 3, 0);
-            this.LayoutUnnamed10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed10.Location = new System.Drawing.Point(3, 51);
-            this.LayoutUnnamed10.Name = "LayoutUnnamed10";
-            this.LayoutUnnamed10.RowCount = 1;
-            this.LayoutUnnamed10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed10.Size = new System.Drawing.Size(334, 430);
-            this.LayoutUnnamed10.TabIndex = 0;
-            // 
-            // ListGallery
-            // 
-            this.ListGallery.BackColor = System.Drawing.Color.Black;
-            this.ListGallery.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListGallery.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ListGallery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListGallery.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.ListGallery.HideSelection = false;
-            this.ListGallery.LargeImageList = this.ImgListGallery;
-            this.ListGallery.Location = new System.Drawing.Point(5, 3);
-            this.ListGallery.Name = "ListGallery";
-            this.ListGallery.Size = new System.Drawing.Size(96, 424);
-            this.ListGallery.TabIndex = 1;
-            this.ListGallery.UseCompatibleStateImageBehavior = false;
-            // 
             // ImgListGallery
             // 
             this.ImgListGallery.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit;
             this.ImgListGallery.ImageSize = new System.Drawing.Size(100, 148);
             this.ImgListGallery.TransparentColor = System.Drawing.Color.Empty;
             // 
-            // LayoutUnnamed11
+            // LayoutStartMenu
             // 
-            this.LayoutUnnamed11.ColumnCount = 2;
-            this.LayoutUnnamed11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.LayoutUnnamed11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutUnnamed11.Controls.Add(this.ButtonToMainPage3, 1, 6);
-            this.LayoutUnnamed11.Controls.Add(this.ButtonOpenFolder, 1, 4);
-            this.LayoutUnnamed11.Controls.Add(this.ButtonDeletePortait, 1, 2);
-            this.LayoutUnnamed11.Controls.Add(this.ButtonChangePortrait, 1, 1);
-            this.LayoutUnnamed11.Controls.Add(this.ButtonHintFolder, 1, 7);
-            this.LayoutUnnamed11.Controls.Add(this.LblToMainPage3, 0, 6);
-            this.LayoutUnnamed11.Controls.Add(this.LblToOpenFolder, 0, 4);
-            this.LayoutUnnamed11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed11.Location = new System.Drawing.Point(108, 3);
-            this.LayoutUnnamed11.Name = "LayoutUnnamed11";
-            this.LayoutUnnamed11.RowCount = 9;
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.LayoutUnnamed11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed11.Size = new System.Drawing.Size(216, 424);
-            this.LayoutUnnamed11.TabIndex = 0;
+            this.LayoutStartMenu.BackColor = System.Drawing.Color.Black;
+            this.LayoutStartMenu.BackgroundImage = global::PortraitManager.Properties.Resources.path_start_page;
+            this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.LayoutStartMenu.ColumnCount = 2;
+            this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.23433F));
+            this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.76567F));
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel13, 1, 1);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel14, 1, 2);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel15, 1, 3);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel16, 1, 4);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel17, 1, 5);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel18, 1, 6);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel19, 1, 7);
+            this.LayoutStartMenu.Controls.Add(this.tableLayoutPanel20, 1, 8);
+            this.LayoutStartMenu.Location = new System.Drawing.Point(0, 0);
+            this.LayoutStartMenu.Name = "LayoutStartMenu";
+            this.LayoutStartMenu.RowCount = 9;
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.LayoutStartMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.LayoutStartMenu.Size = new System.Drawing.Size(1207, 766);
+            this.LayoutStartMenu.TabIndex = 8;
             // 
-            // ButtonToMainPage3
+            // tableLayoutPanel13
             // 
-            this.ButtonToMainPage3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPage3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPage3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage3.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonToMainPage3.Location = new System.Drawing.Point(42, 282);
-            this.ButtonToMainPage3.Name = "ButtonToMainPage3";
-            this.ButtonToMainPage3.Size = new System.Drawing.Size(171, 39);
-            this.ButtonToMainPage3.TabIndex = 0;
-            this.ButtonToMainPage3.Text = "ToMainPage";
-            this.ButtonToMainPage3.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage3.Click += new System.EventHandler(this.ButtonToMainPage3_Click);
-            this.ButtonToMainPage3.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonToMainPage3.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.tableLayoutPanel13.ColumnCount = 2;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.33333F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.66666F));
+            this.tableLayoutPanel13.Controls.Add(this.ButtonStartKing, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.PictureBoxStartKing, 0, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(639, 43);
+            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(130, 3, 3, 3);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 1;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(565, 91);
+            this.tableLayoutPanel13.TabIndex = 7;
             // 
-            // ButtonOpenFolder
+            // ButtonStartKing
             // 
-            this.ButtonOpenFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonOpenFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonOpenFolder.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonOpenFolder.Location = new System.Drawing.Point(42, 192);
-            this.ButtonOpenFolder.Name = "ButtonOpenFolder";
-            this.ButtonOpenFolder.Size = new System.Drawing.Size(171, 39);
-            this.ButtonOpenFolder.TabIndex = 1;
-            this.ButtonOpenFolder.Text = "OpenFolder";
-            this.ButtonOpenFolder.UseVisualStyleBackColor = true;
-            this.ButtonOpenFolder.Click += new System.EventHandler(this.ButtonOpenFolder_Click);
-            this.ButtonOpenFolder.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonOpenFolder.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.ButtonStartKing.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartKing.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartKing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartKing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartKing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartKing.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartKing.FlatAppearance.BorderSize = 0;
+            this.ButtonStartKing.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartKing.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.ButtonStartKing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartKing.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartKing.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartKing.Location = new System.Drawing.Point(109, 3);
+            this.ButtonStartKing.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartKing.Name = "ButtonStartKing";
+            this.ButtonStartKing.Size = new System.Drawing.Size(453, 85);
+            this.ButtonStartKing.TabIndex = 0;
+            this.ButtonStartKing.TabStop = false;
+            this.ButtonStartKing.Text = "LABEL_KING";
+            this.ButtonStartKing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartKing.UseVisualStyleBackColor = false;
+            this.ButtonStartKing.Click += new System.EventHandler(this.ButtonStartKing_Click);
+            this.ButtonStartKing.MouseEnter += new System.EventHandler(this.ButtonStartKing_MouseEnter);
+            this.ButtonStartKing.MouseLeave += new System.EventHandler(this.ButtonStartKing_MouseLeave);
             // 
-            // ButtonDeletePortait
+            // PictureBoxStartKing
             // 
-            this.ButtonDeletePortait.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonDeletePortait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonDeletePortait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonDeletePortait.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonDeletePortait.Location = new System.Drawing.Point(42, 102);
-            this.ButtonDeletePortait.Name = "ButtonDeletePortait";
-            this.ButtonDeletePortait.Size = new System.Drawing.Size(171, 39);
-            this.ButtonDeletePortait.TabIndex = 2;
-            this.ButtonDeletePortait.Text = "DeletePortrait";
-            this.ButtonDeletePortait.UseVisualStyleBackColor = true;
-            this.ButtonDeletePortait.Click += new System.EventHandler(this.ButtonDeletePortait_Click);
-            this.ButtonDeletePortait.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonDeletePortait.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.PictureBoxStartKing.BackgroundImage = global::PortraitManager.Properties.Resources.path_icon_png;
+            this.PictureBoxStartKing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartKing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartKing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartKing.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartKing.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartKing.Name = "PictureBoxStartKing";
+            this.PictureBoxStartKing.Size = new System.Drawing.Size(106, 85);
+            this.PictureBoxStartKing.TabIndex = 1;
+            this.PictureBoxStartKing.TabStop = false;
+            this.PictureBoxStartKing.Click += new System.EventHandler(this.PictureBoxStartKing_Click);
+            this.PictureBoxStartKing.MouseEnter += new System.EventHandler(this.PictureBoxStartKing_MouseEnter);
+            this.PictureBoxStartKing.MouseLeave += new System.EventHandler(this.PictureBoxStartKing_MouseLeave);
             // 
-            // ButtonChangePortrait
+            // tableLayoutPanel14
             // 
-            this.ButtonChangePortrait.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonChangePortrait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonChangePortrait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonChangePortrait.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonChangePortrait.Location = new System.Drawing.Point(42, 57);
-            this.ButtonChangePortrait.Name = "ButtonChangePortrait";
-            this.ButtonChangePortrait.Size = new System.Drawing.Size(171, 39);
-            this.ButtonChangePortrait.TabIndex = 3;
-            this.ButtonChangePortrait.Text = "ChangePortrait";
-            this.ButtonChangePortrait.UseVisualStyleBackColor = true;
-            this.ButtonChangePortrait.Click += new System.EventHandler(this.ButtonChangePortrait_Click);
-            this.ButtonChangePortrait.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonChangePortrait.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.tableLayoutPanel14.ColumnCount = 2;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.09524F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.90476F));
+            this.tableLayoutPanel14.Controls.Add(this.ButtonStartWotr, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.PictureBoxStartWotr, 0, 0);
+            this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(623, 140);
+            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(114, 3, 3, 3);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 1;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(581, 91);
+            this.tableLayoutPanel14.TabIndex = 8;
             // 
-            // ButtonHintFolder
+            // ButtonStartWotr
             // 
-            this.ButtonHintFolder.Cursor = System.Windows.Forms.Cursors.Help;
-            this.ButtonHintFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonHintFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonHintFolder.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonHintFolder.Location = new System.Drawing.Point(42, 327);
-            this.ButtonHintFolder.Name = "ButtonHintFolder";
-            this.ButtonHintFolder.Size = new System.Drawing.Size(171, 39);
-            this.ButtonHintFolder.TabIndex = 4;
-            this.ButtonHintFolder.Text = "Hint";
-            this.ButtonHintFolder.UseVisualStyleBackColor = true;
-            this.ButtonHintFolder.Click += new System.EventHandler(this.ButtonHintFolder_Click);
-            this.ButtonHintFolder.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonHintFolder.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.ButtonStartWotr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartWotr.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartWotr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartWotr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartWotr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartWotr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartWotr.FlatAppearance.BorderSize = 0;
+            this.ButtonStartWotr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartWotr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartWotr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartWotr.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartWotr.Location = new System.Drawing.Point(105, 3);
+            this.ButtonStartWotr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartWotr.Name = "ButtonStartWotr";
+            this.ButtonStartWotr.Size = new System.Drawing.Size(473, 85);
+            this.ButtonStartWotr.TabIndex = 1;
+            this.ButtonStartWotr.TabStop = false;
+            this.ButtonStartWotr.Text = "LABEL_WOTR";
+            this.ButtonStartWotr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartWotr.UseVisualStyleBackColor = false;
+            this.ButtonStartWotr.Click += new System.EventHandler(this.ButtonStartWotr_Click);
+            this.ButtonStartWotr.MouseEnter += new System.EventHandler(this.ButtonStartWotr_MouseEnter);
+            this.ButtonStartWotr.MouseLeave += new System.EventHandler(this.ButtonStartWotr_MouseLeave);
             // 
-            // LblToMainPage3
+            // PictureBoxStartWotr
             // 
-            this.LblToMainPage3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToMainPage3.AutoSize = true;
-            this.LblToMainPage3.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToMainPage3.Location = new System.Drawing.Point(20, 295);
-            this.LblToMainPage3.Name = "LblToMainPage3";
-            this.LblToMainPage3.Size = new System.Drawing.Size(16, 13);
-            this.LblToMainPage3.TabIndex = 5;
-            this.LblToMainPage3.Text = "q.";
-            this.LblToMainPage3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PictureBoxStartWotr.BackgroundImage = global::PortraitManager.Properties.Resources.wotr_icon_png;
+            this.PictureBoxStartWotr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartWotr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartWotr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartWotr.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartWotr.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartWotr.Name = "PictureBoxStartWotr";
+            this.PictureBoxStartWotr.Size = new System.Drawing.Size(102, 85);
+            this.PictureBoxStartWotr.TabIndex = 2;
+            this.PictureBoxStartWotr.TabStop = false;
+            this.PictureBoxStartWotr.Click += new System.EventHandler(this.PictureBoxStartWotr_Click);
+            this.PictureBoxStartWotr.MouseEnter += new System.EventHandler(this.PictureBoxStartWotr_MouseEnter);
+            this.PictureBoxStartWotr.MouseLeave += new System.EventHandler(this.PictureBoxStartWotr_MouseLeave);
             // 
-            // LblToOpenFolder
+            // tableLayoutPanel15
             // 
-            this.LblToOpenFolder.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblToOpenFolder.AutoSize = true;
-            this.LblToOpenFolder.ForeColor = System.Drawing.Color.Goldenrod;
-            this.LblToOpenFolder.Location = new System.Drawing.Point(20, 205);
-            this.LblToOpenFolder.Name = "LblToOpenFolder";
-            this.LblToOpenFolder.Size = new System.Drawing.Size(16, 13);
-            this.LblToOpenFolder.TabIndex = 6;
-            this.LblToOpenFolder.Text = "o.";
-            this.LblToOpenFolder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tableLayoutPanel15.ColumnCount = 2;
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.36364F));
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.63636F));
+            this.tableLayoutPanel15.Controls.Add(this.ButtonStartRt, 1, 0);
+            this.tableLayoutPanel15.Controls.Add(this.PictureBoxStartRt, 0, 0);
+            this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(607, 237);
+            this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(98, 3, 3, 3);
+            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
+            this.tableLayoutPanel15.RowCount = 1;
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(597, 91);
+            this.tableLayoutPanel15.TabIndex = 9;
             // 
-            // LayoutGallery
+            // ButtonStartRt
             // 
-            this.LayoutGallery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(28)))), ((int)(((byte)(9)))));
-            this.LayoutGallery.ColumnCount = 1;
-            this.LayoutGallery.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.LayoutGallery.Controls.Add(this.LayoutUnnamed10, 0, 1);
-            this.LayoutGallery.Controls.Add(this.tableLayoutPanel11, 0, 0);
-            this.LayoutGallery.Location = new System.Drawing.Point(0, 0);
-            this.LayoutGallery.Name = "LayoutGallery";
-            this.LayoutGallery.RowCount = 3;
-            this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.523937F));
-            this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.96509F));
-            this.LayoutGallery.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.510967F));
-            this.LayoutGallery.Size = new System.Drawing.Size(340, 514);
-            this.LayoutGallery.TabIndex = 4;
+            this.ButtonStartRt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartRt.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartRt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartRt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartRt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartRt.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartRt.FlatAppearance.BorderSize = 0;
+            this.ButtonStartRt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartRt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartRt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartRt.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartRt.Location = new System.Drawing.Point(97, 3);
+            this.ButtonStartRt.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartRt.Name = "ButtonStartRt";
+            this.ButtonStartRt.Size = new System.Drawing.Size(497, 85);
+            this.ButtonStartRt.TabIndex = 2;
+            this.ButtonStartRt.TabStop = false;
+            this.ButtonStartRt.Text = "LABEL_RT";
+            this.ButtonStartRt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartRt.UseVisualStyleBackColor = false;
+            this.ButtonStartRt.Click += new System.EventHandler(this.ButtonStartRt_Click);
+            this.ButtonStartRt.MouseEnter += new System.EventHandler(this.ButtonStartRt_MouseEnter);
+            this.ButtonStartRt.MouseLeave += new System.EventHandler(this.ButtonStartRt_MouseLeave);
             // 
-            // tableLayoutPanel11
+            // PictureBoxStartRt
             // 
-            this.tableLayoutPanel11.ColumnCount = 7;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.64242F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.34984F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.55418F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.34984F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.73065F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.73065F));
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.64242F));
-            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadNormal, 1, 1);
-            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustom, 3, 1);
-            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustomNPC, 4, 1);
-            this.tableLayoutPanel11.Controls.Add(this.ButtonLoadCustomArmy, 5, 1);
-            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 2;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(334, 42);
-            this.tableLayoutPanel11.TabIndex = 1;
+            this.PictureBoxStartRt.BackgroundImage = global::PortraitManager.Properties.Resources.rt_icon_png;
+            this.PictureBoxStartRt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartRt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartRt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartRt.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartRt.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartRt.Name = "PictureBoxStartRt";
+            this.PictureBoxStartRt.Size = new System.Drawing.Size(94, 85);
+            this.PictureBoxStartRt.TabIndex = 3;
+            this.PictureBoxStartRt.TabStop = false;
+            this.PictureBoxStartRt.Click += new System.EventHandler(this.PictureBoxStartRt_Click);
+            this.PictureBoxStartRt.MouseEnter += new System.EventHandler(this.PictureBoxStartRt_MouseEnter);
+            this.PictureBoxStartRt.MouseLeave += new System.EventHandler(this.PictureBoxStartRt_MouseLeave);
             // 
-            // ButtonLoadNormal
+            // tableLayoutPanel16
             // 
-            this.ButtonLoadNormal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonLoadNormal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLoadNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLoadNormal.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadNormal.Location = new System.Drawing.Point(38, 10);
-            this.ButtonLoadNormal.Name = "ButtonLoadNormal";
-            this.ButtonLoadNormal.Size = new System.Drawing.Size(58, 29);
-            this.ButtonLoadNormal.TabIndex = 0;
-            this.ButtonLoadNormal.TabStop = false;
-            this.ButtonLoadNormal.Text = "LoadNormal";
-            this.ButtonLoadNormal.UseVisualStyleBackColor = true;
-            this.ButtonLoadNormal.Click += new System.EventHandler(this.ButtonLoadNormal_Click);
-            this.ButtonLoadNormal.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonLoadNormal.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.tableLayoutPanel16.ColumnCount = 2;
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.52174F));
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.47826F));
+            this.tableLayoutPanel16.Controls.Add(this.ButtonStartPoe, 1, 0);
+            this.tableLayoutPanel16.Controls.Add(this.PictureBoxStartPoe, 0, 0);
+            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(591, 334);
+            this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(82, 3, 3, 3);
+            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
+            this.tableLayoutPanel16.RowCount = 1;
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(613, 91);
+            this.tableLayoutPanel16.TabIndex = 10;
             // 
-            // ButtonLoadCustom
+            // ButtonStartPoe
             // 
-            this.ButtonLoadCustom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonLoadCustom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLoadCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLoadCustom.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustom.Location = new System.Drawing.Point(110, 10);
-            this.ButtonLoadCustom.Name = "ButtonLoadCustom";
-            this.ButtonLoadCustom.Size = new System.Drawing.Size(58, 29);
-            this.ButtonLoadCustom.TabIndex = 1;
-            this.ButtonLoadCustom.TabStop = false;
-            this.ButtonLoadCustom.Text = "LoadCustom";
-            this.ButtonLoadCustom.UseVisualStyleBackColor = true;
-            this.ButtonLoadCustom.Click += new System.EventHandler(this.ButtonLoadCustom_Click);
-            this.ButtonLoadCustom.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonLoadCustom.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.ButtonStartPoe.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartPoe.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartPoe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartPoe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartPoe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartPoe.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartPoe.FlatAppearance.BorderSize = 0;
+            this.ButtonStartPoe.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartPoe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartPoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartPoe.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartPoe.Location = new System.Drawing.Point(101, 3);
+            this.ButtonStartPoe.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartPoe.Name = "ButtonStartPoe";
+            this.ButtonStartPoe.Size = new System.Drawing.Size(509, 85);
+            this.ButtonStartPoe.TabIndex = 3;
+            this.ButtonStartPoe.TabStop = false;
+            this.ButtonStartPoe.Text = "LABEL_POE";
+            this.ButtonStartPoe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartPoe.UseVisualStyleBackColor = false;
+            this.ButtonStartPoe.Click += new System.EventHandler(this.ButtonStartPoe_Click);
+            this.ButtonStartPoe.MouseEnter += new System.EventHandler(this.ButtonStartPoe_MouseEnter);
+            this.ButtonStartPoe.MouseLeave += new System.EventHandler(this.ButtonStartPoe_MouseLeave);
             // 
-            // ButtonLoadCustomNPC
+            // PictureBoxStartPoe
             // 
-            this.ButtonLoadCustomNPC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonLoadCustomNPC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLoadCustomNPC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLoadCustomNPC.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustomNPC.Location = new System.Drawing.Point(174, 10);
-            this.ButtonLoadCustomNPC.Name = "ButtonLoadCustomNPC";
-            this.ButtonLoadCustomNPC.Size = new System.Drawing.Size(56, 29);
-            this.ButtonLoadCustomNPC.TabIndex = 2;
-            this.ButtonLoadCustomNPC.TabStop = false;
-            this.ButtonLoadCustomNPC.Text = "LoadNPC";
-            this.ButtonLoadCustomNPC.UseVisualStyleBackColor = true;
-            this.ButtonLoadCustomNPC.Click += new System.EventHandler(this.ButtonLoadCustomNPC_Click);
-            this.ButtonLoadCustomNPC.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonLoadCustomNPC.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.PictureBoxStartPoe.BackgroundImage = global::PortraitManager.Properties.Resources.poe_icon_png;
+            this.PictureBoxStartPoe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartPoe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartPoe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartPoe.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartPoe.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartPoe.Name = "PictureBoxStartPoe";
+            this.PictureBoxStartPoe.Size = new System.Drawing.Size(98, 85);
+            this.PictureBoxStartPoe.TabIndex = 4;
+            this.PictureBoxStartPoe.TabStop = false;
+            this.PictureBoxStartPoe.Click += new System.EventHandler(this.PictureBoxStartPoe_Click);
+            this.PictureBoxStartPoe.MouseEnter += new System.EventHandler(this.PictureBoxStartPoe_MouseEnter);
+            this.PictureBoxStartPoe.MouseLeave += new System.EventHandler(this.PictureBoxStartPoe_MouseLeave);
             // 
-            // ButtonLoadCustomArmy
+            // tableLayoutPanel17
             // 
-            this.ButtonLoadCustomArmy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonLoadCustomArmy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLoadCustomArmy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLoadCustomArmy.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonLoadCustomArmy.Location = new System.Drawing.Point(236, 10);
-            this.ButtonLoadCustomArmy.Name = "ButtonLoadCustomArmy";
-            this.ButtonLoadCustomArmy.Size = new System.Drawing.Size(56, 29);
-            this.ButtonLoadCustomArmy.TabIndex = 3;
-            this.ButtonLoadCustomArmy.TabStop = false;
-            this.ButtonLoadCustomArmy.Text = "LoadArmy";
-            this.ButtonLoadCustomArmy.UseVisualStyleBackColor = true;
-            this.ButtonLoadCustomArmy.Click += new System.EventHandler(this.ButtonLoadCustomArmy_Click);
-            this.ButtonLoadCustomArmy.MouseEnter += new System.EventHandler(this.AnyPrimeButton_Enter);
-            this.ButtonLoadCustomArmy.MouseLeave += new System.EventHandler(this.AnyPrimeButton_Leave);
+            this.tableLayoutPanel17.ColumnCount = 2;
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.32033F));
+            this.tableLayoutPanel17.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.67966F));
+            this.tableLayoutPanel17.Controls.Add(this.ButtonStartPoed, 1, 0);
+            this.tableLayoutPanel17.Controls.Add(this.PictureBoxStartPoed, 0, 0);
+            this.tableLayoutPanel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel17.Location = new System.Drawing.Point(575, 431);
+            this.tableLayoutPanel17.Margin = new System.Windows.Forms.Padding(66, 3, 3, 3);
+            this.tableLayoutPanel17.Name = "tableLayoutPanel17";
+            this.tableLayoutPanel17.RowCount = 1;
+            this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(629, 91);
+            this.tableLayoutPanel17.TabIndex = 11;
             // 
-            // LayoutURLDialog
+            // ButtonStartPoed
             // 
-            this.LayoutURLDialog.BackColor = System.Drawing.Color.Black;
-            this.LayoutURLDialog.ColumnCount = 3;
-            this.LayoutURLDialog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutURLDialog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
-            this.LayoutURLDialog.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutURLDialog.Controls.Add(this.tableLayoutPanel1, 1, 1);
-            this.LayoutURLDialog.ForeColor = System.Drawing.Color.White;
-            this.LayoutURLDialog.Location = new System.Drawing.Point(10, 0);
-            this.LayoutURLDialog.Name = "LayoutURLDialog";
-            this.LayoutURLDialog.RowCount = 3;
-            this.LayoutURLDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutURLDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 282F));
-            this.LayoutURLDialog.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutURLDialog.Size = new System.Drawing.Size(816, 555);
-            this.LayoutURLDialog.TabIndex = 5;
+            this.ButtonStartPoed.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartPoed.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartPoed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartPoed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartPoed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartPoed.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartPoed.FlatAppearance.BorderSize = 0;
+            this.ButtonStartPoed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartPoed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartPoed.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartPoed.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartPoed.Location = new System.Drawing.Point(96, 3);
+            this.ButtonStartPoed.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartPoed.Name = "ButtonStartPoed";
+            this.ButtonStartPoed.Size = new System.Drawing.Size(530, 85);
+            this.ButtonStartPoed.TabIndex = 4;
+            this.ButtonStartPoed.TabStop = false;
+            this.ButtonStartPoed.Text = "LABEL_POED";
+            this.ButtonStartPoed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartPoed.UseVisualStyleBackColor = false;
+            this.ButtonStartPoed.Click += new System.EventHandler(this.ButtonStartPoed_Click);
+            this.ButtonStartPoed.MouseEnter += new System.EventHandler(this.ButtonStartPoed_MouseEnter);
+            this.ButtonStartPoed.MouseLeave += new System.EventHandler(this.ButtonStartPoed_MouseLeave);
+            // 
+            // PictureBoxStartPoed
+            // 
+            this.PictureBoxStartPoed.BackgroundImage = global::PortraitManager.Properties.Resources.poed_icon_png;
+            this.PictureBoxStartPoed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartPoed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartPoed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartPoed.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartPoed.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartPoed.Name = "PictureBoxStartPoed";
+            this.PictureBoxStartPoed.Size = new System.Drawing.Size(93, 85);
+            this.PictureBoxStartPoed.TabIndex = 5;
+            this.PictureBoxStartPoed.TabStop = false;
+            this.PictureBoxStartPoed.Click += new System.EventHandler(this.PictureBoxStartPoed_Click);
+            this.PictureBoxStartPoed.MouseEnter += new System.EventHandler(this.PictureBoxStartPoed_MouseEnter);
+            this.PictureBoxStartPoed.MouseLeave += new System.EventHandler(this.PictureBoxStartPoed_MouseLeave);
+            // 
+            // tableLayoutPanel18
+            // 
+            this.tableLayoutPanel18.ColumnCount = 2;
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.87302F));
+            this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.12698F));
+            this.tableLayoutPanel18.Controls.Add(this.ButtonStartTyr, 1, 0);
+            this.tableLayoutPanel18.Controls.Add(this.PictureBoxStartTyr, 0, 0);
+            this.tableLayoutPanel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel18.Location = new System.Drawing.Point(559, 528);
+            this.tableLayoutPanel18.Margin = new System.Windows.Forms.Padding(50, 3, 3, 3);
+            this.tableLayoutPanel18.Name = "tableLayoutPanel18";
+            this.tableLayoutPanel18.RowCount = 1;
+            this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(645, 91);
+            this.tableLayoutPanel18.TabIndex = 12;
+            // 
+            // ButtonStartTyr
+            // 
+            this.ButtonStartTyr.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartTyr.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartTyr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartTyr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartTyr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartTyr.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartTyr.FlatAppearance.BorderSize = 0;
+            this.ButtonStartTyr.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartTyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartTyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartTyr.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartTyr.Location = new System.Drawing.Point(102, 3);
+            this.ButtonStartTyr.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartTyr.Name = "ButtonStartTyr";
+            this.ButtonStartTyr.Size = new System.Drawing.Size(540, 85);
+            this.ButtonStartTyr.TabIndex = 5;
+            this.ButtonStartTyr.TabStop = false;
+            this.ButtonStartTyr.Text = "LABEL_TYR";
+            this.ButtonStartTyr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartTyr.UseVisualStyleBackColor = false;
+            this.ButtonStartTyr.Click += new System.EventHandler(this.ButtonStartTyr_Click);
+            this.ButtonStartTyr.MouseEnter += new System.EventHandler(this.ButtonStartTyr_MouseEnter);
+            this.ButtonStartTyr.MouseLeave += new System.EventHandler(this.ButtonStartTyr_MouseLeave);
+            // 
+            // PictureBoxStartTyr
+            // 
+            this.PictureBoxStartTyr.BackgroundImage = global::PortraitManager.Properties.Resources.tyr_icon_png;
+            this.PictureBoxStartTyr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartTyr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartTyr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartTyr.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartTyr.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartTyr.Name = "PictureBoxStartTyr";
+            this.PictureBoxStartTyr.Size = new System.Drawing.Size(99, 85);
+            this.PictureBoxStartTyr.TabIndex = 6;
+            this.PictureBoxStartTyr.TabStop = false;
+            this.PictureBoxStartTyr.Click += new System.EventHandler(this.PictureBoxStartTyr_Click);
+            this.PictureBoxStartTyr.MouseEnter += new System.EventHandler(this.PictureBoxStartTyr_MouseEnter);
+            this.PictureBoxStartTyr.MouseLeave += new System.EventHandler(this.PictureBoxStartTyr_MouseLeave);
+            // 
+            // tableLayoutPanel19
+            // 
+            this.tableLayoutPanel19.ColumnCount = 2;
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.05102F));
+            this.tableLayoutPanel19.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.94898F));
+            this.tableLayoutPanel19.Controls.Add(this.ButtonStartW3, 1, 0);
+            this.tableLayoutPanel19.Controls.Add(this.PictureBoxStartW3, 0, 0);
+            this.tableLayoutPanel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel19.Location = new System.Drawing.Point(543, 625);
+            this.tableLayoutPanel19.Margin = new System.Windows.Forms.Padding(34, 3, 3, 3);
+            this.tableLayoutPanel19.Name = "tableLayoutPanel19";
+            this.tableLayoutPanel19.RowCount = 1;
+            this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(661, 91);
+            this.tableLayoutPanel19.TabIndex = 13;
+            // 
+            // ButtonStartW3
+            // 
+            this.ButtonStartW3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStartW3.BackColor = System.Drawing.Color.Black;
+            this.ButtonStartW3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonStartW3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonStartW3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonStartW3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButtonStartW3.FlatAppearance.BorderSize = 0;
+            this.ButtonStartW3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.ButtonStartW3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStartW3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ButtonStartW3.ForeColor = System.Drawing.Color.White;
+            this.ButtonStartW3.Location = new System.Drawing.Point(99, 3);
+            this.ButtonStartW3.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.ButtonStartW3.Name = "ButtonStartW3";
+            this.ButtonStartW3.Size = new System.Drawing.Size(559, 85);
+            this.ButtonStartW3.TabIndex = 6;
+            this.ButtonStartW3.TabStop = false;
+            this.ButtonStartW3.Text = "LABEL_W3";
+            this.ButtonStartW3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStartW3.UseVisualStyleBackColor = false;
+            this.ButtonStartW3.Click += new System.EventHandler(this.ButtonStartWaste_Click);
+            this.ButtonStartW3.MouseEnter += new System.EventHandler(this.ButtonStartW3_MouseEnter);
+            this.ButtonStartW3.MouseLeave += new System.EventHandler(this.ButtonStartW3_MouseLeave);
+            // 
+            // PictureBoxStartW3
+            // 
+            this.PictureBoxStartW3.BackgroundImage = global::PortraitManager.Properties.Resources.waste_icon_png;
+            this.PictureBoxStartW3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartW3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartW3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartW3.Location = new System.Drawing.Point(3, 3);
+            this.PictureBoxStartW3.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.PictureBoxStartW3.Name = "PictureBoxStartW3";
+            this.PictureBoxStartW3.Size = new System.Drawing.Size(96, 85);
+            this.PictureBoxStartW3.TabIndex = 7;
+            this.PictureBoxStartW3.TabStop = false;
+            this.PictureBoxStartW3.Click += new System.EventHandler(this.PictureBoxStartWaste_Click);
+            this.PictureBoxStartW3.MouseEnter += new System.EventHandler(this.PictureBoxStartW3_MouseEnter);
+            this.PictureBoxStartW3.MouseLeave += new System.EventHandler(this.PictureBoxStartW3_MouseLeave);
+            // 
+            // tableLayoutPanel20
+            // 
+            this.tableLayoutPanel20.ColumnCount = 3;
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel20.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel20.Controls.Add(this.LabelStartAuthor, 0, 0);
+            this.tableLayoutPanel20.Controls.Add(this.PictureBoxStartOpenNM, 1, 0);
+            this.tableLayoutPanel20.Controls.Add(this.PictureBoxStartOpenGitHub, 2, 0);
+            this.tableLayoutPanel20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(534, 722);
+            this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
+            this.tableLayoutPanel20.Name = "tableLayoutPanel20";
+            this.tableLayoutPanel20.RowCount = 1;
+            this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(670, 41);
+            this.tableLayoutPanel20.TabIndex = 14;
+            // 
+            // LabelStartAuthor
+            // 
+            this.LabelStartAuthor.AutoSize = true;
+            this.LabelStartAuthor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelStartAuthor.ForeColor = System.Drawing.Color.White;
+            this.LabelStartAuthor.Location = new System.Drawing.Point(0, 0);
+            this.LabelStartAuthor.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelStartAuthor.Name = "LabelStartAuthor";
+            this.LabelStartAuthor.Size = new System.Drawing.Size(533, 41);
+            this.LabelStartAuthor.TabIndex = 0;
+            this.LabelStartAuthor.Text = "LABEL_AUTHOR";
+            this.LabelStartAuthor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // PictureBoxStartOpenNM
+            // 
+            this.PictureBoxStartOpenNM.BackgroundImage = global::PortraitManager.Properties.Resources.nm_logo_png;
+            this.PictureBoxStartOpenNM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartOpenNM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartOpenNM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartOpenNM.Location = new System.Drawing.Point(539, 3);
+            this.PictureBoxStartOpenNM.Name = "PictureBoxStartOpenNM";
+            this.PictureBoxStartOpenNM.Size = new System.Drawing.Size(61, 35);
+            this.PictureBoxStartOpenNM.TabIndex = 1;
+            this.PictureBoxStartOpenNM.TabStop = false;
+            this.PictureBoxStartOpenNM.Click += new System.EventHandler(this.PictureBoxStartOpenNexus_Click);
+            // 
+            // PictureBoxStartOpenGitHub
+            // 
+            this.PictureBoxStartOpenGitHub.BackgroundImage = global::PortraitManager.Properties.Resources.github_logo_png;
+            this.PictureBoxStartOpenGitHub.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBoxStartOpenGitHub.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PictureBoxStartOpenGitHub.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PictureBoxStartOpenGitHub.Location = new System.Drawing.Point(606, 3);
+            this.PictureBoxStartOpenGitHub.Name = "PictureBoxStartOpenGitHub";
+            this.PictureBoxStartOpenGitHub.Size = new System.Drawing.Size(61, 35);
+            this.PictureBoxStartOpenGitHub.TabIndex = 2;
+            this.PictureBoxStartOpenGitHub.TabStop = false;
+            this.PictureBoxStartOpenGitHub.Click += new System.EventHandler(this.PictureBoxStartOpenGithub_Click);
+            // 
+            // LayoutPathPage
+            // 
+            this.LayoutPathPage.BackColor = System.Drawing.Color.Black;
+            this.LayoutPathPage.BackgroundImage = global::PortraitManager.Properties.Resources.path_folder_page;
+            this.LayoutPathPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.LayoutPathPage.ColumnCount = 5;
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 380F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.LayoutPathPage.Controls.Add(this.tableLayoutPanel21, 2, 1);
+            this.LayoutPathPage.Controls.Add(this.LabelSelectPathBackToStart, 1, 1);
+            this.LayoutPathPage.Controls.Add(this.LabelSelectPathNextToMain, 3, 1);
+            this.LayoutPathPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutPathPage.Name = "LayoutPathPage";
+            this.LayoutPathPage.RowCount = 3;
+            this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutPathPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.LayoutPathPage.Size = new System.Drawing.Size(1207, 766);
+            this.LayoutPathPage.TabIndex = 9;
+            this.LayoutPathPage.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutPathPage_Paint);
+            // 
+            // tableLayoutPanel21
+            // 
+            this.tableLayoutPanel21.ColumnCount = 1;
+            this.tableLayoutPanel21.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathExplain, 0, 3);
+            this.tableLayoutPanel21.Controls.Add(this.tableLayoutPanel22, 0, 2);
+            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathSelected, 0, 1);
+            this.tableLayoutPanel21.Controls.Add(this.LabelSelectPathTitle, 0, 0);
+            this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(78, 43);
+            this.tableLayoutPanel21.Name = "tableLayoutPanel21";
+            this.tableLayoutPanel21.RowCount = 4;
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(374, 680);
+            this.tableLayoutPanel21.TabIndex = 0;
+            // 
+            // LabelSelectPathExplain
+            // 
+            this.LabelSelectPathExplain.AutoSize = true;
+            this.LabelSelectPathExplain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathExplain.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathExplain.Location = new System.Drawing.Point(3, 311);
+            this.LabelSelectPathExplain.Name = "LabelSelectPathExplain";
+            this.LabelSelectPathExplain.Size = new System.Drawing.Size(368, 369);
+            this.LabelSelectPathExplain.TabIndex = 3;
+            this.LabelSelectPathExplain.Text = "LABEL_PATH_EXPLAIN";
+            this.LabelSelectPathExplain.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tableLayoutPanel22
+            // 
+            this.tableLayoutPanel22.ColumnCount = 2;
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.Controls.Add(this.LabelSelectPathResetPath, 0, 0);
+            this.tableLayoutPanel22.Controls.Add(this.LabelSelectPathChoosePath, 1, 0);
+            this.tableLayoutPanel22.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(3, 274);
+            this.tableLayoutPanel22.Name = "tableLayoutPanel22";
+            this.tableLayoutPanel22.RowCount = 1;
+            this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(368, 34);
+            this.tableLayoutPanel22.TabIndex = 1;
+            // 
+            // LabelSelectPathResetPath
+            // 
+            this.LabelSelectPathResetPath.AutoSize = true;
+            this.LabelSelectPathResetPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathResetPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathResetPath.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathResetPath.Location = new System.Drawing.Point(65, 0);
+            this.LabelSelectPathResetPath.Margin = new System.Windows.Forms.Padding(65, 0, 3, 0);
+            this.LabelSelectPathResetPath.Name = "LabelSelectPathResetPath";
+            this.LabelSelectPathResetPath.Size = new System.Drawing.Size(116, 34);
+            this.LabelSelectPathResetPath.TabIndex = 0;
+            this.LabelSelectPathResetPath.Text = "LABEL_RESET";
+            this.LabelSelectPathResetPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathResetPath.Click += new System.EventHandler(this.LabelSelectPathResetPath_Click);
+            this.LabelSelectPathResetPath.MouseEnter += new System.EventHandler(this.LabelSelectPathResetPath_MouseEnter);
+            this.LabelSelectPathResetPath.MouseLeave += new System.EventHandler(this.LabelSelectPathResetPath_MouseLeave);
+            // 
+            // LabelSelectPathChoosePath
+            // 
+            this.LabelSelectPathChoosePath.AutoSize = true;
+            this.LabelSelectPathChoosePath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathChoosePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathChoosePath.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathChoosePath.Location = new System.Drawing.Point(187, 0);
+            this.LabelSelectPathChoosePath.Margin = new System.Windows.Forms.Padding(3, 0, 65, 0);
+            this.LabelSelectPathChoosePath.Name = "LabelSelectPathChoosePath";
+            this.LabelSelectPathChoosePath.Size = new System.Drawing.Size(116, 34);
+            this.LabelSelectPathChoosePath.TabIndex = 1;
+            this.LabelSelectPathChoosePath.Text = "LABEL_SELECT";
+            this.LabelSelectPathChoosePath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathChoosePath.Click += new System.EventHandler(this.LabelSelectPathChoosePath_Click);
+            this.LabelSelectPathChoosePath.MouseEnter += new System.EventHandler(this.LabelSelectPathChoosePath_MouseEnter);
+            this.LabelSelectPathChoosePath.MouseLeave += new System.EventHandler(this.LabelSelectPathChoosePath_MouseLeave);
+            // 
+            // LabelSelectPathSelected
+            // 
+            this.LabelSelectPathSelected.AutoSize = true;
+            this.LabelSelectPathSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathSelected.ForeColor = System.Drawing.Color.DarkGray;
+            this.LabelSelectPathSelected.Location = new System.Drawing.Point(3, 226);
+            this.LabelSelectPathSelected.Name = "LabelSelectPathSelected";
+            this.LabelSelectPathSelected.Size = new System.Drawing.Size(368, 45);
+            this.LabelSelectPathSelected.TabIndex = 4;
+            this.LabelSelectPathSelected.Text = "LABEL_PATH_URL_NORMAL\r\nLABEL_PATH_URL_NORMAL";
+            this.LabelSelectPathSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathSelected.MouseEnter += new System.EventHandler(this.LabelSelectPathSelected_MouseEnter);
+            this.LabelSelectPathSelected.MouseLeave += new System.EventHandler(this.LabelSelectPathSelected_MouseLeave);
+            // 
+            // LabelSelectPathTitle
+            // 
+            this.LabelSelectPathTitle.AutoSize = true;
+            this.LabelSelectPathTitle.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LabelSelectPathTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LabelSelectPathTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathTitle.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathTitle.Location = new System.Drawing.Point(0, 197);
+            this.LabelSelectPathTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelSelectPathTitle.Name = "LabelSelectPathTitle";
+            this.LabelSelectPathTitle.Size = new System.Drawing.Size(374, 29);
+            this.LabelSelectPathTitle.TabIndex = 2;
+            this.LabelSelectPathTitle.Text = "LABEL_[GAMETITLE_FULL]";
+            this.LabelSelectPathTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathTitle.MouseEnter += new System.EventHandler(this.LabelSelectPathTitle_MouseEnter);
+            this.LabelSelectPathTitle.MouseLeave += new System.EventHandler(this.LabelSelectPathTitle_MouseLeave);
+            // 
+            // LabelSelectPathBackToStart
+            // 
+            this.LabelSelectPathBackToStart.AutoSize = true;
+            this.LabelSelectPathBackToStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathBackToStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathBackToStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathBackToStart.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathBackToStart.Location = new System.Drawing.Point(15, 180);
+            this.LabelSelectPathBackToStart.Margin = new System.Windows.Forms.Padding(5, 140, 5, 190);
+            this.LabelSelectPathBackToStart.Name = "LabelSelectPathBackToStart";
+            this.LabelSelectPathBackToStart.Size = new System.Drawing.Size(55, 356);
+            this.LabelSelectPathBackToStart.TabIndex = 3;
+            this.LabelSelectPathBackToStart.Text = "❮";
+            this.LabelSelectPathBackToStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathBackToStart.Click += new System.EventHandler(this.LabelSelectPathBackToStart_Click);
+            this.LabelSelectPathBackToStart.MouseEnter += new System.EventHandler(this.LabelSelectPathBackToStart_MouseEnter);
+            this.LabelSelectPathBackToStart.MouseLeave += new System.EventHandler(this.LabelSelectPathBackToStart_MouseLeave);
+            // 
+            // LabelSelectPathNextToMain
+            // 
+            this.LabelSelectPathNextToMain.AutoSize = true;
+            this.LabelSelectPathNextToMain.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSelectPathNextToMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelSelectPathNextToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LabelSelectPathNextToMain.ForeColor = System.Drawing.Color.White;
+            this.LabelSelectPathNextToMain.Location = new System.Drawing.Point(460, 180);
+            this.LabelSelectPathNextToMain.Margin = new System.Windows.Forms.Padding(5, 140, 5, 190);
+            this.LabelSelectPathNextToMain.Name = "LabelSelectPathNextToMain";
+            this.LabelSelectPathNextToMain.Size = new System.Drawing.Size(55, 356);
+            this.LabelSelectPathNextToMain.TabIndex = 4;
+            this.LabelSelectPathNextToMain.Text = "❯";
+            this.LabelSelectPathNextToMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelSelectPathNextToMain.Click += new System.EventHandler(this.LabelSelectPathNextToMain_Click);
+            this.LabelSelectPathNextToMain.MouseEnter += new System.EventHandler(this.LabelSelectPathNextToMain_MouseEnter);
+            this.LabelSelectPathNextToMain.MouseLeave += new System.EventHandler(this.LabelSelectPathNextToMain_MouseLeave);
+            // 
+            // LayoutMainPage
+            // 
+            this.LayoutMainPage.BackgroundImage = global::PortraitManager.Properties.Resources.path_menu_page;
+            this.LayoutMainPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.LayoutMainPage.ColumnCount = 3;
+            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
+            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.LayoutMainPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39F));
+            this.LayoutMainPage.Controls.Add(this.tableLayoutPanel23, 1, 1);
+            this.LayoutMainPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutMainPage.Name = "LayoutMainPage";
+            this.LayoutMainPage.RowCount = 3;
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.LayoutMainPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutMainPage.Size = new System.Drawing.Size(1207, 766);
+            this.LayoutMainPage.TabIndex = 10;
+            // 
+            // tableLayoutPanel23
+            // 
+            this.tableLayoutPanel23.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel23.ColumnCount = 1;
+            this.tableLayoutPanel23.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel23.Controls.Add(this.LabelCreatePortrait, 0, 1);
+            this.tableLayoutPanel23.Controls.Add(this.LabelExtract, 0, 2);
+            this.tableLayoutPanel23.Controls.Add(this.LabelBrowse, 0, 3);
+            this.tableLayoutPanel23.Controls.Add(this.LabelSettingsPage, 0, 4);
+            this.tableLayoutPanel23.Controls.Add(this.LabelExit, 0, 5);
+            this.tableLayoutPanel23.Controls.Add(this.LabelMainPageFooter, 0, 6);
+            this.tableLayoutPanel23.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel23.Location = new System.Drawing.Point(15, 41);
+            this.tableLayoutPanel23.Name = "tableLayoutPanel23";
+            this.tableLayoutPanel23.RowCount = 7;
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11F));
+            this.tableLayoutPanel23.Size = new System.Drawing.Size(657, 683);
+            this.tableLayoutPanel23.TabIndex = 0;
+            // 
+            // LabelCreatePortrait
+            // 
+            this.LabelCreatePortrait.AutoSize = true;
+            this.LabelCreatePortrait.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelCreatePortrait.ForeColor = System.Drawing.Color.White;
+            this.LabelCreatePortrait.Location = new System.Drawing.Point(3, 239);
+            this.LabelCreatePortrait.Name = "LabelCreatePortrait";
+            this.LabelCreatePortrait.Size = new System.Drawing.Size(101, 13);
+            this.LabelCreatePortrait.TabIndex = 0;
+            this.LabelCreatePortrait.Text = "BUTTON_CREATE";
+            this.LabelCreatePortrait.Click += new System.EventHandler(this.LabelCreatePortrait_Click);
+            this.LabelCreatePortrait.MouseEnter += new System.EventHandler(this.LabelCreatePortrait_MouseEnter);
+            this.LabelCreatePortrait.MouseLeave += new System.EventHandler(this.LabelCreatePortrait_MouseLeave);
+            // 
+            // LabelExtract
+            // 
+            this.LabelExtract.AutoSize = true;
+            this.LabelExtract.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelExtract.ForeColor = System.Drawing.Color.White;
+            this.LabelExtract.Location = new System.Drawing.Point(3, 334);
+            this.LabelExtract.Name = "LabelExtract";
+            this.LabelExtract.Size = new System.Drawing.Size(108, 13);
+            this.LabelExtract.TabIndex = 1;
+            this.LabelExtract.Text = "BUTTON_EXTRACT";
+            this.LabelExtract.Click += new System.EventHandler(this.LabelExtract_Click);
+            this.LabelExtract.MouseEnter += new System.EventHandler(this.LabelExtract_MouseEnter);
+            this.LabelExtract.MouseLeave += new System.EventHandler(this.LabelExtract_MouseLeave);
+            // 
+            // LabelBrowse
+            // 
+            this.LabelBrowse.AutoSize = true;
+            this.LabelBrowse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelBrowse.ForeColor = System.Drawing.Color.White;
+            this.LabelBrowse.Location = new System.Drawing.Point(3, 402);
+            this.LabelBrowse.Name = "LabelBrowse";
+            this.LabelBrowse.Size = new System.Drawing.Size(106, 13);
+            this.LabelBrowse.TabIndex = 2;
+            this.LabelBrowse.Text = "BUTTON_BROWSE";
+            this.LabelBrowse.Click += new System.EventHandler(this.LabelBrowse_Click);
+            this.LabelBrowse.MouseEnter += new System.EventHandler(this.LabelBrowse_MouseEnter);
+            this.LabelBrowse.MouseLeave += new System.EventHandler(this.LabelBrowse_MouseLeave);
+            // 
+            // LabelSettingsPage
+            // 
+            this.LabelSettingsPage.AutoSize = true;
+            this.LabelSettingsPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelSettingsPage.ForeColor = System.Drawing.Color.White;
+            this.LabelSettingsPage.Location = new System.Drawing.Point(3, 470);
+            this.LabelSettingsPage.Name = "LabelSettingsPage";
+            this.LabelSettingsPage.Size = new System.Drawing.Size(112, 13);
+            this.LabelSettingsPage.TabIndex = 3;
+            this.LabelSettingsPage.Text = "BUTTON_SETTINGS";
+            this.LabelSettingsPage.Click += new System.EventHandler(this.LabelSettingsPage_Click);
+            this.LabelSettingsPage.MouseEnter += new System.EventHandler(this.LabelSettingsPage_MouseEnter);
+            this.LabelSettingsPage.MouseLeave += new System.EventHandler(this.LabelSettingsPage_MouseLeave);
+            // 
+            // LabelExit
+            // 
+            this.LabelExit.AutoSize = true;
+            this.LabelExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelExit.ForeColor = System.Drawing.Color.White;
+            this.LabelExit.Location = new System.Drawing.Point(3, 538);
+            this.LabelExit.Name = "LabelExit";
+            this.LabelExit.Size = new System.Drawing.Size(82, 13);
+            this.LabelExit.TabIndex = 4;
+            this.LabelExit.Text = "BUTTON_EXIT";
+            this.LabelExit.Click += new System.EventHandler(this.LabelExit_Click);
+            this.LabelExit.MouseEnter += new System.EventHandler(this.LabelExit_MouseEnter);
+            this.LabelExit.MouseLeave += new System.EventHandler(this.LabelExit_MouseLeave);
+            // 
+            // LabelMainPageFooter
+            // 
+            this.LabelMainPageFooter.ActiveLinkColor = System.Drawing.Color.White;
+            this.LabelMainPageFooter.AutoSize = false;
+            this.LabelMainPageFooter.BackColor = System.Drawing.Color.Transparent;
+            this.LabelMainPageFooter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelMainPageFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelMainPageFooter.ForeColor = System.Drawing.Color.Gray;
+            this.LabelMainPageFooter.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.LabelMainPageFooter.LinkColor = System.Drawing.Color.Gray;
+            this.LabelMainPageFooter.Links.Add(43, 6, "github");
+            this.LabelMainPageFooter.Links.Add(52, 9, "nexus");
+            this.LabelMainPageFooter.Name = "LabelMainPageFooter";
+            this.LabelMainPageFooter.Size = new System.Drawing.Size(657, 75);
+            this.LabelMainPageFooter.TabIndex = 5;
+            this.LabelMainPageFooter.TabStop = true;
+            this.LabelMainPageFooter.Text = "Portrait Manager v1.5 © 2023-2026 Zeight | GitHub | NexusMods";
+            this.LabelMainPageFooter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.LabelMainPageFooter.VisitedLinkColor = System.Drawing.Color.Gray;
+            this.LabelMainPageFooter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LabelMainPageFooter_LinkClicked);
+            // 
+            // LayoutKingCreatePortrait
+            // 
+            this.LayoutKingCreatePortrait.BackColor = System.Drawing.Color.Black;
+            this.LayoutKingCreatePortrait.ColumnCount = 4;
+            this.LayoutKingCreatePortrait.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutKingCreatePortrait.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.LayoutKingCreatePortrait.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.LayoutKingCreatePortrait.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutKingCreatePortrait.Controls.Add(this.flowLayoutPanel1, 1, 1);
+            this.LayoutKingCreatePortrait.Controls.Add(this.LayoutKingPortraitGroups, 1, 2);
+            this.LayoutKingCreatePortrait.Controls.Add(this.LayoutKingRight, 2, 2);
+            this.LayoutKingCreatePortrait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingCreatePortrait.Location = new System.Drawing.Point(0, 0);
+            this.LayoutKingCreatePortrait.Name = "LayoutKingCreatePortrait";
+            this.LayoutKingCreatePortrait.RowCount = 4;
+            this.LayoutKingCreatePortrait.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.LayoutKingCreatePortrait.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.LayoutKingCreatePortrait.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84F));
+            this.LayoutKingCreatePortrait.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutKingCreatePortrait.Size = new System.Drawing.Size(734, 481);
+            this.LayoutKingCreatePortrait.TabIndex = 11;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitLarge);
+            this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitMedium);
+            this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitSmall);
+            this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitSml2);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(36, 9);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(513, 43);
+            this.flowLayoutPanel1.TabIndex = 3;
+            // 
+            // LabelKingCreatePortraitLarge
+            // 
+            this.LabelKingCreatePortraitLarge.AutoSize = true;
+            this.LabelKingCreatePortraitLarge.BackColor = System.Drawing.Color.Transparent;
+            this.LabelKingCreatePortraitLarge.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelKingCreatePortraitLarge.ForeColor = System.Drawing.Color.White;
+            this.LabelKingCreatePortraitLarge.Location = new System.Drawing.Point(0, 0);
+            this.LabelKingCreatePortraitLarge.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelKingCreatePortraitLarge.Name = "LabelKingCreatePortraitLarge";
+            this.LabelKingCreatePortraitLarge.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitLarge.Size = new System.Drawing.Size(124, 48);
+            this.LabelKingCreatePortraitLarge.TabIndex = 0;
+            this.LabelKingCreatePortraitLarge.Text = "LABEL_KINGLRG";
+            this.LabelKingCreatePortraitLarge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitLarge.Click += new System.EventHandler(this.LabelKingCreatePortraitLarge_Click);
+            this.LabelKingCreatePortraitLarge.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelKingCreatePortrait_Paint);
+            this.LabelKingCreatePortraitLarge.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitLarge_MouseEnter);
+            this.LabelKingCreatePortraitLarge.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitLarge_MouseLeave);
+            // 
+            // LabelKingCreatePortraitMedium
+            // 
+            this.LabelKingCreatePortraitMedium.AutoSize = true;
+            this.LabelKingCreatePortraitMedium.BackColor = System.Drawing.Color.Transparent;
+            this.LabelKingCreatePortraitMedium.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelKingCreatePortraitMedium.ForeColor = System.Drawing.Color.White;
+            this.LabelKingCreatePortraitMedium.Location = new System.Drawing.Point(130, 0);
+            this.LabelKingCreatePortraitMedium.Name = "LabelKingCreatePortraitMedium";
+            this.LabelKingCreatePortraitMedium.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitMedium.Size = new System.Drawing.Size(122, 48);
+            this.LabelKingCreatePortraitMedium.TabIndex = 1;
+            this.LabelKingCreatePortraitMedium.Text = "LABEL_KINGMID";
+            this.LabelKingCreatePortraitMedium.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitMedium.Click += new System.EventHandler(this.LabelKingCreatePortraitMedium_Click);
+            this.LabelKingCreatePortraitMedium.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelKingCreatePortrait_Paint);
+            this.LabelKingCreatePortraitMedium.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitMedium_MouseEnter);
+            this.LabelKingCreatePortraitMedium.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitMedium_MouseLeave);
+            // 
+            // LabelKingCreatePortraitSmall
+            // 
+            this.LabelKingCreatePortraitSmall.AutoSize = true;
+            this.LabelKingCreatePortraitSmall.BackColor = System.Drawing.Color.Transparent;
+            this.LabelKingCreatePortraitSmall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelKingCreatePortraitSmall.ForeColor = System.Drawing.Color.White;
+            this.LabelKingCreatePortraitSmall.Location = new System.Drawing.Point(258, 0);
+            this.LabelKingCreatePortraitSmall.Name = "LabelKingCreatePortraitSmall";
+            this.LabelKingCreatePortraitSmall.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitSmall.Size = new System.Drawing.Size(124, 48);
+            this.LabelKingCreatePortraitSmall.TabIndex = 2;
+            this.LabelKingCreatePortraitSmall.Text = "LABEL_KINGSML";
+            this.LabelKingCreatePortraitSmall.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitSmall.Click += new System.EventHandler(this.LabelKingCreatePortraitSmall_Click);
+            this.LabelKingCreatePortraitSmall.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelKingCreatePortrait_Paint);
+            this.LabelKingCreatePortraitSmall.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitSmall_MouseEnter);
+            this.LabelKingCreatePortraitSmall.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitSmall_MouseLeave);
+            // 
+            // LabelKingCreatePortraitSml2
+            // 
+            this.LabelKingCreatePortraitSml2.AutoSize = true;
+            this.LabelKingCreatePortraitSml2.BackColor = System.Drawing.Color.Transparent;
+            this.LabelKingCreatePortraitSml2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelKingCreatePortraitSml2.ForeColor = System.Drawing.Color.White;
+            this.LabelKingCreatePortraitSml2.Location = new System.Drawing.Point(3, 48);
+            this.LabelKingCreatePortraitSml2.Name = "LabelKingCreatePortraitSml2";
+            this.LabelKingCreatePortraitSml2.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitSml2.Size = new System.Drawing.Size(130, 48);
+            this.LabelKingCreatePortraitSml2.TabIndex = 3;
+            this.LabelKingCreatePortraitSml2.Text = "LABEL_KINGSML2";
+            this.LabelKingCreatePortraitSml2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelKingCreatePortraitSml2.Click += new System.EventHandler(this.LabelKingCreatePortraitSml2_Click);
+            this.LabelKingCreatePortraitSml2.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelKingCreatePortrait_Paint);
+            this.LabelKingCreatePortraitSml2.MouseEnter += new System.EventHandler(this.LabelKingCreatePortraitSml2_MouseEnter);
+            this.LabelKingCreatePortraitSml2.MouseLeave += new System.EventHandler(this.LabelKingCreatePortraitSml2_MouseLeave);
+            // 
+            // LayoutKingPortraitGroups
+            // 
+            this.LayoutKingPortraitGroups.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.LayoutKingPortraitGroups.ColumnCount = 1;
+            this.LayoutKingPortraitGroups.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupLarge, 0, 0);
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupMedium, 0, 0);
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupSmall, 0, 0);
+            this.LayoutKingPortraitGroups.Controls.Add(this.LayoutKingPortraitGroupSml2, 0, 0);
+            this.LayoutKingPortraitGroups.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroups.Location = new System.Drawing.Point(36, 52);
+            this.LayoutKingPortraitGroups.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroups.Name = "LayoutKingPortraitGroups";
+            this.LayoutKingPortraitGroups.RowCount = 1;
+            this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingPortraitGroups.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.LayoutKingPortraitGroups.Size = new System.Drawing.Size(513, 404);
+            this.LayoutKingPortraitGroups.TabIndex = 4;
+            // 
+            // LayoutKingPortraitGroupLarge
+            // 
+            this.LayoutKingPortraitGroupLarge.ColumnCount = 2;
+            this.LayoutKingPortraitGroupLarge.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.62378F));
+            this.LayoutKingPortraitGroupLarge.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.37622F));
+            this.LayoutKingPortraitGroupLarge.Controls.Add(this.PanelKingLrg, 0, 0);
+            this.LayoutKingPortraitGroupLarge.Controls.Add(this.PanelKingLrgButtons, 1, 0);
+            this.LayoutKingPortraitGroupLarge.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupLarge.Location = new System.Drawing.Point(0, 364);
+            this.LayoutKingPortraitGroupLarge.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupLarge.Name = "LayoutKingPortraitGroupLarge";
+            this.LayoutKingPortraitGroupLarge.RowCount = 1;
+            this.LayoutKingPortraitGroupLarge.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupLarge.Size = new System.Drawing.Size(513, 20);
+            this.LayoutKingPortraitGroupLarge.TabIndex = 0;
+            this.LayoutKingPortraitGroupLarge.Visible = false;
+            this.LayoutKingPortraitGroupLarge.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingPortraitGroupLarge_Paint);
+            // 
+            // PanelKingLrg
+            // 
+            this.PanelKingLrg.Controls.Add(this.PicKingLrg);
+            this.PanelKingLrg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingLrg.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingLrg.Margin = new System.Windows.Forms.Padding(25);
+            this.PanelKingLrg.Name = "PanelKingLrg";
+            this.PanelKingLrg.Size = new System.Drawing.Size(260, 1);
+            this.PanelKingLrg.TabIndex = 0;
+            // 
+            // PicKingLrg
+            // 
+            this.PicKingLrg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PicKingLrg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicKingLrg.Image = global::PortraitManager.Properties.Resources.path_placeholder;
+            this.PicKingLrg.Location = new System.Drawing.Point(0, 0);
+            this.PicKingLrg.Name = "PicKingLrg";
+            this.PicKingLrg.Size = new System.Drawing.Size(260, 1);
+            this.PicKingLrg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicKingLrg.TabIndex = 0;
+            this.PicKingLrg.TabStop = false;
+            this.PicKingLrg.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseDown);
+            this.PicKingLrg.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseMove);
+            this.PicKingLrg.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitLrg_MouseUp);
+            // 
+            // PanelKingLrgButtons
+            // 
+            this.PanelKingLrgButtons.ColumnCount = 3;
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingLrgButtons.Controls.Add(this.LabelKingLrgHint, 0, 0);
+            this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgLocal, 0, 1);
+            this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgWeb, 0, 2);
+            this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgZoomIn, 0, 4);
+            this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgZoomOut, 1, 4);
+            this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgZoomReset, 2, 4);
+            this.PanelKingLrgButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingLrgButtons.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
+            this.PanelKingLrgButtons.Location = new System.Drawing.Point(313, 3);
+            this.PanelKingLrgButtons.Name = "PanelKingLrgButtons";
+            this.PanelKingLrgButtons.RowCount = 5;
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            this.PanelKingLrgButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.PanelKingLrgButtons.Size = new System.Drawing.Size(197, 14);
+            this.PanelKingLrgButtons.TabIndex = 1;
+            // 
+            // LabelKingLrgHint
+            // 
+            this.PanelKingLrgButtons.SetColumnSpan(this.LabelKingLrgHint, 3);
+            this.LabelKingLrgHint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingLrgHint.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingLrgHint.Name = "LabelKingLrgHint";
+            this.LabelKingLrgHint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
+            this.LabelKingLrgHint.Size = new System.Drawing.Size(168, 130);
+            this.LabelKingLrgHint.TabIndex = 10;
+            this.LabelKingLrgHint.Text = "HINT_KING_LRG";
+            // 
+            // ButtonKingLrgLocal
+            // 
+            this.PanelKingLrgButtons.SetColumnSpan(this.ButtonKingLrgLocal, 3);
+            this.ButtonKingLrgLocal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingLrgLocal.Location = new System.Drawing.Point(3, 113);
+            this.ButtonKingLrgLocal.Name = "ButtonKingLrgLocal";
+            this.ButtonKingLrgLocal.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingLrgLocal.TabIndex = 1;
+            this.ButtonKingLrgLocal.Tag = "PicKingLrg";
+            this.ButtonKingLrgLocal.Text = "SELECT_LOCAL";
+            this.ButtonKingLrgLocal.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingLrgWeb
+            // 
+            this.PanelKingLrgButtons.SetColumnSpan(this.ButtonKingLrgWeb, 3);
+            this.ButtonKingLrgWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingLrgWeb.Location = new System.Drawing.Point(3, 163);
+            this.ButtonKingLrgWeb.Name = "ButtonKingLrgWeb";
+            this.ButtonKingLrgWeb.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingLrgWeb.TabIndex = 0;
+            this.ButtonKingLrgWeb.Tag = "PicKingLrg";
+            this.ButtonKingLrgWeb.Text = "SELECT_WEB";
+            this.ButtonKingLrgWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
+            // 
+            // ButtonKingLrgZoomIn
+            // 
+            this.ButtonKingLrgZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingLrgZoomIn.Location = new System.Drawing.Point(3, 353);
+            this.ButtonKingLrgZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingLrgZoomIn.Name = "ButtonKingLrgZoomIn";
+            this.ButtonKingLrgZoomIn.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingLrgZoomIn.TabIndex = 2;
+            this.ButtonKingLrgZoomIn.Tag = "PicKingLrg";
+            this.ButtonKingLrgZoomIn.Text = "+";
+            this.ButtonKingLrgZoomIn.Click += new System.EventHandler(this.ButtonKingZoomIn_Click);
+            // 
+            // ButtonKingLrgZoomOut
+            // 
+            this.ButtonKingLrgZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingLrgZoomOut.Location = new System.Drawing.Point(90, 353);
+            this.ButtonKingLrgZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingLrgZoomOut.Name = "ButtonKingLrgZoomOut";
+            this.ButtonKingLrgZoomOut.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingLrgZoomOut.TabIndex = 3;
+            this.ButtonKingLrgZoomOut.Tag = "PicKingLrg";
+            this.ButtonKingLrgZoomOut.Text = "−";
+            this.ButtonKingLrgZoomOut.Click += new System.EventHandler(this.ButtonKingZoomOut_Click);
+            // 
+            // ButtonKingLrgZoomReset
+            // 
+            this.ButtonKingLrgZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingLrgZoomReset.Location = new System.Drawing.Point(177, 353);
+            this.ButtonKingLrgZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingLrgZoomReset.Name = "ButtonKingLrgZoomReset";
+            this.ButtonKingLrgZoomReset.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingLrgZoomReset.TabIndex = 4;
+            this.ButtonKingLrgZoomReset.Tag = "PicKingLrg";
+            this.ButtonKingLrgZoomReset.Text = "\u21ba";
+            this.ButtonKingLrgZoomReset.Click += new System.EventHandler(this.ButtonKingZoomReset_Click);
+            // 
+            // LayoutKingPortraitGroupMedium
+            // 
+            this.LayoutKingPortraitGroupMedium.ColumnCount = 2;
+            this.LayoutKingPortraitGroupMedium.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.62378F));
+            this.LayoutKingPortraitGroupMedium.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.37622F));
+            this.LayoutKingPortraitGroupMedium.Controls.Add(this.PanelKingMed, 0, 0);
+            this.LayoutKingPortraitGroupMedium.Controls.Add(this.PanelKingMedButtons, 1, 0);
+            this.LayoutKingPortraitGroupMedium.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupMedium.Location = new System.Drawing.Point(0, 384);
+            this.LayoutKingPortraitGroupMedium.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupMedium.Name = "LayoutKingPortraitGroupMedium";
+            this.LayoutKingPortraitGroupMedium.RowCount = 1;
+            this.LayoutKingPortraitGroupMedium.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupMedium.Size = new System.Drawing.Size(513, 20);
+            this.LayoutKingPortraitGroupMedium.TabIndex = 1;
+            this.LayoutKingPortraitGroupMedium.Visible = false;
+            this.LayoutKingPortraitGroupMedium.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingPortraitGroupMedium_Paint);
+            // 
+            // PanelKingMed
+            // 
+            this.PanelKingMed.Controls.Add(this.PicKingMed);
+            this.PanelKingMed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingMed.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingMed.Margin = new System.Windows.Forms.Padding(25);
+            this.PanelKingMed.Name = "PanelKingMed";
+            this.PanelKingMed.Size = new System.Drawing.Size(260, 1);
+            this.PanelKingMed.TabIndex = 0;
+            // 
+            // PicKingMed
+            // 
+            this.PicKingMed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PicKingMed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicKingMed.Image = global::PortraitManager.Properties.Resources.path_placeholder;
+            this.PicKingMed.Location = new System.Drawing.Point(0, 0);
+            this.PicKingMed.Name = "PicKingMed";
+            this.PicKingMed.Size = new System.Drawing.Size(260, 1);
+            this.PicKingMed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicKingMed.TabIndex = 0;
+            this.PicKingMed.TabStop = false;
+            this.PicKingMed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseDown);
+            this.PicKingMed.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseMove);
+            this.PicKingMed.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitMed_MouseUp);
+            // 
+            // PanelKingMedButtons
+            // 
+            this.PanelKingMedButtons.ColumnCount = 3;
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingMedButtons.Controls.Add(this.LabelKingMedHint, 0, 0);
+            this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedLocal, 0, 1);
+            this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedWeb, 0, 2);
+            this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedZoomIn, 0, 4);
+            this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedZoomOut, 1, 4);
+            this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedZoomReset, 2, 4);
+            this.PanelKingMedButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingMedButtons.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
+            this.PanelKingMedButtons.Location = new System.Drawing.Point(313, 3);
+            this.PanelKingMedButtons.Name = "PanelKingMedButtons";
+            this.PanelKingMedButtons.RowCount = 5;
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            this.PanelKingMedButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.PanelKingMedButtons.Size = new System.Drawing.Size(197, 14);
+            this.PanelKingMedButtons.TabIndex = 1;
+            // 
+            // LabelKingMedHint
+            // 
+            this.PanelKingMedButtons.SetColumnSpan(this.LabelKingMedHint, 3);
+            this.LabelKingMedHint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingMedHint.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingMedHint.Name = "LabelKingMedHint";
+            this.LabelKingMedHint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
+            this.LabelKingMedHint.Size = new System.Drawing.Size(168, 130);
+            this.LabelKingMedHint.TabIndex = 10;
+            this.LabelKingMedHint.Text = "HINT_KING_MED";
+            // 
+            // ButtonKingMedLocal
+            // 
+            this.PanelKingMedButtons.SetColumnSpan(this.ButtonKingMedLocal, 3);
+            this.ButtonKingMedLocal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingMedLocal.Location = new System.Drawing.Point(3, 113);
+            this.ButtonKingMedLocal.Name = "ButtonKingMedLocal";
+            this.ButtonKingMedLocal.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingMedLocal.TabIndex = 1;
+            this.ButtonKingMedLocal.Tag = "PicKingMed";
+            this.ButtonKingMedLocal.Text = "SELECT_LOCAL";
+            this.ButtonKingMedLocal.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingMedWeb
+            // 
+            this.PanelKingMedButtons.SetColumnSpan(this.ButtonKingMedWeb, 3);
+            this.ButtonKingMedWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingMedWeb.Location = new System.Drawing.Point(3, 163);
+            this.ButtonKingMedWeb.Name = "ButtonKingMedWeb";
+            this.ButtonKingMedWeb.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingMedWeb.TabIndex = 0;
+            this.ButtonKingMedWeb.Tag = "PicKingMed";
+            this.ButtonKingMedWeb.Text = "SELECT_WEB";
+            this.ButtonKingMedWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
+            // 
+            // ButtonKingMedZoomIn
+            // 
+            this.ButtonKingMedZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingMedZoomIn.Location = new System.Drawing.Point(3, 353);
+            this.ButtonKingMedZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingMedZoomIn.Name = "ButtonKingMedZoomIn";
+            this.ButtonKingMedZoomIn.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingMedZoomIn.TabIndex = 2;
+            this.ButtonKingMedZoomIn.Tag = "PicKingMed";
+            this.ButtonKingMedZoomIn.Text = "+";
+            this.ButtonKingMedZoomIn.Click += new System.EventHandler(this.ButtonKingZoomIn_Click);
+            // 
+            // ButtonKingMedZoomOut
+            // 
+            this.ButtonKingMedZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingMedZoomOut.Location = new System.Drawing.Point(90, 353);
+            this.ButtonKingMedZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingMedZoomOut.Name = "ButtonKingMedZoomOut";
+            this.ButtonKingMedZoomOut.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingMedZoomOut.TabIndex = 3;
+            this.ButtonKingMedZoomOut.Tag = "PicKingMed";
+            this.ButtonKingMedZoomOut.Text = "−";
+            this.ButtonKingMedZoomOut.Click += new System.EventHandler(this.ButtonKingZoomOut_Click);
+            // 
+            // ButtonKingMedZoomReset
+            // 
+            this.ButtonKingMedZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingMedZoomReset.Location = new System.Drawing.Point(177, 353);
+            this.ButtonKingMedZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingMedZoomReset.Name = "ButtonKingMedZoomReset";
+            this.ButtonKingMedZoomReset.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingMedZoomReset.TabIndex = 4;
+            this.ButtonKingMedZoomReset.Tag = "PicKingMed";
+            this.ButtonKingMedZoomReset.Text = "\u21ba";
+            this.ButtonKingMedZoomReset.Click += new System.EventHandler(this.ButtonKingZoomReset_Click);
+            // 
+            // LayoutKingPortraitGroupSmall
+            // 
+            this.LayoutKingPortraitGroupSmall.ColumnCount = 2;
+            this.LayoutKingPortraitGroupSmall.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.62378F));
+            this.LayoutKingPortraitGroupSmall.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.37622F));
+            this.LayoutKingPortraitGroupSmall.Controls.Add(this.PanelKingSml, 0, 0);
+            this.LayoutKingPortraitGroupSmall.Controls.Add(this.PanelKingSmlButtons, 1, 0);
+            this.LayoutKingPortraitGroupSmall.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupSmall.Location = new System.Drawing.Point(0, 0);
+            this.LayoutKingPortraitGroupSmall.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupSmall.Name = "LayoutKingPortraitGroupSmall";
+            this.LayoutKingPortraitGroupSmall.RowCount = 1;
+            this.LayoutKingPortraitGroupSmall.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupSmall.Size = new System.Drawing.Size(513, 344);
+            this.LayoutKingPortraitGroupSmall.TabIndex = 2;
+            this.LayoutKingPortraitGroupSmall.Visible = false;
+            this.LayoutKingPortraitGroupSmall.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingPortraitGroupSmall_Paint);
+            // 
+            // PanelKingSml
+            // 
+            this.PanelKingSml.Controls.Add(this.PicKingSml);
+            this.PanelKingSml.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingSml.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingSml.Margin = new System.Windows.Forms.Padding(25);
+            this.PanelKingSml.Name = "PanelKingSml";
+            this.PanelKingSml.Size = new System.Drawing.Size(260, 294);
+            this.PanelKingSml.TabIndex = 0;
+            // 
+            // PicKingSml
+            // 
+            this.PicKingSml.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PicKingSml.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicKingSml.Image = global::PortraitManager.Properties.Resources.path_placeholder;
+            this.PicKingSml.Location = new System.Drawing.Point(0, 0);
+            this.PicKingSml.Name = "PicKingSml";
+            this.PicKingSml.Size = new System.Drawing.Size(260, 294);
+            this.PicKingSml.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicKingSml.TabIndex = 0;
+            this.PicKingSml.TabStop = false;
+            this.PicKingSml.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseDown);
+            this.PicKingSml.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseMove);
+            this.PicKingSml.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml_MouseUp);
+            // 
+            // PanelKingSmlButtons
+            // 
+            this.PanelKingSmlButtons.ColumnCount = 3;
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSmlButtons.Controls.Add(this.LabelKingSmlHint, 0, 0);
+            this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlLocal, 0, 1);
+            this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlWeb, 0, 2);
+            this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlZoomIn, 0, 4);
+            this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlZoomOut, 1, 4);
+            this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlZoomReset, 2, 4);
+            this.PanelKingSmlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingSmlButtons.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
+            this.PanelKingSmlButtons.Location = new System.Drawing.Point(313, 3);
+            this.PanelKingSmlButtons.Name = "PanelKingSmlButtons";
+            this.PanelKingSmlButtons.RowCount = 5;
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.PanelKingSmlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.PanelKingSmlButtons.Size = new System.Drawing.Size(197, 364);
+            this.PanelKingSmlButtons.TabIndex = 1;
+            // 
+            // LabelKingSmlHint
+            // 
+            this.PanelKingSmlButtons.SetColumnSpan(this.LabelKingSmlHint, 3);
+            this.LabelKingSmlHint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingSmlHint.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingSmlHint.Name = "LabelKingSmlHint";
+            this.LabelKingSmlHint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
+            this.LabelKingSmlHint.Size = new System.Drawing.Size(168, 210);
+            this.LabelKingSmlHint.TabIndex = 10;
+            this.LabelKingSmlHint.Text = "HINT_KING_SML";
+            // 
+            // ButtonKingSmlLocal
+            // 
+            this.PanelKingSmlButtons.SetColumnSpan(this.ButtonKingSmlLocal, 3);
+            this.ButtonKingSmlLocal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSmlLocal.Location = new System.Drawing.Point(3, 193);
+            this.ButtonKingSmlLocal.Name = "ButtonKingSmlLocal";
+            this.ButtonKingSmlLocal.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingSmlLocal.TabIndex = 1;
+            this.ButtonKingSmlLocal.Tag = "PicKingSml";
+            this.ButtonKingSmlLocal.Text = "SELECT_LOCAL";
+            this.ButtonKingSmlLocal.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingSmlWeb
+            // 
+            this.PanelKingSmlButtons.SetColumnSpan(this.ButtonKingSmlWeb, 3);
+            this.ButtonKingSmlWeb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSmlWeb.Location = new System.Drawing.Point(3, 243);
+            this.ButtonKingSmlWeb.Name = "ButtonKingSmlWeb";
+            this.ButtonKingSmlWeb.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingSmlWeb.TabIndex = 0;
+            this.ButtonKingSmlWeb.Tag = "PicKingSml";
+            this.ButtonKingSmlWeb.Text = "SELECT_WEB";
+            this.ButtonKingSmlWeb.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
+            // 
+            // ButtonKingSmlZoomIn
+            // 
+            this.ButtonKingSmlZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSmlZoomIn.Location = new System.Drawing.Point(3, 353);
+            this.ButtonKingSmlZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingSmlZoomIn.Name = "ButtonKingSmlZoomIn";
+            this.ButtonKingSmlZoomIn.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingSmlZoomIn.TabIndex = 2;
+            this.ButtonKingSmlZoomIn.Tag = "PicKingSml";
+            this.ButtonKingSmlZoomIn.Text = "+";
+            this.ButtonKingSmlZoomIn.Click += new System.EventHandler(this.ButtonKingZoomIn_Click);
+            // 
+            // ButtonKingSmlZoomOut
+            // 
+            this.ButtonKingSmlZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSmlZoomOut.Location = new System.Drawing.Point(90, 353);
+            this.ButtonKingSmlZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingSmlZoomOut.Name = "ButtonKingSmlZoomOut";
+            this.ButtonKingSmlZoomOut.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingSmlZoomOut.TabIndex = 3;
+            this.ButtonKingSmlZoomOut.Tag = "PicKingSml";
+            this.ButtonKingSmlZoomOut.Text = "−";
+            this.ButtonKingSmlZoomOut.Click += new System.EventHandler(this.ButtonKingZoomOut_Click);
+            // 
+            // ButtonKingSmlZoomReset
+            // 
+            this.ButtonKingSmlZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSmlZoomReset.Location = new System.Drawing.Point(177, 353);
+            this.ButtonKingSmlZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingSmlZoomReset.Name = "ButtonKingSmlZoomReset";
+            this.ButtonKingSmlZoomReset.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingSmlZoomReset.TabIndex = 4;
+            this.ButtonKingSmlZoomReset.Tag = "PicKingSml";
+            this.ButtonKingSmlZoomReset.Text = "\u21ba";
+            this.ButtonKingSmlZoomReset.Click += new System.EventHandler(this.ButtonKingZoomReset_Click);
+            // 
+            // LayoutKingPortraitGroupSml2
+            // 
+            this.LayoutKingPortraitGroupSml2.ColumnCount = 2;
+            this.LayoutKingPortraitGroupSml2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.62378F));
+            this.LayoutKingPortraitGroupSml2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.37622F));
+            this.LayoutKingPortraitGroupSml2.Controls.Add(this.PanelKingSml2, 0, 0);
+            this.LayoutKingPortraitGroupSml2.Controls.Add(this.PanelKingSml2Buttons, 1, 0);
+            this.LayoutKingPortraitGroupSml2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingPortraitGroupSml2.Location = new System.Drawing.Point(0, 344);
+            this.LayoutKingPortraitGroupSml2.Margin = new System.Windows.Forms.Padding(0);
+            this.LayoutKingPortraitGroupSml2.Name = "LayoutKingPortraitGroupSml2";
+            this.LayoutKingPortraitGroupSml2.RowCount = 1;
+            this.LayoutKingPortraitGroupSml2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingPortraitGroupSml2.Size = new System.Drawing.Size(513, 20);
+            this.LayoutKingPortraitGroupSml2.TabIndex = 3;
+            this.LayoutKingPortraitGroupSml2.Visible = false;
+            this.LayoutKingPortraitGroupSml2.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingPortraitGroupSml2_Paint);
+            // 
+            // PanelKingSml2
+            // 
+            this.PanelKingSml2.Controls.Add(this.PicKingSml2);
+            this.PanelKingSml2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingSml2.Location = new System.Drawing.Point(25, 25);
+            this.PanelKingSml2.Margin = new System.Windows.Forms.Padding(25);
+            this.PanelKingSml2.Name = "PanelKingSml2";
+            this.PanelKingSml2.Size = new System.Drawing.Size(260, 1);
+            this.PanelKingSml2.TabIndex = 0;
+            // 
+            // PicKingSml2
+            // 
+            this.PicKingSml2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PicKingSml2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicKingSml2.Image = global::PortraitManager.Properties.Resources.path_placeholder;
+            this.PicKingSml2.Location = new System.Drawing.Point(0, 0);
+            this.PicKingSml2.Name = "PicKingSml2";
+            this.PicKingSml2.Size = new System.Drawing.Size(260, 1);
+            this.PicKingSml2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicKingSml2.TabIndex = 0;
+            this.PicKingSml2.TabStop = false;
+            this.PicKingSml2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml2_MouseDown);
+            this.PicKingSml2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml2_MouseMove);
+            this.PicKingSml2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PicPortraitSml2_MouseUp);
+            // 
+            // PanelKingSml2Buttons
+            // 
+            this.PanelKingSml2Buttons.ColumnCount = 3;
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSml2Buttons.Controls.Add(this.LabelKingSml2Hint, 0, 0);
+            this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2Local, 0, 1);
+            this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2Web, 0, 2);
+            this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2ZoomIn, 0, 4);
+            this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2ZoomOut, 1, 4);
+            this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2ZoomReset, 2, 4);
+            this.PanelKingSml2Buttons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelKingSml2Buttons.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
+            this.PanelKingSml2Buttons.Location = new System.Drawing.Point(313, 3);
+            this.PanelKingSml2Buttons.Name = "PanelKingSml2Buttons";
+            this.PanelKingSml2Buttons.RowCount = 5;
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.PanelKingSml2Buttons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.PanelKingSml2Buttons.Size = new System.Drawing.Size(197, 14);
+            this.PanelKingSml2Buttons.TabIndex = 1;
+            // 
+            // LabelKingSml2Hint
+            // 
+            this.PanelKingSml2Buttons.SetColumnSpan(this.LabelKingSml2Hint, 3);
+            this.LabelKingSml2Hint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelKingSml2Hint.Location = new System.Drawing.Point(3, 0);
+            this.LabelKingSml2Hint.Name = "LabelKingSml2Hint";
+            this.LabelKingSml2Hint.Padding = new System.Windows.Forms.Padding(4, 22, 4, 0);
+            this.LabelKingSml2Hint.Size = new System.Drawing.Size(168, 210);
+            this.LabelKingSml2Hint.TabIndex = 10;
+            this.LabelKingSml2Hint.Text = "HINT_KING_SML2";
+            // 
+            // ButtonKingSml2Local
+            // 
+            this.PanelKingSml2Buttons.SetColumnSpan(this.ButtonKingSml2Local, 3);
+            this.ButtonKingSml2Local.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSml2Local.Location = new System.Drawing.Point(3, 193);
+            this.ButtonKingSml2Local.Name = "ButtonKingSml2Local";
+            this.ButtonKingSml2Local.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingSml2Local.TabIndex = 1;
+            this.ButtonKingSml2Local.Tag = "PicKingSml2";
+            this.ButtonKingSml2Local.Text = "SELECT_LOCAL";
+            this.ButtonKingSml2Local.Click += new System.EventHandler(this.ButtonKingSelectLocal_Click);
+            // 
+            // ButtonKingSml2Web
+            // 
+            this.PanelKingSml2Buttons.SetColumnSpan(this.ButtonKingSml2Web, 3);
+            this.ButtonKingSml2Web.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSml2Web.Location = new System.Drawing.Point(3, 243);
+            this.ButtonKingSml2Web.Name = "ButtonKingSml2Web";
+            this.ButtonKingSml2Web.Size = new System.Drawing.Size(168, 44);
+            this.ButtonKingSml2Web.TabIndex = 0;
+            this.ButtonKingSml2Web.Tag = "PicKingSml2";
+            this.ButtonKingSml2Web.Text = "SELECT_WEB";
+            this.ButtonKingSml2Web.Click += new System.EventHandler(this.ButtonKingSelectWebModal_Click);
+            // 
+            // ButtonKingSml2ZoomIn
+            // 
+            this.ButtonKingSml2ZoomIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSml2ZoomIn.Location = new System.Drawing.Point(3, 353);
+            this.ButtonKingSml2ZoomIn.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingSml2ZoomIn.Name = "ButtonKingSml2ZoomIn";
+            this.ButtonKingSml2ZoomIn.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingSml2ZoomIn.TabIndex = 2;
+            this.ButtonKingSml2ZoomIn.Tag = "PicKingSml2";
+            this.ButtonKingSml2ZoomIn.Text = "+";
+            this.ButtonKingSml2ZoomIn.Click += new System.EventHandler(this.ButtonKingZoomIn_Click);
+            // 
+            // ButtonKingSml2ZoomOut
+            // 
+            this.ButtonKingSml2ZoomOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSml2ZoomOut.Location = new System.Drawing.Point(90, 353);
+            this.ButtonKingSml2ZoomOut.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingSml2ZoomOut.Name = "ButtonKingSml2ZoomOut";
+            this.ButtonKingSml2ZoomOut.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingSml2ZoomOut.TabIndex = 3;
+            this.ButtonKingSml2ZoomOut.Tag = "PicKingSml2";
+            this.ButtonKingSml2ZoomOut.Text = "−";
+            this.ButtonKingSml2ZoomOut.Click += new System.EventHandler(this.ButtonKingZoomOut_Click);
+            // 
+            // ButtonKingSml2ZoomReset
+            // 
+            this.ButtonKingSml2ZoomReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingSml2ZoomReset.Location = new System.Drawing.Point(177, 353);
+            this.ButtonKingSml2ZoomReset.Margin = new System.Windows.Forms.Padding(3, 3, 3, 25);
+            this.ButtonKingSml2ZoomReset.Name = "ButtonKingSml2ZoomReset";
+            this.ButtonKingSml2ZoomReset.Size = new System.Drawing.Size(81, 12);
+            this.ButtonKingSml2ZoomReset.TabIndex = 4;
+            this.ButtonKingSml2ZoomReset.Tag = "PicKingSml2";
+            this.ButtonKingSml2ZoomReset.Text = "\u21ba";
+            this.ButtonKingSml2ZoomReset.Click += new System.EventHandler(this.ButtonKingZoomReset_Click);
+            // 
+            // LayoutKingRight
+            // 
+            this.LayoutKingRight.ColumnCount = 1;
+            this.LayoutKingRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutKingRight.Controls.Add(this.ButtonKingCreateNewPortrait, 0, 0);
+            this.LayoutKingRight.Controls.Add(this.ButtonKingCustomName, 0, 1);
+            this.LayoutKingRight.Controls.Add(this.ButtonKingBackToPathfinder, 0, 2);
+            this.LayoutKingRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutKingRight.Location = new System.Drawing.Point(557, 52);
+            this.LayoutKingRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.LayoutKingRight.Name = "LayoutKingRight";
+            this.LayoutKingRight.RowCount = 3;
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.LayoutKingRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.LayoutKingRight.Size = new System.Drawing.Size(138, 404);
+            this.LayoutKingRight.TabIndex = 5;
+            this.LayoutKingRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutKingRight_Paint);
+            //
+            // ButtonKingCreateNewPortrait
+            //
+            this.ButtonKingCreateNewPortrait.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonKingCreateNewPortrait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingCreateNewPortrait.Location = new System.Drawing.Point(0, 0);
+            this.ButtonKingCreateNewPortrait.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonKingCreateNewPortrait.Name = "ButtonKingCreateNewPortrait";
+            this.ButtonKingCreateNewPortrait.Size = new System.Drawing.Size(138, 218);
+            this.ButtonKingCreateNewPortrait.TabIndex = 0;
+            this.ButtonKingCreateNewPortrait.Click += new System.EventHandler(this.ButtonKingAction_Create_Click);
+            //
+            // ButtonKingCustomName
+            //
+            this.ButtonKingCustomName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonKingCustomName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingCustomName.Location = new System.Drawing.Point(0, 218);
+            this.ButtonKingCustomName.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonKingCustomName.Name = "ButtonKingCustomName";
+            this.ButtonKingCustomName.Size = new System.Drawing.Size(138, 73);
+            this.ButtonKingCustomName.TabIndex = 2;
+            this.ButtonKingCustomName.Click += new System.EventHandler(this.ButtonKingCustomName_Click);
+            //
+            // ButtonKingBackToPathfinder
+            //
+            this.ButtonKingBackToPathfinder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonKingBackToPathfinder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonKingBackToPathfinder.Location = new System.Drawing.Point(0, 291);
+            this.ButtonKingBackToPathfinder.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonKingBackToPathfinder.Name = "ButtonKingBackToPathfinder";
+            this.ButtonKingBackToPathfinder.Size = new System.Drawing.Size(138, 113);
+            this.ButtonKingBackToPathfinder.TabIndex = 1;
+            this.ButtonKingBackToPathfinder.Click += new System.EventHandler(this.ButtonKingBackToPathfinder_Click);
+            //
+            // LabelKingGroupLargeTitle
+            // 
+            this.LabelKingGroupLargeTitle.Location = new System.Drawing.Point(0, 0);
+            this.LabelKingGroupLargeTitle.Name = "LabelKingGroupLargeTitle";
+            this.LabelKingGroupLargeTitle.Size = new System.Drawing.Size(100, 23);
+            this.LabelKingGroupLargeTitle.TabIndex = 0;
+            // 
+            // LabelKingGroupMediumTitle
+            // 
+            this.LabelKingGroupMediumTitle.Location = new System.Drawing.Point(0, 0);
+            this.LabelKingGroupMediumTitle.Name = "LabelKingGroupMediumTitle";
+            this.LabelKingGroupMediumTitle.Size = new System.Drawing.Size(100, 23);
+            this.LabelKingGroupMediumTitle.TabIndex = 0;
+            // 
+            // LabelKingGroupSmallTitle
+            // 
+            this.LabelKingGroupSmallTitle.Location = new System.Drawing.Point(0, 0);
+            this.LabelKingGroupSmallTitle.Name = "LabelKingGroupSmallTitle";
+            this.LabelKingGroupSmallTitle.Size = new System.Drawing.Size(100, 23);
+            this.LabelKingGroupSmallTitle.TabIndex = 0;
+            // 
+            // LabelKingGroupSml2Title
+            // 
+            this.LabelKingGroupSml2Title.Location = new System.Drawing.Point(0, 0);
+            this.LabelKingGroupSml2Title.Name = "LabelKingGroupSml2Title";
+            this.LabelKingGroupSml2Title.Size = new System.Drawing.Size(100, 23);
+            this.LabelKingGroupSml2Title.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.LabelURLInfo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.TextBoxURL, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(161, 139);
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(252, 790);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(494, 276);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // LabelURLInfo
-            // 
-            this.LabelURLInfo.AutoSize = true;
-            this.LabelURLInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelURLInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LabelURLInfo.Location = new System.Drawing.Point(3, 0);
-            this.LabelURLInfo.Name = "LabelURLInfo";
-            this.LabelURLInfo.Size = new System.Drawing.Size(488, 162);
-            this.LabelURLInfo.TabIndex = 0;
-            this.LabelURLInfo.Text = "LabelURLMessage";
-            this.LabelURLInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // TextBoxURL
-            // 
-            this.TextBoxURL.AllowDrop = true;
-            this.TextBoxURL.BackColor = System.Drawing.Color.Black;
-            this.TextBoxURL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxURL.ForeColor = System.Drawing.Color.Gray;
-            this.TextBoxURL.Location = new System.Drawing.Point(3, 165);
-            this.TextBoxURL.Name = "TextBoxURL";
-            this.TextBoxURL.Size = new System.Drawing.Size(488, 26);
-            this.TextBoxURL.TabIndex = 1;
-            this.TextBoxURL.Text = "InputURL";
-            this.TextBoxURL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TextBoxURL.WordWrap = false;
-            this.TextBoxURL.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextBoxURL_DragDrop);
-            this.TextBoxURL.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextBoxURL_DragEnter);
-            this.TextBoxURL.Enter += new System.EventHandler(this.TextBoxURL_Enter);
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.ButtonDenyWeb, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.ButtonLoadWeb, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.LblToFilePage3, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.LblToLoadToFilePage, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 204);
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(492, 790);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(488, 69);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // ButtonDenyWeb
-            // 
-            this.ButtonDenyWeb.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonDenyWeb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonDenyWeb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonDenyWeb.Location = new System.Drawing.Point(50, 27);
-            this.ButtonDenyWeb.Margin = new System.Windows.Forms.Padding(50, 3, 25, 3);
-            this.ButtonDenyWeb.Name = "ButtonDenyWeb";
-            this.ButtonDenyWeb.Size = new System.Drawing.Size(169, 39);
-            this.ButtonDenyWeb.TabIndex = 0;
-            this.ButtonDenyWeb.Text = "ToFilePage";
-            this.ButtonDenyWeb.UseVisualStyleBackColor = true;
-            this.ButtonDenyWeb.Click += new System.EventHandler(this.ButtonDenyWeb_Click);
-            this.ButtonDenyWeb.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonDenyWeb.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonLoadWeb
-            // 
-            this.ButtonLoadWeb.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonLoadWeb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonLoadWeb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLoadWeb.Location = new System.Drawing.Point(269, 27);
-            this.ButtonLoadWeb.Margin = new System.Windows.Forms.Padding(25, 3, 50, 3);
-            this.ButtonLoadWeb.Name = "ButtonLoadWeb";
-            this.ButtonLoadWeb.Size = new System.Drawing.Size(169, 39);
-            this.ButtonLoadWeb.TabIndex = 1;
-            this.ButtonLoadWeb.Text = "TryLoadToFilePage";
-            this.ButtonLoadWeb.UseVisualStyleBackColor = true;
-            this.ButtonLoadWeb.Click += new System.EventHandler(this.ButtonLoadWeb_Click);
-            this.ButtonLoadWeb.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonLoadWeb.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // LblToFilePage3
-            // 
-            this.LblToFilePage3.AutoSize = true;
-            this.LblToFilePage3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblToFilePage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToFilePage3.Location = new System.Drawing.Point(50, 9);
-            this.LblToFilePage3.Margin = new System.Windows.Forms.Padding(50, 0, 25, 0);
-            this.LblToFilePage3.Name = "LblToFilePage3";
-            this.LblToFilePage3.Size = new System.Drawing.Size(169, 15);
-            this.LblToFilePage3.TabIndex = 2;
-            this.LblToFilePage3.Text = "q.";
-            this.LblToFilePage3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToLoadToFilePage
-            // 
-            this.LblToLoadToFilePage.AutoSize = true;
-            this.LblToLoadToFilePage.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LblToLoadToFilePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LblToLoadToFilePage.Location = new System.Drawing.Point(269, 9);
-            this.LblToLoadToFilePage.Margin = new System.Windows.Forms.Padding(25, 0, 50, 0);
-            this.LblToLoadToFilePage.Name = "LblToLoadToFilePage";
-            this.LblToLoadToFilePage.Size = new System.Drawing.Size(169, 15);
-            this.LblToLoadToFilePage.TabIndex = 3;
-            this.LblToLoadToFilePage.Text = "e.";
-            this.LblToLoadToFilePage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutFinalPage
-            // 
-            this.LayoutFinalPage.BackColor = System.Drawing.Color.Black;
-            this.LayoutFinalPage.ColumnCount = 3;
-            this.LayoutFinalPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFinalPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 557F));
-            this.LayoutFinalPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFinalPage.Controls.Add(this.tableLayoutPanel3, 1, 1);
-            this.LayoutFinalPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutFinalPage.Location = new System.Drawing.Point(-5, 0);
-            this.LayoutFinalPage.Name = "LayoutFinalPage";
-            this.LayoutFinalPage.RowCount = 3;
-            this.LayoutFinalPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFinalPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 290F));
-            this.LayoutFinalPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutFinalPage.Size = new System.Drawing.Size(837, 555);
-            this.LayoutFinalPage.TabIndex = 6;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.LabelFinalMesg, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.LabelDirLoc, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel12, 0, 2);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(143, 135);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 4;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.72539F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.36787F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.90674F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(551, 284);
-            this.tableLayoutPanel3.TabIndex = 0;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Controls.Add(this.ButtonToMainPage4, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.ButtonToFilePage3, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.ButtonToMainPageAndFolder, 2, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 219);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(545, 62);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // ButtonToMainPage4
-            // 
-            this.ButtonToMainPage4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPage4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPage4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage4.Location = new System.Drawing.Point(3, 3);
-            this.ButtonToMainPage4.Name = "ButtonToMainPage4";
-            this.ButtonToMainPage4.Size = new System.Drawing.Size(175, 56);
-            this.ButtonToMainPage4.TabIndex = 0;
-            this.ButtonToMainPage4.Text = "ToMenuPage";
-            this.ButtonToMainPage4.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage4.Click += new System.EventHandler(this.ButtonToMainPage4_Click);
-            this.ButtonToMainPage4.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToMainPage4.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonToFilePage3
-            // 
-            this.ButtonToFilePage3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToFilePage3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToFilePage3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToFilePage3.Location = new System.Drawing.Point(184, 3);
-            this.ButtonToFilePage3.Name = "ButtonToFilePage3";
-            this.ButtonToFilePage3.Size = new System.Drawing.Size(175, 56);
-            this.ButtonToFilePage3.TabIndex = 1;
-            this.ButtonToFilePage3.Text = "ToFilePage";
-            this.ButtonToFilePage3.UseVisualStyleBackColor = true;
-            this.ButtonToFilePage3.Click += new System.EventHandler(this.ButtonToFilePage3_Click);
-            this.ButtonToFilePage3.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToFilePage3.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonToMainPageAndFolder
-            // 
-            this.ButtonToMainPageAndFolder.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPageAndFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPageAndFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPageAndFolder.Location = new System.Drawing.Point(365, 3);
-            this.ButtonToMainPageAndFolder.Name = "ButtonToMainPageAndFolder";
-            this.ButtonToMainPageAndFolder.Size = new System.Drawing.Size(177, 56);
-            this.ButtonToMainPageAndFolder.TabIndex = 2;
-            this.ButtonToMainPageAndFolder.Text = "ToMenuPageAndOpenFile";
-            this.ButtonToMainPageAndFolder.UseVisualStyleBackColor = true;
-            this.ButtonToMainPageAndFolder.Click += new System.EventHandler(this.ButtonToMainPageAndFolder_Click);
-            this.ButtonToMainPageAndFolder.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToMainPageAndFolder.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // LabelFinalMesg
-            // 
-            this.LabelFinalMesg.AutoSize = true;
-            this.LabelFinalMesg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelFinalMesg.Location = new System.Drawing.Point(3, 53);
-            this.LabelFinalMesg.Name = "LabelFinalMesg";
-            this.LabelFinalMesg.Size = new System.Drawing.Size(545, 138);
-            this.LabelFinalMesg.TabIndex = 2;
-            this.LabelFinalMesg.Text = "FinalPageText";
-            this.LabelFinalMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LabelDirLoc
-            // 
-            this.LabelDirLoc.AutoSize = true;
-            this.LabelDirLoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelDirLoc.Location = new System.Drawing.Point(3, 0);
-            this.LabelDirLoc.Name = "LabelDirLoc";
-            this.LabelDirLoc.Size = new System.Drawing.Size(545, 53);
-            this.LabelDirLoc.TabIndex = 3;
-            this.LabelDirLoc.Text = "DirLoc";
-            this.LabelDirLoc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.ColumnCount = 3;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel12.Controls.Add(this.LblToMenuPage, 0, 0);
-            this.tableLayoutPanel12.Controls.Add(this.LblToFilePage2, 1, 0);
-            this.tableLayoutPanel12.Controls.Add(this.LblToMenuPageAndOpenFIle, 2, 0);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 194);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 1;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(545, 19);
-            this.tableLayoutPanel12.TabIndex = 4;
-            // 
-            // LblToMenuPage
-            // 
-            this.LblToMenuPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblToMenuPage.AutoSize = true;
-            this.LblToMenuPage.Location = new System.Drawing.Point(3, 3);
-            this.LblToMenuPage.Name = "LblToMenuPage";
-            this.LblToMenuPage.Size = new System.Drawing.Size(175, 13);
-            this.LblToMenuPage.TabIndex = 0;
-            this.LblToMenuPage.Text = "1.";
-            this.LblToMenuPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToFilePage2
-            // 
-            this.LblToFilePage2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblToFilePage2.AutoSize = true;
-            this.LblToFilePage2.Location = new System.Drawing.Point(184, 3);
-            this.LblToFilePage2.Name = "LblToFilePage2";
-            this.LblToFilePage2.Size = new System.Drawing.Size(175, 13);
-            this.LblToFilePage2.TabIndex = 1;
-            this.LblToFilePage2.Text = "2.";
-            this.LblToFilePage2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblToMenuPageAndOpenFIle
-            // 
-            this.LblToMenuPageAndOpenFIle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblToMenuPageAndOpenFIle.AutoSize = true;
-            this.LblToMenuPageAndOpenFIle.Location = new System.Drawing.Point(365, 3);
-            this.LblToMenuPageAndOpenFIle.Name = "LblToMenuPageAndOpenFIle";
-            this.LblToMenuPageAndOpenFIle.Size = new System.Drawing.Size(177, 13);
-            this.LblToMenuPageAndOpenFIle.TabIndex = 2;
-            this.LblToMenuPageAndOpenFIle.Text = "3.";
-            this.LblToMenuPageAndOpenFIle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LayoutSettingsPage
-            // 
-            this.LayoutSettingsPage.BackColor = System.Drawing.Color.Black;
-            this.LayoutSettingsPage.ColumnCount = 3;
-            this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 550F));
-            this.LayoutSettingsPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.Controls.Add(this.tableLayoutPanel7, 1, 1);
-            this.LayoutSettingsPage.ForeColor = System.Drawing.Color.White;
-            this.LayoutSettingsPage.Location = new System.Drawing.Point(-5, 0);
-            this.LayoutSettingsPage.Name = "LayoutSettingsPage";
-            this.LayoutSettingsPage.RowCount = 3;
-            this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
-            this.LayoutSettingsPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutSettingsPage.Size = new System.Drawing.Size(834, 558);
-            this.LayoutSettingsPage.TabIndex = 7;
-            // 
-            // tableLayoutPanel7
-            // 
-            this.tableLayoutPanel7.ColumnCount = 1;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 1);
-            this.tableLayoutPanel7.Controls.Add(this.ButtonToMainPage5, 0, 6);
-            this.tableLayoutPanel7.Controls.Add(this.LabelSelectedPath, 0, 2);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel9, 0, 4);
-            this.tableLayoutPanel7.Controls.Add(this.LabelSettings, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel10, 0, 3);
-            this.tableLayoutPanel7.Controls.Add(this.LayoutUnnamed16, 0, 5);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(145, 57);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            this.tableLayoutPanel7.RowCount = 7;
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.21779F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.05769F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.13067F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.05769F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.05769F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.58112F));
-            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.89734F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(544, 444);
-            this.tableLayoutPanel7.TabIndex = 0;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 3;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel8.Controls.Add(this.ButtonKingmaker, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ButtonWotR, 1, 0);
-            this.tableLayoutPanel8.Controls.Add(this.ButtonRT, 2, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 92);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(538, 56);
-            this.tableLayoutPanel8.TabIndex = 1;
-            // 
-            // ButtonKingmaker
-            // 
-            this.ButtonKingmaker.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonKingmaker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonKingmaker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonKingmaker.Location = new System.Drawing.Point(10, 5);
-            this.ButtonKingmaker.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.ButtonKingmaker.Name = "ButtonKingmaker";
-            this.ButtonKingmaker.Size = new System.Drawing.Size(159, 46);
-            this.ButtonKingmaker.TabIndex = 0;
-            this.ButtonKingmaker.Text = "ButtonKingmaker";
-            this.ButtonKingmaker.UseVisualStyleBackColor = true;
-            this.ButtonKingmaker.Click += new System.EventHandler(this.ButtonKingmaker_Click);
-            this.ButtonKingmaker.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonKingmaker.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonWotR
-            // 
-            this.ButtonWotR.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonWotR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonWotR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonWotR.Location = new System.Drawing.Point(189, 5);
-            this.ButtonWotR.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.ButtonWotR.Name = "ButtonWotR";
-            this.ButtonWotR.Size = new System.Drawing.Size(159, 46);
-            this.ButtonWotR.TabIndex = 1;
-            this.ButtonWotR.Text = "ButtonWotR";
-            this.ButtonWotR.UseVisualStyleBackColor = true;
-            this.ButtonWotR.Click += new System.EventHandler(this.ButtonWotR_Click);
-            this.ButtonWotR.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonWotR.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonRT
-            // 
-            this.ButtonRT.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonRT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonRT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonRT.Location = new System.Drawing.Point(368, 5);
-            this.ButtonRT.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.ButtonRT.Name = "ButtonRT";
-            this.ButtonRT.Size = new System.Drawing.Size(160, 46);
-            this.ButtonRT.TabIndex = 2;
-            this.ButtonRT.Text = "ButtonRT";
-            this.ButtonRT.UseVisualStyleBackColor = true;
-            this.ButtonRT.Click += new System.EventHandler(this.ButtonRT_Click);
-            this.ButtonRT.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonRT.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonToMainPage5
-            // 
-            this.ButtonToMainPage5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonToMainPage5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonToMainPage5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonToMainPage5.Location = new System.Drawing.Point(200, 384);
-            this.ButtonToMainPage5.Margin = new System.Windows.Forms.Padding(200, 5, 200, 5);
-            this.ButtonToMainPage5.Name = "ButtonToMainPage5";
-            this.ButtonToMainPage5.Size = new System.Drawing.Size(144, 55);
-            this.ButtonToMainPage5.TabIndex = 5;
-            this.ButtonToMainPage5.Text = "ButtonToMainPage";
-            this.ButtonToMainPage5.UseVisualStyleBackColor = true;
-            this.ButtonToMainPage5.Click += new System.EventHandler(this.ButtonToMainPage5_Click);
-            this.ButtonToMainPage5.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonToMainPage5.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // LabelSelectedPath
-            // 
-            this.LabelSelectedPath.AutoSize = true;
-            this.LabelSelectedPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelSelectedPath.Location = new System.Drawing.Point(3, 151);
-            this.LabelSelectedPath.Name = "LabelSelectedPath";
-            this.LabelSelectedPath.Size = new System.Drawing.Size(538, 53);
-            this.LabelSelectedPath.TabIndex = 2;
-            this.LabelSelectedPath.Text = "SelectedPath";
-            this.LabelSelectedPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 5;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.77778F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.333334F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.77778F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.333334F));
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.77778F));
-            this.tableLayoutPanel9.Controls.Add(this.ButtonValidatePath, 2, 0);
-            this.tableLayoutPanel9.Controls.Add(this.ButtonSelectPath, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.label1, 3, 0);
-            this.tableLayoutPanel9.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.ButtonApplyChange, 4, 0);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 269);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 1;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(538, 56);
-            this.tableLayoutPanel9.TabIndex = 4;
-            // 
-            // ButtonValidatePath
-            // 
-            this.ButtonValidatePath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonValidatePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonValidatePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonValidatePath.Location = new System.Drawing.Point(208, 5);
-            this.ButtonValidatePath.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
-            this.ButtonValidatePath.Name = "ButtonValidatePath";
-            this.ButtonValidatePath.Size = new System.Drawing.Size(119, 46);
-            this.ButtonValidatePath.TabIndex = 0;
-            this.ButtonValidatePath.Text = "ButtonValidate";
-            this.ButtonValidatePath.UseVisualStyleBackColor = true;
-            this.ButtonValidatePath.Click += new System.EventHandler(this.ButtonValidatePath_Click);
-            this.ButtonValidatePath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonValidatePath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // ButtonSelectPath
-            // 
-            this.ButtonSelectPath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonSelectPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonSelectPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonSelectPath.Location = new System.Drawing.Point(15, 5);
-            this.ButtonSelectPath.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
-            this.ButtonSelectPath.Name = "ButtonSelectPath";
-            this.ButtonSelectPath.Size = new System.Drawing.Size(119, 46);
-            this.ButtonSelectPath.TabIndex = 4;
-            this.ButtonSelectPath.Text = "ButtonChange";
-            this.ButtonSelectPath.UseVisualStyleBackColor = true;
-            this.ButtonSelectPath.Click += new System.EventHandler(this.ButtonSelectPath_Click);
-            this.ButtonSelectPath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonSelectPath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(345, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 56);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "▶";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(152, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 56);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "▶";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ButtonApplyChange
-            // 
-            this.ButtonApplyChange.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonApplyChange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonApplyChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonApplyChange.Location = new System.Drawing.Point(401, 5);
-            this.ButtonApplyChange.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
-            this.ButtonApplyChange.Name = "ButtonApplyChange";
-            this.ButtonApplyChange.Size = new System.Drawing.Size(122, 46);
-            this.ButtonApplyChange.TabIndex = 7;
-            this.ButtonApplyChange.Text = "ButtonApply";
-            this.ButtonApplyChange.UseVisualStyleBackColor = true;
-            this.ButtonApplyChange.Click += new System.EventHandler(this.ButtonApplyChange_Click);
-            this.ButtonApplyChange.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonApplyChange.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // LabelSettings
-            // 
-            this.LabelSettings.AutoSize = true;
-            this.LabelSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelSettings.Location = new System.Drawing.Point(3, 0);
-            this.LabelSettings.Name = "LabelSettings";
-            this.LabelSettings.Size = new System.Drawing.Size(538, 89);
-            this.LabelSettings.TabIndex = 6;
-            this.LabelSettings.Text = "SettingsLabel";
-            this.LabelSettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.50185F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.49814F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Controls.Add(this.ButtonRestorePath, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.TextBoxFullPath, 0, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 207);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(538, 56);
-            this.tableLayoutPanel10.TabIndex = 7;
-            // 
-            // ButtonRestorePath
-            // 
-            this.ButtonRestorePath.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonRestorePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ButtonRestorePath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonRestorePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ButtonRestorePath.Location = new System.Drawing.Point(475, 4);
-            this.ButtonRestorePath.Margin = new System.Windows.Forms.Padding(15, 4, 15, 4);
-            this.ButtonRestorePath.Name = "ButtonRestorePath";
-            this.ButtonRestorePath.Size = new System.Drawing.Size(48, 48);
-            this.ButtonRestorePath.TabIndex = 3;
-            this.ButtonRestorePath.Text = "⭯";
-            this.ButtonRestorePath.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ButtonRestorePath.UseVisualStyleBackColor = false;
-            this.ButtonRestorePath.Click += new System.EventHandler(this.ButtonRestorePath_Click);
-            this.ButtonRestorePath.MouseEnter += new System.EventHandler(this.AnyButton_Enter);
-            this.ButtonRestorePath.MouseLeave += new System.EventHandler(this.AnyButton_Leave);
-            // 
-            // TextBoxFullPath
-            // 
-            this.TextBoxFullPath.BackColor = System.Drawing.Color.Black;
-            this.TextBoxFullPath.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.TextBoxFullPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxFullPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TextBoxFullPath.ForeColor = System.Drawing.Color.White;
-            this.TextBoxFullPath.Location = new System.Drawing.Point(3, 3);
-            this.TextBoxFullPath.Multiline = true;
-            this.TextBoxFullPath.Name = "TextBoxFullPath";
-            this.TextBoxFullPath.Size = new System.Drawing.Size(454, 50);
-            this.TextBoxFullPath.TabIndex = 3;
-            this.TextBoxFullPath.TabStop = false;
-            this.TextBoxFullPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TextBoxFullPath.TextChanged += new System.EventHandler(this.TextBoxFullPath_TextChanged);
-            // 
-            // LayoutUnnamed16
-            // 
-            this.LayoutUnnamed16.ColumnCount = 2;
-            this.LayoutUnnamed16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed16.Controls.Add(this.CheckBoxVerified, 0, 0);
-            this.LayoutUnnamed16.Controls.Add(this.LabelLang, 1, 0);
-            this.LayoutUnnamed16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayoutUnnamed16.Location = new System.Drawing.Point(3, 331);
-            this.LayoutUnnamed16.Name = "LayoutUnnamed16";
-            this.LayoutUnnamed16.RowCount = 1;
-            this.LayoutUnnamed16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.LayoutUnnamed16.Size = new System.Drawing.Size(538, 45);
-            this.LayoutUnnamed16.TabIndex = 8;
-            // 
-            // CheckBoxVerified
-            // 
-            this.CheckBoxVerified.AutoSize = true;
-            this.CheckBoxVerified.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CheckBoxVerified.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CheckBoxVerified.Location = new System.Drawing.Point(50, 3);
-            this.CheckBoxVerified.Margin = new System.Windows.Forms.Padding(50, 3, 50, 3);
-            this.CheckBoxVerified.Name = "CheckBoxVerified";
-            this.CheckBoxVerified.Size = new System.Drawing.Size(169, 39);
-            this.CheckBoxVerified.TabIndex = 8;
-            this.CheckBoxVerified.Text = "CustomNPC?";
-            this.CheckBoxVerified.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CheckBoxVerified.UseVisualStyleBackColor = true;
-            // 
-            // LabelLang
-            // 
-            this.LabelLang.AutoSize = true;
-            this.LabelLang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelLang.Location = new System.Drawing.Point(272, 0);
-            this.LabelLang.Name = "LabelLang";
-            this.LabelLang.Size = new System.Drawing.Size(263, 45);
-            this.LabelLang.TabIndex = 9;
-            this.LabelLang.Text = "LangLabel";
-            this.LabelLang.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel2.TabIndex = 13;
+            // 
+            // LayoutExtractPage
+            // 
+            this.LayoutExtractPage.BackColor = System.Drawing.Color.Black;
+            this.LayoutExtractPage.ColumnCount = 4;
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutExtractPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.Controls.Add(this.PanelExtractContainer, 1, 1);
+            this.LayoutExtractPage.Controls.Add(this.LayoutExtractRight, 2, 1);
+            this.LayoutExtractPage.Controls.Add(this.FlowLayoutPanelExtractBottom, 1, 2);
+            this.LayoutExtractPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutExtractPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutExtractPage.Name = "LayoutExtractPage";
+            this.LayoutExtractPage.RowCount = 3;
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.5F));
+            this.LayoutExtractPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.5F));
+            this.LayoutExtractPage.Size = new System.Drawing.Size(734, 481);
+            this.LayoutExtractPage.TabIndex = 14;
+            this.LayoutExtractPage.Visible = false;
+            this.LayoutExtractPage.Enabled = false;
+            // 
+            // PanelExtractContainer
+            // 
+            this.PanelExtractContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.PanelExtractContainer.Controls.Add(this.FlowLayoutPanelExtract);
+            this.PanelExtractContainer.Controls.Add(this.PanelExtractOverlay);
+            this.PanelExtractContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelExtractContainer.Location = new System.Drawing.Point(39, 27);
+            this.PanelExtractContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelExtractContainer.Name = "PanelExtractContainer";
+            this.PanelExtractContainer.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelExtractContainer.Size = new System.Drawing.Size(499, 427);
+            this.PanelExtractContainer.TabIndex = 2;
+            this.PanelExtractContainer.AllowDrop = true;
+            this.PanelExtractContainer.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragDrop);
+            this.PanelExtractContainer.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragEnter);
+            this.PanelExtractContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelExtractContainer_Paint);
+            // 
+            // FlowLayoutPanelExtract
+            // 
+            this.FlowLayoutPanelExtract.AutoScroll = true;
+            this.FlowLayoutPanelExtract.BackColor = System.Drawing.Color.Transparent;
+            this.FlowLayoutPanelExtract.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanelExtract.Location = new System.Drawing.Point(0, 0);
+            this.FlowLayoutPanelExtract.Margin = new System.Windows.Forms.Padding(0);
+            this.FlowLayoutPanelExtract.Name = "FlowLayoutPanelExtract";
+            this.FlowLayoutPanelExtract.Size = new System.Drawing.Size(479, 407);
+            this.FlowLayoutPanelExtract.TabIndex = 3;
+            // 
+            // PanelExtractOverlay
+            // 
+            this.PanelExtractOverlay.AllowDrop = true;
+            this.PanelExtractOverlay.BackColor = System.Drawing.Color.Transparent;
+            this.PanelExtractOverlay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PanelExtractOverlay_MouseClick);
+            this.PanelExtractOverlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PanelExtractOverlay.MouseEnter += new System.EventHandler(this.PanelExtractOverlay_MouseEnter);
+            this.PanelExtractOverlay.MouseLeave += new System.EventHandler(this.PanelExtractOverlay_MouseLeave);
+            this.PanelExtractOverlay.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragDrop);
+            this.PanelExtractOverlay.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelExtractContainer_DragEnter);
+            this.PanelExtractOverlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelExtractOverlay.Location = new System.Drawing.Point(0, 0);
+            this.PanelExtractOverlay.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelExtractOverlay.Name = "PanelExtractOverlay";
+            this.PanelExtractOverlay.Size = new System.Drawing.Size(499, 427);
+            this.PanelExtractOverlay.TabIndex = 5;
+            this.PanelExtractOverlay.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelExtractOverlay_Paint);
+            // 
+            // LayoutExtractRight
+            // 
+            this.LayoutExtractRight.ColumnCount = 1;
+            this.LayoutExtractRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractAll, 0, 0);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractSelected, 0, 1);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractShowFolder, 0, 2);
+            this.LayoutExtractRight.Controls.Add(this.ButtonExtractBack, 0, 3);
+            this.LayoutExtractRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutExtractRight.Name = "LayoutExtractRight";
+            this.LayoutExtractRight.RowCount = 4;
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.LayoutExtractRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.LayoutExtractRight.Size = new System.Drawing.Size(140, 421);
+            this.LayoutExtractRight.TabIndex = 6;
+            this.LayoutExtractRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutExtractRight_Paint);
+            // 
+            // ButtonExtractAll
+            // 
+            this.ButtonExtractAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractAll.Location = new System.Drawing.Point(0, 0);
+            this.ButtonExtractAll.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractAll.Name = "ButtonExtractAll";
+            this.ButtonExtractAll.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractAll.TabIndex = 0;
+            this.ButtonExtractAll.Text = "BUTTON_EXTRACT_ALL";
+            this.ButtonExtractAll.Click += new System.EventHandler(this.ButtonExtractAll_Click);
+            this.ButtonExtractAll.MouseEnter += new System.EventHandler(this.ButtonExtractAll_MouseEnter);
+            this.ButtonExtractAll.MouseLeave += new System.EventHandler(this.ButtonExtractAll_MouseLeave);
+            // 
+            // ButtonExtractSelected
+            // 
+            this.ButtonExtractSelected.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractSelected.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractSelected.Location = new System.Drawing.Point(0, 140);
+            this.ButtonExtractSelected.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractSelected.Name = "ButtonExtractSelected";
+            this.ButtonExtractSelected.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractSelected.TabIndex = 1;
+            this.ButtonExtractSelected.Text = "BUTTON_EXTRACT_SELECTED";
+            this.ButtonExtractSelected.Click += new System.EventHandler(this.ButtonExtractSelected_Click);
+            this.ButtonExtractSelected.MouseEnter += new System.EventHandler(this.ButtonExtractSelected_MouseEnter);
+            this.ButtonExtractSelected.MouseLeave += new System.EventHandler(this.ButtonExtractSelected_MouseLeave);
+            // 
+            // ButtonExtractBack
+            // 
+            this.ButtonExtractBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractBack.Location = new System.Drawing.Point(0, 280);
+            this.ButtonExtractBack.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractBack.Name = "ButtonExtractBack";
+            this.ButtonExtractBack.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractBack.TabIndex = 2;
+            this.ButtonExtractBack.Text = "BUTTON_EXTRACT_BACK";
+            this.ButtonExtractBack.Click += new System.EventHandler(this.ButtonExtractBack_Click);
+            this.ButtonExtractBack.MouseEnter += new System.EventHandler(this.ButtonExtractBack_MouseEnter);
+            this.ButtonExtractBack.MouseLeave += new System.EventHandler(this.ButtonExtractBack_MouseLeave);
+            // 
+            // ButtonExtractShowFolder
+            // 
+            this.ButtonExtractShowFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonExtractShowFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonExtractShowFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonExtractShowFolder.Location = new System.Drawing.Point(0, 420);
+            this.ButtonExtractShowFolder.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonExtractShowFolder.Name = "ButtonExtractShowFolder";
+            this.ButtonExtractShowFolder.Size = new System.Drawing.Size(140, 140);
+            this.ButtonExtractShowFolder.TabIndex = 8;
+            this.ButtonExtractShowFolder.Text = "BUTTON_EXTRACT_OPENFOLDER";
+            this.ButtonExtractShowFolder.Click += new System.EventHandler(this.ButtonExtractShowFolder_Click);
+            this.ButtonExtractShowFolder.MouseEnter += new System.EventHandler(this.ButtonExtractShowFolder_MouseEnter);
+            this.ButtonExtractShowFolder.MouseLeave += new System.EventHandler(this.ButtonExtractShowFolder_MouseLeave);
+            // 
+            // LabelExtractCounter
+            // 
+            this.LabelExtractCounter.AutoSize = true;
+            this.LabelExtractCounter.BackColor = System.Drawing.Color.Transparent;
+            this.LabelExtractCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelExtractCounter.ForeColor = System.Drawing.Color.Gray;
+            this.LabelExtractCounter.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelExtractCounter.Name = "LabelExtractCounter";
+            this.LabelExtractCounter.Size = new System.Drawing.Size(110, 13);
+            this.LabelExtractCounter.TabIndex = 7;
+            this.LabelExtractCounter.Text = "Total: 0 | Selected: 0";
+            this.LabelExtractCounter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // LabelGalleryCredit
+            //
+            this.LabelGalleryCredit.AutoSize = true;
+            this.LabelGalleryCredit.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelGalleryCredit.ForeColor = System.Drawing.Color.Gray;
+            this.LabelGalleryCredit.Margin = new System.Windows.Forms.Padding(3, 2, 0, 0);
+            this.LabelGalleryCredit.Name = "LabelGalleryCredit";
+            this.LabelGalleryCredit.Size = new System.Drawing.Size(220, 13);
+            this.LabelGalleryCredit.TabIndex = 8;
+            this.LabelGalleryCredit.Text = "";
+            this.LabelGalleryCredit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LabelGalleryCredit.Visible = false;
+            //
+            // FlowLayoutPanelExtractBottom
+            // 
+            this.FlowLayoutPanelExtractBottom.BackColor = System.Drawing.Color.Transparent;
+            this.FlowLayoutPanelExtractBottom.ColumnCount = 3;
+            this.FlowLayoutPanelExtractBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.FlowLayoutPanelExtractBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.FlowLayoutPanelExtractBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractCounter, 0, 0);
+            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractClearSelection, 1, 0);
+            this.FlowLayoutPanelExtractBottom.Controls.Add(this.LabelExtractClose, 2, 0);
+            this.FlowLayoutPanelExtractBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanelExtractBottom.Location = new System.Drawing.Point(39, 459);
+            this.FlowLayoutPanelExtractBottom.Margin = new System.Windows.Forms.Padding(0);
+            this.FlowLayoutPanelExtractBottom.Name = "FlowLayoutPanelExtractBottom";
+            this.FlowLayoutPanelExtractBottom.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.FlowLayoutPanelExtractBottom.RowCount = 1;
+            this.FlowLayoutPanelExtractBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.FlowLayoutPanelExtractBottom.Size = new System.Drawing.Size(499, 24);
+            this.FlowLayoutPanelExtractBottom.TabIndex = 8;
+            // 
+            // LabelExtractClearSelection
+            // 
+            this.LabelExtractClearSelection.AutoSize = true;
+            this.LabelExtractClearSelection.BackColor = System.Drawing.Color.Transparent;
+            this.LabelExtractClearSelection.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelExtractClearSelection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelExtractClearSelection.ForeColor = System.Drawing.Color.White;
+            this.LabelExtractClearSelection.Margin = new System.Windows.Forms.Padding(0);
+            this.LabelExtractClearSelection.Name = "LabelExtractClearSelection";
+            this.LabelExtractClearSelection.Size = new System.Drawing.Size(12, 13);
+            this.LabelExtractClearSelection.TabIndex = 9;
+            this.LabelExtractClearSelection.Text = "Clear selection";
+            this.LabelExtractClearSelection.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LabelExtractClearSelection.Click += new System.EventHandler(this.LabelExtractClearSelection_Click);
+            this.LabelExtractClearSelection.MouseEnter += new System.EventHandler(this.LabelExtractClearSelection_MouseEnter);
+            this.LabelExtractClearSelection.MouseLeave += new System.EventHandler(this.LabelExtractClearSelection_MouseLeave);
+            // 
+            // LabelExtractClose
+            // 
+            this.LabelExtractClose.AutoSize = true;
+            this.LabelExtractClose.BackColor = System.Drawing.Color.Transparent;
+            this.LabelExtractClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelExtractClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelExtractClose.ForeColor = System.Drawing.Color.White;
+            this.LabelExtractClose.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.LabelExtractClose.Name = "LabelExtractClose";
+            this.LabelExtractClose.Size = new System.Drawing.Size(36, 13);
+            this.LabelExtractClose.TabIndex = 10;
+            this.LabelExtractClose.Text = "Close folder";
+            this.LabelExtractClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LabelExtractClose.Click += new System.EventHandler(this.LabelExtractClose_Click);
+            this.LabelExtractClose.MouseEnter += new System.EventHandler(this.LabelExtractClose_MouseEnter);
+            this.LabelExtractClose.MouseLeave += new System.EventHandler(this.LabelExtractClose_MouseLeave);
+            // 
+            // LayoutGalleryPage
+            // 
+            this.LayoutGalleryPage.BackColor = System.Drawing.Color.Black;
+            this.LayoutGalleryPage.ColumnCount = 4;
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22F));
+            this.LayoutGalleryPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutGalleryPage.Controls.Add(this.flowLayoutPanelGalleryTabs, 1, 1);
+            this.LayoutGalleryPage.Controls.Add(this.PanelGalleryContainer, 1, 2);
+            this.LayoutGalleryPage.Controls.Add(this.LayoutGalleryRight, 2, 2);
+            this.LayoutGalleryPage.Controls.Add(this.LabelGalleryCredit, 1, 3);
+            this.LayoutGalleryPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutGalleryPage.Location = new System.Drawing.Point(0, 0);
+            this.LayoutGalleryPage.Name = "LayoutGalleryPage";
+            this.LayoutGalleryPage.RowCount = 4;
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84F));
+            this.LayoutGalleryPage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.LayoutGalleryPage.Size = new System.Drawing.Size(734, 481);
+            this.LayoutGalleryPage.TabIndex = 15;
+            this.LayoutGalleryPage.Visible = false;
+            this.LayoutGalleryPage.Enabled = false;
+            // 
+            // flowLayoutPanelGalleryTabs
+            // 
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCompanionsTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCharactersTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryNonPlayerTab);
+            this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCustomNpcTab);
+            this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelGalleryTabs.Location = new System.Drawing.Point(36, 9);
+            this.flowLayoutPanelGalleryTabs.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanelGalleryTabs.Name = "flowLayoutPanelGalleryTabs";
+            this.flowLayoutPanelGalleryTabs.Size = new System.Drawing.Size(499, 43);
+            this.flowLayoutPanelGalleryTabs.TabIndex = 0;
+            // 
+            // LabelGalleryTab
+            // 
+            this.LabelGalleryTab.AutoSize = true;
+            this.LabelGalleryTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryTab.Name = "LabelGalleryTab";
+            this.LabelGalleryTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryTab.Size = new System.Drawing.Size(113, 73);
+            this.LabelGalleryTab.TabIndex = 0;
+            this.LabelGalleryTab.Text = "LABEL_GALLERY";
+            this.LabelGalleryTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryTab_Paint);
+            this.LabelGalleryTab.MouseEnter += new System.EventHandler(this.LabelGalleryTab_MouseEnter);
+            this.LabelGalleryTab.MouseLeave += new System.EventHandler(this.LabelGalleryTab_MouseLeave);
+            this.LabelGalleryTab.Click += new System.EventHandler(this.LabelGalleryTab_Click);
+            //
+            // LabelGalleryCompanionsTab
+            //
+            this.LabelGalleryCompanionsTab.AutoSize = true;
+            this.LabelGalleryCompanionsTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCompanionsTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryCompanionsTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryCompanionsTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryCompanionsTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryCompanionsTab.Name = "LabelGalleryCompanionsTab";
+            this.LabelGalleryCompanionsTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCompanionsTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryCompanionsTab.TabIndex = 1;
+            this.LabelGalleryCompanionsTab.Text = "Companions";
+            this.LabelGalleryCompanionsTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryCompanionsTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryCompanionsTab_Paint);
+            this.LabelGalleryCompanionsTab.MouseEnter += new System.EventHandler(this.LabelGalleryCompanionsTab_MouseEnter);
+            this.LabelGalleryCompanionsTab.MouseLeave += new System.EventHandler(this.LabelGalleryCompanionsTab_MouseLeave);
+            this.LabelGalleryCompanionsTab.Click += new System.EventHandler(this.LabelGalleryCompanionsTab_Click);
+            //
+            // LabelGalleryCharactersTab
+            //
+            this.LabelGalleryCharactersTab.AutoSize = true;
+            this.LabelGalleryCharactersTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCharactersTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryCharactersTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryCharactersTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryCharactersTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryCharactersTab.Name = "LabelGalleryCharactersTab";
+            this.LabelGalleryCharactersTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCharactersTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryCharactersTab.TabIndex = 4;
+            this.LabelGalleryCharactersTab.Text = "Characters";
+            this.LabelGalleryCharactersTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryCharactersTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryCharactersTab_Paint);
+            this.LabelGalleryCharactersTab.MouseEnter += new System.EventHandler(this.LabelGalleryCharactersTab_MouseEnter);
+            this.LabelGalleryCharactersTab.MouseLeave += new System.EventHandler(this.LabelGalleryCharactersTab_MouseLeave);
+            this.LabelGalleryCharactersTab.Click += new System.EventHandler(this.LabelGalleryCharactersTab_Click);
+            //
+            // LabelGalleryNonPlayerTab
+            // 
+            this.LabelGalleryNonPlayerTab.AutoSize = true;
+            this.LabelGalleryNonPlayerTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryNonPlayerTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryNonPlayerTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryNonPlayerTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryNonPlayerTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryNonPlayerTab.Name = "LabelGalleryNonPlayerTab";
+            this.LabelGalleryNonPlayerTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryNonPlayerTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryNonPlayerTab.TabIndex = 2;
+            this.LabelGalleryNonPlayerTab.Text = "Non-player";
+            this.LabelGalleryNonPlayerTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryNonPlayerTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryNonPlayerTab_Paint);
+            this.LabelGalleryNonPlayerTab.MouseEnter += new System.EventHandler(this.LabelGalleryNonPlayerTab_MouseEnter);
+            this.LabelGalleryNonPlayerTab.MouseLeave += new System.EventHandler(this.LabelGalleryNonPlayerTab_MouseLeave);
+            this.LabelGalleryNonPlayerTab.Click += new System.EventHandler(this.LabelGalleryNonPlayerTab_Click);
+            // 
+            // LabelGalleryCustomNpcTab
+            // 
+            this.LabelGalleryCustomNpcTab.AutoSize = true;
+            this.LabelGalleryCustomNpcTab.BackColor = System.Drawing.Color.Transparent;
+            this.LabelGalleryCustomNpcTab.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LabelGalleryCustomNpcTab.ForeColor = System.Drawing.Color.White;
+            this.LabelGalleryCustomNpcTab.Location = new System.Drawing.Point(0, 0);
+            this.LabelGalleryCustomNpcTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.LabelGalleryCustomNpcTab.Name = "LabelGalleryCustomNpcTab";
+            this.LabelGalleryCustomNpcTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCustomNpcTab.Size = new System.Drawing.Size(166, 73);
+            this.LabelGalleryCustomNpcTab.TabIndex = 3;
+            this.LabelGalleryCustomNpcTab.Text = "CustomNPC";
+            this.LabelGalleryCustomNpcTab.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelGalleryCustomNpcTab.Paint += new System.Windows.Forms.PaintEventHandler(this.LabelGalleryCustomNpcTab_Paint);
+            this.LabelGalleryCustomNpcTab.MouseEnter += new System.EventHandler(this.LabelGalleryCustomNpcTab_MouseEnter);
+            this.LabelGalleryCustomNpcTab.MouseLeave += new System.EventHandler(this.LabelGalleryCustomNpcTab_MouseLeave);
+            this.LabelGalleryCustomNpcTab.Click += new System.EventHandler(this.LabelGalleryCustomNpcTab_Click);
+            // 
+            // PanelGalleryContainer
+            // 
+            this.PanelGalleryContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+            this.PanelGalleryContainer.Controls.Add(this.FlowLayoutPanelGallery);
+            this.PanelGalleryContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelGalleryContainer.Location = new System.Drawing.Point(39, 55);
+            this.PanelGalleryContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.PanelGalleryContainer.Name = "PanelGalleryContainer";
+            this.PanelGalleryContainer.Padding = new System.Windows.Forms.Padding(10);
+            this.PanelGalleryContainer.Size = new System.Drawing.Size(499, 404);
+            this.PanelGalleryContainer.TabIndex = 2;
+            this.PanelGalleryContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelGalleryContainer_Paint);
+            // 
+            // FlowLayoutPanelGallery
+            // 
+            this.FlowLayoutPanelGallery.AutoScroll = true;
+            this.FlowLayoutPanelGallery.BackColor = System.Drawing.Color.Transparent;
+            this.FlowLayoutPanelGallery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanelGallery.Location = new System.Drawing.Point(0, 0);
+            this.FlowLayoutPanelGallery.Margin = new System.Windows.Forms.Padding(0);
+            this.FlowLayoutPanelGallery.Name = "FlowLayoutPanelGallery";
+            this.FlowLayoutPanelGallery.Size = new System.Drawing.Size(479, 384);
+            this.FlowLayoutPanelGallery.TabIndex = 3;
+            // 
+            // LayoutGalleryRight
+            // 
+            this.LayoutGalleryRight.ColumnCount = 1;
+            this.LayoutGalleryRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryClone, 0, 1);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryChange, 0, 2);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryDelete, 0, 3);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryShowFolder, 0, 4);
+            this.LayoutGalleryRight.Controls.Add(this.ButtonGalleryBack, 0, 5);
+            this.LayoutGalleryRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutGalleryRight.Location = new System.Drawing.Point(546, 55);
+            this.LayoutGalleryRight.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.LayoutGalleryRight.Name = "LayoutGalleryRight";
+            this.LayoutGalleryRight.RowCount = 6;
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.LayoutGalleryRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.LayoutGalleryRight.Size = new System.Drawing.Size(140, 404);
+            this.LayoutGalleryRight.TabIndex = 6;
+            this.LayoutGalleryRight.Paint += new System.Windows.Forms.PaintEventHandler(this.LayoutGalleryRight_Paint);
+            // 
+            // ButtonGalleryBack
+            // 
+            this.ButtonGalleryBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryBack.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryBack.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryBack.Name = "ButtonGalleryBack";
+            this.ButtonGalleryBack.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryBack.TabIndex = 0;
+            this.ButtonGalleryBack.Text = "BUTTON_GALLERY_BACK";
+            this.ButtonGalleryBack.Click += new System.EventHandler(this.ButtonGalleryBack_Click);
+            this.ButtonGalleryBack.MouseEnter += new System.EventHandler(this.ButtonGalleryBack_MouseEnter);
+            this.ButtonGalleryBack.MouseLeave += new System.EventHandler(this.ButtonGalleryBack_MouseLeave);
+            // 
+            // ButtonGalleryClone
+            // 
+            this.ButtonGalleryClone.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryClone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryClone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryClone.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryClone.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryClone.Name = "ButtonGalleryClone";
+            this.ButtonGalleryClone.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryClone.TabIndex = 1;
+            this.ButtonGalleryClone.Text = "BUTTON_GALLERY_CLONE";
+            this.ButtonGalleryClone.Click += new System.EventHandler(this.ButtonGalleryClone_Click);
+            this.ButtonGalleryClone.MouseEnter += new System.EventHandler(this.ButtonGalleryClone_MouseEnter);
+            this.ButtonGalleryClone.MouseLeave += new System.EventHandler(this.ButtonGalleryClone_MouseLeave);
+            // 
+            // ButtonGalleryChange
+            // 
+            this.ButtonGalleryChange.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryChange.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryChange.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryChange.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryChange.Name = "ButtonGalleryChange";
+            this.ButtonGalleryChange.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryChange.TabIndex = 2;
+            this.ButtonGalleryChange.Text = "BUTTON_GALLERY_CHANGE";
+            this.ButtonGalleryChange.Click += new System.EventHandler(this.ButtonGalleryChange_Click);
+            this.ButtonGalleryChange.MouseEnter += new System.EventHandler(this.ButtonGalleryChange_MouseEnter);
+            this.ButtonGalleryChange.MouseLeave += new System.EventHandler(this.ButtonGalleryChange_MouseLeave);
+            // 
+            // ButtonGalleryDelete
+            // 
+            this.ButtonGalleryDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryDelete.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryDelete.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryDelete.Name = "ButtonGalleryDelete";
+            this.ButtonGalleryDelete.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryDelete.TabIndex = 3;
+            this.ButtonGalleryDelete.Text = "BUTTON_GALLERY_DELETE";
+            this.ButtonGalleryDelete.Click += new System.EventHandler(this.ButtonGalleryDelete_Click);
+            this.ButtonGalleryDelete.MouseEnter += new System.EventHandler(this.ButtonGalleryDelete_MouseEnter);
+            this.ButtonGalleryDelete.MouseLeave += new System.EventHandler(this.ButtonGalleryDelete_MouseLeave);
+            // 
+            // ButtonGalleryShowFolder
+            // 
+            this.ButtonGalleryShowFolder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonGalleryShowFolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonGalleryShowFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonGalleryShowFolder.Location = new System.Drawing.Point(0, 0);
+            this.ButtonGalleryShowFolder.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonGalleryShowFolder.Name = "ButtonGalleryShowFolder";
+            this.ButtonGalleryShowFolder.Size = new System.Drawing.Size(140, 134);
+            this.ButtonGalleryShowFolder.TabIndex = 4;
+            this.ButtonGalleryShowFolder.Text = "FOLDER \U0001F4C1";
+            this.ButtonGalleryShowFolder.Click += new System.EventHandler(this.ButtonGalleryShowFolder_Click);
+            this.ButtonGalleryShowFolder.MouseEnter += new System.EventHandler(this.ButtonGalleryShowFolder_MouseEnter);
+            this.ButtonGalleryShowFolder.MouseLeave += new System.EventHandler(this.ButtonGalleryShowFolder_MouseLeave);
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(734, 481);
-            this.Controls.Add(this.LayoutGallery);
-            this.Controls.Add(this.LayoutMainPage);
-            this.Controls.Add(this.LayoutFilePage);
-            this.Controls.Add(this.LayoutSettingsPage);
-            this.Controls.Add(this.LayoutURLDialog);
-            this.Controls.Add(this.LayoutScalePage);
-            this.Controls.Add(this.LayoutFinalPage);
+            this.Controls.Add(this.LayoutGalleryPage);
             this.Controls.Add(this.LayoutExtractPage);
+            this.Controls.Add(this.LayoutKingCreatePortrait);
+            this.Controls.Add(this.LayoutStartMenu);
+            this.Controls.Add(this.LayoutMainPage);
+            this.Controls.Add(this.LayoutPathPage);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel2);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -2203,202 +2361,215 @@ namespace OwlcatPortraitManager
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pathfinder Portrait Manager";
+            this.Text = "TITLE_MAIN";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_Closed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResizeEnd += new System.EventHandler(this.MainForm_ResizeEnd);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
-            this.LayoutFilePage.ResumeLayout(false);
-            this.LayoutUnnamed1.ResumeLayout(false);
-            this.LayoutUnnamed1.PerformLayout();
-            this.LayoutUnnamed5.ResumeLayout(false);
-            this.LayoutUnnamed5.PerformLayout();
-            this.PanelPortraitTemp.ResumeLayout(false);
-            this.PanelPortraitTemp.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitTemp)).EndInit();
-            this.LayoutScalePage.ResumeLayout(false);
-            this.LayoutUnnamed2.ResumeLayout(false);
-            this.PanelPortraitLrg.ResumeLayout(false);
-            this.PanelPortraitLrg.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitLrg)).EndInit();
-            this.PanelPortraitMed.ResumeLayout(false);
-            this.PanelPortraitMed.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitMed)).EndInit();
-            this.PanelPortraitSml.ResumeLayout(false);
-            this.PanelPortraitSml.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicPortraitSml)).EndInit();
-            this.LayoutUnnamed3.ResumeLayout(false);
-            this.LayoutUnnamed3.PerformLayout();
-            this.LayoutUnnamed4.ResumeLayout(false);
+            this.LayoutStartMenu.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartKing)).EndInit();
+            this.tableLayoutPanel14.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartWotr)).EndInit();
+            this.tableLayoutPanel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartRt)).EndInit();
+            this.tableLayoutPanel16.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartPoe)).EndInit();
+            this.tableLayoutPanel17.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartPoed)).EndInit();
+            this.tableLayoutPanel18.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartTyr)).EndInit();
+            this.tableLayoutPanel19.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartW3)).EndInit();
+            this.tableLayoutPanel20.ResumeLayout(false);
+            this.tableLayoutPanel20.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenNM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxStartOpenGitHub)).EndInit();
+            this.LayoutPathPage.ResumeLayout(false);
+            this.LayoutPathPage.PerformLayout();
+            this.tableLayoutPanel21.ResumeLayout(false);
+            this.tableLayoutPanel21.PerformLayout();
+            this.tableLayoutPanel22.ResumeLayout(false);
+            this.tableLayoutPanel22.PerformLayout();
             this.LayoutMainPage.ResumeLayout(false);
-            this.LayoutMainPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxTitle)).EndInit();
-            this.LayoutLang.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxEng)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxRus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PicBoxGer)).EndInit();
+            this.tableLayoutPanel23.ResumeLayout(false);
+            this.tableLayoutPanel23.PerformLayout();
+            this.PanelExtractOverlay.ResumeLayout(false);
+            this.FlowLayoutPanelExtract.ResumeLayout(false);
+            this.FlowLayoutPanelExtractBottom.ResumeLayout(false);
+            this.PanelExtractContainer.ResumeLayout(false);
             this.LayoutExtractPage.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            this.LayoutUnnamed10.ResumeLayout(false);
-            this.LayoutUnnamed11.ResumeLayout(false);
-            this.LayoutUnnamed11.PerformLayout();
-            this.LayoutGallery.ResumeLayout(false);
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.LayoutURLDialog.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.LayoutFinalPage.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.tableLayoutPanel12.PerformLayout();
-            this.LayoutSettingsPage.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel10.PerformLayout();
-            this.LayoutUnnamed16.ResumeLayout(false);
-            this.LayoutUnnamed16.PerformLayout();
+            this.LayoutExtractPage.PerformLayout();
+            this.LayoutKingCreatePortrait.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.LayoutKingPortraitGroups.ResumeLayout(false);
+            this.LayoutKingPortraitGroupLarge.ResumeLayout(false);
+            this.PanelKingLrg.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingLrg)).EndInit();
+            this.PanelKingLrgButtons.ResumeLayout(false);
+            this.LayoutKingPortraitGroupMedium.ResumeLayout(false);
+            this.PanelKingMed.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingMed)).EndInit();
+            this.PanelKingMedButtons.ResumeLayout(false);
+            this.LayoutKingPortraitGroupSmall.ResumeLayout(false);
+            this.PanelKingSml.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingSml)).EndInit();
+            this.PanelKingSmlButtons.ResumeLayout(false);
+            this.LayoutKingPortraitGroupSml2.ResumeLayout(false);
+            this.PanelKingSml2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicKingSml2)).EndInit();
+            this.PanelKingSml2Buttons.ResumeLayout(false);
+            this.LayoutKingRight.ResumeLayout(false);
+            this.FlowLayoutPanelGallery.ResumeLayout(false);
+            this.PanelGalleryContainer.ResumeLayout(false);
+            this.flowLayoutPanelGalleryTabs.ResumeLayout(false);
+            this.flowLayoutPanelGalleryTabs.PerformLayout();
+            this.LayoutGalleryPage.ResumeLayout(false);
+            this.LayoutGalleryPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel LayoutMainPage;
-        private System.Windows.Forms.TableLayoutPanel LayoutFilePage;
-        private System.Windows.Forms.TableLayoutPanel LayoutScalePage;
-        private System.Windows.Forms.TableLayoutPanel LayoutExtractPage;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed1;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed2;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed3;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed4;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed5;
-        private System.Windows.Forms.Button ButtonToFilePage;
-        private System.Windows.Forms.Button ButtonToMainPage;
-        private System.Windows.Forms.Button ButtonToScalePage;
-        private System.Windows.Forms.Button ButtonToGalleryPage;
-        private System.Windows.Forms.Button ButtonToFilePage2;
-        private System.Windows.Forms.Button ButtonCreatePortrait;
-        private System.Windows.Forms.Button ButtonLocalPortraitLoad;
-        private System.Windows.Forms.Button ButtonWebPortraitLoad;
-        private System.Windows.Forms.Button ButtonExit;
-        private System.Windows.Forms.Button ButtonToExtractPage;
-        private System.Windows.Forms.Button ButtonHintOnFilePage;
-        private System.Windows.Forms.Button ButtonHintOnScalePage;
-        private System.Windows.Forms.PictureBox PicPortraitTemp;
-        private System.Windows.Forms.PictureBox PicPortraitLrg;
-        private System.Windows.Forms.PictureBox PicPortraitMed;
-        private System.Windows.Forms.PictureBox PicPortraitSml;
-        private System.Windows.Forms.Panel PanelPortraitLrg;
-        private System.Windows.Forms.Panel PanelPortraitMed;
-        private System.Windows.Forms.Panel PanelPortraitSml;
-        private System.Windows.Forms.Panel PanelPortraitTemp;
-        private System.Windows.Forms.Label LabelMedImage;
-        private System.Windows.Forms.Label LabelLrgImg;
-        private System.Windows.Forms.Label LabelSmlImg;
-        private System.Windows.Forms.Label LabelCopyright;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed10;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed11;
-        private System.Windows.Forms.Button ButtonToMainPage3;
-        private System.Windows.Forms.Button ButtonOpenFolder;
-        private System.Windows.Forms.TableLayoutPanel LayoutGallery;
         private System.Windows.Forms.ImageList ImgListGallery;
-        private System.Windows.Forms.ListView ListGallery;
-        private System.Windows.Forms.Button ButtonDeletePortait;
-        private System.Windows.Forms.Button ButtonChangePortrait;
-        private System.Windows.Forms.Button ButtonHintFolder;
-        private System.Windows.Forms.PictureBox PictureBoxTitle;
-        private System.Windows.Forms.TableLayoutPanel LayoutURLDialog;
+        private System.Windows.Forms.ImageList ImgListExtract;
+        private System.Windows.Forms.TableLayoutPanel LayoutStartMenu;
+        private System.Windows.Forms.Button ButtonStartKing;
+        private System.Windows.Forms.Button ButtonStartWotr;
+        private System.Windows.Forms.Button ButtonStartRt;
+        private System.Windows.Forms.Button ButtonStartPoe;
+        private System.Windows.Forms.Button ButtonStartPoed;
+        private System.Windows.Forms.Button ButtonStartTyr;
+        private System.Windows.Forms.Button ButtonStartW3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.PictureBox PictureBoxStartKing;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.PictureBox PictureBoxStartWotr;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
+        private System.Windows.Forms.PictureBox PictureBoxStartRt;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
+        private System.Windows.Forms.PictureBox PictureBoxStartPoe;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
+        private System.Windows.Forms.PictureBox PictureBoxStartPoed;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel18;
+        private System.Windows.Forms.PictureBox PictureBoxStartTyr;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel19;
+        private System.Windows.Forms.PictureBox PictureBoxStartW3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel20;
+        private System.Windows.Forms.Label LabelStartAuthor;
+        private System.Windows.Forms.PictureBox PictureBoxStartOpenNM;
+        private System.Windows.Forms.PictureBox PictureBoxStartOpenGitHub;
+        private System.Windows.Forms.TableLayoutPanel LayoutPathPage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel21;
+        private System.Windows.Forms.Label LabelSelectPathBackToStart;
+        private System.Windows.Forms.Label LabelSelectPathNextToMain;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel22;
+        private System.Windows.Forms.Label LabelSelectPathResetPath;
+        private System.Windows.Forms.Label LabelSelectPathChoosePath;
+        private System.Windows.Forms.Label LabelSelectPathTitle;
+        private System.Windows.Forms.Label LabelSelectPathExplain;
+        private System.Windows.Forms.Label LabelSelectPathSelected;
+        private System.Windows.Forms.TableLayoutPanel LayoutMainPage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel23;
+        private System.Windows.Forms.Label LabelCreatePortrait;
+        private System.Windows.Forms.Label LabelExtract;
+        private System.Windows.Forms.Label LabelBrowse;
+        private System.Windows.Forms.Label LabelSettingsPage;
+        private System.Windows.Forms.Label LabelExit;
+        private System.Windows.Forms.LinkLabel LabelMainPageFooter;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingCreatePortrait;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label LabelURLInfo;
-        private System.Windows.Forms.TextBox TextBoxURL;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button ButtonDenyWeb;
-        private System.Windows.Forms.Button ButtonLoadWeb;
-        private System.Windows.Forms.TableLayoutPanel LayoutFinalPage;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button ButtonToMainPage4;
-        private System.Windows.Forms.Button ButtonToFilePage3;
-        private System.Windows.Forms.Button ButtonToMainPageAndFolder;
-        private System.Windows.Forms.Label LabelFinalMesg;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.ListView ListExtract;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Button ButtonChooseFolder;
+        private System.Windows.Forms.Label LabelKingCreatePortraitLarge;
+        private System.Windows.Forms.Label LabelKingCreatePortraitMedium;
+        private System.Windows.Forms.Label LabelKingCreatePortraitSmall;
+        private System.Windows.Forms.Label LabelKingCreatePortraitSml2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroups;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupLarge;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupMedium;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupSmall;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingPortraitGroupSml2;
+        private System.Windows.Forms.TableLayoutPanel LayoutKingRight;
+        private System.Windows.Forms.Button ButtonKingCreateNewPortrait;
+        private System.Windows.Forms.Button ButtonKingCustomName;
+        private System.Windows.Forms.Button ButtonKingBackToPathfinder;
+        private System.Windows.Forms.Label LabelKingGroupLargeTitle;
+        private System.Windows.Forms.Label LabelKingGroupMediumTitle;
+        private System.Windows.Forms.Label LabelKingGroupSmallTitle;
+        private System.Windows.Forms.Label LabelKingGroupSml2Title;
+        // private System.Windows.Forms.Label LabelKingCreatePortraitActiveGroup; // removed
+        private System.Windows.Forms.Panel PanelKingLrg;
+        private System.Windows.Forms.PictureBox PicKingLrg;
+        private System.Windows.Forms.TableLayoutPanel PanelKingLrgButtons;
+        private System.Windows.Forms.Button ButtonKingLrgWeb;
+        private System.Windows.Forms.Button ButtonKingLrgLocal;
+        private System.Windows.Forms.Button ButtonKingLrgZoomIn;
+        private System.Windows.Forms.Button ButtonKingLrgZoomOut;
+        private System.Windows.Forms.Button ButtonKingLrgZoomReset;
+        private System.Windows.Forms.Label LabelKingLrgHint;
+
+        private System.Windows.Forms.Panel PanelKingMed;
+        private System.Windows.Forms.PictureBox PicKingMed;
+        private System.Windows.Forms.TableLayoutPanel PanelKingMedButtons;
+        private System.Windows.Forms.Button ButtonKingMedWeb;
+        private System.Windows.Forms.Button ButtonKingMedLocal;
+        private System.Windows.Forms.Button ButtonKingMedZoomIn;
+        private System.Windows.Forms.Button ButtonKingMedZoomOut;
+        private System.Windows.Forms.Button ButtonKingMedZoomReset;
+        private System.Windows.Forms.Label LabelKingMedHint;
+
+        private System.Windows.Forms.Panel PanelKingSml;
+        private System.Windows.Forms.PictureBox PicKingSml;
+        private System.Windows.Forms.TableLayoutPanel PanelKingSmlButtons;
+        private System.Windows.Forms.Button ButtonKingSmlWeb;
+        private System.Windows.Forms.Button ButtonKingSmlLocal;
+        private System.Windows.Forms.Button ButtonKingSmlZoomIn;
+        private System.Windows.Forms.Button ButtonKingSmlZoomOut;
+        private System.Windows.Forms.Button ButtonKingSmlZoomReset;
+        private System.Windows.Forms.Label LabelKingSmlHint;
+
+        private System.Windows.Forms.Panel PanelKingSml2;
+        private System.Windows.Forms.PictureBox PicKingSml2;
+        private System.Windows.Forms.TableLayoutPanel PanelKingSml2Buttons;
+        private System.Windows.Forms.Button ButtonKingSml2Web;
+        private System.Windows.Forms.Button ButtonKingSml2Local;
+        private System.Windows.Forms.Button ButtonKingSml2ZoomIn;
+        private System.Windows.Forms.Button ButtonKingSml2ZoomOut;
+        private System.Windows.Forms.Button ButtonKingSml2ZoomReset;
+        private System.Windows.Forms.Label LabelKingSml2Hint;
+
+        private System.Windows.Forms.TableLayoutPanel LayoutExtractPage;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelExtract;
+        private System.Windows.Forms.Panel PanelExtractOverlay;
+        private System.Windows.Forms.Panel PanelExtractContainer;
         private System.Windows.Forms.Button ButtonExtractAll;
         private System.Windows.Forms.Button ButtonExtractSelected;
-        private System.Windows.Forms.Button ButtonToMainPage2;
-        private System.Windows.Forms.Button ButtonHintExtract;
-        private System.Windows.Forms.Button ButtonOpenFolders;
-        private System.Windows.Forms.ImageList ImgListExtract;
-        private System.Windows.Forms.Button ButtonToSettingsPage;
-        private System.Windows.Forms.TableLayoutPanel LayoutSettingsPage;
-        private System.Windows.Forms.Label LabelVersion;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Button ButtonKingmaker;
-        private System.Windows.Forms.Button ButtonWotR;
-        private System.Windows.Forms.Label LabelSelectedPath;
-        private System.Windows.Forms.TextBox TextBoxFullPath;
-        private System.Windows.Forms.Button ButtonToMainPage5;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Button ButtonValidatePath;
-        private System.Windows.Forms.Button ButtonRestorePath;
-        private System.Windows.Forms.Button ButtonSelectPath;
-        private System.Windows.Forms.Label LabelSettings;
-        private System.Windows.Forms.Button ButtonNextImageType;
-        private System.Windows.Forms.Label LabelDirLoc;
-        private System.Windows.Forms.Label LabelImageFlag;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button ButtonApplyChange;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
-        private System.Windows.Forms.Button ButtonLoadNormal;
-        private System.Windows.Forms.Button ButtonLoadCustom;
-        private System.Windows.Forms.Button ButtonLoadCustomNPC;
-        private System.Windows.Forms.Button ButtonLoadCustomArmy;
-        private System.Windows.Forms.TableLayoutPanel LayoutLang;
-        private System.Windows.Forms.PictureBox PicBoxEng;
-        private System.Windows.Forms.PictureBox PicBoxRus;
-        private System.Windows.Forms.PictureBox PicBoxGer;
-        private System.Windows.Forms.CheckBox CheckBoxVerified;
-        private System.Windows.Forms.TableLayoutPanel LayoutUnnamed16;
-        private System.Windows.Forms.Label LabelLang;
-        private System.Windows.Forms.Button ButtonRT;
-        private System.Windows.Forms.Label LblPointerToFilePage;
-        private System.Windows.Forms.Label LblPointerToExtractPage;
-        private System.Windows.Forms.Label LblPointerToGalleryPage;
-        private System.Windows.Forms.Label LblToLoadLocal;
-        private System.Windows.Forms.Label LblToLoadWeb;
-        private System.Windows.Forms.Label LblToMainPage;
-        private System.Windows.Forms.Label LblToScalePage;
-        private System.Windows.Forms.Label LblToAdvancedPage;
-        private System.Windows.Forms.Label LblToFilePage;
-        private System.Windows.Forms.Label LblToCreatePortrait;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
-        private System.Windows.Forms.Label LblToMenuPage;
-        private System.Windows.Forms.Label LblToFilePage2;
-        private System.Windows.Forms.Label LblToMenuPageAndOpenFIle;
-        private System.Windows.Forms.Label LblToMainPage3;
-        private System.Windows.Forms.Label LblToOpenFolder;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label LblToFilePage3;
-        private System.Windows.Forms.Label LblToLoadToFilePage;
+        private System.Windows.Forms.Button ButtonExtractBack;
+        private System.Windows.Forms.Button ButtonExtractShowFolder;
+        private System.Windows.Forms.TableLayoutPanel LayoutExtractRight;
+        private System.Windows.Forms.Label LabelExtractCounter;
+        private System.Windows.Forms.Label LabelGalleryCredit;
+        private System.Windows.Forms.TableLayoutPanel FlowLayoutPanelExtractBottom;
+        private System.Windows.Forms.Label LabelExtractClearSelection;
+        private System.Windows.Forms.Label LabelExtractClose;
+        private System.Windows.Forms.TableLayoutPanel LayoutGalleryPage;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGalleryTabs;
+        private System.Windows.Forms.Label LabelGalleryTab;
+        private System.Windows.Forms.Label LabelGalleryNonPlayerTab;
+        private System.Windows.Forms.Label LabelGalleryCustomNpcTab;
+        private System.Windows.Forms.Label LabelGalleryCompanionsTab;
+        private System.Windows.Forms.Label LabelGalleryCharactersTab;
+        private System.Windows.Forms.Panel PanelGalleryContainer;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanelGallery;
+        private System.Windows.Forms.TableLayoutPanel LayoutGalleryRight;
+        private System.Windows.Forms.Button ButtonGalleryBack;
+        private System.Windows.Forms.Button ButtonGalleryClone;
+        private System.Windows.Forms.Button ButtonGalleryChange;
+        private System.Windows.Forms.Button ButtonGalleryDelete;
+        private System.Windows.Forms.Button ButtonGalleryShowFolder;
     }
 }
 

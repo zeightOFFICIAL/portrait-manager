@@ -1,64 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -117,233 +58,468 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_ADVANCED" xml:space="preserve">
-    <value>Mittleres Porträt</value>
+  <data name="BUTTON_CHOOSE" xml:space="preserve">
+    <value>Wählen 📁</value>
   </data>
-  <data name="BUTTON_ADVANCED2" xml:space="preserve">
-    <value>Kleines Porträt</value>
+  <data name="BUTTON_RESET" xml:space="preserve">
+    <value>Reset 🔄</value>
   </data>
-  <data name="BUTTON_APPLY" xml:space="preserve">
-    <value>Anwenden</value>
+  <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
+    <value>Zeight Portrait Manager
+Artemii "Zeight" Saganenko ©2023-2026</value>
   </data>
-  <data name="BUTTON_BACK" xml:space="preserve">
-    <value>Zurück</value>
+  <data name="MAIN_MENU_TITLE" xml:space="preserve">
+    <value>Portrait Manager</value>
   </data>
-  <data name="BUTTON_CANCEL" xml:space="preserve">
-    <value>Stornieren</value>
+  <data name="NAME_DEADFIRE" xml:space="preserve">
+    <value>Pillars of Eternity: Deadfire</value>
   </data>
-  <data name="BUTTON_CUSTOMARMY" xml:space="preserve">
-    <value>Armeen</value>
+  <data name="NAME_KING" xml:space="preserve">
+    <value>Pathfinder: Kingmaker</value>
   </data>
-  <data name="BUTTON_CUSTOMNPC" xml:space="preserve">
-    <value>Figuren</value>
+  <data name="NAME_PILLARS" xml:space="preserve">
+    <value>Pillars of Eternity</value>
+  </data>
+  <data name="NAME_ROGUE" xml:space="preserve">
+    <value>Warhammer 40K: Rogue Trader</value>
+  </data>
+  <data name="NAME_TYR" xml:space="preserve">
+    <value>Tyranny</value>
+  </data>
+  <data name="NAME_WASTE" xml:space="preserve">
+    <value>Wasteland 3</value>
+  </data>
+  <data name="NAME_WOTR" xml:space="preserve">
+    <value>Pathfinder: Wrath of the Righteous</value>
+  </data>
+  <data name="BUTTON_EXTRACT" xml:space="preserve">
+    <value>Ordner entpacken</value>
+  </data>
+  <data name="TEXT_EXPLAIN_PATH_ROGUE" xml:space="preserve">
+    <value>Rogue Trader speichert seine Portraits im lokalen Anwendungsdatenordner unter: AppData\LocalLow\Owlcat Games\Warhammer 40000 Rogue Trader\Portraits\. Das Programm erkennt diesen Pfad automatisch anhand deines Windows-Benutzerprofils.</value>
+  </data>
+  <data name="BUTTON_BROWSE" xml:space="preserve">
+    <value>Galerie öffnen</value>
+  </data>
+  <data name="BUTTON_CREATE" xml:space="preserve">
+    <value>Portrait anlegen</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
-    <value>Hinausgehen</value>
+    <value>Exit</value>
   </data>
-  <data name="BUTTON_EXTRACTALL" xml:space="preserve">
-    <value>Alle verschieben</value>
+  <data name="TEXT_EXPLAIN_PATH_WASTE" xml:space="preserve">
+    <value>Wasteland 3 speichert alle benutzerdefinierten Portraits im Dokumente-Ordner, unter: Documents\My Games\Wasteland3\Custom Portraits\. Das Programm erkennt diesen Ordner automatisch anhand des System-Dokumentenpfads. Schlägt die Erkennung fehl, kannst du den Ordner manuell öffnen.</value>
   </data>
-  <data name="BUTTON_EXTRACTOPENFOLDER" xml:space="preserve">
-    <value>Ordner öffnen</value>
+  <data name="BUTTON_SETTINGS" xml:space="preserve">
+    <value>Spiel ändern</value>
   </data>
-  <data name="BUTTON_EXTRACTSELECTED" xml:space="preserve">
-    <value>Bewegen</value>
+  <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
+    <value>Tyranny speichert seine Portrait-Dateien direkt im Installationsverzeichnis des Spiels, unter: Data\data\art\gui\portraits\player\. Das Programm versucht automatisch, die Tyranny-Installation über Registry-Abfragen in deinen Steam-, GOG- und Epic-Games-Bibliotheken zu finden. Schlägt die automatische Erkennung fehl, kannst du den Tyranny-Ordner manuell auswählen.
+
+- Über Galerie durchsuchen kannst du außerdem Begleiter- und NPC-Portraits ändern, falls vorhanden.</value>
   </data>
-  <data name="BUTTON_FINALOPENFOLDER" xml:space="preserve">
-    <value>Offen</value>
+  <data name="TEXT_EXPLAIN_PATH_KING" xml:space="preserve">
+    <value>Pathfinder: Kingmaker speichert seine Portraits im lokalen Anwendungsdatenordner, unter: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. Das Programm erkennt diesen Pfad automatisch anhand deines Windows-Benutzerprofils.
+
+- Über Galerie durchsuchen kannst du Begleiter- und NPC-Portraits nur ändern, wenn CustomNPC installiert ist.</value>
   </data>
-  <data name="BUTTON_GALLERYOPENFOLDER" xml:space="preserve">
-    <value>Ordner öffnen</value>
+  <data name="TEXT_EXPLAIN_PATH_WOTR" xml:space="preserve">
+    <value>Pathfinder: Wrath of the Righteous speichert seine Portraits im lokalen Anwendungsdatenordner, unter: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. Das Programm erkennt diesen Pfad automatisch anhand deines Windows-Benutzerprofils.
+
+- Über Galerie durchsuchen kannst du Begleiter- und NPC-Portraits nur ändern, wenn CustomNPC installiert ist.</value>
   </data>
-  <data name="BUTTON_HINT" xml:space="preserve">
-    <value>?</value>
+  <data name="TEXT_EXPLAIN_PATH_POE" xml:space="preserve">
+    <value>Pillars of Eternity speichert seine Portraits im Installationsordner: &lt;Pillars of Eternity Installationsordner&gt;\PillarsOfEternity_Data\data\art\gui\portraits\. Das Programm versucht automatisch, diesen Ordner über deine Steam-, GOG- und Epic-Games-Installationen zu finden. Findet die automatische Erkennung das Spiel nicht, kannst du den Installationsordner manuell auswählen.
+
+- Über Galerie durchsuchen kannst du außerdem Begleiter- und NPC-Portraits ändern, falls vorhanden.</value>
   </data>
-  <data name="BUTTON_LOAD" xml:space="preserve">
-    <value>Herunterladen</value>
+  <data name="TEXT_EXPLAIN_PATH_POED" xml:space="preserve">
+    <value>Pillars of Eternity: Deadfire speichert seine Portraits im Installationsordner: &lt;Pillars of Eternity II Installationsordner&gt;\PillarsOfEternityII_Data\gui\portraits\. Das Programm versucht automatisch, diesen Ordner über deine Steam-, GOG- und Epic-Games-Installationen zu finden. Findet die automatische Erkennung das Spiel nicht, kannst du den Installationsordner manuell auswählen.
+
+- Über Galerie durchsuchen kannst du außerdem Begleiter- und NPC-Portraits ändern, falls vorhanden.</value>
   </data>
-  <data name="BUTTON_LOADLOCALPORTRAIT" xml:space="preserve">
-    <value>Wählen</value>
+  <data name="BUTTON_KINGCREATEPAGELRG" xml:space="preserve">
+    <value>⍞ Ganzkörper</value>
   </data>
-  <data name="BUTTON_LOADWEBPORTRAIT" xml:space="preserve">
-    <value>Herunterladen</value>
+  <data name="BUTTON_KINGCREATEPAGEMID" xml:space="preserve">
+    <value>⌻ Mittel</value>
   </data>
-  <data name="BUTTON_MENU" xml:space="preserve">
-    <value>Hauptmenü</value>
+  <data name="BUTTON_KINGCREATEPAGESML" xml:space="preserve">
+    <value>⌼ Portrait</value>
   </data>
-  <data name="BUTTON_NEW" xml:space="preserve">
-    <value>Erstellen</value>
+  <data name="BUTTON_KINGCREATEPAGESML2" xml:space="preserve">
+    <value>▣ Kl2</value>
   </data>
-  <data name="BUTTON_NO" xml:space="preserve">
-    <value>Nein</value>
+  <data name="BUTTON_SELECT_WEB" xml:space="preserve">
+    <value>Web wählen 🌐</value>
   </data>
-  <data name="BUTTON_OK" xml:space="preserve">
-    <value>Ok</value>
+  <data name="BUTTON_SELECT_LOCAL" xml:space="preserve">
+    <value>Lokal wählen 📁</value>
   </data>
-  <data name="BUTTON_SELECTEDCHANGE" xml:space="preserve">
-    <value>Ändern</value>
+  <data name="HINT_KING_LRG" xml:space="preserve">
+    <value>Ganzkörper (692×1024) — wird auf dem Charakterbild und im Levelaufstiegs-Bildschirm verwendet.
+
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
-  <data name="BUTTON_SELECTEDDELETE" xml:space="preserve">
-    <value>Löschen</value>
+  <data name="HINT_KING_MED" xml:space="preserve">
+    <value>Mittel (330×432) — wird in der Gruppenleiste und im Charakterbildschirm verwendet.
+
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
-  <data name="BUTTON_SELECTPATH" xml:space="preserve">
-    <value>Weg</value>
+  <data name="HINT_KING_SML" xml:space="preserve">
+    <value>Portrait / Klein (185×242) — wird in Dialogen und der Begleiterliste verwendet.
+
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
-  <data name="BUTTON_SHOWCUSTOM" xml:space="preserve">
-    <value>CustomNPC</value>
+  <data name="HINT_KING_ZOOM" xml:space="preserve">
+    <value>Verwende + und −, um das Bild zu vergrößern oder zu verkleinern, falls das Mausrad nicht funktioniert.</value>
   </data>
-  <data name="BUTTON_SHOWLOCAL" xml:space="preserve">
-    <value>Porträts</value>
+  <data name="HINT_RT_LRG" xml:space="preserve">
+    <value>Ganzkörper (1080×1480) — wird auf dem Charakterbild und im Levelaufstiegs-Bildschirm verwendet.
+
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
-  <data name="BUTTON_SUCESS" xml:space="preserve">
-    <value>Erfolgreich</value>
+  <data name="HINT_RT_MED" xml:space="preserve">
+    <value>Mittel (448×600) — wird in der Gruppenleiste und im Charakterbildschirm verwendet.
+
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
-  <data name="BUTTON_TOCREATE" xml:space="preserve">
-    <value>Erstellen</value>
+  <data name="HINT_RT_SML" xml:space="preserve">
+    <value>Portrait / Klein (260×336) — wird in Dialogen und der Begleiterliste verwendet.
+
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
-  <data name="BUTTON_TOEXRACTPAGE" xml:space="preserve">
-    <value>Ordner extrahieren</value>
+  <data name="HINT_PILLARS_LRG" xml:space="preserve">
+    <value>Vollportrait (210×330) — wird im Charakterbildschirm und auf dem Charakterbild verwendet.
+
+Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
   </data>
-  <data name="BUTTON_TOFILEPAGE" xml:space="preserve">
-    <value>Erstellen Porträt</value>
+  <data name="HINT_PILLARS_SML" xml:space="preserve">
+    <value>Portrait / Klein (76×96) — wird in Dialogen und der Begleiterliste verwendet.
+
+Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
   </data>
-  <data name="BUTTON_TOGALLERYPAGE" xml:space="preserve">
+  <data name="HINT_PILLARS_MED" xml:space="preserve">
+    <value>Voll2 / Dialog (90×141) — wird in Dialogbildschirmen verwendet.
+
+Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+  </data>
+  <data name="HINT_PILLARS_SML2" xml:space="preserve">
+    <value>Portrait 2 (76×96) — wird für zusätzliche Oberflächenelemente verwendet.
+
+Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+  </data>
+  <data name="WEBDIALOG_TITLE" xml:space="preserve">
+    <value>Bild aus Web laden</value>
+  </data>
+  <data name="WEBDIALOG_HINT" xml:space="preserve">
+    <value>Füge eine Web-Bildadresse in das Feld unten ein oder ziehe sie hinein, und klicke dann auf Laden. Jeder Bildlink, der sich in deinem Browser öffnen lässt, funktioniert.</value>
+  </data>
+  <data name="WEBDIALOG_BUTTON_LOAD" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="WEBDIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="EXTRACT_PAGE_TITLE" xml:space="preserve">
+    <value>Portrait-Extraktion</value>
+  </data>
+  <data name="BUTTON_SELECT_ARCHIVE" xml:space="preserve">
+    <value>Portraitpaket wählen</value>
+  </data>
+  <data name="BUTTON_EXTRACT_ALL" xml:space="preserve">
+    <value>Alles extrahieren ▉ </value>
+  </data>
+  <data name="BUTTON_EXTRACT_SELECTED" xml:space="preserve">
+    <value>Auswahl entpacken ▞ </value>
+  </data>
+  <data name="BUTTON_EXTRACT_BACK" xml:space="preserve">
+    <value>&lt; Zurück</value>
+  </data>
+  <data name="BUTTON_EXTRACT_OPENFOLDER" xml:space="preserve">
+    <value>Spielordner öffnen 📁</value>
+  </data>
+  <data name="BUTTON_EXTRACT_OPENFOLDERS" xml:space="preserve">
+    <value>Ordner öffnen 📁</value>
+  </data>
+  <data name="MESG_EXTRACT_SUCCESS" xml:space="preserve">
+    <value>{0} Portrait(s) erfolgreich extrahiert.</value>
+  </data>
+  <data name="MESG_EXTRACT_NOSELECTION" xml:space="preserve">
+    <value>Keine Portraits ausgewählt.</value>
+  </data>
+  <data name="MESG_EXTRACT_DUPFOLDER" xml:space="preserve">
+    <value>Einige Ordner existieren bereits. Portraits wurden mit eindeutigen Namen gespeichert.</value>
+  </data>
+  <data name="MESG_EXTRACT_CONFLICT" xml:space="preserve">
+    <value>{0} Portrait-Set(s) extrahiert. {1} Name(n) existierten bereits und wurden mit einem Suffix gespeichert.</value>
+  </data>
+  <data name="MESG_EXTRACT_PARTIAL" xml:space="preserve">
+    <value>{0} Portrait-Set(s) extrahiert. Bei {1} Set(s) fehlen eine oder mehrere Portraitgrößen.</value>
+  </data>
+  <data name="EXTRACT_HINT_OVERLAY" xml:space="preserve">
+    <value>Archiv  LMB 🖱️ RMB  Ordner</value>
+  </data>
+  <data name="EXTRACT_HINT_SUB" xml:space="preserve">
+    <value>.zip, .rar, .7z, Ordner  ·  LMB, RMB oder Drag-and-Drop</value>
+  </data>
+  <data name="BUTTON_GALLERY" xml:space="preserve">
     <value>Galerie</value>
   </data>
-  <data name="BUTTON_TOSCALEPAGE" xml:space="preserve">
-    <value>Zuschneiden</value>
+  <data name="BUTTON_GALLERY_BACK" xml:space="preserve">
+    <value>&lt; Zurück</value>
   </data>
-  <data name="BUTTON_TOSETTINGSPAGE" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="BUTTON_GALLERY_CLONE" xml:space="preserve">
+    <value>KLONEN &gt;</value>
   </data>
-  <data name="BUTTON_VALIDATE" xml:space="preserve">
-    <value>Überprüfen</value>
+  <data name="BUTTON_GALLERY_CHANGE" xml:space="preserve">
+    <value>ÄNDERN &gt;</value>
   </data>
-  <data name="BUTTON_YES" xml:space="preserve">
+  <data name="BUTTON_GALLERY_DELETE" xml:space="preserve">
+    <value>LÖSCHEN ✕</value>
+  </data>
+  <data name="LABEL_GALLERY_NONPLAYER" xml:space="preserve">
+    <value>NPCs</value>
+  </data>
+  <data name="LABEL_GALLERY_CUSTOMNPC" xml:space="preserve">
+    <value>CustomNPC</value>
+  </data>
+  <data name="LABEL_GALLERY_COMPANIONS" xml:space="preserve">
+    <value>Begleiter</value>
+  </data>
+  <data name="LABEL_GALLERY_CHARACTERS" xml:space="preserve">
+    <value>Charaktere</value>
+  </data>
+  <data name="MESG_GALLERY_CUSTOMNPC_CREDIT" xml:space="preserve">
+    <value>Ermöglicht durch edvin76's CustomNPC Portraits Mod</value>
+  </data>
+  <data name="MESG_PATH_NOT_FOUND" xml:space="preserve">
+    <value>Der erwartete Spieldatenordner konnte nicht gefunden werden. Stelle sicher, dass du das Stammverzeichnis der Spielinstallation auswählst.</value>
+  </data>
+  <data name="MESG_PATH_WRONG_ROOT" xml:space="preserve">
+    <value>Der erwartete Spieldatenordner konnte nicht gefunden werden. Stelle sicher, dass du den Ordner innerhalb von "LocalLow\Owlcat Games\{0}" auswählst (nicht das Installationsverzeichnis des Spiels).</value>
+  </data>
+  <data name="MESG_PATH_WRONG_ROOT_DOCUMENTS" xml:space="preserve">
+    <value>Der erwartete Spieldatenordner konnte nicht gefunden werden. Stelle sicher, dass du den Ordner innerhalb von "Documents\My Games\{0}" auswählst (nicht das Installationsverzeichnis des Spiels).</value>
+  </data>
+  <data name="MESG_GAMEPATH_NOT_SET" xml:space="preserve">
+    <value>Der Spiel-Portraitpfad ist nicht festgelegt oder existiert nicht.</value>
+  </data>
+  <data name="MESG_UNSUPPORTED_GAMETYPE" xml:space="preserve">
+    <value>Nicht unterstützter Spieltyp.</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_CUSTOMNPC_ROOT" xml:space="preserve">
+    <value>CustomNPC-Portraitordner konnte nicht erstellt werden: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_CUSTOMNPC_FOLDER" xml:space="preserve">
+    <value>CustomNPC-Portraitordner konnte nicht erstellt werden: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_PORTRAITS_ROOT" xml:space="preserve">
+    <value>Portraits-Stammordner konnte nicht erstellt werden: {0}</value>
+  </data>
+  <data name="MESG_FAILED_CREATE_PORTRAIT_FOLDER" xml:space="preserve">
+    <value>Portraitordner konnte nicht erstellt werden: {0}</value>
+  </data>
+  <data name="MESG_DELETE_PORTRAIT_FAILED" xml:space="preserve">
+    <value>Dieses Portrait-Set konnte nicht gelöscht werden: {0}</value>
+  </data>
+  <data name="MESG_PORTRAIT_CREATION_ERROR" xml:space="preserve">
+    <value>Fehler beim Erstellen des Portraits: {0}</value>
+  </data>
+  <data name="MESG_RESTORE_BACKUP_PROMPT" xml:space="preserve">
+    <value>Ein Backup des Original-Portraits ist verfügbar.
+Backup laden oder mit dem aktuellen Portrait weiterarbeiten?</value>
+  </data>
+  <data name="DIALOG_BUTTON_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="DIALOG_BUTTON_CLOSE" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="WEBDIALOG_TIP" xml:space="preserve">
+    <value>Tipp: Du kannst auch eine Bilddatei direkt auf das Portrait-Feld ziehen.</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGELRG_D" xml:space="preserve">
+    <value>⍞ Voll</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGEMID_D" xml:space="preserve">
+    <value>⌻ Voll²</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML_D" xml:space="preserve">
+    <value>⌼ Kl</value>
+  </data>
+  <data name="BUTTON_KINGCREATEPAGESML2_D" xml:space="preserve">
+    <value>⌼ Kl²</value>
+  </data>
+  <data name="BUTTON_CREATE_NEW" xml:space="preserve">
+    <value>Neu +</value>
+  </data>
+  <data name="BUTTON_BACK_TO_PATHFINDER" xml:space="preserve">
+    <value>&lt; Zurück</value>
+  </data>
+  <data name="BUTTON_GALLERY_SHOWFOLDER" xml:space="preserve">
+    <value>ORDNER 📁</value>
+  </data>
+  <data name="ICON_ZOOM_IN" xml:space="preserve">
+    <value>🔍+</value>
+  </data>
+  <data name="ICON_ZOOM_OUT" xml:space="preserve">
+    <value>🔍−</value>
+  </data>
+  <data name="ICON_ZOOM_RESET" xml:space="preserve">
+    <value>↺</value>
+  </data>
+  <data name="MENU_HOVER_MARKER" xml:space="preserve">
+    <value>◈</value>
+  </data>
+  <data name="TEXT_PATH_PLACEHOLDER" xml:space="preserve">
+    <value> - </value>
+  </data>
+  <data name="MESG_FOLDER_LOCATION_UNKNOWN" xml:space="preserve">
+    <value>Der Ordnerspeicherort konnte nicht ermittelt werden.</value>
+  </data>
+  <data name="MESG_GAME_DIRECTORY_UNKNOWN" xml:space="preserve">
+    <value>Das Spielverzeichnis konnte nicht ermittelt werden.</value>
+  </data>
+  <data name="MESG_UNSUPPORTED_IMAGE_LINK" xml:space="preserve">
+    <value>Dieser Link verweist nicht auf eine unterstützte Bilddatei.
+
+Unterstützte Formate: PNG, JPG, GIF, BMP.</value>
+  </data>
+  <data name="MESG_IMAGE_LOAD_FAILED" xml:space="preserve">
+    <value>Das Bild konnte nicht von dieser Adresse geladen werden. {0}</value>
+  </data>
+  <data name="INQR_DELETE_PORTRAIT_SET" xml:space="preserve">
+    <value>Dieses Portrait-Set löschen?</value>
+  </data>
+  <data name="MESG_ARCHIVE_LOAD_FAILED" xml:space="preserve">
+    <value>Archiv konnte nicht geladen werden: {0}</value>
+  </data>
+  <data name="MESG_NO_MATCHING_PORTRAITS" xml:space="preserve">
+    <value>Im Archiv wurden keine Portraits gefunden, die den erwarteten Abmessungen für das ausgewählte Spiel entsprechen.
+Stelle sicher, dass das richtige Spiel ausgewählt ist.</value>
+  </data>
+  <data name="MESG_ARCHIVE_CONTENTS_NOT_FOUND" xml:space="preserve">
+    <value>Archivinhalt nicht gefunden. Bitte lade das Archiv erneut.</value>
+  </data>
+  <data name="MESG_EXTRACTION_FAILED" xml:space="preserve">
+    <value>Extraktion fehlgeschlagen: {0}</value>
+  </data>
+  <data name="MESG_GAME_PATH_NOT_SET_EXTRACT" xml:space="preserve">
+    <value>Spielpfad nicht festgelegt. Bitte konfiguriere zuerst den Spielpfad.</value>
+  </data>
+  <data name="LABEL_EXTRACT_COUNTER" xml:space="preserve">
+    <value>Gesamt: {0} | Gewählt: {1}</value>
+  </data>
+  <data name="HINT_WASTE_SML" xml:space="preserve">
+    <value>Portrait (256×256) — wird für Charakterportraits verwendet.
+
+Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_EMPTY_URL" xml:space="preserve">
+    <value>Bitte gib eine Webadresse ein, bevor du auf Laden klickst.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_INVALID_URL" xml:space="preserve">
+    <value>Die eingegebene Adresse sieht nicht wie ein gültiger Weblink aus. Stelle sicher, dass sie mit http:// oder https:// beginnt und keine Leerzeichen enthält.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_UNSUPPORTED_FORMAT" xml:space="preserve">
+    <value>Dieser Link verweist nicht auf eine unterstützte Bilddatei. Unterstützte Formate: PNG, JPG, GIF, BMP.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_NOT_IMAGE" xml:space="preserve">
+    <value>Der Server hat kein Bild zurückgegeben. Stelle sicher, dass der Link direkt auf eine Bilddatei verweist.
+Versuche stattdessen, das Bild aus deinem Browser auf ein Portrait-Feld zu ziehen.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_NO_DATA" xml:space="preserve">
+    <value>Das Bild konnte nicht geladen werden. Der Server hat keine Daten zurückgegeben.
+Versuche stattdessen, das Bild aus deinem Browser auf ein Portrait-Feld zu ziehen.</value>
+  </data>
+  <data name="WEBDIALOG_ERR_LOAD_EXCEPTION" xml:space="preserve">
+    <value>Das Bild konnte nicht geladen werden. {0}
+Versuche stattdessen, das Bild aus deinem Browser auf ein Portrait-Feld zu ziehen.</value>
+  </data>
+  <data name="DIALOG_TITLE_ERROR" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="TOAST_TITLE" xml:space="preserve">
+    <value>✓ Portrait erstellt</value>
+  </data>
+  <data name="TOAST_INFO" xml:space="preserve">
+    <value>Im Spiel-Portraitordner gespeichert</value>
+  </data>
+  <data name="TOAST_OPEN_FOLDER" xml:space="preserve">
+    <value>Ordner öffnen</value>
+  </data>
+  <data name="TOAST_NAME_PREFIX" xml:space="preserve">
+    <value>Name: {0}</value>
+  </data>
+  <data name="GALLERY_HINT_NPC_MET" xml:space="preserve">
+    <value>Der NPC muss zuerst im Spiel getroffen werden. Ordnername = exakter NPC-Dialogname.</value>
+  </data>
+  <data name="GALLERY_HINT_OPEN_FOLDER" xml:space="preserve">
+    <value>Verwende die Ordner-Schaltfläche unten, um Portraits - Npc direkt zu öffnen.</value>
+  </data>
+  <data name="GALLERY_HINT_LOCALE_NOTE" xml:space="preserve">
+    <value>Der Ordnername erscheint in der Anzeigesprache deines Spiels, nicht notwendigerweise auf Englisch.</value>
+  </data>
+  <data name="GALLERY_EMPTY_TEXT" xml:space="preserve">
+    <value>Leer</value>
+  </data>
+  <data name="GALLERY_HINT_REQUIRES_MOD" xml:space="preserve">
+    <value>Erfordert die Installation des CustomNpcPortraits-Mods.</value>
+  </data>
+  <data name="DIALOG_BUTTON_YES" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="HINT_EXTRACTPAGE" xml:space="preserve">
-    <value>Dies ist die Seite zum Extrahieren von Ordnern. Hier können Sie alle Bilder aus einem beliebigen Ordner in den Spielordner kopieren. Klicken Sie auf die Schaltfläche „Ordner auswählen“, um einen Ordner zum Kopieren auszuwählen. Wählen Sie die Bilder aus und klicken Sie auf die Schaltfläche „Ausgewählte extrahieren“, um nur bestimmte Bilder zu verschieben, oder klicken Sie auf die Schaltfläche „Alle extrahieren“, um alle vorhandenen Porträts zu verschieben. Um den Vorgang manuell durchzuführen, klicken Sie auf die Schaltfläche „Ordner öffnen“.</value>
+  <data name="DIALOG_BUTTON_NO" xml:space="preserve">
+    <value>Nein</value>
   </data>
-  <data name="HINT_FILEPAGE" xml:space="preserve">
-    <value>Dies ist die Bildauswahlseite. Hier können Sie auswählen, welches Bild Sie als Porträt verwenden möchten. Sie können ein lokales Bild hochladen, indem Sie auf eine Schaltfläche oder ein Bild klicken oder es einfach auf das Bild ziehen. Sie können auch ein Webbild hochladen, indem Sie auf die Schaltfläche klicken und den Anweisungen folgen. Um die entsprechenden Porträts zu ersetzen, verwenden Sie die Schaltflächen „Mittleres Porträt“ und „Kleines Porträt“.</value>
+  <data name="GALLERY_HELP_KING" xml:space="preserve">
+    <value>Vorhandene Portraits erscheinen hier als Miniaturbilder. Begleiter und Charaktere benötigen edvin76's CustomNpcPortraits-Mod und erscheinen erst nach dem Treffen im Spiel.</value>
   </data>
-  <data name="HINT_GALLERYPAGE" xml:space="preserve">
-    <value>Dies ist eine Galerieseite, die alle in das Spiel geladenen Porträts anzeigt. Wählen Sie ein Bild aus und klicken Sie auf die Schaltfläche „Bearbeiten“, um ein beliebiges Porträt zu kopieren/ersetzen und ein neues zu erstellen. Sie können auch mehrere Bilder oder einige davon auswählen und auf die Schaltfläche „Löschen“ klicken, um sie aus dem Spielordner zu entfernen. Wenn Sie CustomNPC installiert haben, klicken Sie oben auf die entsprechenden Schaltflächen, um die vom Mod gesteuerten Porträts anzuzeigen.</value>
+  <data name="GALLERY_HELP_WOTR" xml:space="preserve">
+    <value>Vorhandene Portraits erscheinen hier als Miniaturbilder. Begleiter/Charaktere benötigen CustomNpcPortraits. Bearbeite deinen Hauptcharakter über "CustomNpcPortraits - {Name}", nicht seine eigene Kachel.</value>
   </data>
-  <data name="HINT_SCALEPAGE" xml:space="preserve">
-    <value>Dies ist eine Seite zum Skalieren und Zuschneiden des Bildes nach Wunsch. Verwenden Sie das Mausrad zum Vergrößern oder Verkleinern. Doppelklicken Sie auf das Bild, um es in seinen ursprünglichen Zustand zurückzusetzen. Klicken Sie auf das Bild und ziehen Sie es, um es zu ändern. Klicken Sie auf die Schaltfläche „Erstellen“, um ein neues Porträt hinzuzufügen. Die von Ihnen hochgeladenen Porträts sind nahezu exakte Kopien der Bilder, die Sie auf dieser Seite gerahmt haben. Klicken Sie auf die Schaltfläche „Zurück“, um zur vorherigen Seite zurückzukehren.</value>
+  <data name="GALLERY_HELP_ROGUE" xml:space="preserve">
+    <value>Vorhandene Spielerportraits erscheinen hier als Miniaturbilder. Für Rogue Trader gibt es noch keinen Begleiter-/NPC-Mod.</value>
   </data>
-  <data name="INQR_DELETEOLD" xml:space="preserve">
-    <value>Möchten Sie die alte Version des Porträts löschen? Bitte beachten Sie, dass beim Verlassen der Bildauswahlseite das Risiko besteht, dass Ihr Porträt verloren geht. Klicken Sie auf „Nein“, um eine Kopie zu erstellen. Oder „Ja“, um das alte Porträt zu ersetzen.</value>
+  <data name="GALLERY_HELP_POE" xml:space="preserve">
+    <value>Vorhandene Portraits erscheinen hier als Miniaturbilder. Begleiter umfasst jedes Begleiter- und NPC-Portrait aus dem Grundspiel - kein Mod nötig.</value>
   </data>
-  <data name="INQR_NOIMAGECHOSEN" xml:space="preserve">
-    <value>Sie haben keine Bilder hochgeladen. Sie können jedoch das Standardbild verwenden. Klicken Sie auf „Ja“, um mit den Standardbildern fortzufahren. Klicken Sie auf „Nein“, um zurückzugehen und ein anderes Bild auszuwählen.</value>
+  <data name="GALLERY_HELP_POED" xml:space="preserve">
+    <value>Vorhandene Portraits erscheinen hier als Miniaturbilder. Begleiter und Charaktere werden automatisch getrennt - das Grundspiel hält sie bereits getrennt, kein Mod nötig.</value>
   </data>
-  <data name="KING" xml:space="preserve">
-    <value>Kingmaker</value>
+  <data name="GALLERY_HELP_TYR" xml:space="preserve">
+    <value>Vorhandene Portraits erscheinen hier als Miniaturbilder. Begleiter umfasst jedes Begleiterportrait aus dem Grundspiel - kein Mod nötig.</value>
   </data>
-  <data name="LABEL_COPY" xml:space="preserve">
-    <value>Artemii "Zeight" Saganenko© 2024</value>
+  <data name="GALLERY_HELP_WASTE" xml:space="preserve">
+    <value>Vorhandene Spielerportraits erscheinen hier als Miniaturbilder. Der Custom-Portraits-Ordner von Wasteland 3 ist nur für den Spieler.</value>
   </data>
-  <data name="LABEL_CREATEDERROR" xml:space="preserve">
-    <value>Etwas ist schief gelaufen. Wenn Sie dieses Stadium erreicht haben, liegt das Problem höchstwahrscheinlich im Spielverzeichnis. Führen Sie das Spiel mindestens einmal aus. Überprüfen Sie die Verfügbarkeit des oben genannten Verzeichnisses. Erstellen Sie bei Bedarf eine. Weitere Informationen finden Sie auf der Seite „Einstellungen“. Wenn das Problem weiterhin besteht, schreiben Sie dem Autor auf Nexusmods.</value>
+  <data name="BUTTON_CUSTOM_NAME" xml:space="preserve">
+    <value>Erstellen
+mit Namen ✎</value>
   </data>
-  <data name="LABEL_CREATEDOK" xml:space="preserve">
-    <value>Das Porträt wurde erfolgreich im Arbeitsverzeichnis erstellt, dessen Speicherort oben angegeben ist. Es kann jetzt im Spiel verwendet werden. Ein gutes Spiel haben!</value>
+  <data name="NAMEDIALOG_TITLE" xml:space="preserve">
+    <value>Portrait benennen</value>
   </data>
-  <data name="LABEL_LANG" xml:space="preserve">
-    <value>Schnittstellensprache::</value>
+  <data name="NAMEDIALOG_HINT" xml:space="preserve">
+    <value>Gib einen Namen für den Ordner oder die Datei des Portraits ein, oder lasse das Feld leer, um einen eigenen Namen zu entfernen und wieder einen automatischen zu verwenden.</value>
   </data>
-  <data name="LABEL_LARGEIMG" xml:space="preserve">
-    <value>Großes Porträt</value>
+  <data name="NAMEDIALOG_BUTTON_OK" xml:space="preserve">
+    <value>Namen verwenden</value>
   </data>
-  <data name="LABEL_LARGEIMG2" xml:space="preserve">
-    <value>Charakterseite</value>
+  <data name="NAMEDIALOG_BUTTON_CANCEL" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
-  <data name="LABEL_MEDIUMIMG" xml:space="preserve">
-    <value>Mittleres Porträt</value>
+  <data name="NAMEDIALOG_ERR_INVALID_CHARS" xml:space="preserve">
+    <value>Dieser Name enthält Zeichen, die in Datei- oder Ordnernamen nicht erlaubt sind.</value>
   </data>
-  <data name="LABEL_MEDIUMIMG2" xml:space="preserve">
-    <value>Fähigkeiten, Dialog</value>
+  <data name="NAMEDIALOG_ERR_DUPLICATE" xml:space="preserve">
+    <value>Dieser Name wird bereits verwendet. Bitte wähle einen anderen.</value>
   </data>
-  <data name="LABEL_PATH" xml:space="preserve">
-    <value>Pfad zum Ordner „Porträts“.</value>
-  </data>
-  <data name="LABEL_SETTINGS" xml:space="preserve">
-    <value>Dies ist die Einstellungsseite. Hier können Sie die Größe anpassen, indem Sie das Fenster um die Ecke ziehen. Und überprüfen Sie den Pfad zum gewünschten Ordner mit Porträts.</value>
-  </data>
-  <data name="LABEL_SMALLIMG" xml:space="preserve">
-    <value>Kleines Porträt</value>
-  </data>
-  <data name="LABEL_SMALLIMG2" xml:space="preserve">
-    <value>Gameplay, Karte</value>
-  </data>
-  <data name="LABEL_URLDIALOG" xml:space="preserve">
-    <value>Ziehen Sie die URL eines vorhandenen Bildes, geben Sie sie ein oder kopieren Sie sie. Die URL muss auf eine zugängliche Webquelle verweisen.</value>
-  </data>
-  <data name="MESG_CANNOTLOAD" xml:space="preserve">
-    <value>Das ausgewählte Webbild ist nicht verfügbar. Versuchen Sie es ein anderes Mal erneut oder speichern Sie es einfach auf Ihrem lokalen Laufwerk und laden Sie es lokal herunter. Bitte beachten Sie, dass das WEBP-Format nicht unterstützt wird.</value>
-  </data>
-  <data name="MESG_CUSTOMFOUND" xml:space="preserve">
-    <value>Sieht so aus, als hätten Sie Custom NPC Portraits von edvin76 installiert! Mit diesem Programm können Sie das Erscheinungsbild von benutzerdefinierten NPC-Porträts einfacher anpassen. Gehen Sie zur Seite „Galerie“ und klicken Sie auf die Schaltfläche, um Porträts anzuzeigen. Bearbeiten Sie jedes Porträt nach Ihren Wünschen. Bitte beachten Sie, dass beim Bearbeiten von Porträts, falls Sie alte ersetzen müssen, eine Sicherungskopie im Ordner erstellt wird. Wenn Sie eine Kopie erstellen müssen, wird diese in einem neuen Ordner abgelegt. Bitte beachten Sie, dass dieses Programm keine Porträts für benutzerdefinierte NPCs erstellt, sondern diese nur ersetzt!</value>
-  </data>
-  <data name="MESG_CUSTOMNOTFOUND" xml:space="preserve">
-    <value>Benutzerdefinierter NPC nicht gefunden. Wenn es nicht installiert ist, ignorieren Sie diese Warnung. Andernfalls überprüfen Sie die Installation im Spiel selbst noch einmal über den Unity Mod Manager. Führen Sie das Spiel mindestens einmal aus, damit der benutzerdefinierte NPC Porträtordner erstellt. Bitte beachten Sie, dass dieses Programm keine Porträts für benutzerdefinierte NPCs erstellt, sondern diese nur ersetzt!</value>
-  </data>
-  <data name="MESG_DELETE" xml:space="preserve">
-    <value>Sie sind dabei, die Bilder zu löschen. Dieser Vorgang ist irreversibel! Wenn Ihre In-Game-Porträts verwendet werden, werden diese vom Spiel selbst durch normale Porträts ersetzt. Möchtest du fortfahren? Gesamtbilder: </value>
-  </data>
-  <data name="MESG_GAMEFOLDERFOUND" xml:space="preserve">
-    <value>Ordner gefunden! Sie können mit der Erstellung Ihrer Porträts beginnen! Klicken Sie auf die Schaltfläche „Porträt erstellen“, um ein neues Porträt hinzuzufügen, auf „Ordner extrahieren“, um mehrere Porträts aus einem anderen Ordner hinzuzufügen, und auf „Galerie anzeigen“, um alte Porträts zu bearbeiten oder zu löschen.</value>
-  </data>
-  <data name="MESG_GAMEFOLDERNOTFOUND" xml:space="preserve">
-    <value>Der Spielordner wurde nicht gefunden. Stellen Sie sicher, dass Sie das Spiel mindestens einmal gestartet haben. Wenn das Problem weiterhin besteht, melden Sie es bitte im Abschnitt „Fehler“. Wenn Sie ein anderes Spiel verwalten müssen, sei es Kingmaker, WotR oder Rogue Trader. Ändern Sie den Spieltyp in den Einstellungen oder indem Sie auf das Titelbild klicken. Weitere Informationen finden Sie auf der Seite „Einstellungen“. Bis das Problem behoben ist, sind alle Funktionen gesperrt.</value>
-  </data>
-  <data name="MESG_NONESELECTED" xml:space="preserve">
-    <value>Sie haben keine Porträts ausgewählt. Wählen Sie zum Bearbeiten oder Löschen mindestens ein Bild aus der Liste aus.</value>
-  </data>
-  <data name="MESG_NONESELECTEDEXTRACT" xml:space="preserve">
-    <value>Sie haben keine Porträts ausgewählt. Wählen Sie zum Extrahieren mindestens ein Bild aus der Liste aus.</value>
-  </data>
-  <data name="MESG_REPEATFOLDER" xml:space="preserve">
-    <value>Im In-Game-Porträtordner sind bereits ein oder mehrere Ordner vorhanden. Ihre Namen werden wiederholt. Das Programm benennt die Ausgabeordner um, damit die Bilder nicht überschrieben werden.</value>
-  </data>
-  <data name="MESG_SELECTEDMORE" xml:space="preserve">
-    <value>Es ist mehr als ein Bild ausgewählt. Es wird nur das erste aller ausgewählten Bilder verarbeitet.</value>
-  </data>
-  <data name="MESG_SUCCESS" xml:space="preserve">
-    <value>Erledigt! Bilder erfolgreich hochgeladen: </value>
-  </data>
-  <data name="MESG_WRONGFORMAT" xml:space="preserve">
-    <value>Die Datei hat nicht das richtige Format. Bitte wählen Sie ein Bild aus den zulässigen Formaten aus. Akzeptierte Formate sind PNG, JPG, JPEG, BMP oder GIF. Möglicherweise ist die Datei auch nicht verfügbar. Das Verzeichnis sollte nicht durch zusätzliche Rechte geschützt werden! Versuchen Sie, das kyrillische Alphabet im Ordnerpfad zu vermeiden.</value>
-  </data>
-  <data name="ROGUE" xml:space="preserve">
-    <value>Rogue Trader</value>
-  </data>
-  <data name="TEXTBOX_URL_INPUT" xml:space="preserve">
-    <value>URL eingeben...</value>
-  </data>
-  <data name="TEXTBOX_URL_WRONG" xml:space="preserve">
-    <value>Ungültige URL...</value>
-  </data>
-  <data name="TEXT_FOLDEROPEN" xml:space="preserve">
-    <value>Wählen Sie den zu extrahierenden Ordner aus</value>
-  </data>
-  <data name="TEXT_IMAGEFILTER" xml:space="preserve">
-    <value>Alle Bilder</value>
-  </data>
-  <data name="TEXT_PATHOPEN" xml:space="preserve">
-    <value>Wählen Sie den Ordner im Spiel aus</value>
-  </data>
-  <data name="TEXT_TITLEOPENFILE" xml:space="preserve">
-    <value>Bild
-	</value>
-  </data>
-  <data name="TEXT_TITLEOPENFOLDER" xml:space="preserve">
-    <value>Ordner auswählen</value>
-  </data>
-  <data name="WOTR" xml:space="preserve">
-    <value>WotR</value>
+  <data name="MESG_CUSTOM_NAME_TAKEN" xml:space="preserve">
+    <value>Dieser Name wird bereits verwendet. Bitte wähle einen anderen, bevor du das Portrait erstellst.</value>
   </data>
 </root>

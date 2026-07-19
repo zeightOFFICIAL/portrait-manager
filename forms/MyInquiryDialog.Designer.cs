@@ -1,14 +1,22 @@
-﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+﻿/*
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games,
+    Obsidian Entertainment and inXile Entertainment.
+    Including:
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous,
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity,
+        5. Pillars of Eternity: Deadfire,
+        6. Tyranny,
+        7. Wasteland 3.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
     GPL-2.0 license terms are listed in LICENSE file.
     License header for this project is listed in Program.cs.
 */
 
-namespace OwlcatPortraitManager.forms
+namespace PortraitManager.forms
 {
     partial class MyInquiryDialog
     {
@@ -38,145 +46,129 @@ namespace OwlcatPortraitManager.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.LayoutRoot = new System.Windows.Forms.TableLayoutPanel();
+            this.LabelInquiryMesg = new System.Windows.Forms.Label();
+            this.ButtonPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ButtonOK = new System.Windows.Forms.Button();
             this.ButtonCancel = new System.Windows.Forms.Button();
-            this.LabelInquiryMesg = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.LayoutRoot.SuspendLayout();
+            this.ButtonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // LayoutRoot
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 520F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(734, 274);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.LayoutRoot.ColumnCount = 3;
+            this.LayoutRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.LayoutRoot.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.LayoutRoot.Controls.Add(this.LabelInquiryMesg, 1, 0);
+            this.LayoutRoot.Controls.Add(this.ButtonPanel, 1, 1);
+            this.LayoutRoot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LayoutRoot.Location = new System.Drawing.Point(0, 0);
+            this.LayoutRoot.Name = "LayoutRoot";
+            this.LayoutRoot.Padding = new System.Windows.Forms.Padding(20);
+            this.LayoutRoot.RowCount = 2;
+            this.LayoutRoot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.LayoutRoot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.LayoutRoot.Size = new System.Drawing.Size(734, 200);
+            this.LayoutRoot.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // LabelInquiryMesg
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.LabelInquiryMesg, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(110, 35);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(514, 204);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.LabelInquiryMesg.BackColor = System.Drawing.Color.Transparent;
+            this.LabelInquiryMesg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LabelInquiryMesg.ForeColor = System.Drawing.Color.White;
+            this.LabelInquiryMesg.Location = new System.Drawing.Point(23, 20);
+            this.LabelInquiryMesg.Name = "LabelInquiryMesg";
+            this.LabelInquiryMesg.Size = new System.Drawing.Size(688, 121);
+            this.LabelInquiryMesg.TabIndex = 0;
+            this.LabelInquiryMesg.Text = "Inquiry";
+            this.LabelInquiryMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelInquiryMesg.UseCompatibleTextRendering = true;
             // 
-            // tableLayoutPanel3
+            // ButtonPanel
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.ButtonOK, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.ButtonCancel, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 156);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(508, 45);
-            this.tableLayoutPanel3.TabIndex = 0;
+            this.ButtonPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonPanel.AutoSize = true;
+            this.ButtonPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonPanel.Controls.Add(this.ButtonCancel);
+            this.ButtonPanel.Controls.Add(this.ButtonOK);
+            this.ButtonPanel.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.ButtonPanel.Location = new System.Drawing.Point(23, 144);
+            this.ButtonPanel.Name = "ButtonPanel";
+            this.ButtonPanel.Size = new System.Drawing.Size(0, 0);
+            this.ButtonPanel.TabIndex = 1;
             // 
             // ButtonOK
             // 
+            this.ButtonOK.BackColor = System.Drawing.Color.Black;
             this.ButtonOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.ButtonOK.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonOK.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ButtonOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonOK.Location = new System.Drawing.Point(274, 3);
-            this.ButtonOK.Margin = new System.Windows.Forms.Padding(20, 3, 110, 3);
+            this.ButtonOK.ForeColor = System.Drawing.Color.White;
+            this.ButtonOK.Location = new System.Drawing.Point(83, 3);
+            this.ButtonOK.Margin = new System.Windows.Forms.Padding(3);
             this.ButtonOK.Name = "ButtonOK";
-            this.ButtonOK.Size = new System.Drawing.Size(124, 39);
-            this.ButtonOK.TabIndex = 0;
+            this.ButtonOK.Size = new System.Drawing.Size(120, 34);
+            this.ButtonOK.TabIndex = 1;
             this.ButtonOK.TabStop = false;
-            this.ButtonOK.Text = "Button Yes";
-            this.ButtonOK.UseVisualStyleBackColor = true;
+            this.ButtonOK.Text = "OK";
+            this.ButtonOK.UseVisualStyleBackColor = false;
             this.ButtonOK.MouseEnter += new System.EventHandler(this.ButtonCancel_MouseEnter);
             this.ButtonOK.MouseLeave += new System.EventHandler(this.ButtonCancel_MouseLeave);
             // 
             // ButtonCancel
             // 
+            this.ButtonCancel.BackColor = System.Drawing.Color.Black;
             this.ButtonCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ButtonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ButtonCancel.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonCancel.Location = new System.Drawing.Point(110, 3);
-            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(110, 3, 20, 3);
+            this.ButtonCancel.ForeColor = System.Drawing.Color.White;
+            this.ButtonCancel.Location = new System.Drawing.Point(3, 3);
+            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(3);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(124, 39);
+            this.ButtonCancel.Size = new System.Drawing.Size(120, 34);
             this.ButtonCancel.TabIndex = 0;
             this.ButtonCancel.TabStop = false;
-            this.ButtonCancel.Text = "Button Cancel";
-            this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Text = "Cancel";
+            this.ButtonCancel.UseVisualStyleBackColor = false;
             this.ButtonCancel.MouseEnter += new System.EventHandler(this.ButtonCancel_MouseEnter);
             this.ButtonCancel.MouseLeave += new System.EventHandler(this.ButtonCancel_MouseLeave);
-            // 
-            // LabelInquiryMesg
-            // 
-            this.LabelInquiryMesg.AutoSize = true;
-            this.LabelInquiryMesg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelInquiryMesg.Location = new System.Drawing.Point(3, 0);
-            this.LabelInquiryMesg.Name = "LabelInquiryMesg";
-            this.LabelInquiryMesg.Size = new System.Drawing.Size(508, 153);
-            this.LabelInquiryMesg.TabIndex = 1;
-            this.LabelInquiryMesg.Text = "Inquiry";
-            this.LabelInquiryMesg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MyInquiryDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(734, 274);
+            this.BackColor = System.Drawing.Color.FromArgb(60, 60, 60);
+            this.ClientSize = new System.Drawing.Size(734, 200);
             this.ControlBox = false;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.LayoutRoot);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(734, 0);
             this.Name = "MyInquiryDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MyInquiryDialog_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MyInquiryDialog_FormClosed);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyInquiryDialog_KeyDown);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
+            this.LayoutRoot.ResumeLayout(false);
+            this.LayoutRoot.PerformLayout();
+            this.ButtonPanel.ResumeLayout(false);
+            this.ButtonPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel LayoutRoot;
+        private System.Windows.Forms.FlowLayoutPanel ButtonPanel;
         private System.Windows.Forms.Button ButtonOK;
         private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.Label LabelInquiryMesg;

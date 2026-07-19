@@ -1,57 +1,96 @@
 ﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games, 
+    Obsidian Entertainment and inXile Entertainment. 
+    Including: 
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous, 
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity, 
+        5. Pillars of Eternity: Deadfire, 
+        6. Tyranny,
+        7. Wasteland 3.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file.
+    GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
-using OwlcatPortraitManager.Properties;
+using PortraitManager.Properties;
+using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
-namespace OwlcatPortraitManager.forms
+namespace PortraitManager.forms
 {
     public partial class MyInquiryDialog : Form
     {
-        private readonly Font _font;
-        private readonly PrivateFontCollection _fontCollection;
+        private PrivateFontCollection _fontCollection;
+        private readonly bool _useYesNo;
 
-        public MyInquiryDialog(string message, string locale)
+        public MyInquiryDialog(string message, bool useYesNo = false)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
-
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
-            {
-                _font = new Font(_fontCollection.Families[1], 17);
-            }
-            else
-            {
-                _font = new Font(_fontCollection.Families[0], 17);
-            }
-
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
-            Focus();
+            Shown += MyInquiryDialog_Shown;
 
-            LabelInquiryMesg.Font = _font;
+            _useYesNo = useYesNo;
+            FontInit();
+            TextInit();
             LabelInquiryMesg.Text = message;
-            ButtonOK.Font = _font;
-            ButtonOK.Text = TextVariables.BUTTON_YES;
-            ButtonCancel.Font = _font;
-            ButtonCancel.Text = TextVariables.BUTTON_NO;
+            Focus();
+        }
+
+        private void FontInit()
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            var family = _fontCollection.Families[0];
+
+            LabelInquiryMesg.Font = new Font(FontFamily.GenericSansSerif, 14.4f);
+            ButtonOK.Font = new Font(family, 16f);
+            ButtonCancel.Font = new Font(family, 16f);
+        }
+
+        private void TextInit()
+        {
+            ButtonOK.Text = _useYesNo ? TextVariables.DIALOG_BUTTON_YES : TextVariables.DIALOG_BUTTON_OK;
+            ButtonCancel.Text = _useYesNo ? TextVariables.DIALOG_BUTTON_NO : TextVariables.DIALOG_BUTTON_CANCEL;
+        }
+
+        private void MyInquiryDialog_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                Form anchor = Owner;
+                while (anchor != null && anchor.Owner != null)
+                    anchor = anchor.Owner;
+                if (anchor != null)
+                {
+                    Width = anchor.ClientSize.Width;
+                    Left = anchor.PointToScreen(System.Drawing.Point.Empty).X;
+                }
+            }
+            catch { }
+        }
+
+        private void MyInquiryDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            Form root = Owner;
+            while (root != null && root.Owner != null)
+                root = root.Owner;
+
+            if (root != null)
+            {
+                if (root.WindowState == FormWindowState.Minimized)
+                    root.WindowState = FormWindowState.Normal;
+                root.Activate();
+            }
         }
 
         private void MyInquiryDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _font.Dispose();
             Dispose();
         }
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OwlcatPortraitManager.Properties {
+namespace PortraitManager.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace OwlcatPortraitManager.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class TextVariables {
@@ -39,7 +39,7 @@ namespace OwlcatPortraitManager.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OwlcatPortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PortraitManager.Properties.TextVariables", typeof(TextVariables).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,57 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medium portrait.
+        ///   Looks up a localized string similar to &lt; Back.
         /// </summary>
-        internal static string BUTTON_ADVANCED {
+        internal static string BUTTON_BACK_TO_PATHFINDER {
             get {
-                return ResourceManager.GetString("BUTTON_ADVANCED", resourceCulture);
+                return ResourceManager.GetString("BUTTON_BACK_TO_PATHFINDER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Small portrait.
+        ///   Looks up a localized string similar to Browse gallery.
         /// </summary>
-        internal static string BUTTON_ADVANCED2 {
+        internal static string BUTTON_BROWSE {
             get {
-                return ResourceManager.GetString("BUTTON_ADVANCED2", resourceCulture);
+                return ResourceManager.GetString("BUTTON_BROWSE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply.
+        ///   Looks up a localized string similar to Choose 📁.
         /// </summary>
-        internal static string BUTTON_APPLY {
+        internal static string BUTTON_CHOOSE {
             get {
-                return ResourceManager.GetString("BUTTON_APPLY", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CHOOSE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back.
+        ///   Looks up a localized string similar to Create portrait.
         /// </summary>
-        internal static string BUTTON_BACK {
+        internal static string BUTTON_CREATE {
             get {
-                return ResourceManager.GetString("BUTTON_BACK", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CREATE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Create +.
         /// </summary>
-        internal static string BUTTON_CANCEL {
+        internal static string BUTTON_CREATE_NEW {
             get {
-                return ResourceManager.GetString("BUTTON_CANCEL", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CREATE_NEW", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Army.
+        ///   Looks up a localized string similar to Create 
+        ///with name ✎.
         /// </summary>
-        internal static string BUTTON_CUSTOMARMY {
+        internal static string BUTTON_CUSTOM_NAME {
             get {
-                return ResourceManager.GetString("BUTTON_CUSTOMARMY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Characters.
-        /// </summary>
-        internal static string BUTTON_CUSTOMNPC {
-            get {
-                return ResourceManager.GetString("BUTTON_CUSTOMNPC", resourceCulture);
+                return ResourceManager.GetString("BUTTON_CUSTOM_NAME", resourceCulture);
             }
         }
         
@@ -133,614 +125,1248 @@ namespace OwlcatPortraitManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extract all.
+        ///   Looks up a localized string similar to Extract folder.
         /// </summary>
-        internal static string BUTTON_EXTRACTALL {
+        internal static string BUTTON_EXTRACT {
             get {
-                return ResourceManager.GetString("BUTTON_EXTRACTALL", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open folders.
+        ///   Looks up a localized string similar to Extract everything ▉ .
         /// </summary>
-        internal static string BUTTON_EXTRACTOPENFOLDER {
+        internal static string BUTTON_EXTRACT_ALL {
             get {
-                return ResourceManager.GetString("BUTTON_EXTRACTOPENFOLDER", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACT_ALL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Extract selected.
+        ///   Looks up a localized string similar to &lt; Back.
         /// </summary>
-        internal static string BUTTON_EXTRACTSELECTED {
+        internal static string BUTTON_EXTRACT_BACK {
             get {
-                return ResourceManager.GetString("BUTTON_EXTRACTSELECTED", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACT_BACK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open.
+        ///   Looks up a localized string similar to Open game folder 📁.
         /// </summary>
-        internal static string BUTTON_FINALOPENFOLDER {
+        internal static string BUTTON_EXTRACT_OPENFOLDER {
             get {
-                return ResourceManager.GetString("BUTTON_FINALOPENFOLDER", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACT_OPENFOLDER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open folder.
+        ///   Looks up a localized string similar to Open folders 📁.
         /// </summary>
-        internal static string BUTTON_GALLERYOPENFOLDER {
+        internal static string BUTTON_EXTRACT_OPENFOLDERS {
             get {
-                return ResourceManager.GetString("BUTTON_GALLERYOPENFOLDER", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACT_OPENFOLDERS", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ?.
+        ///   Looks up a localized string similar to Extract selected ▞ .
         /// </summary>
-        internal static string BUTTON_HINT {
+        internal static string BUTTON_EXTRACT_SELECTED {
             get {
-                return ResourceManager.GetString("BUTTON_HINT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_EXTRACT_SELECTED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load.
+        ///   Looks up a localized string similar to Gallery.
         /// </summary>
-        internal static string BUTTON_LOAD {
+        internal static string BUTTON_GALLERY {
             get {
-                return ResourceManager.GetString("BUTTON_LOAD", resourceCulture);
+                return ResourceManager.GetString("BUTTON_GALLERY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Local image.
+        ///   Looks up a localized string similar to &lt; Back.
         /// </summary>
-        internal static string BUTTON_LOADLOCALPORTRAIT {
+        internal static string BUTTON_GALLERY_BACK {
             get {
-                return ResourceManager.GetString("BUTTON_LOADLOCALPORTRAIT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_GALLERY_BACK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Web image.
+        ///   Looks up a localized string similar to CHANGE &gt;.
         /// </summary>
-        internal static string BUTTON_LOADWEBPORTRAIT {
+        internal static string BUTTON_GALLERY_CHANGE {
             get {
-                return ResourceManager.GetString("BUTTON_LOADWEBPORTRAIT", resourceCulture);
+                return ResourceManager.GetString("BUTTON_GALLERY_CHANGE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Menu.
+        ///   Looks up a localized string similar to CLONE &gt;.
         /// </summary>
-        internal static string BUTTON_MENU {
+        internal static string BUTTON_GALLERY_CLONE {
             get {
-                return ResourceManager.GetString("BUTTON_MENU", resourceCulture);
+                return ResourceManager.GetString("BUTTON_GALLERY_CLONE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New.
+        ///   Looks up a localized string similar to DELETE ✕.
         /// </summary>
-        internal static string BUTTON_NEW {
+        internal static string BUTTON_GALLERY_DELETE {
             get {
-                return ResourceManager.GetString("BUTTON_NEW", resourceCulture);
+                return ResourceManager.GetString("BUTTON_GALLERY_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FOLDER 📁.
+        /// </summary>
+        internal static string BUTTON_GALLERY_SHOWFOLDER {
+            get {
+                return ResourceManager.GetString("BUTTON_GALLERY_SHOWFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⍞ Fulllength.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGELRG {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGELRG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⍞ Full.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGELRG_D {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGELRG_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌻ Medium.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGEMID {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGEMID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌻ Full².
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGEMID_D {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGEMID_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌼ Portrait.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGESML {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGESML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌼ Sml.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGESML_D {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGESML_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ▣ Sm2.
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGESML2 {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGESML2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⌼ Sml².
+        /// </summary>
+        internal static string BUTTON_KINGCREATEPAGESML2_D {
+            get {
+                return ResourceManager.GetString("BUTTON_KINGCREATEPAGESML2_D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset 🔄.
+        /// </summary>
+        internal static string BUTTON_RESET {
+            get {
+                return ResourceManager.GetString("BUTTON_RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select portrait pack.
+        /// </summary>
+        internal static string BUTTON_SELECT_ARCHIVE {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_ARCHIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Local 📁.
+        /// </summary>
+        internal static string BUTTON_SELECT_LOCAL {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_LOCAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Web 🌐.
+        /// </summary>
+        internal static string BUTTON_SELECT_WEB {
+            get {
+                return ResourceManager.GetString("BUTTON_SELECT_WEB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change game.
+        /// </summary>
+        internal static string BUTTON_SETTINGS {
+            get {
+                return ResourceManager.GetString("BUTTON_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string DIALOG_BUTTON_CANCEL {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string DIALOG_BUTTON_CLOSE {
+            get {
+                return ResourceManager.GetString("DIALOG_BUTTON_CLOSE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
-        internal static string BUTTON_NO {
+        internal static string DIALOG_BUTTON_NO {
             get {
-                return ResourceManager.GetString("BUTTON_NO", resourceCulture);
+                return ResourceManager.GetString("DIALOG_BUTTON_NO", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
+        ///   Looks up a localized string similar to OK.
         /// </summary>
-        internal static string BUTTON_OK {
+        internal static string DIALOG_BUTTON_OK {
             get {
-                return ResourceManager.GetString("BUTTON_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit selected.
-        /// </summary>
-        internal static string BUTTON_SELECTEDCHANGE {
-            get {
-                return ResourceManager.GetString("BUTTON_SELECTEDCHANGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete selected.
-        /// </summary>
-        internal static string BUTTON_SELECTEDDELETE {
-            get {
-                return ResourceManager.GetString("BUTTON_SELECTEDDELETE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select.
-        /// </summary>
-        internal static string BUTTON_SELECTPATH {
-            get {
-                return ResourceManager.GetString("BUTTON_SELECTPATH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CustomNPC.
-        /// </summary>
-        internal static string BUTTON_SHOWCUSTOM {
-            get {
-                return ResourceManager.GetString("BUTTON_SHOWCUSTOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show portraits.
-        /// </summary>
-        internal static string BUTTON_SHOWLOCAL {
-            get {
-                return ResourceManager.GetString("BUTTON_SHOWLOCAL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sucess.
-        /// </summary>
-        internal static string BUTTON_SUCESS {
-            get {
-                return ResourceManager.GetString("BUTTON_SUCESS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create.
-        /// </summary>
-        internal static string BUTTON_TOCREATE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOCREATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extract folder.
-        /// </summary>
-        internal static string BUTTON_TOEXRACTPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOEXRACTPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create portrait.
-        /// </summary>
-        internal static string BUTTON_TOFILEPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOFILEPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Browse gallery.
-        /// </summary>
-        internal static string BUTTON_TOGALLERYPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOGALLERYPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scale image.
-        /// </summary>
-        internal static string BUTTON_TOSCALEPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOSCALEPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Settings.
-        /// </summary>
-        internal static string BUTTON_TOSETTINGSPAGE {
-            get {
-                return ResourceManager.GetString("BUTTON_TOSETTINGSPAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Validate.
-        /// </summary>
-        internal static string BUTTON_VALIDATE {
-            get {
-                return ResourceManager.GetString("BUTTON_VALIDATE", resourceCulture);
+                return ResourceManager.GetString("DIALOG_BUTTON_OK", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
-        internal static string BUTTON_YES {
+        internal static string DIALOG_BUTTON_YES {
             get {
-                return ResourceManager.GetString("BUTTON_YES", resourceCulture);
+                return ResourceManager.GetString("DIALOG_BUTTON_YES", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the extract page. Here you can copy all images from one folder to the game folder. Click &quot;choose folder&quot; to select a folder to copy. Select the images and click &apos;extract selected&apos; to move only certain images, or click &apos;extract all&apos; to move all available. To perform the process manually, click &apos;open folders&apos;..
+        ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string HINT_EXTRACTPAGE {
+        internal static string DIALOG_TITLE_ERROR {
             get {
-                return ResourceManager.GetString("HINT_EXTRACTPAGE", resourceCulture);
+                return ResourceManager.GetString("DIALOG_TITLE_ERROR", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the file page. Here you can choose which image to use as the portrait. You can upload a local image by clicking a button or image, or by simply dragging and dropping it onto the picture. Also, you can upload a web image by clicking the button and following instructions. Use change medium and change small buttons to replace the respective portraits..
+        ///   Looks up a localized string similar to archive  LMB 🖱️ RMB  folder.
         /// </summary>
-        internal static string HINT_FILEPAGE {
+        internal static string EXTRACT_HINT_OVERLAY {
             get {
-                return ResourceManager.GetString("HINT_FILEPAGE", resourceCulture);
+                return ResourceManager.GetString("EXTRACT_HINT_OVERLAY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a gallery page that displays all the currently available portraits in the game. Select an image and click &apos;edit selected&apos; to copy/replace any portrait and create another one. You can also select multiple or individual images and click &apos;delete&apos; to remove them from the game folder. If you have CustomNPC installed, press corresponding buttons in the top to show mod&apos;s managed portraits..
+        ///   Looks up a localized string similar to .zip, .rar, .7z, folder  ·  LMB, RMB or drag-n-drop.
         /// </summary>
-        internal static string HINT_GALLERYPAGE {
+        internal static string EXTRACT_HINT_SUB {
             get {
-                return ResourceManager.GetString("HINT_GALLERYPAGE", resourceCulture);
+                return ResourceManager.GetString("EXTRACT_HINT_SUB", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a page for scaling and cropping the image to your liking. Use the mouse wheel to zoom images in and out. Double-click the image to restore it to its original state. Drag the image to customize it. Click &apos;create&apos; to add a new portrait. The uploaded portraits will be almost exact copies of the images you framed on this page. Click &apos;back&apos; to return to the previous page..
+        ///   Looks up a localized string similar to Extract portraits.
         /// </summary>
-        internal static string HINT_SCALEPAGE {
+        internal static string EXTRACT_PAGE_TITLE {
             get {
-                return ResourceManager.GetString("HINT_SCALEPAGE", resourceCulture);
+                return ResourceManager.GetString("EXTRACT_PAGE_TITLE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to delete the old version of the portrait?  Be advised that you are risking losing the portrait if you are to leave file page. Click &apos;no&apos; to create a copy. Or &apos;yes&apos; to replace the old portrait..
+        ///   Looks up a localized string similar to Empty.
         /// </summary>
-        internal static string INQR_DELETEOLD {
+        internal static string GALLERY_EMPTY_TEXT {
             get {
-                return ResourceManager.GetString("INQR_DELETEOLD", resourceCulture);
+                return ResourceManager.GetString("GALLERY_EMPTY_TEXT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not uploaded any images. However, you can still use the default image. Click &apos;yes&apos; to continue with the default images. Click &apos;no&apos; to go back and choose another image..
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions and Characters need edvin76&apos;s CustomNpcPortraits mod, and appear once you&apos;ve met that character in-game..
         /// </summary>
-        internal static string INQR_NOIMAGECHOSEN {
+        internal static string GALLERY_HELP_KING {
             get {
-                return ResourceManager.GetString("INQR_NOIMAGECHOSEN", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_KING", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kingmaker.
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions covers every companion and NPC portrait from the base game - no mod needed..
         /// </summary>
-        internal static string KING {
+        internal static string GALLERY_HELP_POE {
             get {
-                return ResourceManager.GetString("KING", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_POE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Artemii &quot;Zeight&quot; Saganenko© 2024.
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions and Characters split automatically - the base game already keeps them separate, no mod needed..
         /// </summary>
-        internal static string LABEL_COPY {
+        internal static string GALLERY_HELP_POED {
             get {
-                return ResourceManager.GetString("LABEL_COPY", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_POED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Something went wrong. Given that you have reached this stage, it is most likely a problem with the game directory. Check the existence and consistency of the directory shown above. Create it if necessary. Visit the settings page for more information..
+        ///   Looks up a localized string similar to Existing player portraits appear here as thumbnails. Rogue Trader has no companion/NPC portrait mod yet..
         /// </summary>
-        internal static string LABEL_CREATEDERROR {
+        internal static string GALLERY_HELP_ROGUE {
             get {
-                return ResourceManager.GetString("LABEL_CREATEDERROR", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_ROGUE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The portrait was successfully created in the working directory, the location of which is indicated above. Now it is available for use in the game..
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions covers every companion portrait from the base game - no mod needed..
         /// </summary>
-        internal static string LABEL_CREATEDOK {
+        internal static string GALLERY_HELP_TYR {
             get {
-                return ResourceManager.GetString("LABEL_CREATEDOK", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_TYR", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UI Language .
+        ///   Looks up a localized string similar to Existing player portraits appear here as thumbnails. Wasteland 3&apos;s custom-portraits folder is player-only, so no companion/NPC tab exists..
         /// </summary>
-        internal static string LABEL_LANG {
+        internal static string GALLERY_HELP_WASTE {
             get {
-                return ResourceManager.GetString("LABEL_LANG", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_WASTE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Large.
+        ///   Looks up a localized string similar to Existing portraits appear here as thumbnails. Companions and Characters need edvin76&apos;s CustomNpcPortraits mod. Edit your MC via the &quot;CustomNpcPortraits - {name}&quot; entry, not their own tile..
         /// </summary>
-        internal static string LABEL_LARGEIMG {
+        internal static string GALLERY_HELP_WOTR {
             get {
-                return ResourceManager.GetString("LABEL_LARGEIMG", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HELP_WOTR", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Character portrait.
+        ///   Looks up a localized string similar to Folder name appears in your game&apos;s display language, not necessarily English..
         /// </summary>
-        internal static string LABEL_LARGEIMG2 {
+        internal static string GALLERY_HINT_LOCALE_NOTE {
             get {
-                return ResourceManager.GetString("LABEL_LARGEIMG2", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HINT_LOCALE_NOTE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medium.
+        ///   Looks up a localized string similar to NPC must be met in-game first. Folder name = exact NPC dialog name..
         /// </summary>
-        internal static string LABEL_MEDIUMIMG {
+        internal static string GALLERY_HINT_NPC_MET {
             get {
-                return ResourceManager.GetString("LABEL_MEDIUMIMG", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HINT_NPC_MET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skills portrait.
+        ///   Looks up a localized string similar to Use the folder button below to open Portraits - Npc directly..
         /// </summary>
-        internal static string LABEL_MEDIUMIMG2 {
+        internal static string GALLERY_HINT_OPEN_FOLDER {
             get {
-                return ResourceManager.GetString("LABEL_MEDIUMIMG2", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HINT_OPEN_FOLDER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Path to the game portraits folder.
+        ///   Looks up a localized string similar to Requires the CustomNpcPortraits mod to be installed..
         /// </summary>
-        internal static string LABEL_PATH {
+        internal static string GALLERY_HINT_REQUIRES_MOD {
             get {
-                return ResourceManager.GetString("LABEL_PATH", resourceCulture);
+                return ResourceManager.GetString("GALLERY_HINT_REQUIRES_MOD", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the settings page. Here you can adjust the size by dragging the corner. And check the path to the correct portrait folder..
+        ///   Looks up a localized string similar to Fulllength (692×1024) — used on the character paper-doll and level-up screen.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string LABEL_SETTINGS {
+        internal static string HINT_KING_LRG {
             get {
-                return ResourceManager.GetString("LABEL_SETTINGS", resourceCulture);
+                return ResourceManager.GetString("HINT_KING_LRG", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Small.
+        ///   Looks up a localized string similar to Medium (330×432) — used in the party bar and character screen. 
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string LABEL_SMALLIMG {
+        internal static string HINT_KING_MED {
             get {
-                return ResourceManager.GetString("LABEL_SMALLIMG", resourceCulture);
+                return ResourceManager.GetString("HINT_KING_MED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gameplay portrait.
+        ///   Looks up a localized string similar to Portrait / Small (185×242) — used in dialogues and the companion list. 
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string LABEL_SMALLIMG2 {
+        internal static string HINT_KING_SML {
             get {
-                return ResourceManager.GetString("LABEL_SMALLIMG2", resourceCulture);
+                return ResourceManager.GetString("HINT_KING_SML", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag and drop, type, or copy the url of an existing image. The url address must lead to an accessible web-source..
+        ///   Looks up a localized string similar to Use + and − to zoom the image in or out if the mouse wheel does not work..
         /// </summary>
-        internal static string LABEL_URLDIALOG {
+        internal static string HINT_KING_ZOOM {
             get {
-                return ResourceManager.GetString("LABEL_URLDIALOG", resourceCulture);
+                return ResourceManager.GetString("HINT_KING_ZOOM", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected web image is not available. Try another time, or just save it to your local drive and load it locally. Be advised WEBP is not supported..
+        ///   Looks up a localized string similar to Full portrait (210×330) — used on the character screen and paper-doll.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_CANNOTLOAD {
+        internal static string HINT_PILLARS_LRG {
             get {
-                return ResourceManager.GetString("MESG_CANNOTLOAD", resourceCulture);
+                return ResourceManager.GetString("HINT_PILLARS_LRG", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Looks like you&apos;ve installed Custom NPC Portraits from edvin76! This program will allow you to more easily customize the appearance of NPC portraits. Go to the Gallery View page and click the button to display custom NPCs, edit any portrait you want. Please note that when editing NPC portraits, if the old ones need to be replaced, a backup copy is created in the folder. If a copy needs to be made, it will be placed in a new folder. Please note that this program does not create portraits for Custom NPCs, but  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Full2 / Conversation (90×141) — used in conversation screens.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_CUSTOMFOUND {
+        internal static string HINT_PILLARS_MED {
             get {
-                return ResourceManager.GetString("MESG_CUSTOMFOUND", resourceCulture);
+                return ResourceManager.GetString("HINT_PILLARS_MED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom NPC not found. If not installed, continue. Otherwise, double-check the installation in the game itself via Unity Mod Manager, launch the game at least once so that the Custom NPC creates folders for portraits. Please note that this program does not create portraits for Custom NPCs, but only replaces them!.
+        ///   Looks up a localized string similar to Portrait / Small (76×96) — used in dialogues and the companion list.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_CUSTOMNOTFOUND {
+        internal static string HINT_PILLARS_SML {
             get {
-                return ResourceManager.GetString("MESG_CUSTOMNOTFOUND", resourceCulture);
+                return ResourceManager.GetString("HINT_PILLARS_SML", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are about to delete images. This process is irreversible. If your in-game portraits are in use, they will be replaced to placeholder by game itself. Do you want to continue? Total images:.
+        ///   Looks up a localized string similar to Portrait 2 (76×96) — used in additional interface elements.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_DELETE {
+        internal static string HINT_PILLARS_SML2 {
             get {
-                return ResourceManager.GetString("MESG_DELETE", resourceCulture);
+                return ResourceManager.GetString("HINT_PILLARS_SML2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder found! You can start creating your own portraits! Click &apos;Create Portrait&apos; to add a new one, &apos;Extract Folder&apos; to add multiple portraits from another folder, &apos;View Gallery&apos; to edit or delete old ones..
+        ///   Looks up a localized string similar to Fulllength (1080×1480) — used on the character paper-doll and level-up screen.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_GAMEFOLDERFOUND {
+        internal static string HINT_RT_LRG {
             get {
-                return ResourceManager.GetString("MESG_GAMEFOLDERFOUND", resourceCulture);
+                return ResourceManager.GetString("HINT_RT_LRG", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game folder not found. Make sure you have launched the game at least once. If the issue persists, please report it in the bug section. If you need to control another game, be it Kingmaker or WotR. Change the game type in the settings or by clicking on the title image. Visit the settings page for more information. Until the problem is fixed, all functions will be blocked..
+        ///   Looks up a localized string similar to Medium (448×600) — used in the party bar and character screen.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_GAMEFOLDERNOTFOUND {
+        internal static string HINT_RT_MED {
             get {
-                return ResourceManager.GetString("MESG_GAMEFOLDERNOTFOUND", resourceCulture);
+                return ResourceManager.GetString("HINT_RT_MED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not selected any portrait. To edit or delete, select at least one image from the list..
+        ///   Looks up a localized string similar to Portrait / Small (260×336) — used in dialogues and the companion list.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_NONESELECTED {
+        internal static string HINT_RT_SML {
             get {
-                return ResourceManager.GetString("MESG_NONESELECTED", resourceCulture);
+                return ResourceManager.GetString("HINT_RT_SML", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have not selected any portrait. To extract, select at least one image from the list..
+        ///   Looks up a localized string similar to Portrait (256×256) — used for character portraits.
+        ///
+        ///Choose a local image from your computer or select a web image from the internet. You can also drag-and-drop either a local image file or a web image link into this area..
         /// </summary>
-        internal static string MESG_NONESELECTEDEXTRACT {
+        internal static string HINT_WASTE_SML {
             get {
-                return ResourceManager.GetString("MESG_NONESELECTEDEXTRACT", resourceCulture);
+                return ResourceManager.GetString("HINT_WASTE_SML", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One or more folders already exist in the in-game portraits folder. The names are repeated. The program will rename the output folders so that the images are not overridden..
+        ///   Looks up a localized string similar to 🔍+.
         /// </summary>
-        internal static string MESG_REPEATFOLDER {
+        internal static string ICON_ZOOM_IN {
             get {
-                return ResourceManager.GetString("MESG_REPEATFOLDER", resourceCulture);
+                return ResourceManager.GetString("ICON_ZOOM_IN", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More than one image selected. Only the first of all selected will be processed..
+        ///   Looks up a localized string similar to 🔍−.
         /// </summary>
-        internal static string MESG_SELECTEDMORE {
+        internal static string ICON_ZOOM_OUT {
             get {
-                return ResourceManager.GetString("MESG_SELECTEDMORE", resourceCulture);
+                return ResourceManager.GetString("ICON_ZOOM_OUT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Images are loaded successfully:.
+        ///   Looks up a localized string similar to ↺.
         /// </summary>
-        internal static string MESG_SUCCESS {
+        internal static string ICON_ZOOM_RESET {
             get {
-                return ResourceManager.GetString("MESG_SUCCESS", resourceCulture);
+                return ResourceManager.GetString("ICON_ZOOM_RESET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file is not in the correct format. Please select an image from the allowed formats. PNG, JPG, JPEG, BMP or GIF formats are allowed. The file may not be available as well. Directory should not be protected with extra rights..
+        ///   Looks up a localized string similar to Delete this portrait set?.
         /// </summary>
-        internal static string MESG_WRONGFORMAT {
+        internal static string INQR_DELETE_PORTRAIT_SET {
             get {
-                return ResourceManager.GetString("MESG_WRONGFORMAT", resourceCulture);
+                return ResourceManager.GetString("INQR_DELETE_PORTRAIT_SET", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rogue Trader.
+        ///   Looks up a localized string similar to Total: {0} | Selected: {1}.
         /// </summary>
-        internal static string ROGUE {
+        internal static string LABEL_EXTRACT_COUNTER {
             get {
-                return ResourceManager.GetString("ROGUE", resourceCulture);
+                return ResourceManager.GetString("LABEL_EXTRACT_COUNTER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select folder to extract from.
+        ///   Looks up a localized string similar to Characters.
         /// </summary>
-        internal static string TEXT_FOLDEROPEN {
+        internal static string LABEL_GALLERY_CHARACTERS {
             get {
-                return ResourceManager.GetString("TEXT_FOLDEROPEN", resourceCulture);
+                return ResourceManager.GetString("LABEL_GALLERY_CHARACTERS", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All images.
+        ///   Looks up a localized string similar to Companions.
         /// </summary>
-        internal static string TEXT_IMAGEFILTER {
+        internal static string LABEL_GALLERY_COMPANIONS {
             get {
-                return ResourceManager.GetString("TEXT_IMAGEFILTER", resourceCulture);
+                return ResourceManager.GetString("LABEL_GALLERY_COMPANIONS", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select folder which stores portraits.
+        ///   Looks up a localized string similar to CustomNPC.
         /// </summary>
-        internal static string TEXT_PATHOPEN {
+        internal static string LABEL_GALLERY_CUSTOMNPC {
             get {
-                return ResourceManager.GetString("TEXT_PATHOPEN", resourceCulture);
+                return ResourceManager.GetString("LABEL_GALLERY_CUSTOMNPC", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose image.
+        ///   Looks up a localized string similar to Non-player.
         /// </summary>
-        internal static string TEXT_TITLEOPENFILE {
+        internal static string LABEL_GALLERY_NONPLAYER {
             get {
-                return ResourceManager.GetString("TEXT_TITLEOPENFILE", resourceCulture);
+                return ResourceManager.GetString("LABEL_GALLERY_NONPLAYER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose folder.
+        ///   Looks up a localized string similar to Zeight Portrait Manager
+        ///Artemii &quot;Zeight&quot; Saganenko ©2023-2026.
         /// </summary>
-        internal static string TEXT_TITLEOPENFOLDER {
+        internal static string MAIN_MENU_AUTHOR {
             get {
-                return ResourceManager.GetString("TEXT_TITLEOPENFOLDER", resourceCulture);
+                return ResourceManager.GetString("MAIN_MENU_AUTHOR", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input URL here.
+        ///   Looks up a localized string similar to Portrait Manager.
         /// </summary>
-        internal static string TEXTBOX_URL_INPUT {
+        internal static string MAIN_MENU_TITLE {
             get {
-                return ResourceManager.GetString("TEXTBOX_URL_INPUT", resourceCulture);
+                return ResourceManager.GetString("MAIN_MENU_TITLE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect URL.
+        ///   Looks up a localized string similar to ◈.
         /// </summary>
-        internal static string TEXTBOX_URL_WRONG {
+        internal static string MENU_HOVER_MARKER {
             get {
-                return ResourceManager.GetString("TEXTBOX_URL_WRONG", resourceCulture);
+                return ResourceManager.GetString("MENU_HOVER_MARKER", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WotR.
+        ///   Looks up a localized string similar to Archive contents not found. Please reload the archive..
         /// </summary>
-        internal static string WOTR {
+        internal static string MESG_ARCHIVE_CONTENTS_NOT_FOUND {
             get {
-                return ResourceManager.GetString("WOTR", resourceCulture);
+                return ResourceManager.GetString("MESG_ARCHIVE_CONTENTS_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load archive: {0}.
+        /// </summary>
+        internal static string MESG_ARCHIVE_LOAD_FAILED {
+            get {
+                return ResourceManager.GetString("MESG_ARCHIVE_LOAD_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That name is already in use. Please choose a different one before creating the portrait..
+        /// </summary>
+        internal static string MESG_CUSTOM_NAME_TAKEN {
+            get {
+                return ResourceManager.GetString("MESG_CUSTOM_NAME_TAKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not delete this portrait set: {0}.
+        /// </summary>
+        internal static string MESG_DELETE_PORTRAIT_FAILED {
+            get {
+                return ResourceManager.GetString("MESG_DELETE_PORTRAIT_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} name(s) already existed and were saved with a suffix..
+        /// </summary>
+        internal static string MESG_EXTRACT_CONFLICT {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_CONFLICT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some folders already exist. Portraits were saved with unique names..
+        /// </summary>
+        internal static string MESG_EXTRACT_DUPFOLDER {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_DUPFOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No portraits selected..
+        /// </summary>
+        internal static string MESG_EXTRACT_NOSELECTION {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_NOSELECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait set(s). {1} set(s) are missing one or more portrait sizes..
+        /// </summary>
+        internal static string MESG_EXTRACT_PARTIAL {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_PARTIAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracted {0} portrait(s) successfully..
+        /// </summary>
+        internal static string MESG_EXTRACT_SUCCESS {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACT_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extraction failed: {0}.
+        /// </summary>
+        internal static string MESG_EXTRACTION_FAILED {
+            get {
+                return ResourceManager.GetString("MESG_EXTRACTION_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create CustomNPC portrait folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_CUSTOMNPC_FOLDER {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_CUSTOMNPC_FOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create CustomNPC portraits folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_CUSTOMNPC_ROOT {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_CUSTOMNPC_ROOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create portrait folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_PORTRAIT_FOLDER {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_PORTRAIT_FOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to create portraits root folder: {0}.
+        /// </summary>
+        internal static string MESG_FAILED_CREATE_PORTRAITS_ROOT {
+            get {
+                return ResourceManager.GetString("MESG_FAILED_CREATE_PORTRAITS_ROOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not determine the folder location..
+        /// </summary>
+        internal static string MESG_FOLDER_LOCATION_UNKNOWN {
+            get {
+                return ResourceManager.GetString("MESG_FOLDER_LOCATION_UNKNOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled thanks to edvin76&apos;s CustomNPC Portraits mod.
+        /// </summary>
+        internal static string MESG_GALLERY_CUSTOMNPC_CREDIT {
+            get {
+                return ResourceManager.GetString("MESG_GALLERY_CUSTOMNPC_CREDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not determine the game directory..
+        /// </summary>
+        internal static string MESG_GAME_DIRECTORY_UNKNOWN {
+            get {
+                return ResourceManager.GetString("MESG_GAME_DIRECTORY_UNKNOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game path not set. Please configure the game path first..
+        /// </summary>
+        internal static string MESG_GAME_PATH_NOT_SET_EXTRACT {
+            get {
+                return ResourceManager.GetString("MESG_GAME_PATH_NOT_SET_EXTRACT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game portraits path is not set or does not exist..
+        /// </summary>
+        internal static string MESG_GAMEPATH_NOT_SET {
+            get {
+                return ResourceManager.GetString("MESG_GAMEPATH_NOT_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not load the image from that address. {0}.
+        /// </summary>
+        internal static string MESG_IMAGE_LOAD_FAILED {
+            get {
+                return ResourceManager.GetString("MESG_IMAGE_LOAD_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No portraits matching the expected dimensions for the selected game were found in the archive.
+        ///Make sure you have the correct game selected..
+        /// </summary>
+        internal static string MESG_NO_MATCHING_PORTRAITS {
+            get {
+                return ResourceManager.GetString("MESG_NO_MATCHING_PORTRAITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not locate the expected game data folder. Please make sure you select the root game installation directory..
+        /// </summary>
+        internal static string MESG_PATH_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("MESG_PATH_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not locate the expected game data folder. Please make sure you select the folder inside &quot;LocalLow\Owlcat Games\{0}&quot; (not the game&apos;s install directory)..
+        /// </summary>
+        internal static string MESG_PATH_WRONG_ROOT {
+            get {
+                return ResourceManager.GetString("MESG_PATH_WRONG_ROOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not locate the expected game data folder. Please make sure you select the folder inside &quot;Documents\My Games\{0}&quot; (not the game&apos;s install directory)..
+        /// </summary>
+        internal static string MESG_PATH_WRONG_ROOT_DOCUMENTS {
+            get {
+                return ResourceManager.GetString("MESG_PATH_WRONG_ROOT_DOCUMENTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portrait creation error: {0}.
+        /// </summary>
+        internal static string MESG_PORTRAIT_CREATION_ERROR {
+            get {
+                return ResourceManager.GetString("MESG_PORTRAIT_CREATION_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A backup of the original portrait is available.
+        ///Load the backup, or keep working from the present portrait?.
+        /// </summary>
+        internal static string MESG_RESTORE_BACKUP_PROMPT {
+            get {
+                return ResourceManager.GetString("MESG_RESTORE_BACKUP_PROMPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported game type..
+        /// </summary>
+        internal static string MESG_UNSUPPORTED_GAMETYPE {
+            get {
+                return ResourceManager.GetString("MESG_UNSUPPORTED_GAMETYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That link does not point to a supported image file.
+        ///
+        ///Supported formats: PNG, JPG, GIF, BMP..
+        /// </summary>
+        internal static string MESG_UNSUPPORTED_IMAGE_LINK {
+            get {
+                return ResourceManager.GetString("MESG_UNSUPPORTED_IMAGE_LINK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity: Deadfire.
+        /// </summary>
+        internal static string NAME_DEADFIRE {
+            get {
+                return ResourceManager.GetString("NAME_DEADFIRE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder: Kingmaker.
+        /// </summary>
+        internal static string NAME_KING {
+            get {
+                return ResourceManager.GetString("NAME_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity.
+        /// </summary>
+        internal static string NAME_PILLARS {
+            get {
+                return ResourceManager.GetString("NAME_PILLARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warhammer 40K: Rogue Trader.
+        /// </summary>
+        internal static string NAME_ROGUE {
+            get {
+                return ResourceManager.GetString("NAME_ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyranny.
+        /// </summary>
+        internal static string NAME_TYR {
+            get {
+                return ResourceManager.GetString("NAME_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3.
+        /// </summary>
+        internal static string NAME_WASTE {
+            get {
+                return ResourceManager.GetString("NAME_WASTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder: Wrath of the Righteous.
+        /// </summary>
+        internal static string NAME_WOTR {
+            get {
+                return ResourceManager.GetString("NAME_WOTR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string NAMEDIALOG_BUTTON_CANCEL {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_BUTTON_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use name.
+        /// </summary>
+        internal static string NAMEDIALOG_BUTTON_OK {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_BUTTON_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That name is already in use. Please choose a different one..
+        /// </summary>
+        internal static string NAMEDIALOG_ERR_DUPLICATE {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_ERR_DUPLICATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That name contains characters that aren&apos;t allowed in a file or folder name..
+        /// </summary>
+        internal static string NAMEDIALOG_ERR_INVALID_CHARS {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_ERR_INVALID_CHARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type a name for the portrait&apos;s folder or file, or leave it blank to clear a custom name and use an automatic one instead..
+        /// </summary>
+        internal static string NAMEDIALOG_HINT {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_HINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name this portrait.
+        /// </summary>
+        internal static string NAMEDIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("NAMEDIALOG_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder: Kingmaker stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Kingmaker\Portraits\. The program automatically detects this path through your Windows user profile. 
+        ///
+        ///- You can alter companions and NPC portraits via Browse Gallery, only if you have installed CustomNPC..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_KING {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_KING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity stores its portraits inside the installation folder: &lt;Pillars of Eternity Installation Folder&gt;\PillarsOfEternity_Data\data\art\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder.
+        ///
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_POE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_POE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars of Eternity: Deadfire stores its portraits inside the installation folder: &lt;Pillars of Eternity II Installation Folder&gt;\PillarsOfEternityII_Data\gui\portraits\. The program automatically attempts to locate this folder by checking your Steam, GOG, and Epic Games installations. If auto-detection does not find the game, you can manually select the installation folder. 
+        ///
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_POED {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_POED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rogue Trader stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Warhammer 40000 Rogue Trader\Portraits\. The program automatically detects this path through your Windows user profile..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_ROGUE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_ROGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tyranny keeps its portrait files directly inside the game’s installation directory, under: Data\data\art\gui\portraits\player\. The program automatically attempts to locate the Tyranny installation by checking your Steam, GOG, and Epic Games library locations through registry lookups. If auto-detection doesn’t find it, you can manually select the Tyranny folder.
+        ///
+        ///- You can also alter companions and NPC portraits if they exist via Browse Gallery..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_TYR {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_TYR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wasteland 3 stores all custom portraits inside the user’s Documents folder, under: Documents\My Games\Wasteland3\Custom Portraits\. The program automatically detects this folder by using the system’s Documents path. If detection fails, you can open the folder manually..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_WASTE {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_WASTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pathfinder: Wrath of the Righteous stores its portraits in the local application data folder, under: AppData\LocalLow\Owlcat Games\Pathfinder Wrath Of The Righteous\Portraits\. The program automatically detects this path through your Windows user profile. 
+        ///
+        ///- You can alter companions and NPC portraits via Browse Gallery, only if you have installed CustomNPC..
+        /// </summary>
+        internal static string TEXT_EXPLAIN_PATH_WOTR {
+            get {
+                return ResourceManager.GetString("TEXT_EXPLAIN_PATH_WOTR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  - .
+        /// </summary>
+        internal static string TEXT_PATH_PLACEHOLDER {
+            get {
+                return ResourceManager.GetString("TEXT_PATH_PLACEHOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved to game portraits folder.
+        /// </summary>
+        internal static string TOAST_INFO {
+            get {
+                return ResourceManager.GetString("TOAST_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name: {0}.
+        /// </summary>
+        internal static string TOAST_NAME_PREFIX {
+            get {
+                return ResourceManager.GetString("TOAST_NAME_PREFIX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open folder.
+        /// </summary>
+        internal static string TOAST_OPEN_FOLDER {
+            get {
+                return ResourceManager.GetString("TOAST_OPEN_FOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✓ Portrait created.
+        /// </summary>
+        internal static string TOAST_TITLE {
+            get {
+                return ResourceManager.GetString("TOAST_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string WEBDIALOG_BUTTON_CANCEL {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_BUTTON_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        internal static string WEBDIALOG_BUTTON_LOAD {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_BUTTON_LOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a web address before pressing Load..
+        /// </summary>
+        internal static string WEBDIALOG_ERR_EMPTY_URL {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_ERR_EMPTY_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The address you entered does not look like a valid web link. Make sure it starts with http:// or https:// and contains no spaces..
+        /// </summary>
+        internal static string WEBDIALOG_ERR_INVALID_URL {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_ERR_INVALID_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The image could not be loaded. {0}
+        ///Try dragging the image from your browser onto a portrait slot instead..
+        /// </summary>
+        internal static string WEBDIALOG_ERR_LOAD_EXCEPTION {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_ERR_LOAD_EXCEPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The image could not be loaded. The server did not return any data.
+        ///Try dragging the image from your browser onto a portrait slot instead..
+        /// </summary>
+        internal static string WEBDIALOG_ERR_NO_DATA {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_ERR_NO_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The server did not return an image. Make sure the link points directly to an image file.
+        ///Try dragging the image from your browser onto a portrait slot instead..
+        /// </summary>
+        internal static string WEBDIALOG_ERR_NOT_IMAGE {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_ERR_NOT_IMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That link does not point to a supported image file. Supported formats: PNG, JPG, GIF, BMP..
+        /// </summary>
+        internal static string WEBDIALOG_ERR_UNSUPPORTED_FORMAT {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_ERR_UNSUPPORTED_FORMAT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste or drag a web image address into the box below, then press Load. Any image link that opens in your browser will work..
+        /// </summary>
+        internal static string WEBDIALOG_HINT {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_HINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tip: you can also drop an image file directly onto the portrait panel..
+        /// </summary>
+        internal static string WEBDIALOG_TIP {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_TIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load image from web.
+        /// </summary>
+        internal static string WEBDIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
             }
         }
     }

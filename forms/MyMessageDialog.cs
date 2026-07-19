@@ -1,91 +1,120 @@
 ﻿/*    
-    Portrait Manager: Owlcat. Desktop application for managing in game
-    portraits for Owlcat Games products. Including: 1. Pathfinder: Kingmaker,
-    2. Pathfinder: Wrath of the Righteous, 3. Warhammer 40000: Rogue Trader
-    Copyright (C) 2024 Artemii "Zeight" Saganenko.
+    Zeight Portrait Manager
+    Desktop application for managing in-game portraits for games from Owlcat Games, 
+    Obsidian Entertainment and inXile Entertainment. 
+    Including: 
+        1. Pathfinder: Kingmaker,
+        2. Pathfinder: Wrath of the Righteous, 
+        3. Warhammer 40000: Rogue Trader,
+        4. Pillars of Eternity, 
+        5. Pillars of Eternity: Deadfire, 
+        6. Tyranny,
+        7. Wasteland 3.
+    Copyright (C) 2023-2026 Artemii "Zeight" Saganenko.
 
-    GPL-2.0 license terms are listed in LICENSE file.
+    GPL-2.0 license terms are listed in LICENSE.md file.
     License header for this project is listed in Program.cs.
 */
-
-using OwlcatPortraitManager.Properties;
+using PortraitManager.Properties;
+using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
-namespace OwlcatPortraitManager.forms
+namespace PortraitManager.forms
 {
     public partial class MyMessageDialog : Form
     {
-        private readonly Font _fontLarge, _fontMedium;
-        private readonly PrivateFontCollection _fontCollection;
+        private PrivateFontCollection _fontCollection;
 
-        public MyMessageDialog(string message, string locale)
+        public MyMessageDialog(string message)
         {
-            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular, Resources.BebasNeue_Regular_ru);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(locale);
-
-            if (Thread.CurrentThread.CurrentUICulture == CultureInfo.GetCultureInfo("ru-RU"))
-            {
-                _fontLarge = new Font(_fontCollection.Families[1], 17);
-                _fontMedium = new Font(_fontCollection.Families[1], 15);
-            }
-            else
-            {
-                _fontLarge = new Font(_fontCollection.Families[0], 17);
-                _fontMedium = new Font(_fontCollection.Families[0], 15);
-            }
-
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.Selectable, false);
-            Focus();
+            Shown += MyMessageDialog_Shown;
 
-            ButtonClose.Text = TextVariables.BUTTON_OK;
-            ButtonClose.Font = _fontLarge;
+            FontInit();
+            TextInit();
             LabelMesg.Text = message;
-            LabelMesg.Font = _fontMedium;
+
+            Focus();
+        }
+
+        private void FontInit()
+        {
+            _fontCollection = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular);
+            var family = _fontCollection.Families[0];
+
+            LabelMesg.Font = new Font(FontFamily.GenericSansSerif, 14.4f);
+            ButtonClose.Font = new Font(family, 16f);
+        }
+
+        private void TextInit()
+        {
+            ButtonClose.Text = TextVariables.DIALOG_BUTTON_CLOSE;
+        }
+
+        private void MyMessageDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            Form root = Owner;
+            while (root != null && root.Owner != null)
+                root = root.Owner;
+
+            if (root != null)
+            {
+                if (root.WindowState == FormWindowState.Minimized)
+                    root.WindowState = FormWindowState.Normal;
+                root.Activate();
+            }
         }
 
         private void MyMessageDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _fontLarge.Dispose();
-            _fontMedium.Dispose();
             Dispose();
         }
 
         private void ButtonClose_MouseEnter(object sender, System.EventArgs e)
         {
-            if (sender is Button button)
-            {
-                if (button != null)
-                {
-                    button.BackColor = Color.White;
-                    button.ForeColor = Color.Black;
-                }
-            }
+            if (sender is Button btn) { btn.BackColor = Color.White; btn.ForeColor = Color.Black; }
         }
 
         private void ButtonClose_MouseLeave(object sender, System.EventArgs e)
         {
-            if (sender is Button button)
-            {
-                if (button != null && button.Enabled == true)
-                {
-                    button.BackColor = Color.Black;
-                    button.ForeColor = Color.White;
-                }
-            }
+            if (sender is Button btn && btn.Enabled) { btn.BackColor = Color.Black; btn.ForeColor = Color.White; }
         }
 
         private void MyMessageDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.E)
-            {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
                 Close();
+        }
+
+        private void MyMessageDialog_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                Form anchor = Owner;
+                while (anchor != null && anchor.Owner != null)
+                    anchor = anchor.Owner;
+
+                if (anchor == null)
+                {
+                    foreach (Form f in Application.OpenForms)
+                    {
+                        anchor = f;
+                        break;
+                    }
+                }
+
+                if (anchor != null)
+                {
+                    Width = anchor.ClientSize.Width;
+                    Left = anchor.PointToScreen(Point.Empty).X;
+                }
             }
+            catch { }
         }
     }
 }

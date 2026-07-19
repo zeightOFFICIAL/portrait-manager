@@ -2200,10 +2200,9 @@ namespace PortraitManager
                             if (selectedKeys != null && !selectedKeys.Contains(rawKey))
                                 continue;
 
-                            string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
-                            Directory.CreateDirectory(targetFolder);
-                            if (conflicted) conflictCount++;
-
+                            // Completeness is checked before creating the target folder so an incomplete
+                            // set (missing one of the three Owlcat sizes) doesn't leave an empty folder
+                            // behind - matching the .7z/.rar path, which also checks before creating.
                             var fileNames = folder
                                 .Select(e => Path.GetFileName(e.Name))
                                 .Where(n => !string.IsNullOrEmpty(n))
@@ -2215,6 +2214,10 @@ namespace PortraitManager
                                 skippedCount++;
                                 continue;
                             }
+
+                            string targetFolder = GetUniqueFolderPath(extractDir, folderName, out bool conflicted);
+                            Directory.CreateDirectory(targetFolder);
+                            if (conflicted) conflictCount++;
 
                             bool hadInvalid = false;
                             foreach (var entry in folder.Where(e => !string.IsNullOrEmpty(Path.GetFileName(e.Name)) && IsImageFile(e.Name)))

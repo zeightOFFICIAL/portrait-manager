@@ -57,9 +57,9 @@ Prefer to pick the name yourself instead of an auto-generated one? Press Create 
 
 <table style="border:none; border-collapse:collapse; width:100%;">
 <tr>
-<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/2create.png?raw=true" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/2create.png?raw=true" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/2create.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/k/listing/2create.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/w/listing/2create.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/t/listing/2create.png" width="100%" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -81,8 +81,8 @@ Point Portrait Manager at a `.zip`, `.rar`, `.7z` archive, or a plain unpacked f
 
 <table style="border:none; border-collapse:collapse; width:100%;">
 <tr>
-<td style="border:none; padding:0; width:50%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/3extract_pre.png?raw=true" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0; width:50%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/4extract.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:50%;"><img src="media/w/listing/3extract_pre.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:50%;"><img src="media/w/listing/4extract.png" width="100%" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -91,9 +91,9 @@ Every existing portrait - player, companion, or NPC - shows up in Browse Gallery
 
 <table style="border:none; border-collapse:collapse; width:100%;">
 <tr>
-<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/5browse_gal.png?raw=true" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/6browse_comp.png?raw=true" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0; width:33.33%;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/7browse_char.png?raw=true" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/k/listing/5browse_gal.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/t/listing/6browse_comp.png" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0; width:33.33%;"><img src="media/w/listing/7browse_char.png" width="100%" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -104,9 +104,9 @@ This is the part that differs the most from game to game, because it depends on 
 
 <table style="border:none; border-collapse:collapse;">
 <tr>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/k/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/k/listing/10customnpc.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/k/listing/11portrait.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/k/listing/12customnpc.png" height="220" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -116,9 +116,9 @@ This is the part that differs the most from game to game, because it depends on 
 
 <table style="border:none; border-collapse:collapse;">
 <tr>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/w/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/w/listing/10customnpc.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/w/listing/11portrait.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/w/listing/12customnpc.png" height="220" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -126,9 +126,9 @@ This is the part that differs the most from game to game, because it depends on 
 
 <table style="border:none; border-collapse:collapse;">
 <tr>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/p/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/p/listing/10customnpc.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/p/listing/11portrait.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/p/listing/12customnpc.png" height="220" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -136,9 +136,9 @@ This is the part that differs the most from game to game, because it depends on 
 
 <table style="border:none; border-collapse:collapse;">
 <tr>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/d/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/d/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/d/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/d/listing/10customnpc.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/d/listing/11portrait.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/d/listing/12customnpc.png" height="220" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -146,9 +146,9 @@ This is the part that differs the most from game to game, because it depends on 
 
 <table style="border:none; border-collapse:collapse;">
 <tr>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/10customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/11portrait.png?raw=true" height="220" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="https://github.com/zeightOFFICIAL/portrait-manager/blob/obsidian/media/t/listing/12customnpc.png?raw=true" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/t/listing/10customnpc.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/t/listing/11portrait.png" height="220" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><img src="media/t/listing/12customnpc.png" height="220" style="display:block; border:none;"/></td>
 </tr>
 </table>
 
@@ -201,6 +201,8 @@ Small technical notes that aren't covered above, but worth knowing if something 
     * Added full support for Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny and Wasteland 3
     * Added a backup-and-restore system for companion/character portraits: the untouched original is preserved automatically on first edit and offered back on later edits
     * Reintroduced localization: English, German and Russian, switchable via flags in the top-right corner. Unlike 1.2.0.0, the language is never auto-detected from the system - it defaults to English and remembers your last choice
+    * Added Create with name - choose your own folder/file name for a new portrait instead of an auto-generated one, with duplicate names rejected up front
+    * Added a per-game help button on the Browse Gallery page explaining that page's tabs and behavior
     * Major internal refactor touching nearly every part of the codebase: code split by responsibility (UI events, business logic, image/file operations), all user-facing text centralized, dead code removed
     * Fixed several silent failures (corrupt/unsupported image loads, failed deletes) to surface a plain-language message instead of doing nothing
 * 1.3.5.0 (previous)

@@ -21,8 +21,6 @@
 </tr>
 </table>
 
-Supported games: Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40000: Rogue Trader, Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny, Wasteland 3
-
 #### <p align="center">Created and designed by Artemii "Zeight" Saganenko<br>Copyright Artemii Saganenko ©2023-2026</p>
 
 ---

@@ -284,29 +284,18 @@ namespace PortraitManager
 
         private void LanguageFlagsInit()
         {
-            const int flagWidth = 26;
-            const int flagHeight = 17;
-            const int flagGap = 6;
-            const int margin = 10;
+            const int flagWidth = 20;
+            const int flagHeight = 13;
+            const int flagGap = 3;
 
-            // A solid backing (rather than BackColor.Transparent) is used deliberately: this panel sits
-            // directly on the Form, as a sibling of the Dock=Fill page panels, not as their child — WinForms
-            // only resolves a transparent BackColor against the immediate parent, not sibling controls, so
-            // transparency here would show the Form's own background instead of the active page underneath it.
-            var flagsPanel = new Panel
-            {
-                Size = new Size(flagWidth * 3 + flagGap * 2 + 8, flagHeight + 8),
-                Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                BackColor = Color.FromArgb(30, 30, 30)
-            };
-            flagsPanel.Location = new Point(ClientSize.Width - flagsPanel.Width - margin, margin);
-
-            const int inset = 4;
-
+            // Each flag is a fully opaque rectangular bitmap sized exactly to its PictureBox, so there is
+            // no background chip behind them — they sit flush against the top-right corner of the Form,
+            // directly on top of whichever Dock=Fill page panel is currently showing.
             _flagEng = new PictureBox
             {
                 Size = new Size(flagWidth, flagHeight),
-                Location = new Point(inset, inset),
+                Location = new Point(ClientSize.Width - flagWidth * 3 - flagGap * 2, 0),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
                 Image = Resources.eng_flag,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Cursor = Cursors.Hand,
@@ -315,7 +304,8 @@ namespace PortraitManager
             _flagDe = new PictureBox
             {
                 Size = new Size(flagWidth, flagHeight),
-                Location = new Point(inset + flagWidth + flagGap, inset),
+                Location = new Point(ClientSize.Width - flagWidth * 2 - flagGap, 0),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
                 Image = Resources.de_flag,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Cursor = Cursors.Hand,
@@ -324,7 +314,8 @@ namespace PortraitManager
             _flagRus = new PictureBox
             {
                 Size = new Size(flagWidth, flagHeight),
-                Location = new Point(inset + (flagWidth + flagGap) * 2, inset),
+                Location = new Point(ClientSize.Width - flagWidth, 0),
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
                 Image = Resources.rus_flag,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Cursor = Cursors.Hand,
@@ -335,11 +326,10 @@ namespace PortraitManager
             {
                 flag.Click += FlagPictureBox_Click;
                 flag.Paint += FlagPictureBox_Paint;
-                flagsPanel.Controls.Add(flag);
+                Controls.Add(flag);
+                flag.BringToFront();
             }
 
-            Controls.Add(flagsPanel);
-            flagsPanel.BringToFront();
             RefreshFlagHighlight();
         }
 
@@ -354,9 +344,9 @@ namespace PortraitManager
             if (!(sender is PictureBox flag) || !(flag.Tag is char lang)) return;
             if (lang == _currentLanguage)
             {
-                using (var pen = new Pen(Color.White, 2))
+                using (var pen = new Pen(Color.White, 1))
                 {
-                    e.Graphics.DrawRectangle(pen, 1, 1, flag.Width - 3, flag.Height - 3);
+                    e.Graphics.DrawRectangle(pen, 0, 0, flag.Width - 1, flag.Height - 1);
                 }
             }
         }

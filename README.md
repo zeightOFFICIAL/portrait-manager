@@ -98,8 +98,6 @@ Every existing portrait - player, companion, or NPC - shows up in Browse Gallery
 </tr>
 </table>
 
-*Left to right: Kingmaker's Gallery tab, Tyranny's Companions tab, Wrath of the Righteous's Characters tab.*
-
 #### Companion & character portraits
 This is the part that differs the most from game to game, because it depends on how each game actually stores that data:
 
@@ -191,11 +189,19 @@ Requires .NET Framework 4.8. If you're on a reasonably current Windows 10 or Win
 * Single self-contained `.exe` - all dependencies embedded via Costura.Fody, nothing to distribute separately
 * Release builds have debug symbols stripped
 
+#### Addendum
+Small technical notes that aren't covered above, but worth knowing if something looks unexpected:
+
+* **Localization**: the UI can be switched between English, German and Russian using the small flags in the top-right corner of the window. The language is never auto-detected from the OS - it defaults to English and only changes when you click a flag, and your choice is remembered for next launch.
+* **CustomNPC has no in-game binding from this app**: Portrait Manager only writes image files to disk; it has no pipeline of its own to make the game display a given folder as a specific companion or NPC. The folder's name has to match that character's exact in-game dialogue name for CustomNpcPortraits to pick it up - that matching is entirely the mod's job, not Portrait Manager's.
+* **Settings storage**: game path, last-used game, and now language are stored per-user as XML under your Windows AppData folder, the same mechanism used in the previous release - not next to the executable.
+
 ##### Changelog
 * 1.5 (current)
     * Major visual, conceptual and functional overhaul
     * Added full support for Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny and Wasteland 3
     * Added a backup-and-restore system for companion/character portraits: the untouched original is preserved automatically on first edit and offered back on later edits
+    * Reintroduced localization: English, German and Russian, switchable via flags in the top-right corner. Unlike 1.2.0.0, the language is never auto-detected from the system - it defaults to English and remembers your last choice
     * Major internal refactor touching nearly every part of the codebase: code split by responsibility (UI events, business logic, image/file operations), all user-facing text centralized, dead code removed
     * Fixed several silent failures (corrupt/unsupported image loads, failed deletes) to surface a plain-language message instead of doing nothing
 * 1.3.5.0 (previous)

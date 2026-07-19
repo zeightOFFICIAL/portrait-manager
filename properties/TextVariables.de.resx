@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_CHOOSE" xml:space="preserve">
-    <value>Auswählen 📁</value>
+    <value>Wählen 📁</value>
   </data>
   <data name="BUTTON_RESET" xml:space="preserve">
-    <value>Zurücksetzen 🔄</value>
+    <value>Reset 🔄</value>
   </data>
   <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
     <value>Zeight Portrait Manager
@@ -93,25 +93,25 @@ Artemii "Zeight" Saganenko ©2023-2026</value>
     <value>Pathfinder: Wrath of the Righteous</value>
   </data>
   <data name="BUTTON_EXTRACT" xml:space="preserve">
-    <value>Ordner extrahieren</value>
+    <value>Ordner entpacken</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_ROGUE" xml:space="preserve">
     <value>Rogue Trader speichert seine Portraits im lokalen Anwendungsdatenordner unter: AppData\LocalLow\Owlcat Games\Warhammer 40000 Rogue Trader\Portraits\. Das Programm erkennt diesen Pfad automatisch anhand deines Windows-Benutzerprofils.</value>
   </data>
   <data name="BUTTON_BROWSE" xml:space="preserve">
-    <value>Galerie durchsuchen</value>
+    <value>Galerie öffnen</value>
   </data>
   <data name="BUTTON_CREATE" xml:space="preserve">
-    <value>Portrait erstellen</value>
+    <value>Portrait anlegen</value>
   </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
-    <value>Beenden</value>
+    <value>Exit</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_WASTE" xml:space="preserve">
     <value>Wasteland 3 speichert alle benutzerdefinierten Portraits im Dokumente-Ordner, unter: Documents\My Games\Wasteland3\Custom Portraits\. Das Programm erkennt diesen Ordner automatisch anhand des System-Dokumentenpfads. Schlägt die Erkennung fehl, kannst du den Ordner manuell öffnen.</value>
   </data>
   <data name="BUTTON_SETTINGS" xml:space="preserve">
-    <value>Spiel wechseln</value>
+    <value>Spiel ändern</value>
   </data>
   <data name="TEXT_EXPLAIN_PATH_TYR" xml:space="preserve">
     <value>Tyranny speichert seine Portrait-Dateien direkt im Installationsverzeichnis des Spiels, unter: Data\data\art\gui\portraits\player\. Das Programm versucht automatisch, die Tyranny-Installation über Registry-Abfragen in deinen Steam-, GOG- und Epic-Games-Bibliotheken zu finden. Schlägt die automatische Erkennung fehl, kannst du den Tyranny-Ordner manuell auswählen.
@@ -159,17 +159,17 @@ Artemii "Zeight" Saganenko ©2023-2026</value>
   <data name="HINT_KING_LRG" xml:space="preserve">
     <value>Ganzkörper (692×1024) — wird auf dem Charakterbild und im Levelaufstiegs-Bildschirm verwendet.
 
-Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
   <data name="HINT_KING_MED" xml:space="preserve">
     <value>Mittel (330×432) — wird in der Gruppenleiste und im Charakterbildschirm verwendet.
 
-Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
   <data name="HINT_KING_SML" xml:space="preserve">
     <value>Portrait / Klein (185×242) — wird in Dialogen und der Begleiterliste verwendet.
 
-Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
   <data name="HINT_KING_ZOOM" xml:space="preserve">
     <value>Verwende + und −, um das Bild zu vergrößern oder zu verkleinern, falls das Mausrad nicht funktioniert.</value>
@@ -177,17 +177,17 @@ Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. D
   <data name="HINT_RT_LRG" xml:space="preserve">
     <value>Ganzkörper (1080×1480) — wird auf dem Charakterbild und im Levelaufstiegs-Bildschirm verwendet.
 
-Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
   <data name="HINT_RT_MED" xml:space="preserve">
     <value>Mittel (448×600) — wird in der Gruppenleiste und im Charakterbildschirm verwendet.
 
-Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
   <data name="HINT_RT_SML" xml:space="preserve">
     <value>Portrait / Klein (260×336) — wird in Dialogen und der Begleiterliste verwendet.
 
-Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
+Wähle ein lokales oder Web-Bild. Auch per Drag &amp; Drop möglich.</value>
   </data>
   <data name="HINT_PILLARS_LRG" xml:space="preserve">
     <value>Vollportrait (210×330) — wird im Charakterbildschirm und auf dem Charakterbild verwendet.
@@ -210,7 +210,7 @@ Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. D
 Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. Du kannst auch eine lokale Bilddatei oder einen Web-Bildlink per Drag &amp; Drop in diesen Bereich ziehen.</value>
   </data>
   <data name="WEBDIALOG_TITLE" xml:space="preserve">
-    <value>Bild aus dem Web laden</value>
+    <value>Bild aus Web laden</value>
   </data>
   <data name="WEBDIALOG_HINT" xml:space="preserve">
     <value>Füge eine Web-Bildadresse in das Feld unten ein oder ziehe sie hinein, und klicke dann auf Laden. Jeder Bildlink, der sich in deinem Browser öffnen lässt, funktioniert.</value>
@@ -222,16 +222,16 @@ Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. D
     <value>Abbrechen</value>
   </data>
   <data name="EXTRACT_PAGE_TITLE" xml:space="preserve">
-    <value>Portraits extrahieren</value>
+    <value>Portrait-Extraktion</value>
   </data>
   <data name="BUTTON_SELECT_ARCHIVE" xml:space="preserve">
-    <value>Portrait-Paket auswählen</value>
+    <value>Portraitpaket wählen</value>
   </data>
   <data name="BUTTON_EXTRACT_ALL" xml:space="preserve">
     <value>Alles extrahieren ▉ </value>
   </data>
   <data name="BUTTON_EXTRACT_SELECTED" xml:space="preserve">
-    <value>Auswahl extrahieren ▞ </value>
+    <value>Auswahl entpacken ▞ </value>
   </data>
   <data name="BUTTON_EXTRACT_BACK" xml:space="preserve">
     <value>&lt; Zurück</value>
@@ -279,7 +279,7 @@ Wähle ein lokales Bild von deinem Computer oder ein Webbild aus dem Internet. D
     <value>LÖSCHEN ✕</value>
   </data>
   <data name="LABEL_GALLERY_NONPLAYER" xml:space="preserve">
-    <value>Nicht-Spieler</value>
+    <value>NPCs</value>
   </data>
   <data name="LABEL_GALLERY_CUSTOMNPC" xml:space="preserve">
     <value>CustomNPC</value>
@@ -355,7 +355,7 @@ Backup laden oder mit dem aktuellen Portrait weiterarbeiten?</value>
     <value>⌼ Kl²</value>
   </data>
   <data name="BUTTON_CREATE_NEW" xml:space="preserve">
-    <value>Erstellen +</value>
+    <value>Neu +</value>
   </data>
   <data name="BUTTON_BACK_TO_PATHFINDER" xml:space="preserve">
     <value>&lt; Zurück</value>
@@ -412,7 +412,7 @@ Stelle sicher, dass das richtige Spiel ausgewählt ist.</value>
     <value>Spielpfad nicht festgelegt. Bitte konfiguriere zuerst den Spielpfad.</value>
   </data>
   <data name="LABEL_EXTRACT_COUNTER" xml:space="preserve">
-    <value>Gesamt: {0} | Ausgewählt: {1}</value>
+    <value>Gesamt: {0} | Gewählt: {1}</value>
   </data>
   <data name="HINT_WASTE_SML" xml:space="preserve">
     <value>Portrait (256×256) — wird für Charakterportraits verwendet.

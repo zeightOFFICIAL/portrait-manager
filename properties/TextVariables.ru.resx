@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BUTTON_CHOOSE" xml:space="preserve">
-    <value>Выбрать 📁</value>
+    <value>Выбрать</value>
   </data>
   <data name="BUTTON_RESET" xml:space="preserve">
-    <value>Сбросить 🔄</value>
+    <value>Сбросить</value>
   </data>
   <data name="MAIN_MENU_AUTHOR" xml:space="preserve">
     <value>Zeight Portrait Manager
@@ -210,22 +210,22 @@ Artemii "Zeight" Saganenko ©2023-2026</value>
 Выберите локальное изображение с компьютера или изображение из интернета. Также можно перетащить файл изображения или ссылку на изображение в эту область.</value>
   </data>
   <data name="WEBDIALOG_TITLE" xml:space="preserve">
-    <value>Загрузить изображение из сети</value>
+    <value>Изображение из сети</value>
   </data>
   <data name="WEBDIALOG_HINT" xml:space="preserve">
     <value>Вставьте или перетащите адрес изображения из сети в поле ниже, затем нажмите «Загрузить». Подойдёт любая ссылка на изображение, открывающаяся в браузере.</value>
   </data>
   <data name="WEBDIALOG_BUTTON_LOAD" xml:space="preserve">
-    <value>Загрузить</value>
+    <value>Скачать</value>
   </data>
   <data name="WEBDIALOG_BUTTON_CANCEL" xml:space="preserve">
     <value>Отмена</value>
   </data>
   <data name="EXTRACT_PAGE_TITLE" xml:space="preserve">
-    <value>Извлечение портретов</value>
+    <value>Извлечь портреты</value>
   </data>
   <data name="BUTTON_SELECT_ARCHIVE" xml:space="preserve">
-    <value>Выбрать набор портретов</value>
+    <value>Выбрать пакет</value>
   </data>
   <data name="BUTTON_EXTRACT_ALL" xml:space="preserve">
     <value>Извлечь всё ▉ </value>
@@ -273,7 +273,7 @@ Artemii "Zeight" Saganenko ©2023-2026</value>
     <value>КЛОН &gt;</value>
   </data>
   <data name="BUTTON_GALLERY_CHANGE" xml:space="preserve">
-    <value>ИЗМЕНИТЬ &gt;</value>
+    <value>ЗАМЕНА &gt;</value>
   </data>
   <data name="BUTTON_GALLERY_DELETE" xml:space="preserve">
     <value>УДАЛИТЬ ✕</value>
@@ -343,16 +343,16 @@ Artemii "Zeight" Saganenko ©2023-2026</value>
     <value>Совет: изображение также можно перетащить прямо на панель портрета.</value>
   </data>
   <data name="BUTTON_KINGCREATEPAGELRG_D" xml:space="preserve">
-    <value>⍞ Полный</value>
+    <value>⍞ Бол1</value>
   </data>
   <data name="BUTTON_KINGCREATEPAGEMID_D" xml:space="preserve">
-    <value>⌻ Полный²</value>
+    <value>⌻ Бол2</value>
   </data>
   <data name="BUTTON_KINGCREATEPAGESML_D" xml:space="preserve">
-    <value>⌼ Мал</value>
+    <value>⌼ Мал1</value>
   </data>
   <data name="BUTTON_KINGCREATEPAGESML2_D" xml:space="preserve">
-    <value>⌼ Мал²</value>
+    <value>⌼ Мал2</value>
   </data>
   <data name="BUTTON_CREATE_NEW" xml:space="preserve">
     <value>Создать +</value>

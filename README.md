@@ -12,11 +12,11 @@
 <td style="border:none; padding:0; width:50%;"><a href="https://www.nexusmods.com/warhammer40kroguetrader/mods/120"><img src="media/r/warhammer_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/r/warhammer_title_bar.jpg" width="100%" style="display:block; border:none;"/></a></td>
 </tr>
 <tr>
-<td style="border:none; padding:0;"><img src="media/p/pillars_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/p/pillars_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
-<td style="border:none; padding:0;"><img src="media/t/tyranny_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/t/tyranny_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><a href="https://www.nexusmods.com/pillarsofeternity2/mods/874"><img src="media/p/pillars_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/p/pillars_title_bar.jpg" width="100%" style="display:block; border:none;"/></a></td>
+<td style="border:none; padding:0;"><a href="https://www.nexusmods.com/tyranny/mods/55"><img src="media/t/tyranny_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/t/tyranny_title_bar.jpg" width="100%" style="display:block; border:none;"/></a></td>
 </tr>
 <tr>
-<td style="border:none; padding:0;"><img src="media/l/wasteland_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/l/wasteland_title_bar.jpg" width="100%" style="display:block; border:none;"/></td>
+<td style="border:none; padding:0;"><a href="https://www.nexusmods.com/wasteland3/mods/55"><img src="media/l/wasteland_title_img.jpg" width="100%" style="display:block; border:none;"/><img src="media/l/wasteland_title_bar.jpg" width="100%" style="display:block; border:none;"/></a></td>
 <td style="border:none; padding:0;"></td>
 </tr>
 </table>

@@ -50,6 +50,8 @@ Ships as a single self-contained `.exe`. Nothing to unpack, no companion DLLs to
 
 ### Features
 
+Drag any edge or corner of the window to resize it. The interface keeps its 75:52 aspect ratio, including while editing a portrait. The app remembers the size you choose.
+
 #### Create new portraits
 Load an image from a local file or a web URL - drag-and-drop works too, either straight onto the portrait panel or as a pasted link. Zoom, pan and reset the crop with the mouse; each panel is shaped to the exact aspect ratio the game expects for that size, so what you see previewed is what gets written to disk. Press Create and Portrait Manager crops, resizes and saves every required size for that game in one pass, then shows a toast confirming where it landed with a one-click "open folder" link.
 

@@ -84,6 +84,21 @@ namespace PortraitManager
         private string _galleryTabSelected = "player";
         private bool _isCustomNpcMode = false;
         private Panel _panelGalleryOverlay;
+        private Font _galleryCardFont, _archiveCardFont;
+        private readonly Dictionary<(string Family, bool Cyrillic, float Points, FontStyle Style), Font> _uiFonts =
+            new Dictionary<(string, bool, float, FontStyle), Font>();
+
+        private Font UiFont(FontFamily family, float points, FontStyle style = FontStyle.Regular, bool cyrillic = false)
+        {
+            float scaledPoints = points * UiScale;
+            var key = (family.Name, cyrillic, scaledPoints, style);
+            if (!_uiFonts.TryGetValue(key, out Font font))
+            {
+                font = new Font(family, scaledPoints, style);
+                _uiFonts.Add(key, font);
+            }
+            return font;
+        }
 
         private void FontInit()
         {
@@ -96,19 +111,28 @@ namespace PortraitManager
                 _fontCollectionCyrillic = SystemControl.FileControl.InitCustomFont(Resources.BebasNeue_Regular_RU);
 
             PrivateFontCollection activeFontCollection = (_currentLanguage == 'r') ? _fontCollectionCyrillic : _fontCollection;
+            Font ThemeFont(float points) => UiFont(activeFontCollection.Families[0], points, cyrillic: _currentLanguage == 'r');
+            _galleryCardFont = UiFont(_fontCollectionCyrillic.Families[0], 12, cyrillic: true);
+            _archiveCardFont = UiFont(_fontCollection.Families[0], 13);
 
-            Font bebasNeueMainPage = new Font(activeFontCollection.Families[0], 44),
-                 bebasNeueMainPage2 = new Font(activeFontCollection.Families[0], 30),
-                 bebasNeueFullHeader = new Font(activeFontCollection.Families[0], 25),
-                 bebasNeue22 = new Font(activeFontCollection.Families[0], 22),
-                 bebasNeueHead = new Font(activeFontCollection.Families[0], 21),
-                 bebasNeueUnder = new Font(activeFontCollection.Families[0], 17),
-                 bebasNeueButton16 = new Font(activeFontCollection.Families[0], 16f),
-                 bebasNeueZoom = new Font(activeFontCollection.Families[0], 14.85f),
-                 bebasNeueMedium = new Font(activeFontCollection.Families[0], 13),
-                 bebasNeue12 = new Font(activeFontCollection.Families[0], 12),
-                 bebasNeue10 = new Font(activeFontCollection.Families[0], 10f),
-                 bebasNeueSmall = new Font(activeFontCollection.Families[0], 9);
+            Font = UiFont(Control.DefaultFont.FontFamily, Control.DefaultFont.Size);
+            LabelSelectPathBackToStart.Font = UiFont(Font.FontFamily, 48);
+            LabelSelectPathNextToMain.Font = LabelSelectPathBackToStart.Font;
+            if (_galleryHelpButton != null)
+                _galleryHelpButton.Font = UiFont(_fontCollection.Families[0], 10f);
+
+            Font bebasNeueMainPage = ThemeFont(44),
+                 bebasNeueMainPage2 = ThemeFont(30),
+                 bebasNeueFullHeader = ThemeFont(25),
+
+                 bebasNeueHead = ThemeFont(21),
+                 bebasNeueUnder = ThemeFont(17),
+                 bebasNeueButton16 = ThemeFont(16f),
+                 bebasNeueZoom = ThemeFont(14.85f),
+                 bebasNeueMedium = ThemeFont(13),
+
+                 bebasNeue10 = ThemeFont(10f);
+
 
             ButtonStartKing.Font = bebasNeueMedium;
             ButtonStartWotr.Font = bebasNeueMedium;
@@ -130,7 +154,7 @@ namespace PortraitManager
             LabelKingCreatePortraitSmall.Font = bebasNeueHead;
             LabelKingCreatePortraitSml2.Font = bebasNeueHead;
             ButtonKingCreateNewPortrait.Font = bebasNeueHead;
-            ButtonKingCustomName.Font = new Font(activeFontCollection.Families[0], bebasNeueHead.Size * 0.7f);
+            ButtonKingCustomName.Font = ThemeFont(21 * 0.7f);
             ButtonKingBackToPathfinder.Font = bebasNeueHead;
             ButtonExtractAll.Font = bebasNeueHead;
             ButtonExtractSelected.Font = bebasNeueHead;
@@ -147,12 +171,12 @@ namespace PortraitManager
             ButtonGalleryDelete.Font = bebasNeueHead;
             ButtonGalleryShowFolder.Font = bebasNeueHead;
 
-            Font arialSmall = new Font(FontFamily.GenericSansSerif, 8f);
-            Font arialSmallUnderline = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Underline);
+            Font arialSmall = UiFont(FontFamily.GenericSansSerif, 8f);
+            Font arialSmallUnderline = UiFont(FontFamily.GenericSansSerif, 8f, FontStyle.Underline);
 
-            LabelSelectPathExplain.Font = new Font(FontFamily.GenericSansSerif, 12f * 0.8f);
-            LabelSelectPathSelected.Font = new Font(FontFamily.GenericSansSerif, 8f * 1.5f);
-            LabelMainPageFooter.Font = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Italic);
+            LabelSelectPathExplain.Font = UiFont(FontFamily.GenericSansSerif, 12f * 0.8f);
+            LabelSelectPathSelected.Font = UiFont(FontFamily.GenericSansSerif, 8f * 1.5f);
+            LabelMainPageFooter.Font = UiFont(FontFamily.GenericSansSerif, 8f, FontStyle.Italic);
             LabelExtractCounter.Font = arialSmall;
             LabelGalleryCredit.Font = arialSmall;
             LabelExtractClearSelection.Font = arialSmallUnderline;
@@ -193,6 +217,28 @@ namespace PortraitManager
             {
                 if (lbl == null) continue;
                 lbl.Font = hintFont;
+            }
+        }
+
+        internal void ScaleOwnedWindow(Form dialog)
+        {
+            if (_sizeSteps == CompactSizeSteps) return;
+
+            dialog.AutoScaleMode = AutoScaleMode.None;
+            dialog.Scale(new SizeF(UiScale, UiScale));
+            ScaleFonts(dialog);
+
+            void ScaleFonts(Control control)
+            {
+                // Visit children first so inherited fonts pick up the new parent size once.
+                foreach (Control child in control.Controls)
+                    ScaleFonts(child);
+                if (control.Parent != null && control.Font.Equals(control.Parent.Font)) return;
+
+                Font current = control.Font;
+                var scaled = new Font(current.FontFamily, current.Size * UiScale, current.Style, current.Unit);
+                control.Font = scaled;
+                control.Disposed += (sender, args) => scaled.Dispose();
             }
         }
 
@@ -449,11 +495,11 @@ namespace PortraitManager
         {
             _galleryHelpButton = new Button
             {
-                Size = new Size(24, 24),
-                Location = new Point(8, 8),
+                Size = new Size(UiPixels(24), UiPixels(24)),
+                Location = new Point(UiPixels(8), UiPixels(8)),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 Text = "?",
-                Font = new Font(_fontCollection.Families[0], 10f),
+                Font = UiFont(_fontCollection.Families[0], 10f),
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand,
                 TabStop = false,
@@ -510,7 +556,7 @@ namespace PortraitManager
                     FontInit();
                     TextInit();
                     LabelSelectPathTitle.Text = GetGameDisplayName(_gameSelected);
-                    LabelSelectPathTitle.Font = new Font(LabelSelectPathTitle.Font.FontFamily, GetGameTitleFontSize(_gameSelected), FontStyle.Regular);
+                    LabelSelectPathTitle.Font = UiFont(LabelSelectPathTitle.Font.FontFamily, GetGameTitleFontSize(_gameSelected), cyrillic: _currentLanguage == 'r');
                     LabelSelectPathExplain.Text = GetPathExplainText(_gameSelected);
                     UpdatePortraitButtonsStyle();
                     RefreshFlagHighlight();
@@ -546,6 +592,10 @@ namespace PortraitManager
         public MainForm()
         {
             InitializeComponent();
+            Disposed += (sender, args) =>
+            {
+                foreach (Font font in _uiFonts.Values) font.Dispose();
+            };
             _defaultAppIcon = Icon;
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.Selectable, false);

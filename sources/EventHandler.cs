@@ -475,7 +475,7 @@ namespace PortraitManager
                 var icon = new Label
                 {
                     Text = "⬇",
-                    Font = new Font(Font.FontFamily, 42, FontStyle.Bold),
+                    Font = new Font(Font.FontFamily, 42 * UiScale, FontStyle.Bold),
                     ForeColor = Color.White,
                     BackColor = Color.Transparent,
                     AutoSize = true
@@ -960,7 +960,12 @@ namespace PortraitManager
 
         private void MainForm_ResizeEnd(object sender, EventArgs e)
         {
-            try { AdjustActivePortraitPanelAspect(_activeKingPortraitGroup); } catch { }
+            SharpenResizedCrops();
+            if (WindowState == FormWindowState.Normal && CoreSettings.Default.WindowWidth != ClientSize.Width)
+            {
+                CoreSettings.Default.WindowWidth = ClientSize.Width;
+                CoreSettings.Default.Save();
+            }
         }
 
         private void ButtonStartKing_MouseEnter(object sender, EventArgs e)
@@ -1140,7 +1145,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
 
             OpenPathSelectPage();
@@ -1155,7 +1160,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1169,7 +1174,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1183,7 +1188,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1197,7 +1202,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1211,7 +1216,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1225,7 +1230,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1239,7 +1244,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1253,7 +1258,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POED;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1267,7 +1272,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POED;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1281,7 +1286,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1295,7 +1300,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1309,7 +1314,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1323,7 +1328,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34, FontStyle.Regular);
+            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1771,14 +1776,14 @@ namespace PortraitManager
                                    : _currentLanguage == 'r' ? new CultureInfo("ru")
                                    : CultureInfo.InvariantCulture;
 
-            FontInit();
-            TextInit();
             _activeMenuIndex = 65535;
             SetClientSizeCore(750, 520);
-            CenterToScreen();
             LanguageFlagsInit();
-            GalleryHelpButtonInit();
             ParentLayoutsSetDockFill();
+            FontInit();
+            GalleryHelpButtonInit();
+            InitializeWindowSize();
+            TextInit();
             ParentLayoutsDisable();
             RootFunctions.LayoutEnable(LayoutStartMenu);
             LabelSelectPathSelected.Text = CoreSettings.Default.GamePath;
@@ -2324,56 +2329,16 @@ namespace PortraitManager
 
         private void PanelGalleryContainer_Paint(object sender, PaintEventArgs e)
         {
-            Color col = Color.White;
-            try { col = GameTypes[_gameSelected].ForeColor; } catch { }
-            Panel group = (Panel)sender;
-            using (var pen = new Pen(col))
+            Label activeTab;
+            switch (_galleryTabSelected)
             {
-                int w = group.ClientSize.Width;
-                int h = group.ClientSize.Height;
-                e.Graphics.DrawLine(pen, 0, 0, 0, h - 1);
-                e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
-                e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
-
-                int gapStart = -1, gapEnd = -1;
-                Label activeTab;
-                if (_galleryTabSelected == "nonplayer")
-                    activeTab = LabelGalleryNonPlayerTab;
-                else if (_galleryTabSelected == "customnpc")
-                    activeTab = LabelGalleryCustomNpcTab;
-                else if (_galleryTabSelected == "companions")
-                    activeTab = LabelGalleryCompanionsTab;
-                else if (_galleryTabSelected == "characters")
-                    activeTab = LabelGalleryCharactersTab;
-                else
-                    activeTab = LabelGalleryTab;
-                if (activeTab.Visible)
-                {
-                    try
-                    {
-                        var lblScreen = activeTab.PointToScreen(Point.Empty);
-                        var lblInGroup = group.PointToClient(lblScreen);
-                        gapStart = lblInGroup.X;
-                        gapEnd = lblInGroup.X + activeTab.Width;
-                    }
-                    catch { }
-                }
-
-                if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
-                {
-                    e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
-                }
-                else
-                {
-                    int leftSegEnd = Math.Max(0, gapStart - 1);
-                    if (leftSegEnd > 0)
-                        e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
-
-                    int rightSegStart = Math.Min(w - 1, gapEnd + 1);
-                    if (rightSegStart < w - 1)
-                        e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
-                }
+                case "nonplayer": activeTab = LabelGalleryNonPlayerTab; break;
+                case "customnpc": activeTab = LabelGalleryCustomNpcTab; break;
+                case "companions": activeTab = LabelGalleryCompanionsTab; break;
+                case "characters": activeTab = LabelGalleryCharactersTab; break;
+                default: activeTab = LabelGalleryTab; break;
             }
+            DrawGroupBorder((Control)sender, e, activeTab);
         }
 
         private void LayoutGalleryRight_Paint(object sender, PaintEventArgs e)
@@ -2394,7 +2359,7 @@ namespace PortraitManager
             // mod's install/first-encounter quirks) don't apply - just show the plain empty state.
             if (_galleryTabSelected == "player" || _gameSelected == 'd')
             {
-                using (Font emptyFont = new Font(_fontCollection.Families[0], 22))
+                using (Font emptyFont = new Font(_fontCollection.Families[0], 22 * UiScale))
                 {
                     TextFormatFlags tfEmpty = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
                     TextRenderer.DrawText(e.Graphics, TextVariables.GALLERY_EMPTY_TEXT, emptyFont, rect, Color.White, tfEmpty);
@@ -2415,8 +2380,8 @@ namespace PortraitManager
             const int titleGap = 20;
             const int hintGap = 6;
 
-            using (Font titleFont = new Font(_fontCollection.Families[0], 22))
-            using (Font hintFont = new Font(_fontCollection.Families[0], 12))
+            using (Font titleFont = new Font(_fontCollection.Families[0], 22 * UiScale))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 12 * UiScale))
             {
                 TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
 
@@ -3070,9 +3035,9 @@ namespace PortraitManager
             string hint = TextVariables.EXTRACT_HINT_OVERLAY;
             string hintSub = TextVariables.EXTRACT_HINT_SUB;
 
-            using (Font titleFont = new Font(_fontCollection.Families[0], 22))
-            using (Font hintFont = new Font(_fontCollection.Families[0], 12))
-            using (Font hintSubFont = new Font(_fontCollection.Families[0], 9))
+            using (Font titleFont = new Font(_fontCollection.Families[0], 22 * UiScale))
+            using (Font hintFont = new Font(_fontCollection.Families[0], 12 * UiScale))
+            using (Font hintSubFont = new Font(_fontCollection.Families[0], 9 * UiScale))
             {
                 string titleLine = title + "\n" + folderIcon;
                 TextFormatFlags tf = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;

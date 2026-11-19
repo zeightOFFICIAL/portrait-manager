@@ -67,6 +67,7 @@ namespace PortraitManager.forms
                     anchor = anchor.Owner;
                 if (anchor != null)
                 {
+                    if (anchor is MainForm main) main.ScaleOwnedWindow(this);
                     Width = anchor.ClientSize.Width;
                     Left = anchor.PointToScreen(System.Drawing.Point.Empty).X;
                 }

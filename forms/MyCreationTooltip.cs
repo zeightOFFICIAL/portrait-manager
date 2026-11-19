@@ -76,6 +76,7 @@ namespace PortraitManager.forms
         public void ShowAnchoredTo(Form owner)
         {
             _owner = owner;
+            if (owner is MainForm main) main.ScaleOwnedWindow(this);
             _owner.LocationChanged += OwnerMovedOrResized;
             _owner.SizeChanged += OwnerMovedOrResized;
             RepositionRelativeToOwner();

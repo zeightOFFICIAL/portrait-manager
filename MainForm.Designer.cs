@@ -251,7 +251,7 @@ namespace PortraitManager
             // 
             this.LayoutStartMenu.BackColor = System.Drawing.Color.Black;
             this.LayoutStartMenu.BackgroundImage = global::PortraitManager.Properties.Resources.path_start_page;
-            this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.LayoutStartMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.LayoutStartMenu.ColumnCount = 2;
             this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.23433F));
             this.LayoutStartMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.76567F));
@@ -746,7 +746,7 @@ namespace PortraitManager
             // 
             this.LayoutPathPage.BackColor = System.Drawing.Color.Black;
             this.LayoutPathPage.BackgroundImage = global::PortraitManager.Properties.Resources.path_folder_page;
-            this.LayoutPathPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.LayoutPathPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.LayoutPathPage.ColumnCount = 5;
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.LayoutPathPage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
@@ -1076,7 +1076,10 @@ namespace PortraitManager
             this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitMedium);
             this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitSmall);
             this.flowLayoutPanel1.Controls.Add(this.LabelKingCreatePortraitSml2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.WrapContents = false;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(36, 9);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -1092,7 +1095,7 @@ namespace PortraitManager
             this.LabelKingCreatePortraitLarge.Location = new System.Drawing.Point(0, 0);
             this.LabelKingCreatePortraitLarge.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelKingCreatePortraitLarge.Name = "LabelKingCreatePortraitLarge";
-            this.LabelKingCreatePortraitLarge.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitLarge.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelKingCreatePortraitLarge.Size = new System.Drawing.Size(124, 48);
             this.LabelKingCreatePortraitLarge.TabIndex = 0;
             this.LabelKingCreatePortraitLarge.Text = "LABEL_KINGLRG";
@@ -1110,7 +1113,7 @@ namespace PortraitManager
             this.LabelKingCreatePortraitMedium.ForeColor = System.Drawing.Color.White;
             this.LabelKingCreatePortraitMedium.Location = new System.Drawing.Point(130, 0);
             this.LabelKingCreatePortraitMedium.Name = "LabelKingCreatePortraitMedium";
-            this.LabelKingCreatePortraitMedium.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitMedium.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelKingCreatePortraitMedium.Size = new System.Drawing.Size(122, 48);
             this.LabelKingCreatePortraitMedium.TabIndex = 1;
             this.LabelKingCreatePortraitMedium.Text = "LABEL_KINGMID";
@@ -1128,7 +1131,7 @@ namespace PortraitManager
             this.LabelKingCreatePortraitSmall.ForeColor = System.Drawing.Color.White;
             this.LabelKingCreatePortraitSmall.Location = new System.Drawing.Point(258, 0);
             this.LabelKingCreatePortraitSmall.Name = "LabelKingCreatePortraitSmall";
-            this.LabelKingCreatePortraitSmall.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitSmall.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelKingCreatePortraitSmall.Size = new System.Drawing.Size(124, 48);
             this.LabelKingCreatePortraitSmall.TabIndex = 2;
             this.LabelKingCreatePortraitSmall.Text = "LABEL_KINGSML";
@@ -1146,7 +1149,7 @@ namespace PortraitManager
             this.LabelKingCreatePortraitSml2.ForeColor = System.Drawing.Color.White;
             this.LabelKingCreatePortraitSml2.Location = new System.Drawing.Point(3, 48);
             this.LabelKingCreatePortraitSml2.Name = "LabelKingCreatePortraitSml2";
-            this.LabelKingCreatePortraitSml2.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelKingCreatePortraitSml2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelKingCreatePortraitSml2.Size = new System.Drawing.Size(130, 48);
             this.LabelKingCreatePortraitSml2.TabIndex = 3;
             this.LabelKingCreatePortraitSml2.Text = "LABEL_KINGSML2";
@@ -1223,9 +1226,9 @@ namespace PortraitManager
             // PanelKingLrgButtons
             // 
             this.PanelKingLrgButtons.ColumnCount = 3;
-            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingLrgButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.PanelKingLrgButtons.Controls.Add(this.LabelKingLrgHint, 0, 0);
             this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgLocal, 0, 1);
             this.PanelKingLrgButtons.Controls.Add(this.ButtonKingLrgWeb, 0, 2);
@@ -1362,9 +1365,9 @@ namespace PortraitManager
             // PanelKingMedButtons
             // 
             this.PanelKingMedButtons.ColumnCount = 3;
-            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingMedButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.PanelKingMedButtons.Controls.Add(this.LabelKingMedHint, 0, 0);
             this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedLocal, 0, 1);
             this.PanelKingMedButtons.Controls.Add(this.ButtonKingMedWeb, 0, 2);
@@ -1501,9 +1504,9 @@ namespace PortraitManager
             // PanelKingSmlButtons
             // 
             this.PanelKingSmlButtons.ColumnCount = 3;
-            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingSmlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.PanelKingSmlButtons.Controls.Add(this.LabelKingSmlHint, 0, 0);
             this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlLocal, 0, 1);
             this.PanelKingSmlButtons.Controls.Add(this.ButtonKingSmlWeb, 0, 2);
@@ -1640,9 +1643,9 @@ namespace PortraitManager
             // PanelKingSml2Buttons
             // 
             this.PanelKingSml2Buttons.ColumnCount = 3;
-            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PanelKingSml2Buttons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.PanelKingSml2Buttons.Controls.Add(this.LabelKingSml2Hint, 0, 0);
             this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2Local, 0, 1);
             this.PanelKingSml2Buttons.Controls.Add(this.ButtonKingSml2Web, 0, 2);
@@ -2109,7 +2112,10 @@ namespace PortraitManager
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCharactersTab);
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryNonPlayerTab);
             this.flowLayoutPanelGalleryTabs.Controls.Add(this.LabelGalleryCustomNpcTab);
-            this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelGalleryTabs.AutoSize = true;
+            this.flowLayoutPanelGalleryTabs.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanelGalleryTabs.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanelGalleryTabs.WrapContents = false;
             this.flowLayoutPanelGalleryTabs.Location = new System.Drawing.Point(36, 9);
             this.flowLayoutPanelGalleryTabs.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelGalleryTabs.Name = "flowLayoutPanelGalleryTabs";
@@ -2125,7 +2131,7 @@ namespace PortraitManager
             this.LabelGalleryTab.Location = new System.Drawing.Point(0, 0);
             this.LabelGalleryTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelGalleryTab.Name = "LabelGalleryTab";
-            this.LabelGalleryTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryTab.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelGalleryTab.Size = new System.Drawing.Size(113, 73);
             this.LabelGalleryTab.TabIndex = 0;
             this.LabelGalleryTab.Text = "LABEL_GALLERY";
@@ -2144,7 +2150,7 @@ namespace PortraitManager
             this.LabelGalleryCompanionsTab.Location = new System.Drawing.Point(0, 0);
             this.LabelGalleryCompanionsTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelGalleryCompanionsTab.Name = "LabelGalleryCompanionsTab";
-            this.LabelGalleryCompanionsTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCompanionsTab.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelGalleryCompanionsTab.Size = new System.Drawing.Size(166, 73);
             this.LabelGalleryCompanionsTab.TabIndex = 1;
             this.LabelGalleryCompanionsTab.Text = "Companions";
@@ -2163,7 +2169,7 @@ namespace PortraitManager
             this.LabelGalleryCharactersTab.Location = new System.Drawing.Point(0, 0);
             this.LabelGalleryCharactersTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelGalleryCharactersTab.Name = "LabelGalleryCharactersTab";
-            this.LabelGalleryCharactersTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCharactersTab.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelGalleryCharactersTab.Size = new System.Drawing.Size(166, 73);
             this.LabelGalleryCharactersTab.TabIndex = 4;
             this.LabelGalleryCharactersTab.Text = "Characters";
@@ -2182,7 +2188,7 @@ namespace PortraitManager
             this.LabelGalleryNonPlayerTab.Location = new System.Drawing.Point(0, 0);
             this.LabelGalleryNonPlayerTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelGalleryNonPlayerTab.Name = "LabelGalleryNonPlayerTab";
-            this.LabelGalleryNonPlayerTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryNonPlayerTab.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelGalleryNonPlayerTab.Size = new System.Drawing.Size(166, 73);
             this.LabelGalleryNonPlayerTab.TabIndex = 2;
             this.LabelGalleryNonPlayerTab.Text = "Non-player";
@@ -2201,7 +2207,7 @@ namespace PortraitManager
             this.LabelGalleryCustomNpcTab.Location = new System.Drawing.Point(0, 0);
             this.LabelGalleryCustomNpcTab.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.LabelGalleryCustomNpcTab.Name = "LabelGalleryCustomNpcTab";
-            this.LabelGalleryCustomNpcTab.Padding = new System.Windows.Forms.Padding(15, 5, 15, 30);
+            this.LabelGalleryCustomNpcTab.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LabelGalleryCustomNpcTab.Size = new System.Drawing.Size(166, 73);
             this.LabelGalleryCustomNpcTab.TabIndex = 3;
             this.LabelGalleryCustomNpcTab.Text = "CustomNPC";
@@ -2350,7 +2356,7 @@ namespace PortraitManager
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel2);
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;

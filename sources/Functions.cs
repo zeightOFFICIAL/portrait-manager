@@ -233,18 +233,50 @@ namespace PortraitManager
             return new Size((int)(original.Width * ratio), (int)(original.Height * ratio));
         }
 
+        private void SizeThumbnail(ButtonBase card, Image source)
+        {
+            bool gallery = card is RadioButton;
+            int maxSize = UiPixels(_gameSelected == 'l' ? 115 : 140);
+            if (gallery)
+            {
+                float columnWidth = FlowLayoutPanelGallery.ClientSize.Width / 3.5f - UiPixels(26);
+                maxSize = Math.Max(UiPixels(100), (int)(columnWidth * Math.Max(1f, (float)source.Height / source.Width)));
+            }
+
+            Size thumb = FitSize(source.Size, maxSize);
+            card.Size = new Size(Math.Max(thumb.Width + UiPixels(20), UiPixels(!gallery && _gameSelected == 'l' ? 126 : 145)),
+                                 thumb.Height + UiPixels(gallery ? 60 : 50));
+            card.Padding = ScaledPadding(new Padding(8, 8, 8, 4));
+            card.Font = gallery ? _galleryCardFont : _archiveCardFont;
+            if (card.Image?.Size == thumb) return;
+            Image old = card.Image;
+            card.Image = new Bitmap(source, thumb);
+            old?.Dispose();
+        }
+
+        private void ResizeThumbnailCards()
+        {
+            ResizeCards(FlowLayoutPanelGallery, _galleryEntries);
+            ResizeCards(FlowLayoutPanelExtract, _archiveEntries);
+
+            void ResizeCards(FlowLayoutPanel panel, List<Tuple<string, Image>> entries)
+            {
+                if (entries == null) return;
+                panel.SuspendLayout();
+                try
+                {
+                    for (int i = 0; i < panel.Controls.Count && i < entries.Count; i++)
+                        if (panel.Controls[i] is ButtonBase card) SizeThumbnail(card, entries[i].Item2);
+                }
+                finally { panel.ResumeLayout(true); }
+            }
+        }
+
         private void AddArchiveThumbnail(string folderKey, Image image, bool complete = true)
         {
             Bitmap memImage = new Bitmap(image);
 
             _archiveEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
-
-            // Wasteland 3 packs are typically flat, dozens-of-portraits-large, so a smaller
-            // thumbnail (fitting three per row instead of two) makes the grid far more usable.
-            int maxThumb = _gameSelected == 'l' ? 115 : 140;
-            Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), maxThumb);
-            int cbWidth = Math.Max(thumbSize.Width + 20, _gameSelected == 'l' ? 126 : 145);
-            int cbHeight = thumbSize.Height + 50;
 
             Color gameBack, gameFore;
             try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
@@ -261,13 +293,9 @@ namespace PortraitManager
                 ForeColor = Color.White,
                 BackColor = gameBack,
                 FlatStyle = FlatStyle.Flat,
-                Size = new Size(cbWidth, cbHeight),
                 TextAlign = ContentAlignment.BottomCenter,
-                Padding = new Padding(8, 8, 8, 4),
                 ImageAlign = ContentAlignment.TopCenter
             };
-
-            cb.Font = new Font(_fontCollection.Families[0], 13);
 
             cb.FlatAppearance.BorderSize = 3;
             cb.FlatAppearance.BorderColor = borderColor;
@@ -282,8 +310,7 @@ namespace PortraitManager
                 UpdateExtractCounter();
             };
 
-            Image thumb = new Bitmap(memImage, thumbSize);
-            cb.Image = thumb;
+            SizeThumbnail(cb, memImage);
             cb.Appearance = Appearance.Button;
 
             FlowLayoutPanelExtract.Controls.Add(cb);
@@ -426,19 +453,8 @@ namespace PortraitManager
 
             _galleryEntries.Add(Tuple.Create<string, Image>(folderKey, memImage));
 
-            int gridWidth = FlowLayoutPanelGallery.ClientSize.Width;
-            if (gridWidth <= 0) gridWidth = 490;
-            float targetCols = 3.5f;
-            float targetCtrlWidth = gridWidth / targetCols;
-            float imageWidth = targetCtrlWidth - 26;
             if (memImage.Width > 0 && memImage.Height > 0)
             {
-                float imgAspect = (float)memImage.Height / memImage.Width;
-                int maxSize = Math.Max((int)(imageWidth * Math.Max(imgAspect, 1.0f)), 100);
-                Size thumbSize = FitSize(new Size(memImage.Width, memImage.Height), maxSize);
-                int cbWidth = Math.Max(thumbSize.Width + 20, 145);
-                int cbHeight = thumbSize.Height + 60;
-
                 Color gameBack, gameFore;
                 try { gameBack = GameTypes[_gameSelected].BackColor; gameFore = GameTypes[_gameSelected].ForeColor; }
                 catch { gameBack = Color.FromArgb(12, 12, 12); gameFore = Color.White; }
@@ -451,15 +467,11 @@ namespace PortraitManager
                     ForeColor = Color.White,
                     BackColor = gameBack,
                     FlatStyle = FlatStyle.Flat,
-                    Size = new Size(cbWidth, cbHeight),
                     TextAlign = ContentAlignment.BottomCenter,
-                    Padding = new Padding(8, 8, 8, 4),
                     ImageAlign = ContentAlignment.TopCenter,
                     Appearance = Appearance.Button,
                     Cursor = _isCustomNpcMode ? Cursors.Default : Cursors.Hand,
                 };
-
-                rb.Font = new Font(_fontCollectionCyrillic.Families[0], 12);
 
                 rb.FlatAppearance.BorderSize = 3;
                 rb.FlatAppearance.BorderColor = gameBack;
@@ -478,8 +490,7 @@ namespace PortraitManager
                     UpdateGalleryRightPanel();
                 };
 
-                Image thumb = new Bitmap(memImage, thumbSize);
-                rb.Image = thumb;
+                SizeThumbnail(rb, memImage);
 
                 FlowLayoutPanelGallery.Controls.Add(rb);
             }
@@ -2385,33 +2396,17 @@ namespace PortraitManager
                 e.Graphics.DrawLine(pen, w - 1, 0, w - 1, h - 1);
                 e.Graphics.DrawLine(pen, 0, h - 1, w - 1, h - 1);
 
-                int gapStart = -1, gapEnd = -1;
                 if (label != null && label.Visible)
                 {
-                    try
+                    Point join = group.PointToClient(label.PointToScreen(new Point(0, label.Height)));
+                    if (join.Y == 0)
                     {
-                        var lblScreen = label.PointToScreen(Point.Empty);
-                        var lblInGroup = group.PointToClient(lblScreen);
-                        gapStart = lblInGroup.X;
-                        gapEnd = lblInGroup.X + label.Width;
+                        e.Graphics.DrawLine(pen, 0, 0, join.X, 0);
+                        e.Graphics.DrawLine(pen, join.X + label.Width - 1, 0, w - 1, 0);
+                        return;
                     }
-                    catch { gapStart = -1; gapEnd = -1; }
                 }
-
-                if (gapStart < 0 || gapEnd <= 0 || gapStart >= w || gapEnd <= 0)
-                {
-                    e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
-                }
-                else
-                {
-                    int leftSegEnd = Math.Max(0, gapStart - 1);
-                    if (leftSegEnd > 0)
-                        e.Graphics.DrawLine(pen, 0, 0, leftSegEnd, 0);
-
-                    int rightSegStart = Math.Min(w - 1, gapEnd + 1);
-                    if (rightSegStart < w - 1)
-                        e.Graphics.DrawLine(pen, rightSegStart, 0, w - 1, 0);
-                }
+                e.Graphics.DrawLine(pen, 0, 0, w - 1, 0);
             }
         }
 
@@ -3120,12 +3115,14 @@ namespace PortraitManager
                 panel.AutoSize = false;
                 panel.Dock = DockStyle.None;
                 panel.Anchor = AnchorStyles.None;
+                staticHeight *= UiScale;
                 int newWidth = (int)Math.Round(staticHeight / ar);
                 int newHeight = (int)staticHeight;
 
                 if ((_gameSelected == 't' || _gameSelected == 'p') && panel.Name == "PanelKingSml")
                 {
-                    int availableWidth = panel.Width;
+                    var table = panel.Parent as TableLayoutPanel;
+                    int availableWidth = table == null ? panel.Width : table.GetColumnWidths()[0] - panel.Margin.Horizontal;
                     if (availableWidth > 0 && newWidth > availableWidth)
                     {
                         newWidth = availableWidth;
@@ -3404,7 +3401,7 @@ namespace PortraitManager
             {
                 if (pb.Image != null && original.Width > 0)
                 {
-                    currentZoom = (float)pb.Image.Width / original.Width;
+                    currentZoom = (float)pb.ClientSize.Width / original.Width;
                 }
             }
             catch { }

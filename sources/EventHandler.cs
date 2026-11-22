@@ -330,10 +330,12 @@ namespace PortraitManager
                     if (orig == null) return;
                     string fileName = FileName(sizeSuffix);
                     string savePath = Path.Combine(outDir, fileName);
+                    // Save from the frame the picture was placed in; a hidden tab's frame can be distorted by layout.
+                    Size frame = IntendedFrame(panel);
                     if (_gameSelected == 'k' || _gameSelected == 'w' || _gameSelected == 'r')
-                        ImageControl.PortraitCrop.SaveFillCrop(orig, pb, panel, w, h, savePath);
+                        ImageControl.PortraitCrop.SaveFillCrop(orig, pb, panel, w, h, savePath, frame);
                     else
-                        ImageControl.PortraitCrop.SaveUniformCrop(orig, pb, panel, w, h, savePath);
+                        ImageControl.PortraitCrop.SaveUniformCrop(orig, pb, panel, w, h, savePath, frame);
                     if (femaleDir != null)
                         File.Copy(savePath, Path.Combine(femaleDir, fileName), overwrite: true);
                 }
@@ -475,7 +477,6 @@ namespace PortraitManager
                 var icon = new Label
                 {
                     Text = "⬇",
-                    Font = new Font(Font.FontFamily, 42 * UiScale, FontStyle.Bold),
                     ForeColor = Color.White,
                     BackColor = Color.Transparent,
                     AutoSize = true
@@ -496,6 +497,8 @@ namespace PortraitManager
                 panel.Controls.Add(overlay);
             }
 
+            // The overlay is reused, so pick up the current window scale each time it is shown.
+            overlay.Controls[0].Font = UiFont(Font.FontFamily, 42, FontStyle.Bold);
             overlay.Visible = true;
             overlay.BringToFront();
         }
@@ -1145,7 +1148,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
 
             OpenPathSelectPage();
@@ -1160,7 +1163,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_KING;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_KING;
             LabelSelectPathTitle.ForeColor = Color.LimeGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1174,7 +1177,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 22, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1188,7 +1191,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WOTR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WOTR;
             LabelSelectPathTitle.ForeColor = Color.Magenta;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 22 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 22, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1202,7 +1205,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 25, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1216,7 +1219,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_ROGUE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_ROGUE;
             LabelSelectPathTitle.ForeColor = Color.DodgerBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 25 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 25, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1230,7 +1233,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1244,7 +1247,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_PILLARS;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POE;
             LabelSelectPathTitle.ForeColor = Color.Aqua;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1258,7 +1261,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POED;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 27, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1272,7 +1275,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_DEADFIRE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_POED;
             LabelSelectPathTitle.ForeColor = Color.MediumSpringGreen;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 27 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 27, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1286,7 +1289,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1300,7 +1303,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_TYR;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_TYR;
             LabelSelectPathTitle.ForeColor = Color.Tomato;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1314,7 +1317,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }
@@ -1328,7 +1331,7 @@ namespace PortraitManager
             LabelSelectPathTitle.Text = TextVariables.NAME_WASTE;
             LabelSelectPathExplain.Text = TextVariables.TEXT_EXPLAIN_PATH_WASTE;
             LabelSelectPathTitle.ForeColor = Color.SteelBlue;
-            LabelSelectPathTitle.Font = new Font(font.FontFamily, 34 * UiScale, FontStyle.Regular);
+            LabelSelectPathTitle.Font = UiFont(font.FontFamily, 34, cyrillic: _currentLanguage == 'r');
             _activeMenuIndex = 150;
             OpenPathSelectPage();
         }

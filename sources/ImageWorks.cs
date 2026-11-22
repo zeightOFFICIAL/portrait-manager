@@ -102,15 +102,17 @@ namespace ImageControl
             Panel panel,
             int targetW,
             int targetH,
-            string outPath)
+            string outPath,
+            Size? frame = null)
         {
             if (original == null) return;
 
             int imgW = original.Width;
             int imgH = original.Height;
 
+            // rame: the frame size the picture was placed for (a hidden tab's frame can be distorted by layout).
             Rectangle visible = pb.RectangleToClient(
-                panel.RectangleToScreen(panel.ClientRectangle));
+                panel.RectangleToScreen(new Rectangle(Point.Empty, frame ?? panel.ClientSize)));
 
             if (visible.Width <= 0 || visible.Height <= 0) return;
 
@@ -169,15 +171,17 @@ namespace ImageControl
             Panel panel,
             int targetW,
             int targetH,
-            string outPath)
+            string outPath,
+            Size? frame = null)
         {
             if (original == null) return;
 
             int imgW = original.Width;
             int imgH = original.Height;
 
+            // rame: the frame size the picture was placed for (a hidden tab's frame can be distorted by layout).
             Rectangle visible = pb.RectangleToClient(
-                panel.RectangleToScreen(panel.ClientRectangle));
+                panel.RectangleToScreen(new Rectangle(Point.Empty, frame ?? panel.ClientSize)));
 
             if (visible.Width <= 0 || visible.Height <= 0) return;
 

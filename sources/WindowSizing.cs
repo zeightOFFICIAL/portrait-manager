@@ -16,14 +16,40 @@ namespace PortraitManager
         private float UiScale => _sizeSteps / (float)CompactSizeSteps;
         private int UiPixels(int pixels) => (int)Math.Round(pixels * UiScale);
         private readonly List<Action> _scaleLayout = new List<Action>();
-        private readonly Dictionary<PictureBox, (Rectangle LastBounds, RectangleF DesignBounds)> _cropFrames =
-            new Dictionary<PictureBox, (Rectangle, RectangleF)>();
+        private readonly Dictionary<PictureBox, (Rectangle LastBounds, int LastFrameHeight, RectangleF FrameBounds)> _cropFrames =
+            new Dictionary<PictureBox, (Rectangle, int, RectangleF)>();
         private bool _windowSizeInitialized;
+        private bool _inSizeMoveLoop, _applyingWindowScale, _keepingCrop;
+
+        // The size AdjustPortraitPanelAspect last gave each crop frame. A hidden tab's table keeps stale
+        // cell sizes and clamps its frame, so the frame's own ClientSize can be distorted; pictures are
+        // placed for, and portraits are saved from, this intended size.
+        private readonly Dictionary<Panel, Size> _intendedFrames = new Dictionary<Panel, Size>();
+
+        private Size IntendedFrame(Panel panel)
+        {
+            // A docked (reset) picture fills whatever the frame is, so only a placed picture uses it.
+            foreach (Control child in panel.Controls)
+                if (child is PictureBox pic)
+                    return pic.Dock == DockStyle.None && _intendedFrames.TryGetValue(panel, out Size size)
+                        ? size : panel.ClientSize;
+            return panel.ClientSize;
+        }
+        private Dictionary<PictureBox, int> _frameHeightsBeforeResize;
+
+        private Dictionary<PictureBox, int> CurrentFrameHeights()
+        {
+            var heights = new Dictionary<PictureBox, int>();
+            foreach (var pic in new[] { PicKingLrg, PicKingMed, PicKingSml, PicKingSml2 })
+                heights[pic] = (pic.Parent as Panel)?.ClientSize.Height ?? 0;
+            return heights;
+        }
 
         private void InitializeWindowSize()
         {
             foreach (Control page in Controls)
                 RememberDesignLayout(page);
+            TrackCropFrames();
 
             var work = Screen.FromControl(this).WorkingArea;
             MinimumSize = SizeFromClientSize(new Size(750, 520));
@@ -61,6 +87,10 @@ namespace PortraitManager
         {
             const int WmSizing = 0x0214;
             const int WmWindowPosChanging = 0x0046;
+            const int WmEnterSizeMove = 0x0231, WmExitSizeMove = 0x0232;
+            // Inside the modal move/size loop crops are only stretched; ResizeEnd re-renders them.
+            if (message.Msg == WmEnterSizeMove) _inSizeMoveLoop = true;
+            else if (message.Msg == WmExitSizeMove) _inSizeMoveLoop = false;
             if (message.Msg == WmWindowPosChanging && _windowSizeInitialized && WindowState == FormWindowState.Normal)
             {
                 // Keyboard positioning and shell-initiated changes can bypass WM_SIZING.
@@ -75,6 +105,12 @@ namespace PortraitManager
                     pos.Width = unitsToUse * 75 + border.Width;
                     pos.Height = unitsToUse * 52 + border.Height;
                     Marshal.StructureToPtr(pos, message.LParam, false);
+                    // Last moment the crop frames still have the size the pictures were placed in:
+                    // WM_SIZE re-lays out the tables (shrinking cell-capped frames) before OnClientSizeChanged.
+                    // Only for a real size change: a no-op one never reaches OnClientSizeChanged, and its
+                    // snapshot would go stale and be used by a later resize.
+                    if (pos.Width != Width || pos.Height != Height)
+                        _frameHeightsBeforeResize = CurrentFrameHeights();
                 }
             }
             if (message.Msg != WmSizing || !_windowSizeInitialized)
@@ -142,11 +178,13 @@ namespace PortraitManager
         protected override void OnClientSizeChanged(EventArgs e)
         {
             base.OnClientSizeChanged(e);
+            var snapshot = _frameHeightsBeforeResize;
+            _frameHeightsBeforeResize = null;
             if (!_windowSizeInitialized || WindowState != FormWindowState.Normal) return;
             int steps = ClientSize.Width / 75;
             if (steps < CompactSizeSteps || steps == _sizeSteps) return;
-            float previousScale = UiScale;
             _sizeSteps = steps;
+            var frameHeights = snapshot ?? CurrentFrameHeights();
             SuspendLayout();
             try
             {
@@ -158,46 +196,147 @@ namespace PortraitManager
                 _flagDe.Left = ClientSize.Width - UiPixels(43);
                 _flagEng.Left = ClientSize.Width - UiPixels(66);
                 _galleryHelpButton.Location = new Point(UiPixels(8), UiPixels(8));
-                ResizeCrop(PicKingLrg, PortraitGroupSelection.Large, previousScale);
-                ResizeCrop(PicKingMed, PortraitGroupSelection.Medium, previousScale);
-                ResizeCrop(PicKingSml, PortraitGroupSelection.Small, previousScale);
-                ResizeCrop(PicKingSml2, PortraitGroupSelection.Sml2, previousScale);
+                _applyingWindowScale = true;
+                ResizeCrop(PortraitGroupSelection.Large, frameHeights[PicKingLrg]);
+                ResizeCrop(PortraitGroupSelection.Medium, frameHeights[PicKingMed]);
+                ResizeCrop(PortraitGroupSelection.Small, frameHeights[PicKingSml]);
+                ResizeCrop(PortraitGroupSelection.Sml2, frameHeights[PicKingSml2]);
                 ApplySmallLayoutReference();
             }
-            finally { ResumeLayout(true); }
+            finally
+            {
+                _applyingWindowScale = false;
+                ResumeLayout(true);
+            }
             ResizeThumbnailCards();
+            // Snap, keyboard and programmatic resizes never raise ResizeEnd, so render sharp now.
+            if (!_inSizeMoveLoop) SharpenResizedCrops();
+            ReleaseUnusedUiFonts();
             Invalidate(true);
         }
 
-        private void ResizeCrop(PictureBox pic, PortraitGroupSelection slot, float previousScale)
+        // Every window size gets its own cached fonts; dispose the ones no control uses any more.
+        private void ReleaseUnusedUiFonts()
         {
-            Rectangle previous = pic.Bounds;
-            AdjustActivePortraitPanelAspect(slot);
+            var inUse = new HashSet<Font> { _galleryCardFont, _archiveCardFont };
+            void Collect(Control control)
+            {
+                inUse.Add(control.Font);
+                foreach (Control child in control.Controls) Collect(child);
+            }
+            Collect(this);
+            foreach (Form owned in OwnedForms) Collect(owned);
+
+            var unused = new List<(string, bool, float, FontStyle)>();
+            foreach (var entry in _uiFonts)
+                if (!inUse.Contains(entry.Value)) unused.Add(entry.Key);
+            foreach (var key in unused)
+            {
+                _uiFonts[key].Dispose();
+                _uiFonts.Remove(key);
+            }
+        }
+
+        // Rescales the window: the frame is resized and KeepCrop (called from
+        // AdjustPortraitPanelAspect) keeps the zoomed picture's crop.
+        private void ResizeCrop(PortraitGroupSelection slot, int previousFrameHeight) =>
+            AdjustActivePortraitPanelAspect(slot, previousFrameHeight);
+
+        // Keeps what a zoomed portrait shows when its frame changes size, whatever the cause: a window
+        // resize, a tab switch that re-measures a frame sized while hidden, or a layout change.
+        // The crop is kept in units of the frame height, not the window scale. Frames always have the
+        // portrait's shape, so this preserves the visible crop exactly even when a frame does not grow
+        // exactly with UiScale. Rebase after a pan, a zoom, or a frame change made elsewhere; repeated
+        // border drags then always project the same crop instead of accumulating pixel rounding.
+        //
+        // `now` is the frame size AdjustPortraitPanelAspect intends, not panel.ClientSize: a hidden tab's
+        // table keeps stale cell sizes and its layout passes clamp the frame temporarily. For the same
+        // reason the frame height recorded with the picture is trusted over the frame's current height;
+        // only a pan or zoom (the picture moved) makes the current frame the reference again.
+        private void KeepCrop(PictureBox pic, Rectangle previous, int previousFrameHeight, Size now)
+        {
             if (pic.Image == null || pic.Dock != DockStyle.None) return;
-            // Rebase after a pan or zoom. Repeated border drags then always
-            // project the same crop instead of accumulating pixel rounding.
+            // Frames are 1px tall until a game is chosen and laid out; there is no crop to keep yet.
+            const int MinimumFrame = 16;
+            if (now.Height < MinimumFrame || now.Width < MinimumFrame)
+            {
+                _cropFrames.Remove(pic);
+                return;
+            }
             if (!_cropFrames.TryGetValue(pic, out var frame) || frame.LastBounds != previous)
-                frame.DesignBounds = new RectangleF(previous.X / previousScale, previous.Y / previousScale,
-                    previous.Width / previousScale, previous.Height / previousScale);
-            RectangleF design = frame.DesignBounds;
-            pic.SizeMode = PictureBoxSizeMode.StretchImage;
-            pic.Bounds = Rectangle.Round(new RectangleF(design.X * UiScale, design.Y * UiScale,
-                Math.Max(1, design.Width * UiScale), Math.Max(1, design.Height * UiScale)));
-            _cropFrames[pic] = (pic.Bounds, design);
+            {
+                if (previousFrameHeight < MinimumFrame)
+                {
+                    _cropFrames.Remove(pic);
+                    return;
+                }
+                frame.FrameBounds = new RectangleF(previous.X / (float)previousFrameHeight, previous.Y / (float)previousFrameHeight,
+                    previous.Width / (float)previousFrameHeight, previous.Height / (float)previousFrameHeight);
+            }
+            RectangleF relative = frame.FrameBounds;
+            float width = relative.Width * now.Height, height = relative.Height * now.Height;
+            // The frame's width can differ from its height ratio by a pixel; never leave a gap.
+            float cover = Math.Max(1f, Math.Max(now.Width / width, now.Height / height));
+            width *= cover;
+            height *= cover;
+            float x = Math.Max(now.Width - width, Math.Min(0, relative.X * now.Height));
+            float y = Math.Max(now.Height - height, Math.Min(0, relative.Y * now.Height));
+            var bounds = new Rectangle((int)Math.Round(x), (int)Math.Round(y),
+                Math.Max(1, (int)Math.Ceiling(width)), Math.Max(1, (int)Math.Ceiling(height)));
+            if (bounds != pic.Bounds)
+            {
+                pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                _keepingCrop = true;
+                try { pic.Bounds = bounds; }
+                finally { _keepingCrop = false; }
+                // During a window drag ResizeEnd re-renders; on a window resize OnClientSizeChanged does.
+                if (!_inSizeMoveLoop && !_applyingWindowScale) SharpenCrop(pic);
+            }
+            _cropFrames[pic] = (pic.Bounds, now.Height, relative);
+        }
+
+        // Records the frame a picture is placed in whenever the picture moves or resizes for any reason
+        // other than KeepCrop (zoom, pan, fit, a new image). The frame is visible and laid out then, so
+        // this is the crop the user framed, even if a hidden tab's layout later distorts the frame.
+        private void TrackCropFrames()
+        {
+            foreach (var pic in new[] { PicKingLrg, PicKingMed, PicKingSml, PicKingSml2 })
+            {
+                EventHandler track = (sender, args) =>
+                {
+                    if (_keepingCrop) return;
+                    var panel = pic.Parent as Panel;
+                    int frameHeight = panel?.ClientSize.Height ?? 0;
+                    if (pic.Dock != DockStyle.None || frameHeight < 16)
+                    {
+                        _cropFrames.Remove(pic);
+                        return;
+                    }
+                    Rectangle b = pic.Bounds;
+                    _cropFrames[pic] = (b, frameHeight, new RectangleF(b.X / (float)frameHeight, b.Y / (float)frameHeight,
+                        b.Width / (float)frameHeight, b.Height / (float)frameHeight));
+                };
+                pic.LocationChanged += track;
+                pic.SizeChanged += track;
+                pic.DockChanged += track;
+            }
         }
 
         private void SharpenResizedCrops()
         {
             foreach (var pic in new[] { PicKingLrg, PicKingMed, PicKingSml, PicKingSml2 })
-            {
-                if (pic.SizeMode != PictureBoxSizeMode.StretchImage || pic.Image == null) continue;
-                Image original = GetOriginalImage(pic);
-                if (original == null) continue;
-                Image old = pic.Image;
-                pic.Image = ImageControl.Direct.Resize(original, pic.Width, pic.Height);
-                pic.SizeMode = PictureBoxSizeMode.Normal;
-                if (old != original) old.Dispose();
-            }
+                SharpenCrop(pic);
+        }
+
+        private void SharpenCrop(PictureBox pic)
+        {
+            if (pic.SizeMode != PictureBoxSizeMode.StretchImage || pic.Image == null) return;
+            Image original = GetOriginalImage(pic);
+            if (original == null) return;
+            Image old = pic.Image;
+            pic.Image = ImageControl.Direct.Resize(original, pic.Width, pic.Height);
+            pic.SizeMode = PictureBoxSizeMode.Normal;
+            if (old != original) old.Dispose();
         }
     }
 }

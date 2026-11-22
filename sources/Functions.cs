@@ -239,7 +239,11 @@ namespace PortraitManager
             int maxSize = UiPixels(_gameSelected == 'l' ? 115 : 140);
             if (gallery)
             {
-                float columnWidth = FlowLayoutPanelGallery.ClientSize.Width / 3.5f - UiPixels(26);
+                // Ignore the scroll bar: it comes and goes as cards are added or resized, and would
+                // otherwise give cards different sizes depending on when they were sized.
+                int galleryWidth = FlowLayoutPanelGallery.ClientSize.Width +
+                    (FlowLayoutPanelGallery.VerticalScroll.Visible ? SystemInformation.VerticalScrollBarWidth : 0);
+                float columnWidth = galleryWidth / 3.5f - UiPixels(26);
                 maxSize = Math.Max(UiPixels(100), (int)(columnWidth * Math.Max(1f, (float)source.Height / source.Width)));
             }
 
@@ -3105,9 +3109,18 @@ namespace PortraitManager
             catch { return fallback; }
         }
 
-        private void AdjustPortraitPanelAspect(Panel panel, float ar, float staticHeight)
+        // frameHeightBefore: the frame height the zoomed picture was placed in, when the caller
+        // captured it before layout ran (window resize); otherwise the frame's current height.
+        private void AdjustPortraitPanelAspect(Panel panel, float ar, float staticHeight, int frameHeightBefore = -1)
         {
             if (panel == null) return;
+
+            PictureBox pic = null;
+            foreach (Control child in panel.Controls)
+                if (child is PictureBox box) { pic = box; break; }
+            Rectangle picBefore = pic?.Bounds ?? Rectangle.Empty;
+            int heightBefore = frameHeightBefore >= 0 ? frameHeightBefore : panel.ClientSize.Height;
+            Size intendedSize = panel.ClientSize;
 
             panel.SuspendLayout();
             try
@@ -3115,14 +3128,19 @@ namespace PortraitManager
                 panel.AutoSize = false;
                 panel.Dock = DockStyle.None;
                 panel.Anchor = AnchorStyles.None;
-                staticHeight *= UiScale;
-                int newWidth = (int)Math.Round(staticHeight / ar);
-                int newHeight = (int)staticHeight;
+                // Round the height first and derive the width from it, so the frame keeps the
+                // portrait's aspect ratio at every window size (e.g. square stays square).
+                int newHeight = (int)Math.Round(staticHeight * UiScale);
+                int newWidth = (int)Math.Round(newHeight / ar);
 
-                if ((_gameSelected == 't' || _gameSelected == 'p') && panel.Name == "PanelKingSml")
+                // The table cell clamps a frame that is too wide. Shrink the height to match instead,
+                // so the frame keeps the portrait's shape and shows exactly what will be saved.
+                if (panel.Parent is TableLayoutPanel table)
                 {
-                    var table = panel.Parent as TableLayoutPanel;
-                    int availableWidth = table == null ? panel.Width : table.GetColumnWidths()[0] - panel.Margin.Horizontal;
+                    int column = table.GetColumn(panel);
+                    int[] widths = table.GetColumnWidths();
+                    int availableWidth = column >= 0 && column < widths.Length
+                        ? widths[column] - panel.Margin.Horizontal : 0;
                     if (availableWidth > 0 && newWidth > availableWidth)
                     {
                         newWidth = availableWidth;
@@ -3130,15 +3148,22 @@ namespace PortraitManager
                     }
                 }
 
-                panel.Size = new Size(newWidth, newHeight);
+                intendedSize = new Size(newWidth, newHeight);
+                _intendedFrames[panel] = intendedSize;
+                panel.Size = intendedSize;
             }
             finally
             {
                 panel.ResumeLayout();
             }
+
+            // A hidden tab's table is not laid out, so its frame can be sized from stale cell widths
+            // and corrected when the tab is shown again. Keep the zoomed crop through every such change.
+            if (pic != null)
+                KeepCrop(pic, picBefore, heightBefore, intendedSize);
         }
 
-        private void AdjustActivePortraitPanelAspect(PortraitGroupSelection selection)
+        private void AdjustActivePortraitPanelAspect(PortraitGroupSelection selection, int frameHeightBefore = -1)
         {
             if (!GameTypes.TryGetValue(_gameSelected, out var gameType)) return;
 
@@ -3148,7 +3173,7 @@ namespace PortraitManager
                 AdjustPortraitPanelAspect(
                     PanelKingLrg,
                     GetPortraitSpecificOrDefault(gameType, "LARGE_AR", 1.3f),
-                    360f);
+                    360f, frameHeightBefore);
             }
             else if (selection == PortraitGroupSelection.Medium)
             {
@@ -3157,7 +3182,7 @@ namespace PortraitManager
                     AdjustPortraitPanelAspect(
                         PanelKingMed,
                         GetPortraitSpecificOrDefault(gameType, "MEDIUM_AR", 1.3f),
-                        360f);
+                        360f, frameHeightBefore);
                 }
             }
             else if (selection == PortraitGroupSelection.Small)
@@ -3171,7 +3196,7 @@ namespace PortraitManager
                 AdjustPortraitPanelAspect(
                     PanelKingSml,
                     GetPortraitSpecificOrDefault(gameType, "SMALL_AR", 1.4f),
-                    smlHeight);
+                    smlHeight, frameHeightBefore);
             }
             else if (selection == PortraitGroupSelection.Sml2)
             {
@@ -3181,7 +3206,7 @@ namespace PortraitManager
                 AdjustPortraitPanelAspect(
                     PanelKingSml2,
                     GetPortraitSpecificOrDefault(gameType, "SML2_AR", 1.4f),
-                    sml2Height);
+                    sml2Height, frameHeightBefore);
             }
         }
 

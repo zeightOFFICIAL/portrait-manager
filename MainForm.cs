@@ -226,6 +226,7 @@ namespace PortraitManager
 
             dialog.AutoScaleMode = AutoScaleMode.None;
             dialog.Scale(new SizeF(UiScale, UiScale));
+            var fontProperty = System.ComponentModel.TypeDescriptor.GetProperties(typeof(Control))["Font"];
             ScaleFonts(dialog);
 
             void ScaleFonts(Control control)
@@ -233,7 +234,9 @@ namespace PortraitManager
                 // Visit children first so inherited fonts pick up the new parent size once.
                 foreach (Control child in control.Controls)
                     ScaleFonts(child);
-                if (control.Parent != null && control.Font.Equals(control.Parent.Font)) return;
+                // Skip only fonts inherited from the parent; an explicitly set font is scaled
+                // even when it happens to equal the parent's.
+                if (control.Parent != null && !fontProperty.ShouldSerializeValue(control)) return;
 
                 Font current = control.Font;
                 var scaled = new Font(current.FontFamily, current.Size * UiScale, current.Style, current.Unit);
@@ -560,6 +563,7 @@ namespace PortraitManager
                     LabelSelectPathExplain.Text = GetPathExplainText(_gameSelected);
                     UpdatePortraitButtonsStyle();
                     RefreshFlagHighlight();
+                    ReleaseUnusedUiFonts();
 
                     if (persist)
                     {

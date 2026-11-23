@@ -581,4 +581,6 @@ with name ✎</value>
   <data name="MESG_CUSTOM_NAME_TAKEN" xml:space="preserve">
     <value>That name is already in use. Please choose a different one before creating the portrait.</value>
   </data>
+  <data name="SIDE_BY_SIDE" xml:space="preserve"><value>Side by side</value></data>
+  <data name="SINGLE_VIEW" xml:space="preserve"><value>Single view</value></data>
 </root>

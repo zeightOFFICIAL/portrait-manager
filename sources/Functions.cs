@@ -3376,6 +3376,12 @@ namespace PortraitManager
             if (m.Msg != WM_MOUSEWHEEL) return false;
 
             Point cursor = Cursor.Position;
+            if (_comparisonRow != null)
+            {
+                foreach (ComparisonPane pane in _comparisonRow.Controls)
+                    if (pane.ZoomAtScreenPoint(cursor, (short)(m.WParam.ToInt64() >> 16))) return true;
+                return false;
+            }
             Panel targetPanel = null;
             PictureBox targetPic = null;
 

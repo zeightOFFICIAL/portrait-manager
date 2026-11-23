@@ -581,4 +581,6 @@ Artemii "Zeight" Saganenko ©2023-2026</value>
   <data name="MESG_CUSTOM_NAME_TAKEN" xml:space="preserve">
     <value>Это имя уже используется. Пожалуйста, выберите другое перед созданием портрета.</value>
   </data>
+  <data name="SIDE_BY_SIDE" xml:space="preserve"><value>Все портреты</value></data>
+  <data name="SINGLE_VIEW" xml:space="preserve"><value>Один портрет</value></data>
 </root>

@@ -209,6 +209,7 @@ namespace PortraitManager
                 ResumeLayout(true);
             }
             ResizeThumbnailCards();
+            RefreshComparisonAppearance();
             // Snap, keyboard and programmatic resizes never raise ResizeEnd, so render sharp now.
             if (!_inSizeMoveLoop) SharpenResizedCrops();
             ReleaseUnusedUiFonts();

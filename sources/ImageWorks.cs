@@ -1,4 +1,4 @@
-﻿/*
+/*
     Zeight Portrait Manager
     Desktop application for managing in-game portraits for games from Owlcat Games,
     Obsidian Entertainment and inXile Entertainment.
@@ -96,112 +96,50 @@ namespace ImageControl
             return dest;
         }
 
-        public static void SaveFillCrop(
-            Image original,
-            PictureBox pb,
-            Panel panel,
-            int targetW,
-            int targetH,
-            string outPath,
-            Size? frame = null)
+        public static void SaveFillCrop(Image original, PictureBox pb, Panel panel, int targetW, int targetH, string outPath, Size? frame = null)
+            => SaveCrop(original, pb, panel, targetW, targetH, outPath, true, frame);
+
+        public static void SaveUniformCrop(Image original, PictureBox pb, Panel panel, int targetW, int targetH, string outPath, Size? frame = null)
+            => SaveCrop(original, pb, panel, targetW, targetH, outPath, false, frame);
+
+        internal static Rectangle FitInside(Size size, Rectangle bounds)
         {
-            if (original == null) return;
-
-            int imgW = original.Width;
-            int imgH = original.Height;
-
-            // rame: the frame size the picture was placed for (a hidden tab's frame can be distorted by layout).
-            Rectangle visible = pb.RectangleToClient(
-                panel.RectangleToScreen(new Rectangle(Point.Empty, frame ?? panel.ClientSize)));
-
-            if (visible.Width <= 0 || visible.Height <= 0) return;
-
-            float scaleX = (float)imgW / pb.ClientSize.Width;
-            float scaleY = (float)imgH / pb.ClientSize.Height;
-
-            float centerX = (visible.X + visible.Width / 2f) * scaleX;
-            float centerY = (visible.Y + visible.Height / 2f) * scaleY;
-
-            int cropW = (int)Math.Round(visible.Width * scaleX);
-            int cropH = (int)Math.Round(visible.Height * scaleY);
-            if (cropW <= 0 || cropH <= 0) return;
-
-            float targetAR = (float)targetW / targetH;
-            if (cropW * targetH > cropH * targetW)
-                cropW = (int)Math.Round(cropH * targetAR);
-            else if (cropW * targetH < cropH * targetW)
-                cropH = (int)Math.Round(cropW / targetAR);
-
-            int cropX = Math.Max(0, Math.Min(imgW - cropW,
-                (int)Math.Round(centerX - cropW / 2f)));
-            int cropY = Math.Max(0, Math.Min(imgH - cropH,
-                (int)Math.Round(centerY - cropH / 2f)));
-
-            using (Bitmap cropped = new Bitmap(cropW, cropH))
-            {
-                using (Graphics g = Graphics.FromImage(cropped))
-                {
-                    g.CompositingQuality = CompositingQuality.HighQuality;
-                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    g.SmoothingMode = SmoothingMode.HighQuality;
-                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    Direct.DrawNoBleed(g, original, new Rectangle(0, 0, cropW, cropH), cropX, cropY, cropW, cropH);
-                }
-
-                using (Bitmap output = new Bitmap(targetW, targetH))
-                {
-                    using (Graphics g = Graphics.FromImage(output))
-                    {
-                        g.CompositingQuality = CompositingQuality.HighQuality;
-                        g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        g.SmoothingMode = SmoothingMode.HighQuality;
-                        g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                        Direct.DrawNoBleed(g, cropped, new Rectangle(0, 0, targetW, targetH), 0, 0, cropW, cropH);
-                    }
-
-                    output.Save(outPath, ImageFormat.Png);
-                }
-            }
+            float scale = Math.Min((float)bounds.Width / size.Width, (float)bounds.Height / size.Height);
+            int w = (int)Math.Round(size.Width * scale);
+            int h = (int)Math.Round(size.Height * scale);
+            return new Rectangle(bounds.X + (bounds.Width - w) / 2, bounds.Y + (bounds.Height - h) / 2, w, h);
         }
 
-        public static void SaveUniformCrop(
-            Image original,
-            PictureBox pb,
-            Panel panel,
-            int targetW,
-            int targetH,
-            string outPath,
-            Size? frame = null)
+        internal static RectangleF SourceRegion(Image original, PictureBox pb, Panel panel, Size target, bool fill, Size? frame)
+        {
+            if (pb.ClientSize.Width <= 0 || pb.ClientSize.Height <= 0) return RectangleF.Empty;
+            var visible = pb.RectangleToClient(panel.RectangleToScreen(new Rectangle(Point.Empty, frame ?? panel.ClientSize)));
+            float sx = (float)original.Width / pb.ClientSize.Width;
+            float sy = (float)original.Height / pb.ClientSize.Height;
+            var source = new RectangleF(visible.X * sx, visible.Y * sy, visible.Width * sx, visible.Height * sy);
+            if (!fill)
+                return RectangleF.Intersect(source, new RectangleF(0, 0, original.Width, original.Height));
+
+            int w = (int)Math.Round(source.Width);
+            int h = (int)Math.Round(source.Height);
+            float aspect = (float)target.Width / target.Height;
+            if ((long)w * target.Height > (long)h * target.Width)
+                w = (int)Math.Round(h * aspect);
+            else if ((long)w * target.Height < (long)h * target.Width)
+                h = (int)Math.Round(w / aspect);
+
+            int x = (int)Math.Round((visible.X + visible.Width / 2f) * sx - w / 2f);
+            int y = (int)Math.Round((visible.Y + visible.Height / 2f) * sy - h / 2f);
+            return new RectangleF(Math.Max(0, Math.Min(original.Width - w, x)),
+                                  Math.Max(0, Math.Min(original.Height - h, y)), w, h);
+        }
+
+        private static void SaveCrop(Image original, PictureBox pb, Panel panel, int targetW, int targetH, string outPath, bool fill, Size? frame)
         {
             if (original == null) return;
-
-            int imgW = original.Width;
-            int imgH = original.Height;
-
-            // rame: the frame size the picture was placed for (a hidden tab's frame can be distorted by layout).
-            Rectangle visible = pb.RectangleToClient(
-                panel.RectangleToScreen(new Rectangle(Point.Empty, frame ?? panel.ClientSize)));
-
-            if (visible.Width <= 0 || visible.Height <= 0) return;
-
-            float scaleX = (float)imgW / pb.ClientSize.Width;
-            float scaleY = (float)imgH / pb.ClientSize.Height;
-
-            float srcX = visible.X * scaleX;
-            float srcY = visible.Y * scaleY;
-            float srcW = visible.Width * scaleX;
-            float srcH = visible.Height * scaleY;
-
-            if (srcX < 0) { srcW += srcX; srcX = 0; }
-            if (srcY < 0) { srcH += srcY; srcY = 0; }
-            if (srcX + srcW > imgW) srcW = imgW - srcX;
-            if (srcY + srcH > imgH) srcH = imgH - srcY;
-
-            if (srcW <= 0 || srcH <= 0) return;
-
-            int cropW = (int)Math.Round(srcW);
-            int cropH = (int)Math.Round(srcH);
+            var source = SourceRegion(original, pb, panel, new Size(targetW, targetH), fill, frame);
+            int cropW = (int)Math.Round(source.Width);
+            int cropH = (int)Math.Round(source.Height);
             if (cropW <= 0 || cropH <= 0) return;
 
             using (Bitmap cropped = new Bitmap(cropW, cropH))
@@ -212,7 +150,7 @@ namespace ImageControl
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                     g.SmoothingMode = SmoothingMode.HighQuality;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    Direct.DrawNoBleed(g, original, new Rectangle(0, 0, cropW, cropH), srcX, srcY, srcW, srcH);
+                    Direct.DrawNoBleed(g, original, new Rectangle(0, 0, cropW, cropH), source.X, source.Y, source.Width, source.Height);
                 }
 
                 using (Bitmap output = new Bitmap(targetW, targetH))
@@ -223,17 +161,13 @@ namespace ImageControl
                         g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                         g.SmoothingMode = SmoothingMode.HighQuality;
                         g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                        g.Clear(Color.Black);
-
-                        float scale = Math.Min(
-                            (float)targetW / cropW,
-                            (float)targetH / cropH);
-                        int destW = (int)Math.Round(cropW * scale);
-                        int destH = (int)Math.Round(cropH * scale);
-                        int destX = (targetW - destW) / 2;
-                        int destY = (targetH - destH) / 2;
-
-                        Direct.DrawNoBleed(g, cropped, new Rectangle(destX, destY, destW, destH), 0, 0, cropW, cropH);
+                        var destination = new Rectangle(0, 0, targetW, targetH);
+                        if (!fill)
+                        {
+                            g.Clear(Color.Black);
+                            destination = FitInside(cropped.Size, destination);
+                        }
+                        Direct.DrawNoBleed(g, cropped, destination, 0, 0, cropW, cropH);
                     }
 
                     output.Save(outPath, ImageFormat.Png);

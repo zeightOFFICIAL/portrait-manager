@@ -396,6 +396,7 @@ namespace PortraitManager
                     if (keepOnLayout)
                     {
                         RestoreKingPortraitEditorsToPlaceholder();
+                        _comparisonRow?.Invalidate(true);
                     }
                     else
                     {

@@ -55,6 +55,8 @@ Drag any edge or corner of the window to resize it. The interface keeps its 75:5
 #### Create new portraits
 Load an image from a local file or a web URL - drag-and-drop works too, either straight onto the portrait panel or as a pasted link. Zoom, pan and reset the crop with the mouse; each panel is shaped to the exact aspect ratio the game expects for that size, so what you see previewed is what gets written to disk. Press Create and Portrait Manager crops, resizes and saves every required size for that game in one pass, then shows a toast confirming where it landed with a one-click "open folder" link.
 
+Choose **Side by side** to frame all of a game's portraits in one row. Each preview shows its name and export dimensions. Drag a portrait or use its arrows to pan, use the wheel or + and − to zoom, and use ↺ to reset that crop. Switch to **Single view** to replace a source image. You can create the set from either view. Wasteland 3 has one portrait and uses the single editor.
+
 Prefer to pick the name yourself instead of an auto-generated one? Press Create with name instead of Create - it asks for a name first (duplicates are rejected on the spot) and then creates the portrait exactly like Create does.
 
 <table style="border:none; border-collapse:collapse; width:100%;">

@@ -1369,5 +1369,8 @@ namespace PortraitManager.Properties {
                 return ResourceManager.GetString("WEBDIALOG_TITLE", resourceCulture);
             }
         }
+
+        internal static string SIDE_BY_SIDE => ResourceManager.GetString("SIDE_BY_SIDE", resourceCulture);
+        internal static string SINGLE_VIEW => ResourceManager.GetString("SINGLE_VIEW", resourceCulture);
     }
 }

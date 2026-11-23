@@ -281,6 +281,7 @@ namespace PortraitManager
             }
 
             ButtonKingCreateNewPortrait.Text = TextVariables.BUTTON_CREATE_NEW;
+            RefreshComparisonAppearance();
             RefreshCustomNameButtonText();
             ButtonKingBackToPathfinder.Text = TextVariables.BUTTON_BACK_TO_PATHFINDER;
             ButtonExtractAll.Text = TextVariables.BUTTON_EXTRACT_ALL;
@@ -596,6 +597,7 @@ namespace PortraitManager
         public MainForm()
         {
             InitializeComponent();
+            InitializeSideBySideEditor();
             Disposed += (sender, args) =>
             {
                 foreach (Font font in _uiFonts.Values) font.Dispose();

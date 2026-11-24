@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PortraitManager
 {
-    internal enum UiIcon { ZoomIn, ZoomOut, ZoomReset, SingleView, SideBySide }
+    internal enum UiIcon { ZoomIn, ZoomOut, ZoomReset, SingleView, SideBySide, Magnify }
 
     internal static class UiIcons
     {
@@ -34,7 +34,10 @@ namespace PortraitManager
                 {
                     case UiIcon.ZoomIn:
                     case UiIcon.ZoomOut:
-                        Magnifier(g, pen, box, icon == UiIcon.ZoomIn);
+                        Magnifier(g, pen, box, icon == UiIcon.ZoomIn ? true : (bool?)false);
+                        break;
+                    case UiIcon.Magnify:
+                        Magnifier(g, pen, box, null);
                         break;
                     case UiIcon.ZoomReset:
                         Reset(g, pen, brush, box);
@@ -76,7 +79,8 @@ namespace PortraitManager
             Draw(e.Graphics, icon, button.ClientRectangle, button.ForeColor);
         }
 
-        private static void Magnifier(Graphics g, Pen pen, RectangleF box, bool plus)
+        // plus: true draws +, false draws −, null draws a plain lens.
+        private static void Magnifier(Graphics g, Pen pen, RectangleF box, bool? plus)
         {
             float s = box.Width;
             float r = s * 0.31f;
@@ -90,9 +94,10 @@ namespace PortraitManager
                 g.DrawLine(handle, c.X + d + pen.Width * 0.3f, c.Y + d + pen.Width * 0.3f, box.Right - s * 0.06f, box.Bottom - s * 0.06f);
             }
 
+            if (plus == null) return;
             float arm = r * 0.5f;
             g.DrawLine(pen, c.X - arm, c.Y, c.X + arm, c.Y);
-            if (plus) g.DrawLine(pen, c.X, c.Y - arm, c.X, c.Y + arm);
+            if (plus == true) g.DrawLine(pen, c.X, c.Y - arm, c.X, c.Y + arm);
         }
 
         // An open circle with an arrowhead at the top pointing counter-clockwise (↺).

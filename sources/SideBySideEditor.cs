@@ -85,54 +85,126 @@ namespace PortraitManager
             if (game == null) return;
             _viewSwitch.Apply(game.BackColor, game.ForeColor, _comparisonRow != null);
             _viewSwitch.AccessibleName = _comparisonRow == null ? TextVariables.SIDE_BY_SIDE : TextVariables.SINGLE_VIEW;
+            LayoutKingPortraitGroups.Invalidate(true);   // single-view frame legends follow language and scale
             if (_comparisonRow == null) return;
             _comparisonRow.BackColor = game.BackColor;
+            _comparisonRow.ForeColor = game.ForeColor;
+            _comparisonRow.Font = LegendSizeFont;   // also keeps the font alive for painting
             foreach (ComparisonPane pane in _comparisonRow.Controls) pane.RefreshAppearance(game);
             LayoutComparison();
             _comparisonRow.Invalidate();
         }
 
-        // Shows every portrait at its real pixel size. When the row does not fit, the
-        // tallest previews are shrunk first: all previews share one height cap, found by
-        // bisection, so small portraits keep 1:1 for as long as possible.
+        // All previews share one scale, so they keep the size relation of the files Create
+        // writes (Fulllength is drawn as many times larger than Portrait as it really is).
+        // The scale is the largest that fits the panel, found by bisection; it may exceed 100%.
         private void LayoutComparison()
         {
             if (_comparisonRow == null || _comparisonRow.Controls.Count == 0) return;
             var panes = new ComparisonPane[_comparisonRow.Controls.Count];
             _comparisonRow.Controls.CopyTo(panes, 0);
 
-            int pad = UiPixels(12), gap = UiPixels(12);
+            int pad = UiPixels(10), minGap = UiPixels(10);
             Rectangle area = Rectangle.Inflate(_comparisonRow.ClientRectangle, -pad, -pad);
+            area.Height -= _comparisonRow.ScaleLineHeight;
             if (area.Width <= 0 || area.Height <= 0) return;
 
-            int maxHeight = Math.Max(8, area.Height - panes[0].ChromeHeight);
-            int Width(int cap)
+            int RowWidth(double scale)
             {
-                int total = gap * (panes.Length - 1);
-                foreach (var pane in panes) total += pane.MeasureWidth(pane.DisplaySize(cap));
+                int total = minGap * (panes.Length - 1);
+                foreach (var pane in panes) total += pane.MeasureWidth(pane.DisplaySize(scale), scale);
                 return total;
             }
-            int low = 8, high = maxHeight;
-            if (Width(high) <= area.Width) low = high;
+            int RowHeight(double scale)
+            {
+                int height = 0;
+                foreach (var pane in panes) height = Math.Max(height, pane.ChromeHeight + pane.DisplaySize(scale).Height);
+                return height;
+            }
+            bool Fits(double scale) => RowWidth(scale) <= area.Width && RowHeight(scale) <= area.Height;
+
+            double low = 0.01, high = 4.0;
+            if (Fits(high)) low = high;
             else
-                while (high - low > 1)
+                for (int i = 0; i < 40; i++)
                 {
-                    int mid = (low + high) / 2;
-                    if (Width(mid) <= area.Width) low = mid; else high = mid;
+                    double mid = (low + high) / 2;
+                    if (Fits(mid)) low = mid; else high = mid;
                 }
 
-            // Center the group; portraits stand on one baseline so their buttons form one row.
-            int groupWidth = Width(low), groupHeight = 0;
-            foreach (var pane in panes) groupHeight = Math.Max(groupHeight, pane.ChromeHeight + pane.DisplaySize(low).Height);
-            int x = area.X + Math.Max(0, (area.Width - groupWidth) / 2);
-            int bottom = area.Y + Math.Max(0, (area.Height - groupHeight) / 2) + groupHeight;
+            // Spread the spare width evenly around the panes (it is left over when the height
+            // limits the scale), and center the row vertically when the width limits it.
+            // Portraits stand on one baseline so their buttons form one row.
+            int spare = Math.Max(0, area.Width - RowWidth(low));
+            int gap = minGap + spare / (panes.Length + 1);
+            int x = area.X + spare / (panes.Length + 1) + (spare % (panes.Length + 1)) / 2;
+            int rowHeight = RowHeight(low);
+            int bottom = area.Y + (area.Height - rowHeight) / 2 + rowHeight;
             foreach (var pane in panes)
             {
                 Size display = pane.DisplaySize(low);
-                var size = new Size(pane.MeasureWidth(display), pane.ChromeHeight + display.Height);
-                pane.Arrange(display, new Rectangle(new Point(x, bottom - size.Height), size));
+                var size = new Size(pane.MeasureWidth(display, low), pane.ChromeHeight + display.Height);
+                pane.Arrange(display, low, new Rectangle(new Point(x, bottom - size.Height), size));
                 x += size.Width + gap;
             }
+            _comparisonRow.Scale = low;
+        }
+
+        // The export size, with the display scale when the preview is not 1:1.
+        private static string SizeLegend(Size output, double scale)
+        {
+            string size = $"{output.Width} × {output.Height}";
+            int percent = (int)Math.Round(scale * 100);
+            return percent == 100 ? size : $"{size} · {Math.Max(1, percent)}%";
+        }
+
+        // A frame whose top line is broken by a title and whose bottom line is broken by a
+        // second legend, like a group box. Shared by the single and side-by-side views.
+        private void DrawLegendFrame(Graphics g, Rectangle frame, string top, Font topFont, string bottom, Font bottomFont, Color color)
+        {
+            int legendPad = UiPixels(6);
+            Size topSize = TextRenderer.MeasureText(top, topFont);
+            Size bottomSize = TextRenderer.MeasureText(bottom, bottomFont);
+            int topLeft = frame.Left + (frame.Width - topSize.Width) / 2;
+            int bottomLeft = frame.Left + (frame.Width - bottomSize.Width) / 2;
+            using (var pen = new Pen(color))
+            {
+                g.DrawLine(pen, frame.Left, frame.Top, Math.Max(frame.Left, topLeft - legendPad), frame.Top);
+                g.DrawLine(pen, Math.Min(frame.Right, topLeft + topSize.Width + legendPad), frame.Top, frame.Right, frame.Top);
+                g.DrawLine(pen, frame.Left, frame.Top, frame.Left, frame.Bottom);
+                g.DrawLine(pen, frame.Right, frame.Top, frame.Right, frame.Bottom);
+                g.DrawLine(pen, frame.Left, frame.Bottom, Math.Max(frame.Left, bottomLeft - legendPad), frame.Bottom);
+                g.DrawLine(pen, Math.Min(frame.Right, bottomLeft + bottomSize.Width + legendPad), frame.Bottom, frame.Right, frame.Bottom);
+            }
+            const TextFormatFlags flags = TextFormatFlags.NoPadding | TextFormatFlags.SingleLine;
+            TextRenderer.DrawText(g, top, topFont, new Point(topLeft, frame.Top - topSize.Height / 2), color, flags);
+            TextRenderer.DrawText(g, bottom, bottomFont, new Point(bottomLeft, frame.Bottom - bottomSize.Height / 2), color, flags);
+        }
+
+        // Legend fonts. Single-view controls already use both sizes (Select buttons, hints),
+        // so ReleaseUnusedUiFonts keeps them alive for painting.
+        private Font LegendTitleFont => ThemeFont(16f);
+        private Font LegendSizeFont => ThemeFont(10f);
+        private int LegendGap => UiPixels(2);
+        private int FrameInset => UiPixels(7);
+
+        // Single view: the same frame around the crop panel, titled like its tab, with the
+        // export size and the scale the frame shows it at.
+        private void DrawCropFrame(Control group, PaintEventArgs e, Panel panel, Label tab, string key)
+        {
+            if (group == null || panel == null || !panel.Visible || panel.Parent != group) return;
+            if (!GameTypes.TryGetValue(_gameSelected, out GameType game) || !HasPortraitSpecific(game, key + "_WIDTH")) return;
+            var output = new Size((int)game.GetPortraitSpecific(key + "_WIDTH"), (int)game.GetPortraitSpecific(key + "_HEIGHT"));
+            Rectangle crop = panel.Bounds;
+            if (crop.Height < 16) return;
+            Font titleFont = LegendTitleFont, sizeFont = LegendSizeFont;
+            int titleHeight = TextRenderer.MeasureText("Ag", titleFont).Height;
+            int sizeHeight = TextRenderer.MeasureText("0", sizeFont).Height;
+            int top = crop.Top - titleHeight / 2 - LegendGap;
+            int bottom = crop.Bottom + sizeHeight / 2 + LegendGap;
+            var frame = Rectangle.FromLTRB(crop.Left - FrameInset, top, crop.Right + FrameInset, bottom);
+            string title = tab.Text.TrimStart('⍞', '⌻', '⌼', '▣', ' ');
+            DrawLegendFrame(e.Graphics, frame, title, titleFont, SizeLegend(output, (double)crop.Height / output.Height), sizeFont, game.ForeColor);
         }
 
         private Font ThemeFont(float points) => UiFont(
@@ -168,10 +240,30 @@ namespace PortraitManager
                 ResizeRedraw = true;
             }
 
+            private double _scale = 1;
+
+            // The scale every preview shares, shown on the bottom border.
+            public new double Scale
+            {
+                get => _scale;
+                set { if (Math.Abs(_scale - value) > 1e-9) { _scale = value; Invalidate(); } }
+            }
+
+            public string ScaleText => $"{Math.Max(1, (int)Math.Round(_scale * 100))}%";
+
+            // Room kept free at the bottom of the frame for the scale line.
+            public int ScaleLineHeight => TextRenderer.MeasureText("0", Font).Height + _editor.UiPixels(4);
+
+            // The group border, and the shared scale centered just inside its bottom edge.
             protected override void OnPaint(PaintEventArgs e)
             {
                 base.OnPaint(e);
                 _editor.DrawGroupBorder(this, e, null);
+                Size text = TextRenderer.MeasureText(ScaleText, Font);
+                int icon = text.Height, spacing = _editor.UiPixels(3);
+                var at = new Point((Width - text.Width - icon - spacing) / 2 + icon + spacing, Height - _editor.UiPixels(6) - text.Height);
+                UiIcons.Draw(e.Graphics, UiIcon.Magnify, new Rectangle(at.X - icon - spacing, at.Y, icon, icon), ForeColor, 0.9f);
+                TextRenderer.DrawText(e.Graphics, ScaleText, Font, at, ForeColor, TextFormatFlags.NoPadding | TextFormatFlags.SingleLine);
             }
 
             protected override void OnSizeChanged(EventArgs e)
@@ -252,42 +344,32 @@ namespace PortraitManager
 
             private int TitleHeight => TextRenderer.MeasureText("Ag", Font).Height;
             private int DimensionsHeight => TextRenderer.MeasureText("0", _canvas.Font).Height;
-            private int Inset => _editor.UiPixels(7);
             private int ButtonsGap => _editor.UiPixels(10);
             private int ButtonsHeight => _editor.UiPixels(34);
-            // The preview starts below the title's lower half and ends above the size label's upper half.
-            private int PreviewTop => TitleHeight + _editor.UiPixels(2);
-            private int FrameBottom => _canvas.Bottom + DimensionsHeight / 2 + _editor.UiPixels(2);
+            // The preview starts below the title's lower half and ends above the size legend's upper half
+            // (the same geometry DrawCropFrame uses in the single view).
+            private int PreviewTop => TitleHeight + _editor.LegendGap;
+            private int FrameBottom => _canvas.Bottom + DimensionsHeight / 2 + _editor.LegendGap;
 
             // Everything in the pane's height except the preview itself.
-            public int ChromeHeight => PreviewTop + DimensionsHeight / 2 + _editor.UiPixels(2) + DimensionsHeight - DimensionsHeight / 2 + ButtonsGap + ButtonsHeight;
+            public int ChromeHeight => PreviewTop + DimensionsHeight / 2 + _editor.LegendGap + (DimensionsHeight - DimensionsHeight / 2) + ButtonsGap + ButtonsHeight;
 
-            // Real size, or scaled down to the shared height cap (never up).
-            public Size DisplaySize(int heightCap)
-            {
-                double scale = Math.Min(1.0, (double)heightCap / _output.Height);
-                return new Size(Math.Max(1, (int)Math.Round(_output.Width * scale)), Math.Max(1, (int)Math.Round(_output.Height * scale)));
-            }
+            public Size DisplaySize(double scale) =>
+                new Size(Math.Max(1, (int)Math.Round(_output.Width * scale)), Math.Max(1, (int)Math.Round(_output.Height * scale)));
 
-            private string DimensionsText(Size display)
+            public int MeasureWidth(Size display, double scale)
             {
-                string size = $"{_output.Width} × {_output.Height}";
-                return display.Height >= _output.Height ? size
-                    : $"{size} · {Math.Max(1, (int)Math.Round(100.0 * display.Height / _output.Height))}%";
-            }
-
-            public int MeasureWidth(Size display)
-            {
-                int legendPad = _editor.UiPixels(12);
+                int legendPad = _editor.UiPixels(9);
                 int title = TextRenderer.MeasureText(_title, Font).Width + 2 * legendPad;
-                int dims = TextRenderer.MeasureText(DimensionsText(display), _canvas.Font).Width + 2 * legendPad;
+                int dims = TextRenderer.MeasureText(SizeLegend(_output, 1), _canvas.Font).Width + 2 * legendPad;
                 int buttons = 3 * _editor.UiPixels(26) + 2 * _editor.UiPixels(4);
-                return Math.Max(Math.Max(display.Width + 2 * Inset, buttons), Math.Max(title, dims));
+                return Math.Max(Math.Max(display.Width + 2 * _editor.FrameInset, buttons), Math.Max(title, dims));
             }
 
-            public void Arrange(Size display, Rectangle bounds)
+            public void Arrange(Size display, double scale, Rectangle bounds)
             {
-                _dimensions = DimensionsText(display);
+                // The shared scale is shown once, on the row's frame (ComparisonRow).
+                _dimensions = SizeLegend(_output, 1);
                 Bounds = bounds;
                 _canvas.Bounds = new Rectangle((bounds.Width - display.Width) / 2, PreviewTop, display.Width, display.Height);
                 int y = FrameBottom + DimensionsHeight - DimensionsHeight / 2 + ButtonsGap;
@@ -309,37 +391,21 @@ namespace PortraitManager
                 ForeColor = game.ForeColor;
                 _title = _tab.Text.TrimStart('⍞', '⌻', '⌼', '▣', ' ');
                 // Fonts are assigned to controls so ReleaseUnusedUiFonts keeps them alive for OnPaint.
-                Font = _editor.ThemeFont(18);
-                _canvas.Font = _editor.ThemeFont(12);
+                Font = _editor.LegendTitleFont;
+                _canvas.Font = _editor.LegendSizeFont;
                 _canvas.BackColor = Color.Black;
                 foreach (Button button in _buttons) _editor.StylePortraitButton(button, game);
                 Invalidate();
                 _canvas.Invalidate();
             }
 
-            // The frame hugs the preview; the title breaks its top line and the export
-            // size its bottom line, like a group box legend.
+            // The frame spans the pane; the title breaks its top line and the export size its bottom line.
             protected override void OnPaint(PaintEventArgs e)
             {
                 base.OnPaint(e);
                 int titleMid = TitleHeight / 2;
                 var frame = new Rectangle(0, titleMid, Width - 1, FrameBottom - titleMid);
-                int legendPad = _editor.UiPixels(6);
-                Size title = TextRenderer.MeasureText(_title, Font);
-                Size dims = TextRenderer.MeasureText(_dimensions, _canvas.Font);
-                int titleLeft = (Width - title.Width) / 2, dimsLeft = (Width - dims.Width) / 2;
-                using (var pen = new Pen(ForeColor))
-                {
-                    e.Graphics.DrawLine(pen, frame.Left, frame.Top, Math.Max(frame.Left, titleLeft - legendPad), frame.Top);
-                    e.Graphics.DrawLine(pen, Math.Min(frame.Right, titleLeft + title.Width + legendPad), frame.Top, frame.Right, frame.Top);
-                    e.Graphics.DrawLine(pen, frame.Left, frame.Top, frame.Left, frame.Bottom);
-                    e.Graphics.DrawLine(pen, frame.Right, frame.Top, frame.Right, frame.Bottom);
-                    e.Graphics.DrawLine(pen, frame.Left, frame.Bottom, Math.Max(frame.Left, dimsLeft - legendPad), frame.Bottom);
-                    e.Graphics.DrawLine(pen, Math.Min(frame.Right, dimsLeft + dims.Width + legendPad), frame.Bottom, frame.Right, frame.Bottom);
-                }
-                const TextFormatFlags flags = TextFormatFlags.NoPadding | TextFormatFlags.SingleLine;
-                TextRenderer.DrawText(e.Graphics, _title, Font, new Point(titleLeft, 0), ForeColor, flags);
-                TextRenderer.DrawText(e.Graphics, _dimensions, _canvas.Font, new Point(dimsLeft, frame.Bottom - dims.Height / 2), ForeColor, flags);
+                _editor.DrawLegendFrame(e.Graphics, frame, _title, Font, _dimensions, _canvas.Font, ForeColor);
             }
 
             private Point Center => new Point(_viewport.Width / 2 - _picture.Left, _viewport.Height / 2 - _picture.Top);

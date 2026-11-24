@@ -1877,21 +1877,25 @@ namespace PortraitManager
         private void LayoutKingPortraitGroupLarge_Paint(object sender, PaintEventArgs e)
         {
             DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitLarge);
+            DrawCropFrame(sender as Control, e, PanelKingLrg, LabelKingCreatePortraitLarge, "LARGE");
         }
 
         private void LayoutKingPortraitGroupMedium_Paint(object sender, PaintEventArgs e)
         {
             DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitMedium);
+            DrawCropFrame(sender as Control, e, PanelKingMed, LabelKingCreatePortraitMedium, "MEDIUM");
         }
 
         private void LayoutKingPortraitGroupSmall_Paint(object sender, PaintEventArgs e)
         {
             DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitSmall);
+            DrawCropFrame(sender as Control, e, PanelKingSml, LabelKingCreatePortraitSmall, "SMALL");
         }
 
         private void LayoutKingPortraitGroupSml2_Paint(object sender, PaintEventArgs e)
         {
             DrawGroupBorder(sender as Control, e, LabelKingCreatePortraitSml2);
+            DrawCropFrame(sender as Control, e, PanelKingSml2, LabelKingCreatePortraitSml2, "SML2");
         }
 
         private void LayoutKingRight_Paint(object sender, PaintEventArgs e)

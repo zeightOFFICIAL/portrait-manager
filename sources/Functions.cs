@@ -3156,6 +3156,8 @@ namespace PortraitManager
             {
                 panel.ResumeLayout();
             }
+            // The group paints the legend frame around the crop panel (DrawCropFrame).
+            panel.Parent?.Invalidate();
 
             // A hidden tab's table is not laid out, so its frame can be sized from stale cell widths
             // and corrected when the tab is shown again. Keep the zoomed crop through every such change.

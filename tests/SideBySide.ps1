@@ -57,13 +57,19 @@ try {
             foreach ($pane in $row.Controls) {
                 Assert ($pane.Width -gt 0 -and $pane.Left -ge 0 -and $pane.Right -le $row.Width -and
                         $pane.Top -ge 0 -and $pane.Bottom -le $row.Height) "Clipped pane at $width"
-                # Previews show the portrait's real size, or scale it down keeping its exact shape.
+                # Every preview has the portrait's exact shape and the row's shared scale,
+                # so the previews keep the size relation of the exported files.
                 $out = $pane.Output
                 $shown = $pane.Controls['Preview'].Size
-                Assert ($shown.Width -le $out.Width -and $shown.Height -le $out.Height) "$($pane.Name) preview larger than real size"
                 Assert ([Math]::Abs($shown.Width - $out.Width * $shown.Height / $out.Height) -le 1) "$($pane.Name) preview has the wrong shape"
-                if ($game -eq 'd' -and $width -eq 1050) { Assert ($shown -eq $out) "$($pane.Name) should be shown at real size" }
+                Assert ([Math]::Abs($shown.Height - $out.Height * $row.Scale) -le 1) "$($pane.Name) preview does not use the shared scale"
             }
+            # The scale is the largest that fits, so the row touches the panel's padding at the
+            # top (height-bound) or at the left (width-bound; spare width becomes even gaps).
+            $pad = [Math]::Round(10 * $width / 750)
+            $top = ($row.Controls | Measure-Object -Property Top -Minimum).Minimum
+            $left = $row.Controls[0].Left
+            Assert ([Math]::Min($top, $left) -le $pad + 6) "Row does not fill the panel at $width (top $top, left $left)"
         }
         $other = (Field 'PicKingSml').Bounds
         $pane = $row.Controls[0]

@@ -316,24 +316,13 @@ namespace PortraitManager
                     btn.Text = TextVariables.BUTTON_SELECT_LOCAL;
             }
 
-            var zoomInButtons = new Button[] { ButtonKingLrgZoomIn, ButtonKingMedZoomIn, ButtonKingSmlZoomIn, ButtonKingSml2ZoomIn };
-            foreach (var zb in zoomInButtons)
-            {
-                if (zb == null) continue;
-                zb.Text = TextVariables.ICON_ZOOM_IN;
-            }
-            var zoomOutButtons = new Button[] { ButtonKingLrgZoomOut, ButtonKingMedZoomOut, ButtonKingSmlZoomOut, ButtonKingSml2ZoomOut };
-            foreach (var zb in zoomOutButtons)
-            {
-                if (zb == null) continue;
-                zb.Text = TextVariables.ICON_ZOOM_OUT;
-            }
-            var zoomResetButtons = new Button[] { ButtonKingLrgZoomReset, ButtonKingMedZoomReset, ButtonKingSmlZoomReset, ButtonKingSml2ZoomReset };
-            foreach (var zb in zoomResetButtons)
-            {
-                if (zb == null) continue;
-                zb.Text = TextVariables.ICON_ZOOM_RESET;
-            }
+            // Zoom buttons draw vector icons (UiIcons): the theme font has no emoji glyphs.
+            foreach (var zb in new Button[] { ButtonKingLrgZoomIn, ButtonKingMedZoomIn, ButtonKingSmlZoomIn, ButtonKingSml2ZoomIn })
+                if (zb != null) UiIcons.Attach(zb, UiIcon.ZoomIn, TextVariables.ICON_ZOOM_IN);
+            foreach (var zb in new Button[] { ButtonKingLrgZoomOut, ButtonKingMedZoomOut, ButtonKingSmlZoomOut, ButtonKingSml2ZoomOut })
+                if (zb != null) UiIcons.Attach(zb, UiIcon.ZoomOut, TextVariables.ICON_ZOOM_OUT);
+            foreach (var zb in new Button[] { ButtonKingLrgZoomReset, ButtonKingMedZoomReset, ButtonKingSmlZoomReset, ButtonKingSml2ZoomReset })
+                if (zb != null) UiIcons.Attach(zb, UiIcon.ZoomReset, TextVariables.ICON_ZOOM_RESET);
         }
 
         private void LanguageFlagsInit()

@@ -40,10 +40,10 @@ namespace PortraitManager
                         Reset(g, pen, brush, box);
                         break;
                     case UiIcon.SingleView:
-                        Portraits(g, brush, box, new[] { 1f });
+                        Portraits(g, brush, bounds, new[] { 1f });
                         break;
                     case UiIcon.SideBySide:
-                        Portraits(g, brush, box, new[] { 1f, 0.72f, 0.5f });
+                        Portraits(g, brush, bounds, new[] { 1f, 0.72f, 0.5f });
                         break;
                 }
             }
@@ -56,7 +56,6 @@ namespace PortraitManager
         {
             button.Text = string.Empty;
             if (accessibleName != null) button.AccessibleName = accessibleName;
-            button.Tag = button.Tag; // keep existing tags (single-view buttons store their picture name)
             button.Paint -= PaintAttached;
             button.Paint += PaintAttached;
             Icons[button] = icon;
@@ -120,26 +119,25 @@ namespace PortraitManager
             g.FillPolygon(brush, head);
         }
 
-        // Portrait cards standing on one baseline, tallest first.
-        private static void Portraits(Graphics g, Brush brush, RectangleF box, float[] heights)
+        // Portrait cards (width : height = 0.72) standing on one baseline, tallest first.
+        // Uses the whole bounds, not a square, so a row of cards stays legible in a wide segment.
+        private static void Portraits(Graphics g, Brush brush, Rectangle bounds, float[] heights)
         {
-            float s = box.Width;
-            float gap = s * 0.08f;
-            float unit = s * 0.62f;                 // width : height of a card = 0.62
-            float total = 0;
-            foreach (float h in heights) total += unit * h * 0.62f;
-            total += gap * (heights.Length - 1);
-            float scale = Math.Min(1f, s / total);
-            float x = box.X + (s - total * scale) / 2f;
-            float baseline = box.Y + s * 0.5f + unit * scale * 0.5f / 0.62f * 0.62f;
-            baseline = box.Y + (s + s * scale) / 2f;
+            const float aspect = 0.72f, gapShare = 0.14f;
+            float sum = 0;
+            foreach (float h in heights) sum += h;
+            float span = aspect * sum + gapShare * (heights.Length - 1);   // row width per unit of card height
+            float tallest = Math.Min(bounds.Height * 0.62f, bounds.Width * 0.7f / span);
+            if (tallest < 4) return;
+            float x = bounds.X + (bounds.Width - tallest * span) / 2f;
+            float baseline = bounds.Y + (bounds.Height + tallest) / 2f;
+            float radius = Math.Max(1f, tallest * 0.08f);
             foreach (float h in heights)
             {
-                float height = s * h * scale;
-                float width = height * 0.72f;
-                using (var path = Rounded(new RectangleF(x, baseline - height, width, height), Math.Max(1f, s * 0.05f)))
+                float height = tallest * h, width = tallest * h * aspect;
+                using (var path = Rounded(new RectangleF(x, baseline - height, width, height), radius))
                     g.FillPath(brush, path);
-                x += width + gap * scale;
+                x += width + tallest * gapShare;
             }
         }
 

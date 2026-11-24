@@ -25,8 +25,11 @@ try {
     foreach ($game in 'k','w','r','p','t','d','l') {
         $gameField.SetValue($null,[char]$game)
         $type.GetMethod('LabelCreatePortrait_Click',$private).Invoke($form,@($null,[EventArgs]::Empty))
-        $toggle = Field '_comparisonToggle'
+        $toggle = Field '_viewSwitch'
         if ($game -eq 'l') { Assert (!$toggle.Visible) 'One-slot game shows toggle'; continue }
+        foreach ($button in 'ButtonKingLrgZoomIn','ButtonKingLrgZoomOut','ButtonKingLrgZoomReset') {
+            Assert ((Field $button).Text -eq '') "$button draws an icon, so it must not show glyph text"
+        }
         $keys = switch ($game) {
             { $_ -in 'k','w','r' } { 'Lrg','Med','Sml' }
             { $_ -in 'p','t' } { 'Lrg','Sml' }
@@ -51,13 +54,22 @@ try {
         foreach ($width in 1050,750) {
             $form.ClientSize = [Drawing.Size]::new($width,$width*52/75)
             [Windows.Forms.Application]::DoEvents()
-            foreach ($pane in $row.Controls) { Assert ($pane.Width -gt 0 -and $pane.Right -le $row.Width) 'Clipped pane' }
+            foreach ($pane in $row.Controls) {
+                Assert ($pane.Width -gt 0 -and $pane.Left -ge 0 -and $pane.Right -le $row.Width -and
+                        $pane.Top -ge 0 -and $pane.Bottom -le $row.Height) "Clipped pane at $width"
+                # Previews show the portrait's real size, or scale it down keeping its exact shape.
+                $out = $pane.Output
+                $shown = $pane.Controls['Preview'].Size
+                Assert ($shown.Width -le $out.Width -and $shown.Height -le $out.Height) "$($pane.Name) preview larger than real size"
+                Assert ([Math]::Abs($shown.Width - $out.Width * $shown.Height / $out.Height) -le 1) "$($pane.Name) preview has the wrong shape"
+                if ($game -eq 'd' -and $width -eq 1050) { Assert ($shown -eq $out) "$($pane.Name) should be shown at real size" }
+            }
         }
         $other = (Field 'PicKingSml').Bounds
-        $pane = $row.GetControlFromPosition(0,0)
+        $pane = $row.Controls[0]
         $large = Field 'PicKingLrg'
         $before = $large.Bounds
-        $canvas = $pane.GetControlFromPosition(0,3)
+        $canvas = $pane.Controls['Preview']
         $center = [Drawing.Point]::new($canvas.Width / 2,$canvas.Height / 2)
         Assert ($pane.ZoomAtScreenPoint($canvas.PointToScreen($center),120)) 'Wheel missed preview'
         Assert ($large.Width -gt $before.Width) 'Wheel did not zoom'
@@ -70,16 +82,16 @@ try {
         $canvas.GetType().GetMethod('OnMouseMove',$private).Invoke($canvas,@($drag))
         $canvas.GetType().GetMethod('OnMouseUp',$private).Invoke($canvas,@($drag))
         Assert ($large.Left -gt $x) 'Dragging did not pan'
-        $buttons = $pane.GetControlFromPosition(0,4)
-        Assert ($buttons.Controls.Count -eq 3) 'Pane should only have zoom in, zoom out and reset'
-        $buttons.GetControlFromPosition(2,0).PerformClick()
+        $buttons = @($pane.Controls | Where-Object { $_ -is [Windows.Forms.Button] })
+        Assert ($buttons.Count -eq 3) 'Pane should only have zoom in, zoom out and reset'
+        $pane.Controls['ZoomReset'].PerformClick()
         $before = $large.Bounds
-        $buttons.GetControlFromPosition(0,0).PerformClick()
+        $pane.Controls['ZoomIn'].PerformClick()
         Assert ($large.Width -gt $before.Width) 'Zoom did not enlarge active crop'
         $before = $large.Bounds
-        $buttons.GetControlFromPosition(1,0).PerformClick()
+        $pane.Controls['ZoomOut'].PerformClick()
         Assert ($large.Width -lt $before.Width) 'Zoom out did not shrink active crop'
-        $buttons.GetControlFromPosition(0,0).PerformClick()
+        $pane.Controls['ZoomIn'].PerformClick()
         Assert ((Field 'PicKingSml').Bounds -eq $other) 'Another crop moved'
         $adjusted = $large.Bounds
         $toggle.PerformClick()
@@ -89,7 +101,7 @@ try {
         $samples = @{}
         foreach ($key in $keys) {
             $pane = $row.Controls["ComparePicKing$key"]
-            $canvas = $pane.GetControlFromPosition(0,3)
+            $canvas = $pane.Controls['Preview']
             $frame = $pane.GetType().GetProperty('Frame',$private).GetValue($pane)
             $preview = [Drawing.Bitmap]::new($canvas.Width,$canvas.Height)
             $canvas.DrawToBitmap($preview,$canvas.ClientRectangle)

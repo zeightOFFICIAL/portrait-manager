@@ -13,7 +13,7 @@ namespace PortraitManager
         private readonly Button _comparisonToggle = new Button
         {
             Name = "ButtonCompareCrops", Dock = DockStyle.Fill, Cursor = Cursors.Hand,
-            FlatStyle = FlatStyle.Flat, BackColor = Color.Black, ForeColor = Color.White
+            FlatStyle = FlatStyle.Flat, BackColor = Color.Black, ForeColor = Color.White, TabStop = false
         };
         private TableLayoutPanel _comparisonRow;
 
@@ -22,6 +22,8 @@ namespace PortraitManager
             LayoutKingCreatePortrait.Controls.Remove(LayoutKingPortraitGroups);
             LayoutKingCreatePortrait.Controls.Add(_cropHost, 1, 2);
             _cropHost.Controls.Add(LayoutKingPortraitGroups);
+            // Line up with the right column and sit on the panel like the slot tabs.
+            _comparisonToggle.Margin = new Padding(LayoutKingRight.Margin.Left, 0, LayoutKingRight.Margin.Right, 6);
             LayoutKingCreatePortrait.Controls.Add(_comparisonToggle, 2, 1);
             _comparisonToggle.Click += (s, e) =>
             {
@@ -41,9 +43,11 @@ namespace PortraitManager
             _comparisonRow = new TableLayoutPanel
             {
                 Name = "ComparisonRow", Dock = DockStyle.Fill, Margin = Padding.Empty,
-                BackColor = Color.Black, RowCount = 1, GrowStyle = TableLayoutPanelGrowStyle.AddColumns
+                BackColor = game.BackColor, RowCount = 1, GrowStyle = TableLayoutPanelGrowStyle.AddColumns
             };
             _comparisonRow.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+            _comparisonRow.Paint += (s, e) => DrawGroupBorder(_comparisonRow, e, null);
+            _comparisonRow.SizeChanged += (s, e) => LayoutComparison();
             AddSlot(PortraitGroupSelection.Large, "LARGE", PicKingLrg, LabelKingCreatePortraitLarge);
             AddSlot(PortraitGroupSelection.Medium, "MEDIUM", PicKingMed, LabelKingCreatePortraitMedium);
             AddSlot(PortraitGroupSelection.Small, "SMALL", PicKingSml, LabelKingCreatePortraitSmall);
@@ -85,11 +89,58 @@ namespace PortraitManager
         {
             _comparisonToggle.Visible = GameTypes.TryGetValue(_gameSelected, out GameType game) && _gameSelected != 'l';
             if (game == null) return;
-            _comparisonToggle.ForeColor = game.ForeColor;
-            _comparisonToggle.Font = UiFont(FontFamily.GenericSansSerif, 9);
+            StylePortraitButton(_comparisonToggle, game);
+            _comparisonToggle.Font = ThemeFont(16);
             _comparisonToggle.Text = _comparisonRow == null ? TextVariables.SIDE_BY_SIDE : TextVariables.SINGLE_VIEW;
-            if (_comparisonRow != null)
-                foreach (ComparisonPane pane in _comparisonRow.Controls) pane.RefreshAppearance(game);
+            if (_comparisonRow == null) return;
+            _comparisonRow.BackColor = game.BackColor;
+            int inset = UiPixels(6);
+            _comparisonRow.Padding = new Padding(inset, inset, inset, inset);
+            foreach (ComparisonPane pane in _comparisonRow.Controls) pane.RefreshAppearance(game);
+            LayoutComparison();
+            _comparisonRow.Invalidate();
+        }
+
+        // Size the preview row to the tallest frame the panes need, so short frames
+        // (Deadfire's small slots) don't leave a gap above the buttons.
+        private void LayoutComparison()
+        {
+            if (_comparisonRow == null || _comparisonRow.Controls.Count == 0) return;
+            int title = UiPixels(34), dimensions = UiPixels(24), buttons = UiPixels(48);
+            Size inner = _comparisonRow.DisplayRectangle.Size;
+            int available = Math.Max(0, inner.Height - title - dimensions - buttons);
+            int paneWidth = inner.Width / _comparisonRow.Controls.Count;
+            int preview = 0;
+            foreach (ComparisonPane pane in _comparisonRow.Controls)
+            {
+                int width = paneWidth - pane.Margin.Horizontal;
+                preview = Math.Max(preview, (int)Math.Ceiling((double)width * pane.Output.Height / pane.Output.Width));
+            }
+            preview = Math.Min(preview, available);
+            foreach (ComparisonPane pane in _comparisonRow.Controls)
+                pane.SetRowHeights(title, dimensions, preview, buttons);
+        }
+
+        private Font ThemeFont(float points) => UiFont(
+            (_currentLanguage == 'r' ? _fontCollectionCyrillic : _fontCollection).Families[0], points, cyrillic: _currentLanguage == 'r');
+
+        // Same look as the single view's buttons (UpdatePortraitButtonsStyle), including the hover inversion.
+        private void StylePortraitButton(Button button, GameType game)
+        {
+            bool hovered = button.ClientRectangle.Contains(button.PointToClient(Cursor.Position)) && button.Visible;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 1;
+            button.FlatAppearance.BorderColor = game.ForeColor;
+            button.FlatAppearance.MouseOverBackColor = game.ForeColor;
+            button.FlatAppearance.MouseDownBackColor = game.ForeColor;
+            button.BackColor = hovered ? game.ForeColor : game.BackColor;
+            button.ForeColor = hovered ? game.BackColor : game.ForeColor;
+            button.UseVisualStyleBackColor = false;
+            button.TabStop = false;
+            button.MouseEnter -= PortraitButton_MouseEnter;
+            button.MouseLeave -= PortraitButton_MouseLeave;
+            button.MouseEnter += PortraitButton_MouseEnter;
+            button.MouseLeave += PortraitButton_MouseLeave;
         }
 
         // Each pane edits the original editor's picture bounds. Switching views and
@@ -118,17 +169,20 @@ namespace PortraitManager
                 Name = "Compare" + picture.Name;
                 Dock = DockStyle.Fill;
                 ColumnCount = 1;
-                RowCount = 5;
+                // Spacer, title, dimensions, preview, buttons, spacer. LayoutComparison sets the
+                // fixed rows so the content block is centered and lines up across panes.
+                RowCount = 6;
                 ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-                foreach (int height in new[] { 11, 6, 63, 10, 10 })
-                    RowStyles.Add(new RowStyle(SizeType.Percent, height));
+                RowStyles.Add(new RowStyle(SizeType.Percent, 50));
+                for (int i = 0; i < 4; i++) RowStyles.Add(new RowStyle(SizeType.Absolute, 0));
+                RowStyles.Add(new RowStyle(SizeType.Percent, 50));
                 _title.TextAlign = ContentAlignment.BottomCenter;
                 _dimensions.TextAlign = ContentAlignment.MiddleCenter;
                 _dimensions.Text = $"{output.Width} × {output.Height}";
                 _title.Dock = _dimensions.Dock = _canvas.Dock = DockStyle.Fill;
-                Controls.Add(_title, 0, 0);
-                Controls.Add(_dimensions, 0, 1);
-                Controls.Add(_canvas, 0, 2);
+                Controls.Add(_title, 0, 1);
+                Controls.Add(_dimensions, 0, 2);
+                Controls.Add(_canvas, 0, 3);
                 _canvas.Cursor = Cursors.SizeAll;
                 _canvas.Paint += PaintCrop;
                 _canvas.Resize += (s, e) => _canvas.Invalidate();
@@ -152,34 +206,38 @@ namespace PortraitManager
                 _canvas.MouseCaptureChanged += (s, e) => _dragging = false;
                 _canvas.MouseUp += (s, e) => _canvas.Capture = false;
 
-                var moves = ButtonRow(4, 3);
-                AddButton(moves, "←", () => Nudge(-1, 0));
-                AddButton(moves, "↑", () => Nudge(0, -1));
-                AddButton(moves, "↓", () => Nudge(0, 1));
-                AddButton(moves, "→", () => Nudge(1, 0));
-                var zoom = ButtonRow(3, 4);
-                AddButton(zoom, "−", () => Zoom(-120, Center));
-                AddButton(zoom, "↺", () => { editor.FitImageToPanel(picture); _canvas.Invalidate(); });
-                AddButton(zoom, "+", () => Zoom(120, Center));
+                // Same buttons, order and icons as the single view's zoom row.
+                _buttons.ColumnCount = 3;
+                _buttons.RowCount = 1;
+                _buttons.Dock = DockStyle.Fill;
+                _buttons.Margin = Padding.Empty;
+                for (int i = 0; i < 3; i++) _buttons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1));
+                _buttons.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+                Controls.Add(_buttons, 0, 4);
+                AddButton("ZoomIn", () => Zoom(120, Center));
+                AddButton("ZoomOut", () => Zoom(-120, Center));
+                AddButton("ZoomReset", () => { editor.FitImageToPanel(picture); _canvas.Invalidate(); });
+            }
+
+            private readonly TableLayoutPanel _buttons = new TableLayoutPanel();
+
+            public Size Output => _output;
+
+            public void SetRowHeights(int title, int dimensions, int preview, int buttons)
+            {
+                RowStyles[1].Height = title;
+                RowStyles[2].Height = dimensions;
+                RowStyles[3].Height = preview;
+                RowStyles[4].Height = buttons;
             }
 
             private Point Center => new Point(_viewport.Width / 2 - _picture.Left, _viewport.Height / 2 - _picture.Top);
 
-            private TableLayoutPanel ButtonRow(int columns, int row)
+            private void AddButton(string name, Action action)
             {
-                var table = new TableLayoutPanel { ColumnCount = columns, RowCount = 1, Dock = DockStyle.Fill, Margin = Padding.Empty };
-                for (int i = 0; i < columns; i++) table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1));
-                table.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                Controls.Add(table, 0, row);
-                return table;
-            }
-
-            private static void AddButton(TableLayoutPanel row, string text, Action action)
-            {
-                var button = new Button { Text = text, Dock = DockStyle.Fill, Margin = new Padding(1),
-                    Cursor = Cursors.Hand, FlatStyle = FlatStyle.Flat, UseVisualStyleBackColor = false };
+                var button = new Button { Name = name, Dock = DockStyle.Fill, Cursor = Cursors.Hand };
                 button.Click += (s, e) => action();
-                row.Controls.Add(button, row.Controls.Count, 0);
+                _buttons.Controls.Add(button, _buttons.Controls.Count, 0);
             }
 
             public void RefreshAppearance(GameType game)
@@ -187,14 +245,36 @@ namespace PortraitManager
                 BackColor = game.BackColor;
                 ForeColor = game.ForeColor;
                 _title.Text = _tab.Text.TrimStart('⍞', '⌻', '⌼', '▣', ' ');
-                _title.Font = _editor.UiFont(_tab.Font.FontFamily, 14, cyrillic: _currentLanguage == 'r');
-                _dimensions.Font = _editor.UiFont(FontFamily.GenericSansSerif, 8);
-                Font = _editor.UiFont(FontFamily.GenericSansSerif, 11);
-                Margin = new Padding(_editor.UiPixels(2), 0, _editor.UiPixels(2), 0);
+                _title.Font = _editor.ThemeFont(18);
+                _dimensions.Font = _editor.ThemeFont(12);
+                // Four slots (Deadfire) leave narrow panes: tighten the gaps and the icon size so icons don't wrap.
+                bool narrow = Parent != null && Parent.Controls.Count > 3;
+                int gap = _editor.UiPixels(narrow ? 2 : 3);
+                Margin = new Padding(gap, 0, gap, 0);
+                _canvas.BackColor = game.BackColor;
+                _buttons.Margin = new Padding(0, gap, 0, 0);
+                foreach (Button button in _buttons.Controls)
+                {
+                    _editor.StylePortraitButton(button, game);
+                    button.Font = _editor.ThemeFont(narrow ? 11f : 14.85f);
+                    button.Margin = new Padding(gap, 0, gap, 0);
+                    button.Padding = Padding.Empty;
+                    button.Text = button.Name == "ZoomIn" ? TextVariables.ICON_ZOOM_IN
+                                : button.Name == "ZoomOut" ? TextVariables.ICON_ZOOM_OUT : TextVariables.ICON_ZOOM_RESET;
+                }
                 _canvas.Invalidate();
             }
 
-            private Rectangle Frame => ImageControl.PortraitCrop.FitInside(_output, _canvas.ClientRectangle);
+            // Top-aligned, so every frame in the row starts on the same line under its title.
+            private Rectangle Frame
+            {
+                get
+                {
+                    var frame = ImageControl.PortraitCrop.FitInside(_output, _canvas.ClientRectangle);
+                    frame.Y = 0;
+                    return frame;
+                }
+            }
 
             private bool GetPreviewGeometry(out Image image, out RectangleF source, out Rectangle destination)
             {
@@ -216,8 +296,6 @@ namespace PortraitManager
                 ImageControl.Direct.DrawNoBleed(e.Graphics, image, destination, source.X, source.Y, source.Width, source.Height);
             }
 
-            private void Nudge(int dx, int dy) => MoveTo(_picture.Left + dx * Math.Max(1, _viewport.Width / 25),
-                                                        _picture.Top + dy * Math.Max(1, _viewport.Height / 25));
             private void MoveTo(int x, int y)
             {
                 _picture.Location = _editor.ClampPictureLocation(_picture, _viewport, new Point(x, y));

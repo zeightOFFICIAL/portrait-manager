@@ -18,8 +18,6 @@ Costura.Fody comes from NuGet. The nine runtime DLLs under `lib/` are project re
 
 The C# sources use language version 7.3 (`LangVersion`), so newer syntax such as switch expressions, `using` declarations, and nullable reference types does not compile.
 
-*Developed with Claude.*
-
 ## Find the code
 
 | Area | Entry points |
@@ -34,7 +32,7 @@ The C# sources use language version 7.3 (`LangVersion`), so newer syntax such as
 | Game definitions and discovery | `Variables.cs` declares the seven profiles using `sources/GameTypeClass.cs`. `sources/SystemWorks.cs` contains install detection, native 7-Zip discovery, filesystem helpers, and font registration. |
 | Dialogs | `forms/` contains the web-image and name dialogs, confirmation and message dialogs, and the creation notification. Each has its own designer and resource file. |
 | Resources and preferences | `properties/Resources.resx` links application artwork and fonts in `resources/`. Edit UI strings in the neutral, German, and Russian `TextVariables*.resx` files together. Regenerate the corresponding designer when adding a resource key. `CoreSettings.settings` defines the persisted game ID, path, language, window width (`WindowWidth`), and default size (`LargeInterface`). |
-| Documentation and historical assets | `README.md` describes the game workflows and portrait sizes. `media/` holds listing and README images. `deprecated/` contains historical assets. |
+| Documentation and historical assets | `README.md` describes the game workflows and portrait sizes. Version 1.5 has been released. Log user-facing changes as short bullets under the `1.5.1 (in development)` changelog entry, and do not edit the entries of released versions. `media/` holds listing and README images. `deprecated/` contains historical assets. |
 | UI regression script | `tests/SideBySide.ps1`. See [Verify a change](#verify-a-change). |
 
 ## Game-specific behavior

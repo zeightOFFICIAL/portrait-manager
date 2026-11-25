@@ -191,7 +191,7 @@ Requires .NET Framework 4.8. If you're on a reasonably current Windows 10 or Win
 * C#, .NET Framework 4.8, Windows Forms, Visual Studio 2026
 * Library dependencies (SharpCompress and its runtime DLLs) are embedded in the `.exe` via Costura.Fody. German and Russian text builds into `de` and `ru` satellite assemblies next to it
 * Release builds have debug symbols stripped
-* *Developed with Claude.*
+* Developed with Claude.
 
 #### Addendum
 Small technical notes that aren't covered above, but worth knowing if something looks unexpected:
@@ -201,6 +201,11 @@ Small technical notes that aren't covered above, but worth knowing if something 
 * **Settings storage**: game path, last-used game, language and window size are stored per-user as XML under your Windows AppData folder, the same mechanism used in the previous release - not next to the executable.
 
 ##### Changelog
+* 1.5.1 (in development)
+    * Added a resizable window: drag any edge or corner, the aspect ratio is kept, a framed crop stays put, and the size is remembered
+    * Added a Side by side view that frames all of a game's portraits in one row at a shared scale, with zoom, pan and reset per portrait
+    * The single view now frames each crop with its name, export size and display scale
+    * Zoom and view buttons now use vector icons that stay sharp at every window size
 * 1.5 (current)
     * Major visual, conceptual and functional overhaul
     * Added full support for Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny and Wasteland 3
@@ -208,9 +213,6 @@ Small technical notes that aren't covered above, but worth knowing if something 
     * Reintroduced localization: English, German and Russian, switchable via flags in the top-right corner. Unlike 1.2.0.0, the language is never auto-detected from the system - it defaults to English and remembers your last choice
     * Added Create with name - choose your own folder/file name for a new portrait instead of an auto-generated one, with duplicate names rejected up front
     * Added a per-game help button on the Browse Gallery page explaining that page's tabs and behavior
-    * Added a resizable window that keeps its aspect ratio, keeps your framed crop and remembers its size
-    * Added a Side by side view that frames all of a game's portraits in one row at a shared scale
-    * Zoom and view buttons now use crisp vector icons that stay sharp at every window size
     * Major internal refactor touching nearly every part of the codebase: code split by responsibility (UI events, business logic, image/file operations), all user-facing text centralized, dead code removed
     * Fixed several silent failures (corrupt/unsupported image loads, failed deletes) to surface a plain-language message instead of doing nothing
 * 1.3.5.0 (previous)

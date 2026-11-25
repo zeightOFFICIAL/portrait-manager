@@ -28,7 +28,7 @@
 ### Description
 Zeight Portrait Manager is a lightweight Windows tool for creating, browsing, editing and extracting in-game character portraits across seven CRPGs from three developers: Owlcat Games (Pathfinder: Kingmaker, Pathfinder: Wrath of the Righteous, Warhammer 40,000: Rogue Trader), Obsidian Entertainment (Pillars of Eternity, Pillars of Eternity: Deadfire, Tyranny) and inXile Entertainment (Wasteland 3). It automatically locates each game's portrait folder, handles the cropping/resizing math for every portrait size the game expects, and writes files directly where the game will read them - no manual folder digging, no guessing dimensions.
 
-Ships as a single self-contained `.exe`. Nothing to unpack, no companion DLLs to keep together, no installer. The only requirement is .NET Framework 4.8, which is already present on virtually every Windows 10/11 machine.
+Ships as one `.exe` with all of its libraries built in, plus two small language folders (`de` and `ru`). No installer, no companion DLLs. The only requirement is .NET Framework 4.8, which is already present on virtually every Windows 10/11 machine.
 
 <table style="border:none; border-collapse:collapse; width:100%;">
 <tr>
@@ -50,12 +50,12 @@ Ships as a single self-contained `.exe`. Nothing to unpack, no companion DLLs to
 
 ### Features
 
-Drag any edge or corner of the window to resize it. The interface keeps its 75:52 aspect ratio, including while editing a portrait. The app remembers the size you choose.
+Drag any edge or corner of the window to resize it. The window grows and shrinks in small steps and keeps its 75:52 aspect ratio, including while you edit a portrait. A crop you have framed stays put when the size changes. The app remembers the size you choose.
 
 #### Create new portraits
 Load an image from a local file or a web URL - drag-and-drop works too, either straight onto the portrait panel or as a pasted link. Zoom, pan and reset the crop with the mouse; each panel is shaped to the exact aspect ratio the game expects for that size, so what you see previewed is what gets written to disk. Press Create and Portrait Manager crops, resizes and saves every required size for that game in one pass, then shows a toast confirming where it landed with a one-click "open folder" link.
 
-Choose **Side by side** to frame all of a game's portraits in one row. Each preview shows its name and export dimensions. Drag a portrait or use its arrows to pan, use the wheel or + and − to zoom, and use ↺ to reset that crop. Switch to **Single view** to replace a source image. You can create the set from either view. Wasteland 3 has one portrait and uses the single editor.
+Choose **Side by side** to frame all of a game's portraits in one row. All previews share one scale, so they keep the size relation of the exported files. Each preview shows its name and export dimensions. Drag a portrait to pan, use the mouse wheel or the zoom-in and zoom-out buttons to zoom, and use the reset button to restore that crop. Switch to **Single view** to replace a source image. You can create the set from either view. Wasteland 3 has one portrait and uses the single editor.
 
 Prefer to pick the name yourself instead of an auto-generated one? Press Create with name instead of Create - it asks for a name first (duplicates are rejected on the spot) and then creates the portrait exactly like Create does.
 
@@ -171,7 +171,7 @@ This is the part that differs the most from game to game, because it depends on 
 1. Pick the game, press Create portrait.
 2. Choose local (browse your files) or web (paste a link), then load the image.
 3. Zoom/pan to crop it the way you want - the panel already matches the game's aspect ratio.
-4. Repeat for each portrait size the game uses, then press Create.
+4. Repeat for each portrait size the game uses, or switch to **Side by side** to frame them all at once, then press Create.
 5. The new portrait is saved and shows up in Browse Gallery immediately.
 
 **Edit a companion or NPC portrait**
@@ -183,21 +183,22 @@ This is the part that differs the most from game to game, because it depends on 
 6. Launch the game - the change is already live, no save-editing needed.
 
 ### Installation
-Download `Portrait Manager.exe` and run it from anywhere - it's fully self-contained, so there's nothing else to copy alongside it. Settings (game paths, window size, last-used game) are stored per-user under your Windows AppData folder, not next to the executable, so moving or renaming the `.exe` is safe.
+Download `Portrait Manager.exe` together with its `de` and `ru` folders, keep them side by side, and run it from anywhere. The folders hold the German and Russian text. Without them the app still works, in English only. Settings (game path, window size, last-used game, language) are stored per-user under your Windows AppData folder, not next to the executable, so moving the app is safe.
 
 Requires .NET Framework 4.8. If you're on a reasonably current Windows 10 or Windows 11 install, you already have it.
 
 ### Build info
-* C#, .NET Framework 4.8, Visual Studio 2022
-* Single self-contained `.exe` - all dependencies embedded via Costura.Fody, nothing to distribute separately
+* C#, .NET Framework 4.8, Windows Forms, Visual Studio 2026
+* Library dependencies (SharpCompress and its runtime DLLs) are embedded in the `.exe` via Costura.Fody. German and Russian text builds into `de` and `ru` satellite assemblies next to it
 * Release builds have debug symbols stripped
+* *Developed with Claude.*
 
 #### Addendum
 Small technical notes that aren't covered above, but worth knowing if something looks unexpected:
 
 * **Localization**: the UI can be switched between English, German and Russian using the small flags in the top-right corner of the window. The language is never auto-detected from the OS - it defaults to English and only changes when you click a flag, and your choice is remembered for next launch.
 * **CustomNPC has no in-game binding from this app**: Portrait Manager only writes image files to disk; it has no pipeline of its own to make the game display a given folder as a specific companion or NPC. The folder's name has to match that character's exact in-game dialogue name for CustomNpcPortraits to pick it up - that matching is entirely the mod's job, not Portrait Manager's.
-* **Settings storage**: game path, last-used game, and now language are stored per-user as XML under your Windows AppData folder, the same mechanism used in the previous release - not next to the executable.
+* **Settings storage**: game path, last-used game, language and window size are stored per-user as XML under your Windows AppData folder, the same mechanism used in the previous release - not next to the executable.
 
 ##### Changelog
 * 1.5 (current)
@@ -207,6 +208,9 @@ Small technical notes that aren't covered above, but worth knowing if something 
     * Reintroduced localization: English, German and Russian, switchable via flags in the top-right corner. Unlike 1.2.0.0, the language is never auto-detected from the system - it defaults to English and remembers your last choice
     * Added Create with name - choose your own folder/file name for a new portrait instead of an auto-generated one, with duplicate names rejected up front
     * Added a per-game help button on the Browse Gallery page explaining that page's tabs and behavior
+    * Added a resizable window that keeps its aspect ratio, keeps your framed crop and remembers its size
+    * Added a Side by side view that frames all of a game's portraits in one row at a shared scale
+    * Zoom and view buttons now use crisp vector icons that stay sharp at every window size
     * Major internal refactor touching nearly every part of the codebase: code split by responsibility (UI events, business logic, image/file operations), all user-facing text centralized, dead code removed
     * Fixed several silent failures (corrupt/unsupported image loads, failed deletes) to surface a plain-language message instead of doing nothing
 * 1.3.5.0 (previous)
@@ -248,7 +252,7 @@ Small technical notes that aren't covered above, but worth knowing if something 
 
 **Tools & license**
 1. Program license: GPL-2.0, conditions listed in [LICENSE](https://github.com/zeightOFFICIAL/portrait-manager/blob/master/LICENSE)
-2. Visual Studio 2022 belongs to Microsoft (https://visualstudio.microsoft.com/vs/)
+2. Visual Studio belongs to Microsoft (https://visualstudio.microsoft.com/vs/)
 
 **Games**
 1. Pathfinder: Kingmaker belongs to Owlcat Games (https://kingmaker.owlcat.games/)

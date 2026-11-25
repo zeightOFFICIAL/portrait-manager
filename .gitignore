@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # Local-machine-only build steps (e.g. post-build copy to a network share)
 PostBuild.local.targets
+
+# Local UI regression scripts
+tests/
